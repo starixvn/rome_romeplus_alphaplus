@@ -72,8 +72,8 @@
 @model ConsolidationByUsernameViewModel
 <partial name="TitleAndFilter" model="Model" />
 <table
-    class="tb tb-bordered tb-hover w-full  @(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
-    id="tbl-report">
+class="tb tb-bordered tb-hover w-full  @(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
+id="tbl-report">
     <thead>
         <tr>
             <th rowspan="2" class="hidden-stack-mode">@Resources.Level</th>
@@ -115,6 +115,7 @@
             {
                 var total = dataByUsername.Total;
                 var isShowPT = !total.IsMemberLevel();
+                var cashServiceBillingProductId = "111";
                 <tr class="username-row" data-custid="@total.CustId">
                     <td class="text-left bold">
                         <div class="username-col">
@@ -127,9 +128,9 @@
                             @if (isShowPT)
                             {
                                 <a class="downline-link" asp-action="ConsolidationDetail"
-                                    asp-all-route-data="@Model.BuildDrillDownParams(total.CustId, total.Username, total.CustLevel)">@total.Username</a>
+                                asp-all-route-data="@Model.BuildDrillDownParams(total.CustId, total.Username, total.CustLevel)">@total.Username</a>
                                 <span class="ic-percent view-product-pt-list" data-custid="@total.CustId" data-username="@total.Username"
-                                    data-userlevel="@total.CustLevelName"></span>
+                                data-userlevel="@total.CustLevelName"></span>
                             }
                             else
                             {
@@ -153,30 +154,62 @@
                 foreach (var dataByPT in dataByUsername.ConsolidationByPTs)
                 {
                     var ptTotal = dataByPT.Total;
-                    if (isShowPT && ptTotal.BetCount > 0)
+                    var isCashServiceBilling = ptTotal.BreakDown.Equals(cashServiceBillingProductId, StringComparison.OrdinalIgnoreCase);
+                    if (!isCashServiceBilling) 
                     {
-                        <tr class="child-row-@total.CustId consolidation-pt-row hide">
-                            <td></td>
-                            <td class="text-left bold group-pt consolidation">@ptTotal.PositionTakingText</td>
-                            <td></td>
-                            @{
-                                RenderConsolidateRow(ptTotal);
-                            }
-                        </tr>
+                        if (isShowPT && ptTotal.BetCount > 0)
+                        {
+                            <tr class="child-row-@total.CustId consolidation-pt-row hide">
+                                <td></td>
+                                <td class="text-left bold group-pt consolidation">@ptTotal.PositionTakingText</td>
+                                <td></td>
+                                @{
+                                    RenderConsolidateRow(ptTotal);
+                                }
+                            </tr>
+                        }
+                    } 
+                    else 
+                    {
+                        if (isShowPT)
+                        {
+                            <tr class="child-row-@total.CustId consolidation-pt-row hide">
+                                <td></td>
+                                <td class="text-left bold group-pt consolidation">@ptTotal.PositionTakingText</td>
+                                <td></td>
+                                @{
+                                    RenderConsolidateRow(ptTotal);
+                                }
+                            </tr>
+                        }
                     }
 
                     foreach (var item in dataByPT.WinLoss)
                     {
-                        if (item.BetCount > 0)
-                        {
-                        <tr class="child-row-@total.CustId hide">
-                            <td></td>
-                            <td class="text-left bold col-product consolidation">@item.ProductName</td>
-                            <td></td>
-                            @{
-                                RenderConsolidateRow(item);
+                        var isCashServiceBillingSubRow = item.BreakDown.Equals(cashServiceBillingProductId, StringComparison.OrdinalIgnoreCase);
+                        if (!isCashServiceBillingSubRow) {
+                            if (item.BetCount > 0)
+                            {
+                                <tr class="child-row-@total.CustId hide">
+                                    <td></td>
+                                    <td class="text-left bold col-product consolidation">@item.ProductName</td>
+                                    <td></td>
+                                    @{
+                                        RenderConsolidateRow(item);
+                                    }
+                                </tr>
                             }
-                        </tr>
+                        }
+                        else
+                        {
+                            <tr class="child-row-@total.CustId hide">
+                                <td></td>
+                                <td class="text-left bold col-product consolidation">@item.ProductName</td>
+                                <td></td>
+                                @{
+                                    RenderConsolidateRow(item);
+                                }
+                            </tr>
                         }
                     }
                 }
