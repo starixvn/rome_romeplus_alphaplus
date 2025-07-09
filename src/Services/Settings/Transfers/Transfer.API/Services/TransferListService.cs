@@ -20,9 +20,8 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
     public async Task<CustomerTransferReport> GetTransferList(TransferListParam param)
     {
         var custLevel = Enumeration.FromValue<UserLevel>(param.CustLevelId);
-        var ip = custLevel.IsAgentLevel() ? param.AGIP : null;
         var criteria = BuildTransferListCriteria(param, custLevel);
-        var customers = await repository.FetchAsync<CustomerTransfer>(criteria, ip);
+        var customers = await repository.FetchAsync<CustomerTransfer>(criteria, param.AGIP);
 
         if (!customers.Any())
         {
@@ -35,9 +34,8 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
     public async Task<CustomerTransfer> GetCustomerTransfer(TransferListParam param)
     {
         var custLevel = Enumeration.FromValue<UserLevel>(param.CustLevelId);
-        var ip = custLevel.IsAgentLevel() ? param.AGIP : null;
         var criteria = BuildTransferListCriteria(param, custLevel);
-        var customers = await repository.FetchAsync<CustomerTransfer>(criteria, ip);
+        var customers = await repository.FetchAsync<CustomerTransfer>(criteria, param.AGIP);
 
         return customers.FirstOrDefault();
     }
