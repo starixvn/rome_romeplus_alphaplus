@@ -2,11 +2,13 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.Consolidation;
 
-internal class GetSMAPositionTakingCriteria(string custIds, byte settingStatus) : CriteriaBase
+internal class GetSMAPositionTakingCriteria(string custIds, byte settingStatus, string cashServicesSites) : CriteriaBase
 {
     public string CustIds { get; } = custIds;
 
     public byte SettingStatus { get; } = settingStatus;
+
+    public string CashServiceSites {  get; } = cashServicesSites;
 
     public override string GetSettingKey() => "EAS_GetPTProductBySMA";
 
