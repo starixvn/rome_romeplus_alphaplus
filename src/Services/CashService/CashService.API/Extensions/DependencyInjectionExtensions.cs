@@ -1,6 +1,7 @@
 namespace AlphaPlus.CashService.API.Extensions;
 
 using System.Net;
+using AlphaPlus.CashService.API.Features.PendingWithdrawal.Helpers;
 using AlphaPlus.CashService.API.Features.PendingWithdrawal.Services;
 using AlphaPlus.CashService.API.Features.Shared.Constants;
 using AlphaPlus.CashService.API.Features.Shared.Models;
@@ -34,7 +35,7 @@ public static class DependencyInjectionExtensions
         services.AddScoped<ITransactionService, TransactionService>();
         services.AddScoped<IPromotionService, PromotionService>();
         services.AddScoped<IBankService, BankService>();
-        services.AddScoped<PaymentGatewayService, PaymentGatewayService>();
+        services.AddScoped<IPaymentGatewayService, PaymentGatewayService>();
 
         return services;
     }
@@ -64,6 +65,10 @@ public static class DependencyInjectionExtensions
             UseProxy = proxySettings.IsUseProxy,
             Proxy = new WebProxy(proxySettings.ProxyAddress, proxySettings.BypassOnLocal)
         });
+
+        services.AddSingleton(sp => configuration.GetSection("PaymentGatewayApiConfig").Get<PaymentGatewayApiConfig>());
+        services.AddScoped<PaymentGatewayHttpClientHelper>();
+
         return services;
     }
 }
