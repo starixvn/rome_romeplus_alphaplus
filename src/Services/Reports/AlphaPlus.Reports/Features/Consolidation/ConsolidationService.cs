@@ -47,7 +47,7 @@ public class ConsolidationService(
             {
                 cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductsCacheTimeInMinutes));
                 var ip = allowedSitesToShareLoad.GetIP(siteName);
-                var cashServiceSites = Core.Configurations.AppSettings.IsOfferedCashService(siteName) ? siteName : null;
+                var cashServiceSites = Core.Configurations.AppSettings.CashServiceOfferedSites.JoinWithComma();
                 var products = (await repository.FetchAsync<ConsolidationProduct>(new GetConsolidationProductsCriteria(custId, settingStatus), ip))
                     .Where(product => product.ProductId != ProductIdConstants.Cashout && IsRemainSupportProduct(product, minDate))
                     .Select(product => new Product
@@ -90,11 +90,7 @@ public class ConsolidationService(
                 .Distinct()
                 .JoinWithComma();
 
-            var cashServicesSite = string.Empty;
-            if (Core.Configurations.AppSettings.IsOfferedCashService(param.SiteName))
-            {
-                cashServicesSite = param.SiteName;
-            }
+            var cashServicesSite = Core.Configurations.AppSettings.CashServiceOfferedSites.JoinWithComma();
 
             var ptList = await repository.FetchAsync<PositionTakingModel>(new GetSMAPositionTakingCriteria(smaCustIds, param.SettingStatus, cashServicesSite));
             var UpdatePTValueHandler = (ConsolidationEntity entity, decimal ptValue) =>

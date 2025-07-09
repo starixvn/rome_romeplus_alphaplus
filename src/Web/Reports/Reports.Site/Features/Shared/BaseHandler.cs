@@ -9,6 +9,7 @@ namespace AlphaPlus.Reports.Site.Features.Shared;
 
 public class BaseHandler(IProductService productService, IOptions<AppSettings> options)
 {
+    private const int CashServiceProductId = 111;
     protected readonly IProductService productService = productService;
     protected readonly AppSettings appSettings = options.Value;
 
@@ -55,7 +56,8 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
         var isCheckedAll = "*" == userSelectedProductIds;
         var userSelectedProductIdsList = isCheckedAll ? [] : userSelectedProductIds.ToListInt().ToList();
 
-        var offeredProductGroups = products.GroupBy(p => new { p.Type, p.TypeName });
+
+        var offeredProductGroups = products.Where(p => p.Id != CashServiceProductId).GroupBy(p => new { p.Type, p.TypeName });
         foreach (var groups in offeredProductGroups)
         {
             var subProductsCheckedCount = 0;
@@ -84,6 +86,21 @@ public class BaseHandler(IProductService productService, IOptions<AppSettings> o
                     subProducts));
             }
         }
+
+        var cashServiceBillingProduct = products.FirstOrDefault(p => p.Id == CashServiceProductId);
+        
+        if (cashServiceBillingProduct != null)
+        {
+            var isChecked = isCheckedAll || userSelectedProductIdsList.Contains(cashServiceBillingProduct.Id);
+            if (isChecked)
+            {
+                validUserSelectedProductIds.Add(cashServiceBillingProduct.Id);
+                
+            }
+
+            productGroups.Add(new ProductGroupDTO(cashServiceBillingProduct.Id, cashServiceBillingProduct.Name, isChecked, null));
+        }
+
 
         return (productGroups, validUserSelectedProductIds);
     }
