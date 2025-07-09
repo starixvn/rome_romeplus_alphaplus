@@ -17,13 +17,15 @@ public class PendingWithdrawalServiceTests
 {
     private readonly Mock<IDynamicRepository> mockDynamicRepository;
     private readonly Mock<ITransactionService> mockTransactionService;
+    private readonly Mock<IPaymentGatewayService> mockPaymentGatewayService;
     private readonly PendingWithdrawalService service;
 
     public PendingWithdrawalServiceTests()
     {
         mockDynamicRepository = new Mock<IDynamicRepository>();
         mockTransactionService = new Mock<ITransactionService>();
-        service = new PendingWithdrawalService(mockDynamicRepository.Object, mockTransactionService.Object);
+        mockPaymentGatewayService = new Mock<IPaymentGatewayService>();
+        service = new PendingWithdrawalService(mockDynamicRepository.Object, mockTransactionService.Object, mockPaymentGatewayService.Object);
     }
 
     [Fact]

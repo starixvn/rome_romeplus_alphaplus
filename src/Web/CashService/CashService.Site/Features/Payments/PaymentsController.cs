@@ -3,7 +3,6 @@ using AlphaPlus.CashService.Site.Features.Payments.Requests;
 using AlphaPlus.CashService.Site.Features.Payments.ViewModels;
 using AlphaPlus.CashService.Site.Features.Shared;
 using AlphaPlus.CashService.Site.Features.Shared.Filters;
-using AlphaPlus.CashService.Site.Features.Shared.Models;
 using AlphaPlus.Core.Models;
 using Fanex.Customer.Client.Services;
 using Microsoft.AspNetCore.Antiforgery;
@@ -126,7 +125,6 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             };
 
             request.APIResult = await ValidatePaymentMethod(validateRequest, cancellationToken);
-            // return new JsonResult(new ResultModel(0, "Payment method added successfully"));
             return await DoAction<InsertPaymentMethodRequest, object>($"{_apiBaseUrl}/payments/add-payment-method", request, cancellationToken);
         }
 
@@ -237,29 +235,24 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         private async Task<bool> ValidatePaymentMethod(ValidatePaymentMethodRequest request, CancellationToken cancellationToken)
         {
             try {
-                Console.WriteLine($"ValidatePaymentMethod: {request.ProviderId}, {request.TransactionType}, {request.Method}, {request.MerchantID}, {request.APIMethodKey}, {request.AppSecret}");
-
                 var url = $"{_twAPIUrl}/PaymentGateway/TestConnection";
                 var twRequest = new {
-                    providerId = 1, //request.ProviderId,
-                    transactionType = 1, //request.TransactionType,
-                    paymentMethod = 6, //request.Method,
+                    providerId = request.ProviderId,
+                    transactionType = request.TransactionType,
+                    paymentMethod = request.Method,
                     apiConfig = new {
-                        MerchantNo = "90906", //request.MerchantID,
-                        AppSecret = "5bxr2v89pUyN9qjUAUT9YQ", //request.AppSecret,
-                        SecretKey = "P8TP8jp0H0_WxvlBMmTpjw" //request.APIMethodKey
+                        MerchantNo = request.MerchantID,
+                        AppSecret = request.AppSecret,
+                        SecretKey = request.APIMethodKey
                     }
                 };
 
-                Console.WriteLine($"ValidatePaymentMethod Request: {Newtonsoft.Json.JsonConvert.SerializeObject(twRequest)}");
                 var response = await _httpClient.PostAsJsonAsync(url, twRequest, cancellationToken);
                 response.EnsureSuccessStatusCode();
                 var result = await response.Content.ReadFromJsonAsync<TWAPIResultModel>(cancellationToken: cancellationToken);
-                Console.WriteLine($"ValidatePaymentMethod Result: {result.Code}, {result.Message}");
                 return result.Code == 0;
             } catch (Exception ex) {
                 await _logger.ErrorAsync(ex.Message, ex);
-                Console.WriteLine($"ValidatePaymentMethod Error: {ex.Message}");
                 return false;
             }
         }

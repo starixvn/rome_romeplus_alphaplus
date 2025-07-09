@@ -123,6 +123,46 @@
       "sourceFileMap": {
           "/Views": "${workspaceFolder}/Views"
       }
+    },
+    {
+      "name": "CashService Launch (Docker)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-cashservice",
+      "program": "${workspaceFolder}/Web/CashService/CashService.Site/bin/Debug/net8.0/AlphaPlus.CashService.Site.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Web/CashService/CashService.Site",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+          "action": "openExternally",
+          "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+          "/Views": "${workspaceFolder}/Views"
+      }
+    },
+    {
+      "name": "CashService API Launch (Docker)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build-cashservice-api",
+      "program": "${workspaceFolder}/Services/CashService/CashService.API/bin/Debug/net9.0/AlphaPlus.CashService.API.dll",
+      "args": [],
+      "cwd": "${workspaceFolder}/Services/CashService/CashService.API",
+      "stopAtEntry": false,
+      "serverReadyAction": {
+          "action": "openExternally",
+          "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+      },
+      "env": {
+          "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "sourceFileMap": {
+          "/Views": "${workspaceFolder}/Views"
+      }
     }
   ],
   "compounds": [
@@ -134,7 +174,9 @@
             "Main Launch (Docker)",
             "Reports Launch (Docker)",
             "Settings Launch (Docker)",
-            "Tickets Launch (Docker)"
+            "Tickets Launch (Docker)",
+            "CashService Launch (Docker)",
+            "CashService API Launch (Docker)",
           ]
       }
   ]

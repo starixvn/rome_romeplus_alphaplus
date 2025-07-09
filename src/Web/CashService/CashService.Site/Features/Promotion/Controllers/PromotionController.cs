@@ -97,7 +97,7 @@ public class PromotionController(
     {
         var url = $"/promotions/get?promotionTypeId={promotionTypeId}&statusId={statusId}&custId={userSession.CustId}";
 
-        var result = await httpClientHelper.GetAsync<Promotion>(url);
+        var result = await httpClientHelper.GetAsync<object>(url);
 
         return Json(result);
     }
