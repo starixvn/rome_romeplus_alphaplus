@@ -126,9 +126,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             };
 
             request.APIResult = await ValidatePaymentMethod(validateRequest, cancellationToken);
-            return new JsonResult(new ResultModel(0, "Payment method added successfully"));
-
-            // return await DoAction<InsertPaymentMethodRequest, object>($"{_apiBaseUrl}/payments/add-payment-method", request, cancellationToken);
+            // return new JsonResult(new ResultModel(0, "Payment method added successfully"));
+            return await DoAction<InsertPaymentMethodRequest, object>($"{_apiBaseUrl}/payments/add-payment-method", request, cancellationToken);
         }
 
         [HttpPost]
