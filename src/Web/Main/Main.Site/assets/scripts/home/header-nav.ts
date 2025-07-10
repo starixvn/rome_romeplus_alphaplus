@@ -415,6 +415,7 @@ var headerNav = {
             data: { languageCode: lang, displayLanguage: isDisplayLanguage },
             success: function (result) {
                 if (result !== undefined) {
+                    localStorage.setItem('i18nextLng', lang);
                     headerNav.reloadPage();
                 }
             }
