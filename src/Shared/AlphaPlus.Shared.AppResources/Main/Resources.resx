@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
+  <!--  
     Microsoft ResX Schema 
     
     Version 2.0
@@ -938,19 +938,19 @@ Note: Please change your &lt;b&gt;password&lt;/b&gt; the first time you click 'A
     <value>Steps to share your unique sign-up link with your members.</value>
   </data>
   <data name="CashServiceSetupChecklist_Row2" xml:space="preserve">
-    <value>Go to &lt;a class="lnk-manage-payments" target="main" href="{0}"&gt;Manage Payments&lt;/a&gt; to set up your Payment Gateway or Bank Account</value>
+    <value>Go to &lt;a class="lnk-manage-payments" target="main" href="{0}"&gt;Manage Payments&lt;/a&gt; to set up your &lt;strong&gt;Payment Gateway&lt;/strong&gt; or &lt;strong&gt;Bank Account&lt;/strong&gt;</value>
   </data>
   <data name="CashServiceSetupChecklist_Row3" xml:space="preserve">
-    <value>&lt;div class="chk-deposit-methods"&gt;&lt;/div&gt;Set up and Enable your deposit methods</value>
+    <value>&lt;div class="chk-deposit-methods"&gt;&lt;/div&gt;Set up and &lt;strong&gt;Enable&lt;/strong&gt; your deposit methods</value>
   </data>
   <data name="CashServiceSetupChecklist_Row4" xml:space="preserve">
-    <value>&lt;div class="chk-withdrawal-methods"&gt;&lt;/div&gt;Set up and Enable your withdrawal methods</value>
+    <value>&lt;div class="chk-withdrawal-methods"&gt;&lt;/div&gt;Set up and &lt;strong&gt;Enable&lt;/strong&gt; your withdrawal methods</value>
   </data>
   <data name="CashServiceSetupChecklist_Row5" xml:space="preserve">
     <value>Go to &lt;a class="lnk-member-site-management" target="main" href="{0}"&gt;Member Site Management&lt;/a&gt;</value>
   </data>
   <data name="CashServiceSetupChecklist_Row6" xml:space="preserve">
-    <value>&lt;div class="chk-line-id"&gt;&lt;/div&gt;Fill in your LINE ID and share your link</value>
+    <value>&lt;div class="chk-line-id"&gt;&lt;/div&gt;Fill in your &lt;strong&gt;LINE ID&lt;/strong&gt; and share your link</value>
   </data>
   <data name="CashServiceSetupChecklist_Row7" xml:space="preserve">
     <value>Ensure your Available Credit is sufficient for deposits and withdrawals</value>
