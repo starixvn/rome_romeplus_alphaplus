@@ -11,19 +11,14 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
   const [selectedStatus, setSelectedStatus] = useState<number>(0);
 
   const promotionTypes = [
-    { value: 0, label: 'Welcome Bonus' },
-    { value: 1, label: 'Reload Bonus' },
-    { value: 2, label: 'Cashback' },
-    { value: 3, label: 'Tournament' },
+    { value: 0, label: 'All' },
+    { value: 1, label: 'Rebate on Turnover' }
   ];
 
   const statusOptions = [
     { value: 0, label: 'All' },
-    { value: 1, label: 'Active' },
-    { value: 2, label: 'Scheduled' },
-    { value: 3, label: 'Expired' },
-    { value: 4, label: 'Completed' },
-    { value: 5, label: 'Inactive' },
+    { value: 1, label: 'Enable' },
+    { value: 2, label: 'Disable' }
   ];
 
   const handleTypeChange = (option: any) => {

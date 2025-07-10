@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  ProductDropdown,
-  ProductSetting,
-  PromotionRequest,
-} from '../../../../services/interfaces/Promotion';
-import {
-  BackButtonComponent,
-  ButtonApplyComponent,
-  ButtonCancelComponent,
+    BackButtonComponent,
+    ButtonApplyComponent,
+    ButtonCancelComponent,
 } from '../../../../components/Buttons/index';
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../../../components/Message';
 import { TitleComponent } from '../../../../components/Title';
 import { TreeNodeOption } from '../../../../components/TreeSelect/TreeSelect';
+import {
+    ProductDropdown,
+    ProductSetting,
+    PromotionRequest,
+} from '../../../../services/interfaces/Promotion';
 import { promotionService } from '../../../../services/promotionAPI';
+import Information from './Form/Information';
 import PromotionInfo, { PromotionLangFields } from './Form/LanguageInfo';
 import ProductSettings from './Form/ProductSettings';
-import Information from './Form/Information';
 
 interface EditPromotionProps {
   onClose: () => void;
@@ -70,7 +70,7 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
         const promotionData = await promotionService.getPromotionById(promotionId);
 
         if (promotionData) {
-          setPromotionType(parseInt(promotionData.promotionType) || PROMOTION_TYPES[0].value);
+          setPromotionType(parseInt(promotionData.promotionTypeName) || PROMOTION_TYPES[0].value);
 
           if (promotionData.fromDate && promotionData.toDate) {
             setPeriod([new Date(promotionData.fromDate), new Date(promotionData.toDate)]);

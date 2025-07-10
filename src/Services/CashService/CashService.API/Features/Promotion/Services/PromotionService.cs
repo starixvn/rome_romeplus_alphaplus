@@ -9,7 +9,7 @@ public interface IPromotionService
 {
     Task<IEnumerable<Product>> GetProductAsync();
 
-    Task<IEnumerable<Promotion>> GetPromotionAsync(int promotionTypeId, int statusId, int custId);
+    Task<IEnumerable<Promotion>> GetPromotionAsync(PromotionRequest request);
 
     Task<Promotion> GetPromotionByIdAsync(int promotionId, int custId);
 
@@ -26,10 +26,17 @@ public class PromotionService(IDynamicRepository repository) : IPromotionService
         return products;
     }
 
-    public async Task<IEnumerable<Promotion>> GetPromotionAsync(int promotionTypeId, int statusId, int custId)
+    public async Task<IEnumerable<Promotion>> GetPromotionAsync(PromotionRequest request)
     {
-        var result = await Task.FromResult(CreateFakePromotionModel());
-        return result;
+        var criteria = new GetPromotionCriteria(request.PromotionTypeId, request.StatusId, request.SiteDBGroupId, request.ActorId);
+        var model = await repository.FetchMultipleAsync<Promotion, PromotionProductSetting>(criteria);
+
+        foreach (var item in model.FirstResultSet)
+        {
+            item.ProductSettings = model.SecondResultSet.Where(i => i.PromotionId == item.PromotionId).ToList();
+        }
+
+        return model.FirstResultSet;
     }
 
     public async Task<Promotion> GetPromotionByIdAsync(int promotionId, int custId)
@@ -99,12 +106,13 @@ public class PromotionService(IDynamicRepository repository) : IPromotionService
             fakeList.Add(new Promotion
             {
                 PromotionId = i,
+                PromotionTitle = $"Promotion Title {i}",
                 SiteDbGroupId = i,
                 PromotionTypeId = i % 3 + 1,
                 FromDate = DateTime.Now.AddDays(-i * 10),
                 ToDate = DateTime.Now.AddDays(i * 10),
                 Enabled = i % 2 == 0,
-                ModifiedDate = DateTime.Now.AddDays(-i),
+
                 ProductSettings =
                 [
                     new()
@@ -113,25 +121,8 @@ public class PromotionService(IDynamicRepository repository) : IPromotionService
                         SiteDbGroupId = i,
                         ProductCategoryId = i % 4 + 1,
                         Percentage = 10 + i,
-                        MinTurnover = 1000 + i * 100,
                         MaxPayout = 5000 + i * 200,
-                        Unlimited = i % 2 == 1,
-                        ProductList = $"Product {i}, Product {i + 10}",
-                        Products =
-                        [
-                            new()
-                            {
-                                ProductCategoryId = 40 + i,
-                                ProductId = 100 + i,
-                                ProductName = $"Product {i}",
-                            },
-                            new()
-                            {
-                                ProductCategoryId = 200 + i,
-                                ProductId = 200 + i,
-                                ProductName = $"Product {i + 10}",
-                            }
-                        ]
+                        ProductList = $"Product {i}, Product {i + 10}"
                     }
                 ],
                 LanguageSettings = new List<PromotionLanguageSetting>()

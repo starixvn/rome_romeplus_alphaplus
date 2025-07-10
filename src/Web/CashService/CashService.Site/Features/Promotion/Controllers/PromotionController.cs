@@ -95,7 +95,7 @@ public class PromotionController(
 
     public async Task<IActionResult> GetPromotion(int promotionTypeId, int statusId, CancellationToken cancellationToken)
     {
-        var url = $"/promotions/get?promotionTypeId={promotionTypeId}&statusId={statusId}&custId={userSession.CustId}";
+        var url = $"/promotions/get?promotionTypeId={promotionTypeId}&statusId={statusId}&custId={userSession.CustId}&sitedbgroupId={userSession.SiteDBGroupId}";
 
         var result = await httpClientHelper.GetAsync<object>(url);
 

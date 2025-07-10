@@ -1,15 +1,15 @@
 ﻿import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import i18n from '../../../../i18n/i18n-promotion';
+import { ButtonDeleteComponent, ButtonPenComponent } from '../../../../components/Buttons/ButtonIconComponent';
+import NoRecordFoundComponent from '../../../../components/NoRecordFoundComponent';
 import { useCookieLanguage } from '../../../../hooks/useCookieLanguage';
+import i18n from '../../../../i18n/i18n-promotion';
 import {
   Product,
   ProductSetting,
   PromotionDetail,
 } from '../../../../services/interfaces/Promotion';
-import NoRecordFoundComponent from '../../../../components/NoRecordFoundComponent';
 import { formatDate } from '../../../../utils/commonFunctions';
-import { ButtonDeleteComponent, ButtonPenComponent } from '../../../../components/Buttons/ButtonIconComponent';
 
 interface TableProps {
   items: PromotionDetail[];
@@ -30,13 +30,9 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
   const getStatusStyle = (status: string) => {
     var s = status ? status.toLocaleUpperCase() : '';
     switch (s) {
-      case 'ACTIVE':
-        return 'bg-[#D4E7D9]';
-      case 'SCHEDULED':
-        return 'bg-[#FBD8D8]';
-      case 'EXPIRED':
-        return 'bg-[#FBD8D8]';
-      case 'INACTIVE':
+      case 'ENABLE':
+        return 'bg-[#D4E7D9]';      
+      case 'DISABLE':
         return 'bg-[#FBD8D8]';
       default:
         return '';
@@ -48,7 +44,7 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
     if (!products || products.length === 0) return '';
     const names = products.slice(0, maxDisplay).map((p) => p.productName);
     const remain = products.length - maxDisplay;
-    return remain > 0 ? `${names.join(', ')} + ${remain} more` : names.join(', ');
+    return remain > 0 ? `${names.join('/ ')} + ${remain} more` : names.join(', ');
   };
 
   const displayGridProducts = (promotions: PromotionDetail[]): ProductSetting[] => {
@@ -131,7 +127,7 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
         </div>
       </td>
       <td className="bg-white text-left">{item.promotionTitle}</td>
-      <td className="bg-white text-center">{item.promotionType}</td>
+      <td className="bg-white text-center">{item.promotionTypeName}</td>
       {gridProducts.map((product) =>
         displayPercentageMaxPayout(item.productSettings, product.productCategoryId)
       )}
@@ -141,9 +137,9 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
       <td className="w-[110px] bg-white">{`${formatDate(item.fromDate?.toString() || '')} - ${formatDate(item.toDate?.toString() || '')}`}</td>
       <td className="w-[110px] bg-white">
         <span
-          className={`inline-block px-2 py-1 rounded text-xs font-semibold ${getStatusStyle(item.enabled ? 'ACTIVE' : 'INACTIVE')}`}
+          className={`inline-block px-2 py-1 rounded text-xs font-semibold ${getStatusStyle(item.enabled ? 'ENABLE' : 'DISABLE')}`}
         >
-          {item.enabled ? 'ACTIVE' : 'INACTIVE'}
+          {item.enabled ? 'ENABLE' : 'DISABLE'}
         </span>
       </td>
     </tr>

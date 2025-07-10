@@ -2,11 +2,18 @@
 {
     public class Promotion : BasePromotion
     {
+        public string PromotionTitle { get; set; }
         public int PromotionTypeId { get; set; }
+
+        public string PromotionTypeName => PromotionTypeId switch
+        {
+            1 => "Rebate on Turnover",
+            _ => "Unknown"
+        };
         public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }
         public bool Enabled { get; set; }
-        public DateTime? ModifiedDate { get; set; }
+        
         public List<PromotionProductSetting> ProductSettings { get; set; }
         public List<PromotionLanguageSetting> LanguageSettings { get; set; }
     }

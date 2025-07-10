@@ -2,7 +2,7 @@
   promotionId: number;
   promotionTitle: string;
   promotionTypeId: number;
-  promotionType: string;
+  promotionTypeName: string;
   statusId: number;
   status: string;
   fromDate: Date | null;

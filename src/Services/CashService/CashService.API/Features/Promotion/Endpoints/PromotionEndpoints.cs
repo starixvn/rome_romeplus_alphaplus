@@ -23,9 +23,9 @@ public static class PromotionEndpoints
             Description = "Returns a tree of available products for promotion"
         });
 
-        group.MapGet("/get", async (int promotionTypeId, int statusId, int custId, IPromotionService service) =>
+        group.MapGet("/get", async (PromotionRequest request, IPromotionService service) =>
         {
-            var promotions = await service.GetPromotionAsync(promotionTypeId, statusId, custId);
+            var promotions = await service.GetPromotionAsync(request);
             return Results.Ok(promotions);
         })
         .WithName("GetPromotion")
