@@ -9,6 +9,7 @@ export const ButtonClosePopupComponent: React.FC<ButtonComponentProps> = ({ onCl
       type={type || 'button'}
       className="absolute top-[11px] right-[-5px] cursor-pointer outline-none"
       onClick={onClick}
+      aria-label="Close"
     >
       <IconClose />
     </button>

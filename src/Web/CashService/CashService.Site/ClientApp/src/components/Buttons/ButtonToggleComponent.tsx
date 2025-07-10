@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ButtonComponentProps } from './types';
 import './ButtonComponents.scss';
 
-export const EnableButtonComponent: React.FC<ButtonComponentProps> = ({ isActive, onClick, type }) => {
+export const EnableButtonComponent: React.FC<ButtonComponentProps> = ({ isActive, onClick, type = 'button' }) => {
   const { t: tGlobal } = useTranslation('global');
 
   return (
@@ -17,7 +17,7 @@ export const EnableButtonComponent: React.FC<ButtonComponentProps> = ({ isActive
   );
 };
 
-export const DisableButtonComponent: React.FC<ButtonComponentProps> = ({ isActive, onClick, type }) => {
+export const DisableButtonComponent: React.FC<ButtonComponentProps> = ({ isActive, onClick, type = 'button' }) => {
   const { t: tGlobal } = useTranslation('global');
 
   return (
@@ -31,7 +31,7 @@ export const DisableButtonComponent: React.FC<ButtonComponentProps> = ({ isActiv
   );
 };
 
-export const ButtonOnComponent: React.FC<ButtonComponentProps> = ({ isActive, onClick, type }) => {
+export const ButtonOnComponent: React.FC<ButtonComponentProps> = ({ isActive, onClick, type = 'button' }) => {
   const { t: tGlobal } = useTranslation('global');
 
   return (
@@ -45,7 +45,7 @@ export const ButtonOnComponent: React.FC<ButtonComponentProps> = ({ isActive, on
   );
 };
 
-export const ButtonOffComponent: React.FC<ButtonComponentProps> = ({ isActive, onClick, type }) => {
+export const ButtonOffComponent: React.FC<ButtonComponentProps> = ({ isActive, onClick, type = 'button' }) => {
   const { t: tGlobal } = useTranslation('global');
 
   return (

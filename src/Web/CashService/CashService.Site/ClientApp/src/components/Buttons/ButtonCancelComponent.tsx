@@ -5,7 +5,7 @@ import './ButtonComponents.scss';
 export const ButtonCancelComponent: React.FC<ButtonComponentProps> = ({
   text,
   onClick,
-  type,
+  type = 'button',
   className = '',
   disabled = false,
 }) => {
