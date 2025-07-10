@@ -47,4 +47,4 @@
         <span class="page-btn-next"><i class="icon-caret-right"></i></span>
     </div>
 </div>
-@Html.Hidden("NewFeatureUrl", MicroSites.SettingUrl("~/Customer/CreateDirectMember"))
+@Html.Hidden("NewFeatureUrl", MicroSites.SettingUrl($"~/Customer/CreateDirectMember?lng={Model.Language}"))

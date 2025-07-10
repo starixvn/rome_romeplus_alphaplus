@@ -187,7 +187,7 @@ public class IndexViewModel
 
     public bool IsShowRewardTour { get; }
 
-    public string TourUrl => MicroSites.SettingUrl($"~/Customer/CreateDirectMember");
+    public string TourUrl => MicroSites.SettingUrl($"~/Customer/CreateDirectMember?lng={message.Language}");
 
     public bool IsEnableReCheckIn => message.IsEnableReCheckIn;
 
