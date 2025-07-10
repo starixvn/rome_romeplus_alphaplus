@@ -54,9 +54,11 @@
             @foreach (var date in Model.ReportData)
             {
                 var isFirstRow = true;
+                var cashServiceBillingProductId = "111";
                 foreach (var data in date.WinLoss)
                 {
-                    if (data.BetCount == 0)
+                    var isCashServiceBilling = data.BreakDown.Equals(cashServiceBillingProductId, StringComparison.OrdinalIgnoreCase);
+                    if (!isCashServiceBilling && data.BetCount == 0)
                     {
                         continue;
                     }
