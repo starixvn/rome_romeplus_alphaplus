@@ -165,12 +165,14 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             });
         }
 
-        public ActionResult EditMultiple(EditMultipleCustomersQuery query)
+        public async Task<ActionResult> EditMultiple(EditMultipleCustomersQuery query)
         {
+            int firstCustId = Convert.ToInt32(query.CustIds.Split(',').FirstOrDefault() ?? "0");
             var viewModel = new EditMultipleCustomersViewModel(
                 query,
                 new AppConfiguration(GetApplicationPath(), systemId),
                 CDNUri,
+                await customerService.GetCashServiceStatus(firstCustId),
                 GetAssetsVersion());
 
             return View(viewModel);

@@ -5,7 +5,12 @@ namespace AlphaPlus.Settings.Site.Features.Customer.ViewModels
 {
     public class EditMultipleCustomersViewModel : CustomerBaseViewModel
     {
-        public EditMultipleCustomersViewModel(EditMultipleCustomersQuery query, AppConfiguration appConfig, string cndUri, string assetsVersion)
+        public EditMultipleCustomersViewModel(
+            EditMultipleCustomersQuery query, 
+            AppConfiguration appConfig, 
+            string cndUri,
+            int serviceType,
+            string assetsVersion)
             : base(appConfig, cndUri, assetsVersion)
         {
             Params = JsonSerializer.Serialize(
@@ -17,7 +22,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer.ViewModels
                     usernames = query.Usernames,
                     roleId = query.RoleId,
                     productGroupId = query.ProductGroupId,
-                    agentId = query.AgentId
+                    agentId = query.AgentId,
+                    serviceType
                 });
         }
     }
