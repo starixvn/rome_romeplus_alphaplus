@@ -1332,6 +1332,14 @@ html * {
     .title-checklist{
         color: #459BE5;
         font-size: 16px; 
+        strong{
+            font-family: inherit;
+            color: #459BE5;
+        }
+    }
+    strong{
+        color: #ffffff;
+        font-family: 'Roboto Bold';
     }
     .button-check-list {
         position: absolute;
@@ -1342,7 +1350,7 @@ html * {
         font-size: 15px;
         font-weight: bold;
         white-space: nowrap; 
-        padding: 3px 10px;
+        padding: 2px 5px 3px 10px;
         border-top-left-radius: 3px;
         border-bottom-left-radius: 3px;
         cursor: pointer;

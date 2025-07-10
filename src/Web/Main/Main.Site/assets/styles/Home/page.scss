@@ -1269,6 +1269,15 @@ html * {
     .title-checklist{
         color: #094980;
         font-size: 16px; 
+        strong{
+            color: #094980;
+            font-size: 16px; 
+            font-family: inherit;
+        }
+    }
+    strong{
+        color: #1a1a1a;
+        font-family: 'Roboto Bold';
     }
     .button-check-list {
         position: absolute;

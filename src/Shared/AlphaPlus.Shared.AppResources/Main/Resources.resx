@@ -953,7 +953,7 @@ Note: Please change your &lt;b&gt;password&lt;/b&gt; the first time you click 'A
     <value>&lt;div class="chk-line-id"&gt;&lt;/div&gt;Fill in your &lt;strong&gt;LINE ID&lt;/strong&gt; and share your link</value>
   </data>
   <data name="CashServiceSetupChecklist_Row7" xml:space="preserve">
-    <value>Ensure your Available Credit is sufficient for deposits and withdrawals</value>
+    <value>Ensure your &lt;strong&gt;Available Credit&lt;/strong&gt; is sufficient for deposits and withdrawals</value>
   </data>
   <data name="CashServiceSetupChecklist_Row8" xml:space="preserve">
     <value>Need help? Please read our guide.</value>
