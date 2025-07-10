@@ -14,4 +14,5 @@ public record CommissionModel(
     byte ClosedReason,
     string Group,
     bool DoubleCommLosing,
+    bool IsCashMember,
     IEnumerable<SportCommissionModel> Commissions);

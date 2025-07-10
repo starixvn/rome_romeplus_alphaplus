@@ -72,6 +72,7 @@ var indexManager = {
         }, 1000);
 
         indexManager.initCashServiceChecklist();
+        indexManager.bindCashServiceChecklistEvents();
     },
 
     initAfterCheckSurvey: function () {
@@ -605,7 +606,6 @@ var indexManager = {
             return;
         }
 
-        indexManager.bindCashServiceChecklistEvents();
         $.get(indexManager.urls.cashServiceSetupChecklist, function (result) {
             var checklistDiv = $('#cash-service-checklist');
             if(result.isCompleteAll) {
@@ -635,12 +635,14 @@ var indexManager = {
             }
 
             if(openContent) {
-                content.addClass('show');
+                checklistDiv.addClass('show');
+            } else {
+                checklistDiv.removeClass('show');
             }
         });
     },
     collapseCashServiceChecklist: function () {
-        $('#cash-service-checklist .checklist-content').removeClass('show');
+        $('#cash-service-checklist').removeClass('show');
     },
     showHideCashServiceChecklist: function (isShow: boolean) {
         if(isShow) {
