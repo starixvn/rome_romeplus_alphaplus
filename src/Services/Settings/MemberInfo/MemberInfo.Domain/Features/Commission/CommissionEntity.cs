@@ -51,5 +51,6 @@ public class CommissionEntity
 
     public byte ClosedReason { get; init; }
 
-    public bool IsCashMember { get; init; }
+    public int ServiceType { get; init; }
+    public bool IsCashMember => ServiceType == 1;
 }
