@@ -250,10 +250,10 @@ namespace AlphaPlus.CashService.Site.Features.Payments
                 var response = await _httpClient.PostAsJsonAsync(url, twRequest, cancellationToken);
                 response.EnsureSuccessStatusCode();
                 var result = await response.Content.ReadFromJsonAsync<TWAPIResultModel>(cancellationToken: cancellationToken);
-                return result.Code == 0;
+                return result.Code != 0;
             } catch (Exception ex) {
                 await _logger.ErrorAsync(ex.Message, ex);
-                return false;
+                return true;
             }
         }
     }

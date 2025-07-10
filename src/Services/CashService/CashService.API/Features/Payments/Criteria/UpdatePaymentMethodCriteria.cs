@@ -14,7 +14,7 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
         public int Method { get; } = request.Method;
 
         [SpParam(SqlParamName = "ValidationResult")]
-        public bool APIResult { get; } = !request.APIResult;
+        public bool APIResult { get; } = request.APIResult;
 
         public string APIConfig { get; } = request.GetAPIConfigJson();
 
