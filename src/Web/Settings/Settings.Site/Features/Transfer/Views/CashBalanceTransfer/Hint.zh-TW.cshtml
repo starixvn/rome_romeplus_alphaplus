@@ -18,11 +18,12 @@
     </ul>
     <p>備註</p>
     <ul class="ul-remark">
+        <li>Cash Members are not include on this page</li>
         @if (!string.IsNullOrEmpty(Model.AllowTransfer))
         {
             <li>@Html.Raw(Model.AllowTransfer)</li>
         }
-        <li>您可以根據自己的需要每天做無限次交易（包括昨天余額和現金余額）。</li>     
+        <li>您可以根據自己的需要每天做無限次交易（包括昨天余額和現金余額）。</li>
         <li>@Resources.showhidecolumnAd</li>
     </ul>
 }
@@ -30,6 +31,7 @@ else
 {
     <p>備註</p>
     <ul class="ul-remark">
+        <li>Cash Members are not include on this page</li>
         @if (!string.IsNullOrEmpty(Model.AllowTransfer))
         {
             <li>@Html.Raw(Model.AllowTransfer)</li>

@@ -18,11 +18,12 @@
     </ul>
     <p>หมายเหตุ</p>
     <ul class="ul-remark">
+        <li>Cash Members are not include on this page</li>
         @if (!string.IsNullOrEmpty(Model.AllowTransfer))
         {
             <li>@Html.Raw(Model.AllowTransfer)</li>
         }
-        <li>คุณสามารถทำรายการได้มากเท่าที่ต้องการต่อวัน (ทั้งยอดคงเหลือเมื่อวานและยอดคงเหลือเงินสด)</li>        
+        <li>คุณสามารถทำรายการได้มากเท่าที่ต้องการต่อวัน (ทั้งยอดคงเหลือเมื่อวานและยอดคงเหลือเงินสด)</li>
         <li>@Resources.showhidecolumnAd</li>
     </ul>
 }
@@ -30,6 +31,7 @@ else
 {
     <p>หมายเหตุ</p>
     <ul class="ul-remark">
+        <li>Cash Members are not include on this page</li>
         @if (!string.IsNullOrEmpty(Model.AllowTransfer))
         {
             <li>@Html.Raw(Model.AllowTransfer)</li>

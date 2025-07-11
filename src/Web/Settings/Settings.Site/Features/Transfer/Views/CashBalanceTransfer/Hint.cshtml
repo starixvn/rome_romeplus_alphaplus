@@ -18,11 +18,12 @@
     </ul>
     <p>Remark</p>
     <ul class="ul-remark">
+        <li>Cash Members are not include on this page</li>
         @if (!string.IsNullOrEmpty(Model.AllowTransfer))
         {
             <li>@Html.Raw(Model.AllowTransfer)</li>
         }
-        <li>You can make as many transactions as you wish per day (for both Yesterday Balance and Cash Balance).</li>       
+        <li>You can make as many transactions as you wish per day (for both Yesterday Balance and Cash Balance).</li>
         <li>@Resources.showhidecolumnAd</li>
     </ul>
 }
@@ -30,6 +31,7 @@ else
 {
     <p>Remark</p>
     <ul class="ul-remark">
+        <li>Cash Members are not include on this page</li>
         @if (!string.IsNullOrEmpty(Model.AllowTransfer))
         {
             <li>@Html.Raw(Model.AllowTransfer)</li>

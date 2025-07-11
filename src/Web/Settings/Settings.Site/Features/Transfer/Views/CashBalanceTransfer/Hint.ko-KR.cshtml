@@ -18,11 +18,12 @@
     </ul>
     <p>참고사항</p>
     <ul class="ul-remark">
+        <li>Cash Members are not include on this page</li>
         @if (!string.IsNullOrEmpty(Model.AllowTransfer))
         {
             <li>@Html.Raw(Model.AllowTransfer)</li>
         }
-        <li>하루에 원하는 만큼 거래할 수 있습니다 (어제 잔액과 현금 잔액 모두)</li>        
+        <li>하루에 원하는 만큼 거래할 수 있습니다 (어제 잔액과 현금 잔액 모두)</li>
         <li>@Resources.showhidecolumnAd</li>
     </ul>
 }
@@ -30,6 +31,7 @@ else
 {
     <p>참고사항</p>
     <ul class="ul-remark">
+        <li>Cash Members are not include on this page</li>
         @if (!string.IsNullOrEmpty(Model.AllowTransfer))
         {
             <li>@Html.Raw(Model.AllowTransfer)</li>
