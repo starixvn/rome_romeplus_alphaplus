@@ -4,6 +4,8 @@ using AlphaPlus.CashService.API.Features.Promotion.Services;
 
 namespace AlphaPlus.CashService.API.Features.Promotion.Endpoints;
 
+using Microsoft.AspNetCore.Mvc;
+
 public static class PromotionEndpoints
 {
     public static void MapPromotionEndpoints(this WebApplication app)
@@ -23,17 +25,17 @@ public static class PromotionEndpoints
             Description = "Returns a tree of available products for promotion"
         });
 
-        group.MapGet("/get", async (PromotionRequest request, IPromotionService service) =>
-        {
-            var promotions = await service.GetPromotionAsync(request);
-            return Results.Ok(promotions);
-        })
-        .WithName("GetPromotion")
-        .WithOpenApi(operation => new(operation)
-        {
-            Summary = "Get promotion",
-            Description = "Returns a list of available promotion"
-        });
+        //group.MapGet("/get", async (PromotionRequest request, IPromotionService service) =>
+        //{
+        //    var promotions = await service.GetPromotionAsync(request);
+        //    return Results.Ok(promotions);
+        //})
+        //.WithName("GetPromotion")
+        //.WithOpenApi(operation => new(operation)
+        //{
+        //    Summary = "Get promotion",
+        //    Description = "Returns a list of available promotion"
+        //});
 
         group.MapGet("/", async (int promotionId, int custId, IPromotionService service) =>
         {
@@ -47,7 +49,7 @@ public static class PromotionEndpoints
             Description = "Returns a promotion match ID"
         });
 
-        group.MapPost("/", async (PromotionRequest request, IPromotionService service) =>
+        group.MapPost("/", async ([FromBody] PromotionRequest request, IPromotionService service) =>
         {
             var result = await service.AddPromotionAsync(request);
             return Results.Ok(result);
@@ -59,7 +61,7 @@ public static class PromotionEndpoints
             Description = "Add a new promotion"
         });
 
-        group.MapPut("/{promotionId}", async (int promotionId, PromotionRequest request, IPromotionService service) =>
+        group.MapPut("/{promotionId}", async (int promotionId, [FromBody] PromotionRequest request, IPromotionService service) =>
         {
             var result = await service.EditPromotion(promotionId, request);
             return Results.Ok(result);
