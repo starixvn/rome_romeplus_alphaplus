@@ -23,7 +23,6 @@ import { useResultMessage } from "../../../../hooks/useResultMessage";
 
 export const SettingCashMemberInfo = () => {
     const { t } = useTranslation('customerSites');
-    const { t: tGlobal } = useTranslation('global');
     const [originalCustomerInfo, setOriginalCustomerInfo] = useState<CustomerInfoData>({
         firstName: '',
         lastName: '',
