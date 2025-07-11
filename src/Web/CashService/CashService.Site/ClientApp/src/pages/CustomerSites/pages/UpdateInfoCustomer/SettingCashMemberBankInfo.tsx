@@ -36,10 +36,11 @@ interface EditingRow {
 
 // Memoized bank cell component
 const BankCell = memo(({ accountNumber, bankCode }: { accountNumber: string, bankCode: string }) => {
-    if (!accountNumber || !bankCode) return <div className="text-left">No Matching Bank Account</div>;
+    const { t } = useTranslation('customerSites');
+    if (!accountNumber || !bankCode) return <div className="text-left px-[8px]">{t('updateInfoCashMember.noMatchingBank')}</div>;
 
     return (
-        <div className="flex items-center">
+        <div className="flex items-center px-[8px]">
             <img
                 src={`${updateInfoCustomerPageConfig.cdnUri}cash-member/create/bank/${bankCode}.png`}
                 alt={`${bankCode} bank icon`}
@@ -147,7 +148,9 @@ const TableRow = memo(({
                     bankCode={account.memberBankCode}
                 />
             </td>
-            <td>{renderAgentBankCell()}</td>
+            <td className="w-[300px]">
+                {renderAgentBankCell()}
+            </td>
             <td>{renderActionCell()}</td>
         </tr>
     );
@@ -158,7 +161,7 @@ TableRow.displayName = 'TableRow';
 export const SettingCashMemberBankInfo = () => {
     const { t } = useTranslation('customerSites');
     const [showAddBankAccountPopup, setShowAddBankAccountPopup] = useState(false);
-    const [bankAccounts, setBankAccounts] = useState<MemberBankAccountRecord[]>([]);
+    const [gridData, setGridData] = useState<MemberBankAccountRecord[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [editingRow, setEditingRow] = useState<EditingRow | null>(null);
     const [agentBankOptions, setAgentBankOptions] = useState<DropdownOption[]>([]);
@@ -174,7 +177,7 @@ export const SettingCashMemberBankInfo = () => {
         setIsLoading(true);
         const initializeData = async () => {
             await Promise.all([
-                loadBankAccounts(),
+                loadGridData(),
                 loadAgentBankOptions()
             ]);
         };
@@ -183,22 +186,33 @@ export const SettingCashMemberBankInfo = () => {
         });
     }, []);
 
-    const loadBankAccounts = useCallback(async () => {
-
-        const memberBanks = await GetCustomerBankInfo<MemberBankAccountRecord[]>({
+    const loadGridData = useCallback(async () => {
+        const gridData = await GetCustomerBankInfo<MemberBankAccountRecord[]>({
             custId: updateInfoCustomerPageConfig.custId,
-            roleId: 1
+            roleId: 1,
         });
-        setBankAccounts(memberBanks);
+
+        setGridData(gridData);
     }, []);
 
     const loadAgentBankOptions = useCallback(async () => {
+        const noMachingBank = {
+            bankId: 0,
+            bankName: '',
+            bankCode: '',
+            bankAccountNumber: '',
+        }
         const agentBanks = await GetCustomerBankInfo<Bank[]>({
             roleId: 2
         });
-        setAgentBanks(agentBanks);
+        const agentBanksWithNoMachingBank = [noMachingBank, ...agentBanks];
+        setAgentBanks(agentBanksWithNoMachingBank);
 
-        const agentBankDropdownOptions: DropdownOption[] = agentBanks.map((bank) => ({
+        const agentBankDropdownOptions: DropdownOption[] = [{
+            value: noMachingBank.bankId + '|' + noMachingBank.bankAccountNumber,
+            label: t('updateInfoCashMember.noMatchingBank'),
+            icon: null
+        }, ...agentBanks.map((bank) => ({
             value: bank.bankId + '|' + bank.bankAccountNumber,
             label: bank.bankAccountNumber,
             icon: <img
@@ -207,7 +221,8 @@ export const SettingCashMemberBankInfo = () => {
                 className="w-[16px] h-[16px] inline-block mr-[5px]"
                 loading="lazy"
             />
-        }));
+        }))];
+
         setAgentBankOptions(agentBankDropdownOptions);
     }, []);
 
@@ -226,7 +241,7 @@ export const SettingCashMemberBankInfo = () => {
                 custId: updateInfoCustomerPageConfig.custId,
                 memberBankAccountID: deleteAccountId,
             });
-            setBankAccounts(prev => prev.filter(account => account.memberBankAccountID !== deleteAccountId));
+            setGridData(prev => prev.filter(account => account.memberBankAccountID !== deleteAccountId));
             if (response.isSuccessful) {
                 showResult('success', t('global:removeSuccess') || 'Bank account removed successfully');
             } else {
@@ -235,7 +250,7 @@ export const SettingCashMemberBankInfo = () => {
         } catch (error) {
             console.error('Error deleting bank account:', error);
             showResult('error', t('global:removeError') || 'Failed to remove bank account');
-            loadBankAccounts();
+            loadGridData();
         } finally {
             setIsLoading(false);
             setShowDeleteConfirm(false);
@@ -266,7 +281,6 @@ export const SettingCashMemberBankInfo = () => {
 
     const handleSaveEdit = useCallback(async () => {
         if (!editingRow) return;
-
         try {
             setIsLoading(true);
             const response = await UpdateMemberBankInfo<any>({
@@ -278,7 +292,7 @@ export const SettingCashMemberBankInfo = () => {
                 agentBankAccountNumber: editingRow.agentBankAccountNumber,
                 agentBankCode: editingRow.agentBankCode,
             });
-            setBankAccounts(prev => prev.map(account =>
+            setGridData(prev => prev.map(account =>
                 account.memberBankAccountID === editingRow.id
                     ? {
                         ...account,
@@ -318,8 +332,8 @@ export const SettingCashMemberBankInfo = () => {
 
     const handleAddBankSuccess = useCallback(() => {
         setShowAddBankAccountPopup(false);
-        loadBankAccounts();
-    }, [loadBankAccounts]);
+        loadGridData();
+    }, [loadGridData]);
 
     const handleCloseModal = useCallback(() => {
         setShowAddBankAccountPopup(false);
@@ -332,7 +346,7 @@ export const SettingCashMemberBankInfo = () => {
 
     // Memoized table rows
     const tableRows = useMemo(() => {
-        return bankAccounts.map((account, index) => {
+        return gridData.map((account, index) => {
             const isEditing = editingRowId === account.memberBankAccountID;
 
             return (
@@ -353,7 +367,7 @@ export const SettingCashMemberBankInfo = () => {
             );
         });
     }, [
-        bankAccounts,
+        gridData,
         editingRowId,
         editingRow,
         agentBankOptions,
@@ -376,10 +390,10 @@ export const SettingCashMemberBankInfo = () => {
                 />
             </div>
             <div className="table">
-                <div className="w-[50%] mb-[10px]">
+                <div className="w-[70%] mb-[10px]">
                     {ResultMessage()}
                 </div>
-                <table className="w-[50%] border-collapse no-hover">
+                <table className="w-[70%] border-collapse no-hover">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -406,7 +420,7 @@ export const SettingCashMemberBankInfo = () => {
                     <tbody>
                         {tableRows}
                     </tbody>
-                    {!isLoading && bankAccounts.length === 0 && (
+                    {!isLoading && gridData.length === 0 && (
                         <tbody>
                             <NoRecordFound colSpan={4} />
                         </tbody>
@@ -421,11 +435,13 @@ export const SettingCashMemberBankInfo = () => {
             )}
             {showDeleteConfirm && (
                 <ConfirmPopup
-                    title={t('updateInfoCashMember.deleteBankAccount')}
+                    title={t('updateInfoCashMember.deleteBankAccount').toLocaleUpperCase()}
                     message={
                         <>
                             <div className="text-center">
-                                {t('updateInfoCashMember.areYouSureYouWantToDeleteThisBankAccount', { bankNumber: bankAccounts.find(account => account.memberBankAccountID === deleteAccountId)?.memberBankAccountNumber })}
+                                {t('updateInfoCashMember.areYouSureYouWantToDeleteThisBankAccount', {
+                                    bankNumber: gridData.find(record => record.memberBankAccountID === deleteAccountId)?.memberBankAccountNumber
+                                })}
                             </div>
                             <div className="text-center text-[12px]">
                                 *{t('updateInfoCashMember.thisActionIsPermanentAndCannotBeUndone')}

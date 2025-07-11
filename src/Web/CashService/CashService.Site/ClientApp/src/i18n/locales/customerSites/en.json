@@ -3,9 +3,12 @@
         "memberInfo": "Member Info",
         "bankInfo": "Bank Info",
         "firstName": "First Name",
+        "firstNameRequired": "First name is required",
         "lastName": "Last Name",
+        "lastNameRequired": "Last name is required",
         "phone": "Phone",
         "mobile": "Mobile",
+        "mobileRequired": "Mobile is required",
         "mobilePhone": "Mobile Phone",
         "email": "Email",
         "emailNotValid": "Email is not valid!",
@@ -27,6 +30,7 @@
         "areYouSureYouWantToDeleteThisBankAccount": "Are you sure you want to delete {{bankNumber}}?",
         "thisActionIsPermanentAndCannotBeUndone": "This action is permanent and cannot be undone.",
         "agentBankAccountTooltip": "To match deposits made by members to your account, please select the bank account you wish to use to receive the deposits.",
-        "agentBankAccountTooltip2": "You can change your preferred Deposit Matching Mode under  Bank Management."
+        "agentBankAccountTooltip2": "You can change your preferred Deposit Matching Mode under  Bank Management.",
+        "noMatchingBank": "No Matching Bank Account"
     }
 }

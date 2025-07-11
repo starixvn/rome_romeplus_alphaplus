@@ -3,9 +3,12 @@
         "memberInfo": "Thông tin thành viên",
         "bankInfo": "Thông tin ngân hàng",
         "firstName": "Tên",
+        "firstNameRequired": "Tên là bắt buộc",
         "lastName": "Họ",
+        "lastNameRequired": "Họ là bắt buộc",
         "phone": "Điện thoại",
         "mobile": "Di động",
+        "mobileRequired": "Di động là bắt buộc",
         "mobilePhone": "Điện thoại di động",
         "email": "Email",
         "emailNotValid": "Email không hợp lệ!",
@@ -27,6 +30,7 @@
         "areYouSureYouWantToDeleteThisBankAccount": "Bạn có chắc chắn muốn xóa tài khoản ngân hàng {{bankNumber}} không?",
         "thisActionIsPermanentAndCannotBeUndone": "Hành động này là bất khả kháng và không thể hoàn tác.",
         "agentBankAccountTooltip": "Để khớp với số tiền gửi của thành viên vào tài khoản của bạn, vui lòng chọn tài khoản ngân hàng bạn muốn sử dụng để nhận tiền gửi.",
-        "agentBankAccountTooltip2": "Bạn có thể thay đổi chế độ khớp tiền gửi ưu tiên trong phần Quản lý ngân hàng."
+        "agentBankAccountTooltip2": "Bạn có thể thay đổi chế độ khớp tiền gửi ưu tiên trong phần Quản lý ngân hàng.",
+        "noMatchingBank": "Không có tài khoản ngân hàng khớp"
     }
 }

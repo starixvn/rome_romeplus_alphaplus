@@ -3,9 +3,12 @@
         "memberInfo": "会員情報",
         "bankInfo": "銀行情報",
         "firstName": "名",
+        "firstNameRequired": "名は必須です",
         "lastName": "姓",
+        "lastNameRequired": "姓は必須です",
         "phone": "電話番号",
         "mobile": "携帯電話",
+        "mobileRequired": "携帯電話は必須です",
         "mobilePhone": "携帯電話",
         "email": "メールアドレス",
         "emailNotValid": "メールアドレスが無効です！",
@@ -27,6 +30,7 @@
         "areYouSureYouWantToDeleteThisBankAccount": "{{bankNumber}}を削除してもよろしいですか？",
         "thisActionIsPermanentAndCannotBeUndone": "この操作は永続的で、元に戻すことはできません。",
         "agentBankAccountTooltip": "会員の入金をあなたの口座に一致させるには、入金を受け取るために使用する銀行口座を選択してください。",
-        "agentBankAccountTooltip2": "銀行管理で、希望する入金一致モードを変更できます。"
+        "agentBankAccountTooltip2": "銀行管理で、希望する入金一致モードを変更できます。",
+        "noMatchingBank": "一致する銀行口座がありません"
     }
 }

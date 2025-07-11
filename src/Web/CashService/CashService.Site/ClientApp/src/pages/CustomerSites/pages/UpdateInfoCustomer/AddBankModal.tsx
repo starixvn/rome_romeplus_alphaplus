@@ -49,25 +49,35 @@ export const AddBankModal = ({ closeModal, onAddSuccess }: AddBankModalProps) =>
             label: bank.bankName,
             icon: <img src={`${updateInfoCustomerPageConfig.cdnUri}cash-member/create/bank/${bank.bankCode?.toUpperCase()}.png`} alt={bank.bankName} className="w-[16px] h-[16px] inline-block mr-[5px]" />
         }));
-
+        const noMachingBank = {
+            bankId: 0,
+            bankName: '',
+            bankCode: '',
+            bankAccountNumber: '',
+        };
         const agentBanks = await GetCustomerBankInfo<Bank[]>({
             roleId: 2
         });
-        const agentBankDropdownOptions: DropdownOption[] = agentBanks.map((bank) => ({
-            value: bank.bankId,
+        const agentBanksWithNoMachingBank = [noMachingBank, ...agentBanks];
+
+        const agentBankDropdownOptions: DropdownOption[] = [{
+            value: '0|0',
+            label: t('updateInfoCashMember.noMatchingBank'),
+            icon: null
+        }, ...agentBanks.map((bank) => ({
+            value: bank.bankId + '|' + bank.bankAccountNumber,
             label: bank.bankAccountNumber,
             icon: <img src={`${updateInfoCustomerPageConfig.cdnUri}cash-member/create/bank/${bank.bankCode?.toUpperCase()}.png`} alt={bank.bankName} className="w-[16px] h-[16px] inline-block mr-[5px]" />
-        }));
+        }))];
 
         reset({
             memberId: updateInfoCustomerPageConfig.custId,
             memberBankID: memberBanks[0].bankId,
             memberBankDropdownOptions: memberBankDropdownOptions,
-            agentBankID: agentBanks[0].bankId,
+            agentBankID: agentBanksWithNoMachingBank[0].bankId,
             agentBankDropdownOptions: agentBankDropdownOptions,
-            agentBanks: agentBanks,
+            agentBanks: agentBanksWithNoMachingBank,
         });
-
     }
 
     const methods = useForm<AddMemberBankFormData>({
@@ -115,7 +125,7 @@ export const AddBankModal = ({ closeModal, onAddSuccess }: AddBankModalProps) =>
         <div className="bg-[#00000080] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-start justify-center">
             <div className="p-[12px] pt-[0] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] min-w-[350px] max-[768px]:max-w-[90%] rounded-[3px] dark:bg-[#121212]">
                 <div className="relative mb-[10px] text-center border-b-[1px] border-[var(--border-color)] py-[11px]" >
-                    <MediumTitleComponent text={t('updateInfoCashMember.addBankAccount')} />
+                    <MediumTitleComponent text={t('updateInfoCashMember.addBankAccount').toUpperCase()} />
                     <ButtonClosePopupComponent onClick={closeModal} />
                 </div>
                 <div>
@@ -166,7 +176,6 @@ export const AddBankModal = ({ closeModal, onAddSuccess }: AddBankModalProps) =>
                                     options={watch('agentBankDropdownOptions') ?? []}
                                     onSelect={(option) => {
                                         const selectedBank = watch('agentBanks')?.find((opt) => opt.bankId === option.value);
-                                        console.log('selectedBank', selectedBank);
                                         setValue('agentBankID', selectedBank?.bankId ?? 0);
                                         setValue('agentBankAccountNumber', selectedBank?.bankAccountNumber ?? '');
                                     }}

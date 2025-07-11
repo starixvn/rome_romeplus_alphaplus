@@ -6,7 +6,15 @@ import {
 import { LabelTitleComponent } from "../../../../components/Title";
 import { useTranslation } from "react-i18next";
 import { FormProvider, useForm, Controller } from 'react-hook-form';
-import { EMAIL_REGEX, NUMBER_REGEX, PHONE_CODE_MAX_LENGTH, PHONE_NUMBER_MAX_LENGTH } from "../../../../constants/memberSiteConstants";
+import {
+    EMAIL_MAX_LENGTH,
+    EMAIL_REGEX,
+    FAX_MAX_LENGTH,
+    NAME_MAX_LENGTH,
+    NUMBER_REGEX,
+    PHONE_CODE_MAX_LENGTH,
+    PHONE_NUMBER_MAX_LENGTH
+} from "../../../../constants/memberSiteConstants";
 import { CustomerInfoData } from "../../types/UpdateCustomerType";
 import { ValidateMessageComponent } from "../../../../components/Message/ValidateMessageComponent";
 import { GetCustomerInfo, UpdateCustomerInfo } from "../../services/CustomerInfoServices";
@@ -63,7 +71,7 @@ export const SettingCashMemberInfo = () => {
                 showResult('error', t('global:thereNoChangeToUpdate'));
                 return;
             }
-            
+
             setLoading(true);
             setIsBlockAction(true);
 
@@ -105,11 +113,11 @@ export const SettingCashMemberInfo = () => {
             </div>
             <FormProvider {...methods}>
                 <form>
-                    <div className="bg-white border border-gray-200 rounded-[3px] p-[10px]">
-                        <div className="flex flex-col">
+                    <div className="bg-white border border-gray-200 rounded-[3px] p-[15px]">
+                        <div className="flex flex-col gap-[12px]">
                             {/* First Name and Last Name Row */}
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-                                <div className="flex flex-col gap-2">
+                            <div className="grid grid-cols-2 gap-[15px]">
+                                <div className="flex flex-col">
                                     <LabelTitleComponent
                                         text={t('updateInfoCashMember.firstName')}
                                         required={true}
@@ -118,19 +126,24 @@ export const SettingCashMemberInfo = () => {
                                     <Controller
                                         name="firstName"
                                         control={control}
-                                        rules={{ required: tGlobal('pleaseFillField') || 'First name is required' }}
+                                        rules={{ required: t('updateInfoCashMember.firstNameRequired') }}
                                         render={({ field }) => (
                                             <input
                                                 {...field}
+                                                maxLength={NAME_MAX_LENGTH}
                                                 type="text"
                                                 className={`control-field ${errors.firstName ? 'error' : ''}`}
+                                                onBlur={(e) => {
+                                                    const trimmedValue = e.target.value.trim();
+                                                    field.onChange(trimmedValue);
+                                                }}
                                             />
                                         )}
                                     />
                                     <ValidateMessageComponent message={errors.firstName?.message as string} />
                                 </div>
 
-                                <div className="flex flex-col gap-2">
+                                <div className="flex flex-col">
                                     <LabelTitleComponent
                                         text={t('updateInfoCashMember.lastName')}
                                         required={true}
@@ -139,12 +152,17 @@ export const SettingCashMemberInfo = () => {
                                     <Controller
                                         name="lastName"
                                         control={control}
-                                        rules={{ required: tGlobal('pleaseFillField') || 'Last name is required' }}
+                                        rules={{ required: t('updateInfoCashMember.lastNameRequired') }}
                                         render={({ field }) => (
                                             <input
                                                 {...field}
+                                                maxLength={NAME_MAX_LENGTH}
                                                 type="text"
                                                 className={`control-field ${errors.lastName ? 'error' : ''}`}
+                                                onBlur={(e) => {
+                                                    const trimmedValue = e.target.value.trim();
+                                                    field.onChange(trimmedValue);
+                                                }}
                                             />
                                         )}
                                     />
@@ -154,8 +172,8 @@ export const SettingCashMemberInfo = () => {
                             </div>
 
                             {/* Phone and Mobile Row */}
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-                                <div className="flex flex-col gap-1">
+                            <div className="grid grid-cols-2 gap-[15px]">
+                                <div className="flex flex-col">
                                     <LabelTitleComponent
                                         text={t('updateInfoCashMember.mobile')}
                                         className="font-medium text-gray-700"
@@ -166,7 +184,7 @@ export const SettingCashMemberInfo = () => {
                                         <Controller
                                             name="mobileCode"
                                             control={control}
-                                            rules={{ required: tGlobal('pleaseFillField') || 'Mobile code is required' }}
+                                            rules={{ required: t('updateInfoCashMember.mobileRequired') }}
                                             render={({ field }) => (
                                                 <input
                                                     {...field}
@@ -186,7 +204,7 @@ export const SettingCashMemberInfo = () => {
                                         <Controller
                                             name="mobileNumber"
                                             control={control}
-                                            rules={{ required: tGlobal('pleaseFillField') || 'Mobile number is required' }}
+                                            rules={{ required: t('updateInfoCashMember.mobileRequired') }}
                                             render={({ field }) => (
                                                 <input
                                                     {...field}
@@ -205,7 +223,7 @@ export const SettingCashMemberInfo = () => {
                                     </div>
                                     <ValidateMessageComponent message={(errors.mobileCode?.message || errors.mobileNumber?.message) as string} />
                                 </div>
-                                <div className="flex flex-col gap-1">
+                                <div className="flex flex-col">
                                     <LabelTitleComponent
                                         text={t('updateInfoCashMember.phone')}
                                         className=" font-medium text-gray-700"
@@ -234,8 +252,8 @@ export const SettingCashMemberInfo = () => {
                             </div>
 
                             {/* Email and Fax Row */}
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-                                <div className="flex flex-col gap-1">
+                            <div className="grid grid-cols-2 gap-[15px]">
+                                <div className="flex flex-col">
                                     <LabelTitleComponent
                                         text={t('updateInfoCashMember.email')}
                                         className="font-medium text-gray-700"
@@ -246,21 +264,25 @@ export const SettingCashMemberInfo = () => {
                                         rules={{
                                             pattern: {
                                                 value: EMAIL_REGEX,
-                                                message: t('updateInfoCashMember.emailNotValid') || 'Invalid email address'
+                                                message: t('updateInfoCashMember.emailNotValid')
                                             }
                                         }}
                                         render={({ field }) => (
                                             <input
                                                 {...field}
-                                                type="email"
+                                                maxLength={EMAIL_MAX_LENGTH}
                                                 className={`control-field ${errors.email ? 'error' : ''}`}
+                                                onBlur={(e) => {
+                                                    const trimmedValue = e.target.value.trim();
+                                                    field.onChange(trimmedValue);
+                                                }}
                                             />
                                         )}
                                     />
                                     <ValidateMessageComponent message={errors.email?.message as string} />
                                 </div>
 
-                                <div className="flex flex-col gap-1">
+                                <div className="flex flex-col">
                                     <LabelTitleComponent
                                         text={t('updateInfoCashMember.fax')}
                                         className=" font-medium text-gray-700"
@@ -271,8 +293,13 @@ export const SettingCashMemberInfo = () => {
                                         render={({ field }) => (
                                             <input
                                                 {...field}
+                                                maxLength={FAX_MAX_LENGTH}
                                                 type="text"
                                                 className="control-field"
+                                                onBlur={(e) => {
+                                                    const trimmedValue = e.target.value.trim();
+                                                    field.onChange(trimmedValue);
+                                                }}
                                             />
                                         )}
                                     />

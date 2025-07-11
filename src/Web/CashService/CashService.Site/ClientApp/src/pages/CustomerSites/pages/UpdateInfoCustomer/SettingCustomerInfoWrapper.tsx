@@ -7,7 +7,14 @@ import { LabelTitleComponent } from "../../../../components/Title";
 import { GetCustomerInfo, UpdateCustomerInfo } from "../../services/CustomerInfoServices";
 import { splitMobile } from "../../../../utils/sharedUtils";
 import { useResultMessage } from "../../../../hooks/useResultMessage";
-import { EMAIL_REGEX } from "../../../../constants/memberSiteConstants";
+import {
+    EMAIL_MAX_LENGTH,
+    EMAIL_REGEX,
+    FAX_MAX_LENGTH,
+    NAME_MAX_LENGTH,
+    NUMBER_REGEX,
+    PHONE_NUMBER_MAX_LENGTH
+} from "../../../../constants/memberSiteConstants";
 
 export const SettingCustomerInfoWrapper = () => {
     const { t } = useTranslation('customerSites');
@@ -131,7 +138,12 @@ export const SettingCustomerInfoWrapper = () => {
                                                 <input
                                                     {...field}
                                                     type="text"
+                                                    maxLength={NAME_MAX_LENGTH}
                                                     className="w-full border border-gray-300 rounded px-2 py-1 focus:outline-none"
+                                                    onBlur={(e) => {
+                                                        const trimmedValue = e.target.value.trim();
+                                                        field.onChange(trimmedValue);
+                                                    }}
                                                 />
                                             )}
                                         />
@@ -147,7 +159,12 @@ export const SettingCustomerInfoWrapper = () => {
                                                 <input
                                                     {...field}
                                                     type="text"
+                                                    maxLength={NAME_MAX_LENGTH}
                                                     className="w-full border border-gray-300 rounded px-2 py-1 focus:outline-none"
+                                                    onBlur={(e) => {
+                                                        const trimmedValue = e.target.value.trim();
+                                                        field.onChange(trimmedValue);
+                                                    }}
                                                 />
                                             )}
                                         />
@@ -165,7 +182,17 @@ export const SettingCustomerInfoWrapper = () => {
                                                 <input
                                                     {...field}
                                                     type="text"
+                                                    maxLength={PHONE_NUMBER_MAX_LENGTH}
                                                     className="w-full border border-gray-300 rounded px-2 py-1 focus:outline-none"
+                                                    onChange={(e) => {
+                                                        e.preventDefault();
+                                                        const value = e.target.value.replace(NUMBER_REGEX, '').slice(0, PHONE_NUMBER_MAX_LENGTH);
+                                                        field.onChange(value);
+                                                    }}
+                                                    onBlur={(e) => {
+                                                        const trimmedValue = e.target.value.trim();
+                                                        field.onChange(trimmedValue);
+                                                    }}
                                                 />
                                             )}
                                         />
@@ -181,7 +208,17 @@ export const SettingCustomerInfoWrapper = () => {
                                                 <input
                                                     {...field}
                                                     type="text"
+                                                    maxLength={PHONE_NUMBER_MAX_LENGTH}
                                                     className="w-full border border-gray-300 rounded px-2 py-1 focus:outline-none"
+                                                    onChange={(e) => {
+                                                        e.preventDefault();
+                                                        const value = e.target.value.replace(NUMBER_REGEX, '').slice(0, PHONE_NUMBER_MAX_LENGTH);
+                                                        field.onChange(value);
+                                                    }}
+                                                    onBlur={(e) => {
+                                                        const trimmedValue = e.target.value.trim();
+                                                        field.onChange(trimmedValue);
+                                                    }}
                                                 />
                                             )}
                                         />
@@ -199,7 +236,12 @@ export const SettingCustomerInfoWrapper = () => {
                                                 <input
                                                     {...field}
                                                     type="text"
+                                                    maxLength={EMAIL_MAX_LENGTH}
                                                     className="w-full border border-gray-300 rounded px-2 py-1 focus:outline-none"
+                                                    onBlur={(e) => {
+                                                        const trimmedValue = e.target.value.trim();
+                                                        field.onChange(trimmedValue);
+                                                    }}
                                                 />
                                             )}
                                         />
@@ -215,7 +257,12 @@ export const SettingCustomerInfoWrapper = () => {
                                                 <input
                                                     {...field}
                                                     type="text"
+                                                    maxLength={FAX_MAX_LENGTH}
                                                     className="w-full border border-gray-300 rounded px-2 py-1 focus:outline-none"
+                                                    onBlur={(e) => {
+                                                        const trimmedValue = e.target.value.trim();
+                                                        field.onChange(trimmedValue);
+                                                    }}
                                                 />
                                             )}
                                         />

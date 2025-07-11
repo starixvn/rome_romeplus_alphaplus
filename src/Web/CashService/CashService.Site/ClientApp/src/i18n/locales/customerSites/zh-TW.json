@@ -3,9 +3,12 @@
         "memberInfo": "會員資訊",
         "bankInfo": "銀行資訊",
         "firstName": "名",
+        "firstNameRequired": "名稱為必填項",
         "lastName": "姓",
+        "lastNameRequired": "姓稱為必填項",
         "phone": "電話",
         "mobile": "手機",
+        "mobileRequired": "手機為必填項",
         "mobilePhone": "手機號碼",
         "email": "信箱",
         "emailNotValid": "信箱格式不正確！",
@@ -27,6 +30,7 @@
         "areYouSureYouWantToDeleteThisBankAccount": "您確定要刪除銀行帳戶 {{bankNumber}} 嗎？",
         "thisActionIsPermanentAndCannotBeUndone": "此操作是永久性的，無法撤銷。",
         "agentBankAccountTooltip": "為了將會員的存款與您的帳戶相匹配，請選擇您希望用於接收存款的銀行帳戶。",
-        "agentBankAccountTooltip2": "您可以在銀行管理中更改首選存款匹配模式。"
+        "agentBankAccountTooltip2": "您可以在銀行管理中更改首選存款匹配模式。",
+        "noMatchingBank": "沒有匹配的銀行帳戶"
     }
 }
