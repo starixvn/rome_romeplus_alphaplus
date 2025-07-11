@@ -1425,28 +1425,25 @@ html * {
         width: 500px;
     }
     .chk-deposit-methods, .chk-withdrawal-methods, .chk-line-id{
-        width: 20px;
-        height: 20px;
-        border: 2px solid #515151;
-        border-radius: 3px;
-        position: relative;
-        top: -2px;
         display: inline-block;
         vertical-align: middle;
-        margin-right: 7px;
+        &:before{
+            font-family: Iconalpha !important;
+            speak: never;
+            font-style: normal;
+            font-weight: 400;
+            font-variant: normal;
+            text-transform: none;
+            line-height: 1;
+            -webkit-font-smoothing: antialiased;
+            content: "\e91f";
+            color: #999;
+            font-size: 18px;
+            margin-right: 5px;
+        }
         &.complete{
-            border-color:#459BE5;
             &:before{
-                content: "";
-                position: absolute;
-                width: 8px;
-                height: 13px;
-                border-bottom: 2px solid #459BE5;
-                border-right: 2px solid #459BE5;
-                transform: rotate(45deg);
-                top: -1px;
-                left: 4px;
-                opacity: 1;          
+                color: #1eb71e;
             }
         }
     }
