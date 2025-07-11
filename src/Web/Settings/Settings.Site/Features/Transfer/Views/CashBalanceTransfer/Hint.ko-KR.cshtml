@@ -1,5 +1,7 @@
 @using AlphaPlus.Core.Helpers
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
+@using AlphaPlus.Core.Models
+@inject IUserSession UserSession
 @{
     Layout = "~/Features/Transfer/Views/CashBalanceTransfer/_HintLayout.cshtml";
 }
@@ -18,7 +20,10 @@
     </ul>
     <p>참고사항</p>
     <ul class="ul-remark">
-        <li>Cash Members are not include on this page</li>
+        @if (UserSession.IsAgent)
+        {
+            <li>Cash Members are not include on this page</li>
+        }
         @if (!string.IsNullOrEmpty(Model.AllowTransfer))
         {
             <li>@Html.Raw(Model.AllowTransfer)</li>
@@ -31,7 +36,10 @@ else
 {
     <p>참고사항</p>
     <ul class="ul-remark">
-        <li>Cash Members are not include on this page</li>
+        @if (UserSession.IsAgent)
+        {
+            <li>Cash Members are not include on this page</li>
+        }
         @if (!string.IsNullOrEmpty(Model.AllowTransfer))
         {
             <li>@Html.Raw(Model.AllowTransfer)</li>
