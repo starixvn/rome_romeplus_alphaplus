@@ -132,6 +132,7 @@ const MemberSiteManagement: React.FC = () => {
                   text={isSaving ? t('actions.saving') : t('actions.save')}
                   disabled={isSaving || !isCashServiceEnabled}
                   title={isCashServiceEnabled ? '' : t('global:cashServiceDisabled')}
+                  type="submit"
                 />
               </div>
             </form>
