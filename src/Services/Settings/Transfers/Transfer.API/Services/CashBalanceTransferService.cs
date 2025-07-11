@@ -37,8 +37,7 @@ public class CashBalanceTransferService(IDynamicRepository repository, ITransfer
     {
         var criteria = new GetCashBalanceTransferCriteria(custId, isDirectMember);
 
-        return repository.GetAsync<CashBalanceTransfer>(criteria);
-        //return repository.GetAsync<CashBalanceTransfer>(criteria, agIP);
+        return repository.GetAsync<CashBalanceTransfer>(criteria, agIP);
     }
 
     public async Task<Result> AddCashBalanceTransfer(
