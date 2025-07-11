@@ -141,8 +141,8 @@ const TableRow = memo(({
 
     return (
         <tr key={account.memberBankAccountID}>
-            <td>{index + 1}</td>
-            <td>
+            <td className="w-[50px]">{index + 1}</td>
+            <td className="w-[300px]">
                 <BankCell
                     accountNumber={account.memberBankAccountNumber}
                     bankCode={account.memberBankCode}
@@ -151,7 +151,7 @@ const TableRow = memo(({
             <td className="w-[300px]">
                 {renderAgentBankCell()}
             </td>
-            <td>{renderActionCell()}</td>
+            <td className="w-[100px]">{renderActionCell()}</td>
         </tr>
     );
 });
