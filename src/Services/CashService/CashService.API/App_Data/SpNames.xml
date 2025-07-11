@@ -4,7 +4,7 @@
         <Setting Key="WriteLog_CashService_UserLog_RunSP" SpName="WriteLog_CashService_UserLog_RunSP" DbName="DBLOG.bodb_CustomerLog.wsv_CashService" Plain="0" />
         <Setting Key="SiteDb_0_WriteLog_CashService_UserLog_RunSP" SpName="WriteLog_CashService_UserLog_RunSP" DbName="DBCust.bodb_CustomerLog.wsv_CashService" Plain="0" />
         <Setting Key="SiteDb_3_WriteLog_CashService_UserLog_RunSP" SpName="WriteLog_CashService_UserLog_RunSP" DbName="DBCust.bodb_CustomerLog.wsv_CashService" Plain="0" />
-        <Setting Key="Age_CashService_ConfigureSignUpChecklist" SpName="Age_CashService_ConfigureSignUpChecklist" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
+        <Setting Key="Age_CashService_ConfigureSignUpChecklist" SpName="Age_CashService_ConfigureSignUpChecklist_UAT2" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="HasDeposit" ObjectProperty="HasDepositMethods"></Mapping>
             <Mapping DataField="HasWithdrawal" ObjectProperty="HasWithdrawalMethods"></Mapping>
             <Mapping DataField="HasValidLineContact" ObjectProperty="HasLineID"></Mapping>
