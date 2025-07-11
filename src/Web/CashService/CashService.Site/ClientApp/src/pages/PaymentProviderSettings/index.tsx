@@ -405,6 +405,22 @@ function PaymentProviderSettings() {
     return providerSettings.some((setting) => isEditable(setting));
   };
 
+  const getDisabledReason = () => {
+    if (!isCashServiceEnabled) {
+      return tGlobal('cashServiceDisabled');
+    }
+
+    if (updating) {
+      return '';
+    }
+
+    if(providerStatus == paymentProviderStatusConstant.notConfigured || !hasEditableSettings()) {
+      return tPaymentProviderSettings('RequirePaymentMethod');
+    }
+
+    return '';
+  };
+
   const hasFormChanged = () => {
     // Check if provider status has changed
     if (formState.providerStatus !== originalFormState.providerStatus) {
@@ -468,9 +484,6 @@ function PaymentProviderSettings() {
           <div className="pb-[10px]">
             
               <MediumTitleComponent text={window.providerSettingsViewModel.Provider.Name} />
-              <p className="my-[8px]">
-                {tPaymentProviderSettings('RequirePaymentMethod')}
-              </p>
               {providerStatus != paymentProviderStatusConstant.notConfigured && (
                   <div
                     className="mb-[10px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]"
@@ -721,7 +734,7 @@ function PaymentProviderSettings() {
                   updating ||
                   !hasEditableSettings()
                 }
-                title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
+                title={getDisabledReason()}
               />
             </div>
           </div>
