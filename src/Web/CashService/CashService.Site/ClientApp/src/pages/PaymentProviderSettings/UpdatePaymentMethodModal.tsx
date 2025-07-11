@@ -243,7 +243,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                   <select
                     className={`control-field ${fieldErrors.selectedTransactionType ? 'error' : ''}`}
                     value={formState.selectedTransactionType}
-                    onChange={(e) => {  onInputChange('selectedTransactionType', e.target.value); }}
+                    disabled={true}
                   >
                     <option value="">{tGlobal('select')}</option>
                     {TRANSACTION_TYPES.filter((type) => type.id !== 0).map((type) => (
@@ -260,7 +260,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                   <select
                     className={`control-field ${fieldErrors.selectedPaymentMethod ? 'error' : ''}`}
                     value={formState.selectedPaymentMethod}
-                    onChange={(e) => { onInputChange('selectedPaymentMethod', e.target.value); }}
+                    disabled={true}
                   >
                     <option value="">{tGlobal('select')}</option>
                     {paymentMethods
