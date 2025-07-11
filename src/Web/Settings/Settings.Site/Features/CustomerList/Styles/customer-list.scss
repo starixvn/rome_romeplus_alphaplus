@@ -180,7 +180,9 @@ body:not(.modal-open) {
 .view-downline {
     cursor: pointer;
 }
-
+.icon-cashservice:before {
+    color: #3d5ad8;
+}
 .modal-content .modal-header {
     border-bottom: 1px solid #e5e5e5;
     display: flex;

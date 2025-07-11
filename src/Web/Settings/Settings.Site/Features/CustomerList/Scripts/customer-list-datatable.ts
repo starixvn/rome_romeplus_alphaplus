@@ -350,7 +350,7 @@ class CustomerListDataTable {
     };
 
     private renderUsernameColumn = (item) => {
-        const cashIcon = item.ServiceType === ServiceType.Cash ? '<span class="icon-cashservice" style="padding-left: 3px; color: #045ace"></span>' : '';
+        const cashIcon = item.ServiceType === ServiceType.Cash ? '<span class="icon-cashservice" style="padding-left: 7px;"></span>' : '';
         if (item.RoleId === CustomerLevel.Member) {
             return item.Locked
                 ? `<div class='col-username'><span>${item.Username}</span>${cashIcon}<br/><span class='grey-color'>${item.UserName2 === '' || item.UserName2 === null ? '--' : item.UserName2

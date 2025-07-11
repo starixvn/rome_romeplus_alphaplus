@@ -482,23 +482,26 @@ function PaymentProviderSettings() {
           </div>
         
           <div className="pb-[10px]">
-            
-              <MediumTitleComponent text={window.providerSettingsViewModel.Provider.Name} />
-              {providerStatus != paymentProviderStatusConstant.notConfigured && (
-                  <div
-                    className="mb-[10px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]"
-                    role="group"
-                  >
-                    <EnableButtonComponent
-                      onClick={() => onProviderStatusToggle(1)}
-                      isActive={providerStatus}
-                    />
-                    <DisableButtonComponent
-                      onClick={() => onProviderStatusToggle(0)}
-                      isActive={!providerStatus}
-                    />
-                  </div>
-                )}
+              <div className="mb-[10px]">
+                <div className="mb-[5px]">
+                  <MediumTitleComponent text={window.providerSettingsViewModel.Provider.Name} />
+                </div>
+                {providerStatus != paymentProviderStatusConstant.notConfigured && (
+                    <div
+                      className="mb-[10px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]"
+                      role="group"
+                    >
+                      <EnableButtonComponent
+                        onClick={() => onProviderStatusToggle(1)}
+                        isActive={providerStatus}
+                      />
+                      <DisableButtonComponent
+                        onClick={() => onProviderStatusToggle(0)}
+                        isActive={!providerStatus}
+                      />
+                    </div>
+                  )}
+              </div>
               <div className="flex flex-wrap w-full">
                 <div className="w-[160px] mr-[12px] mb-[12px]">
                   <LabelTitleComponent text={tPaymentProviderSettings('paymentMethod')} />
