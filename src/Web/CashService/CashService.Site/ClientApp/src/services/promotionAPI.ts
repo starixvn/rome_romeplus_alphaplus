@@ -1,5 +1,5 @@
-import { axiosInstance, api } from './axios';
-import { ProductDropdown, PromotionDetail, PromotionParams } from './interfaces/Promotion';
+import { api, axiosInstance, createHeaderXMLHttp } from './axios';
+import { ProductDropdown, PromotionDetail, PromotionParams, PromotionRequest } from './interfaces/Promotion';
 import { ResultModel } from './interfaces/ResultModel';
 
 export const promotionService = {
@@ -35,8 +35,21 @@ export const promotionService = {
       return [];
     }
   },
-
-  deletePromotion: async (promotionId: number): Promise<ResultModel> => {
+  addPromotion: async (promotionRequest: PromotionRequest): Promise<ResultModel> => {
+    try {
+      const response = await axiosInstance.post<ResultModel>(`AddPromotion`, promotionRequest, {
+        headers: {
+          ...createHeaderXMLHttp(),
+          'Content-Type': 'application/json',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error adding promotion:', error);
+      throw error;
+    }
+  },  
+deletePromotion: async (promotionId: number): Promise<ResultModel> => {
     try {
       const response = await axiosInstance.delete<ResultModel>(
         `DeletePromotion?promotionId=${promotionId}`

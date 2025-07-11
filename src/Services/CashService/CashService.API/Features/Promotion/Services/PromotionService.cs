@@ -1,15 +1,17 @@
 ﻿namespace AlphaPlus.CashService.API.Features.Promotion.Services;
 
+using AlphaPlus.CashService.API.Features.Shared.Services;
 using Criteria;
 using Fanex.Data.Repository;
 using Models;
+using Newtonsoft.Json;
 using Shared.Models;
 using Shared.Requests;
 using Shared.Services;
 
 public interface IPromotionService
 {
-    Task<IEnumerable<Product>> GetProductAsync();
+    Task<IEnumerable<Product>> GetProductAsync(string site, int currency, int settingStatus, string language);
 
     Task<IEnumerable<Promotion>> GetPromotionAsync(PromotionRequest request);
 
@@ -22,22 +24,41 @@ public interface IPromotionService
     Task<ResultModel> DeletePromotion(int promotionId, BaseActionRequest request);
 }
 
-public class PromotionService(IDynamicRepository repository, ICommonService commonService) : IPromotionService
+public class PromotionService(IDynamicRepository repository, ICommonService commonService, ICacheRefService cacheRef) : IPromotionService
 {
-    public async Task<IEnumerable<Product>> GetProductAsync()
+    public async Task<IEnumerable<Product>> GetProductAsync(string site, int currency, int settingStatus, string language)
     {
-        var products = await repository.FetchAsync<Product>(new GetProductListCriteria());
+        var products = await repository.FetchAsync<Product>(new GetProductListCriteria(site, currency, settingStatus));
+        foreach (var product in products)
+        {
+            product.ProductName = cacheRef.GetProductName(product.ProductId, language);
+            product.ProductCategoryName = cacheRef.GetProductName(product.ProductCategoryId, language);
+        }   
         return products;
     }
 
     public async Task<IEnumerable<Promotion>> GetPromotionAsync(PromotionRequest request)
     {
-        var criteria = new GetPromotionCriteria(request.PromotionTypeId, request.StatusId, request.SiteDBGroupId, request.ActorId);
+        var criteria = new GetPromotionCriteria(request.PromotionType, request.StatusId, request.SiteDBGroupId, request.ActorId);
         var model = await repository.FetchMultipleAsync<Promotion, PromotionProductSetting>(criteria);
 
         foreach (var item in model.FirstResultSet)
         {
             item.ProductSettings = model.SecondResultSet.Where(i => i.PromotionId == item.PromotionId).ToList();
+            foreach (var productSetting in item.ProductSettings)
+            {
+                productSetting.Products = string.IsNullOrEmpty(productSetting.ProductList)
+                                            ? new List<Product>()
+                                            : productSetting.ProductList.Split(',')
+                                                .Select(p => p.Trim())
+                                                .Select(p => new Product
+                                                {
+                                                    ProductCategoryId = productSetting.ProductCategoryId,
+                                                    ProductId = Convert.ToInt32(p),
+                                                    ProductName = cacheRef.GetProductName(Convert.ToInt32(p), request.Language)
+                                                }).ToList();
+                productSetting.ProductCategoryName = cacheRef.GetProductName(productSetting.ProductCategoryId, request.Language);
+            }            
         }
 
         return model.FirstResultSet;
@@ -49,25 +70,26 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
         return await Task.FromResult(promotion);
     }
 
-    public async Task<ResultModel> AddPromotionAsync(PromotionRequest addPromotionMdoel)
+    public async Task<ResultModel> AddPromotionAsync(PromotionRequest request)
     {
         var addPromotionCriteria = new AddPromotionCriteria
         {
-            PromotionType = addPromotionMdoel.PromotionTypeId,
-            StatusId = addPromotionMdoel.StatusId,
-            FromDate = addPromotionMdoel.FromDate,
-            ToDate = addPromotionMdoel.ToDate,
-            Title = addPromotionMdoel.Title,
-            Content = addPromotionMdoel.Content,
-            Banner = addPromotionMdoel.Banner,
-            ProductSettings = addPromotionMdoel.ProductSettings != null
-                ? System.Text.Json.JsonSerializer.Serialize(addPromotionMdoel.ProductSettings)
+            PromotionType = request.PromotionType,
+            FromDate = request.FromDate,
+            ToDate = request.ToDate,
+            PromotionDetails = request.ProductSettings != null
+                ? JsonConvert.SerializeObject(request.ProductSettings)
                 : string.Empty,
-            CreatedBy = addPromotionMdoel.UserId,
-            IP = addPromotionMdoel.IP,
-            SiteDbGroupId = addPromotionMdoel.SiteDBGroupId,
+            PromotionContents = request.Contents != null
+                ? JsonConvert.SerializeObject(request.Contents)
+                : string.Empty,
+            CreatedBy = request.UserId,
+            IP = request.IP,
+            SiteDbGroupId = request.SiteDBGroupId,
+            Language = request.Language,
+            Enabled = request.Enabled,
         };
-
+        Console.WriteLine(JsonConvert.SerializeObject(addPromotionCriteria));
         await repository.ExecuteAsync(addPromotionCriteria);
 
         var result = new ResultModel(addPromotionCriteria.ErrCode, addPromotionCriteria.ErrMsg);
@@ -80,13 +102,13 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
         var editPromotionCriteria = new EditPromotionCriteria
         {
             PromotionId = promotionId,
-            PromotionType = addPromotionMdoel.PromotionTypeId,
+            PromotionType = addPromotionMdoel.PromotionType,
             StatusId = addPromotionMdoel.StatusId,
             FromDate = addPromotionMdoel.FromDate,
             ToDate = addPromotionMdoel.ToDate,
-            Title = addPromotionMdoel.Title,
-            Content = addPromotionMdoel.Content,
-            Banner = addPromotionMdoel.Banner,
+            //Title = addPromotionMdoel.Title,
+            //Content = addPromotionMdoel.Content,
+            // Banner = addPromotionMdoel.Banner,
             ProductSettings = addPromotionMdoel.ProductSettings != null
                 ? System.Text.Json.JsonSerializer.Serialize(addPromotionMdoel.ProductSettings)
                 : string.Empty,

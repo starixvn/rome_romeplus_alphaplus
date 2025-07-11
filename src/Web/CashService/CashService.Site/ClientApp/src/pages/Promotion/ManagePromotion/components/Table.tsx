@@ -51,9 +51,33 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
   };
 
   const displayGridProducts = (promotions: PromotionDetail[]): ProductSetting[] => {
+    debugger;
     const productMap = new Map<number, ProductSetting>();
+    const sortOrder = [1, 44, 41, 53];
+    
     promotions.forEach((promotion) => {
-      promotion.productSettings.forEach((product) => {
+      // Sort productSettings by the specified order
+      const sortedProductSettings = promotion.productSettings.sort((a, b) => {
+        const aIndex = sortOrder.indexOf(a.productCategoryId);
+        const bIndex = sortOrder.indexOf(b.productCategoryId);
+        
+        // If both are in the sort order, sort by their position
+        if (aIndex !== -1 && bIndex !== -1) {
+          return aIndex - bIndex;
+        }
+        // If only a is in the sort order, a comes first
+        if (aIndex !== -1) {
+          return -1;
+        }
+        // If only b is in the sort order, b comes first
+        if (bIndex !== -1) {
+          return 1;
+        }
+        // If neither is in the sort order, maintain original order
+        return 0;
+      });
+      
+      sortedProductSettings.forEach((product) => {
         if (!productMap.has(product.productCategoryId)) {
           productMap.set(product.productCategoryId, product);
         }

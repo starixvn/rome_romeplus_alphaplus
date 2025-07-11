@@ -14,9 +14,9 @@ public static class PromotionEndpoints
         var group = app.MapGroup("/api/promotions")
             .WithTags("Promotions");
 
-        group.MapGet("/products", async (IPromotionService service) =>
+        group.MapGet("/products", async (string site, int currency, int settingStatus, string language, IPromotionService service) =>
         {
-            var products = await service.GetProductAsync();
+            var products = await service.GetProductAsync(site, currency, settingStatus, language);
             return Results.Ok(products);
         })
         .WithName("GetPromotionProducts")
@@ -26,17 +26,17 @@ public static class PromotionEndpoints
             Description = "Returns a tree of available products for promotion"
         });
 
-        //group.MapGet("/get", async (PromotionRequest request, IPromotionService service) =>
-        //{
-        //    var promotions = await service.GetPromotionAsync(request);
-        //    return Results.Ok(promotions);
-        //})
-        //.WithName("GetPromotion")
-        //.WithOpenApi(operation => new(operation)
-        //{
-        //    Summary = "Get promotion",
-        //    Description = "Returns a list of available promotion"
-        //});
+        group.MapGet("/get", async (int promotionTypeId, int statusId, int custId, int siteDBGroupId, string language, IPromotionService service) =>
+        {
+            var promotions = await service.GetPromotionAsync(new PromotionRequest { PromotionType = promotionTypeId, StatusId = statusId, ActorId = custId, SiteDBGroupId = siteDBGroupId, Language = language });
+            return Results.Ok(promotions);
+        })
+        .WithName("GetPromotion")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Get promotion",
+            Description = "Returns a list of available promotion"
+        });
 
         group.MapGet("/", async (int promotionId, int custId, IPromotionService service) =>
         {

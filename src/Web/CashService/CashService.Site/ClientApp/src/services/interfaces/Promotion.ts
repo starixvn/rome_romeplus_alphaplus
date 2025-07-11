@@ -18,12 +18,12 @@ export interface PromotionRequest {
   fromDate: Date | null;
   toDate: Date | null;
   enabled: boolean;
-  products: ProductSetting[];
-  promotionInfo: LanguageInfo[];
+  productSettings: ProductSetting[];
+  contents: LanguageInfo[];
 }
 
 export interface LanguageInfo {
-  lang: string;
+  language: string;
   title: string;
   banner: string | null;
   content: string;
@@ -51,4 +51,5 @@ export interface ProductSetting extends ProductDropdown {
   minTurnover: number;
   maxPayout: number;
   unlimited: boolean;
+  productIds: number[];
 }

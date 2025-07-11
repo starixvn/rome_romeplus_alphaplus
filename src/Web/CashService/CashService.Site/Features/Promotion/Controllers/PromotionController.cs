@@ -13,6 +13,7 @@ using Services;
 using Shared;
 using Shared.Filters;
 using Shared.Models;
+using Newtonsoft.Json;
 
 [SiteAuthorizationFilter(PageAccessType.CashPromotion)]
 public class PromotionController(
@@ -95,7 +96,7 @@ public class PromotionController(
 
     public async Task<IActionResult> GetPromotion(int promotionTypeId, int statusId, CancellationToken cancellationToken)
     {
-        var url = $"/promotions/get?promotionTypeId={promotionTypeId}&statusId={statusId}&custId={userSession.CustId}&sitedbgroupId={userSession.SiteDBGroupId}";
+        var url = $"/promotions/get?promotionTypeId={promotionTypeId}&statusId={statusId}&custId={userSession.CustId}&sitedbgroupId={userSession.SiteDBGroupId}&language={userSession.Language}";
 
         var result = await httpClientHelper.GetAsync<object>(url);
 
@@ -113,24 +114,34 @@ public class PromotionController(
 
     public async Task<IActionResult> GetPromotionProducts()
     {
-        var url = "/promotions/products";
+        var url = $"/promotions/products?site={userSession.SiteName}&currency={userSession.CurrencyId}&settingstatus=0&language={userSession.Language}";
         var products = await httpClientHelper.GetAsync<List<Product>>(url);
         var productCategoryList = products.GroupBy(p => p.ProductCategoryId).Select(g
             => new ProductDropdown
             {
                 ProductCategoryId = g.Key,
+                ProductCategoryName = g.First().ProductCategoryName,
                 Products = g.ToList()
             });
-
+ 
         return Json(productCategoryList);
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddPromotion([FromBody] object request)
+    public async Task<IActionResult> AddPromotion([FromBody] AddPromotionRequest request)
     {
-        var url = $"/api/promotions";
-        var result = await httpClientHelper.PostAsync<object, object>(url, request);
-        return Json(result);
+        request
+            .SetUserSession(userSession);
+            Console.WriteLine(JsonConvert.SerializeObject(request));
+        if (request.IsValid())
+        {
+            var url = $"/api/promotions";
+
+            var result = await httpClientHelper.PostAsync<AddPromotionRequest, object>(url, request);
+            return Json(result);
+        }
+
+        return Json(new { Code = "01", Message = "Invalid request" });
     }
 
     [HttpPut]

@@ -88,7 +88,7 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
           if (promotionData.promotionInfo) {
             const infoMap: Record<string, PromotionLangFields> = {};
             promotionData.promotionInfo.forEach((info) => {
-              infoMap[info.lang] = {
+              infoMap[info.language] = {
                 title: info.title || '',
                 banner: info.banner,
                 prevBanner: info.banner,
@@ -146,10 +146,10 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
       promotionType,
       fromDate,
       toDate,
-      products: productSettings,
+      productSettings: productSettings,
       enabled: isActive,
-      promotionInfo: Object.entries(promotionInfo).map(([lang, info]) => ({
-        lang,
+      contents: Object.entries(promotionInfo).map(([lang, info]) => ({
+        language: lang,
         title: info.title,
         banner: info.banner as string | null,
         content: info.content,

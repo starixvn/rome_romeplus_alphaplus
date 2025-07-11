@@ -9,10 +9,14 @@ public interface ICacheRefService
     string GetBankName(int bankId, string defaultName, string languageCode);
     string GetDepositAutoModeName(string sourceType, string defaultName, string languageCode);
     string GetResourceDataByRefIdAndResourceId(string refId, int resourceId, string languageCode);
+    string GetProductName(int productId, string languageCode);
 }
 
 public class CacheRefService(IRemotingRefService remotingRefService, Fanex.Logging.ILogger logger) : ICacheRefService
 {
+    public string GetProductName(int productId, string languageCode)
+        => GetResourceDataByRefIdAndResourceId("Product", productId, languageCode);
+
     public string GetProviderName(int providerId, string defaultName, string languageCode) {
         var result = GetResourceDataByRefIdAndResourceId("CashPaymentProvider", providerId, languageCode);
         return string.IsNullOrWhiteSpace(result) ? defaultName : result;

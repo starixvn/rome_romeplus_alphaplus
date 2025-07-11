@@ -1,24 +1,27 @@
 ﻿namespace AlphaPlus.CashService.API.Features.Promotion.Criteria;
-
+using Fanex.Data;
 using Fanex.Data.Repository;
 
 public class AddPromotionCriteria : NonQueryCommand
 {
-    public int PromotionType { get; set; }
-    public int StatusId { get; set; }
+
+    [SpParam(SqlParamName = "Type")]
+    public int PromotionType { get; set; }    
+    public bool Enabled { get; set; }
     public DateTime FromDate { get; set; }
     public DateTime ToDate { get; set; }
-    public string Title { get; set; }
-    public string Content { get; set; }
-    public byte[] Banner { get; set; }
-    public string ProductSettings { get; set; }
+    public string PromotionDetails { get; set; }
+    public string PromotionContents { get; set; }
+
+    [SpParam(SqlParamName = "AgentID")]
     public int CreatedBy { get; set; }
     public string IP { get; set; }
+    public string Language { get; set; }
     public int SiteDbGroupId { get; set; }
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }
 
-    public override string GetSettingKey() => "";
+    public override string GetSettingKey() => "Age_CashService_CashPromotionIns";
 
     public override bool IsValid() => true;
 }

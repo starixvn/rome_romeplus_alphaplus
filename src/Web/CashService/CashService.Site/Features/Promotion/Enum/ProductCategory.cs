@@ -4,15 +4,15 @@ using System.ComponentModel;
 
 public enum ProductCategory
 {
-    [Description("Sportsbooks")]
+    [Description("Sportsbook")]
     Sportsbooks = 1,
 
     [Description("RNG Games")]
-    RngGames = 2,
+    RngGames = 44,
 
     [Description("RNG Casino")]
-    RngCasino = 3,
+    RngCasino = 41,
 
     [Description("Live Casino")]
-    LiveCasino = 4,
+    LiveCasino = 53,
 }

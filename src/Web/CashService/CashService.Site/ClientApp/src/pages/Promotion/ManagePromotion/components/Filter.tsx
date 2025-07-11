@@ -40,7 +40,6 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
             options={promotionTypes}
             onSelect={handleTypeChange}
             initialValue={selectedType}
-            showOptionAll={true}
           />
         </div>
       </div>

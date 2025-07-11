@@ -1,9 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import {
-  ProductDropdown,
-  ProductSetting,
-  PromotionRequest,
-} from '../../../../services/interfaces/Promotion';
+import React, { useEffect, useState } from 'react';
 import {
   BackButtonComponent,
   ButtonApplyComponent,
@@ -12,10 +7,15 @@ import {
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../../../components/Message';
 import { TitleComponent } from '../../../../components/Title';
 import { TreeNodeOption } from '../../../../components/TreeSelect/TreeSelect';
+import {
+  ProductDropdown,
+  ProductSetting,
+  PromotionRequest,
+} from '../../../../services/interfaces/Promotion';
 import { promotionService } from '../../../../services/promotionAPI';
+import Information from './Form/Information';
 import PromotionInfo, { PromotionLangFields } from './Form/LanguageInfo';
 import ProductSettings from './Form/ProductSettings';
-import Information from './Form/Information';
 
 interface AddPromotionProps {
   onClose: () => void;
@@ -54,7 +54,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
   const nextWeek = new Date();
   nextWeek.setDate(today.getDate() + 7);
   const [period, setPeriod] = useState<[Date | null, Date | null]>([today, nextWeek]);
-
+  
   const [productOptions, setProductOptions] = useState<ProductDropdown[]>([]);
   const [productSettings, setProductSettings] = useState<ProductSetting[]>([]);
   const [selectedProductIds, setSelectedProductIds] = useState<number[]>([]);
@@ -75,6 +75,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
             minTurnover: 0,
             maxPayout: 0,
             unlimited: false,
+            productIds: [],
           }))
         );
       }
@@ -82,11 +83,29 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
   }, []);
 
   const handleProductChange = (values: (string | number)[], highestParents: TreeNodeOption[]) => {
-    setSelectedProductIds(values.map((v) => v as number));
+    
+    const selectedIds = values.map((v) => v as number);
+    setSelectedProductIds(selectedIds);
     setSelectedProductCategories(highestParents.map((h) => h.value as number));
+    
+    // Update productIds in productSettings for selected categories
+    setProductSettings((prev) =>
+      prev.map((setting) => {
+        const categoryProducts = setting.products || [];
+        const selectedProductsInCategory = selectedIds.filter((id) =>
+          categoryProducts.some((product) => product.productId === id)
+        );
+        
+        return {
+          ...setting,
+          productIds: selectedProductsInCategory,
+        };
+      })
+    );
   };
 
   const handleProductFieldChange = (productId: number, field: string, value: number | boolean) => {
+    
     setProductSettings((prev) =>
       prev.map((p) => (p.productCategoryId === productId ? { ...p, [field]: value } : p))
     );
@@ -97,6 +116,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
     field: keyof PromotionLangFields,
     value: any
   ) => {
+   
     setPromotionInfo((prev) => ({ ...prev, [lang]: { ...prev[lang], [field]: value } }));
   };
 
@@ -104,23 +124,33 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
     e.preventDefault();
     setError(null);
     setLoading(true);
-
+    
     setSuccessMessage('Promotion saved successfully');
     const [fromDate, toDate] = period.map((date) => (date ? new Date(date) : null));
     const promotionData: PromotionRequest = {
       promotionType,
       fromDate,
       toDate,
-      products: productSettings,
+      productSettings: productSettings,
       enabled: isActive,
-      promotionInfo: Object.entries(promotionInfo).map(([lang, info]) => ({
-        lang,
+      contents: Object.entries(promotionInfo).map(([lang, info]) => ({
+        language: lang,
         title: info.title,
         banner: info.banner as string | null,
         content: info.content,
       })),
     };
     console.log('promotionData', promotionData);
+    promotionService.addPromotion(promotionData).then((result) => {
+      if (result.isSuccessful) {
+        setSuccessMessage('Promotion saved successfully');
+        //setSuccessMessage(result.message);
+      } else {
+        setError(result.message);
+      }
+    }).finally(() => {
+      setLoading(false);
+    });
   };
 
   return (
