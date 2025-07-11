@@ -8,7 +8,9 @@ using AlphaPlus.NetThrottling;
 using AlphaPlus.SecurityCode.Filters;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 ThreadPool.SetMinThreads(100, 100);
 
@@ -56,7 +58,23 @@ builder.Services
 var app = builder.Build();
 app.UseForwardedHeaders();
 app.UsePathBase(PathBase);
-app.MapHealthChecks("/health").WithMetadata(new AllowAnonymousAttribute(), new DisableNetThrottlingAttribute());
+app.MapHealthChecks("/health", new HealthCheckOptions
+{
+    Predicate = _ => true,
+    AllowCachingResponses = false,
+    ResponseWriter = (context, report) =>
+    {
+        context.Response.ContentType = "text/plain";
+        var environment = string.IsNullOrWhiteSpace(configuration.GetValue<string>("Environment")) ? string.Empty : $"Environment: {configuration.GetValue<string>("Environment")}";
+        return context.Response.WriteAsync($"Healthy{Environment.NewLine}{environment}");
+    },
+    ResultStatusCodes =
+    {
+        [HealthStatus.Healthy] = StatusCodes.Status200OK,
+        [HealthStatus.Degraded] = StatusCodes.Status200OK,
+        [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable
+    }
+}).WithMetadata(new AllowAnonymousAttribute(), new DisableNetThrottlingAttribute());
 
 app.UseDefaultFiles();
 app.UseStaticFiles();
