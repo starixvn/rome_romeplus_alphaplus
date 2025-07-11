@@ -16,9 +16,6 @@ public class PaymentGatewayHttpClientHelper
     {
         httpClient = httpClientFactory.CreateClient(HttpClientName.ProxyHttpClient);
         httpClient.BaseAddress = new Uri(apiConfig.BaseUrl);
-        httpClient.DefaultRequestHeaders.Add("MerchantNo", apiConfig.MerchantNo);
-        httpClient.DefaultRequestHeaders.Add("AppSecret", apiConfig.AppSecret);
-        httpClient.DefaultRequestHeaders.Add("SecretKey", apiConfig.SecretKey);
         jsonOptions = new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,

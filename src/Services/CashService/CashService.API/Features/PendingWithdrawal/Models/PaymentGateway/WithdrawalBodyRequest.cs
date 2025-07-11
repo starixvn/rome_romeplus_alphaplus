@@ -1,6 +1,6 @@
 ﻿namespace AlphaPlus.CashService.API.Features.PendingWithdrawal.Models.PaymentGateway;
 
-public class WithdrawalBodyRequest
+public class WithdrawalBodyRequest : BasePaymentGatewayRequest
 {
     public int AgentId { get; set; }
     public int CustId { get; set; }

@@ -139,7 +139,8 @@ public class PendingWithdrawalService(
                 Name = transaction.Username,
                 BankCode = bankCode,
                 AccountNumber = accountNumber
-            }
+            },
+            ApiConfig = await paymentGateway.GetAgentPaymentGatewayInfo(command.ActorId, transaction.TransactionTypeId, command.ProviderId, command.PaymentMethodId)
         };
         try
         {

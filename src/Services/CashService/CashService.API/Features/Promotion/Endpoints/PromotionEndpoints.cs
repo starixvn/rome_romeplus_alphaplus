@@ -5,6 +5,7 @@ using AlphaPlus.CashService.API.Features.Promotion.Services;
 namespace AlphaPlus.CashService.API.Features.Promotion.Endpoints;
 
 using Microsoft.AspNetCore.Mvc;
+using Shared.Requests;
 
 public static class PromotionEndpoints
 {
@@ -73,11 +74,11 @@ public static class PromotionEndpoints
             Description = "Edit an existing promotion"
         });
 
-        group.MapDelete("/{promotionId}", async (int promotionId, IPromotionService service) =>
+        group.MapPost("/{promotionId}", async (int promotionId, [FromBody] BaseActionRequest request, IPromotionService service) =>
         {
-            var result = await service.DeletePromotionAsync(promotionId);
+            var result = await service.DeletePromotion(promotionId, request);
             return Results.Ok(result);
-        }));
+        });
         group.MapGet("/reports", ([AsParameters] GetPromotionReportRequest request, IPromotionService service) =>
         {
             return TypedResults.Ok(FakeReport());
