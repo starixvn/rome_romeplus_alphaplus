@@ -1,5 +1,6 @@
 import { axiosInstance, api } from './axios';
 import { ProductDropdown, PromotionDetail, PromotionParams } from './interfaces/Promotion';
+import { ResultModel } from './interfaces/ResultModel';
 
 export const promotionService = {
   getPromotion: async (promotionParams: PromotionParams): Promise<PromotionDetail[]> => {
@@ -35,14 +36,18 @@ export const promotionService = {
     }
   },
 
-  deletePromotion: async (promotionId: number): Promise<void> => {
+  deletePromotion: async (promotionId: number): Promise<ResultModel> => {
     try {
-      await axiosInstance.delete(`DeletePromotion/${promotionId}`);
+      const response = await axiosInstance.delete<ResultModel>(
+        `DeletePromotion?promotionId=${promotionId}`
+      );
+      return response.data;
     } catch (error) {
       console.error('Error deleting promotion:', error);
       throw error;
     }
   },
+
   getMainReport: async (filterParams: {
     fromDate: string;
     toDate: string;

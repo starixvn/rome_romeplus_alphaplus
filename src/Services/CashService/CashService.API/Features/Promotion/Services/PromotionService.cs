@@ -4,6 +4,8 @@ using Criteria;
 using Fanex.Data.Repository;
 using Models;
 using Shared.Models;
+using Shared.Requests;
+using Shared.Services;
 
 public interface IPromotionService
 {
@@ -16,9 +18,11 @@ public interface IPromotionService
     Task<ResultModel> AddPromotionAsync(PromotionRequest request);
 
     Task<ResultModel> EditPromotion(int promotionId, PromotionRequest request);
+
+    Task<ResultModel> DeletePromotion(int promotionId, BaseActionRequest request);
 }
 
-public class PromotionService(IDynamicRepository repository) : IPromotionService
+public class PromotionService(IDynamicRepository repository, ICommonService commonService) : IPromotionService
 {
     public async Task<IEnumerable<Product>> GetProductAsync()
     {
@@ -96,6 +100,50 @@ public class PromotionService(IDynamicRepository repository) : IPromotionService
         var result = new ResultModel(editPromotionCriteria.ErrCode, editPromotionCriteria.ErrMsg);
 
         return result;
+    }
+
+    public async Task<ResultModel> DeletePromotion(int promotionId, BaseActionRequest request)
+    {
+        var command = new DeletePromotionCriteria()
+        {
+            PromotionId = promotionId,
+            AgentId = request.ActorId,
+            SubAccId = request.SubAccId,
+            IP = request.IP,
+            Language = request.Language,
+            SiteDbGroupId = request.SiteDBGroupId,
+            CustDbGroupId = request.CustDBGroupId
+        };
+
+        var logs = await repository.FetchAsync<WriteLogDBCommandModel>(command);
+        if (logs is not null && logs.Any())
+        {
+            WriteLog(logs.ToList(), request.SiteDBGroupId);
+        }
+
+        return new ResultModel(command.ErrCode, command.ErrMsg);
+    }
+
+    private void WriteLog(List<WriteLogDBCommandModel> logs, int siteDbGroupId)
+    {
+        _ = Task.Run(async () =>
+        {
+            foreach (var log in logs)
+            {
+                await WriteLogRunSp(log, siteDbGroupId);
+            }
+        });
+    }
+
+    private async Task WriteLogRunSp(WriteLogDBCommandModel log, int siteDbGroupId)
+    {
+        var request = new BaseActionRequest
+        {
+            ActorId = log.CustId,
+            CustDBGroupId = siteDbGroupId,
+            UserId = log.UserId,
+        };
+        await commonService.WriteLogDBCommand(request, log);
     }
 
     private static List<Promotion> CreateFakePromotionModel()

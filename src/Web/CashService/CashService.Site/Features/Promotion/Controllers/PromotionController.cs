@@ -1,5 +1,7 @@
 namespace AlphaPlus.CashService.Site.Features.Promotion.Controllers;
 
+using AlphaPlus.CashService.Site.Features.Promotion.Requests;
+using AlphaPlus.CashService.Site.Features.Shared.Requests;
 using Core.Models;
 using Fanex.Customer.Client.Services;
 using Helpers;
@@ -7,12 +9,10 @@ using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Models.Products;
-using Models.PromotionItems;
 using Services;
 using Shared;
 using Shared.Filters;
-using AlphaPlus.CashService.Site.Features.Promotion.Requests;
-using AlphaPlus.CashService.Site.Features.Shared.Requests;
+using Shared.Models;
 
 [SiteAuthorizationFilter(PageAccessType.CashPromotion)]
 public class PromotionController(
@@ -139,5 +139,15 @@ public class PromotionController(
         var url = $"/api/promotions/{promotionId}";
         await httpClientHelper.PutAsync<object>(url, request);
         return Json(new { success = true });
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeletePromotion(int promotionId)
+    {
+        var url = $"/api/promotions/delete/{promotionId}";
+
+        var request = new DeletePromotionRequest { PromotionId = promotionId };
+        var result = await httpClientHelper.PostAsync<DeletePromotionRequest, ResultModel>(url, request);
+        return Json(result);
     }
 }

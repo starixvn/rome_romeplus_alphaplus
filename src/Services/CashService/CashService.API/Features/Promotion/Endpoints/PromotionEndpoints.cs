@@ -73,6 +73,11 @@ public static class PromotionEndpoints
             Description = "Edit an existing promotion"
         });
 
+        group.MapDelete("/{promotionId}", async (int promotionId, IPromotionService service) =>
+        {
+            var result = await service.DeletePromotionAsync(promotionId);
+            return Results.Ok(result);
+        }));
         group.MapGet("/reports", ([AsParameters] GetPromotionReportRequest request, IPromotionService service) =>
         {
             return TypedResults.Ok(FakeReport());

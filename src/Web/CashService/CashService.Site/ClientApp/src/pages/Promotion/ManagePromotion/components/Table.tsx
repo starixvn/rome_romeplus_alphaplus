@@ -1,6 +1,9 @@
 ﻿import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ButtonDeleteComponent, ButtonPenComponent } from '../../../../components/Buttons/ButtonIconComponent';
+import {
+  ButtonDeleteComponent,
+  ButtonPenComponent,
+} from '../../../../components/Buttons/ButtonIconComponent';
 import NoRecordFoundComponent from '../../../../components/NoRecordFoundComponent';
 import { useCookieLanguage } from '../../../../hooks/useCookieLanguage';
 import i18n from '../../../../i18n/i18n-promotion';
@@ -31,7 +34,7 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
     var s = status ? status.toLocaleUpperCase() : '';
     switch (s) {
       case 'ENABLE':
-        return 'bg-[#D4E7D9]';      
+        return 'bg-[#D4E7D9]';
       case 'DISABLE':
         return 'bg-[#FBD8D8]';
       default:

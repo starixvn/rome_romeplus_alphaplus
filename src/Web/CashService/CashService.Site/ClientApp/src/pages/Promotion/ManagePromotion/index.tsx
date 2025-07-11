@@ -11,15 +11,24 @@ import { TitleComponent } from '../../../components/Title';
 import { ButtonFullComponent } from '../../../components/Buttons/index';
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
+import ConfirmPopup from '../../../components/ConfirmPopup';
+import { useTranslation } from 'react-i18next';
+import { ResultMessageComponent, ResultType } from '../../../components/Message';
 
 const Promotion: React.FC = () => {
   const [promotionType, setPromotionType] = useState<number>(0);
   const [status, setStatus] = useState<number>(0);
-  const [error, setError] = useState<string | null>(null);
+  const [validationMessage, setValidationMessage] = useState<{
+    type: ResultType;
+    message: string;
+  }>({ type: 'success', message: '' });
   const [promotions, setPromotions] = useState<PromotionDetail[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showAddPromotion, setShowAddPromotion] = useState<boolean>(false);
-
+  const [showConfirmDelete, setShowConfirmDelete] = useState<boolean>(false);
+  const [deletePromotionId, setDeletePromotionId] = useState<number>(0);
+  const { t } = useTranslation('promotion');
+  const { t: tGlobal } = useTranslation('global');
   const handleFilterChange = (type: number, status: number) => {
     setPromotionType(type);
     setStatus(status);
@@ -33,9 +42,9 @@ const Promotion: React.FC = () => {
         status: status,
       });
       setPromotions(response);
-      setError(null);
+      setValidationMessage({ type: 'success', message: '' });
     } catch (err) {
-      setError('Failed to load promotions');
+      setValidationMessage({ type: 'error', message: 'Failed to load promotions' });
       console.error('Error loading promotions:', err);
     } finally {
       setIsLoading(false);
@@ -51,33 +60,53 @@ const Promotion: React.FC = () => {
     setShowAddPromotion(true);
   };
 
-  const handleDelete = async (promotion: PromotionDetail) => {
-    if (window.confirm('Are you sure you want to delete this promotion?')) {
-      try {
-        await promotionService.deletePromotion(promotion.promotionId);
-        fetchPromotions();
-      } catch (err) {
-        setError('Failed to delete promotion');
-        console.error('Error deleting promotion:', err);
+  const handleDelete = async (promotionId: number) => {
+    try {
+      var deleteResult = await promotionService.deletePromotion(promotionId);
+      if (deleteResult.isSuccessful) {
+        setValidationMessage({ type: 'success', message: t('promotionList.deleteSuccess') });
+        setTimeout(() => {
+          fetchPromotions();
+        }, 3000);
+      } else {
+        setValidationMessage({ type: 'error', message: deleteResult.message });
       }
+      fetchPromotions();
+    } catch (err) {
+      setValidationMessage({ type: 'error', message: 'Failed to delete promotion' });
+      console.error('Error deleting promotion:', err);
     }
   };
 
   return (
     <div className="pb-[12px] h-full flex flex-col promotion-page">
-      {error && (
-        <div
-          className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
-          role="alert"
-        >
-          <strong className="font-bold">Error!</strong>
-          <span className="block sm:inline"> {error}</span>
-        </div>
+      {validationMessage.message !== '' && (
+        <ResultMessageComponent
+          message={validationMessage.message}
+          type={validationMessage.type}
+          className="mb-[16px] max-[768px]:mb-[0]"
+        />
       )}
-
+      {showConfirmDelete && (
+        <ConfirmPopup
+          title={t('promotionList.confirmDeleteTitle')}
+          message={t('promotionList.confirmDeleteMessage')}
+          onCancel={() => {
+            setShowConfirmDelete(false);
+            setDeletePromotionId(0);
+          }}
+          onConfirm={() => {
+            setShowConfirmDelete(false);
+            handleDelete(deletePromotionId);
+            setDeletePromotionId(0);
+          }}
+          cancelText={tGlobal('cancel')}
+          confirmText={tGlobal('confirm')}
+        />
+      )}
       {!showAddPromotion ? (
         <>
-          <TitleComponent title="Manage Promotion" showTippy={false} />        
+          <TitleComponent title="Manage Promotion" showTippy={false} />
           <div className="mb-[8px]">
             <ButtonFullComponent
               text="Add Promotion"
@@ -92,7 +121,10 @@ const Promotion: React.FC = () => {
             items={promotions}
             isLoading={isLoading}
             onEdit={handleEdit}
-            onDelete={handleDelete}
+            onDelete={(promotion) => {
+              setDeletePromotionId(promotion.promotionId);
+              setShowConfirmDelete(true);
+            }}
           />
         </>
       ) : (
