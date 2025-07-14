@@ -1,12 +1,13 @@
-﻿using AlphaPlus.Core.Helpers;
-using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+﻿using AlphaPlus.Core.Configurations;
+using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Core.Utils;
 using AlphaPlus.Settings.MemberInfo.Domain.Constants;
 using AlphaPlus.Settings.MemberInfo.Domain.Models.CreditBalance;
 using AlphaPlus.Settings.MemberInfo.Domain.Models.Winloss;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.CreditBalance;
-using AlphaPlus.Core.Utils;
-using AlphaPlus.Core.Models;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.CreditBalance;
 
@@ -52,7 +53,10 @@ public class CreditBalanceViewModel
         EnteredSportResult = enteredSportResult;
         ShowLevelType = message.CustLevel.IsNotAgentLevel();
         LevelType = message.LevelType;
+        IsOfferedCashService = AppSettings.IsOfferedCashService(message.Site);
     }
+
+    public bool IsOfferedCashService { get; }
 
     public string LegendView { get; }
 

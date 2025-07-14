@@ -1,3 +1,4 @@
+@using AlphaPlus.Core.Configurations
 @using AlphaPlus.Core.Helpers
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
 @using AlphaPlus.Core.Models
@@ -20,7 +21,7 @@
     </ul>
     <p>참고사항</p>
     <ul class="ul-remark">
-        @if (UserSession.IsAgent)
+        @if (AppSettings.IsOfferedCashService(UserSession.Site) && UserSession.IsAgent)
         {
             <li>Cash Members are not included on this page</li>
         }
@@ -36,7 +37,7 @@ else
 {
     <p>참고사항</p>
     <ul class="ul-remark">
-        @if (UserSession.IsAgent)
+        @if (AppSettings.IsOfferedCashService(UserSession.Site) && UserSession.IsAgent)
         {
             <li>Cash Members are not included on this page</li>
         }
