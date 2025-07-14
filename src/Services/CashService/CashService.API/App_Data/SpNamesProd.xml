@@ -121,8 +121,12 @@
     </Function>
 
     <Function Name="Promotion">
-      <Setting Key="Age_CashService_CashPromotionSel" SpName="Age_CashService_CashPromotionSel_UAT2" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
-        <Setting Key="Age_CashService_Promotion_Delete" SpName="Age_CashService_Promotion_Delete" DbName="DBCust.CustDB.wsv_CashService" Plain="0" />
-        <Setting Key="Age_CashService_PromotionProductList" SpName="Age_CashService_PromotionProductList" DbName="DBAGE.bodb02.wsv_CashService" Plain="0" />
+      <Setting Key="Age_CashService_CashPromotionSel" SpName="Age_CashService_CashPromotionSel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" >
+            <Mapping DataField="Title" ObjectProperty="PromotionTitle"></Mapping>
+            <Mapping DataField="Type" ObjectProperty="PromotionTypeId"></Mapping>
+        </Setting>
+      <Setting Key="Age_CashService_CashPromotionIns" SpName="Age_CashService_CashPromotionIns" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
+      <Setting Key="Age_CashService_Promotion_Delete" SpName="Age_CashService_Promotion_Delete" DbName="DBCust.CustDB.wsv_CashService" Plain="0" />
+      <Setting Key="Age_CashService_PromotionProductList" SpName="Age_CashService_PromotionProductList" DbName="DBAGE.bodb02.wsv_CashService" Plain="0" />
     </Function>
 </Functions>

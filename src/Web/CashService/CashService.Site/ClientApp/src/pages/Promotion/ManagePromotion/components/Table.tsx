@@ -47,7 +47,7 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
     if (!products || products.length === 0) return '';
     const names = products.slice(0, maxDisplay).map((p) => p.productName);
     const remain = products.length - maxDisplay;
-    return remain > 0 ? `${names.join('/ ')} + ${remain} more` : names.join(', ');
+    return remain > 0 ? `${names.join('/ ')} + ${remain} more` : names.join('/ ');
   };
 
   const displayGridProducts = (promotions: PromotionDetail[]): ProductSetting[] => {

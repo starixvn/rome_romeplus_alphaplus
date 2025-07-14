@@ -36,21 +36,26 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
         public int Status { get; }
 
         public string AccountHolderName { get; }
+
         [SpParam(SqlParamName = "BankAccountNumber")]
         public string AccountNumber { get; }
+
         public string AccountNickname { get; }
 
         [SpParam(SqlParamName = "TransTypeList")]
         public string TransactionTypeIDs { get; }
+
         public int DepositMatchingMode { get; }
 
         [SpParam(SqlParamName = "PromptPayEnabled")]
         public bool PromptPay { get; }
+
         [SpParam(SqlParamName = "PromptPayMobile")]
         public string Mobile { get; }
 
         [SpParam(Ignored = true)]
         public string CountryCode { get; }
+
         [SpParam(Ignored = true)]
         public string MobileNumber { get; }
 
@@ -67,7 +72,8 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
                 return isValid;
             }
 
-            return ValidatorHelper.IsValidCountryCode(CountryCode) && ValidatorHelper.IsValidMobileNumber(MobileNumber);
+            return ValidatorHelper.IsValidCountryCode(CountryCode) && 
+                   ValidatorHelper.IsValidMobileNumber(MobileNumber);
         }
 
         private bool IsValidBankAccountInfo() =>
