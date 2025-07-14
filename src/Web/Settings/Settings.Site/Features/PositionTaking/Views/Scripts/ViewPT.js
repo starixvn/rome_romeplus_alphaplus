@@ -368,7 +368,7 @@
                 MergeRowNumber: uplineLength + 1
             });
 
-            var icon = custPt.customerInfo.isCashMember ? '<span class="icon-cashservice"></span>' : '';
+            var icon = custPt.customerInfo.isCashMember ? '<span class="icon-cashservice icon-cashservice-common"></span>' : '';
 
             columns.push({
                 Name: 'ColUsername',
@@ -419,7 +419,7 @@
                 Value: custPt.groupIndex
             });
 
-            var icon = custPt.customerInfo.isCashMember ? '<span class="icon-cashservice"></span>' : '';
+            var icon = custPt.customerInfo.isCashMember ? '<span class="icon-cashservice icon-cashservice-common"></span>' : '';
             columns.push({
                 Name: 'ColUsername',
                 Value: self.drilldownLink(positionTakingInfo, custPt.customerInfo) + icon
