@@ -110,6 +110,7 @@
         <Setting Key="SiteDb_3_Age_CashWithdrawal_ManualAdd" SpName="Age_CashWithdrawal_ManualAdd_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
         <Setting Key="SiteDb_3_Age_CashService_CashBalance_Sel" SpName="Age_CashService_CashBalance_Sel" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
         <Setting Key="CustDb_0_Age_CashWithdrawal_LimitAmtSel" SpName="Age_CashWithdrawal_LimitAmtSel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="SiteDb_3_API_CashWithdrawal_UpdateTransStatus" SpName="API_CashWithdrawal_UpdateTransStatus_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
     </Function>
 
     <Function Name="Member Site Info">
@@ -121,7 +122,7 @@
     </Function>
 
     <Function Name="Promotion">
-        <Setting Key="Age_CashService_CashPromotionSel" SpName="Age_CashService_CashPromotionSel_UAT2" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" >
+        <Setting Key="Age_CashService_CashPromotionSel" SpName="Age_CashService_CashPromotionSel_UAT2" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="Title" ObjectProperty="PromotionTitle"></Mapping>
             <Mapping DataField="Type" ObjectProperty="PromotionTypeId"></Mapping>
         </Setting>

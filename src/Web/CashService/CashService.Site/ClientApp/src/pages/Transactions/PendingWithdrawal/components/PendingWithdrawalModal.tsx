@@ -22,6 +22,7 @@ import { TransactionTypes } from '../../../../constants/sharedConstants.ts';
 import UploadImage from '../../Components/UploadImage';
 import { LoadingFullComponent } from '../../../../components/LoadingComponent';
 import ConfirmPopup from '../../../../components/ConfirmPopup';
+import { ResultModel } from '../../../../services/interfaces/ResultModel.ts';
 
 interface PendingWithdrawalModalProps {
   transId: number;
@@ -78,7 +79,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
           transactionAPI.getCashAgentBankInfo(TransactionTypes.Withdrawal),
         ]);
 
-        const bankOptions: DropdownOption[] = bankInfo.map((bank) => ({
+        const bankInfoOptions: DropdownOption[] = bankInfo.map((bank) => ({
           value: renderBankOptionValue(bank.bankCode, bank.bankAccountNumber),
           label: bank.bankAccountNumber,
           icon: <BankIcon code={bank.bankCode} />,
@@ -96,7 +97,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
           },
         }));
 
-        setBankOptions([...bankOptions, ...mappedProviderInfo]);
+        setBankOptions([...bankInfoOptions, ...mappedProviderInfo]);
 
         if (
           withdrawal?.paymentFrom &&
@@ -154,13 +155,24 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
           onClose();
         }, 3000);
       } else {
-        setIsSubmitting(false);
-        setResultMessage({ type: 'error', message: response.message });
+        handleApproveFailed(response);
       }
     } catch (error) {
       setIsSubmitting(false);
       setResultMessage({ type: 'error', message: t('pendingWithdrawalModal.approveFailed') });
       console.error('Error processing withdrawal:', error);
+    }
+  };
+
+  const handleApproveFailed = (response: ResultModel) => {
+    if (response.code === 410 || response.code === 411) {
+      setResultMessage({ type: 'warning', message: response.message });
+      setTimeout(() => {
+        onClose();
+      }, 3000);
+    } else {
+      setIsSubmitting(false);
+      setResultMessage({ type: 'error', message: response.message });
     }
   };
 

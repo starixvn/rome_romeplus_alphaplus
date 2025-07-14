@@ -246,4 +246,10 @@
   <data name="MemberListNoteEditMultipleNotAvailable" xml:space="preserve">
     <value>Editing multiple customers isn't available if Account Type is 'All'.</value>
   </data>
+  <data name="ProviderRejectErrorMessage" xml:space="preserve">
+    <value>Your withdrawal request has been rejected by provider</value>
+  </data>
+  <data name="PaymentProviderUnavailable" xml:space="preserve">
+    <value>Payment provider is currently unavailable. Please try again later.</value>
+  </data>
 </root>

@@ -7,6 +7,8 @@ using Criteria;
 using Fanex.Data.Repository;
 using Models;
 using Models.PaymentGateway;
+using Newtonsoft.Json;
+using Transactions.Enum;
 
 public interface IPendingWithdrawalService
 {
@@ -117,12 +119,12 @@ public class PendingWithdrawalService(
     {
         var result = new ResultModel(405, "Invalid parameters");
 
-        var transaction = await transactionService.GetTransactionByIdAsync(command.TransId, command.CustId, command.SiteDBGroupId);
+        var transaction = await transactionService.GetTransactionByIdAsync(command.TransId, command.ActorId, command.SiteDBGroupId);
         var parts = transaction?.PaymentTo?.Split('-') ?? [];
         var bankCode = parts.ElementAtOrDefault(0) ?? string.Empty;
         var accountNumber = parts.ElementAtOrDefault(1) ?? string.Empty;
 
-        if (transaction is null || !string.IsNullOrWhiteSpace(bankCode) || !string.IsNullOrWhiteSpace(accountNumber))
+        if (transaction is null || string.IsNullOrWhiteSpace(bankCode) || string.IsNullOrWhiteSpace(accountNumber))
         {
             return result;
         }
@@ -144,8 +146,7 @@ public class PendingWithdrawalService(
         try
         {
             var response = await paymentGateway.WithdrawalViaPaymentGateway(model);
-            Console.WriteLine($"Payment Gateway Response: Code={response.Code}, Message={response.Message}");
-
+            Console.Write(JsonConvert.SerializeObject(response));
             if (response.IsSuccessful)
             {
                 result.Code = response.Code;
@@ -153,19 +154,14 @@ public class PendingWithdrawalService(
             }
             else
             {
-                command.StatusId = 0;
-                command.ProviderId = 0;
-                command.PaymentMethodId = 0;
-                command.PaymentFrom = string.Empty;
-                await ProcessWithdrawAsync(command);
-
-                result.Code = response.Code;
+                await UpdateWithdrawalStatusAsync(command, result.Code == 4 ? (int)TransactionStatus.ProviderRejected : 0);
+                result.Code = response.Code == 4 ? 410 : 411;
                 result.Message = response.Message;
             }
         }
         catch (Exception e)
         {
-            result.Code = 500;
+            result.Code = 409;
             result.Message = e.Message;
         }
         return result;
@@ -195,5 +191,19 @@ public class PendingWithdrawalService(
         transactionService.OnAfterUpdateTransaction(command.CashAccumCreditTbl, param.SiteDBGroupId, param.CustDBGroupId, responseLogs.ToList());
 
         return result;
+    }
+
+    private async Task UpdateWithdrawalStatusAsync(ProcessWithdrawalTransaction param, int statusId)
+    {
+        var command = new UpdateWithdrawalTransactionByApiCriteria
+        {
+            TransId = param.TransId,
+            CustId = param.CustId,
+            AgentId = param.ActorId,
+            SiteDbGroupId = param.SiteDBGroupId,
+            IP = param.IP,
+            StatusId = statusId,
+        };
+        await dynamicRepository.ExecuteAsync(command);
     }
 }
