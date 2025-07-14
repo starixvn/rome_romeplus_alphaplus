@@ -10,4 +10,5 @@ export interface BaseTitleProps {
   text: string;
   className?: string;
   required?: boolean;
+  isShowIcon?: boolean;
 } 

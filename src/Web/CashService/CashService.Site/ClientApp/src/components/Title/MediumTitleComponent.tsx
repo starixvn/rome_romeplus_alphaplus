@@ -1,6 +1,6 @@
 import React from 'react';
-import { BaseTitleProps } from './types';
 import './TitleComponents.scss';
+import { BaseTitleProps } from './types';
 
 export const MediumTitleComponent: React.FC<BaseTitleProps> = ({
   text,

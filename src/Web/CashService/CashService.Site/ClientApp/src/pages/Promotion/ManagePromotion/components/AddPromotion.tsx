@@ -113,7 +113,15 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
   const handleProductFieldChange = (productId: number, field: string, value: number | boolean) => {
     
     setProductSettings((prev) =>
-      prev.map((p) => (p.productCategoryId === productId ? { ...p, [field]: value } : p))
+      prev.map((p) => {
+        if (p.productCategoryId === productId) {
+          if (field === 'unlimited' && value === true) {
+            return { ...p, [field]: value, maxPayout: 0 };
+          }
+          return { ...p, [field]: value };
+        }
+        return p;
+      })
     );
   };
 
@@ -125,9 +133,40 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
    
     setPromotionInfo((prev) => ({ ...prev, [lang]: { ...prev[lang], [field]: value } }));
   };
-
+const validateForm = () => {
+  const errors = [
+    {
+      condition: selectedProductCategories.length === 0,
+      message: 'Please select at least one Product'
+    },
+    { 
+      condition: !promotionInfo.en, 
+      message: 'Title is required'
+    },
+    {
+      condition: promotionInfo.en && !promotionInfo.en.title,
+      message: 'Title is required'
+    },
+    /*{
+      condition: promotionInfo.en && !promotionInfo.en.banner,
+      message: 'Banner is required'
+    },*/
+    {
+      condition: promotionInfo.en && !promotionInfo.en.content,
+      message: 'Content is required'
+    }    
+  ];
+  const failedValidation = errors.find(check => check.condition);
+  if (failedValidation) {
+    setError(failedValidation.message);
+    return false;
+  }
+  return true;
+}
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (!validateForm()) return;
     setError(null);
     setLoading(true);
     
@@ -147,8 +186,6 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
     };
     console.log('promotionData', promotionData);
     promotionService.addPromotion(promotionData).then((result) => {
-      // Scroll to top to show success message
-      window.scrollTo({ top: 0, behavior: 'smooth' });
       if (result.isSuccessful) {
         setSuccessMessage('Promotion saved successfully');        
         setTimeout(() => {

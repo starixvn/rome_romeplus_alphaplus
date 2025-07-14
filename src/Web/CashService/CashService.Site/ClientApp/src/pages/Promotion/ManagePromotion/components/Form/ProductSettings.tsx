@@ -26,7 +26,7 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
               type="number"
               min="0"
               step="0.01"
-              className={`control-field pr-[32px]`}
+              className={`control-field pr-[32px] ${!selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
               value={product.percentage}
               disabled={!selectedProductCategories.includes(product.productCategoryId)}
               onChange={(e) =>
@@ -48,7 +48,7 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
           <input
             type="number"
             min="0"
-            className={`control-field`}
+            className={`control-field ${!selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
             value={product.minTurnover}
             disabled={!selectedProductCategories.includes(product.productCategoryId)}
             onChange={(e) =>
@@ -67,7 +67,7 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
             <div className="flex items-center text-[12px]">
               <input
                 type="checkbox"
-                className="mr-2"
+                className={`mr-2 ${!selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
                 checked={product.unlimited}
                 disabled={!selectedProductCategories.includes(product.productCategoryId)}
                 onChange={(e) =>
@@ -84,11 +84,11 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
             </div>
           </div>
           <input
-            type="number"
+            type="text"
             min="0"
-            className={`control-field ${product.unlimited ? 'opacity-50' : ''}`}
+            className={`control-field ${product.unlimited ? 'opacity-50' : ''} ${!selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
             value={product.maxPayout}
-            disabled={!selectedProductCategories.includes(product.productCategoryId)}
+            disabled={!selectedProductCategories.includes(product.productCategoryId) || product.unlimited}
             onChange={(e) =>
               handleProductFieldChange(
                 product.productCategoryId,
