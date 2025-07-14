@@ -9,5 +9,6 @@ public static class PaymentsModule
     public static IServiceCollection RegisterPaymentsModule(this IServiceCollection services)
         => services
         .AddSingleton<IDepositService, DepositService>()
-        .AddSingleton<IWithdrawalService, WithdrawalService>();
+        .AddSingleton<IWithdrawalService, WithdrawalService>()
+        .AddSingleton<ITransactionService, TransactionService>();
 }

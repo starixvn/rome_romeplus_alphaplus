@@ -49,6 +49,11 @@ public static class PaymentsEndpoints
             .MapPut("/{transId}/status", UpdateWithdrawalStatus)
             .AddEndpointFilter<ModelValidationFilter<UpdateTransactionStatusRequest>>()
             .Produces<Result>();
+
+        var transactions = app.MapGroup("/api/transactions").WithTags("Transactions");
+        transactions.MapPut("/{transId}/ProviderTransId", UpdateTransProviderInfo)
+            .AddEndpointFilter<ModelValidationFilter<UpdateTransProviderInfoRequest>>()
+            .Produces<Result>();
     }
 
     private static async Task<IResult> GetDepositLimit([AsParameters] GetDepositLimitRequest request, IDepositService depositService)
@@ -163,6 +168,25 @@ public static class PaymentsEndpoints
         }
 
         return TypedResults.Ok(await withdrawalService.UpdateTransactionStatus(transId, request));
+    }
+
+    private static async Task<IResult> UpdateTransProviderInfo(
+        long transId,
+        [FromBody]
+        UpdateTransProviderInfoRequest request,
+        ITransactionService transactionService)
+    {
+        if (request == null)
+        {
+            return BadRequest(nameof(UpdateTransProviderInfoRequest), $"{nameof(request)} cannot be null.");
+        }
+
+        if (transId <= 0)
+        {
+            return BadRequest(nameof(transId), $"{nameof(transId)} must be a positive number.");
+        }
+
+        return TypedResults.Ok(await transactionService.UpdateTransProviderInfo(transId, request));
     }
 
     private static BadRequest<ModelValidationResult> BadRequest(string key, string error)

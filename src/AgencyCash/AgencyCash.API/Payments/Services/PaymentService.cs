@@ -46,6 +46,17 @@ public abstract class PaymentService(
         }
     }
 
+    public async Task WriteLogsRunSP(IEnumerable<LogEntry> logs, short custDBGroupId)
+    {
+        if (logs != null)
+        {
+            foreach (var item in logs)
+            {
+                await WriteLogRunSP(item, custDBGroupId);
+            }
+        }
+    }
+
     public async Task WriteLogRunSP(LogEntry log, short custDBGroupId)
     {
         var criteria = new WriteLogRunSPCriteria(

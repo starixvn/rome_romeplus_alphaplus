@@ -171,17 +171,6 @@ public class DepositService(
         return result;
     }
 
-    private async Task WriteLogsRunSP(IEnumerable<LogEntry> logs, short custDBGroupId)
-    {
-        if (logs != null)
-        {
-            foreach (var item in logs)
-            {
-                await WriteLogRunSP(item, custDBGroupId);
-            }
-        }
-    }
-
     public async Task<Result> UpdateTransactionStatus(long transId, UpdateTransactionStatusRequest request)
     {
         var tasks = new List<Task>();
