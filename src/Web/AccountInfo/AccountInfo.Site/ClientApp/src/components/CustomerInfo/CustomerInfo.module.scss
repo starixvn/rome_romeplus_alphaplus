@@ -10,6 +10,11 @@
 
     &:hover {
         color: var(--link-hover-color);
+        [class*=" icon-"], [class^=icon-]{
+            &:before{
+                color: var(--link-hover-color);
+            }
+        }
     }
 }
 
