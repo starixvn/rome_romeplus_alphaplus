@@ -1,245 +1,229 @@
 @{
-    Layout = "_Layout";
-    ViewData["Title"] = Model.PageHeader.Title;
+	Layout = "_Layout";
+	ViewData["Title"] = Model.PageHeader.Title;
 
-    void RenderConsolidateRow(ConsolidationEntity consolidation, bool isRenderedDetail = false)
-    {
-        <td>@consolidation.Turnover.FormatNumber()</td>
-        <td>@consolidation.GrossComm.FormatNumber()</td>
-        if (Model.PageHeader.IsStackMode)
-        {
-            <td class="visible-stack-mode combinedcell col-member-winloss-combined">
-                <ul>
-                    <li>@consolidation.MemberWinLoss.FormatNumber()</li>
-                    <li>@consolidation.MemberComm.FormatNumber()</li>
-                    <li>@consolidation.MemberTotal.FormatNumber()</li>
-                </ul>
-            </td>
-            <td class="visible-stack-mode combinedcell col-owner-turnover-combined">
-                <ul>
-                    <li>@consolidation.OwnerTurnover.FormatNumber()</li>
-                    <li>@consolidation.OwnerWinLoss.FormatNumber()</li>
-                    <li>@consolidation.OwnerComm.FormatNumber()</li>
-                    <li>@consolidation.OwnerTotal.FormatNumber()</li>
-                </ul>
-            </td>
-        }
-        else
-        {
-            <td class="hidden-stack-mode col-member-winloss">
-                @consolidation.MemberWinLoss.FormatNumber()
-            </td>
-            <td class="hidden-stack-mode">
-                @consolidation.MemberComm.FormatNumber()
-            </td>
-            <td class="hidden-stack-mode bold">
-                @consolidation.MemberTotal.FormatNumber()
-            </td>
-            <td class="hidden-stack-mode col-owner-turnover">
-                @consolidation.OwnerTurnover.FormatNumber()
-            </td>
-            <td class="hidden-stack-mode">
-                @consolidation.OwnerWinLoss.FormatNumber()
-            </td>
-            <td class="hidden-stack-mode">
-                @consolidation.OwnerComm.FormatNumber()
-            </td>
-            <td class="hidden-stack-mode bold">
-                @consolidation.OwnerTotal.FormatNumber()
-            </td>
-        }
-        <td>@consolidation.Company.FormatNumber()</td>
-        <td>@consolidation.BetCount.FormatNumber()</td>
-        @if (isRenderedDetail)
-        {
-            <td>@consolidation.RewardAmount.FormatNumber()</td>
-            <td>@consolidation.RewardCurrency</td>
-        }
-        else
-        {
-            <td></td>
-            <td></td>
-        }
-    }
+	void RenderConsolidateRow(ConsolidationEntity consolidation, bool isRenderedDetail = false)
+	{
+		<td>@consolidation.Turnover.FormatNumber()</td>
+		<td>@consolidation.GrossComm.FormatNumber()</td>
+		if (Model.PageHeader.IsStackMode)
+		{
+			<td class="visible-stack-mode combinedcell col-member-winloss-combined">
+				<ul>
+					<li>@consolidation.MemberWinLoss.FormatNumber()</li>
+					<li>@consolidation.MemberComm.FormatNumber()</li>
+					<li>@consolidation.MemberTotal.FormatNumber()</li>
+				</ul>
+			</td>
+			<td class="visible-stack-mode combinedcell col-owner-turnover-combined">
+				<ul>
+					<li>@consolidation.OwnerTurnover.FormatNumber()</li>
+					<li>@consolidation.OwnerWinLoss.FormatNumber()</li>
+					<li>@consolidation.OwnerComm.FormatNumber()</li>
+					<li>@consolidation.OwnerTotal.FormatNumber()</li>
+				</ul>
+			</td>
+		}
+		else
+		{
+			<td class="hidden-stack-mode col-member-winloss">
+				@consolidation.MemberWinLoss.FormatNumber()
+			</td>
+			<td class="hidden-stack-mode">
+				@consolidation.MemberComm.FormatNumber()
+			</td>
+			<td class="hidden-stack-mode bold">
+				@consolidation.MemberTotal.FormatNumber()
+			</td>
+			<td class="hidden-stack-mode col-owner-turnover">
+				@consolidation.OwnerTurnover.FormatNumber()
+			</td>
+			<td class="hidden-stack-mode">
+				@consolidation.OwnerWinLoss.FormatNumber()
+			</td>
+			<td class="hidden-stack-mode">
+				@consolidation.OwnerComm.FormatNumber()
+			</td>
+			<td class="hidden-stack-mode bold">
+				@consolidation.OwnerTotal.FormatNumber()
+			</td>
+		}
+		<td>@consolidation.Company.FormatNumber()</td>
+		<td>@consolidation.BetCount.FormatNumber()</td>
+		@if (isRenderedDetail)
+		{
+			<td>@consolidation.RewardAmount.FormatNumber()</td>
+			<td>@consolidation.RewardCurrency</td>
+		}
+		else
+		{
+			<td></td>
+			<td></td>
+		}
+	}
 }
-@section Styles {    
-    @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/consolidation")
-    <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
+@section Styles {
+	@StaticResources.AssetStyles.Render("/bundles-v2/site-reports/consolidation")
+	<link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
 }
 @section Scripts {
-    <script src="~/bundles/consolidation/consolidation.js" asp-append-version="true"></script>
+	<script src="~/bundles/consolidation/consolidation.js" asp-append-version="true"></script>
 }
 @model ConsolidationByUsernameViewModel
 <partial name="TitleAndFilter" model="Model" />
-<table
-class="tb tb-bordered tb-hover w-full  @(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
-id="tbl-report">
-    <thead>
-        <tr>
-            <th rowspan="2" class="hidden-stack-mode">@Resources.Level</th>
-            <th class="visible-stack-mode visible-stack-mode-first-col">@Resources.Level</th>
-            <th rowspan="2" class="hidden-stack-mode">@Resources.UsernamePTProduct</th>
-            <th class="visible-stack-mode">@Resources.Username</th>
-            <th rowspan="2" class="hidden-stack-mode">@Resources.Currency</th>
-            <th class="visible-stack-mode">@Resources.Currency</th>
-            <th rowspan="2" class="hidden-stack-mode">@Resources.Turnover</th>
-            <th class="visible-stack-mode">@Resources.Turnover</th>
-            <th rowspan="2" class="hidden-stack-mode">@Resources.GrossComm</th>
-            <th class="visible-stack-mode">@Resources.GrossComm</th>
-            <th colspan="3" class="hidden-stack-mode">@Resources.Member</th>
-            <th class="visible-stack-mode">
-                @Resources.Member<br />(@Resources.WinLossAbbr/@Resources.Comm/@Resources.Total)</th>
-            <th colspan="4" class="hidden-stack-mode">@Resources.Owner</th>
-            <th class="visible-stack-mode">
-                @Resources.Owner<br />(@Resources.TurnoverAbbr/@Resources.WinLossAbbr/@Resources.Comm/@Resources.Total)
-            </th>
-            <th rowspan="2">@Resources.Company</th>
-            <th rowspan="2">@Resources.BetCount</th>
-            <th rowspan="2">@Resources.Reward</th>
-            <th rowspan="2">@Resources.RewardCurrency</th>
-        </tr>
-        <tr class="thead-row2">
-            <th class="hidden-stack-mode">@Resources.WinLoss</th>
-            <th class="hidden-stack-mode">@Resources.Comm</th>
-            <th class="hidden-stack-mode">@Resources.Total</th>
-            <th class="hidden-stack-mode">@Resources.Turnover</th>
-            <th class="hidden-stack-mode">@Resources.WinLoss</th>
-            <th class="hidden-stack-mode">@Resources.Comm</th>
-            <th class="hidden-stack-mode">@Resources.Total</th>
-        </tr>
-    </thead>
-    @if (Model.ReportData.Any())
-    {
-        <tbody>
-            @foreach (var dataByUsername in Model.ReportData)
-            {
-                var total = dataByUsername.Total;
-                var isShowPT = !total.IsMemberLevel();
-                var cashServiceBillingProductId = "111";
-                <tr class="username-row" data-custid="@total.CustId">
-                    <td class="text-left bold">
-                        <div class="username-col">
-                            <span class="ic-arrow-right" id="icon-@total.CustId"></span>
-                            @total.CustLevelName
-                        </div>
-                    </td>
-                    <td class="text-left bold">
-                        <div class="text-icon">
-                            @if (isShowPT)
-                            {
-                                <a class="downline-link" asp-action="ConsolidationDetail"
-                                asp-all-route-data="@Model.BuildDrillDownParams(total.CustId, total.Username, total.CustLevel)">@total.Username</a>
-                                <span class="ic-percent view-product-pt-list" data-custid="@total.CustId" data-username="@total.Username"
-                                data-userlevel="@total.CustLevelName"></span>
-                            }
-                            else
-                            {
-                                if (total.BetCount == 0)
-                                {
-                                    <span>@total.Username</span>
-                                }
-                                else
-                                {
-                                    <a class="open-link"
-                                    data-url="@Model.BuildBetListUrl(total.CustId, total.Username)">@total.Username</a>
-                                }
-                            }
-                        </div>
-                    </td>
-                    <td class="text-center">@total.CurrencyName</td>
-                    @{
-                        RenderConsolidateRow(total, true);
-                    }
-                </tr>
-                foreach (var dataByPT in dataByUsername.ConsolidationByPTs)
-                {
-                    var ptTotal = dataByPT.Total;
-                    var isCashServiceBilling = ptTotal.BreakDown.Equals(cashServiceBillingProductId, StringComparison.OrdinalIgnoreCase);
-                    if (!isCashServiceBilling) 
-                    {
-                        if (isShowPT && ptTotal.BetCount > 0)
-                        {
-                            <tr class="child-row-@total.CustId consolidation-pt-row hide">
-                                <td></td>
-                                <td class="text-left bold group-pt consolidation">@ptTotal.PositionTakingText</td>
-                                <td></td>
-                                @{
-                                    RenderConsolidateRow(ptTotal);
-                                }
-                            </tr>
-                        }
-                    } 
-                    else 
-                    {
-                        if (isShowPT)
-                        {
-                            <tr class="child-row-@total.CustId consolidation-pt-row hide">
-                                <td></td>
-                                <td class="text-left bold group-pt consolidation">@ptTotal.PositionTakingText</td>
-                                <td></td>
-                                @{
-                                    RenderConsolidateRow(ptTotal);
-                                }
-                            </tr>
-                        }
-                    }
+<table class="tb tb-bordered tb-hover w-full  @(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
+	   id="tbl-report">
+	<thead>
+		<tr>
+			<th rowspan="2" class="hidden-stack-mode">@Resources.Level</th>
+			<th class="visible-stack-mode visible-stack-mode-first-col">@Resources.Level</th>
+			<th rowspan="2" class="hidden-stack-mode">@Resources.UsernamePTProduct</th>
+			<th class="visible-stack-mode">@Resources.Username</th>
+			<th rowspan="2" class="hidden-stack-mode">@Resources.Currency</th>
+			<th class="visible-stack-mode">@Resources.Currency</th>
+			<th rowspan="2" class="hidden-stack-mode">@Resources.Turnover</th>
+			<th class="visible-stack-mode">@Resources.Turnover</th>
+			<th rowspan="2" class="hidden-stack-mode">@Resources.GrossComm</th>
+			<th class="visible-stack-mode">@Resources.GrossComm</th>
+			<th colspan="3" class="hidden-stack-mode">@Resources.Member</th>
+			<th class="visible-stack-mode">
+				@Resources.Member<br />(@Resources.WinLossAbbr/@Resources.Comm/@Resources.Total)
+			</th>
+			<th colspan="4" class="hidden-stack-mode">@Resources.Owner</th>
+			<th class="visible-stack-mode">
+				@Resources.Owner<br />(@Resources.TurnoverAbbr/@Resources.WinLossAbbr/@Resources.Comm/@Resources.Total)
+			</th>
+			<th rowspan="2">@Resources.Company</th>
+			<th rowspan="2">@Resources.BetCount</th>
+			<th rowspan="2">@Resources.Reward</th>
+			<th rowspan="2">@Resources.RewardCurrency</th>
+		</tr>
+		<tr class="thead-row2">
+			<th class="hidden-stack-mode">@Resources.WinLoss</th>
+			<th class="hidden-stack-mode">@Resources.Comm</th>
+			<th class="hidden-stack-mode">@Resources.Total</th>
+			<th class="hidden-stack-mode">@Resources.Turnover</th>
+			<th class="hidden-stack-mode">@Resources.WinLoss</th>
+			<th class="hidden-stack-mode">@Resources.Comm</th>
+			<th class="hidden-stack-mode">@Resources.Total</th>
+		</tr>
+	</thead>
+	@if (Model.ReportData.Any())
+	{
+		<tbody>
+			@foreach (var dataByUsername in Model.ReportData)
+			{
+				var total = dataByUsername.Total;
+				var isShowPT = !total.IsMemberLevel();
+				var cashServiceBillingProductId = "111";
+				<tr class="username-row" data-custid="@total.CustId">
+					<td class="text-left bold">
+						<div class="username-col">
+							<span class="ic-arrow-right" id="icon-@total.CustId"></span>
+							@total.CustLevelName
+						</div>
+					</td>
+					<td class="text-left bold">
+						<div class="text-icon">
+							@if (isShowPT)
+							{
+								<a class="downline-link" asp-action="ConsolidationDetail"
+								   asp-all-route-data="@Model.BuildDrillDownParams(total.CustId, total.Username, total.CustLevel)">@total.Username</a>
+								<span class="ic-percent view-product-pt-list" data-custid="@total.CustId" data-username="@total.Username"
+									  data-userlevel="@total.CustLevelName"></span>
+							}
+							else
+							{
+								if (total.BetCount == 0)
+								{
+									<span>@total.Username</span>
+								}
+								else
+								{
+									<a class="open-link"
+									   data-url="@Model.BuildBetListUrl(total.CustId, total.Username)">@total.Username</a>
+								}
+							}
+						</div>
+					</td>
+					<td class="text-center">@total.CurrencyName</td>
+					@{
+						RenderConsolidateRow(total, true);
+					}
+				</tr>
+				foreach (var dataByPT in dataByUsername.ConsolidationByPTs)
+				{
+					var ptTotal = dataByPT.Total;
 
-                    foreach (var item in dataByPT.WinLoss)
-                    {
-                        var isCashServiceBillingSubRow = item.BreakDown.Equals(cashServiceBillingProductId, StringComparison.OrdinalIgnoreCase);
-                        if (!isCashServiceBillingSubRow) {
-                            if (item.BetCount > 0)
-                            {
-                                <tr class="child-row-@total.CustId hide">
-                                    <td></td>
-                                    <td class="text-left bold col-product consolidation">@item.ProductName</td>
-                                    <td></td>
-                                    @{
-                                        RenderConsolidateRow(item);
-                                    }
-                                </tr>
-                            }
-                        }
-                        else
-                        {
-                            <tr class="child-row-@total.CustId hide">
-                                <td></td>
-                                <td class="text-left bold col-product consolidation">@item.ProductName</td>
-                                <td></td>
-                                @{
-                                    RenderConsolidateRow(item);
-                                }
-                            </tr>
-                        }
-                    }
-                }
-            }
-        </tbody>
-    }
-    else
-    {
-        <no-information colspan="16" />
-    }
+					var hasCashServiceBilling = dataByPT.WinLoss.Any(x => x.BreakDown == cashServiceBillingProductId);
+
+					if (isShowPT && (hasCashServiceBilling || ptTotal.BetCount > 0))
+					{
+						<tr class="child-row-@total.CustId consolidation-pt-row hide">
+							<td></td>
+							<td class="text-left bold group-pt consolidation">@ptTotal.PositionTakingText</td>
+							<td></td>
+							@{
+								RenderConsolidateRow(ptTotal);
+							}
+						</tr>
+					}
+
+					foreach (var item in dataByPT.WinLoss)
+					{
+						if (item.BreakDown == cashServiceBillingProductId)
+						{
+							<tr class="child-row-@total.CustId hide">
+								<td></td>
+								<td class="text-left bold col-product consolidation">@item.ProductName</td>
+								<td></td>
+								@{
+									RenderConsolidateRow(item);
+								}
+							</tr>
+						}
+						else if (item.BetCount > 0)
+						{
+							<tr class="child-row-@total.CustId hide">
+								<td></td>
+								<td class="text-left bold col-product consolidation">@item.ProductName</td>
+								<td></td>
+								@{
+									RenderConsolidateRow(item);
+								}
+							</tr>
+						}
+					}
+				}
+			}
+		</tbody>
+	}
+	else
+	{
+		<no-information colspan="16" />
+	}
 </table>
 <div class="modal fade consolidation-modal" id="consolidation-product-pt-list-popup" tabindex="-1" role="dialog"
-    aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="icon icon-close close" data-dismiss="modal"
-                    aria-label="@Resources.Close"><span aria-hidden="true"></span></button>
-                <h4 class="modal-title">@Resources.ViewProductPTList - <span id="product-pt-list-username"></span></h4>
-            </div>
-            <div class="modal-body">
-                <ul class="product-pt-list-content" id="product-pt-list-content"></ul>
-                <div class="note">
-                    <span class="star">*</span>
-                    <span id="product-pt-list-hint">@Resources.ConsolidationPTNote</span>
-                </div>
-            </div>
-        </div>
-    </div>
+	 aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="icon icon-close close" data-dismiss="modal"
+						aria-label="@Resources.Close">
+					<span aria-hidden="true"></span>
+				</button>
+				<h4 class="modal-title">@Resources.ViewProductPTList - <span id="product-pt-list-username"></span></h4>
+			</div>
+			<div class="modal-body">
+				<ul class="product-pt-list-content" id="product-pt-list-content"></ul>
+				<div class="note">
+					<span class="star">*</span>
+					<span id="product-pt-list-hint">@Resources.ConsolidationPTNote</span>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 <a class="hide" id="LoadLegendURL" asp-action="WinLoss" asp-controller="Legends"
-    asp-route-MinDate="@Model.DateRangePicker.MinDate" asp-route-IsConsolidation="true"></a>
+   asp-route-MinDate="@Model.DateRangePicker.MinDate" asp-route-IsConsolidation="true"></a>
 <input type="hidden" asp-for="IsSetDefaultStackMode" />

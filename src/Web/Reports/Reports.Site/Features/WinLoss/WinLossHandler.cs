@@ -85,9 +85,6 @@ public class WinLossHandler(
 
     public async Task<CashFeeViewModel> Handle(CashFeeGetDataQuery message, CancellationToken cancellationToken)
     {
-        var breadcrumbs = BreadcrumbHelper.BuildBreadcrumbs(message).ToList();
-        breadcrumbs.Add(new Reports.Features.Shared.Models.Breadcrumb(0, Resources.CashServiceBilling.ToUpper(), 0));
-
         var cashFeeParam = new CashFeeParam(
             message.CustId,
             message.FromDate,
@@ -95,7 +92,7 @@ public class WinLossHandler(
 
         var cashFeeModel = await cashFeeService.GetCashFee(cashFeeParam);
 
-        return new CashFeeViewModel(message, cashFeeModel, breadcrumbs);
+        return new CashFeeViewModel(message, cashFeeModel);
     }
 
     protected override async Task<IEnumerable<Product>> GetProducts(BaseQuery message)

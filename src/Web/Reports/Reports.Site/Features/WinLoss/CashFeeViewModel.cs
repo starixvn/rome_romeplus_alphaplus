@@ -7,20 +7,17 @@ namespace AlphaPlus.Reports.Site.Features.WinLoss;
 
 public class CashFeeViewModel(
 CashFeeGetDataQuery message,
-CashFeeModel cashFeeModel,
-IEnumerable<Reports.Features.Shared.Models.Breadcrumb> breadcrumbs)
+CashFeeModel cashFeeModel)
 {
     public PageHeaderViewModel PageHeader { get; } = new PageHeaderViewModel(
-        Title: GetCashFeeTitle(),
+        Title: GetCashFeeTitle(message),
         HasHideFilterIcon: false);
-
-    public IEnumerable<Reports.Features.Shared.Models.Breadcrumb> Breadcrumbs { get; } = breadcrumbs;
 
     public CashFeeModel CashFee { get; } = cashFeeModel;
 
-    private static string GetCashFeeTitle()
+    private static string GetCashFeeTitle(CashFeeGetDataQuery message)
     {
-        return Resources.CashServiceBilling.ToUpper();
+        return $"{Resources.CashServiceBilling.ToUpper()} {message.FromDate.ToShortDateWithSlash()} --> {message.ToDate.ToShortDateWithSlash()} - {message.CustName}";
     }
 
     public IDictionary<string, string> GetExcelParams()
