@@ -90,6 +90,8 @@ public class ConsolidationDetailViewModel(
         var queryString = QueryString.Create(
          [
             KeyValuePair.Create(nameof(custId), custId.ToString()),
+            KeyValuePair.Create(nameof(CustName), CustName),
+            KeyValuePair.Create("CustLevelId", CustLevel.Value.ToString()),
             KeyValuePair.Create(nameof(DateRangePicker.FromDate), DateRangePicker.FromDate),
             KeyValuePair.Create(nameof(DateRangePicker.ToDate), DateRangePicker.ToDate)
          ]);

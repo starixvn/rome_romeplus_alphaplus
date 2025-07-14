@@ -48,13 +48,16 @@
             <th class="hidden-stack-mode">@Resources.Total</th>
         </tr>
     </thead>
+    @{
+        var cashServiceBillingProductId = "111";
+    }
+
     @if (Model.ReportData.Any())
     {
         <tbody>
             @foreach (var date in Model.ReportData)
             {
                 var isFirstRow = true;
-                var cashServiceBillingProductId = "111";
                 foreach (var data in date.WinLoss)
                 {
                     var isCashServiceBilling = data.BreakDown.Equals(cashServiceBillingProductId, StringComparison.OrdinalIgnoreCase);
@@ -120,7 +123,7 @@
         </tbody>
     }
     
-    @if (!Model.ReportData.Any() || Model.ReportData.All(x => x.WinLoss.All(o => o.BetCount == 0)))
+    @if (!Model.ReportData.Any() || Model.ReportData.All(x => x.WinLoss.All(o => o.BreakDown != cashServiceBillingProductId && o.BetCount == 0)))
     {
         <no-information colspan="15" />
     }
