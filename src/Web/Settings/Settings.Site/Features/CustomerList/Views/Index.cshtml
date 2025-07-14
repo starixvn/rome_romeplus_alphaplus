@@ -99,7 +99,7 @@
             </select>
         </div>
 
-        @if (Model.SearchAccountLevel.IsAgentLevel())
+        @if (Model.SearchAccountLevel.IsAgentLevel() && AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(UserSession.Current.Site))
         {
             <div class="form-group comm-box">
                 <label>
