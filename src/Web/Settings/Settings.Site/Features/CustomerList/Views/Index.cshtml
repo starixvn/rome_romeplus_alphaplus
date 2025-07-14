@@ -98,6 +98,21 @@
                 }
             </select>
         </div>
+
+        @if (Model.SearchAccountLevel.IsAgentLevel())
+        {
+            <div class="form-group comm-box">
+                <label>
+                    @CashServicesResx.AccountType
+                </label>
+                <select id="serviceType" name="serviceType">
+                    <option value="2">@Resources.All</option>
+                    <option value="0">@Resources.Credit</option>
+                    <option value="1">@Resources.Cash</option>
+                </select>
+            </div>
+        }
+
         @if (Model.EnableAutoTransfer)
         {
             <div class="form-group comm-box">
@@ -115,20 +130,6 @@
         @if (Model.ShowLevelType)
         {
             <level-type custlevel="@Model.SearchAccountLevel" selected-value="@Model.LevelType" show-all-option="@false" />
-        }
-
-        @if (Model.SearchAccountLevel.IsAgentLevel())
-        {
-            <div class="form-group comm-box">
-                <label>
-                    @CashServicesResx.AccountType
-                </label>
-                <select id="serviceType" name="serviceType">
-                    <option value="2">@Resources.All</option>
-                    <option value="0">@Resources.Credit</option>
-                    <option value="1">@Resources.Cash</option>
-                </select>
-            </div>
         }
         <div class="form-group btn-box">
             <input type="submit" value="@Resources.Submit" class="btn-submit" />

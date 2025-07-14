@@ -89,6 +89,24 @@ class SingleSelectionDropdownComponent {
         this.$dropdown.multiselect("select", [selection]);
         this.$dropdown.multiselect("refresh");
     };
+
+    disable = () => {
+        if (this.$dropdown) {
+            this.$dropdown.multiselect("disable");
+        }
+        if (this.$hiddenInput) {
+            this.$hiddenInput.prop("disabled", true);
+        }
+    };
+
+    enable = () => {
+        if (this.$dropdown) {
+            this.$dropdown.multiselect("enable");
+        }
+        if (this.$hiddenInput) {
+            this.$hiddenInput.prop("disabled", false);
+        }
+    };
 }
 
 

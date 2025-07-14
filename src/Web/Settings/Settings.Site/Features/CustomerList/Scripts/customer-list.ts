@@ -55,12 +55,20 @@ class CustomerList {
         );
 
         this.allowAutoTransferDropdown.render(
-            new SingleSelectionDropdownOption('dautoTransferFilter', 'AllowAutoTransfer', () => {}, true, true)
+            new SingleSelectionDropdownOption('dautoTransferFilter', 'AllowAutoTransfer', () => { }, true, true)
         );
 
         this.levelComponent.render(new SingleSelectionDropdownOption('dropdown-level-type', 'HiddenLevelType'));
-        this.serviceTypeComponent.render(new SingleSelectionDropdownOption('serviceType'));
-
+        this.serviceTypeComponent.render(new SingleSelectionDropdownOption('serviceType', null, () => {
+            const selectedValue = parseInt(this.serviceTypeComponent.getSelectedItem());
+            if (selectedValue === ServiceType.All || selectedValue === ServiceType.Cash) {
+                this.allowAutoTransferDropdown.disable();
+                this.allowAutoTransferDropdown.changeSelection(ServiceType.All);
+            } else {
+                this.allowAutoTransferDropdown.enable();
+            }
+        }));
+        this.serviceTypeComponent.onchange();
         this.bindingTxtUsername();
         this.customerListDataTable.bindingEvent();
         this.customerListPopup.bindingBootstrapModalEvent();
