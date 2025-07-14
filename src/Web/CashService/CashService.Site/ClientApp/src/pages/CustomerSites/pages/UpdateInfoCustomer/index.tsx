@@ -12,8 +12,17 @@ import { useTranslation } from "react-i18next";
 
 function PageTitle(){
     const { t } = useTranslation('global');
+    let popup = window.parent.document.querySelector('#product-popup');
+    if (!popup) {
+        popup = window?.top?.document.querySelector('div[id^="page-popup-"]') as HTMLElement;
+    }
+
+    const isOpenInPopup = popup !== null;
+    if (isOpenInPopup) {
+        return null;
+    }
     return (
-        <TitleComponent title={`${t('global:info')} ${updateInfoCustomerPageConfig.username}`} showTippy={false} />
+        <TitleComponent title={`${t('global:info')} ${updateInfoCustomerPageConfig.username}`} />
     )
 }
 

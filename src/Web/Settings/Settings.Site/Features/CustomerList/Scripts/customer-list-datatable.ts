@@ -672,9 +672,10 @@ class CustomerListDataTable {
             UplineId: this.viewModel.SearchAccountId,
             UplineName: this.viewModel.SearchAccountName,
             UplineRoleId: this.viewModel.SearchAccountRoleId,
-            IsDirectMember: this.viewModel.IsDirectMember
+            IsDirectMember: this.viewModel.IsDirectMember,
+            IsCashMember: item.RoleId === CustomerLevel.Member && item.ServiceType === ServiceType.Cash
         };
-
+        
         return `${this.viewModel.MemberInfoUrl}CustomerList/GetCustomerAllStatus?${this.$.param(queryString)}`;
     };
 }

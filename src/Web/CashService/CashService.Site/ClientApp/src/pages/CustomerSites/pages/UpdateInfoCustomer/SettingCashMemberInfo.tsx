@@ -74,7 +74,6 @@ export const SettingCashMemberInfo = () => {
             setLoading(true);
             setIsBlockAction(true);
 
-            console.log('Updating customer info:', formData);
             const response = await UpdateCustomerInfo({
                 CustId: updateInfoCustomerPageConfig.custId,
                 FirstName: formData.firstName,
