@@ -241,8 +241,11 @@
             }
         }
 
-        &.cash-fee-total-row {
+        &.total-row{
             font-weight: bold;             
+            td{
+                color: var(--table-footer-color);
+            }
         }
     }
 
