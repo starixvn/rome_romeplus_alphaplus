@@ -17,6 +17,7 @@
                 <div id="msg-content">
                     @if (Model.CustLevel.IsAgentLevel())
                     {
+                        <p>- Cash Members are not included on this page</p>
                         if (!string.IsNullOrWhiteSpace(Model.TransferCondition))
                         {
                             <p>- @Model.TransferCondition</p>
