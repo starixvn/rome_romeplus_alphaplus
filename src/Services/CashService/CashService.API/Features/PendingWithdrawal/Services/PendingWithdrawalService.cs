@@ -115,7 +115,7 @@ public class PendingWithdrawalService(
 
     public async Task<ResultModel> ApproveByPaymentGatewayAsync(ProcessWithdrawalTransaction command)
     {
-        var result = new ResultModel(400, "Invalid parameters");
+        var result = new ResultModel(405, "Invalid parameters");
 
         var transaction = await transactionService.GetTransactionByIdAsync(command.TransId, command.CustId, command.SiteDBGroupId);
         var parts = transaction?.PaymentTo?.Split('-') ?? [];
@@ -139,22 +139,28 @@ public class PendingWithdrawalService(
                 Name = transaction.Username,
                 BankCode = bankCode,
                 AccountNumber = accountNumber
-            },
-            ApiConfig = await paymentGateway.GetAgentPaymentGatewayInfo(command.ActorId, transaction.TransactionTypeId, command.ProviderId, command.PaymentMethodId)
+            }
         };
         try
         {
             var response = await paymentGateway.WithdrawalViaPaymentGateway(model);
+            Console.WriteLine($"Payment Gateway Response: Code={response.Code}, Message={response.Message}");
 
-            if (!response.IsSuccessful)
+            if (response.IsSuccessful)
             {
                 result.Code = response.Code;
-                result.Message = response.Message;
-                command.StatusId = 0;
+                result.Message = string.Empty;
             }
             else
             {
-                result = await UpdateProviderTransId(command.TransId, response.Data.ProviderTransId);
+                command.StatusId = 0;
+                command.ProviderId = 0;
+                command.PaymentMethodId = 0;
+                command.PaymentFrom = string.Empty;
+                await ProcessWithdrawAsync(command);
+
+                result.Code = response.Code;
+                result.Message = response.Message;
             }
         }
         catch (Exception e)
@@ -163,11 +169,6 @@ public class PendingWithdrawalService(
             result.Message = e.Message;
         }
         return result;
-    }
-
-    private async Task<ResultModel> UpdateProviderTransId(long commandTransId, string dataProviderTransId)
-    {
-        throw new NotImplementedException();
     }
 
     public async Task<ResultModel> ProcessWithdrawAsync(ProcessWithdrawalTransaction param)

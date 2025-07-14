@@ -73,7 +73,7 @@ public static class PendingWithdrawalEndpoints
                 model.StatusId = model.ProviderId == 0 ? (int)TransactionStatus.Completed : null;
                 var result = await service.ProcessWithdrawAsync(model);
 
-                if (result.IsSuccessful && model.ProviderId > 0)
+                if (result.IsSuccessful && model.ProviderId > 0 && model.PaymentMethodId > 0)
                 {
                     result = await service.ApproveByPaymentGatewayAsync(model);
                 }

@@ -40,7 +40,7 @@ public static class ErrorCodeHandler
             407 => CashServicesResx.TheAmountExceedsTheAllowedMinimumOrMaximumValue,
             409 => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain,
             499 => $"{CashServicesResx.InternalServerError} {sqlException}",
-            _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain
+            _ => sqlException
         };
 
     public static string MappingRevertTransactionErrCode(int errCode)
