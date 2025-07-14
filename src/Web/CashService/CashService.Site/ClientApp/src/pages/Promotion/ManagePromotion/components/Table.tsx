@@ -51,7 +51,6 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
   };
 
   const displayGridProducts = (promotions: PromotionDetail[]): ProductSetting[] => {
-    debugger;
     const productMap = new Map<number, ProductSetting>();
     const sortOrder = [1, 44, 41, 53];
     

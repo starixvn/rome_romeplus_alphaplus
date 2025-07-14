@@ -8,6 +8,7 @@ import { ErrorMessageComponent, SuccessMessageComponent } from '../../../../comp
 import { TitleComponent } from '../../../../components/Title';
 import { TreeNodeOption } from '../../../../components/TreeSelect/TreeSelect';
 import {
+  Language,
   ProductDropdown,
   ProductSetting,
   PromotionRequest,
@@ -22,12 +23,6 @@ interface AddPromotionProps {
 }
 
 const PROMOTION_TYPES = [{ value: 1, label: 'Rebate on Turnover' }];
-
-export const LANGUAGES = [
-  { key: 'en', label: 'English (default)', isDefault: true },
-  { key: 'th', label: 'ภาษาไทย', isDefault: false },
-  { key: 'vi', label: 'Tiếng Việt', isDefault: false },
-];
 
 function convertProductToTreeNodeOption(products: ProductDropdown[]): TreeNodeOption[] {
   return products.map((product) => ({
@@ -59,8 +54,9 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
   const [productSettings, setProductSettings] = useState<ProductSetting[]>([]);
   const [selectedProductIds, setSelectedProductIds] = useState<number[]>([]);
   const [selectedProductCategories, setSelectedProductCategories] = useState<number[]>([]);
-  const [activeLang, setActiveLang] = useState(LANGUAGES[0].key);
+  const [activeLang, setActiveLang] = useState("en");
   const [promotionInfo, setPromotionInfo] = useState<Record<string, PromotionLangFields>>({});
+  const [languages, setLanguages] = useState<Language[]>([]);
 
   useEffect(() => {
     promotionService.getPromotionProducts().then((apiProducts) => {
@@ -78,6 +74,16 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
             productIds: [],
           }))
         );
+      }
+    });
+    promotionService.getLanguages().then((apiLanguages: Record<string, string>) => {
+      if (apiLanguages) {
+        const transformedLanguages: Language[] = Object.entries(apiLanguages).map(([key, value]) => ({
+          key,
+          label: value,
+          isDefault: key === 'en'
+        }));
+        setLanguages(transformedLanguages);
       }
     });
   }, []);
@@ -125,7 +131,6 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
     setError(null);
     setLoading(true);
     
-    setSuccessMessage('Promotion saved successfully');
     const [fromDate, toDate] = period.map((date) => (date ? new Date(date) : null));
     const promotionData: PromotionRequest = {
       promotionType,
@@ -142,9 +147,13 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
     };
     console.log('promotionData', promotionData);
     promotionService.addPromotion(promotionData).then((result) => {
+      // Scroll to top to show success message
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       if (result.isSuccessful) {
-        setSuccessMessage('Promotion saved successfully');
-        //setSuccessMessage(result.message);
+        setSuccessMessage('Promotion saved successfully');        
+        setTimeout(() => {
+          onClose();
+        }, 3000);
       } else {
         setError(result.message);
       }
@@ -188,7 +197,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
         />
 
         <PromotionInfo
-          languages={LANGUAGES}
+          languages={languages}
           value={promotionInfo}
           setValue={handlePromotionInfoChange}
           error={error || ''}

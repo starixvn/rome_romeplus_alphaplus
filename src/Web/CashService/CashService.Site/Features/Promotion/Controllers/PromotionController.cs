@@ -14,6 +14,8 @@ using Shared;
 using Shared.Filters;
 using Shared.Models;
 using Newtonsoft.Json;
+using AlphaPlus.Core.Configurations;
+using AlphaPlus.CashService.Site.Features.Shared.Contants;
 
 [SiteAuthorizationFilter(PageAccessType.CashPromotion)]
 public class PromotionController(
@@ -101,6 +103,13 @@ public class PromotionController(
         var result = await httpClientHelper.GetAsync<object>(url);
 
         return Json(result);
+    }
+
+    public async Task<Dictionary<string, string>> GetLanguages(CancellationToken cancellationToken)
+    {
+        var fullLanguages = AppSettings.IsSiteLabel789y? LanguageConstant.CodeNames : LanguageConstant.CodeKeysWithoutCN3;
+        
+        return await Task.FromResult(fullLanguages);
     }
 
     public async Task<IActionResult> GetPromotionById(int promotionId, CancellationToken cancellationToken)

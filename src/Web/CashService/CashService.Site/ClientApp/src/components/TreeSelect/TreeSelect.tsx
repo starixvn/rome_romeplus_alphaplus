@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export interface TreeNodeOption {
@@ -14,6 +14,7 @@ interface TreeSelectProps {
   searchPlaceholder?: string;
   placeholder?: string;
   isAllowCollapseExpand?: boolean;
+  isShowSelectAll?: boolean;
 }
 
 const flattenTree = (nodes: TreeNodeOption[]): TreeNodeOption[] => {
@@ -129,6 +130,7 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
   searchPlaceholder,
   placeholder,
   isAllowCollapseExpand = false,
+  isShowSelectAll = true,
 }) => {
   const [expanded, setExpanded] = useState<{ [key: string]: boolean }>({});
   const [search, setSearch] = useState('');
@@ -215,6 +217,7 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
   else displayValue = `${selectedLabels.slice(0, 2).join(', ')} +${selectedLabels.length - 2}`;
 
   const renderSelectAll = () => {
+    if (!isShowSelectAll) return null;
     return (
       <div
         style={{

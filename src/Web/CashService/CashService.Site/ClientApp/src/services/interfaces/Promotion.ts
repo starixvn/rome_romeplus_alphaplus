@@ -21,7 +21,11 @@ export interface PromotionRequest {
   productSettings: ProductSetting[];
   contents: LanguageInfo[];
 }
-
+export interface Language {
+  key: string;
+  label: string;
+  isDefault: boolean;
+}
 export interface LanguageInfo {
   language: string;
   title: string;

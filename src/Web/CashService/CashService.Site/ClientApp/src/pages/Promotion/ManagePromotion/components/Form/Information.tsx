@@ -1,10 +1,10 @@
 import React from 'react';
-import { IconInfo } from '../../../../../components/Icons';
-import { MediumTitleComponent, LabelTitleComponent } from '../../../../../components/Title';
+import { DisableButtonComponent, EnableButtonComponent } from '../../../../../components/Buttons';
 import CustomDropdown from '../../../../../components/CustomDropdownComponent';
 import DateRangePickerComponent from '../../../../../components/DateRangePickerComponent';
+import { IconInfo } from '../../../../../components/Icons';
+import { LabelTitleComponent, MediumTitleComponent } from '../../../../../components/Title';
 import TreeSelect, { TreeNodeOption } from '../../../../../components/TreeSelect/TreeSelect';
-import { EnableButtonComponent, DisableButtonComponent } from '../../../../../components/Buttons';
 
 interface InformationProps {
   isActive: boolean;
@@ -70,6 +70,7 @@ const Information: React.FC<InformationProps> = ({
           onChange={(value) => setPeriod(value as [Date | null, Date | null])}
           hideQuickRanges={true}
           minDate={new Date()}
+          maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))}
         />
       </div>
 
@@ -79,6 +80,7 @@ const Information: React.FC<InformationProps> = ({
           options={productOptions}
           value={selectedProductIds}
           onChange={handleProductChange}
+          isShowSelectAll={false}
         />
       </div>
     </div>

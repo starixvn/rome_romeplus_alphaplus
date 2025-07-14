@@ -1,7 +1,7 @@
 import React from 'react';
+import { ButtonTabComponent } from '../../../../../components/Buttons/ButtonTabComponent';
 import { LabelTitleComponent } from '../../../../../components/Title/LabelTitleComponent';
 import UploadImage from '../../../../Transactions/Components/UploadImage';
-import { ButtonTabComponent } from '../../../../../components/Buttons/ButtonTabComponent';
 
 export interface PromotionLangFields {
   title: string;
@@ -102,7 +102,7 @@ const PromotionInfo: React.FC<PromotionInfoProps> = ({
   setValue,
   activeLang,
   setActiveLang,
-}) => {
+}) => {  
   const langFields = value[activeLang] || {
     title: '',
     banner: null,

@@ -3,6 +3,10 @@ import { ProductDropdown, PromotionDetail, PromotionParams, PromotionRequest } f
 import { ResultModel } from './interfaces/ResultModel';
 
 export const promotionService = {
+  getLanguages: async (): Promise<Record<string, string>> => {
+    const response = await axiosInstance.get<Record<string, string>>(`GetLanguages`);
+    return response.data;
+  },
   getPromotion: async (promotionParams: PromotionParams): Promise<PromotionDetail[]> => {
     try {
       const queryParams = new URLSearchParams({

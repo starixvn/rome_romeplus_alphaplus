@@ -131,6 +131,7 @@ const Promotion: React.FC = () => {
         <AddPromotion
           onClose={() => {
             setShowAddPromotion(false);
+            fetchPromotions();
           }}
         />
       )}
