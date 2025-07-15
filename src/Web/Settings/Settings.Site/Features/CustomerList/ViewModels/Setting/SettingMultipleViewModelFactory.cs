@@ -25,7 +25,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting
             yield return new ClosedMultipleViewModel(request);
             yield return new ProtectedMultipleViewModel(request);
 
-            if (request.SupportAutoTransfer &&
+            if (!request.SearchAccount.IsCashMember && request.SupportAutoTransfer &&
                 (!request.IsSubAcc || request.SubPageAccess.Transfer))
             {
                 yield return new AutoTransferMultipleViewModel(request, accountService);
