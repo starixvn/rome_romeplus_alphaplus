@@ -368,6 +368,7 @@
 
     @Html.AntiForgeryToken()
     @Html.Hidden("IsDirectMember", Model.IsDirectMember ? "true" : "false")
+    @Html.Hidden("HiddenServiceType", Model.ServiceType)
     @Html.Hidden("StatusId", Model.Status)
     @Html.Hidden("DoubleCommId", Model.DoubleComm)
     @Html.Hidden("AllowAutoTransfer", Model.AllowAutoTransfer)

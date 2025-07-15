@@ -50,7 +50,8 @@ class EditMultipleSetting {
                 : this.viewModel.SearchAccountRoleId - 1,
             custids: custids.join(','),
             usernames: usernames.join(','),
-            isDirectMember: this.viewModel.IsDirectMember
+            isDirectMember: this.viewModel.IsDirectMember,
+            isCashMember: parseInt(this.$('#HiddenServiceType').val()) === ServiceType.Cash
         };
 
         if (custids.length > 0) {

@@ -59,14 +59,16 @@ class CustomerList {
         );
 
         this.levelComponent.render(new SingleSelectionDropdownOption('dropdown-level-type', 'HiddenLevelType'));
-        this.serviceTypeComponent.render(new SingleSelectionDropdownOption('serviceType', null, () => {
+        this.serviceTypeComponent.render(new SingleSelectionDropdownOption('serviceType', 'HiddenServiceType', () => {
             const selectedValue = parseInt(this.serviceTypeComponent.getSelectedItem());
             if (selectedValue === ServiceType.All || selectedValue === ServiceType.Cash) {
                 this.allowAutoTransferDropdown.disable();
-                this.allowAutoTransferDropdown.changeSelection(ServiceType.All);
+                this.allowAutoTransferDropdown.changeSelection(2);
             } else {
                 this.allowAutoTransferDropdown.enable();
             }
+
+            this.serviceTypeComponent.changeSelection(selectedValue);
         }));
         this.serviceTypeComponent.onchange();
         this.bindingTxtUsername();
@@ -139,7 +141,7 @@ $(function () {
         JSON.parse($('#canUpdateAccount').val()),
         window.customerListData,
         JSON.parse($('#IsDirectMember').val()),
-        parseInt($('#serviceType').val())
+        parseInt($('#HiddenServiceType').val())
     );
 
     const customerListPopup = new CustomerListPopup($, window.top, viewModel.IsMobileView),
