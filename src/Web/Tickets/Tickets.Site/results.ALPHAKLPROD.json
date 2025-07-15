@@ -37,7 +37,7 @@
     "ProxyPort": 8801
   },
   "SabaClubConfigs": {
-    "Url": "http://10.40.40.248:8103/api/SabaClubInternal/GetTicketResult",
+    "Url": "http://sabagames.gamora.prod/api/SabaClubInternal/GetTicketResult",
     "Login": "Login",
     "Password": "U1YwYm1IbGpSeVdMeWhTaE1Ia1I3QT09",
     "Debug": 0
