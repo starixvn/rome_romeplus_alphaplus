@@ -17,7 +17,8 @@ public class GetCustWinLossLimitCriteria : CriteriaBase
         int pageIndex,
         int pageSize,
         int? playerId,
-        bool isDirectMember)
+        bool isDirectMember,
+        int accountType)
     {
         PlayerId = playerId;
 
@@ -31,6 +32,7 @@ public class GetCustWinLossLimitCriteria : CriteriaBase
         PageIndex = pageIndex;
         PageSize = pageSize;
         IsDirectDownline = isDirectMember;
+        AccountType = accountType;
     }
 
     public int ProductId { get; set; }
@@ -61,6 +63,8 @@ public class GetCustWinLossLimitCriteria : CriteriaBase
     public byte SettingStatus => AppSettings.SettingStatus;
 
     public bool IsDirectDownline { get; set; }
+
+    public int AccountType { get; set; }
 
     public override string GetSettingKey() => "Age_CustomerSelCustWinlimit";
 

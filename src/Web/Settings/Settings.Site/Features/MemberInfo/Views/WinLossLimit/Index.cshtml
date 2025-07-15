@@ -57,6 +57,16 @@
             }
         </select>
     </div>
+    @if (Model.ViewerLevel.IsAgentLevel())
+    {
+        <div class="form-group">
+            <label for="dropdown-account-type">@Resources.AccountType</label>
+            <select id="dropdown-account-type" name="AccountType">
+                <option value="0" @(Model.AccountType == 0 ? "selected" : string.Empty)>@Resources.Credit</option>
+                <option value="1" @(Model.AccountType == 1 ? "selected" : string.Empty)>@Resources.Cash</option>
+            </select>
+        </div>
+    }
     @if (Model.ViewerLevel.IsSuperLevel())
     {
         <div class="form-group">
@@ -120,6 +130,7 @@
     @Html.Hidden("BetType", Model.BetType)
     @Html.Hidden("MasterId", Model.MasterId)
     @Html.Hidden("RecommendId", Model.RecommendId)
+    @Html.Hidden("AccountType", Model.AccountType)
 </form>
 <div class="wrapper-table-scrollable">
     <table id="tbl-report" class="tb tb-bordered w-full tablesorter tb-hover tb-freeze-header" data-has-data="@Model.WinLossLimitPage.WinLossLimitDetail.Any()">
@@ -137,15 +148,27 @@
                 <th><div class="col-credit">@Resources.Credit</div></th>
                 <th><div class="col-balance">@Resources.Balance</div></th>
                 <th><div class="col-auto-daily-reset">@Resources.AutoDailyResetLimit</div></th>
-                <th><div class="col-current-win-loss">@Resources.CurrentWinLossAmount</div></th>
+                <th>
+                    <div class="col-current-win-loss">
+                        @(Model.AccountType == 0 ? Resources.CurrentWinLossAmount : Resources.CurrentWinAmount)
+                    </div>
+                </th>
                 @if (Model.IsBBin)
                 {
                     <th><div class="col-current-win-loss">@Resources.RemainingTransferInAmount</div></th>
                 }
-                <th><div class="col-max-win">@Resources.MaximumWin</div></th>
+                <th>
+                    <div class="col-max-win">
+                        @(Model.AccountType == 0 ? Resources.MaximumWin : Resources.MaximumWinCash)
+                    </div>
+                </th>
                 <th><div class="col-win-percent">@Resources.CurrentWinLimit</div></th>
-                <th class="col-max-loss">@Resources.MaximumLoss</th>
-                <th><div class="col-loss-percent">@Resources.CurrentLossLimit</div></th>
+
+                @if (Model.AccountType == 0)
+                {
+                    <th class="col-max-loss">@Resources.MaximumLoss</th>
+                    <th><div class="col-loss-percent">@Resources.CurrentLossLimit</div></th>
+                }
             </tr>
         </thead>
         @if (Model.HasData)
@@ -184,10 +207,14 @@
                         <td class="text-center @((winLossLimitDetail.Credit == 0 && winLossLimitDetail.CurrentWinAnmout > 0 || winLossLimitDetail.WinPercent >= 100 || winLossLimitDetail.WinPercent == -2) && !Model.IsBBin ? "negative-value" : "")">
                             @Model.GetWinPercent(winLossLimitDetail.WinPercent, winLossLimitDetail.CurrentWinAnmout, winLossLimitDetail.Credit, winLossLimitDetail.MaxWinLimit)
                         </td>
-                        <td class="text-center">@WinLossLimitViewModel.GetMaxLossLimit(winLossLimitDetail.MaxLossLimit)</td>
-                        <td class="text-center @(winLossLimitDetail.LossPercent >= 100 ? "negative-value" : "")">
-                            @WinLossLimitViewModel.GetLossPercent(winLossLimitDetail.MaxLossLimit, winLossLimitDetail.LossPercent)
-                        </td>
+
+                        @if (Model.AccountType == 0)
+                        {
+                            <td class="text-center">@WinLossLimitViewModel.GetMaxLossLimit(winLossLimitDetail.MaxLossLimit)</td>
+                            <td class="text-center @(winLossLimitDetail.LossPercent >= 100 ? "negative-value" : "")">
+                                @WinLossLimitViewModel.GetLossPercent(winLossLimitDetail.MaxLossLimit, winLossLimitDetail.LossPercent)
+                            </td>
+                        }
                     </tr>
                     index++;
                 }
@@ -208,4 +235,4 @@
 }
 @section Scripts {
     @StaticResources.RenderScripts("~/Features/MemberInfo/assets/bundles/win-loss-limit/win-loss-limit")
-}
+} 

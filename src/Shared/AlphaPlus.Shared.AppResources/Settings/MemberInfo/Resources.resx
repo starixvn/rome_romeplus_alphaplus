@@ -1303,4 +1303,13 @@ Notes: your password is cAsE sEnSiTiVe.</value>
   <data name="PotentialWinLimitNote2" xml:space="preserve">
     <value>Due to result amendments, settlement delays, and other factors, the accumulated Potential Win Limit may temporarily exceed the configured threshold.</value>
   </data>
+  <data name="AccountType" xml:space="preserve">
+    <value>Account Type</value>
+  </data>
+  <data name="CurrentWinAmount" xml:space="preserve">
+    <value>Current Win Amount</value>
+  </data>
+  <data name="MaximumWinCash" xml:space="preserve">
+    <value>Maximum Win</value>
+  </data>
 </root>

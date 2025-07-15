@@ -139,7 +139,7 @@
         <Setting Key="Age_CustomerSelAgentList" SpName="Age_CustomerSelAgentList" DbName="DBCust.CustDB.wsv_alp">
             <Mapping DataField="username" ObjectProperty="CustName" />
         </Setting>
-        <Setting Key="Age_CustomerSelCustWinlimit" SpName="Age_CustomerSelCustWinlimit" DbName="DBCust.CustDB.wsv_alp" />
+        <Setting Key="Age_CustomerSelCustWinlimit" SpName="Age_CustomerSelCustWinlimit_UAT2" DbName="DBCust.CustDB.wsv_alp" />
         <Setting Key="Age_CustomerSelByPlayerId" SpName="Age_CustomerSelByPlayerId" DbName="DBCust.CustDB.wsv_alp" />
     </Function>
     <Function Name="Problem Account">

@@ -60,7 +60,8 @@ public class WinLossLimitServiceImpl(IDynamicRepository repository, CacheRefServ
                 param.PageIndex,
                 param.PageSize,
                 null,
-                param.IsDirectMember));
+                param.IsDirectMember,
+                param.AccountType));
         }
 
         foreach (var playerId in playerIds)
@@ -76,7 +77,8 @@ public class WinLossLimitServiceImpl(IDynamicRepository repository, CacheRefServ
                 param.PageIndex,
                 param.PageSize,
                 playerId,
-                param.IsDirectMember));
+                param.IsDirectMember,
+                param.AccountType));
         }
 
         if (!result.WinLossLimitDetail.Any())

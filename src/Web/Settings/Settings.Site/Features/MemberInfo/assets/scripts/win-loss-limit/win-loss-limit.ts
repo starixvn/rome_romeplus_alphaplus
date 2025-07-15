@@ -11,6 +11,7 @@ class WinLossLimit {
     productComponent: SingleSelectionDropdownComponent;
     masterListComponent: SingleSelectionDropdownComponent;
     agentListComponent: SingleSelectionDropdownComponent;
+    accountTypeComponent: SingleSelectionDropdownComponent;
     pager: PagerComponent;
 
     $productList: JQuery;
@@ -21,8 +22,10 @@ class WinLossLimit {
 
     $masterList: JQuery;
     $agentList: JQuery;
+    $accountTypeList: JQuery;
     $masterId: JQuery;
     $agentId: JQuery;
+    $accountTypeId: JQuery;
     $username: JQuery;
     $playerId: JQuery;
     $tableReport: JQuery;
@@ -32,12 +35,14 @@ class WinLossLimit {
         productComponent: SingleSelectionDropdownComponent,
         masterListComponent: SingleSelectionDropdownComponent,
         agentListComponent: SingleSelectionDropdownComponent,
+        accountTypeComponent: SingleSelectionDropdownComponent,
         pager: PagerComponent
     ) {
         this.$ = $;
         this.productComponent = productComponent;
         this.masterListComponent = masterListComponent;
         this.agentListComponent = agentListComponent;
+        this.accountTypeComponent = accountTypeComponent;
         this.pager = pager;
     }
 
@@ -68,6 +73,12 @@ class WinLossLimit {
             );
         }
 
+        if (this.$accountTypeList.length) {
+            this.accountTypeComponent.render(
+                new SingleSelectionDropdownOption('dropdown-account-type', 'AccountTypeId', this.changeAccountType)
+            );
+        }
+
         this.$tableReport.stickyTableHeaders();
         this.pager.render(new PagerOption(this.submitForm, 'report-pager', 'win-loss-limit-form'));
     };
@@ -80,9 +91,11 @@ class WinLossLimit {
 
         this.$masterList = this.$('#dropdown-master');
         this.$agentList = this.$('#dropdown-agent');
+        this.$accountTypeList = this.$('#dropdown-account-type');
 
         this.$masterId = this.$('#MasterId');
         this.$agentId = this.$('#RecommendId');
+        this.$accountTypeId = this.$('#AccountTypeId');
         this.$username = this.$('#txt-username');
         this.$playerId = this.$('#txt-player-id');
         this.$tableReport = this.$('#tbl-report');
@@ -114,6 +127,11 @@ class WinLossLimit {
         this.$('#PageIndex').val(1);
         this.submitForm();
     };
+    changeAccountType = () => {
+        this.$accountTypeId.val(this.$accountTypeList.val());
+        this.$('#PageIndex').val(1);
+        this.submitForm();
+    };
     submitForm = () => {
         this.$.blockUI();
         this.$winLossLimitForm.submit();
@@ -130,6 +148,7 @@ class WinLossLimit {
 
 const winLossLimit = new WinLossLimit(
     $,
+    new SingleSelectionDropdownComponent($),
     new SingleSelectionDropdownComponent($),
     new SingleSelectionDropdownComponent($),
     new SingleSelectionDropdownComponent($),

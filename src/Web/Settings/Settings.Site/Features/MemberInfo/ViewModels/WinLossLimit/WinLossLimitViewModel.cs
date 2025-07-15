@@ -47,6 +47,7 @@ public class WinLossLimitViewModel
 
         SportType = param.SportType;
         BetType = param.BetType;
+        AccountType = param.AccountType;
     }
 
     public UserLevel ViewerLevel { get; }
@@ -75,6 +76,8 @@ public class WinLossLimitViewModel
 
     public int BetType { get; }
 
+    public int AccountType { get; }
+
     public IEnumerable<CustInfo> MasterList { get; }
 
     public IEnumerable<CustInfo> AgentList { get; }
@@ -87,7 +90,9 @@ public class WinLossLimitViewModel
 
     public bool ShowPager => WinLossLimitPage.NumberOfRows >= MaxItemToShowPager;
 
-    public int NumberOfColumns => NumberOfColumnBySportType.ContainsKey(SportType) ? NumberOfColumnBySportType[SportType] : DefaultNumberOfColumns;
+    public int NumberOfColumns => 
+        (NumberOfColumnBySportType.ContainsKey(SportType) ? NumberOfColumnBySportType[SportType] : DefaultNumberOfColumns) 
+        - (AccountType == 1 ? 2 : 0);
 
     public static string GetPlayerIdText(string playerId)
         => string.IsNullOrWhiteSpace(playerId) ? "-" : playerId;

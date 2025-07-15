@@ -625,4 +625,13 @@
   <data name="CreateCashMember" xml:space="preserve">
     <value>新規現金会員を追加</value>
   </data>
+  <data name="AccountType" xml:space="preserve">
+    <value>口座タイプ</value>
+  </data>
+  <data name="CurrentWinAmount" xml:space="preserve">
+    <value>Current Win Amount</value>
+  </data>
+  <data name="MaximumWinCash" xml:space="preserve">
+    <value>Maximum Win</value>
+  </data>
 </root>

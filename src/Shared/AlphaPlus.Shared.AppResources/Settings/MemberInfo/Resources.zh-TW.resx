@@ -1294,4 +1294,13 @@
   <data name="SportsbookPotentialWinLimit" xml:space="preserve">
     <value>體育博彩潛在贏額上限</value>
   </data>
+  <data name="AccountType" xml:space="preserve">
+    <value>帳戶類型</value>
+  </data>
+  <data name="CurrentWinAmount" xml:space="preserve">
+    <value>目前贏數額</value>
+  </data>
+  <data name="MaximumWinCash" xml:space="preserve">
+    <value>最高贏額</value>
+  </data>
 </root>

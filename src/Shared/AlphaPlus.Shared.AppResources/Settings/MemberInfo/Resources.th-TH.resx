@@ -1297,4 +1297,13 @@
   <data name="SportsbookPotentialWinLimit" xml:space="preserve">
     <value>ขีดจำกัดการชนะสูงสุดใน Sportsbook</value>
   </data>
+  <data name="AccountType" xml:space="preserve">
+    <value>ประเภทบัญชี</value>
+  </data>
+  <data name="CurrentWinAmount" xml:space="preserve">
+    <value>จำนวนชนะปัจจุบัน</value>
+  </data>
+  <data name="MaximumWinCash" xml:space="preserve">
+    <value>การชนะสูงสุด</value>
+  </data>
 </root>

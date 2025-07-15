@@ -50,7 +50,8 @@ public class WinLossLimitHandler(IAccountService accountService, WinLossLimitSer
             message.PageSize,
             message.PageIndex,
             GetIsDirectMemberParam(actorLevel, masterId, agentId),
-            message.AGIP);
+            message.AGIP,
+            message.AccountType);
 
         var noNeedGetData = !param.IsDirectMember && actorLevel.IsMasterOrSuperLevel() && !agentList.Any();
         var winLossLimitPage = noNeedGetData ? new WinLossLimitPage() : await winLossLimitService.GetWinLossLimitPage(param);

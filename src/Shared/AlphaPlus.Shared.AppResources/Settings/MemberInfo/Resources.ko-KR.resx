@@ -1198,4 +1198,13 @@
   <data name="PotentialWinLimitNote2" xml:space="preserve">
     <value>결과 수정, 정산 지연 및 기타 요인으로 인해 누적된 잠재적 당첨 한도가 일시적으로 구성된 임계값을 초과할 수 있습니다.</value>
   </data>
-</root> 
+  <data name="AccountType" xml:space="preserve">
+    <value>계정 유형</value>
+  </data>
+  <data name="CurrentWinAmount" xml:space="preserve">
+    <value>현재 당첨</value>
+  </data>
+  <data name="MaximumWinCash" xml:space="preserve">
+    <value>최대 당첨</value>
+  </data>
+</root>
