@@ -56,7 +56,8 @@ public class WinLossLimitHandler(IAccountService accountService, WinLossLimitSer
 
         var noNeedGetData = !param.IsDirectMember && actorLevel.IsMasterOrSuperLevel() && !agentList.Any();
         var winLossLimitPage = noNeedGetData ? new WinLossLimitPage() : await winLossLimitService.GetWinLossLimitPage(param);
-        return new WinLossLimitViewModel(message, products, masterList, agentList, winLossLimitPage, param);
+        var isOfferedCashService = AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(message.Site) && message.ActorLevel.IsAgentLevel();
+        return new WinLossLimitViewModel(isOfferedCashService, message, products, masterList, agentList, winLossLimitPage, param);
     }
 
     public async Task<Result> Handle(ResetCurrentWinAmountCommand request, CancellationToken cancellation)

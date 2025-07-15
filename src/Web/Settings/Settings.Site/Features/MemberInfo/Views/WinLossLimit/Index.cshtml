@@ -57,7 +57,7 @@
             }
         </select>
     </div>
-    @if (Model.ViewerLevel.IsAgentLevel())
+    @if (Model.IsOfferedCashService)
     {
         <div class="form-group">
             <label for="dropdown-account-type">@Resources.AccountType</label>
@@ -132,6 +132,7 @@
     @Html.Hidden("RecommendId", Model.RecommendId)
     @Html.Hidden("AccountType", Model.AccountType)
     @Html.Hidden("ResetCurrentWinAmountConfirmMessage", Resources.ResetCurrentWinAmountConfirmMessage)
+    @Html.Hidden("ResetCurrentWinAmountErrorMessage", AlphaPlus.Shared.AppResources.Main.Resources.InternalServerError)
 </form>
 <div class="wrapper-table-scrollable">
     <table id="tbl-report" class="tb tb-bordered w-full tablesorter tb-hover tb-freeze-header" data-has-data="@Model.WinLossLimitPage.WinLossLimitDetail.Any()">
@@ -151,7 +152,7 @@
                 <th><div class="col-auto-daily-reset">@Resources.AutoDailyResetLimit</div></th>
                 <th>
                     <div class="col-current-win-loss">
-                        @(Model.AccountType == 0 ? Resources.CurrentWinLossAmount : Resources.CurrentWinAmount)
+                        @(Model.IsViewCreditMember ? Resources.CurrentWinLossAmount : Resources.CurrentWinAmount)
                     </div>
                 </th>
                 @if (Model.IsBBin)
@@ -160,12 +161,12 @@
                 }
                 <th>
                     <div class="col-max-win">
-                        @(Model.AccountType == 0 ? Resources.MaximumWin : Resources.MaximumWinCash)
+                        @(Model.IsViewCreditMember ? Resources.MaximumWin : Resources.MaximumWinCash)
                     </div>
                 </th>
                 <th><div class="col-win-percent">@Resources.CurrentWinLimit</div></th>
 
-                @if (Model.AccountType == 0)
+                @if (Model.IsViewCreditMember)
                 {
                     <th class="col-max-loss">@Resources.MaximumLoss</th>
                     <th><div class="col-loss-percent">@Resources.CurrentLossLimit</div></th>
@@ -201,7 +202,7 @@
                         <td class="text-center">@(winLossLimitDetail.IsAutoReset ? Resources.Yes : Resources.No2)</td>
                         <td class="text-center">
                             @WinLossLimitViewModel.GetCurrentWinAnmout(winLossLimitDetail.CurrentWinAnmout)
-                            @if (Model.AccountType == 1
+                            @if (!Model.IsViewCreditMember
                                 && !winLossLimitDetail.IsAutoReset 
                                 && winLossLimitDetail.CurrentWinAnmout > 0 
                                 && winLossLimitDetail.MaxWinLimit > 0)   

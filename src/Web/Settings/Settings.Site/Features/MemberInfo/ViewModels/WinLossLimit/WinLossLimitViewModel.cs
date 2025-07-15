@@ -23,6 +23,7 @@ public class WinLossLimitViewModel
     };
 
     public WinLossLimitViewModel(
+        bool isOfferedCashService,
         WinLossLimitQuery message,
         IEnumerable<WinLossLimitGroupProductModel> groupProducts,
         IEnumerable<CustInfo> masterList,
@@ -30,6 +31,8 @@ public class WinLossLimitViewModel
         WinLossLimitPage winLossLimitPage,
         WinLossLimitParam param)
     {
+        IsOfferedCashService = isOfferedCashService;
+
         ViewerLevel = message.ActorLevel;
         UserSelectedId = $"{param.ProductId}-{param.SportType}";
         Username = message.Username ?? string.Empty;
@@ -84,6 +87,8 @@ public class WinLossLimitViewModel
 
     public WinLossLimitPage WinLossLimitPage { get; }
 
+    public bool IsOfferedCashService { get; }
+
     public PagerViewModel PagerViewModel => new(PageIndex, PageSize, WinLossLimitPage.NumberOfRows);
 
     public bool HasData => WinLossLimitPage.NumberOfRows > 0;
@@ -119,6 +124,8 @@ public class WinLossLimitViewModel
 
     public static string GetRemainingTransferInAmount(decimal? remainingTransferInAmount, decimal? maxLossLimit)
         => FormatRemainingTransferInAmmount(maxLossLimit, remainingTransferInAmount);
+
+    public bool IsViewCreditMember => !IsOfferedCashService || AccountType == 0;
 
     private static string FormatMaxWinLimit(decimal maxWinLimit)
     {

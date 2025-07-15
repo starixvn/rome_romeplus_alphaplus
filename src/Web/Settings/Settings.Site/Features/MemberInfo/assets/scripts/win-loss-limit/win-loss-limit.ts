@@ -174,6 +174,7 @@ class WinLossLimit {
             var betType = selectedOption.attr('data-bet-type');
             var productId = selectedOption.attr('data-product-id');
             
+            const errorMessage = this.$('#ResetCurrentWinAmountErrorMessage').val();
             this.$.ajax({
                 url: '/settings/WinLossLimit/ResetCurrentWinAmount',
                 type: 'POST',
@@ -189,7 +190,7 @@ class WinLossLimit {
                     betType: betType
                 },
                 success: (response: any) => {
-                    window.top.bootboxAlert(response.message);
+                    window.top.bootboxAlert(response.message || errorMessage);
                     if (response && response.isSuccessful) {
                         setTimeout(() => {
                             // Refresh the page to show updated data
@@ -198,7 +199,7 @@ class WinLossLimit {
                     }
                 },
                 error: (xhr: any, status: any, error: any) => {
-                    window.top.bootboxAlert(error);
+                    window.top.bootboxAlert(error || errorMessage);
                 },
                 complete: () => {
                     this.$.unblockUI();
