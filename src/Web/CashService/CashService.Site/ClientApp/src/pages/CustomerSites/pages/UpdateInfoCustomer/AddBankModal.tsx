@@ -175,7 +175,7 @@ export const AddBankModal = ({ closeModal, onAddSuccess }: AddBankModalProps) =>
                                 <CustomDropdown
                                     options={watch('agentBankDropdownOptions') ?? []}
                                     onSelect={(option) => {
-                                        const selectedBank = watch('agentBanks')?.find((opt) => opt.bankId === option.value);
+                                        const selectedBank = watch('agentBanks')?.find((opt) => (opt.bankId + '|' + opt.bankAccountNumber) === option.value);
                                         setValue('agentBankID', selectedBank?.bankId ?? 0);
                                         setValue('agentBankAccountNumber', selectedBank?.bankAccountNumber ?? '');
                                     }}
