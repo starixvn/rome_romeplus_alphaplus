@@ -276,5 +276,9 @@
     "CashService": {
         "OfferedSites": "222227",
         "APIUrl": "http://alphaplus_staging_api_cashservice_alphaklprod:5000/api"
+    },
+    "IndirectLogin": {
+        "AllowSuperIds": "*",
+        "URL": "https://stidp1.gatonic.com/main/Account/IndirectLogin"
     }
 }
