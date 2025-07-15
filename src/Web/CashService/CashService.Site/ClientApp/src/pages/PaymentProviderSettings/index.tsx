@@ -16,7 +16,7 @@ import { LoadingFullComponent } from '../../components/LoadingComponent';
 import { ResultMessageComponent } from '../../components/Message';
 import {
     StatusCompletedComponent, StatusFailedComponent, StatusMaintenanceComponent, StatusProcessingComponent
-} from '../../components/StatusComponents';
+} from '../../components/Status';
 import {
     TitleComponent,
     LabelTitleComponent, MediumTitleComponent

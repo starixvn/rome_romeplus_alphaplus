@@ -4,7 +4,7 @@ import NoRecordFoundComponent from '../../../../components/NoRecordFoundComponen
 import {
   StatusDisabledComponent,
   StatusCompletedComponent,
-} from '../../../../components/StatusComponents';
+} from '../../../../components/Status';
 import { formatNumber } from '../../../../utils/numberFormatting';
 
 interface MainReportTableProps {

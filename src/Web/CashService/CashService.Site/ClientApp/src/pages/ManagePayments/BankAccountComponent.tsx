@@ -20,7 +20,7 @@ import CustomDropdown from '../../components/CustomDropdownComponent';
 import { IconArrowDown, IconSearch } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/Message';
-import { StatusCompletedComponent, StatusDisabledComponent } from '../../components/StatusComponents';
+import { StatusCompletedComponent, StatusDisabledComponent } from '../../components/Status';
 import {
   TitleComponent,
   LabelTitleComponent,

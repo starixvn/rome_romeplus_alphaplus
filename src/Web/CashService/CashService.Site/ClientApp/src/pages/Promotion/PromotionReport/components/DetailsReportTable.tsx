@@ -5,7 +5,7 @@ import {
   StatusCompletedComponent,
   StatusProcessingComponent,
   StatusDisabledComponent,
-} from '../../../../components/StatusComponents';
+} from '../../../../components/Status';
 import { formatNumber } from '../../../../utils/numberFormatting';
 
 interface DetailsReportTableProps {

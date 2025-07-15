@@ -14,7 +14,7 @@ import {
   StatusDisabledComponent,
   StatusFailedComponent,
   StatusCompletedComponent,
-} from '../../components/StatusComponents';
+} from '../../components/Status';
 import { TitleComponent } from '../../components/Title';
 import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';

@@ -42,7 +42,7 @@ import {
 } from '../../utils/bankTransactionUtils';
 import { isNumberIncludes } from '../../utils/sharedUtils';
 import { createErrorResultModel } from '../../services/interfaces/ResultModel';
-import { StatusCompletedComponent, StatusDisabledComponent } from '../../components/StatusComponents';
+import { StatusCompletedComponent, StatusDisabledComponent } from '../../components/Status';
 
 interface UpdateBankAccountComponentProps {
   onClose: () => void;

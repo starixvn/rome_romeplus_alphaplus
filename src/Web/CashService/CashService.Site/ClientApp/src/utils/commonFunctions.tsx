@@ -4,7 +4,7 @@ import {
   StatusFailedComponent,
   StatusMaintenanceComponent,
   StatusProcessingComponent,
-} from '../components/StatusComponents';
+} from '../components/Status';
 import Tippy from '@tippyjs/react';
 
 export const displayAmount = (amount: number): string => {
