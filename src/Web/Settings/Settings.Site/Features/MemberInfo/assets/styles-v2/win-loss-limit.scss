@@ -74,10 +74,11 @@
 .col-reset{
     text-align: center;
     position: relative;
+    padding: 0 20px;
     .ic-refresh{
         position: absolute;
         right: 0;
-        top: -2px;
+        top: 0;
     }
 }
 .reset-win-amount {
@@ -85,7 +86,7 @@
     transition: all 0.2s ease;
     background-color: transparent;
     border-radius: 4px;  
-    padding: 4px;
+    padding: 2px;
     display: inline-block;
     cursor: pointer;
     &:hover {
