@@ -5,24 +5,10 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.WinLossLimit;
 
 public class ResetCurrentWinAmountCommand : IRequest<Result>
 {
-    public ResetCurrentWinAmountCommand(int custId, string username, int productId, int sportType, int betType, string language)
-    {
-        CustId = custId;
-        Username = username;
-        Language = language;
-        ProductId = productId;
-        SportType = sportType;
-        BetType = betType;
-    }
-
     public int CustId { get; set; }
     public string Username { get; set; }
-
     public int ProductId { get; set; }
-
     public int SportType { get; set; }
-
     public int BetType { get; set; }
-
     public string Language { get; set; }
 } 

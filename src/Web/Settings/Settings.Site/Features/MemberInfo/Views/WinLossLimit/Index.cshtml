@@ -201,13 +201,16 @@
                         <td class="text-center">@(winLossLimitDetail.IsAutoReset ? Resources.Yes : Resources.No2)</td>
                         <td class="text-center">
                             @WinLossLimitViewModel.GetCurrentWinAnmout(winLossLimitDetail.CurrentWinAnmout)
-                            @if (Model.AccountType == 1 && !winLossLimitDetail.IsAutoReset && winLossLimitDetail.CurrentWinAnmout > 0 && winLossLimitDetail.MaxWinLimit > 0)
+                            @if (Model.AccountType == 1
+                                && !winLossLimitDetail.IsAutoReset 
+                                && winLossLimitDetail.CurrentWinAnmout > 0 
+                                && winLossLimitDetail.MaxWinLimit > 0)   
                             {
                                 <span class="icon-refresh reset-win-amount" 
                                       data-cust-id="@winLossLimitDetail.CustId" 
                                       data-username="@winLossLimitDetail.Username"
                                       title="@Resources.ResetCurrentWinAmount"
-                                      style="cursor: pointer; margin-left: 5px; color: #1f7244;"></span>
+                                      style="cursor: pointer; margin-left: 5px; color: #1f7244; width: 20px; height: 20px;background-color: #1f7244;border-radius: 50%; display: inline-block;"></span>
                             }
                         </td>
                         @if (Model.IsBBin)
@@ -240,6 +243,8 @@
         
     </table>
 </div>
+
+<input type="hidden" name="__RequestVerificationToken" value="@ViewData["RequestVerificationToken"]" />
 @if (Model.ShowPager)
 {
     @Pager.Render(Model.PagerViewModel)

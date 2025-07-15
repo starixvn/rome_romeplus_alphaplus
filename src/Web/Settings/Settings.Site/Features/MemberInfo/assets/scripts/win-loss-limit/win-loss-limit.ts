@@ -2,6 +2,10 @@
 /// <reference path="../components/pager.ts" />
 'use strict';
 
+interface Window {  
+    bootboxConfirm(message: string, callback: (result: boolean) => void): void;
+}
+
 interface JQuery {
     stickyTableHeaders(): void;
 }
@@ -162,38 +166,45 @@ class WinLossLimit {
         var confirmMessage = this.$('#ResetCurrentWinAmountConfirmMessage').val();
         confirmMessage = confirmMessage.replace('{0}', username);
         
-        if (confirm(confirmMessage)) {
+        window.top.bootboxConfirm(confirmMessage, null, (result: any) => {
             this.$.blockUI();
+            
+            var selectedOption = this.$productList.find(':selected');
+            var sportType = selectedOption.attr('data-sport-type');
+            var betType = selectedOption.attr('data-bet-type');
+            var productId = selectedOption.attr('data-product-id');
             
             this.$.ajax({
                 url: '/settings/WinLossLimit/ResetCurrentWinAmount',
                 type: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    RequestVerificationToken: this.$('input[name="__RequestVerificationToken"]').val()
+                },
                 data: {
                     custId: custId,
                     username: username,
-                    productId: this.$('#UserSelectedProductId').val(),
-                    sportType: this.$('#SportType').val(),
-                    betType: this.$('#BetType').val(),
-                    __RequestVerificationToken: this.$('input[name="__RequestVerificationToken"]').val()
+                    productId: productId,
+                    sportType: sportType,
+                    betType: betType
                 },
                 success: (response: any) => {
+                    window.top.bootboxAlert(response.message);
                     if (response && response.isSuccessful) {
                         setTimeout(() => {
                             // Refresh the page to show updated data
                             this.submitForm();
                         }, 3000);
-                    } else {
-                        alert(response.message);
                     }
                 },
-                error: (xhr: any) => {
-                    alert(xhr.responseJSON.message);
+                error: (xhr: any, status: any, error: any) => {
+                    window.top.bootboxAlert(error);
                 },
                 complete: () => {
                     this.$.unblockUI();
                 }
             });
-        }
+        });
     };
 }
 
