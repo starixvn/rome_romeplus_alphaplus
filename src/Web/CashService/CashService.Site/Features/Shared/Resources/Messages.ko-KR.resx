@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CashServiceIsDisabled" xml:space="preserve">
-    <value>현금서비스가 비활성화되었습니다. 업데이트할 수 없습니다.</value>
+    <value>현금서비스가 비활성화되었습니다. 현금서비스를 활성화하여 진행하세요.</value>
   </data>
 </root>

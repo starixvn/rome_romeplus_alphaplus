@@ -135,7 +135,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
 
     // Field-level validation
     const errors = {
-      accountHolderName: !accountHolderName ? tGlobal('pleaseFillField') : '',
+      accountHolderName: !accountHolderName.trim() ? tGlobal('pleaseFillField') : '',
       accountNumber: !accountNumber ? tGlobal('pleaseFillField') : '',
       selectedBank: !selectedBank ? tGlobal('pleaseFillField') : '',
       mobile: promptPay && !mobile ? tGlobal('pleaseFillField') : '',
@@ -269,9 +269,9 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
     setAccountHolderName(value);
     setFieldErrors((prev) => ({
       ...prev,
-      accountHolderName: value ? '' : tGlobal('pleaseFillField'),
+      accountHolderName: value.trim() ? '' : tGlobal('pleaseFillField'),
     }));
-  };
+  }; 
 
   const onAccountNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const {

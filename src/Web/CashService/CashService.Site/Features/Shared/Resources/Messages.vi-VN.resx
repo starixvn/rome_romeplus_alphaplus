@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CashServiceIsDisabled" xml:space="preserve">
-    <value>Bạn không có quyền truy cập vì dịch vụ tiền mặt đã bị vô hiệu hóa</value>
+    <value>Bạn không có quyền truy cập vì dịch vụ tiền mặt đã bị vô hiệu hóa. Vui lòng bật dịch vụ tiền mặt để tiếp tục.</value>
   </data>
 </root>
