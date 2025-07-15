@@ -95,7 +95,8 @@
     "expired": "Đã hết hạn",
     "completed": "Hoàn thành",
     "rejected": "Đã từ chối",
-    "providerRejected": "Nhà cung cấp đã từ chối"
+    "providerRejected": "Nhà cung cấp đã từ chối",
+    "approved": "Đã phê duyệt"
   },
   "dateRangePicker": {
     "today": "Hôm nay",
@@ -111,5 +112,13 @@
   "cashServiceDisabled": "Dịch vụ tiền mặt đã bị vô hiệu hóa",
   "info": "Thông tin",
   "removeSuccess": "Xóa thành công",
-  "removeError": "Xóa thất bại"
+  "removeError": "Xóa thất bại",
+  "noneSelected": "Không có mục nào được chọn",
+  "selectAll": "Chọn tất cả",
+  "dateRange": "Khoảng thời gian",
+  "statusText": "Trạng thái",
+  "username": "Tên người dùng",
+  "firstOrLastName": "Tên hoặc Họ",
+  "firstAndLastName": "Tên & Họ",
+  "nickname": "Biệt danh"
 }

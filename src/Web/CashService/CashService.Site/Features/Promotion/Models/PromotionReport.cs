@@ -5,7 +5,7 @@ public class PromotionReport
     public int PromotionId { get; init; }
     public string PromotionTitle { get; init; }
     public string PromotionType { get; init; }
-    public string DataRange { get; init; }
+    public string DateRange { get; init; }
     public int TotalRequest { get; init; }
     public int TotalApproved { get; init; }
     public int TotalRejected { get; init; }

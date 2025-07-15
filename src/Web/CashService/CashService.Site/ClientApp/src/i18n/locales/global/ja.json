@@ -95,7 +95,8 @@
     "expired": "期限切れ",
     "completed": "完了",
     "rejected": "拒否済み",
-    "providerRejected": "プロバイダーが拒否"
+    "providerRejected": "プロバイダーが拒否",
+    "approved": "承認済み"
   },
   "dateRangePicker": {
     "today": "今日",
@@ -111,5 +112,13 @@
   "cashServiceDisabled": "キャッシュサービスは無効です",
   "info": "情報",
   "removeSuccess": "削除成功",
-  "removeError": "削除失敗"
+  "removeError": "削除失敗",
+  "noneSelected": "選択なし",
+  "selectAll": "すべて選択",
+  "dateRange": "日付範囲",
+  "statusText": "ステータス",
+  "username": "ユーザー名",
+  "firstOrLastName": "名または姓",
+  "firstAndLastName": "名と姓",
+  "nickname": "ニックネーム"
 }

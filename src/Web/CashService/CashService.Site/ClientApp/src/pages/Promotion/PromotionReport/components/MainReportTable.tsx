@@ -1,4 +1,5 @@
 import React, { ForwardedRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import NoRecordFoundComponent from '../../../../components/NoRecordFoundComponent';
 import {
   StatusEnabledComponent,
@@ -64,6 +65,7 @@ function MainReportRow({
 
 const MainReportTable = React.forwardRef<HTMLTableElement, MainReportTableProps>(
   (props, ref: ForwardedRef<HTMLTableElement>) => {
+    const { t } = useTranslation(['promotion', 'global']);
     const { data, onClickPromotionTitle } = props;
     return (
       <div className="table-fixed-header table-fixed-body min-h-0">
@@ -77,17 +79,17 @@ const MainReportTable = React.forwardRef<HTMLTableElement, MainReportTableProps>
                 #
               </th>
               <th className="sticky left-[32px] bg-[var(--table-header-background)] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
-                Promotion Title
+                {t('promotion:table.promotionTitle')}
               </th>
-              <th>Promotion Type</th>
-              <th>Date Range</th>
-              <th>Total Request</th>
+              <th>{t('promotion:table.promotionType')}</th>
+              <th>{t('global:dateRange')}</th>
+              <th>{t('promotion:table.totalRequest')}</th>
               <th>
-                <div>Total Request Approved</div>
-                <div>Total Request Rejected</div>
+                <div>{t('promotion:table.totalApproved')}</div>
+                <div>{t('promotion:table.totalRejected')}</div>
               </th>
-              <th>Total Bonus Given</th>
-              <th className="w-[140px] min-w-[140px]">Status</th>
+              <th>{t('promotion:table.totalBonusGiven')}</th>
+              <th className="w-[140px] min-w-[140px]">{t('global:statusText')}</th>
             </tr>
           </thead>
           <tbody className="font-[500]">

@@ -15,13 +15,13 @@ export default function ReportTitle({
   setSearch: (val: string) => void;
   onExportExcel: () => void;
 }) {
-  const { t: tGlobal } = useTranslation('global');
-  const [textCopy, setTextCopy] = useState(tGlobal('copy'));
+  const { t } = useTranslation(['promotion', 'global']);
+  const [textCopy, setTextCopy] = useState(t('global:copy'));
 
   async function handleCopy() {
     await copyHtmlToClipboard(tableRef.current, () => {
-      setTextCopy(tGlobal('copied'));
-      setTimeout(() => setTextCopy(tGlobal('copy')), 3000);
+      setTextCopy(t('global:copied'));
+      setTimeout(() => setTextCopy(t('global:copy')), 3000);
     });
   }
 
@@ -30,7 +30,7 @@ export default function ReportTitle({
       <div></div>
       <div className="flex items-center gap-[8px]">
         <Tippy
-          content={tGlobal('exportToExcel')}
+          content={t('global:exportToExcel')}
           placement="top"
           theme="light"
           arrow={true}
@@ -58,7 +58,7 @@ export default function ReportTitle({
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="control-field pl-[30px]!"
-              placeholder="Promotion Title"
+              placeholder={t('promotion:table.promotionTitle')}
               autoComplete="off"
             />
           </div>

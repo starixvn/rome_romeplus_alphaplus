@@ -95,7 +95,8 @@
     "expired": "Expired",
     "completed": "Completed",
     "rejected": "Rejected",
-    "providerRejected": "Provider Rejected"
+    "providerRejected": "Provider Rejected",
+    "approved": "Approved"
   },
   "dateRangePicker": {
     "today": "Today",
@@ -113,5 +114,11 @@
   "removeSuccess": "Remove successfully",
   "removeError": "Remove failed",
   "noneSelected": "None selected",
-  "selectAll": "Select All"
+  "selectAll": "Select All",
+  "dateRange": "Date Range",
+  "statusText": "Status",
+  "username": "Username",
+  "firstOrLastName": "First or Last Name",
+  "firstAndLastName": "First & Last Name",
+  "nickname": "Nickname"
 }

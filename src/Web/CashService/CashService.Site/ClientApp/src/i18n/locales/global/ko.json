@@ -95,7 +95,8 @@
     "expired": "만료됨",
     "completed": "완료됨",
     "rejected": "거부됨",
-    "providerRejected": "제공업체 거부"
+    "providerRejected": "제공업체 거부",
+    "approved": "승인됨"
   },
   "dateRangePicker": {
     "today": "오늘",
@@ -111,5 +112,13 @@
   "cashServiceDisabled": "캐시 서비스가 비활성화되었습니다",
   "info": "정보",
   "removeSuccess": "삭제 성공",
-  "removeError": "삭제 실패"
+  "removeError": "삭제 실패",
+  "noneSelected": "선택되지 않음",
+  "selectAll": "모두 선택",
+  "dateRange": "날짜 범위",
+  "statusText": "상태",
+  "username": "사용자 이름",
+  "firstOrLastName": "이름 또는 성",
+  "firstAndLastName": "이름과 성",
+  "nickname": "닉네임"
 }

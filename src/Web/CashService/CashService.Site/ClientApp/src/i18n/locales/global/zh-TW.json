@@ -95,7 +95,8 @@
     "expired": "已過期",
     "completed": "已完成",
     "rejected": "已拒絕",
-    "providerRejected": "提供商已拒絕"
+    "providerRejected": "提供商已拒絕",
+    "approved": "已批准"
   },
   "dateRangePicker": {
     "today": "今天",
@@ -111,5 +112,13 @@
   "cashServiceDisabled": "現金服務已禁用",
   "info": "資訊",
   "removeSuccess": "刪除成功",
-  "removeError": "刪除失敗"
+  "removeError": "刪除失敗",
+  "noneSelected": "未選擇",
+  "selectAll": "全選",
+  "dateRange": "日期範圍",
+  "statusText": "狀態",
+  "username": "用戶名",
+  "firstOrLastName": "名或姓",
+  "firstAndLastName": "名和姓",
+  "nickname": "暱稱"
 }

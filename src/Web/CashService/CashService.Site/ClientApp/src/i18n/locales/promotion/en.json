@@ -18,7 +18,12 @@
     "edit": "Edit",
     "delete": "Delete",
     "products": "Products",
-    "noRecords": "No records found"
+    "noRecords": "No records found",
+    "bonusAmount": "Bonus Amount",
+    "totalRequest": "Total Request",
+    "totalApproved": "Total Approved",
+    "totalRejected": "Total Rejected",
+    "totalBonusGiven": "Total Bonus Given"
   },
   "search": {
     "placeholder": "Search by title or type..."

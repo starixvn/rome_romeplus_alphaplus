@@ -14,7 +14,15 @@
         "period": "기간",
         "provider": "제공자",
         "status": "상태",
-        "lastUpdated": "마지막 업데이트"
+        "lastUpdated": "마지막 업데이트",
+        "edit": "편집",
+        "delete": "삭제",
+        "products": "제품",
+        "noRecords": "레코드를 찾을 수 없습니다",
+        "bonusAmount": "보너스 금액",
+        "totalRequest": "총 요청",
+        "totalApproved": "총 승인",
+        "totalRejected": "총 거부"
     },
     "search": {
         "placeholder": "제목 또는 유형으로 검색..."

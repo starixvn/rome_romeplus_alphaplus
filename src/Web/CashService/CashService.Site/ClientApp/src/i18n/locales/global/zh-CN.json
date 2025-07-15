@@ -95,7 +95,8 @@
     "expired": "已过期",
     "completed": "已完成",
     "rejected": "已拒绝",
-    "providerRejected": "提供商已拒绝"
+    "providerRejected": "提供商已拒绝",
+    "approved": "已批准"
   },
   "dateRangePicker": {
     "today": "今天",
@@ -111,5 +112,13 @@
   "cashServiceDisabled": "现金服务已禁用",
   "info": "信息",
   "removeSuccess": "删除成功",
-  "removeError": "删除失败"
+  "removeError": "删除失败",
+  "noneSelected": "未选择",
+  "selectAll": "全选",
+  "dateRange": "日期范围",
+  "statusText": "状态",
+  "username": "用户名",
+  "firstOrLastName": "名或姓",
+  "firstAndLastName": "名和姓",
+  "nickname": "昵称"
 }

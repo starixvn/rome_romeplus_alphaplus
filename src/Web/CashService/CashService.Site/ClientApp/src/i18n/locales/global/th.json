@@ -95,7 +95,8 @@
     "expired": "หมดอายุแล้ว",
     "completed": "เสร็จสมบูรณ์",
     "rejected": "ปฏิเสธแล้ว",
-    "providerRejected": "ผู้ให้บริการปฏิเสธ"
+    "providerRejected": "ผู้ให้บริการปฏิเสธ",
+    "approved": "ได้รับการอนุมัติ"
   },
   "dateRangePicker": {
     "today": "วันนี้",
@@ -111,5 +112,13 @@
   "cashServiceDisabled": "บริการเงินสดถูกปิดใช้งาน",
   "info": "ข้อมูล",
   "removeSuccess": "ลบสำเร็จ",
-  "removeError": "ลบล้มเหลว"
+  "removeError": "ลบล้มเหลว",
+  "noneSelected": "ไม่มีการเลือก",
+  "selectAll": "เลือกทั้งหมด",
+  "dateRange": "ช่วงวันที่",
+  "statusText": "สถานะ",
+  "username": "ชื่อผู้ใช้",
+  "firstOrLastName": "ชื่อหรือนามสกุล",
+  "firstAndLastName": "ชื่อและนามสกุล",
+  "nickname": "ชื่อเล่น"
 }

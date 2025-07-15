@@ -1,15 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import DateRangePickerComponent from '../../../../components/DateRangePickerComponent';
 import CustomDropdownComponent, {
   DropdownOption,
 } from '../../../../components/CustomDropdownComponent';
 import { LabelTitleComponent } from '../../../../components/Title';
-
-const statusOptions: DropdownOption[] = [
-  { value: '0', label: 'All' },
-  { value: 1, label: 'Approved' },
-  { value: 2, label: 'Pending' },
-  { value: 3, label: 'Rejected' },
-];
 
 export default function DetailsReportFilter({
   minDate,
@@ -26,10 +20,17 @@ export default function DetailsReportFilter({
   status: string;
   setStatus: (status: string) => void;
 }) {
+  const { t } = useTranslation('global');
+  const statusOptions: DropdownOption[] = [
+    { value: '0', label: t('global:all') },
+    { value: 1, label: t('global:status.approved') },
+    { value: 2, label: t('global:status.pending') },
+    { value: 3, label: t('global:status.rejected') },
+  ];
   return (
     <div className="flex flex-nowrap gap-[16px] max-[768px]:gap-[12px] max-[768px]:flex-wrap w-full">
       <div className="w-[190px] mb-[12px]">
-        <LabelTitleComponent text="Date Range" />
+        <LabelTitleComponent text={t('global:dateRange')} />
         <DateRangePickerComponent
           value={dateRange}
           onChange={setDateRange}
@@ -38,7 +39,7 @@ export default function DetailsReportFilter({
         />
       </div>
       <div className="w-[160px] mb-[12px]">
-        <LabelTitleComponent text="Status" />
+        <LabelTitleComponent text={t('global:statusText')} />
         <CustomDropdownComponent
           options={statusOptions}
           onSelect={(opt) => setStatus(opt.value as string)}

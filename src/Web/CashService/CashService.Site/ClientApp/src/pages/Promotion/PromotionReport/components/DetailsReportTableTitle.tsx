@@ -19,15 +19,15 @@ export default function DetailsReportTableTitle({
   setSearch: (val: string) => void;
   onExportExcel: () => void;
 }) {
-  const { t: tGlobal } = useTranslation('global');
-  const [textCopy, setTextCopy] = useState(tGlobal('copy'));
+  const { t } = useTranslation(['promotion', 'global']);
+  const [textCopy, setTextCopy] = useState(t('global:copy'));
   const [isSearchActive, setIsSearchActive] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
 
   async function handleCopy() {
     await copyHtmlToClipboard(tableRef.current, () => {
-      setTextCopy(tGlobal('copied'));
-      setTimeout(() => setTextCopy(tGlobal('copy')), 3000);
+      setTextCopy(t('global:copied'));
+      setTimeout(() => setTextCopy(t('global:copy')), 3000);
     });
   }
 
@@ -56,7 +56,7 @@ export default function DetailsReportTableTitle({
               className="text-[#045ace] dark:text-[#41a4ff] cursor-pointer"
               onClick={onClickBreadcrumb}
             >
-              Promotion Report
+              {t('promotion:promotionReport')}
             </a>
           </li>
           <li className="text-[#9d1c1c] dark:text-[#fff] uppercase relative inline-block">
@@ -66,7 +66,7 @@ export default function DetailsReportTableTitle({
       </div>
       <div className="flex items-center gap-[8px]">
         <Tippy
-          content={tGlobal('exportToExcel')}
+          content={t('global:exportToExcel')}
           placement="top"
           theme="light"
           arrow={true}
@@ -104,7 +104,7 @@ export default function DetailsReportTableTitle({
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="control-field pl-[30px]! max-[768px]:pl-[8px]!"
-                placeholder="Username/First or Last Name"
+                placeholder={`${t('global:username')}/${t('global:firstOrLastName')}`}
               />
             </div>
           </div>

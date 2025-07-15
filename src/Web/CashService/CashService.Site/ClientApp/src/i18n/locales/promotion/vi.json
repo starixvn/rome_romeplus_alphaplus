@@ -14,7 +14,16 @@
         "period": "Thời gian",
         "provider": "Nhà cung cấp",
         "status": "Trạng thái",
-        "lastUpdated": "Cập nhật lần cuối"
+        "lastUpdated": "Cập nhật lần cuối",
+        "edit": "Chỉnh sửa",
+        "delete": "Xóa",
+        "products": "Sản phẩm",
+        "noRecords": "Không tìm thấy bản ghi",
+        "bonusAmount": "Số tiền thưởng",
+        "totalRequest": "Tổng số yêu cầu",
+        "totalApproved": "Tổng số đã phê duyệt",
+        "totalRejected": "Tổng số đã từ chối",
+        "totalBonusGiven": "Tổng số tiền thưởng đã cấp"
     },
     "search": {
         "placeholder": "Tìm kiếm theo tiêu đề hoặc loại..."

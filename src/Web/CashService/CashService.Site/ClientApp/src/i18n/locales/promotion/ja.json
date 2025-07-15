@@ -14,7 +14,16 @@
         "period": "期間",
         "provider": "プロバイダー",
         "status": "ステータス",
-        "lastUpdated": "最終更新"
+        "lastUpdated": "最終更新",
+        "edit": "編集",
+        "delete": "削除",
+        "products": "製品",
+        "noRecords": "レコードが見つかりません",
+        "bonusAmount": "ボーナス額",
+        "totalRequest": "総リクエスト",
+        "totalApproved": "総承認",
+        "totalRejected": "総拒否",
+        "totalBonusGiven": "総ボーナス付与"
     },
     "search": {
         "placeholder": "タイトルまたはタイプで検索..."

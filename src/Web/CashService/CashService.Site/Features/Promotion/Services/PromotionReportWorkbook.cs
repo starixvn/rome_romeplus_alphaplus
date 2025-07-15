@@ -50,7 +50,7 @@ public class PromotionReportWorkbook(IWebHostEnvironment webHostEnvironment) :
         .Map(A, p => number++)
         .Map(B, p => p.PromotionTitle)
         .Map(C, p => p.PromotionType)
-        .Map(D, p => p.DataRange)
+        .Map(D, p => p.DateRange)
         .Map(E, p => p.TotalRequest)
         .Map(F, p => $"{p.TotalApproved}\n{p.TotalRejected}")
         .Map(G, p => p.TotalBonus)
