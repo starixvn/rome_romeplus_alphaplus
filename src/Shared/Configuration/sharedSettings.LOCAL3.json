@@ -125,7 +125,7 @@
     ],
     "StoredProcedurePath": "~/App_Data/SPNames.MAIN.xml",
     "FanexDataServiceApi": "http://fanexdataservices.nexdev.net",
-    "LogLibs": "Sentry,Rabbit",
+    "LogLibs": "Rabbit",
     "Fanex.Logging": {
         "DefaultCategory": "Alpha-IBC-AF-Local",
         "RabbitMQConnectionStrings": "host=rabbitmq.nexdev.net;virtualHost=/Fanex_Logging;username=fanexlogging;password=YKQrMtla7oYZGlP8apPtSw==",

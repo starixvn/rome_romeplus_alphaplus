@@ -125,7 +125,7 @@
     ],
     "StoredProcedurePath": "~/App_Data/SPNames.MAIN.xml",
     "FanexDataServiceApi": "http://vn-fanexdataservice.playonesit.com",
-    "LogLibs": "Sentry,Rabbit",
+    "LogLibs": "Rabbit",
     "Fanex.Logging": {
         "DefaultCategory": "Alpha-777-AF-SIT",
         "RabbitMQConnectionStrings": "host=172.16.4.76;virtualHost=/Fanex_Logging;username=fanexlogging;password=YKQrMtla7oYZGlP8apPtSw==",

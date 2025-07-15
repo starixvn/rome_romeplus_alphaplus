@@ -125,7 +125,7 @@
     ],
     "StoredProcedurePath": "~/App_Data/SPNames.MAIN.xml",
     "FanexDataServiceApi": "http://alpha_data_service_ALPHAPROD_3:5000",
-    "LogLibs": "Sentry,Rabbit",
+    "LogLibs": "Rabbit",
     "Fanex.Logging": {
         "DefaultCategory": "Alpha-777-AF-Linux",
         "RabbitMQConnectionStrings": "host=10.99.99.51;virtualHost=/fanex_logging;username=fanexlogging;password=VKREKUBBd2T3DAtosbDPojl4YQFDnDp7Yilb8JGcLQ8=",
