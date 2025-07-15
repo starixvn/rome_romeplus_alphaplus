@@ -21,7 +21,7 @@ public static class ValidatorHelper
     }
 
     public static bool IsValidAccountNickname(string accountNickname) {
-        return string.IsNullOrWhiteSpace(accountNickname) && accountNickname.Length <= 255;
+        return string.IsNullOrWhiteSpace(accountNickname) || accountNickname.Length <= 255;
     }
 
     public static bool IsValidWithdrawalCount(int withdrawalCount) {

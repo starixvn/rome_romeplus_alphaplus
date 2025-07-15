@@ -149,22 +149,14 @@
                 }
                 <th><div class="col-credit">@Resources.Credit</div></th>
                 <th><div class="col-balance">@Resources.Balance</div></th>
-                <th><div class="col-auto-daily-reset">@Resources.AutoDailyResetLimit</div></th>
-                <th>
-                    <div class="col-current-win-loss">
-                        @(Model.IsViewCreditMember ? Resources.CurrentWinLossAmount : Resources.CurrentWinAmount)
-                    </div>
-                </th>
+                <th class="col-auto-daily-reset">@Resources.AutoDailyResetLimit</th>
+                <th class="col-current-win-loss">@(Model.AccountType == 0 ? Resources.CurrentWinLossAmount : Resources.CurrentWinAmount)</th>
                 @if (Model.IsBBin)
                 {
                     <th><div class="col-current-win-loss">@Resources.RemainingTransferInAmount</div></th>
                 }
-                <th>
-                    <div class="col-max-win">
-                        @(Model.IsViewCreditMember ? Resources.MaximumWin : Resources.MaximumWinCash)
-                    </div>
-                </th>
-                <th><div class="col-win-percent">@Resources.CurrentWinLimit</div></th>
+                <th class="col-max-win">@(Model.AccountType == 0 ? Resources.MaximumWin : Resources.MaximumWinCash)</th>
+                <th class="col-win-percent">@Resources.CurrentWinLimit</th>
 
                 @if (Model.IsViewCreditMember)
                 {
@@ -201,18 +193,19 @@
                         <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.Balance)</td>
                         <td class="text-center">@(winLossLimitDetail.IsAutoReset ? Resources.Yes : Resources.No2)</td>
                         <td class="text-center">
-                            @WinLossLimitViewModel.GetCurrentWinAnmout(winLossLimitDetail.CurrentWinAnmout)
-                            @if (!Model.IsViewCreditMember
+                            <div class="col-reset">
+                                @WinLossLimitViewModel.GetCurrentWinAnmout(winLossLimitDetail.CurrentWinAnmout)
+                                @if (!Model.IsViewCreditMember
                                 && !winLossLimitDetail.IsAutoReset 
                                 && winLossLimitDetail.CurrentWinAnmout > 0 
                                 && winLossLimitDetail.MaxWinLimit > 0)   
-                            {
-                                <span class="icon-refresh reset-win-amount" 
-                                      data-cust-id="@winLossLimitDetail.CustId" 
-                                      data-username="@winLossLimitDetail.Username"
-                                      title="@Resources.ResetCurrentWinAmount"
-                                      style="cursor: pointer; margin-left: 5px; color: #1f7244; width: 20px; height: 20px;background-color: #1f7244;border-radius: 50%; display: inline-block;"></span>
-                            }
+                                {
+                                    <span class="ic-refresh reset-win-amount" 
+                                        data-cust-id="@winLossLimitDetail.CustId" 
+                                        data-username="@winLossLimitDetail.Username"
+                                        title="@Resources.ResetCurrentWinAmount"></span>
+                                }
+                            </div>
                         </td>
                         @if (Model.IsBBin)
                         {

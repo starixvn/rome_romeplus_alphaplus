@@ -1,4 +1,12 @@
-﻿#tbl-report tbody td {
+﻿:root, :root [data-theme='light'] {
+    --button-icon-hover: rgba(0,0,0,.1);
+}
+
+:root, :root [data-theme='dark'] {
+    --button-icon-hover: rgba(255,255,255,.1);
+}
+
+#tbl-report tbody td {
     overflow: hidden;
     white-space: nowrap;
     word-break: break-all;
@@ -63,11 +71,24 @@
 .col-loss-percent {
     width: 100px;
 }
-
+.col-reset{
+    text-align: center;
+    position: relative;
+    .ic-refresh{
+        position: absolute;
+        right: 0;
+        top: -2px;
+    }
+}
 .reset-win-amount {
-    transition: color 0.2s ease;
-    
+    font-size: 14px;
+    transition: all 0.2s ease;
+    background-color: transparent;
+    border-radius: 4px;  
+    padding: 4px;
+    display: inline-block;
+    cursor: pointer;
     &:hover {
-        color: #f60 !important;
+        background-color: var(--button-icon-hover);
     }
 }
