@@ -6,13 +6,17 @@ public class UpdateInfoViewModel
          int custId,
          string username,
          bool isCashMember,
-         string cdnUri)
+         string cdnUri,
+         int systemId,
+         string applicationPath)
     {
         AssetsVersion = assetsVersion;
         CustId = custId;
         Username = username;
         IsCashMember = isCashMember;
         CdnUri = cdnUri;
+        SystemId = systemId;
+        ApplicationPath = applicationPath;
     }
 
     public string AssetsVersion { get; }
@@ -24,4 +28,8 @@ public class UpdateInfoViewModel
     public string Username { get; }
 
     public string CdnUri { get; }
+
+    public int SystemId { get; }
+
+    public string ApplicationPath { get; }
 }
