@@ -11,9 +11,9 @@ import {
 import Loading from '../../components/LoadingComponent';
 import { ErrorMessageComponent } from '../../components/Message';
 import {
-  StatusEnabledComponent,
   StatusDisabledComponent,
-  StatusNoneComponent,
+  StatusFailedComponent,
+  StatusCompletedComponent,
 } from '../../components/StatusComponents';
 import { TitleComponent } from '../../components/Title';
 import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvider';
@@ -85,9 +85,9 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
       case 0:
         return <StatusDisabledComponent />;
       case 1:
-        return <StatusEnabledComponent />;
+        return <StatusCompletedComponent text={tGlobal('enabled')} />;
       default:
-        return <StatusNoneComponent />;
+        return <StatusFailedComponent text="-" />;
     }
   };
 

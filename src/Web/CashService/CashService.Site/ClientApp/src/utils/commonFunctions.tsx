@@ -3,7 +3,6 @@ import {
   StatusDisabledComponent,
   StatusFailedComponent,
   StatusMaintenanceComponent,
-  StatusNoneComponent,
   StatusProcessingComponent,
 } from '../components/StatusComponents';
 import Tippy from '@tippyjs/react';
@@ -69,7 +68,7 @@ export const mappingStatus = (status: number, textContent?: string) => {
     case 6:
       return <StatusDisabledComponent text={textContent} />;
     default:
-      return <StatusNoneComponent />;
+      return <StatusFailedComponent text='-' />;
   }
 };
 

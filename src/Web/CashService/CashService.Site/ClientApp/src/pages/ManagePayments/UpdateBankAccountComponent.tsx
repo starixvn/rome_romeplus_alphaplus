@@ -42,8 +42,7 @@ import {
 } from '../../utils/bankTransactionUtils';
 import { isNumberIncludes } from '../../utils/sharedUtils';
 import { createErrorResultModel } from '../../services/interfaces/ResultModel';
-import { StatusDisabledComponent } from '../../components/StatusComponents';
-import { StatusEnabledComponent } from '../../components/StatusComponents';
+import { StatusCompletedComponent, StatusDisabledComponent } from '../../components/StatusComponents';
 
 interface UpdateBankAccountComponentProps {
   onClose: () => void;
@@ -388,7 +387,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
               <div className="text-center">                 
                 <MediumTitleComponent text={fetchedBankAccount?.accountNickname || ''} />
                 <div>                
-                  {fetchedBankAccount?.status === bankStatusConstant.enabled ? <StatusEnabledComponent /> : <StatusDisabledComponent />}
+                  {fetchedBankAccount?.status === bankStatusConstant.enabled ? <StatusCompletedComponent text={tGlobal('enabled')} /> : <StatusDisabledComponent />}
                 </div>
               </div>
               <div>

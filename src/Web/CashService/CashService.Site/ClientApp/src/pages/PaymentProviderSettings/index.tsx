@@ -15,8 +15,7 @@ import { IconArrowDown, IconInfo, IconReload } from '../../components/Icons';
 import { LoadingFullComponent } from '../../components/LoadingComponent';
 import { ResultMessageComponent } from '../../components/Message';
 import {
-    StatusCompletedComponent, StatusFailedComponent, StatusMaintenanceComponent,
-    StatusNoneComponent, StatusProcessingComponent
+    StatusCompletedComponent, StatusFailedComponent, StatusMaintenanceComponent, StatusProcessingComponent
 } from '../../components/StatusComponents';
 import {
     TitleComponent,
@@ -454,7 +453,7 @@ function PaymentProviderSettings() {
       case paymentMethodStatusConstant.maintenance:
         return <StatusMaintenanceComponent />;
       default:
-        return <StatusNoneComponent />;
+        return <StatusFailedComponent text="-" />;
     }
   };
 

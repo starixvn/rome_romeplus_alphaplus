@@ -2,8 +2,8 @@ import React, { ForwardedRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import NoRecordFoundComponent from '../../../../components/NoRecordFoundComponent';
 import {
-  StatusEnabledComponent,
   StatusDisabledComponent,
+  StatusCompletedComponent,
 } from '../../../../components/StatusComponents';
 import { formatNumber } from '../../../../utils/numberFormatting';
 
@@ -13,7 +13,8 @@ interface MainReportTableProps {
 }
 
 function MainReportStatusRow({ status }: { status: boolean }) {
-  return status ? <StatusEnabledComponent /> : <StatusDisabledComponent />;
+  const { t: tGlobal } = useTranslation('global');
+  return status ? <StatusCompletedComponent text={tGlobal('enabled')} /> : <StatusDisabledComponent />;
 }
 
 function MainReportRow({
