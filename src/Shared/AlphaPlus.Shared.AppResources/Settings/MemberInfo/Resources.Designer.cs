@@ -4400,5 +4400,29 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
                 return ResourceManager.GetString("MaximumWinCash", resourceCulture);
             }
         }
+
+        public static string ResetCurrentWinAmount
+        {
+            get
+            {
+                return ResourceManager.GetString("ResetCurrentWinAmount", resourceCulture);
+            }
+        }
+
+        public static string ResetCurrentWinAmountConfirmMessage
+        {
+            get
+            {
+                return ResourceManager.GetString("ResetCurrentWinAmountConfirmMessage", resourceCulture);
+            }
+        }
+
+        public static string ResetCurrentWinAmountSuccess
+        {
+            get
+            {
+                return ResourceManager.GetString("ResetCurrentWinAmountSuccess", resourceCulture);
+            }
+        }
     }
 }

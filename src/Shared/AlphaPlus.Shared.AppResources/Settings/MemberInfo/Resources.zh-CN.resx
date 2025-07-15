@@ -1306,4 +1306,13 @@
   <data name="MaximumWinCash" xml:space="preserve">
     <value>最高赢额</value>
   </data>
+  <data name="ResetCurrentWinAmount" xml:space="preserve">
+    <value>重置当前赢额</value>
+  </data>
+  <data name="ResetCurrentWinAmountConfirmMessage" xml:space="preserve">
+    <value>您确定要重置会员 "{0}" 的当前赢额吗？</value>
+  </data> 
+  <data name="ResetCurrentWinAmountSuccess" xml:space="preserve">
+    <value>重置当前赢额成功</value>
+  </data>
 </root>

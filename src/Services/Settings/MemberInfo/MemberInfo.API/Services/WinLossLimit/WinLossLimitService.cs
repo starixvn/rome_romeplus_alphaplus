@@ -1,4 +1,5 @@
-﻿using AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit;
 using AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit;
 using AlphaPlus.Settings.MemberInfo.Domain.Params;
 using Fanex.Data.Repository;
@@ -10,6 +11,8 @@ public interface WinLossLimitService
     Task<IEnumerable<WinLossLimitGroupProductModel>> GetWinLossLimitProducts(int custId);
 
     Task<WinLossLimitPage> GetWinLossLimitPage(WinLossLimitParam param);
+
+    Task<Result> ResetCurrentWinLimitAmount(ResetCurrentWinLimitAmountParam param);
 }
 
 public class WinLossLimitServiceImpl(IDynamicRepository repository, CacheRefService cacheRefService) : WinLossLimitService
@@ -116,6 +119,21 @@ public class WinLossLimitServiceImpl(IDynamicRepository repository, CacheRefServ
         }
 
         return result;
+    }
+
+    public async Task<Result> ResetCurrentWinLimitAmount(ResetCurrentWinLimitAmountParam param)
+    {
+        var criteria = new ResetCurrentWinLimitAmountCriteria(
+            param.CustId,
+            param.Username,
+            param.ProductId,
+            param.SportType,
+            param.BetType,
+            param.Language);
+
+        await repository.ExecuteAsync(criteria);
+
+        return new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };
     }
 
     private Task<IEnumerable<int>> MapPlayerIdToCustId(MapPlayerId3rdToCustIdCriteria criteria)

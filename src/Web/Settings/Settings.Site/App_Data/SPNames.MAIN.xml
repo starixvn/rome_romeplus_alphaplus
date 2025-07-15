@@ -464,6 +464,8 @@
         <Setting Key="SiteDB_Age_Transfer_CashBalance_DirectMember_Sel" SpName="Age_Transfer_CashBalance_DirectMember_Sel" DbName="DBTXN.bodb02.wsv_alp" />
         <Setting Key="SiteDB_Age_Transfer_CashBalance_DirectMember_Ins" SpName="Age_Transfer_CashBalance_DirectMember_Ins" DbName="SiteDB.bodb02.wsv_alp" />
         <Setting Key="SiteDB_CustWinLimitBet_Reset" SpName="Acc_CustWinLimitBet_Reset" DbName="SiteDB.bodb02.wsv_alp" />
+       
+        <Setting Key="SiteDB_Age_CustomerResetCurrentWinlimitAmount" SpName="SiteDB_Age_CustomerResetCurrentWinlimitAmount" DbName="SiteDB.bodb02.wsv_alp" />
     </Function>
     <Function Name="Base Functions">
         <Setting Key="Age_SelBalanceUpDay" SpName="Age_SelBalanceUpDay" DbName="DBAGE.bodb02.wsv_alp" />

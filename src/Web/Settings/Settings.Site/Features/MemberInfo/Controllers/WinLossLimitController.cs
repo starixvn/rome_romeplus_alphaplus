@@ -17,4 +17,20 @@ public partial class WinLossLimitController(IMediator mediator, IUserSession use
 
     public async Task<ActionResult> PotentialExcel(ExcelSportsbookPotentialWinLimitQuery message)
         => await ExcelView(message);
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<JsonResult> ResetCurrentWinAmount(ResetCurrentWinAmountCommand command)
+    {
+        if (!userSession.IsAgent)
+        {
+            return Json(new { isSuccessful = false, message = "Unauthorized" });
+        }
+
+        // Set the command properties from user session
+        command.Language = userSession.Language;
+
+        var result = await mediator.Send(command);
+        return Json(result);
+    }
 }

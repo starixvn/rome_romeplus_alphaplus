@@ -1207,4 +1207,13 @@
   <data name="MaximumWinCash" xml:space="preserve">
     <value>최대 당첨</value>
   </data>
+  <data name="ResetCurrentWinAmount" xml:space="preserve">
+    <value>현재 당첨 금액 재설정</value>
+  </data>
+  <data name="ResetCurrentWinAmountConfirmMessage" xml:space="preserve">
+    <value>회원 "{0}"의 현재 당첨 금액을 재설정하시겠습니까?</value>
+  </data> 
+  <data name="ResetCurrentWinAmountSuccess" xml:space="preserve">
+    <value>현재 당첨 금액이 재설정되었습니다.</value>
+  </data>
 </root>

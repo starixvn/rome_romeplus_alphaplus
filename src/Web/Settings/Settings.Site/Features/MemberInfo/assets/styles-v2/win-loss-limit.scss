@@ -63,3 +63,11 @@
 .col-loss-percent {
     width: 100px;
 }
+
+.reset-win-amount {
+    transition: color 0.2s ease;
+    
+    &:hover {
+        color: #f60 !important;
+    }
+}

@@ -103,6 +103,9 @@ class WinLossLimit {
     bindEvents = () => {
         this.$username.keyup(this.doneInputTextbox);
         this.$playerId.keyup(this.doneInputTextbox);
+        
+        // Bind reset win amount icon click event
+        this.$tableReport.on('click', '.reset-win-amount', this.resetWinAmount);
     };
     changeProduct = () => {
         var selectedOption = this.$productList.find(':selected');
@@ -142,6 +145,54 @@ class WinLossLimit {
         if (keyCode === 13) {
             this.$('#PageIndex').val(1);
             this.submitForm();
+        }
+    };
+
+    resetWinAmount = (event: any) => {
+        event.preventDefault();
+        
+        var $resetIcon = this.$(event.currentTarget);
+        var custId = $resetIcon.data('cust-id');
+        var username = $resetIcon.data('username');
+        
+        if (!custId || !username) {
+            return;
+        }
+        
+        var confirmMessage = this.$('#ResetCurrentWinAmountConfirmMessage').val();
+        confirmMessage = confirmMessage.replace('{0}', username);
+        
+        if (confirm(confirmMessage)) {
+            this.$.blockUI();
+            
+            this.$.ajax({
+                url: '/settings/WinLossLimit/ResetCurrentWinAmount',
+                type: 'POST',
+                data: {
+                    custId: custId,
+                    username: username,
+                    productId: this.$('#UserSelectedProductId').val(),
+                    sportType: this.$('#SportType').val(),
+                    betType: this.$('#BetType').val(),
+                    __RequestVerificationToken: this.$('input[name="__RequestVerificationToken"]').val()
+                },
+                success: (response: any) => {
+                    if (response && response.isSuccessful) {
+                        setTimeout(() => {
+                            // Refresh the page to show updated data
+                            this.submitForm();
+                        }, 3000);
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                error: (xhr: any) => {
+                    alert(xhr.responseJSON.message);
+                },
+                complete: () => {
+                    this.$.unblockUI();
+                }
+            });
         }
     };
 }

@@ -131,6 +131,7 @@
     @Html.Hidden("MasterId", Model.MasterId)
     @Html.Hidden("RecommendId", Model.RecommendId)
     @Html.Hidden("AccountType", Model.AccountType)
+    @Html.Hidden("ResetCurrentWinAmountConfirmMessage", Resources.ResetCurrentWinAmountConfirmMessage)
 </form>
 <div class="wrapper-table-scrollable">
     <table id="tbl-report" class="tb tb-bordered w-full tablesorter tb-hover tb-freeze-header" data-has-data="@Model.WinLossLimitPage.WinLossLimitDetail.Any()">
@@ -198,7 +199,17 @@
                         <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.Credit)</td>
                         <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.Balance)</td>
                         <td class="text-center">@(winLossLimitDetail.IsAutoReset ? Resources.Yes : Resources.No2)</td>
-                        <td class="text-center">@WinLossLimitViewModel.GetCurrentWinAnmout(winLossLimitDetail.CurrentWinAnmout)</td>
+                        <td class="text-center">
+                            @WinLossLimitViewModel.GetCurrentWinAnmout(winLossLimitDetail.CurrentWinAnmout)
+                            @if (Model.AccountType == 1 && !winLossLimitDetail.IsAutoReset && winLossLimitDetail.CurrentWinAnmout > 0 && winLossLimitDetail.MaxWinLimit > 0)
+                            {
+                                <span class="icon-refresh reset-win-amount" 
+                                      data-cust-id="@winLossLimitDetail.CustId" 
+                                      data-username="@winLossLimitDetail.Username"
+                                      title="@Resources.ResetCurrentWinAmount"
+                                      style="cursor: pointer; margin-left: 5px; color: #1f7244;"></span>
+                            }
+                        </td>
                         @if (Model.IsBBin)
                         {
                             <td class="text-center">@WinLossLimitViewModel.GetRemainingTransferInAmount(winLossLimitDetail.ReaminingTransferInAmount, winLossLimitDetail.MaxLossLimit)</td>

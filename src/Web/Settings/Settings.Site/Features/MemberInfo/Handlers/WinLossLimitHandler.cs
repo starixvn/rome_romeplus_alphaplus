@@ -12,7 +12,8 @@ using MediatR;
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers;
 
 public class WinLossLimitHandler(IAccountService accountService, WinLossLimitService winLossLimitService)
-    : IRequestHandler<WinLossLimitQuery, WinLossLimitViewModel>
+    : IRequestHandler<WinLossLimitQuery, WinLossLimitViewModel>,
+      IRequestHandler<ResetCurrentWinAmountCommand, Result>
 {
     private readonly IAccountService accountService = accountService;
     private readonly WinLossLimitService winLossLimitService = winLossLimitService;
@@ -56,6 +57,24 @@ public class WinLossLimitHandler(IAccountService accountService, WinLossLimitSer
         var noNeedGetData = !param.IsDirectMember && actorLevel.IsMasterOrSuperLevel() && !agentList.Any();
         var winLossLimitPage = noNeedGetData ? new WinLossLimitPage() : await winLossLimitService.GetWinLossLimitPage(param);
         return new WinLossLimitViewModel(message, products, masterList, agentList, winLossLimitPage, param);
+    }
+
+    public async Task<Result> Handle(ResetCurrentWinAmountCommand request, CancellationToken cancellation)
+    {
+        var result = await winLossLimitService.ResetCurrentWinLimitAmount(new ResetCurrentWinLimitAmountParam(
+            request.CustId,
+            request.Username,
+            request.ProductId,
+            request.SportType,
+            request.BetType,
+            request.Language));
+
+        if (result.IsSuccessful)
+        {
+            return Result.CreateSuccessfulResult(AlphaPlus.Shared.AppResources.Settings.MemberInfo.Resources.ResetCurrentWinAmountSuccess);
+        }
+
+        return result;
     }
 
     private static int GetDefaultMasterId(WinLossLimitQuery message, UserLevel actorLevel, List<CustInfo> masterList)
