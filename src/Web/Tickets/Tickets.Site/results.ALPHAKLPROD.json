@@ -37,7 +37,7 @@
     "ProxyPort": 8801
   },
   "SabaClubConfigs": {
-    "Url": "http://10.40.40.248:8103/api/SabaClubInternal/GetTicketResult",
+    "Url": "http://sabagames.gamora.prod/api/SabaClubInternal/GetTicketResult",
     "Login": "Login",
     "Password": "U1YwYm1IbGpSeVdMeWhTaE1Ia1I3QT09",
     "Debug": 0
@@ -57,12 +57,12 @@
     "Debug": 0
   },
   "HabaneroResultConfigs": {
-    "Url": "http://10.148.200.63:8119/api/HabaneroInternal/GetBetHistoryUrl",
+    "Url": "http://hn.gamora.prod/api/HabaneroInternal/GetBetHistoryUrl",
     "VendorId": 61,
     "Debug": 0
   },
   "CGResultConfigs": {
-    "Url": "http://10.148.200.63:8120/api/CreativeGamingInternal/GetBetHistoryUrl",
+    "Url": "http://cg.gamora.prod/api/CreativeGamingInternal/GetBetHistoryUrl",
     "VendorId": 62,
     "Debug": 0
   },
@@ -76,7 +76,7 @@
     "Debug": 0
   },
   "AdvantPlayMiniResultConfigs": {
-    "Url": "http://10.148.200.63:8129//api/AdvantPlayMiniInternal/GetBetHistoryUrl",
+    "Url": "http://apm.gamora.prod//api/AdvantPlayMiniInternal/GetBetHistoryUrl",
     "VendorId": 68,
     "Debug": 0
   },
@@ -94,17 +94,17 @@
     "Debug": 0
   },
   "SpadegamingResultConfigs": {
-    "Url": "http://10.148.200.63:8096/api/SpadeGamingInternal/GetBetHistoryUrl",
+    "Url": "http://sg.gamora.prod/api/SpadeGamingInternal/GetBetHistoryUrl",
     "VendorId": 36,
     "Debug": 0
   },
   "RNGWarResultConfigs": {
-    "Url": "http://10.148.200.63:8105/api/SboGamesInternal/GetBetHistoryUrl",
+    "Url": "http://sbo.gamora.prod/api/SboGamesInternal/GetBetHistoryUrl",
     "VendorId": 50,
     "Debug": 0
   },
   "IONCasinoResultConfigs": {
-    "Url": "http://10.148.200.63:8105/api/SboGamesInternal/GetBetHistoryUrl",
+    "Url": "http://sbo.gamora.prod/api/SboGamesInternal/GetBetHistoryUrl",
     "VendorId": 12,
     "Debug": 0
   },
@@ -114,12 +114,12 @@
     "Debug": 0
   },
   "JokerResultConfigs": {
-    "Url": "http://10.148.200.63:8113/api/JokerGamingInternal/GetBetHistoryUrl",
+    "Url": "http://jg.gamora.prod/api/JokerGamingInternal/GetBetHistoryUrl",
     "VendorId": 56,
     "Debug": 0
   },
   "LinkedGamesResultConfigs": {
-    "Url": "http://10.148.200.63:8121/api/LinkedGamesInternal/GetBetHistoryUrl",
+    "Url": "http://lg.gamora.prod/api/LinkedGamesInternal/GetBetHistoryUrl",
     "VendorId": 63,
     "Debug": 0
   },
@@ -129,12 +129,12 @@
     "Debug": 0
   },
   "CardClubResultConfigs": {
-    "Url": "http://10.148.200.63:7100/api/ArcadiaGamingInternal/GetBetHistoryUrl",
+    "Url": "http://acg.gamora.prod/api/ArcadiaGamingInternal/GetBetHistoryUrl",
     "VendorId": 34,
     "Debug": 0
   },
   "FGGResultConfigs": {
-    "Url": "http://10.148.200.63:8132/api/GuaranteedGamingInternal/GetBetHistoryUrl",
+    "Url": "http://fgg.gamora.prod/api/GuaranteedGamingInternal/GetBetHistoryUrl",
     "Debug": 0
   },
   "VirtualGamesDetailResultConfigs": {
