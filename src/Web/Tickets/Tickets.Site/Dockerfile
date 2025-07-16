@@ -72,8 +72,8 @@ RUN if [ "${TRANSFORM_CONFIG}" = "ALPHAKLPROD" ] || \
   [ "${TRANSFORM_CONFIG}" = "ALPHAKLSIMPLE2" ] || \
   [ "${TRANSFORM_CONFIG}" = "ALPHAKLSIMPLE3" ] || \
   [ "${TRANSFORM_CONFIG}" = "ALPHAKLPRODINT" ] || \
-  [ "${TRANSFORM_CONFIG}" = "ALPHAKLPRODIN2" ] || \
-  [ "${TRANSFORM_CONFIG}" = "ALPHAKLPRODIN3" ] || \
+  [ "${TRANSFORM_CONFIG}" = "ALPHAKLPRODINT2" ] || \
+  [ "${TRANSFORM_CONFIG}" = "ALPHAKLPRODINT3" ] || \
   [ "${TRANSFORM_CONFIG}" = "ALPHAKLSTG" ] || \
   [ "${TRANSFORM_CONFIG}" = "ALPHAKLSTG2" ] || \
   [ "${TRANSFORM_CONFIG}" = "ALPHAKLSTG3" ] || \
@@ -81,8 +81,8 @@ RUN if [ "${TRANSFORM_CONFIG}" = "ALPHAKLPROD" ] || \
   [ "${TRANSFORM_CONFIG}" = "ALPHAKLSTGINT2" ] || \
   [ "${TRANSFORM_CONFIG}" = "ALPHAKLSTGINT3" ] || \
   [ "${TRANSFORM_CONFIG}" = "ALPHAKLSIMPLEINT" ] || \
-  [ "${TRANSFORM_CONFIG}" = "ALPHAKLSIMPLEIN2" ] || \
-  [ "${TRANSFORM_CONFIG}" = "ALPHAKLSIMPLEIN3" ]; then \
+  [ "${TRANSFORM_CONFIG}" = "ALPHAKLSIMPLEINT2" ] || \
+  [ "${TRANSFORM_CONFIG}" = "ALPHAKLSIMPLEINT3" ]; then \
     cp -r src/Web/Tickets/Tickets.Site/results.ALPHAKLPROD.json src/Web/Tickets/Tickets.Site/results.json; \
     cp -r src/Web/Tickets/Tickets.Site/results3rd.ALPHAKLPROD.json src/Web/Tickets/Tickets.Site/results3rd.json; \
 fi
