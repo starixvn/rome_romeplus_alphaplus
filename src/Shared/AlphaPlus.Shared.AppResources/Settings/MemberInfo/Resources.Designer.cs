@@ -4393,14 +4393,6 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
             }
         }
 
-        public static string MaximumWinCash
-        {
-            get
-            {
-                return ResourceManager.GetString("MaximumWinCash", resourceCulture);
-            }
-        }
-
         public static string ResetCurrentWinAmount
         {
             get

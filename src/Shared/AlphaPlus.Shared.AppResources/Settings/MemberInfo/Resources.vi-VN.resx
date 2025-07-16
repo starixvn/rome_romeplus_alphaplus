@@ -1267,15 +1267,12 @@ Lưu ý:  Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
   <data name="CurrentWinAmount" xml:space="preserve">
     <value>Hiện tại thắng</value>
   </data>
-  <data name="MaximumWinCash" xml:space="preserve">
-    <value>Mức thắng lớn nhất</value>
-  </data>
   <data name="ResetCurrentWinAmount" xml:space="preserve">
     <value>Đặt lại tiền thắng hiện tại</value>
   </data>
   <data name="ResetCurrentWinAmountConfirmMessage" xml:space="preserve">
     <value>Bạn có chắc chắn muốn đặt lại tiền thắng hiện tại của thành viên "{0}"?</value>
-  </data> 
+  </data>
   <data name="ResetCurrentWinAmountSuccess" xml:space="preserve">
     <value>Đặt lại tiền thắng hiện tại thành công</value>
   </data>

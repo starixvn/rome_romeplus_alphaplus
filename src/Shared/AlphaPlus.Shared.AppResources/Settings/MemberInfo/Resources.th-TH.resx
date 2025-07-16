@@ -1303,15 +1303,12 @@
   <data name="CurrentWinAmount" xml:space="preserve">
     <value>จำนวนชนะปัจจุบัน</value>
   </data>
-  <data name="MaximumWinCash" xml:space="preserve">
-    <value>การชนะสูงสุด</value>
-  </data>
   <data name="ResetCurrentWinAmount" xml:space="preserve">
     <value>รีเซ็ตยอดชนะปัจจุบัน</value>
   </data>
   <data name="ResetCurrentWinAmountConfirmMessage" xml:space="preserve">
     <value>คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตยอดชนะปัจจุบันของสมาชิก "{0}"?</value>
-  </data>   
+  </data>
   <data name="ResetCurrentWinAmountSuccess" xml:space="preserve">
     <value>ยอดชนะปัจจุบันถูกรีเซ็ตเรียบร้อย</value>
   </data>

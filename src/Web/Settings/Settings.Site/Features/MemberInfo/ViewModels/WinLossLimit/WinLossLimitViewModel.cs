@@ -125,8 +125,6 @@ public class WinLossLimitViewModel
     public static string GetRemainingTransferInAmount(decimal? remainingTransferInAmount, decimal? maxLossLimit)
         => FormatRemainingTransferInAmmount(maxLossLimit, remainingTransferInAmount);
 
-    public bool IsViewCreditMember => !IsOfferedCashService || AccountType == 0;
-
     private static string FormatMaxWinLimit(decimal maxWinLimit)
     {
         if (maxWinLimit == MaxWinLimitToShowNotAvailable)

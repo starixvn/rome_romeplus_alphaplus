@@ -42,6 +42,9 @@
 
         public decimal Transfer3rd { get; set; }
 
+        public int AccountType { get; set; }
+        public bool IsCashMember => AccountType == 1;
+
         public decimal? CurrentWinAnmout
         {
             get

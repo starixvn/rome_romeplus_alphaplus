@@ -107,6 +107,7 @@
             <select id="dropdown-account-type" name="AccountType" @(Model.ViewerLevel.IsSuperLevel() && Model.MasterId == 0 ? "disabled=disabled" : string.Empty)>
                 <option value="0" @(Model.AccountType == 0 ? "selected" : string.Empty)>@Resources.Credit</option>
                 <option value="1" @(Model.AccountType == 1 ? "selected" : string.Empty)>@Resources.Cash</option>
+                <option value="2" @(Model.AccountType == 2 ? "selected" : string.Empty)>@Resources.All</option>
             </select>
         </div>
     }
@@ -155,14 +156,10 @@
                 {
                     <th><div class="col-current-win-loss">@Resources.RemainingTransferInAmount</div></th>
                 }
-                <th class="col-max-win">@(Model.AccountType == 0 ? Resources.MaximumWin : Resources.MaximumWinCash)</th>
+                <th class="col-max-win">@Resources.MaximumWin</th>
                 <th class="col-win-percent">@Resources.CurrentWinLimit</th>
-
-                @if (Model.IsViewCreditMember)
-                {
-                    <th class="col-max-loss">@Resources.MaximumLoss</th>
-                    <th><div class="col-loss-percent">@Resources.CurrentLossLimit</div></th>
-                }
+                <th class="col-max-loss">@Resources.MaximumLoss</th>
+                <th><div class="col-loss-percent">@Resources.CurrentLossLimit</div></th>
             </tr>
         </thead>
         @if (Model.HasData)
@@ -195,7 +192,7 @@
                         <td class="text-center">
                             <div class="col-reset">
                                 @WinLossLimitViewModel.GetCurrentWinAnmout(winLossLimitDetail.CurrentWinAnmout)
-                                @if (!Model.IsViewCreditMember)   
+                                @if (!winLossLimitDetail.IsCashMember)   
                                 {
                                     <span class="ic-refresh reset-win-amount" 
                                         data-cust-id="@winLossLimitDetail.CustId" 
@@ -213,13 +210,12 @@
                             @Model.GetWinPercent(winLossLimitDetail.WinPercent, winLossLimitDetail.CurrentWinAnmout, winLossLimitDetail.Credit, winLossLimitDetail.MaxWinLimit)
                         </td>
 
-                        @if (Model.AccountType == 0)
-                        {
-                            <td class="text-center">@WinLossLimitViewModel.GetMaxLossLimit(winLossLimitDetail.MaxLossLimit)</td>
-                            <td class="text-center @(winLossLimitDetail.LossPercent >= 100 ? "negative-value" : "")">
-                                @WinLossLimitViewModel.GetLossPercent(winLossLimitDetail.MaxLossLimit, winLossLimitDetail.LossPercent)
-                            </td>
-                        }
+                        <td class="text-center">
+                            @(winLossLimitDetail.IsCashMember ? "-" : WinLossLimitViewModel.GetMaxLossLimit(winLossLimitDetail.MaxLossLimit))
+                        </td>
+                        <td class="text-center @(!winLossLimitDetail.IsCashMember && winLossLimitDetail.LossPercent >= 100 ? "negative-value" : "")">
+                            @(winLossLimitDetail.IsCashMember ? "-" : WinLossLimitViewModel.GetLossPercent(winLossLimitDetail.MaxLossLimit, winLossLimitDetail.LossPercent))
+                        </td>
                     </tr>
                     index++;
                 }
