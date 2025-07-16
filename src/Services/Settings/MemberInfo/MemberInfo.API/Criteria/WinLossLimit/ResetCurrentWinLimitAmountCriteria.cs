@@ -1,4 +1,3 @@
-using Fanex.Data;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit
@@ -8,11 +7,13 @@ namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit
         public ResetCurrentWinLimitAmountCriteria(
             int custId,
             int sportType,
-            int betType)
+            int betType,
+            int settingStatus)
         {
             CustId = custId;
             SportType = sportType;
             BetType = betType;
+            SettingStatus = settingStatus;
         }
 
         public int CustId { get; }
@@ -20,6 +21,8 @@ namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit
         public int SportType { get; }
 
         public int BetType { get; }
+
+        public int SettingStatus { get; }
 
         public override string GetSettingKey()
             => "Age_BalanceGameReset_CashMember";

@@ -31,8 +31,6 @@ public partial class WinLossLimitController(IMediator mediator, IUserSession use
             return Json(new { isSuccessful = false, message = "Unauthorized" });
         }
 
-        // Set the command properties from user session
-        command.Language = userSession.Language;
 
         var result = await mediator.Send(command);
         return Json(result);

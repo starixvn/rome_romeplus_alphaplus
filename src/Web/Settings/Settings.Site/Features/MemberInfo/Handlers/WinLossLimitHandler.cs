@@ -56,7 +56,7 @@ public class WinLossLimitHandler(IAccountService accountService, WinLossLimitSer
 
         var noNeedGetData = !param.IsDirectMember && actorLevel.IsMasterOrSuperLevel() && !agentList.Any();
         var winLossLimitPage = noNeedGetData ? new WinLossLimitPage() : await winLossLimitService.GetWinLossLimitPage(param);
-        var isOfferedCashService = AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(message.Site) && message.ActorLevel.IsAgentLevel();
+        var isOfferedCashService = AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(message.Site);
         return new WinLossLimitViewModel(isOfferedCashService, message, products, masterList, agentList, winLossLimitPage, param);
     }
 
@@ -68,7 +68,8 @@ public class WinLossLimitHandler(IAccountService accountService, WinLossLimitSer
             request.ProductId,
             request.SportType,
             request.BetType,
-            request.Language));
+            request.Language,
+            request.SettingStatus));
 
         if (result.IsSuccessful)
         {

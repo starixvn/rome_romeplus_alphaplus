@@ -8,7 +8,8 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Params
             int productId,
             int sportType,
             int betType,
-            string language)
+            string language,
+            int settingStatus)
         {
             CustId = custId;
             Username = username;
@@ -16,6 +17,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Params
             SportType = sportType;
             BetType = betType;
             Language = language;
+            SettingStatus = settingStatus;
         }
 
         public int CustId { get; set; }
@@ -29,5 +31,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Params
         public int BetType { get; set; }
 
         public string Language { get; set; }
+
+        public int SettingStatus { get; set; }
     }
 } 

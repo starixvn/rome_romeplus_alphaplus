@@ -57,16 +57,6 @@
             }
         </select>
     </div>
-    @if (Model.IsOfferedCashService)
-    {
-        <div class="form-group">
-            <label for="dropdown-account-type">@Resources.AccountType</label>
-            <select id="dropdown-account-type" name="AccountType">
-                <option value="0" @(Model.AccountType == 0 ? "selected" : string.Empty)>@Resources.Credit</option>
-                <option value="1" @(Model.AccountType == 1 ? "selected" : string.Empty)>@Resources.Cash</option>
-            </select>
-        </div>
-    }
     @if (Model.ViewerLevel.IsSuperLevel())
     {
         <div class="form-group">
@@ -110,6 +100,16 @@
             </select>
         </div>
     }
+    @if (Model.IsOfferedCashService)
+    {
+        <div class="form-group">
+            <label for="dropdown-account-type">@Resources.AccountType</label>
+            <select id="dropdown-account-type" name="AccountType" @(Model.ViewerLevel.IsSuperLevel() && Model.MasterId == 0 ? "disabled=disabled" : string.Empty)>
+                <option value="0" @(Model.AccountType == 0 ? "selected" : string.Empty)>@Resources.Credit</option>
+                <option value="1" @(Model.AccountType == 1 ? "selected" : string.Empty)>@Resources.Cash</option>
+            </select>
+        </div>
+    }
     <div class="form-group">
         <label for="txt-username">@Resources.Username</label>
         <input type="text" id="txt-username" name="Username" placeholder="@Resources.Username" value="@Model.Username" maxlength="50" autocomplete="off" />
@@ -150,7 +150,7 @@
                 <th><div class="col-credit">@Resources.Credit</div></th>
                 <th><div class="col-balance">@Resources.Balance</div></th>
                 <th class="col-auto-daily-reset">@Resources.AutoDailyResetLimit</th>
-                <th class="col-current-win-loss">@(Model.AccountType == 0 ? Resources.CurrentWinLossAmount : Resources.CurrentWinAmount)</th>
+                <th class="col-current-win-loss">@Resources.CurrentWinLossAmount</th>
                 @if (Model.IsBBin)
                 {
                     <th><div class="col-current-win-loss">@Resources.RemainingTransferInAmount</div></th>
@@ -195,10 +195,7 @@
                         <td class="text-center">
                             <div class="col-reset">
                                 @WinLossLimitViewModel.GetCurrentWinAnmout(winLossLimitDetail.CurrentWinAnmout)
-                                @if (!Model.IsViewCreditMember
-                                && !winLossLimitDetail.IsAutoReset 
-                                && winLossLimitDetail.CurrentWinAnmout > 0 
-                                && winLossLimitDetail.MaxWinLimit > 0)   
+                                @if (!Model.IsViewCreditMember)   
                                 {
                                     <span class="ic-refresh reset-win-amount" 
                                         data-cust-id="@winLossLimitDetail.CustId" 
