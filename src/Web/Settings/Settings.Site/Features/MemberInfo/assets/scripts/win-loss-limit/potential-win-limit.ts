@@ -165,7 +165,7 @@ class PotentialWinLimit {
             
             const errorMessage = this.$('#ResetCurrentWinAmountErrorMessage').val();
             this.$.ajax({
-                url: '/settings/WinLossLimit/ResetCurrentPotentialWinAmount',
+                url: '/settings/WinLossLimit/ResetCurrentSportsbookWinAmount',
                 type: 'POST',
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest',

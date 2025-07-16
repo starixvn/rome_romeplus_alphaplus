@@ -121,9 +121,8 @@
                             <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.Credit)</td>
                             <td class="text-center">@(winLossLimitDetail.IsAutoReset ? Resources.Yes : Resources.No2)</td>
                             <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.AccumToWin)</td>
-                            <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.AccumWinLoss)</td>
                             <td class="text-right">
-                                @HtmlHelpers.FormatNumber(winLossLimitDetail.PotentialWin)
+                                @HtmlHelpers.FormatNumber(winLossLimitDetail.AccumWinLoss)
                                 @if (!winLossLimitDetail.IsCashMember)   
                                 {
                                     <span class="ic-refresh reset-win-amount" 
@@ -131,6 +130,9 @@
                                         data-username="@winLossLimitDetail.Username"
                                         title="@Resources.ResetCurrentWinAmount"></span>
                                 }
+                            </td>
+                            <td class="text-right">
+                                @HtmlHelpers.FormatNumber(winLossLimitDetail.PotentialWin)
                             </td>
                             <td class="text-right">@Model.GetMaxWinLimit(winLossLimitDetail.PotentialWinLimit)</td>
                             <td class="text-center @(winLossLimitDetail.PotentialWinPercent >= 100 ? "negative-value" : "")">

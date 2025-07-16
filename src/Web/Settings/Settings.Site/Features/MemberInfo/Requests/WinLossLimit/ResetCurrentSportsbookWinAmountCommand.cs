@@ -5,11 +5,11 @@ using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.WinLossLimit;
 
-public class ResetCurrentPotentialWinAmountCommand : IRequest<Result>
+public class ResetCurrentSportsbookWinAmountCommand : IRequest<Result>
 {
-    public ResetCurrentPotentialWinAmountCommand() { }
+    public ResetCurrentSportsbookWinAmountCommand() { }
 
-    public ResetCurrentPotentialWinAmountCommand(IUser viewer)
+    public ResetCurrentSportsbookWinAmountCommand(IUser viewer)
     {
         Language = viewer.Language;
         SettingStatus = AppSettings.SettingStatus;

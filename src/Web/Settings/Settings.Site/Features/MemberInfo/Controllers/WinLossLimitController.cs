@@ -32,7 +32,7 @@ public partial class WinLossLimitController(IMediator mediator, IUserSession use
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<JsonResult> ResetCurrentPotentialWinAmount(ResetCurrentPotentialWinAmountCommand command)
+    public async Task<JsonResult> ResetCurrentSportsbookWinAmount(ResetCurrentSportsbookWinAmountCommand command)
     {
         var result = await mediator.Send(command);
         return Json(result);

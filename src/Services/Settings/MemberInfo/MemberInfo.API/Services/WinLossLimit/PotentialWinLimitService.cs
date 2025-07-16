@@ -10,7 +10,7 @@ namespace AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit;
 public interface IPotentialWinLimitService
 {
     Task<PotentialWinLimitPage> GetPotentialWinLimitPage(PotentialWinLimitParam param, bool isGetAll = false);
-    Task<Result> ResetCurrentPotentialWinAmount(ResetCurrentPotentialWinAmountParam param);
+    Task<Result> ResetCurrentSportsbookWinAmount(ResetCurrentSportsbookWinAmountParam param);
 }
 
 public class PotentialWinLimitService(IDynamicRepository repository) : IPotentialWinLimitService
@@ -60,9 +60,9 @@ public class PotentialWinLimitService(IDynamicRepository repository) : IPotentia
         return new PotentialWinLimitPage(criteria.TotalRows, potentialWinLimitDetail);
     }
 
-    public async Task<Result> ResetCurrentPotentialWinAmount(ResetCurrentPotentialWinAmountParam param)
+    public async Task<Result> ResetCurrentSportsbookWinAmount(ResetCurrentSportsbookWinAmountParam param)
     {
-        var criteria = new ResetCurrentPotentialWinAmountCriteria(
+        var criteria = new ResetCurrentSportsbookWinAmountCriteria(
             param.CustId,
             param.SportType,
             param.BetType,

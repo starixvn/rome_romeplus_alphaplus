@@ -9,7 +9,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers;
 
 public class SportsbookPotentialWinLimitHandler(IPotentialWinLimitService potentialWinLimitService) : 
     IRequestHandler<SportsbookPotentialWinLimitQuery, SportsbookPotentialWinLimitViewModel>,
-    IRequestHandler<ResetCurrentPotentialWinAmountCommand, Result>
+    IRequestHandler<ResetCurrentSportsbookWinAmountCommand, Result>
 {
     private readonly IPotentialWinLimitService potentialWinLimitService = potentialWinLimitService;
 
@@ -32,10 +32,10 @@ public class SportsbookPotentialWinLimitHandler(IPotentialWinLimitService potent
         return new SportsbookPotentialWinLimitViewModel(isOfferedCashService, message, potentialWinLimitPage, param);
     }
 
-    public async Task<Result> Handle(ResetCurrentPotentialWinAmountCommand request, CancellationToken cancellation)
+    public async Task<Result> Handle(ResetCurrentSportsbookWinAmountCommand request, CancellationToken cancellation)
     {
-        var result = await potentialWinLimitService.ResetCurrentPotentialWinAmount(
-            new ResetCurrentPotentialWinAmountParam(
+        var result = await potentialWinLimitService.ResetCurrentSportsbookWinAmount(
+            new ResetCurrentSportsbookWinAmountParam(
                 request.CustId,
                 request.Username,
                 request.ProductId,

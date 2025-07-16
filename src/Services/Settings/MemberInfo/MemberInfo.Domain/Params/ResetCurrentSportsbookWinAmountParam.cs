@@ -1,8 +1,8 @@
 namespace AlphaPlus.Settings.MemberInfo.Domain.Params
 {
-    public class ResetCurrentPotentialWinAmountParam
+    public class ResetCurrentSportsbookWinAmountParam
     {
-        public ResetCurrentPotentialWinAmountParam(
+        public ResetCurrentSportsbookWinAmountParam(
             int custId,
             string username,
             int productId,
