@@ -43,7 +43,6 @@ public class AuthorizationService(
         }
 
         var userSession = requestContext.UserSession;
-        var command = new GetAccountStatusCommand(userSession.CustId, userSession.SubAccId);
         return cacheService.GetOrCreateAsync(
             string.Format(AccountStatusCacheKey, userSession.CustId, userSession.SubAccId),
             cacheEntry =>
