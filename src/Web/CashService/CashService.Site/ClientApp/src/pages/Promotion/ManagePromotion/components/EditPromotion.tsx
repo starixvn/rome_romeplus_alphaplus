@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {
-    BackButtonComponent,
-    ButtonApplyComponent,
-    ButtonCancelComponent,
+  BackButtonComponent,
+  ButtonApplyComponent,
+  ButtonCancelComponent,
 } from '../../../../components/Buttons/index';
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../../../components/Message';
 import { TitleComponent } from '../../../../components/Title';
 import { TreeNodeOption } from '../../../../components/TreeSelect/TreeSelect';
 import {
-    ProductDropdown,
-    ProductSetting,
-    PromotionRequest,
+  Language,
+  ProductDropdown,
+  ProductSetting,
+  PromotionRequest,
 } from '../../../../services/interfaces/Promotion';
 import { promotionService } from '../../../../services/promotionAPI';
 import Information from './Form/Information';
@@ -22,12 +23,7 @@ interface EditPromotionProps {
   promotionId: number;
 }
 
-const PROMOTION_TYPES = [
-  { value: 0, label: 'Welcome Bonus' },
-  { value: 1, label: 'Reload Bonus' },
-  { value: 2, label: 'Cashback' },
-  { value: 3, label: 'Tournament' },
-];
+const PROMOTION_TYPES = [{ value: 1, label: 'Rebate on Turnover' }];
 
 export const LANGUAGES = [
   { key: 'en', label: 'English (default)', isDefault: true },
@@ -53,80 +49,79 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
-  const [isActive, setIsActive] = useState<boolean>(true);
-  const [promotionType, setPromotionType] = useState<number>(PROMOTION_TYPES[0].value);
-  const [period, setPeriod] = useState<[Date | null, Date | null]>([null, null]);
+  const [isActive, setIsActive] = useState<boolean>(true);  
+  const promotionTypeRef = useRef<number>(PROMOTION_TYPES[0].value);
+  const periodRef = useRef<[Date | null, Date | null]>([null, null]);
   const [productOptions, setProductOptions] = useState<ProductDropdown[]>([]);
   const [productSettings, setProductSettings] = useState<ProductSetting[]>([]);
   const [selectedProductIds, setSelectedProductIds] = useState<number[]>([]);
-  const [selectedProductCategories, setSelectedProductCategories] = useState<number[]>([]);
   const [activeLang, setActiveLang] = useState(LANGUAGES[0].key);
   const [promotionInfo, setPromotionInfo] = useState<Record<string, PromotionLangFields>>({});
+  const [languages, setLanguages] = useState<Language[]>([]);
 
   useEffect(() => {
-    const loadPromotionData = async () => {
-      try {
-        setLoading(true);
-        const promotionData = await promotionService.getPromotionById(promotionId);
-
-        if (promotionData) {
-          setPromotionType(parseInt(promotionData.promotionTypeName) || PROMOTION_TYPES[0].value);
-
-          if (promotionData.fromDate && promotionData.toDate) {
-            setPeriod([new Date(promotionData.fromDate), new Date(promotionData.toDate)]);
-          }
-
-          setIsActive(promotionData.enabled);
-
-          if (promotionData.productSettings) {
-            setProductSettings(promotionData.productSettings);
-            setSelectedProductIds(
-              promotionData.productSettings.map((p: ProductSetting) => p.productCategoryId)
-            );
-          }
-
-          if (promotionData.promotionInfo) {
-            const infoMap: Record<string, PromotionLangFields> = {};
-            promotionData.promotionInfo.forEach((info) => {
-              infoMap[info.language] = {
-                title: info.title || '',
-                banner: info.banner,
-                prevBanner: info.banner,
-                content: info.content || '',
-              };
-            });
-            setPromotionInfo(infoMap);
-          }
-        }
-      } catch (err: any) {
-        setError('Failed to load promotion data');
-        console.error('Error loading promotion:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadPromotionData();
-  }, [promotionId]);
-
-  useEffect(() => {
-    promotionService.getPromotionProducts().then((apiProducts) => {
+    promotionService.getPromotionProducts().then((apiProducts) => {      
       if (apiProducts && apiProducts.length > 0) {
         setProductOptions(apiProducts);
       }
     });
-  }, []);
 
-  const handleProductChange = (values: (string | number)[], highestParents: TreeNodeOption[]) => {
-    setSelectedProductIds(values.map((v) => v as number));
-    setSelectedProductCategories(highestParents.map((h) => h.value as number));
-  };
+    promotionService.getLanguages().then((apiLanguages: Record<string, string>) => {
+      if (apiLanguages) {
+        const transformedLanguages: Language[] = Object.entries(apiLanguages).map(([key, value]) => ({
+          key,
+          label: value,
+          isDefault: key === 'en'
+        }));
+        setLanguages(transformedLanguages);
+      }
 
-  const handleProductFieldChange = (productId: number, field: string, value: number | boolean) => {
-    setProductSettings((prev) =>
-      prev.map((p) => (p.productCategoryId === productId ? { ...p, [field]: value } : p))
-    );
-  };
+      const loadPromotionData = async () => {
+        try {
+          setLoading(true);
+          const promotionData = await promotionService.getPromotionById(promotionId);
+  
+          if (promotionData) {
+            promotionTypeRef.current = promotionData.promotionTypeId;
+            if (promotionData.fromDate && promotionData.toDate) {
+              periodRef.current = [new Date(promotionData.fromDate), new Date(promotionData.toDate)];
+            }
+  
+            setIsActive(promotionData.enabled);
+  
+            if (promotionData.productSettings) {
+              setProductSettings(promotionData.productSettings);
+              setSelectedProductIds(
+                promotionData.productSettings.map((p: ProductSetting) => p.productCategoryId)
+              );
+            }
+  
+            if (promotionData.promotionInfo) {
+              const infoMap: Record<string, PromotionLangFields> = {};
+              promotionData.promotionInfo.forEach((info) => {
+                infoMap[info.language] = {
+                  title: info.title || '',
+                  banner: info.banner,
+                  prevBanner: info.banner,
+                  content: info.content || '',
+                };
+              });
+              debugger;
+              setPromotionInfo(infoMap);
+            }
+          }
+        } catch (err: any) {
+          setError('Failed to load promotion data');
+          console.error('Error loading promotion:', err);
+        } finally {
+          setLoading(false);
+        }
+      };
+      loadPromotionData();
+    });
+    
+  }, [promotionId]);
+
 
   const handlePromotionInfoChange = (
     lang: string,
@@ -141,9 +136,9 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
     setError(null);
     setLoading(true);
 
-    const [fromDate, toDate] = period.map((date) => (date ? new Date(date) : null));
+    const [fromDate, toDate] = periodRef.current.map((date) => (date ? new Date(date) : null));
     const promotionData: PromotionRequest = {
-      promotionType,
+      promotionType: promotionTypeRef.current,
       fromDate,
       toDate,
       productSettings: productSettings,
@@ -194,24 +189,24 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
           <Information
             isActive={isActive}
             setIsActive={setIsActive}
-            promotionType={promotionType}
-            setPromotionType={setPromotionType}
-            period={period}
-            setPeriod={setPeriod}
+            promotionType={promotionTypeRef.current}
+            setPromotionType={(newPromotionType) => { promotionTypeRef.current = newPromotionType; }}
+            period={periodRef.current}
+            setPeriod={(newPeriod) => { periodRef.current = newPeriod; }}
             productOptions={convertProductToTreeNodeOption(productOptions)}
             selectedProductIds={selectedProductIds}
-            handleProductChange={handleProductChange}
+            handleProductChange={()=>{void(0)}}
             PROMOTION_TYPES={PROMOTION_TYPES}
           />
         </div>
         <ProductSettings
           productCategories={productSettings}
-          selectedProductCategories={selectedProductCategories}
-          handleProductFieldChange={handleProductFieldChange}
+          selectedProductCategories={[]}
+          handleProductFieldChange={()=> {void(0)}}
         />
 
         <PromotionInfo
-          languages={LANGUAGES}
+          languages={languages}
           value={promotionInfo}
           setValue={handlePromotionInfoChange}
           error={error || ''}

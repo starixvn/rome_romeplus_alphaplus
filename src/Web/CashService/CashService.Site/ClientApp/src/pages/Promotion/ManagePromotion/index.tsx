@@ -1,19 +1,20 @@
-﻿import React, { useState, useEffect } from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import 'tippy.js/dist/tippy.css';
 
-import { promotionService } from '../../../services/promotionAPI';
-import PromotionList from './components/PromotionList';
-import Filter from './components/Filter';
-import type { PromotionDetail } from '../../../services/interfaces/Promotion';
-import AddPromotion from './components/AddPromotion';
-import { TitleComponent } from '../../../components/Title';
+import { useTranslation } from 'react-i18next';
 import { ButtonFullComponent } from '../../../components/Buttons/index';
+import ConfirmPopup from '../../../components/ConfirmPopup';
+import { ResultMessageComponent, ResultType } from '../../../components/Message';
+import { TitleComponent } from '../../../components/Title';
+import type { PromotionDetail } from '../../../services/interfaces/Promotion';
+import { promotionService } from '../../../services/promotionAPI';
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
-import ConfirmPopup from '../../../components/ConfirmPopup';
-import { useTranslation } from 'react-i18next';
-import { ResultMessageComponent, ResultType } from '../../../components/Message';
+import AddPromotion from './components/AddPromotion';
+import EditPromotion from './components/EditPromotion';
+import Filter from './components/Filter';
+import PromotionList from './components/PromotionList';
 
 const Promotion: React.FC = () => {
   const [promotionType, setPromotionType] = useState<number>(0);
@@ -25,6 +26,8 @@ const Promotion: React.FC = () => {
   const [promotions, setPromotions] = useState<PromotionDetail[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showAddPromotion, setShowAddPromotion] = useState<boolean>(false);
+  const [showEditPromotion, setShowEditPromotion] = useState<boolean>(false);
+  const [editPromotionId, setEditPromotionId] = useState<number>(0);
   const [showConfirmDelete, setShowConfirmDelete] = useState<boolean>(false);
   const [deletePromotionId, setDeletePromotionId] = useState<number>(0);
   const { t } = useTranslation('promotion');
@@ -57,7 +60,8 @@ const Promotion: React.FC = () => {
 
   const handleEdit = (promotion: PromotionDetail) => {
     console.log(promotion);
-    setShowAddPromotion(true);
+    setEditPromotionId(promotion.promotionId);
+    setShowEditPromotion(true);
   };
 
   const handleDelete = async (promotionId: number) => {
@@ -104,7 +108,7 @@ const Promotion: React.FC = () => {
           confirmText={tGlobal('confirm')}
         />
       )}
-      {!showAddPromotion ? (
+      {!showAddPromotion && !showEditPromotion ? (
         <>
           <TitleComponent title="Manage Promotion" showTippy={false} />
           <div className="mb-[8px]">
@@ -127,10 +131,19 @@ const Promotion: React.FC = () => {
             }}
           />
         </>
-      ) : (
+      ) : showAddPromotion ? (
         <AddPromotion
           onClose={() => {
             setShowAddPromotion(false);
+            fetchPromotions();
+          }}
+        />
+      ) : (
+        <EditPromotion
+          promotionId={editPromotionId}
+          onClose={() => {
+            setShowEditPromotion(false);
+            setEditPromotionId(0);
             fetchPromotions();
           }}
         />
