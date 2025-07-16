@@ -1,45 +1,79 @@
 ﻿namespace AlphaPlus.CashService.API.Features.PendingWithdrawal.Services;
 
+using System.Diagnostics;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using Helpers;
 using Models.PaymentGateway;
+using Newtonsoft.Json;
+using Shared.Criteria;
+using Shared.Services;
 
 public interface IPaymentGatewayService
 {
-    Task<PaymentResponse<WithdrawalDto>> WithdrawalViaPaymentGateway(WithdrawalBodyRequest data);
+    Task<PaymentResponse> WithdrawalViaPaymentGateway(WithdrawalBodyRequest data, short custDbGroupId);
 }
 
-public class PaymentGatewayService(PaymentGatewayHttpClientHelper httpClient,
+public class PaymentGatewayService(
+    ICommonService commonService,
+    Fanex.Logging.ILogger logger,
+    PaymentGatewayHttpClientHelper httpClient,
     PaymentGatewayApiConfig apiConfig) : IPaymentGatewayService
 {
-    private static PaymentResponse<T> CreateErrorResponse<T>(string message, int? code = null, T data = null) where T : class
+    private static PaymentResponse CreateErrorResponse(string message, int? code = null)
     {
-        return new PaymentResponse<T>
+        return new PaymentResponse
         {
             Code = code ?? -1,
-            Message = message,
-            Data = data
+            Message = message
         };
     }
 
-    public async Task<PaymentResponse<WithdrawalDto>> WithdrawalViaPaymentGateway(WithdrawalBodyRequest data)
+    public async Task<PaymentResponse> WithdrawalViaPaymentGateway(WithdrawalBodyRequest data, short custDbGroupId)
     {
+        var withdrawalApi = "/api/PaymentGateway/Withdrawal";
         if (!apiConfig.Enabled)
         {
-            return CreateErrorResponse<WithdrawalDto>("Payment gateway is not enabled.");
+            return CreateErrorResponse("Payment gateway is not enabled.");
         }
 
         if (apiConfig.IsTestMode)
         {
             var testCode = Random.Shared.Next(0, 5);
-            var testData = new WithdrawalDto
-            {
-                TransId = data.TransId,
-                ProviderTransId = $"TEST Provider TransId-{data.TransId}"
-            };
-            return CreateErrorResponse("Payment gateway is in test mode. No transactions will be processed.", testCode, testCode == 0 ? testData : null);
+            return CreateErrorResponse("Payment gateway is in test mode. No transactions will be processed.", testCode);
         }
 
-        return await httpClient.PostAsync<WithdrawalBodyRequest, PaymentResponse<WithdrawalDto>>("/api/PaymentGateway/Withdrawal", data);
+        var response = new PaymentResponse { Code = 409 };
+        var stopwatch = Stopwatch.StartNew();
+        var requestBody = JsonConvert.SerializeObject(data);
+        var criteria = new AddRequestLogCommand(
+            data.AgentId,
+            data.CustId,
+            nameof(WithdrawalViaPaymentGateway),
+            withdrawalApi,
+            requestBody);
+        try
+        {
+            response = await httpClient.PostAsync<WithdrawalBodyRequest, PaymentResponse>(withdrawalApi, data);
+
+            criteria.StatusCode = response.Code;
+            criteria.ResponseBody = JsonConvert.SerializeObject(response);
+        }
+        catch (Exception ex)
+        {
+            criteria.StatusCode = ex is HttpRequestException { StatusCode: not null } httpEx ? (int)httpEx.StatusCode.Value : 500;
+            criteria.ResponseBody = ex.Message;
+
+            await logger.ErrorAsync(ex.Message, ex);
+        }
+        finally
+        {
+            stopwatch.Stop();
+            var duration = (int)stopwatch.Elapsed.TotalMilliseconds;
+            criteria.Duration = duration;
+
+            await commonService.WriteLogRequestResponse(criteria, custDbGroupId);
+        }
+
+        return response;
     }
 }

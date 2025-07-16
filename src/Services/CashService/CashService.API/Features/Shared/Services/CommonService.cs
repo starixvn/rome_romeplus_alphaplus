@@ -5,6 +5,8 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Features.Shared.Services;
 
+using Newtonsoft.Json;
+
 public interface ICommonService
 {
     Task<IEnumerable<string>> GetCountryCodes(string siteName);
@@ -14,6 +16,8 @@ public interface ICommonService
     Task WriteLogDBCommand(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel);
 
     Task<SetupCheckListModel> GetSetupCheckList(int custId);
+
+    Task WriteLogRequestResponse(AddRequestLogCommand requestLog, short custDbGroupId);
 }
 
 public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger logger) : ICommonService
@@ -59,6 +63,31 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
         var criteria = new GetSetupCheckListCriteria(custId);
         var result = await repository.GetAsync<SetupCheckListModel>(criteria);
         return result;
+    }
+
+    public async Task WriteLogRequestResponse(AddRequestLogCommand criteria, short custDbGroupId)
+    {
+        var isSuccess = await ExecuteNonQuery(criteria);
+
+        if (!isSuccess)
+        {
+            criteria.CustDBGroupId = custDbGroupId;
+            await ExecuteNonQuery(criteria);
+        }
+    }
+
+    private async Task<bool> ExecuteNonQuery(INonQueryCommand criteria)
+    {
+        try
+        {
+            await repository.ExecuteAsync(criteria);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            await logger.ErrorAsync($"{nameof(WriteLogRequestResponse)} failed. Key: {criteria.GetSettingKey()}, Criteria: {JsonConvert.SerializeObject(criteria)}", ex);
+            return false;
+        }
     }
 
     public async Task<bool> WriteLogDBCommandIntoDBLog(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)

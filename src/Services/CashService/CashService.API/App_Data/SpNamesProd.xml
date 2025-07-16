@@ -9,6 +9,8 @@
             <Mapping DataField="HasWithdrawal" ObjectProperty="HasWithdrawalMethods"></Mapping>
             <Mapping DataField="HasValidLineContact" ObjectProperty="HasLineID"></Mapping>
         </Setting>
+        <Setting Key="DBLOG_WriteLog_CashService_UserLog_API" SpName="WriteLog_CashService_UserLog_API" DbName="DBLOG.bodb_CustomerLog.wsv_CashService" />
+        <Setting Key="CustDb_0_WriteLog_CashService_UserLog_API" SpName="WriteLog_CashService_UserLog_API" DbName="DBCUST.bodb_CustomerLog.wsv_CashService" />
     </Function>
     <Function Name="Management Payments">
         <Setting Key="Age_CashService_PaymentProvider_Sel" SpName="Age_CashService_PaymentProvider_Sel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">

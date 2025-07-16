@@ -12,7 +12,9 @@ public class PaymentGatewayHttpClientHelper
     private readonly HttpClient httpClient;
     private readonly JsonSerializerOptions jsonOptions;
 
-    public PaymentGatewayHttpClientHelper(IHttpClientFactory httpClientFactory, PaymentGatewayApiConfig apiConfig)
+    public PaymentGatewayHttpClientHelper(IHttpClientFactory httpClientFactory,
+
+        PaymentGatewayApiConfig apiConfig)
     {
         httpClient = httpClientFactory.CreateClient(HttpClientName.ProxyHttpClient);
         httpClient.BaseAddress = new Uri(apiConfig.BaseUrl);
@@ -26,6 +28,7 @@ public class PaymentGatewayHttpClientHelper
     public async Task<TResponse> PostAsync<TRequest, TResponse>(string path, TRequest data)
     {
         var response = await httpClient.PostAsJsonAsync(path, data, jsonOptions);
+
         if (response.IsSuccessStatusCode)
         {
             return await response.Content.ReadFromJsonAsync<TResponse>(jsonOptions);

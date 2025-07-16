@@ -7,7 +7,6 @@ using Criteria;
 using Fanex.Data.Repository;
 using Models;
 using Models.PaymentGateway;
-using Newtonsoft.Json;
 using Transactions.Enum;
 
 public interface IPendingWithdrawalService
@@ -143,27 +142,20 @@ public class PendingWithdrawalService(
                 AccountNumber = accountNumber
             }
         };
-        try
+
+        var response = await paymentGateway.WithdrawalViaPaymentGateway(model, (short)command.CustDBGroupId);
+        if (response.IsSuccessful)
         {
-            var response = await paymentGateway.WithdrawalViaPaymentGateway(model);
-            Console.Write(JsonConvert.SerializeObject(response));
-            if (response.IsSuccessful)
-            {
-                result.Code = response.Code;
-                result.Message = string.Empty;
-            }
-            else
-            {
-                await UpdateWithdrawalStatusAsync(command, result.Code == 4 ? (int)TransactionStatus.ProviderRejected : 0);
-                result.Code = response.Code == 4 ? 410 : 411;
-                result.Message = response.Message;
-            }
+            result.Code = response.Code;
+            result.Message = string.Empty;
         }
-        catch (Exception e)
+        else
         {
-            result.Code = 409;
-            result.Message = e.Message;
+            await UpdateWithdrawalStatusAsync(command, response.Code == 4 ? (int)TransactionStatus.ProviderRejected : 0);
+            result.Code = response.Code == 4 ? 410 : 411;
+            result.Message = response.Message;
         }
+
         return result;
     }
 

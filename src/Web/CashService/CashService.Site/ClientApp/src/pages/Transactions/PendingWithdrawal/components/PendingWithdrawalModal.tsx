@@ -169,7 +169,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
       setResultMessage({ type: 'warning', message: response.message });
       setTimeout(() => {
         onClose();
-      }, 3000);
+      }, 5000);
     } else {
       setIsSubmitting(false);
       setResultMessage({ type: 'error', message: response.message });
