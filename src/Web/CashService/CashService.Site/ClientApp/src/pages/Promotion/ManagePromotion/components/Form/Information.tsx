@@ -32,7 +32,7 @@ const Information: React.FC<InformationProps> = ({
 }) => (
   <>
     <MediumTitleComponent text="Current Promotion"/>
-    <p className="my-[8px] text-[12px] font-semibold">
+    <p className="my-[8px]">
       Do you want to keep your promotion active? You can only run one promotion at a time.
     </p>
     <div
@@ -45,12 +45,12 @@ const Information: React.FC<InformationProps> = ({
 
     <MediumTitleComponent text="Promotion Settings" isShowIcon={false} />
     <div className="flex items-center mb-[8px]">
-      <p className="text-[12px] text-[#333333] font-semibold">Promotion runs on a weekly basis.</p>
+      <p className="">Promotion runs on a weekly basis.</p>
       <span className="ml-[4px]" title="Promotion runs on a weekly basis."/>
     </div>
 
     <div className="flex flex-wrap w-full">
-      <div className="w-[250px] mr-[12px] mb-[12px]">
+      <div className="w-[190px] mr-[12px] mb-[12px]">
         <LabelTitleComponent text="Promotion Type" required={true} isShowIcon={false} />        
         <CustomDropdown
           options={PROMOTION_TYPES}
@@ -60,7 +60,7 @@ const Information: React.FC<InformationProps> = ({
         />
       </div>
 
-      <div className="w-[250px] mr-[12px] mb-[12px]">
+      <div className="w-[190px] mr-[12px] mb-[12px]">
         <LabelTitleComponent text="Period" required={true} />
         <DateRangePickerComponent
           value={period}
@@ -71,7 +71,7 @@ const Information: React.FC<InformationProps> = ({
         />
       </div>
 
-      <div className="w-[250px] mr-[12px] mb-[12px]">
+      <div className="w-[190px] mr-[12px] mb-[12px]">
         <LabelTitleComponent text="Product" required={true} isShowIcon={false} />
         <TreeSelect
           options={productOptions}

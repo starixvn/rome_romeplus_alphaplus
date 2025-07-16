@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { IconArrowDown, IconTriangle } from '../Icons';
 
 export interface TreeNodeOption {
   label: string;
@@ -244,7 +245,7 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
           type="checkbox"
           checked={allChecked}
           readOnly
-          style={{ marginRight: 6, marginLeft: 16, width: 20, height: 20 }}
+          style={{ marginRight: 6, marginLeft: 16, width: 13, height: 13 }}
         />
         <span>{t('selectAll')}</span>
       </div>
@@ -264,32 +265,19 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
             checked = value.includes(node.value);
           }
           return (
-            <li key={String(node.value)} style={{ marginBottom: 0 }}>
+            <li key={String(node.value)} style={{ marginBottom: 0 }} className="relative">
               <div
+              className='flex items-center cursor-pointer user-select-none pl-[8px] h-[28px] hover:bg-[#1967D2] justify-between hover:text-[#fff]'
                 style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  minHeight: 26,
-                  maxHeight: 32,
-                  fontSize: 13,
-                  cursor: 'pointer',
-                  border: 'none',
-                  background: 'none',
-                  outline: 'none',
-                  userSelect: 'none',
-                  borderRadius: 0,
-                  transition: 'background 0.2s',
-                  paddingLeft: level * 25,
-                  justifyContent: 'space-between',
+                  paddingLeft: level * 25,                 
                 }}
                 tabIndex={-1}
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => handleCheck(node)}
-                onMouseEnter={(e) => (e.currentTarget.style.background = '#F5F5F5')}
-                onMouseLeave={(e) => (e.currentTarget.style.background = '')}
+              
               >
                 <span style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
-                  <span style={{ width: 16 }}>
+                  <span>
                     {isAllowCollapseExpand && hasChildren && (
                       <span
                         style={{ cursor: 'pointer', fontSize: 10, color: '#888' }}
@@ -302,14 +290,16 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
                       </span>
                     )}
                     {!isAllowCollapseExpand && hasChildren && (
-                      <span style={{ fontSize: 13, color: '#888', marginLeft: 0 }}>▼</span>
+                      <span className='block w-[16px] text-center'>
+                        <IconTriangle className='inline-block' />
+                      </span>
                     )}
                   </span>
                   <input
                     type="checkbox"
                     checked={checked}
                     readOnly
-                    style={{ marginRight: 6, width: 20, height: 20 }}
+                    style={{ marginRight: 6, width: 13, height: 13 }}
                   />
                   <span>{node.label}</span>
                 </span>
@@ -324,27 +314,14 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
 
   return (
     <div ref={containerRef} style={{ position: 'relative', minWidth: 180, width: '100%' }}>
-      <div
+      <div className="flex items-center control-field pr-[20px]!"
         ref={inputRef}
-        tabIndex={0}
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          cursor: 'pointer',
-          userSelect: 'none',
-          paddingRight: 32,
-          paddingLeft: 8,
-          border: '1px solid #dfdfdf',
-          borderRadius: 3,
-          height: 28,
-          background: '#fff',
-        }}
+        tabIndex={0}     
         onClick={() => setDropdownOpen((open) => !open)}
       >
         <span
           style={{
-            flex: 1,
-            color: '#222',
+            flex: 1,           
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
@@ -353,41 +330,17 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
         >
           {displayValue}
         </span>
-        <span
-          style={{
-            position: 'absolute',
-            right: 8,
-            fontSize: 10,
-            top: '50%',
-            transform: 'translateY(-50%)',
-            color: '#888',
-          }}
-        >
-          {dropdownOpen ? '▲' : '▼'}
+        <span>
+          {
+          dropdownOpen ? <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] transform-[rotate(180deg)] fill-[#333] dark:fill-[#ededed]  " /> : <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />}
         </span>
         <span style={{ marginLeft: 8, color: '#1976d2', fontWeight: 500, fontSize: 13 }}>
           {value.length > 0 ? `(${value.length})` : ''}
         </span>
       </div>
       {dropdownOpen && (
-        <div
-          style={{
-            position: 'absolute',
-            top: 'calc(100% + 2px)',
-            left: 0,
-            zIndex: 100,
-            minWidth: 180,
-            width: '100%',
-            background: '#fff',
-            border: '1px solid #dfdfdf',
-            borderRadius: 3,
-            boxShadow: 'none',
-            padding: '0 5px',
-            marginTop: 0,
-            fontSize: 15,
-          }}
-        >
-          <div style={{ padding: '8px 0 0 0', borderBottom: '1px solid #F0F0F0' }}>
+        <div className='absolute top-[calc(100%+2px)] left-0 z-[100] min-w-[180px] w-full bg-[var(--background-control)] border border-[var(--border-control)] rounded-[3px] box-shadow-none pl-[5px]   font-size-[15px]'>
+          <div style={{ padding: '8px 5px 4px 0' }}>
             <input
               type="text"
               value={search}

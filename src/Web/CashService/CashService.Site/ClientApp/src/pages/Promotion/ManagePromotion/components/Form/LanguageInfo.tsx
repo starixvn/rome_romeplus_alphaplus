@@ -87,7 +87,7 @@ export const ContentField: React.FC<{
     <div className="border border-[var(--border-control)] rounded">
       <textarea
         key={`content-${lang}`}
-        className="w-full min-h-[120px] p-2 resize-y border-0 focus:ring-0 focus:outline-none"
+        className="w-full min-h-[120px] p-2 resize-y border-0 focus:ring-0 focus:outline-none block"
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder=""

@@ -259,3 +259,8 @@ export const IconTick = ({ className }: { className?: string }) => (
     <path d="M12.8065 24L5 16.4301L7.12903 14.3656L12.8065 19.6989L24.871 8L27 10.0645L12.8065 24Z" />
   </svg>
 )
+export const IconTriangle = ({ className }: { className?: string }) => (
+  <svg className={`w-[8px] h-[5px] fill-[#444] dark:fill-[#ededed] ${className}`} viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0L4 5L8 0H0Z"  />
+</svg>
+)

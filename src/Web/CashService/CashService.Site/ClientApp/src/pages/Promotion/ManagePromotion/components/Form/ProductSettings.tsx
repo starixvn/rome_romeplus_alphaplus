@@ -17,16 +17,15 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
     {productCategories.map((product) => (
       <div
         key={product.productCategoryId}
-        className="flex flex-nowrap gap-[16px] mb-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full"
-      >
-        <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+        className="flex flex-wrap w-full">
+        <div className="w-[190px] mr-[12px] mb-[12px]">
           <LabelTitleComponent text={`${product.productCategoryName} Percentage`} required />
           <div className="flex items-center relative">
             <input
               type="number"
               min="0"
               step="0.01"
-              className={`control-field pr-[32px] ${!selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
+              className={`control-field pr-[41px]! ${!selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
               value={product.percentage}
               disabled={!selectedProductCategories.includes(product.productCategoryId)}
               onChange={(e) =>
@@ -43,7 +42,7 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
           </div>
         </div>
 
-        <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+        <div className="w-[190px] mr-[12px] mb-[12px]">
           <LabelTitleComponent text="Min Turnover" required={true} />
           <input
             type="number"
@@ -61,7 +60,7 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
           />
         </div>
 
-        <div className="w-[240px] pt-[4px] max-[768px]:w-[48%]">
+        <div className="w-[190px] mr-[12px] mb-[12px]">
           <div className="flex justify-between items-center">
             <LabelTitleComponent text="Max Payout" required={true} />
             <div className="flex items-center text-[12px]">

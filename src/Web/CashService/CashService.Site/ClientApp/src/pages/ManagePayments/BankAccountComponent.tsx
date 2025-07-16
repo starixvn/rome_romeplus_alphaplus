@@ -337,8 +337,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
               </li>
             </ul>
             <div className="pt-[8px]">
-              <ErrorMessageComponent message={error} />
-              <SuccessMessageComponent message={successMessage} />
+              <ErrorMessageComponent message={error} className="mb-[10px]" />
+              <SuccessMessageComponent message={successMessage} className="mb-[10px]" />
             </div>
             {loading && <Loading />}
             {!loading && banks && banks.length > 0 && (
