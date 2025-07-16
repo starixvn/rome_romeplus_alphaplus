@@ -297,13 +297,10 @@ public class WinLossDetailHandler(
     {
         var products = await base.GetProducts(message);
 
-        if (Core.Configurations.AppSettings.IsOfferedCashService(message.Site))
-        {
-            var productExtras = await cashFeeService.GetExtraProduct(message.CustId, message.MinDate, message.Language);
-            return products.Concat(productExtras);
-        }
+        var cashServiceSites = Core.Configurations.AppSettings.CashServiceOfferedSites.JoinWithComma();
+        var productExtras = await cashFeeService.GetExtraProduct(message.CustId, cashServiceSites, message.MinDate, message.Language);
 
-        return products;
+        return products.Concat(productExtras);
     }
 
     public async Task<CashFeeViewModel> Handle(CashFeeQuery message, CancellationToken cancellationToken)

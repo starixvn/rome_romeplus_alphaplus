@@ -99,13 +99,10 @@ public class WinLossHandler(
     {
         var products = await base.GetProducts(message);
 
-        if (Core.Configurations.AppSettings.IsOfferedCashService(message.Site))
-        {
-            var productExtras = await cashFeeService.GetExtraProduct(message.CustId, message.MinDate, message.Language);
-            return products.Concat(productExtras);
-        }
-
-        return products;
+        var cashServiceSites = Core.Configurations.AppSettings.CashServiceOfferedSites.JoinWithComma();
+        var productExtras = await cashFeeService.GetExtraProduct(message.CustId, cashServiceSites, message.MinDate, message.Language);
+       
+        return products.Concat(productExtras);
     }
 
     public async Task<ExcelFileViewModel> Handle(CashFeeExcelQuery message, CancellationToken cancellationToken)
@@ -119,8 +116,8 @@ public class WinLossHandler(
 
         var cashFeeExcelParam = new CashFeeExcelParam
         {
-            FromDate =  message.FromDate,
-            ToDate =  message.ToDate,
+            FromDate = message.FromDate,
+            ToDate = message.ToDate,
             CustName = message.CustName
         };
 

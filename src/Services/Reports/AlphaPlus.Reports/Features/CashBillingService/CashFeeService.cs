@@ -9,7 +9,7 @@ namespace AlphaPlus.Reports.Features.CashBillingService;
 
 public interface ICashFeeService
 {
-    Task<IEnumerable<Product>> GetExtraProduct(int custId, DateTime minReportDate, string language);
+    Task<IEnumerable<Product>> GetExtraProduct(int custId, string cashServiceSites, DateTime minReportDate, string language);
 
     Task<CashFeeModel> GetCashFee(CashFeeParam param);
 }
@@ -27,14 +27,14 @@ ICacheRefService cacheRefService) : ICashFeeService
     private readonly IMemoryCache cacheService = cacheService;
     private readonly ICacheRefService cacheRefService = cacheRefService;
 
-    public async Task<IEnumerable<Product>> GetExtraProduct(int custId, DateTime minReportDate, string language)
+    public async Task<IEnumerable<Product>> GetExtraProduct(int custId, string cashServiceSites, DateTime minReportDate, string language)
     {
         var products = await cacheService.GetOrCreateAsync(
             $"{ExtraProductsCacheKey}-{custId}-{language}",
             async cacheEntry =>
             {
                 cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(ExpiredTimeOfferedProductMinutes));
-                var products = await repository.FetchAsync<Product>(new ExtraProductCriteria(custId));
+                var products = await repository.FetchAsync<Product>(new ExtraProductCriteria(custId, cashServiceSites));
 
                 return products
                     .Where(product => !product.IsHide)
