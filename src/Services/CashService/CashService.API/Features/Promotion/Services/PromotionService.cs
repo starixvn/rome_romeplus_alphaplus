@@ -7,7 +7,6 @@ using Models;
 using Newtonsoft.Json;
 using Shared.Models;
 using Shared.Requests;
-using Shared.Services;
 
 public interface IPromotionService
 {
@@ -33,7 +32,7 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
         {
             product.ProductName = cacheRef.GetProductName(product.ProductId, language);
             product.ProductCategoryName = cacheRef.GetProductName(product.ProductCategoryId, language);
-        }   
+        }
         return products;
     }
 
@@ -58,7 +57,7 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
                                                     ProductName = cacheRef.GetProductName(Convert.ToInt32(p), request.Language)
                                                 }).ToList();
                 productSetting.ProductCategoryName = cacheRef.GetProductName(productSetting.ProductCategoryId, request.Language);
-            }            
+            }
         }
 
         return model.FirstResultSet;

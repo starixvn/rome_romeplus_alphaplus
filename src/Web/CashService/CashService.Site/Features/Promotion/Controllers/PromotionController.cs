@@ -36,8 +36,8 @@ public class PromotionController(
 
     public IActionResult Report()
     {
-        var request = new BaseActionRequest()
-            .SetLimitedDateToShowInfo(userSession);
+        var request = new BaseActionRequest();
+        request.SetLimitedDateToShowInfo(userSession);
 
         return View(request.LimitedDateToShowInfo);
     }
@@ -51,7 +51,7 @@ public class PromotionController(
     public async Task<IActionResult> ExportMainReport(GetPromotionReportRequest request)
     {
         var reportData = await GetPromotionReport(request);
-        var excelFileViewModel = promotionReportWorkbook.BuildExcelFile(reportData);
+        var excelFileViewModel = promotionReportWorkbook.BuildExcelFile(request, reportData);
 
         return File(excelFileViewModel.Content, excelFileViewModel.ContentType, excelFileViewModel.Name);
     }
@@ -66,9 +66,7 @@ public class PromotionController(
 
     private Task<PromotionReport[]> GetPromotionReport(GetPromotionReportRequest request)
     {
-        request
-            .SetUserSession(userSession)
-            .SetLimitedDateToShowInfo(userSession);
+        request.SetUserSession(userSession);
         if (!request.IsValid())
         {
             return Task.FromResult(Array.Empty<PromotionReport>());
@@ -81,9 +79,7 @@ public class PromotionController(
 
     private Task<PromotionDetailsReport> GetPromotionDetailsReport(GetPromotionDetailsReportRequest request)
     {
-        request
-            .SetUserSession(userSession)
-            .SetLimitedDateToShowInfo(userSession);
+        request.SetUserSession(userSession);
         if (!request.IsValid())
         {
             return Task.FromResult(new PromotionDetailsReport(
@@ -107,8 +103,8 @@ public class PromotionController(
 
     public async Task<Dictionary<string, string>> GetLanguages(CancellationToken cancellationToken)
     {
-        var fullLanguages = AppSettings.IsSiteLabel789y? LanguageConstant.CodeNames : LanguageConstant.CodeKeysWithoutCN3;
-        
+        var fullLanguages = AppSettings.IsSiteLabel789y ? LanguageConstant.CodeNames : LanguageConstant.CodeKeysWithoutCN3;
+
         return await Task.FromResult(fullLanguages);
     }
 
@@ -132,7 +128,7 @@ public class PromotionController(
                 ProductCategoryName = g.First().ProductCategoryName,
                 Products = g.ToList()
             });
- 
+
         return Json(productCategoryList);
     }
 
@@ -141,7 +137,7 @@ public class PromotionController(
     {
         request
             .SetUserSession(userSession);
-            Console.WriteLine(JsonConvert.SerializeObject(request));
+        Console.WriteLine(JsonConvert.SerializeObject(request));
         if (request.IsValid())
         {
             var url = $"/api/promotions";

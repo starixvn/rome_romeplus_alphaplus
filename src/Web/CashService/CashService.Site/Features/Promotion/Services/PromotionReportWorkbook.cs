@@ -7,12 +7,13 @@ using AlphaPlus.Shared.AppResources.CashServices;
 using AlphaPlus.Shared.AppResources.Common;
 using AlphaPlus.Shared.AppResources.Main;
 using static ONEbook.SpreadSheets.Column;
+using AlphaPlus.CashService.Site.Features.Promotion.Requests;
 
 namespace AlphaPlus.CashService.Site.Features.Promotion.Services;
 
 public interface IPromotionReportWorkbook
 {
-    ExcelFileViewModel BuildExcelFile(IEnumerable<PromotionReport> reportData);
+    ExcelFileViewModel BuildExcelFile(GetPromotionReportRequest request, IEnumerable<PromotionReport> reportData);
 }
 
 public class PromotionReportWorkbook(IWebHostEnvironment webHostEnvironment) :
@@ -21,11 +22,10 @@ public class PromotionReportWorkbook(IWebHostEnvironment webHostEnvironment) :
 {
     private int number = 1;
 
-    public ExcelFileViewModel BuildExcelFile(IEnumerable<PromotionReport> reportData)
+    public ExcelFileViewModel BuildExcelFile(GetPromotionReportRequest request, IEnumerable<PromotionReport> reportData)
     {
-        var fromDate = DateTime.Today.AddDays(-7).ToShortDateWithSlash();
-        var toDate = DateTime.Today.ToShortDateWithSlash();
-        var username = "SUPERMAY690200";
+        var fromDate = request.FromDate.ToShortDateWithSlash();
+        var toDate = request.ToDate.ToShortDateWithSlash();
         var fileContent = UseTemplate(
             new TemplateInfo(
                 GetExcelTemplatePath("PromotionReport"),
@@ -42,17 +42,17 @@ public class PromotionReportWorkbook(IWebHostEnvironment webHostEnvironment) :
             .Body(reportData, GetRowMapper())
             .ExportToBytes();
 
-        return new ExcelFileViewModel($"{CashServicesResx.PromotionReport}-{username}-{fromDate}-{toDate}", fileContent);
+        return new ExcelFileViewModel($"{CashServicesResx.PromotionReport}-{request.Username}-{fromDate}-{toDate}", fileContent);
     }
 
     private Mapper<PromotionReport> GetRowMapper()
         => new Mapper<PromotionReport>()
         .Map(A, p => number++)
         .Map(B, p => p.PromotionTitle)
-        .Map(C, p => p.PromotionType)
-        .Map(D, p => p.DateRange)
+        .Map(C, p => p.PromotionTypeName)
+        .Map(D, p => p.Period)
         .Map(E, p => p.TotalRequest)
         .Map(F, p => $"{p.TotalApproved}\n{p.TotalRejected}")
-        .Map(G, p => p.TotalBonus)
-        .Map(H, p => p.Status ? Resources.Enabled : Resources.Disabled);
+        .Map(G, p => p.TotalAmount)
+        .Map(H, p => p.Enabled ? Resources.Enabled : Resources.Disabled);
 }

@@ -252,4 +252,7 @@
   <data name="PaymentProviderUnavailable" xml:space="preserve">
     <value>Payment provider is currently unavailable. Please try again later.</value>
   </data>
+  <data name="PromotionType_1" xml:space="preserve">
+    <value>Rebate on Turnover</value>
+  </data>
 </root>

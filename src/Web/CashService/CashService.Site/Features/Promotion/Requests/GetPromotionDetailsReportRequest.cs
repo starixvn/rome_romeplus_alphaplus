@@ -1,6 +1,7 @@
 using System.Data.SqlTypes;
 using AlphaPlus.CashService.Site.Features.Shared.Requests;
 using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.CashService.Site.Features.Promotion.Requests;
 
@@ -15,6 +16,12 @@ public class GetPromotionDetailsReportRequest : BaseActionRequest
     {
         FromDate = FromDate.GetGreaterDate(LimitedDateToShowInfo);
         return SqlDateTime.MinValue.Value < FromDate && FromDate <= ToDate && PromotionId > 0;
+    }
+
+    public override void SetUserSession(IUserSession userSession)
+    {
+        base.SetUserSession(userSession);
+        SetLimitedDateToShowInfo(userSession);
     }
 
     public string ToQueryString()

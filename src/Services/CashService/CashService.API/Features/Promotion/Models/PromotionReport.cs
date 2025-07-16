@@ -1,5 +1,3 @@
-using System.Text.Json.Serialization;
-
 namespace AlphaPlus.CashService.API.Features.Promotion.Models;
 
 public class PromotionReport
@@ -8,16 +6,15 @@ public class PromotionReport
 
     public string PromotionTitle { get; init; }
 
-    public string PromotionType { get; init; }
+    public byte PromotionType { get; init; }
 
-    [JsonIgnore]
     public DateTime FromDate { get; init; }
 
-    [JsonIgnore]
     public DateTime ToDate { get; init; }
 
-    public string DateRange
-        => $"{FromDate.ToString("MM/dd/yyyy")} - {ToDate.ToString("MM/dd/yyyy")}";
+    public bool Enabled { get; init; }
+
+    public bool IsSoftDeleted { get; init; }
 
     public int TotalRequest { get; init; }
 
@@ -25,7 +22,5 @@ public class PromotionReport
 
     public int TotalRejected { get; init; }
 
-    public decimal TotalBonus { get; init; }
-
-    public bool Status { get; init; }
+    public decimal TotalAmount { get; init; }
 }

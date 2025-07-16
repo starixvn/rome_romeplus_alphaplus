@@ -1,10 +1,7 @@
 import React, { ForwardedRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import NoRecordFoundComponent from '../../../../components/NoRecordFoundComponent';
-import {
-  StatusDisabledComponent,
-  StatusCompletedComponent,
-} from '../../../../components/Status';
+import { StatusDisabledComponent, StatusCompletedComponent } from '../../../../components/Status';
 import { formatNumber } from '../../../../utils/numberFormatting';
 
 interface MainReportTableProps {
@@ -14,7 +11,11 @@ interface MainReportTableProps {
 
 function MainReportStatusRow({ status }: { status: boolean }) {
   const { t: tGlobal } = useTranslation('global');
-  return status ? <StatusCompletedComponent text={tGlobal('enabled')} /> : <StatusDisabledComponent />;
+  return status ? (
+    <StatusCompletedComponent text={tGlobal('enabled')} />
+  ) : (
+    <StatusDisabledComponent />
+  );
 }
 
 function MainReportRow({
@@ -49,16 +50,16 @@ function MainReportRow({
           {data.promotionTitle}
         </a>
       </td>
-      <td>{data.promotionType}</td>
-      <td>{data.dateRange}</td>
+      <td>{data.promotionTypeName}</td>
+      <td>{data.period}</td>
       <td className="text-right">{formatNumber(data.totalRequest)}</td>
       <td className="text-right">
         <div>{formatNumber(data.totalApproved)}</div>
         <div className="text-[#CC0000] dark:text-[#F23D3D]">{formatNumber(data.totalRejected)}</div>
       </td>
-      <td className="text-right">{formatNumber(data.totalBonus)}</td>
+      <td className="text-right">{formatNumber(data.totalAmount)}</td>
       <td>
-        <MainReportStatusRow status={data.status} />
+        <MainReportStatusRow status={data.enabled} />
       </td>
     </tr>
   );
@@ -83,7 +84,7 @@ const MainReportTable = React.forwardRef<HTMLTableElement, MainReportTableProps>
                 {t('promotion:table.promotionTitle')}
               </th>
               <th>{t('promotion:table.promotionType')}</th>
-              <th>{t('global:dateRange')}</th>
+              <th>{t('promotion:table.period')}</th>
               <th>{t('promotion:table.totalRequest')}</th>
               <th>
                 <div>{t('promotion:table.totalApproved')}</div>

@@ -11,7 +11,6 @@ using Fanex.RemotingRef;
 using Features.MemberSites.Services;
 using Features.Payments.Services;
 using Features.PendingDeposit.Services;
-using Features.PendingWithdrawal.Services;
 using Features.Promotion.Services;
 using Features.Shared.Services;
 using Features.Transactions.Services;
@@ -36,6 +35,7 @@ public static class DependencyInjectionExtensions
         services.AddScoped<IPromotionService, PromotionService>();
         services.AddScoped<IBankService, BankService>();
         services.AddScoped<IPaymentGatewayService, PaymentGatewayService>();
+        services.AddScoped<IPromotionReportService, PromotionReportService>();
 
         return services;
     }

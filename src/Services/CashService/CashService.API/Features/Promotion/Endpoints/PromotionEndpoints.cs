@@ -79,12 +79,11 @@ public static class PromotionEndpoints
             var result = await service.DeletePromotion(promotionId, request);
             return Results.Ok(result);
         });
-        group.MapGet("/reports", ([AsParameters] GetPromotionReportRequest request, IPromotionService service) =>
-        {
-            return TypedResults.Ok(FakeReport());
-        }).WithName("PromotionReport");
+        group.MapGet("/reports", async ([AsParameters] GetPromotionReportRequest request, IPromotionReportService service) =>
+            Results.Ok(await service.GetMainReport(request))
+        ).WithName("PromotionReport");
 
-        group.MapGet("/reports/{id}", (int id, [AsParameters] GetPromotionDetailsReportRequest request, IPromotionService service) =>
+        group.MapGet("/reports/{id}", (int id, [AsParameters] GetPromotionDetailsReportRequest request, IPromotionReportService service) =>
         {
             var details = new[]
             {
@@ -163,45 +162,5 @@ public static class PromotionEndpoints
                 details);
             return TypedResults.Ok(reports);
         }).WithName("PromotionDetailsReport");
-    }
-
-    private static IEnumerable<PromotionReport> FakeReport()
-    {
-        var reports = new List<PromotionReport>();
-        var random = new Random();
-        var promotionTypes = new[] { "Discount", "Cashback", "Bonus", "Rebate", "Loyalty" };
-        var titles = new[] { "Sale", "Special", "Deal", "Promotion", "Offer", "Bonanza", "Festival", "Extravaganza", "Event", "Campaign" };
-        var prefixes = new[] { "Holiday", "Summer", "Winter", "Spring", "Fall", "New Year", "Christmas", "Easter", "Black Friday", "Cyber Monday", "Weekend", "Monthly", "Annual", "Seasonal", "Limited Time" };
-        var statuses = new[] { false, true, true, true, true, false, false }; // Weighted to have more status 1 items
-
-        for (int i = 1; i <= 100; i++)
-        {
-            // Generate random dates within 2023
-            var fromMonth = random.Next(1, 12);
-            var fromDay = random.Next(1, 28);
-            var durationDays = random.Next(7, 31);
-            var fromDate = new DateTime(2023, fromMonth, fromDay);
-            var toDate = fromDate.AddDays(durationDays);
-
-            var totalRequest = random.Next(50, 300);
-            var totalApproved = random.Next(30, totalRequest);
-            var totalRejected = totalRequest - totalApproved;
-
-            reports.Add(new PromotionReport
-            {
-                PromotionId = i,
-                PromotionTitle = $"{prefixes[random.Next(prefixes.Length)]} {titles[random.Next(titles.Length)]} {random.Next(1, 10)}",
-                PromotionType = promotionTypes[random.Next(promotionTypes.Length)],
-                FromDate = fromDate,
-                ToDate = toDate,
-                TotalRequest = totalRequest,
-                TotalApproved = totalApproved,
-                TotalRejected = totalRejected,
-                TotalBonus = Math.Round(random.Next(1000, 15000) * 1.0m, 2),
-                Status = statuses[random.Next(statuses.Length)]
-            });
-        }
-
-        return reports;
     }
 }
