@@ -26,6 +26,11 @@ public partial class WinLossLimitController(IMediator mediator, IUserSession use
     [ValidateAntiForgeryToken]
     public async Task<JsonResult> ResetCurrentWinAmount(ResetCurrentWinAmountCommand command)
     {
+        if(!userSession.IsAgent || userSession.IsInternal)
+        {
+            return Json(new { isSuccessful = false, message = "Unauthorized" });
+        }
+
         var result = await mediator.Send(command);
         return Json(result);
     }
@@ -34,6 +39,11 @@ public partial class WinLossLimitController(IMediator mediator, IUserSession use
     [ValidateAntiForgeryToken]
     public async Task<JsonResult> ResetCurrentSportsbookWinAmount(ResetCurrentSportsbookWinAmountCommand command)
     {
+        if(!userSession.IsAgent || userSession.IsInternal)
+        {
+            return Json(new { isSuccessful = false, message = "Unauthorized" });
+        }
+        
         var result = await mediator.Send(command);
         return Json(result);
     }

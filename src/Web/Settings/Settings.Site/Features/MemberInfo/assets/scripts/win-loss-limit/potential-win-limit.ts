@@ -1,7 +1,5 @@
 /// <reference path="../components/single-selection-dropdown.ts" />
 /// <reference path="../components/pager.ts" />
-/// <reference path="../../../typings/globals/jquery/index.d.ts" />
-/// <reference path="../../../typings/globals/jquery.blockui/index.d.ts" />
 'use strict';
 
 interface Window {

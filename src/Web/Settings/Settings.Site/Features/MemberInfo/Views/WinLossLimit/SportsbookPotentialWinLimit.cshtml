@@ -114,7 +114,10 @@
                     {
                         <tr>
                             <td class="text-center">@index</td>
-                            <td class="text-left" title="@winLossLimitDetail.Username">@winLossLimitDetail.Username</td>
+                            <td class="text-left" title="@winLossLimitDetail.Username">
+                                @winLossLimitDetail.Username
+                                @(winLossLimitDetail.IsCashMember ? Html.Raw("<span class='icon-cashservice icon-cashservice-common'></span>"): string.Empty)
+                            </td>
                             <td class="text-center">
                                 @SportsbookPotentialWinLimitViewModel.GetStatusText(winLossLimitDetail.Status)</td>
                             <td class="text-center">@(winLossLimitDetail.IsProblemAccount ? Resources.Yes : Resources.No2)</td>
