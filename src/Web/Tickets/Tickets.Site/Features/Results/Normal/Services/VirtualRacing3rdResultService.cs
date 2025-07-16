@@ -38,7 +38,7 @@ public class VirtualRacing3rdResultService(
             HighlightWinnerTeam = true
         };
 
-        return resultEngineAdapter.ExcelParser(racingList.ToList(), resultSetting);
+        return resultEngineAdapter.ExcelParser(racingList, resultSetting);
     }
 
     public async Task<ResultDetailModel> GetResultDetails(NormalResultDetailsQuery message)

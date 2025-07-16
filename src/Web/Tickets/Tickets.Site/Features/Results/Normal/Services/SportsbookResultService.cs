@@ -50,10 +50,6 @@ public class SportsbookResultService(
     public async Task<MemoryStream> ExportExcel(ExcelNormalResultQuery message)
     {
         var results = await GetResults(message);
-        if (results == null || !results.Any())
-        {
-            return null;
-        }
 
         var exportExcelSetting = new ResultSetting
         {
@@ -65,7 +61,7 @@ public class SportsbookResultService(
             HighlightWinnerTeam = true
         };
 
-        return resultEngineAdapter.ExcelParser(results.ToList(), exportExcelSetting);
+        return resultEngineAdapter.ExcelParser(results, exportExcelSetting);
     }
 
     private Task<IEnumerable<Sportsbook>> GetResults(NormalResultQuery message)

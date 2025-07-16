@@ -9,7 +9,7 @@ public interface IResultEngineAdapter
 
     string HtmlGameDetailParser(dynamic data, ResultSetting setting);
 
-    MemoryStream ExcelParser<T>(IList<T> dataList, ResultSetting setting);
+    MemoryStream ExcelParser<T>(IEnumerable<T> dataList, ResultSetting setting);
 }
 
 public class ResultEngineAdapter : IResultEngineAdapter
@@ -20,6 +20,6 @@ public class ResultEngineAdapter : IResultEngineAdapter
     public string HtmlGameDetailParser(dynamic data, ResultSetting setting)
         => ResultEngine.HtmlGameDetailParser(data, setting);
 
-    public MemoryStream ExcelParser<T>(IList<T> dataList, ResultSetting setting)
-        => ResultEngine.ExcelParser(dataList, setting);
+    public MemoryStream ExcelParser<T>(IEnumerable<T> dataList, ResultSetting setting)
+        => dataList == null || !dataList.Any() ? new MemoryStream() : ResultEngine.ExcelParser(dataList.ToList(), setting);
 }

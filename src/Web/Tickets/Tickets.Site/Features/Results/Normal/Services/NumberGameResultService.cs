@@ -51,7 +51,7 @@ public class NumberGameResultService(
             HighlightWinnerTeam = true
         };
 
-        return resultEngineAdapter.ExcelParser(numberGames.ToList(), resultSetting);
+        return resultEngineAdapter.ExcelParser(numberGames, resultSetting);
     }
 
     public async Task<ResultDetailModel> GetResultDetails(NormalResultDetailsQuery message)

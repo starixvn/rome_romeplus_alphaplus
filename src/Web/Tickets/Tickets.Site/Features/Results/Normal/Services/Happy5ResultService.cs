@@ -23,8 +23,8 @@ public class Happy5ResultService(
             VisibleMatchCodeIDColumn = false,
             HighlightWinnerTeam = true
         };
-
-        return resultEngineAdapter.HtmlParser(await GetHappy5(message), resultSetting);
+        var data = await GetHappy5(message);
+        return resultEngineAdapter.HtmlParser(data.ToList(), resultSetting);
     }
 
     public async Task<MemoryStream> ExportExcel(ExcelNormalResultQuery message)
@@ -42,7 +42,7 @@ public class Happy5ResultService(
         return resultEngineAdapter.ExcelParser(await GetHappy5(message), resultSetting);
     }
 
-    private async Task<IList<Happy5>> GetHappy5(NormalResultQuery message)
+    private async Task<IEnumerable<Happy5>> GetHappy5(NormalResultQuery message)
     {
         var numberGames = await numberGameService.GetResults(new NumberGameParam(
             message.ResultDate,
@@ -51,7 +51,7 @@ public class Happy5ResultService(
             message.Language,
             options.Value.LocalTest));
 
-        return numberGames.Select(BuildHappy5).ToList();
+        return numberGames.Select(BuildHappy5);
     }
 
     public async Task<ResultDetailModel> GetResultDetails(NormalResultDetailsQuery message)

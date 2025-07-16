@@ -36,7 +36,7 @@ public class VirtuallySportsResultService(
             ExcelTemplatePath = message.TemplatePath
         };
 
-        return resultEngineAdapter.ExcelParser(racingList.ToList(), resultSetting);
+        return resultEngineAdapter.ExcelParser(racingList, resultSetting);
     }
 
     public async Task<ResultDetailModel> GetResultDetails(NormalResultDetailsQuery message)

@@ -18,7 +18,7 @@ public class BitcoinResultService(
     {
         var bitcoins = await bitcoinService.GetResults(message.ResultDate, message.LeagueId);
 
-        return resultEngineAdapter.ExcelParser(bitcoins.ToList(), BuildSetting(message.Language));
+        return resultEngineAdapter.ExcelParser(bitcoins, BuildSetting(message.Language));
     }
 
     public async Task<ResultDetailModel> GetResultDetails(NormalResultDetailsQuery message)
