@@ -131,7 +131,6 @@
 	void RenderRow(WinLossModel data, bool isTotalRow = false)
 	{
 		var isDormantAccounts = data.IsDormantAccounts;
-		var isReward = data.Turnover == 0 && data.RewardAmount != 0;
 		var isCashFee = string.IsNullOrEmpty(data.CustName) ? false : data.CustName.Equals("CASH SERVICE BILLING", StringComparison.OrdinalIgnoreCase);
 		var rowClass = string.Empty;
 		@if (isTotalRow) {
@@ -152,10 +151,6 @@
 				@if (isTotalRow)
 				{
 					@Resources.Total
-				}
-				else if (isReward)
-				{
-					@data.CustName
 				}
 				else if (isDormantAccounts)
 				{
