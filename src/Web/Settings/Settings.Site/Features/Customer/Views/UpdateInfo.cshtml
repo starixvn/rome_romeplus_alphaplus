@@ -60,13 +60,11 @@
 <!DOCTYPE html>
 <html>
 
-
 <head>
     <title>UpdateInfoCashMember Page</title>
     <environment names="Production">
-        @* <link rel="stylesheet" href="@(MicroSites.CashServiceUrl())index.css?version=@(Model.AssetsVersion)" /> *@
         <link rel="stylesheet" href="@(Model.CdnUri)cash-member/edit-info/index.css?version=@(Model.AssetsVersion)" />
-        <script type="module" src="@(MicroSites.CashServiceUrl())updateInfoCustomer.js?version=@(Model.AssetsVersion)"></script>
+        <script type="module" src="@(Model.CdnUri)cash-member/edit-info/index.js?version=@(Model.AssetsVersion)"></script>
     </environment>
 </head>
 
@@ -79,11 +77,11 @@
                 custId = Model.CustId,
                 username = Model.Username,
                 isCashMember = Model.IsCashMember,
+                applicationPath = Model.ApplicationPath,
                 settingSiteUrl = MicroSites.SettingUrl(),
                 cashServiceUrl = MicroSites.CashServiceUrl(),
                 cdnUri = Model.CdnUri,
                 systemId = Model.SystemId,
-                applicationPath = Model.ApplicationPath
             }
         ));
     </script>
@@ -99,9 +97,8 @@
         <script type="module" src=@("http://localhost:4212/@vite/client")></script>
         <script type="module" src="http://localhost:4212/src/main.tsx"></script>
         <link rel="stylesheet" href="http://localhost:4212/src/styles.scss" />
-          @* <script type="module"src="http://localhost:5173/src/pages/CustomerSites/pages/UpdateInfoCustomer/index.tsx"></script> *@
     </environment>
-    
+
     @Html.AntiForgeryToken()
 </body>
 
