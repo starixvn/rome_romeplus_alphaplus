@@ -50,6 +50,7 @@
         <input type="text" id="txt-username" name="Username" placeholder="@Resources.Username" value="@Model.Username"
             maxlength="50" autocomplete="off" />
     </div>
+    @Html.Hidden("AccountType", Model.AccountType)
 </form>
 <div class="potential-win-limit-table">
     <div class="breadcrumb-table">
@@ -121,7 +122,16 @@
                             <td class="text-center">@(winLossLimitDetail.IsAutoReset ? Resources.Yes : Resources.No2)</td>
                             <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.AccumToWin)</td>
                             <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.AccumWinLoss)</td>
-                            <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.PotentialWin)</td>
+                            <td class="text-right">
+                                @HtmlHelpers.FormatNumber(winLossLimitDetail.PotentialWin)
+                                @if (!winLossLimitDetail.IsCashMember)   
+                                {
+                                    <span class="ic-refresh reset-win-amount" 
+                                        data-cust-id="@winLossLimitDetail.CustId" 
+                                        data-username="@winLossLimitDetail.Username"
+                                        title="@Resources.ResetCurrentWinAmount"></span>
+                                }
+                            </td>
                             <td class="text-right">@Model.GetMaxWinLimit(winLossLimitDetail.PotentialWinLimit)</td>
                             <td class="text-center @(winLossLimitDetail.PotentialWinPercent >= 100 ? "negative-value" : "")">
                                 @Model.GetWinPercent(winLossLimitDetail.PotentialWinPercent,
@@ -150,6 +160,9 @@
         @Pager.Render(Model.PagerViewModel)
     }
 </div>
+@Html.Hidden("ResetCurrentWinAmountConfirmMessage", Resources.ResetCurrentWinAmountConfirmMessage)
+@Html.Hidden("ResetCurrentWinAmountErrorMessage", AlphaPlus.Shared.AppResources.Main.Resources.InternalServerError)
+<input type="hidden" name="__RequestVerificationToken" value="@ViewData["RequestVerificationToken"]" />
 @section Scripts {
     @StaticResources.RenderScripts("~/Features/MemberInfo/assets/bundles/win-loss-limit/potential-win-limit")
 }

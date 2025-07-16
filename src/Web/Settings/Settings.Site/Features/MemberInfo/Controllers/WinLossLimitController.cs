@@ -26,12 +26,14 @@ public partial class WinLossLimitController(IMediator mediator, IUserSession use
     [ValidateAntiForgeryToken]
     public async Task<JsonResult> ResetCurrentWinAmount(ResetCurrentWinAmountCommand command)
     {
-        if (!userSession.IsAgent)
-        {
-            return Json(new { isSuccessful = false, message = "Unauthorized" });
-        }
+        var result = await mediator.Send(command);
+        return Json(result);
+    }
 
-
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<JsonResult> ResetCurrentPotentialWinAmount(ResetCurrentPotentialWinAmountCommand command)
+    {
         var result = await mediator.Send(command);
         return Json(result);
     }

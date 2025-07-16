@@ -1,4 +1,5 @@
 using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit;
 using AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit;
 using AlphaPlus.Settings.MemberInfo.Domain.Params;
@@ -9,6 +10,7 @@ namespace AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit;
 public interface IPotentialWinLimitService
 {
     Task<PotentialWinLimitPage> GetPotentialWinLimitPage(PotentialWinLimitParam param, bool isGetAll = false);
+    Task<Result> ResetCurrentPotentialWinAmount(ResetCurrentPotentialWinAmountParam param);
 }
 
 public class PotentialWinLimitService(IDynamicRepository repository) : IPotentialWinLimitService
@@ -56,5 +58,18 @@ public class PotentialWinLimitService(IDynamicRepository repository) : IPotentia
                                      .ToList();
 
         return new PotentialWinLimitPage(criteria.TotalRows, potentialWinLimitDetail);
+    }
+
+    public async Task<Result> ResetCurrentPotentialWinAmount(ResetCurrentPotentialWinAmountParam param)
+    {
+        var criteria = new ResetCurrentPotentialWinAmountCriteria(
+            param.CustId,
+            param.SportType,
+            param.BetType,
+            param.SettingStatus);
+
+        await repository.ExecuteAsync(criteria);
+
+        return new Result { Code = 0, Message = string.Empty };
     }
 }

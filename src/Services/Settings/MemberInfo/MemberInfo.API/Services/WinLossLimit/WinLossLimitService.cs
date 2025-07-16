@@ -12,7 +12,7 @@ public interface WinLossLimitService
 
     Task<WinLossLimitPage> GetWinLossLimitPage(WinLossLimitParam param);
 
-    Task<Result> ResetCurrentWinLimitAmount(ResetCurrentWinLimitAmountParam param);
+    Task<Result> ResetCurrentWinAmount(ResetCurrentWinAmountParam param);
 }
 
 public class WinLossLimitServiceImpl(IDynamicRepository repository, CacheRefService cacheRefService) : WinLossLimitService
@@ -121,9 +121,9 @@ public class WinLossLimitServiceImpl(IDynamicRepository repository, CacheRefServ
         return result;
     }
 
-    public async Task<Result> ResetCurrentWinLimitAmount(ResetCurrentWinLimitAmountParam param)
+    public async Task<Result> ResetCurrentWinAmount(ResetCurrentWinAmountParam param)
     {
-        var criteria = new ResetCurrentWinLimitAmountCriteria(
+        var criteria = new ResetCurrentWinAmountCriteria(
             param.CustId,
             param.SportType,
             param.BetType,

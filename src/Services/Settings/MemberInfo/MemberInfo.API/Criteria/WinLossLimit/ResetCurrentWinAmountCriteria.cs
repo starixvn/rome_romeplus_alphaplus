@@ -2,9 +2,9 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit
 {
-    public class ResetCurrentWinLimitAmountCriteria : NonQueryCommand
+    public class ResetCurrentWinAmountCriteria : NonQueryCommand
     {
-        public ResetCurrentWinLimitAmountCriteria(
+        public ResetCurrentWinAmountCriteria(
             int custId,
             int sportType,
             int betType,

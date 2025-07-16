@@ -1,0 +1,25 @@
+using MediatR;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
+
+namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests.WinLossLimit;
+
+public class ResetCurrentPotentialWinAmountCommand : IRequest<Result>
+{
+    public ResetCurrentPotentialWinAmountCommand() { }
+
+    public ResetCurrentPotentialWinAmountCommand(IUser viewer)
+    {
+        Language = viewer.Language;
+        SettingStatus = AppSettings.SettingStatus;
+    }
+
+    public int CustId { get; set; }
+    public string Username { get; set; }
+    public int ProductId { get; set; }
+    public int SportType { get; set; }
+    public int BetType { get; set; }
+    public string Language { get; set; }
+    public int SettingStatus { get; set; }
+} 

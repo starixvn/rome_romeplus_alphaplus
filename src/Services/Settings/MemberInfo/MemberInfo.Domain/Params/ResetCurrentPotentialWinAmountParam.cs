@@ -1,8 +1,8 @@
 namespace AlphaPlus.Settings.MemberInfo.Domain.Params
 {
-    public class ResetCurrentWinLimitAmountParam
+    public class ResetCurrentPotentialWinAmountParam
     {
-        public ResetCurrentWinLimitAmountParam(
+        public ResetCurrentPotentialWinAmountParam(
             int custId,
             string username,
             int productId,
