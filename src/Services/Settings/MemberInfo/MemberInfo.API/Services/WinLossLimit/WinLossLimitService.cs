@@ -125,15 +125,12 @@ public class WinLossLimitServiceImpl(IDynamicRepository repository, CacheRefServ
     {
         var criteria = new ResetCurrentWinLimitAmountCriteria(
             param.CustId,
-            param.Username,
-            param.ProductId,
             param.SportType,
-            param.BetType,
-            param.Language);
+            param.BetType);
 
         await repository.ExecuteAsync(criteria);
 
-        return new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };
+        return new Result { Code = 0, Message = string.Empty };
     }
 
     private Task<IEnumerable<int>> MapPlayerIdToCustId(MapPlayerId3rdToCustIdCriteria criteria)
