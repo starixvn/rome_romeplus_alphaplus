@@ -27,10 +27,12 @@ public class SportsbookPotentialWinLimitExcelHandler(
             request.ProblemAccount,
             request.PageSize,
             request.PageIndex,
-            request.AGIP);
+            request.AGIP,
+            request.AccountType);
         var potentialWinLimitPage = await potentialWinLimitService.GetPotentialWinLimitPage(param, true);
 
-        var viewModel = new SportsbookPotentialWinLimitViewModel(request, potentialWinLimitPage, param);
+        var isOfferedCashService = AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(request.Site);
+        var viewModel = new SportsbookPotentialWinLimitViewModel(isOfferedCashService, request, potentialWinLimitPage, param);
         var workbook = new PotentialWinLimitWorkbook();
         var fileName = $"{Resources.SportsbookPotentialWinLimit}";
 

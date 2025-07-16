@@ -1,3 +1,4 @@
+@using AlphaPlus.Settings.MemberInfo.Domain.Constants
 @using AlphaPlus.Shared.AppResources.Common
 @using AlphaPlus.Shared.AppResources.Settings.MemberInfo
 @using AlphaPlus.Core.Helpers
@@ -33,6 +34,17 @@
             }
         </select>
     </div>
+    @if (Model.IsOfferedCashService)
+    {
+        <div class="form-group">
+            <label for="dropdown-account-type">@Resources.AccountType</label>
+            <select id="dropdown-account-type" name="AccountType">
+                <option value="0" @(Model.AccountType == AccountTypeConstant.Credit ? "selected" : string.Empty)>@Resources.Credit</option>
+                <option value="1" @(Model.AccountType == AccountTypeConstant.Cash ? "selected" : string.Empty)>@Resources.Cash</option>
+                <option value="2" @(Model.AccountType == AccountTypeConstant.All ? "selected" : string.Empty)>@Resources.All</option>
+            </select>
+        </div>
+    }
     <div class="form-group">
         <label>@Resources.Username</label>
         <input type="text" id="txt-username" name="Username" placeholder="@Resources.Username" value="@Model.Username"
@@ -114,12 +126,13 @@
                             <td class="text-center @(winLossLimitDetail.PotentialWinPercent >= 100 ? "negative-value" : "")">
                                 @Model.GetWinPercent(winLossLimitDetail.PotentialWinPercent,
                                 winLossLimitDetail.PotentialWinLimit)
-                    </td>
-                    <td class="text-left" title="@Model.GetLastLoginDate(winLossLimitDetail.LastLogged)">
-                        @Model.GetLastLoginDate(winLossLimitDetail.LastLogged)
-                    </td>
-                </tr>
-                                index++;
+                            </td>
+                            <td class="text-left" title="@Model.GetLastLoginDate(winLossLimitDetail.LastLogged)">
+                                @Model.GetLastLoginDate(winLossLimitDetail.LastLogged)
+                            </td>
+                        </tr>
+                        
+                        index++;
                     }
                 </tbody>
             }

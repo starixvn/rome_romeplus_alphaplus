@@ -27,6 +27,7 @@ public class PotentialWinLimitService(IDynamicRepository repository) : IPotentia
             PageSize = param.PageSize,
             PageIndex = param.PageIndex,
             IsGetAll = isGetAll,
+            AccountType = param.AccountType,
         };
         var potentialLimitDetail = await _repository.FetchAsync<PotentialWinLimitDetail>(criteria);
         var custIds = string.Join(",", potentialLimitDetail.Select(x => x.CustId.ToString()));

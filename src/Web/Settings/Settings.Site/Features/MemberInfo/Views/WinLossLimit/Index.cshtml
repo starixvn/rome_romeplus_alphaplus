@@ -9,6 +9,7 @@
 @using AlphaPlus.Settings.MemberInfo.Domain.Models
 @using AlphaPlus.Settings.MemberInfo.Domain.Extensions
 @using AlphaPlus.Core.Configurations
+@using AlphaPlus.Settings.MemberInfo.Domain.Constants
 @inject AlphaPlus.Core.Models.IUserSession userSession
 @model WinLossLimitViewModel
 @{
@@ -105,9 +106,9 @@
         <div class="form-group">
             <label for="dropdown-account-type">@Resources.AccountType</label>
             <select id="dropdown-account-type" name="AccountType" @(Model.ViewerLevel.IsSuperLevel() && Model.MasterId == 0 ? "disabled=disabled" : string.Empty)>
-                <option value="0" @(Model.AccountType == 0 ? "selected" : string.Empty)>@Resources.Credit</option>
-                <option value="1" @(Model.AccountType == 1 ? "selected" : string.Empty)>@Resources.Cash</option>
-                <option value="2" @(Model.AccountType == 2 ? "selected" : string.Empty)>@Resources.All</option>
+                <option value="0" @(Model.AccountType == AccountTypeConstant.Credit ? "selected" : string.Empty)>@Resources.Credit</option>
+                <option value="1" @(Model.AccountType == AccountTypeConstant.Cash ? "selected" : string.Empty)>@Resources.Cash</option>
+                <option value="2" @(Model.AccountType == AccountTypeConstant.All ? "selected" : string.Empty)>@Resources.All</option>
             </select>
         </div>
     }

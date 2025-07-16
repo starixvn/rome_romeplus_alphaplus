@@ -21,10 +21,12 @@ public class SportsbookPotentialWinLimitHandler(IPotentialWinLimitService potent
             message.ProblemAccount,
             message.PageSize,
             message.PageIndex,
-            message.AGIP);
+            message.AGIP,
+            message.AccountType);
 
         var potentialWinLimitPage = await potentialWinLimitService.GetPotentialWinLimitPage(param);
 
-        return new SportsbookPotentialWinLimitViewModel(message, potentialWinLimitPage, param);
+        var isOfferedCashService = AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(message.Site);
+        return new SportsbookPotentialWinLimitViewModel(isOfferedCashService, message, potentialWinLimitPage, param);
     }
 } 

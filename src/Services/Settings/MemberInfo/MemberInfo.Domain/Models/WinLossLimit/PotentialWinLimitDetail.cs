@@ -1,3 +1,5 @@
+using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+
 namespace AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit
 {
     public class PotentialWinLimitDetail
@@ -27,6 +29,10 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit
         public decimal AccumToWin { get; set; }
         
         public decimal AccumWinLoss { get; set; }
+
+        public int AccountType { get; set; }
+
+        public bool IsCashMember => AccountType == AccountTypeConstant.Cash;
 
         public decimal PotentialWin
         {

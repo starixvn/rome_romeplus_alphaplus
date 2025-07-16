@@ -13,7 +13,8 @@ namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit
         public int PageSize { get; set; }
         public int PageIndex { get; set; }
         public int TotalRows { get; set; }
-
+        public int AccountType { get; set; }
+        
         public override string GetSettingKey()
             => "Age_CustomerSelPotentialWinlimit";
 
