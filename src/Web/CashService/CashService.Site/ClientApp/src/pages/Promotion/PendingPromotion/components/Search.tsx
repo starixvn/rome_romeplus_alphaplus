@@ -11,20 +11,20 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({ search, setSearch, onDownload }) => {
   const { t: tGlobal } = useTranslation('global');
-  const [textCopy, setTextCopy] = useState(tGlobal('messages.copy'));
+  const [textCopy, setTextCopy] = useState(tGlobal('copy'));
   const handleDownload = async () => {
     onDownload();
   };
   const handleCopy = () => {
     navigator.clipboard.writeText(search);
-    setTextCopy(tGlobal('messages.copied'));
+    setTextCopy(tGlobal('copied'));
   };
   return (
     <div className="flex items-center w-full justify-between">
       <div className=""></div>
       <div className="flex items-center gap-[8px]">
         <Tippy
-          content={tGlobal('messages.exportToExcel')}
+          content={tGlobal('exportToExcel')}
           placement="top"
           theme="light"
           arrow={true}

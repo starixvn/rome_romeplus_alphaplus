@@ -13,6 +13,8 @@ import {
   PromotionDetail,
 } from '../../../../services/interfaces/Promotion';
 import { formatDate } from '../../../../utils/commonFunctions';
+import { StatusCompletedComponent, StatusDisabledComponent } from '../../../../components/Status/';
+ 
 
 interface TableProps {
   items: PromotionDetail[];
@@ -24,23 +26,14 @@ interface TableProps {
 const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => {
   const [gridProducts, setGridProducts] = useState<ProductSetting[]>([]);
   const { t } = useTranslation('promotion');
+  const { t: tGlobal } = useTranslation('global');
   useCookieLanguage(i18n);
 
   useEffect(() => {
     setGridProducts(displayGridProducts(items));
   }, [items]);
 
-  const getStatusStyle = (status: string) => {
-    var s = status ? status.toLocaleUpperCase() : '';
-    switch (s) {
-      case 'ENABLE':
-        return 'bg-[#D4E7D9]';
-      case 'DISABLE':
-        return 'bg-[#FBD8D8]';
-      default:
-        return '';
-    }
-  };
+ 
 
   const displayProducts = (products: Product[]) => {
     const maxDisplay = 5;
@@ -145,28 +138,24 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
   );
   const buildRow = (item: PromotionDetail, index: number) => (
     <tr key={item.promotionId}>
-      <td className="bg-white text-center">{index + 1}</td>
-      <td className="bg-white text-center">
+      <td className=" text-center">{index + 1}</td>
+      <td className=" text-center">
         <div className="flex justify-center">
           <ButtonPenComponent onClick={() => onEdit?.(item)} />
           <ButtonDeleteComponent onClick={() => onDelete?.(item)} />
         </div>
       </td>
-      <td className="bg-white text-left">{item.promotionTitle}</td>
-      <td className="bg-white text-center">{item.promotionTypeName}</td>
+      <td className=" text-left">{item.promotionTitle}</td>
+      <td className=" text-center">{item.promotionTypeName}</td>
       {gridProducts.map((product) =>
         displayPercentageMaxPayout(item.productSettings, product.productCategoryId)
       )}
-      <td className="w-[110px] bg-white">
+      <td className="w-[110px] ">
         {displayProducts(item.productSettings.flatMap((p) => p.products))}
       </td>
-      <td className="w-[110px] bg-white">{`${formatDate(item.fromDate?.toString() || '')} - ${formatDate(item.toDate?.toString() || '')}`}</td>
-      <td className="w-[110px] bg-white">
-        <span
-          className={`inline-block px-2 py-1 rounded text-xs font-semibold ${getStatusStyle(item.enabled ? 'ENABLE' : 'DISABLE')}`}
-        >
-          {item.enabled ? 'ENABLE' : 'DISABLE'}
-        </span>
+      <td className="w-[110px] ">{`${formatDate(item.fromDate?.toString() || '')} - ${formatDate(item.toDate?.toString() || '')}`}</td>
+      <td className="w-[110px] ">        
+          {item.enabled ? <StatusCompletedComponent text={tGlobal('enable')} /> : <StatusDisabledComponent text={tGlobal('disable')} />}
       </td>
     </tr>
   );
