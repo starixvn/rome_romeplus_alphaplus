@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 
 interface NoRecordFoundProps {
   colSpan: number;
-  message?: string;
 }
 
 const NoRecordFound: React.FC<NoRecordFoundProps> = ({ colSpan }) => {  

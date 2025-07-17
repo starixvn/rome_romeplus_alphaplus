@@ -164,7 +164,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                 </tr>
               ))
             ) : (
-              <NoRecordFound colSpan={12} message={t('table.noRecords')} />
+              <NoRecordFound colSpan={12} />
             )}
           </tbody>
         </table>

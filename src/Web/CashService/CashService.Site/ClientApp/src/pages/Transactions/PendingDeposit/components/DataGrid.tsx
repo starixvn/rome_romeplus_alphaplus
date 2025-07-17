@@ -167,7 +167,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits, reloadGrid, isCashService
                 />
               ))
             ) : (
-              <NoRecordFound colSpan={11} message={t('dataGrid.noDepositsFound')} />
+              <NoRecordFound colSpan={11} />
             )}
           </tbody>
         </table>

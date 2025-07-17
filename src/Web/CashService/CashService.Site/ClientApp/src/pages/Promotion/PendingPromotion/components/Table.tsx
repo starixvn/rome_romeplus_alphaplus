@@ -1,5 +1,5 @@
 import React from 'react';
-import NoRecordFoundComponent from '../../../../components/NoRecordFoundComponent';
+import NoRecordFound from '../../../../components/NoRecordFoundComponent';
 
 interface TableProps {
   data: any[];
@@ -30,7 +30,7 @@ const Table: React.FC<TableProps> = ({ data }) => {
         </thead>
         <tbody className="font-[500]">
           {data.length === 0 ? (
-            <NoRecordFoundComponent colSpan={9} message="No pending promotions found" />
+            <NoRecordFound colSpan={9} />
           ) : (
             data.map((item, idx) => (
               <tr key={item.id || idx}>

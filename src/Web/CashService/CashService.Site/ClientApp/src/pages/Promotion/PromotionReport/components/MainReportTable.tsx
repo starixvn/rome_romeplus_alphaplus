@@ -1,6 +1,6 @@
 import React, { ForwardedRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import NoRecordFoundComponent from '../../../../components/NoRecordFoundComponent';
+import NoRecordFound from '../../../../components/NoRecordFoundComponent';
 import { StatusDisabledComponent, StatusCompletedComponent } from '../../../../components/Status';
 import { formatNumber } from '../../../../utils/numberFormatting';
 
@@ -96,7 +96,7 @@ const MainReportTable = React.forwardRef<HTMLTableElement, MainReportTableProps>
           </thead>
           <tbody className="font-[500]">
             {data.length === 0 ? (
-              <NoRecordFoundComponent colSpan={8} />
+              <NoRecordFound colSpan={8} />
             ) : (
               data.map((item, idx) => (
                 <MainReportRow

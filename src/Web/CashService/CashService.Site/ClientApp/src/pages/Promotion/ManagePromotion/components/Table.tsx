@@ -4,7 +4,7 @@ import {
   ButtonDeleteComponent,
   ButtonPenComponent,
 } from '../../../../components/Buttons/ButtonIconComponent';
-import NoRecordFoundComponent from '../../../../components/NoRecordFoundComponent';
+import NoRecordFound from '../../../../components/NoRecordFoundComponent';
 import { useCookieLanguage } from '../../../../hooks/useCookieLanguage';
 import i18n from '../../../../i18n/i18n-promotion';
 import {
@@ -197,7 +197,7 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
       {items && items.length > 0 ? (
         items.map(buildRow)
       ) : (
-        <NoRecordFoundComponent colSpan={12} message="No pending promotions found" />
+        <NoRecordFound colSpan={12} />
       )}
     </tbody>
   );
