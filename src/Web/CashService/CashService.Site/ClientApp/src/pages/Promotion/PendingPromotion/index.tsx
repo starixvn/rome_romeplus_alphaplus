@@ -8,7 +8,7 @@ import i18n from '../../../i18n/i18n-promotion';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
-import { ButtonFullComponent } from '../../../components/Buttons';
+import { ButtonComponent } from '../../../components/Buttons';
 import AddBonusForm from './components/AddBonusForm';
 
 const mockData: any[] = [];
@@ -30,7 +30,8 @@ const PendingPromotion: React.FC = () => {
         <div className="flex h-full flex-col">
           <TitleComponent title="Pending Promotion" />
           <div className="mb-[8px]">
-            <ButtonFullComponent
+            <ButtonComponent
+              variant="full"
               text={`Add Bonus`}
               onClick={() => setShowAddBonus(true)}
               className="min-w-[183px] [&>*]:min-w-[183px] [&>*]:inline-block"

@@ -11,7 +11,7 @@ import {
   renderBankAccount,
 } from '../../../../utils/commonFunctions';
 import TransactionDetail from './TransactionDetail';
-import { ButtonFullComponent } from '../../../../components/Buttons/index';
+import { ButtonComponent } from '../../../../components/Buttons/index';
 import { IconImage } from '../../../../components/Icons.tsx';
 
 interface DataGridProps {
@@ -156,7 +156,8 @@ const DataGrid: React.FC<DataGridProps> = ({
                     </td>
                   )}
                   <td className="text-center">
-                    <ButtonFullComponent
+                    <ButtonComponent
+                      variant="full"
                       text={t('table.view')}
                       onClick={() => handleViewTransaction(item.transId, item.custId)}
                     />

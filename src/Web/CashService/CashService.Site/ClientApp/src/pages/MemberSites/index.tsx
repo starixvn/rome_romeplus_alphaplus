@@ -6,7 +6,7 @@ import { createRoot } from 'react-dom/client';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ButtonApplyComponent } from '../../components/Buttons/index';
+import { ButtonComponent } from '../../components/Buttons/index';
 import { ResultMessageComponent, ResultType } from '../../components/Message';
 import { TitleComponent } from '../../components/Title';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
@@ -127,8 +127,8 @@ const MemberSiteManagement: React.FC = () => {
               <div className="block w-[100%] h-[1px] bg-[var(--border-color)] my-[10px]" ></div>             
               <MessageForm loading={loading} />  
               <div className="flex justify-start py-[8px] mt-[8px]">
-                <ButtonApplyComponent
-                  className="w-[140px] [&>*]:w-[100%]"
+                <ButtonComponent
+                  variant="apply"
                   text={isSaving ? t('actions.saving') : t('actions.save')}
                   disabled={isSaving || !isCashServiceEnabled}
                   title={isCashServiceEnabled ? '' : t('global:cashServiceDisabled')}

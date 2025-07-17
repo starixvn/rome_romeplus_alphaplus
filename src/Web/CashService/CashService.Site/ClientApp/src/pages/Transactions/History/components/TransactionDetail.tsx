@@ -4,9 +4,8 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ButtonApplyComponent,
-  ButtonCancelComponent,
   ButtonClosePopupComponent,
+  ButtonComponent,
 } from '../../../../components/Buttons/index';
 
 import { ResultMessageComponent } from '../../../../components/Message';
@@ -267,13 +266,15 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
           )}
 
           <div className="flex justify-center gap-[8px]">
-            <ButtonCancelComponent
+            <ButtonComponent
+              variant="cancel"
               onClick={onClose}
               disabled={reverting}
               text={t('detail.cancel')}
             />
             {detailData?.isAllowRevert && (
-              <ButtonApplyComponent
+              <ButtonComponent
+                variant="apply"
                 onClick={handleRevert}
                 disabled={reverting || !detailData || !isCashServiceEnabled}
                 text={t('detail.revertToPending')}

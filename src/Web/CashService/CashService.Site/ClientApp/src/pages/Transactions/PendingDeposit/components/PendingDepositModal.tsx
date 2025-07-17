@@ -6,10 +6,8 @@ import {
   renderBankAccount,
 } from '../../../../utils/commonFunctions.tsx';
 import {
-  ButtonApplyComponent,
   ButtonClosePopupComponent,
-  ButtonRejectComponent,
-  ButtonCancelComponent,
+  ButtonComponent,
 } from '../../../../components/Buttons/index';
 import { ResultMessageComponent } from '../../../../components/Message';
 import { LabelTitleComponent, MediumTitleComponent } from '../../../../components/Title';
@@ -269,13 +267,15 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
 
           {deposit?.paymentType === 2 && (
             <div className="flex gap-4 justify-end">
-              <ButtonRejectComponent
+              <ButtonComponent
+                variant="reject"
                 onClick={handleReject}
                 disabled={isSubmitting || isLoading || !isCashServiceEnabled}
                 text={t('pendingDepositModal.reject')}
                 title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
               />
-              <ButtonApplyComponent
+              <ButtonComponent
+                variant="apply"
                 onClick={handleApprove}
                 disabled={isSubmitting || isLoading || !isCashServiceEnabled}
                 text={t('pendingDepositModal.approve')}
@@ -285,7 +285,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
           )}
           {deposit?.paymentType === 1 && (
             <div className="flex gap-4 justify-end">
-              <ButtonCancelComponent onClick={() => onClose(false)} text={tGlobal('close')} />
+              <ButtonComponent variant="cancel" onClick={() => onClose(false)} text={tGlobal('close')} />
             </div>
           )}
         </div>

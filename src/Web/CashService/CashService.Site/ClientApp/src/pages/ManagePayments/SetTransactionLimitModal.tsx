@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ButtonApplyComponent,
-  ButtonCancelComponent,
   ButtonClosePopupComponent,
+  ButtonComponent,
 } from '../../components/Buttons/index';
 import {
   ErrorMessageComponent,
@@ -345,8 +344,9 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
             </div>
           </div>
           <div className="flex justify-center gap-[8px]">
-            <ButtonCancelComponent text={tGlobal('cancel')} onClick={onClose} type='button' />
-            <ButtonApplyComponent
+            <ButtonComponent variant="cancel" text={tGlobal('cancel')} onClick={onClose} type='button' />
+            <ButtonComponent
+              variant="apply"
               text={loading ? tGlobal('saving') : tGlobal('save')}
               type='submit'
               onClick={() => onSubmit({ preventDefault: () => {} } as React.FormEvent)}

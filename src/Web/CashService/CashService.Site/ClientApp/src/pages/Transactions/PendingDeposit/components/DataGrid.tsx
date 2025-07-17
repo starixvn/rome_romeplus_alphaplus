@@ -8,7 +8,7 @@ import {
 } from '../../../../utils/commonFunctions';
 import NoRecordFound from '../../../../components/NoRecordFoundComponent.tsx';
 import Pagination from '../../Components/Pagination';
-import { ButtonFullComponent } from '../../../../components/Buttons/index';
+import { ButtonComponent } from '../../../../components/Buttons/index';
 import PendingDepositModal from './PendingDepositModal';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
 import { ErrorMessageComponent } from '../../../../components/Message';
@@ -96,7 +96,8 @@ const TableRow: React.FC<TableRowProps> = ({
       <td>{deposit.transId}</td>
       <td>{formatDateTime(deposit.createdTime)}</td>
       <td>
-        <ButtonFullComponent
+        <ButtonComponent
+          variant="full"
           text={t('dataGrid.process')}
           onClick={() => onProcess(deposit)}
           className=""

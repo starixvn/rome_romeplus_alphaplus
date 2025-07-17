@@ -8,9 +8,8 @@ import {
 } from '../../../../utils/commonFunctions.tsx';
 import BankIcon from '../../../../components/BankComponents.tsx';
 import {
-  ButtonApplyComponent,
   ButtonClosePopupComponent,
-  ButtonRejectComponent,
+  ButtonComponent,
 } from '../../../../components/Buttons/index';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import { ResultMessageComponent } from '../../../../components/Message';
@@ -375,12 +374,14 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
           </div>
 
           <div className="flex gap-4 justify-end">
-            <ButtonRejectComponent
+            <ButtonComponent
+              variant="reject"
               onClick={handleReject}
               disabled={isSubmitting || isLoading}
               text={t('pendingWithdrawalModal.reject')}
             />
-            <ButtonApplyComponent
+            <ButtonComponent
+              variant="apply"
               onClick={handleApprove}
               disabled={isSubmitting || isLoading}
               text={t('pendingWithdrawalModal.approve')}

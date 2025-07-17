@@ -6,8 +6,6 @@ import { useTranslation } from 'react-i18next';
 
 import BankIcon from '../../components/BankComponents';
 import {
-  ButtonFullComponent,
-  ButtonOutlineComponent,
   ButtonPenComponent,
   ButtonDeleteComponent,
   ButtonTabActiveComponent,
@@ -15,6 +13,7 @@ import {
   ButtonClosePopupComponent,
   ButtonApplyComponent,
   ButtonCancelComponent,
+  ButtonComponent,
 } from '../../components/Buttons/index';
 import CustomDropdown from '../../components/CustomDropdownComponent';
 import { IconArrowDown, IconSearch } from '../../components/Icons';
@@ -405,18 +404,19 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                       <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
                     </div>
                   </div>
-                </div>
-                
+                </div>                
               </>
             )}
             <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex">
               <div className="flex gap-[8px]">
-                <ButtonFullComponent
+                <ButtonComponent
+                  variant="full"
                   className="w-[183px] [&>*]:w-[100%]"
                   text={`${tManagePayments('addBankAccount')}`}
                   onClick={onAddBankAccount}
                 />
-                <ButtonOutlineComponent
+                <ButtonComponent
+                  variant="outline"
                   className="w-[183px] [&>*]:w-[100%]"
                   text={tManagePayments('setLimit')}
                   onClick={onSetLimit}

@@ -4,10 +4,7 @@ import { useTranslation } from 'react-i18next';
 import BankIcon from '../../components/BankComponents';
 import {
   BackButtonComponent,
-  ButtonApplyComponent,
-  ButtonCancelComponent,
-  ButtonOffComponent,
-  ButtonOnComponent,
+  ButtonComponent,
   DisableButtonComponent,
   EnableButtonComponent,
 } from '../../components/Buttons/index';
@@ -618,7 +615,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   {tManagePayments('linkMobile')}
                 </div>
                 <div className="mb-[8px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]" role="group">
-                  <ButtonOnComponent
+                  <EnableButtonComponent
+                    text={tGlobal('on')}
                     type="button"
                     isActive={formState.promptPay}
                     onClick={() =>  {
@@ -636,7 +634,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                       }
                     }}
                   />
-                  <ButtonOffComponent
+                  <DisableButtonComponent
+                    text={tGlobal('off')}
                     type="button"
                     isActive={!formState.promptPay}
                     onClick={() => setFormState({ ...formState, promptPay: false })}
@@ -662,8 +661,9 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
               />
             </div>
             <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]">
-              <ButtonCancelComponent text={tGlobal('cancel')} onClick={onClose} />
-              <ButtonApplyComponent
+              <ButtonComponent variant="cancel" text={tGlobal('cancel')} onClick={onClose} />
+              <ButtonComponent
+                variant="apply"
                 text={loading ? tGlobal('saving') : tGlobal('save')}
                 type='submit'
                 onClick={() => onSubmit({ preventDefault: () => {} } as React.FormEvent)}

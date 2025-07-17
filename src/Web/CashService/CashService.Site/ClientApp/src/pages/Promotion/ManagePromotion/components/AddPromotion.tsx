@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
   BackButtonComponent,
-  ButtonApplyComponent,
-  ButtonCancelComponent,
+  ButtonComponent,
 } from '../../../../components/Buttons/index';
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../../../components/Message';
 import { TitleComponent } from '../../../../components/Title';
@@ -17,6 +16,7 @@ import { promotionService } from '../../../../services/promotionAPI';
 import Information from './Form/Information';
 import PromotionInfo, { PromotionLangFields } from './Form/LanguageInfo';
 import ProductSettings from './Form/ProductSettings';
+import { useTranslation } from 'react-i18next';
 
 interface AddPromotionProps {
   onClose: () => void;
@@ -39,6 +39,7 @@ function convertProductToTreeNodeOption(products: ProductDropdown[]): TreeNodeOp
 }
 
 const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
+  const { t: tGlobal } = useTranslation('global');
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -250,8 +251,8 @@ const validateForm = () => {
         />
 
         <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]">
-          <ButtonCancelComponent text="Cancel" onClick={onClose} disabled={loading} />
-          <ButtonApplyComponent text="Create" onClick={handleSubmit} disabled={loading} />
+          <ButtonComponent variant="cancel" text={tGlobal('cancel')} onClick={onClose} disabled={loading} />
+          <ButtonComponent variant="apply" text={tGlobal('save')} onClick={handleSubmit} disabled={loading} />
         </div>
       </div>
     </>

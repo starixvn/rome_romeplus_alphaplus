@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import 'tippy.js/dist/tippy.css';
 
 import { useTranslation } from 'react-i18next';
-import { ButtonFullComponent } from '../../../components/Buttons/index';
+import { ButtonComponent } from '../../../components/Buttons/index';
 import ConfirmPopup from '../../../components/ConfirmPopup';
 import { ResultMessageComponent, ResultType } from '../../../components/Message';
 import { TitleComponent } from '../../../components/Title';
@@ -114,7 +114,8 @@ const Promotion: React.FC = () => {
         <>
           <TitleComponent title="Manage Promotion" showTippy={false} />
           <div className="mb-[8px]">
-            <ButtonFullComponent
+            <ButtonComponent
+              variant="full"
               text="Add Promotion"
               onClick={() => {
                 setShowAddPromotion(true);

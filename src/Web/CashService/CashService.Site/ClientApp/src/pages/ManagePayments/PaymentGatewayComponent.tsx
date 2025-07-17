@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ButtonFullComponent,
+  ButtonComponent,
   ButtonPenComponent,
   ButtonTabActiveComponent,
   ButtonTabInactiveComponent,
@@ -120,7 +120,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
           error ? (<ErrorMessageComponent message={error} />) : (
           <>
           <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex">
-            <ButtonFullComponent text={tManagePayments('setLimit')} onClick={() => onSetLimitClick()} />
+            <ButtonComponent variant="full" text={tManagePayments('setLimit')} onClick={() => onSetLimitClick()} />
           </div>
           <div className="table">
             <table className=" w-full border-collapse">
@@ -145,7 +145,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
                       </td>
                       <td>{provider.name}</td>
                       <td>
-                        <ButtonFullComponent text={tGlobal('view')} onClick={() => onFeeClick(provider)} />
+                        <ButtonComponent variant="full" text={tGlobal('view')} onClick={() => onFeeClick(provider)} />
                       </td>
                       <td>{renderProviderStatus(provider.status)}</td>
                     </tr>

@@ -8,8 +8,7 @@ import { useTranslation } from 'react-i18next';
 import Tippy from '@tippyjs/react';
 
 import {
-    BackButtonComponent, ButtonApplyComponent, ButtonCancelComponent, ButtonFullComponent,
-    DisableButtonComponent, EnableButtonComponent
+    BackButtonComponent, ButtonComponent, DisableButtonComponent, EnableButtonComponent
 } from '../../components/Buttons/index';
 import { IconArrowDown, IconInfo, IconReload } from '../../components/Icons';
 import { LoadingFullComponent } from '../../components/LoadingComponent';
@@ -493,10 +492,12 @@ function PaymentProviderSettings() {
                       <EnableButtonComponent
                         onClick={() => onProviderStatusToggle(1)}
                         isActive={providerStatus}
+                        text={tGlobal('enable')}
                       />
                       <DisableButtonComponent
                         onClick={() => onProviderStatusToggle(0)}
                         isActive={!providerStatus}
+                        text={tGlobal('disable')}
                       />
                     </div>
                   )}
@@ -562,11 +563,13 @@ function PaymentProviderSettings() {
               </div>
              
             <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex">
-              <ButtonFullComponent
+              <ButtonComponent
+                variant="full"
                 text={`${tPaymentProviderSettings('addPaymentMethod')}`}
                 onClick={onAddPaymentMethod}
               />
-              <ButtonFullComponent
+              <ButtonComponent
+                variant="full"
                 className="ml-auto"
                 text={tPaymentProviderSettings('viewProviderFees', {
                   providerName: window.providerSettingsViewModel.Provider.Name,
@@ -704,7 +707,8 @@ function PaymentProviderSettings() {
                         {!isEditable(setting) ? (
                           <>-</>
                         ) : setting.bankRequired ? (
-                          <ButtonFullComponent
+                          <ButtonComponent
+                            variant="full"
                             text={tPaymentProviderSettings('listOfBanks')}
                             onClick={() => onViewBanks(setting)}
                           />
@@ -725,8 +729,13 @@ function PaymentProviderSettings() {
               </table>
             </div>
             <div className="flex justify-start gap-[8px] py-[8px] mt-[8px]">
-              <ButtonCancelComponent text={tGlobal('reset')} onClick={onReset} />
-              <ButtonApplyComponent
+              <ButtonComponent
+                variant="cancel"
+                text={tGlobal('reset')}
+                onClick={onReset}
+              />
+              <ButtonComponent
+                variant="apply"
                 text={updating ? tGlobal('updating') : tGlobal('update')}
                 type="submit"
                 onClick={onUpdate}

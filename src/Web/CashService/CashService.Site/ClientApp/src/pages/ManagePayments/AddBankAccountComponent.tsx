@@ -4,10 +4,7 @@ import { useTranslation } from 'react-i18next';
 import BankIcon from '../../components/BankComponents';
 import {
   BackButtonComponent,
-  ButtonApplyComponent,
-  ButtonCancelComponent,
-  ButtonOffComponent,
-  ButtonOnComponent,
+  ButtonComponent,
   DisableButtonComponent,
   EnableButtonComponent,
 } from '../../components/Buttons/index';
@@ -508,8 +505,8 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
               <MediumTitleComponent text={tManagePayments('promptPay')} />
               <p className="pb-[8px] ">{tManagePayments('linkMobile')}</p>
               <div className="mb-[10px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]" role="group">
-                <ButtonOnComponent type="button" isActive={promptPay} onClick={() => setPromptPay(true)} />
-                <ButtonOffComponent type="button" isActive={!promptPay} onClick={() => setPromptPay(false)} />
+                <EnableButtonComponent text={tGlobal('on')} type="button" isActive={promptPay} onClick={() => setPromptPay(true)} />
+                <DisableButtonComponent text={tGlobal('off')} type="button" isActive={!promptPay} onClick={() => setPromptPay(false)} />
               </div>
               
               <MobileComponent
@@ -524,8 +521,9 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
               />
             </div>
             <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]">
-              <ButtonCancelComponent text={tGlobal('cancel')}  onClick={onClose} type='button' />
-              <ButtonApplyComponent
+              <ButtonComponent variant="cancel" text={tGlobal('cancel')}  onClick={onClose} type='button' />
+              <ButtonComponent
+                variant="apply"
                 text={tGlobal(loading ? 'saving' : 'save')}
                 type='submit'
                 onClick={() => handleSubmit}

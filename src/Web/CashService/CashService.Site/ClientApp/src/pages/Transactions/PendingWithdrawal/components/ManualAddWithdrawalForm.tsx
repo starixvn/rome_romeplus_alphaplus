@@ -15,8 +15,7 @@ import BankIcon from '../../../../components/BankComponents';
 import { displayAmount, renderBankOptionValue } from '../../../../utils/commonFunctions';
 import {
   BackButtonComponent,
-  ButtonApplyComponent,
-  ButtonCancelComponent,
+  ButtonComponent,
 } from '../../../../components/Buttons/index';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import {
@@ -374,12 +373,14 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
           <UploadImage setImage={setImage} />
         </div>
         <div className="flex gap-[16px]">
-          <ButtonCancelComponent
+          <ButtonComponent
+            variant="cancel"
             onClick={onClose}
             disabled={isSubmitting}
             text={t('manualWithdrawalForm.cancel')}
           />
-          <ButtonApplyComponent
+          <ButtonComponent
+            variant="apply"
             disabled={isSubmitting || !isCashServiceEnabled}
             text={
               isSubmitting

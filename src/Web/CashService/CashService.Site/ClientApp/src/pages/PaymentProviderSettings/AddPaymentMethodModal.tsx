@@ -3,8 +3,7 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ButtonApplyComponent,
-  ButtonCancelComponent,
+  ButtonComponent,
   ButtonClosePopupComponent,
 } from '../../components/Buttons/index';
 import {
@@ -329,8 +328,9 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
             <ValidateMessageComponent message={fieldErrors.agreeToTerms} />
           </div>
           <div className="flex justify-center gap-[8px]">
-            <ButtonCancelComponent text={tGlobal('cancel')} onClick={onClose} type='button' />
-            <ButtonApplyComponent
+            <ButtonComponent variant="cancel" text={tGlobal('cancel')} onClick={onClose} type='button' />
+            <ButtonComponent
+              variant="apply"
               text={tGlobal('save')}
               type='button'
               onClick={() => onSubmit({ preventDefault: () => {} } as React.FormEvent)}

@@ -2,9 +2,8 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ButtonApplyComponent,
-  ButtonCancelComponent,
   ButtonClosePopupComponent,
+  ButtonComponent,
 } from '../../components/Buttons/index';
 import {
   ErrorMessageComponent,
@@ -150,8 +149,9 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
             </div>
           </div>
           <div className="flex justify-center gap-[8px]">
-            <ButtonCancelComponent text={t('global:cancel')} onClick={onClose} />
-            <ButtonApplyComponent 
+            <ButtonComponent variant="cancel" text={t('global:cancel')} onClick={onClose} />
+            <ButtonComponent 
+              variant="apply"
               text={isLoading ? t('global:loading') : t('global:save')} 
               type='submit'
               disabled={!isCashServiceEnabled || isLoading || isBlockAction}

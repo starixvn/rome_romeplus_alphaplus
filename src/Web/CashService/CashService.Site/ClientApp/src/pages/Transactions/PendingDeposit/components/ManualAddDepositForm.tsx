@@ -11,9 +11,8 @@ import { ResultMessageComponent } from '../../../../components/Message';
 import AccountInformation from './AccountInformation';
 import { TitleComponent } from '../../../../components/Title';
 import {
-  ButtonCancelComponent,
-  ButtonApplyComponent,
   BackButtonComponent,
+  ButtonComponent,
 } from '../../../../components/Buttons/index';
 import { renderBankOptionValue } from '../../../../utils/commonFunctions';
 
@@ -62,8 +61,9 @@ const FormActions: React.FC<{
   buttonTitle: string;
 }> = ({ onCancel, onSubmit, isSubmitting, cancelText, submitText, submittingText, isCashServiceEnabled, buttonTitle }) => (
   <div className="flex gap-[16px]">
-    <ButtonCancelComponent text={cancelText} onClick={onCancel} />
-    <ButtonApplyComponent
+    <ButtonComponent variant="cancel" text={cancelText} onClick={onCancel} />
+    <ButtonComponent
+      variant="apply"
       text={isSubmitting ? submittingText : submitText}
       disabled={isSubmitting || !isCashServiceEnabled}
       onClick={onSubmit}

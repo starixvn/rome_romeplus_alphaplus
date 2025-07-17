@@ -5,7 +5,7 @@ import React from 'react';
 import { DateRange, Range, RangeKeyDict } from 'react-date-range';
 import { enUS, vi, ja, ko, zhCN, zhTW, th } from 'date-fns/locale';
 
-import { ButtonFullComponent } from './Buttons/index';
+import { ButtonComponent } from './Buttons/index';
 import { CalendarIcon } from './Icons';
 import { convertToGMT4 } from '../utils/commonFunctions';
 import './DateRangePickerComponent.scss';
@@ -416,7 +416,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
                 )}
               </span>
             </div>
-            <ButtonFullComponent text={t('apply')} onClick={handleApply} />
+            <ButtonComponent variant="apply" text={t('apply')} onClick={handleApply} />
           </div>
         </div>
       )}

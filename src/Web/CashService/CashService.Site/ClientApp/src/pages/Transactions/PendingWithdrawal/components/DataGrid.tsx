@@ -8,7 +8,7 @@ import {
 } from '../../../../utils/commonFunctions.tsx';
 import PendingWithdrawalModal from './PendingWithdrawalModal.tsx';
 import NoRecordFound from '../../../../components/NoRecordFoundComponent.tsx';
-import { ButtonFullComponent } from '../../../../components/Buttons/index';
+import { ButtonComponent } from '../../../../components/Buttons/index';
 import Pagination from '../../Components/Pagination';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
 import { ValidateMessageComponent } from '../../../../components/Message';
@@ -128,7 +128,8 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals, reloadGrid }) => {
                   <td>{withdrawal.transId}</td>
                   <td>{formatDateTime(withdrawal.createdTime)}</td>
                   <td>
-                    <ButtonFullComponent
+                    <ButtonComponent
+                      variant="full"
                       text={t('dataGrid.process')}
                       onClick={() => handleProcessClick(withdrawal)}
                     />
