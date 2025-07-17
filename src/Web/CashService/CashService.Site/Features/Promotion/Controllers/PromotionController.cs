@@ -1,8 +1,7 @@
 namespace AlphaPlus.CashService.Site.Features.Promotion.Controllers;
 
-using AlphaPlus.CashService.Site.Features.Promotion.Requests;
 using AlphaPlus.CashService.Site.Features.Shared.Requests;
-using AlphaPlus.Core.Configurations;
+using Core.Configurations;
 using Core.Models;
 using Fanex.Customer.Client.Services;
 using Helpers;
@@ -11,11 +10,13 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using Models.Products;
 using Newtonsoft.Json;
+using Requests;
 using Services;
 using Shared;
 using Shared.Contants;
 using Shared.Filters;
 using Shared.Models;
+using ViewModels;
 
 [SiteAuthorizationFilter(PageAccessType.CashPromotion)]
 public class PromotionController(
@@ -174,6 +175,16 @@ public class PromotionController(
 
         var result = await httpClientHelper.PostAsync<DeletePromotionRequest, ResultModel>(url, request);
 
+        return Json(result);
+    }
+
+    public async Task<IActionResult> GetPendingPromotionTransaction(GetPendingPromotionViewModel request)
+    {
+        request.StatusId = 2;
+        request.CustId = userSession.CustId;
+        request.PromotionTypeId = 1;
+        request.SiteDbGroupId = userSession.SiteDBGroupId;
+        var result = await httpClientHelper.GetAsync<PromotionTransactionResponse>("/promotions/transactions", ObjectConverter.ToDictionary(request));
         return Json(result);
     }
 }

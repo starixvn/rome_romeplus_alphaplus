@@ -83,6 +83,14 @@ public static class PromotionEndpoints
             Summary = "Delete promotion",
             Description = "Delete a promotion"
         });
+
+        group.MapGet("/transactions",
+            async ([AsParameters] GetPromotionTransactionRequest request, IPromotionService service) =>
+            {
+                var (promotions, totalCount) = await service.GetPromotionTransactionAsync(request);
+                return Results.Ok(new { PendingPromotions = promotions, TotalCount = totalCount });
+            }).WithName("GetPendingPromotions");
+
         group.MapGet("/reports", async ([AsParameters] GetPromotionReportRequest request, IPromotionReportService service) =>
             Results.Ok(await service.GetMainReport(request))
         ).WithName("PromotionReport");

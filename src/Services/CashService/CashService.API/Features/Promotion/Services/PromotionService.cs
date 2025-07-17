@@ -1,5 +1,6 @@
 ﻿namespace AlphaPlus.CashService.API.Features.Promotion.Services;
 
+using AlphaPlus.CashService.API.Features.Promotion.Requests;
 using AlphaPlus.CashService.API.Features.Shared.Services;
 using Criteria;
 using Fanex.Data.Repository;
@@ -21,6 +22,8 @@ public interface IPromotionService
     Task<ResultModel> EditPromotionAsync(EditPromotionRequest request);
 
     Task<ResultModel> DeletePromotion(int promotionId, BaseActionRequest request);
+
+    Task<(IEnumerable<PromotionTransaction>, int)> GetPromotionTransactionAsync(GetPromotionTransactionRequest criteria);
 }
 
 public class PromotionService(IDynamicRepository repository, ICommonService commonService, ICacheRefService cacheRef) : IPromotionService
@@ -141,7 +144,6 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
 
     public async Task<ResultModel> DeletePromotion(int promotionId, BaseActionRequest request)
     {
-        Console.Write($"Delete promotion {promotionId}: {JsonConvert.SerializeObject(request)}");
         var command = new DeletePromotionCriteria
         {
             PromotionId = promotionId,
@@ -160,6 +162,23 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
         }
 
         return new ResultModel(command.ErrCode, command.ErrMsg);
+    }
+
+    public async Task<(IEnumerable<PromotionTransaction>, int)> GetPromotionTransactionAsync(GetPromotionTransactionRequest request)
+    {
+        var criteria = new GetPromotionTransactionCriteria
+        {
+            CustId = request.CustId,
+            SiteDbGroupId = request.SiteDbGroupId,
+            FromDate = request.FromDate,
+            PromotionType = request.PromotionTypeId,
+            Status = request.StatusId,
+            ToDate = request.ToDate,
+            PageIndex = request.PageIndex,
+            PageSize = request.PageSize
+        };
+        var promotions = await repository.FetchAsync<PromotionTransaction>(criteria);
+        return (promotions, criteria.TotalRecords);
     }
 
     private void WriteLog(List<WriteLogDBCommandModel> logs, short siteDbGroupId)

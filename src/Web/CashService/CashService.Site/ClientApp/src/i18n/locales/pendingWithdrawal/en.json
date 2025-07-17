@@ -56,7 +56,8 @@
     "confirmRejectTitle": "Confirm Reject",
     "confirmRejectMessage": "Are you sure you want to reject this withdrawal?",
     "confirmApproveTitle": "Confirm Approve",
-    "confirmApproveMessage": "Are you sure you want to approve this withdrawal?"
+    "confirmApproveMessage": "Are you sure you want to approve this withdrawal?",
+    "providerProcessing": "This withdrawal is being processed by the provider. Please wait for the provider to process it."
   },
 
   "manualWithdrawalForm": {

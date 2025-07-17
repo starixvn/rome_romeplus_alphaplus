@@ -1,26 +1,27 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { TitleComponent } from '../../../components/Title';
-import Filter from './components/Filter.tsx';
-import Table from './components/Table.tsx';
-import Search from './components/Search.tsx';
+import PendingPromotionList from './components/PendingPromotionList';
 import i18n from '../../../i18n/i18n-promotion';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
-import { ButtonComponent } from '../../../components/Buttons';
+import { useTranslation } from 'react-i18next';
 import AddBonusForm from './components/AddBonusForm';
-
-const mockData: any[] = [];
+import { ButtonFullComponent } from '../../../components/Buttons';
 
 const PendingPromotion: React.FC = () => {
   useCookieLanguage(i18n);
-  const [dateRange, setDateRange] = useState<[Date | null, Date | null]>([null, null]);
-  const [promotionType, setPromotionType] = useState<string>('');
-  const [search, setSearch] = useState<string>('');
+  const { t } = useTranslation('promotion');
   const [showAddBonus, setShowAddBonus] = useState(false);
+  const [isCashServiceEnabled, setIsCashServiceEnabled] = useState(false);
 
-  const filteredData = mockData;
+  React.useEffect(() => {
+    const isCashServiceEnabled = document
+      .getElementById('IsCashServiceEnabled')
+      ?.getAttribute('value');
+    setIsCashServiceEnabled(isCashServiceEnabled === '1');
+  }, []);
 
   return (
     <>
@@ -28,27 +29,17 @@ const PendingPromotion: React.FC = () => {
         <AddBonusForm onClose={() => setShowAddBonus(false)} />
       ) : (
         <div className="flex h-full flex-col">
-          <TitleComponent title="Pending Promotion" />
+          <TitleComponent title={t('pendingPromotion')} />
           <div className="mb-[8px]">
             <ButtonComponent
-              variant="full"
-              text={`Add Bonus`}
+              text={t('addBonus')}
+	      variant="full"
               onClick={() => setShowAddBonus(true)}
               className="min-w-[183px] [&>*]:min-w-[183px] [&>*]:inline-block"
             />
           </div>
-          <div className="filters-container mb-[5px]">
-            <Filter
-              dateRange={dateRange}
-              setDateRange={setDateRange}
-              promotionType={promotionType}
-              setPromotionType={setPromotionType}
-            />
-          </div>
-          <div className="search-section w-full border border-[var(--table-border-color)] border-b-0 p-[6px]">
-            <Search search={search} setSearch={setSearch} onDownload={() => {}} />
-          </div>
-          <Table data={filteredData} />
+          {showAddBonus && <AddBonusForm onClose={() => setShowAddBonus(false)} />}
+          <PendingPromotionList isCashServiceEnabled={isCashServiceEnabled} />
         </div>
       )}
     </>

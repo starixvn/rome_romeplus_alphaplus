@@ -1,30 +1,72 @@
 import React, { useState } from 'react';
-import { IconCopy, IconExcel, IconSearch } from '../../../../components/Icons';
-import Tippy from '@tippyjs/react';
 import { useTranslation } from 'react-i18next';
 
+import { IconCopy, IconExcel, IconSearch } from '../../../../components/Icons';
+import { PromotionTransaction } from '../../../../services/interfaces/Promotion';
+import { displayAmount, formatDateTime } from '../../../../utils/commonFunctions';
+import Tippy from '@tippyjs/react';
+
 interface SearchProps {
-  search: string;
-  setSearch: (val: string) => void;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
+  items: PromotionTransaction[];
   onDownload: () => void;
 }
 
-const Search: React.FC<SearchProps> = ({ search, setSearch, onDownload }) => {
-  const { t: tGlobal } = useTranslation('global');
-  const [textCopy, setTextCopy] = useState(tGlobal('copy'));
+const Search: React.FC<SearchProps> = ({ value, onChange, items, onDownload }) => {
+  const { t } = useTranslation('promotion');
+  const [textCopy, setTextCopy] = useState(t('messages.copy'));
+
+  const handleCopy = () => {
+    const headers = [
+      t('table.no'),
+      `${t('table.username')} & ${t('table.nickname')}`,
+      t('table.name'),
+      t('table.title'),
+      t('table.promotionType'),
+      t('table.amount'),
+      t('table.status'),
+      t('table.dateRange'),
+    ];
+
+    const rows = items.map((item, index) => {
+      const rowData = [
+        (index + 1).toString(),
+        `${item.username} ${item.nickname ? `(${item.nickname})` : ''}`,
+        `${item.firstName} ${item.lastName}`,
+        item.title,
+        item.promotionTypeName,
+        `${displayAmount(item.amount)} ${item.currency}`,
+        item.status,
+        `${formatDateTime(item.fromDate)} - ${formatDateTime(item.toDate)}`,
+      ];
+      return rowData.join('\t');
+    });
+
+    const finalText = [headers.join('\t'), ...rows].join('\n');
+    navigator.clipboard
+      .writeText(finalText)
+      .then(() => {
+        setTextCopy(t('messages.copied'));
+      })
+      .catch((err) => {
+        console.error('Failed to copy text: ', err);
+      });
+  };
+
   const handleDownload = async () => {
     onDownload();
   };
-  const handleCopy = () => {
-    navigator.clipboard.writeText(search);
-    setTextCopy(tGlobal('copied'));
-  };
+
   return (
     <div className="flex items-center w-full justify-between">
-      <div className=""></div>
+      <div className="italic ">
+        <span className="text-[#ff0101] dark:text-[#e54748]">*</span> {t('filter.maxRecords')}
+      </div>
       <div className="flex items-center gap-[8px]">
         <Tippy
-          content={tGlobal('exportToExcel')}
+          content={t('messages.exportToExcel')}
           placement="top"
           theme="light"
           arrow={true}
@@ -51,10 +93,10 @@ const Search: React.FC<SearchProps> = ({ search, setSearch, onDownload }) => {
               </span>
               <input
                 type="text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                value={value}
+                onChange={(e) => onChange(e.target.value)}
                 className="control-field pl-[30px]!"
-                placeholder="Username/First & Last Name"
+                placeholder={t('filter.searchPlaceholder')}
               />
             </div>
           </div>

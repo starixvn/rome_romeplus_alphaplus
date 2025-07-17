@@ -4,6 +4,7 @@ import CustomDropdownComponent, {
   DropdownOption,
 } from '../../../../components/CustomDropdownComponent';
 import { LabelTitleComponent } from '../../../../components/Title';
+import { useTranslation } from 'react-i18next';
 
 const promotionTypeOptions: DropdownOption[] = [
   { value: 'type1', label: 'Type 1' },
@@ -23,6 +24,7 @@ const Filter: React.FC<FilterProps> = ({
   promotionType,
   setPromotionType,
 }) => {
+  const { t } = useTranslation('promotion');
   const currentYear = new Date().getFullYear();
   return (
     <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
@@ -38,7 +40,7 @@ const Filter: React.FC<FilterProps> = ({
         </div>
       </div>
       <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
-        <LabelTitleComponent text="Promotion Type" />
+        <LabelTitleComponent text={t('filter.promotionType')} />
         <CustomDropdownComponent
           options={promotionTypeOptions}
           onSelect={(opt) => setPromotionType(opt.value as string)}

@@ -8,6 +8,7 @@ import {
 } from '../../../../utils/commonFunctions.tsx';
 import BankIcon from '../../../../components/BankComponents.tsx';
 import {
+  ButtonCancelComponent,
   ButtonClosePopupComponent,
   ButtonComponent,
 } from '../../../../components/Buttons/index';
@@ -46,6 +47,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
   const [providerId, setProviderId] = useState(0);
   const [paymentMethodId, setPaymentMethodId] = useState(0);
   const [isRemovePayslip, setIsRemovePayslip] = useState(false);
+  const [isProviderProcessing, setIsProviderProcessing] = useState(false);
   const [resultMessage, setResultMessage] = useState<{
     type: 'success' | 'error' | 'warning' | null;
     message: string;
@@ -62,6 +64,13 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
       if (response.error) {
         setIsLoading(false);
         return;
+      }
+      if (response.data.paymentType === 1) {
+        setIsProviderProcessing(true);
+        setResultMessage({
+          type: 'warning',
+          message: t('pendingWithdrawalModal.providerProcessing'),
+        });
       }
       setWithdrawal(response.data);
       setRemark(response.data.remark);
@@ -337,7 +346,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
                             onSelect={handleChangePaymentFrom}
                             initialValue={withdrawal?.paymentFrom || ''}
                             placeholder={t('pendingWithdrawalModal.selectBank')}
-                            disable={isSubmitting}
+                            disable={isSubmitting || isProviderProcessing}
                             searchable={true}
                           />
                         </div>
@@ -360,32 +369,42 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
                       maxLength={1000}
                       placeholder={t('pendingWithdrawalModal.remarksPlaceholder')}
                       className="block h-[140px]! py-[10px] control-field resize-none"
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || isProviderProcessing}
                     />
                   </div>
                 </div>
                 <UploadImage
                   setImage={handleImageChange}
                   prevImage={withdrawal?.base64Payslip}
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || isProviderProcessing}
                 />
               </>
             )}
           </div>
-
+          {}
           <div className="flex gap-4 justify-end">
-            <ButtonComponent
-              variant="reject"
-              onClick={handleReject}
-              disabled={isSubmitting || isLoading}
-              text={t('pendingWithdrawalModal.reject')}
-            />
-            <ButtonComponent
+            {isProviderProcessing && (
+              <ButtonCancelComponent
+                onClick={onClose}
+                disabled={isSubmitting}
+                text={t('pendingWithdrawalModal.close')}
+              />
+            )}
+            {!isProviderProcessing && (
+              <>
+                <ButtonRejectComponent
+                  onClick={handleReject}
+                  disabled={isSubmitting || isLoading}
+                  text={t('pendingWithdrawalModal.reject')}
+                />
+                <ButtonApplyComponent
               variant="apply"
-              onClick={handleApprove}
-              disabled={isSubmitting || isLoading}
-              text={t('pendingWithdrawalModal.approve')}
-            />
+                  onClick={handleApprove}
+                  disabled={isSubmitting || isLoading}
+                  text={t('pendingWithdrawalModal.approve')}
+                />
+              </>
+            )}
           </div>
         </div>
       </div>

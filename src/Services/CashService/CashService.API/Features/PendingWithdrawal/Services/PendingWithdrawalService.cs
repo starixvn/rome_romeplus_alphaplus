@@ -9,7 +9,8 @@ using AlphaPlus.CashService.API.Features.Transactions.Services;
 using Criteria;
 using Fanex.Data.Repository;
 using Models;
-using Newtonsoft.Json;
+using Shared.Requests;
+using Shared.Services;
 using Transactions.Enum;
 
 public interface IPendingWithdrawalService
@@ -30,7 +31,8 @@ public interface IPendingWithdrawalService
 public class PendingWithdrawalService(
     IDynamicRepository dynamicRepository,
     ITransactionService transactionService,
-    IPaymentGatewayService paymentGateway) : IPendingWithdrawalService
+    IPaymentGatewayService paymentGateway,
+    ICommonService commonService) : IPendingWithdrawalService
 {
     public async Task<decimal> GetCashBalanceAsync(int custId, int siteDbGroupId)
     {
@@ -147,7 +149,6 @@ public class PendingWithdrawalService(
         };
 
         var response = await paymentGateway.WithdrawalViaPaymentGateway(model, (short)command.CustDBGroupId);
-        Console.WriteLine($"Response message: {JsonConvert.SerializeObject(response)}");
         if (response.IsSuccessful)
         {
             result.Code = response.Code;
@@ -200,6 +201,24 @@ public class PendingWithdrawalService(
             IP = param.IP,
             StatusId = statusId,
         };
-        await dynamicRepository.ExecuteAsync(command);
+        var responseLogs = (await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command)).ToArray();
+        if (responseLogs.Any())
+        {
+            foreach (var writeLogDbCommandModel in responseLogs)
+            {
+                await WriteLogRunSp(writeLogDbCommandModel, param.SiteDBGroupId);
+            }
+        }
+    }
+
+    private async Task WriteLogRunSp(WriteLogDBCommandModel log, int siteDbGroupId)
+    {
+        var request = new BaseActionRequest
+        {
+            ActorId = log.CustId,
+            CustDBGroupId = siteDbGroupId,
+            UserId = log.UserId,
+        };
+        await commonService.WriteLogDBCommand(request, log);
     }
 }

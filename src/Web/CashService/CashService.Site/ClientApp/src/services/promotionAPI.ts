@@ -1,5 +1,13 @@
 import { api, axiosInstance, createHeaderXMLHttp } from './axios';
-import { EditPromotionRequest, ProductDropdown, PromotionDetail, PromotionParams, PromotionRequest } from './interfaces/Promotion';
+mport {
+  EditPromotionRequest,
+  ProductDropdown,
+  PromotionDetail,
+  PromotionParams,
+  PromotionRequest,
+  PromotionTransactionRequest,
+  PromotionTransactionResponse,
+} from './interfaces/Promotion';
 import { ResultModel } from './interfaces/ResultModel';
 
 export const promotionService = {
@@ -20,6 +28,28 @@ export const promotionService = {
     } catch (error) {
       console.error('Error fetching promotion:', error);
       return [];
+    }
+  },
+
+  getPendingPromotionTransactions: async (
+    request: PromotionTransactionRequest
+  ): Promise<PromotionTransactionResponse> => {
+    try {
+      const queryParams = new URLSearchParams({
+        promotionTypeId: request.promotionTypeId.toString(),
+        fromDate: request.fromDate,
+        toDate: request.toDate,
+      });
+      const response = await axiosInstance.get<PromotionTransactionResponse>(
+        `GetPendingPromotionTransaction?${queryParams.toString()}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching pending promotion:', error);
+      return {
+        promotionTransactions: [],
+        totalCount: 0,
+      };
     }
   },
 
@@ -66,8 +96,8 @@ export const promotionService = {
       console.error('Error adding promotion:', error);
       throw error;
     }
-  },  
-deletePromotion: async (promotionId: number): Promise<ResultModel> => {
+  },
+  deletePromotion: async (promotionId: number): Promise<ResultModel> => {
     try {
       const response = await axiosInstance.delete<ResultModel>(
         `DeletePromotion?promotionId=${promotionId}`

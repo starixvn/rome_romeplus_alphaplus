@@ -24,6 +24,37 @@ export interface PromotionRequest {
   productSettings: ProductSetting[];
   contents: LanguageInfo[];
 }
+
+export interface PromotionTransactionRequest {
+  promotionTypeId: number;
+  fromDate: string;
+  toDate: string;
+}
+
+export interface PromotionTransaction {
+  promotionId: number;
+  transId: number;
+  custId: number;
+  username: string;
+  nickname: string;
+  firstName: string;
+  lastName: string;
+  amount: number;
+  currency: string;
+  statusId: number;
+  status: string;
+  title: string;
+  promotionType: number;
+  promotionTypeName: string;
+  fromDate: string;
+  toDate: string;
+}
+
+export interface PromotionTransactionResponse {
+  promotionTransactions: PromotionTransaction[];
+  totalCount: number;
+}
+
 export interface Language {
   key: string;
   label: string;
