@@ -45,11 +45,11 @@ const Information: React.FC<InformationProps> = ({
       <DisableButtonComponent isActive={!isActive} onClick={() => setIsActive(false)} />
     </div>
 
-    <MediumTitleComponent text="Promotion Settings" isShowIcon={false} />
+    <MediumTitleComponent text="Promotion Settings" isShowIcon={true} />
 
     <div className="flex flex-wrap w-full">
       <div className="w-[190px] mr-[12px] mb-[12px]">
-        <LabelTitleComponent text="Promotion Type" required={true} isShowIcon={false} />        
+        <LabelTitleComponent text="Promotion Type" required={true} isShowIcon={true} />        
         <CustomDropdown
           disable={readOnlyMode}
           options={PROMOTION_TYPES}
@@ -71,7 +71,7 @@ const Information: React.FC<InformationProps> = ({
       </div>
 
       <div className="w-[190px] mr-[12px] mb-[12px]">
-        <LabelTitleComponent text="Product" required={true} isShowIcon={false} />
+        <LabelTitleComponent text="Product" required={true} isShowIcon={true} />
         <TreeSelect
           options={productOptions}
           value={selectedProductIds}

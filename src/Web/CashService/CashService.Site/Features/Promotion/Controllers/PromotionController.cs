@@ -92,9 +92,9 @@ public class PromotionController(
         return _httpClient.GetFromJsonAsync<PromotionDetailsReport>(url);
     }
 
-    public async Task<IActionResult> GetPromotion(int promotionTypeId, int statusId, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetPromotion(int promotionType, int status, CancellationToken cancellationToken)
     {
-        var url = $"/promotions/get?promotionTypeId={promotionTypeId}&statusId={statusId}&custId={userSession.CustId}&sitedbgroupId={userSession.SiteDBGroupId}&language={userSession.Language}";
+        var url = $"/promotions/get?promotionTypeId={promotionType}&statusId={status}&custId={userSession.CustId}&sitedbgroupId={userSession.SiteDBGroupId}&language={userSession.Language}";
 
         var result = await httpClientHelper.GetAsync<object>(url);
 
