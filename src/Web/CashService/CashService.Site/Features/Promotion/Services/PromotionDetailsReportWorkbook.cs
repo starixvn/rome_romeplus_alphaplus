@@ -1,6 +1,7 @@
 using AlphaPlus.CashService.Site.Features.Promotion.Models;
 using AlphaPlus.CashService.Site.Features.Promotion.Requests;
 using AlphaPlus.CashService.Site.Features.Shared;
+using AlphaPlus.CashService.Site.Features.Transactions.Enum;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Shared.AppResources.CashServices;
@@ -68,9 +69,9 @@ public class PromotionDetailsReportWorkbook(IWebHostEnvironment webHostEnvironme
         .Map(G, p => p.LastUpdated)
         .Map(H, p => p.StatusId switch
         {
-            4 => CashServicesResx.Approved,
-            2 => Resources.Pending,
-            5 => Resources.Rejected,
+            (byte)TransactionStatus.Completed => CashServicesResx.Approved,
+            (byte)TransactionStatus.Pending => Resources.Pending,
+            (byte)TransactionStatus.Rejected => Resources.Rejected,
             _ => string.Empty
         });
 
