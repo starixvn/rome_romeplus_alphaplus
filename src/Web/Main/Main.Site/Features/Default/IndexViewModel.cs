@@ -175,15 +175,14 @@ public class IndexViewModel
     {
         get
         {
-            var actorLevel = Enumeration.FromValue<UserLevel>(message.RoleId);
-
-            return (actorLevel.IsSuperLevel() || actorLevel.IsMasterLevel()) && ((PageAccess)SubPageAccess).CreateAccount;
+            return true;
         }
     }
 
     public string HightLightFeatureImageName => "new_feature" + DarkModeName;
 
-    public string HightLightFeatureUrl => MicroSites.MainUrl("~/Tour/Index");
+    public string HightLightFeatureUrl 
+    => AppSettings.IsSiteLabel789y ? MicroSites.FeatureUrl("~/StaticMessage/Help?id=226060") : MicroSites.FeatureUrl($"~/HandbookDefault/GetBySlug?slug=potential-win-limit-overview");
 
     public bool IsShowRewardTour { get; }
 

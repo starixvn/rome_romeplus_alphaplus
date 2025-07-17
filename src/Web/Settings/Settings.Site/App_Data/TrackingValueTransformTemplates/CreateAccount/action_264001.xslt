@@ -11,6 +11,7 @@
   <xsl:include href="./memberCommission.xslt" />
   <xsl:include href="./winLossLimit.xslt" />
   <xsl:include href="./betLimit.xslt" />
+  <xsl:include href="./potentialWinLimit.xslt" />
   <xsl:param name="IsInternal" select="0"></xsl:param>
   <xsl:output method="html" indent="no" />
   <xsl:template match="root">
@@ -40,6 +41,7 @@
                 <xsl:apply-templates select="discount">
                   <xsl:with-param name="uplineroleid" select="$uplineroleid" />
                 </xsl:apply-templates>
+                <xsl:apply-templates select="potentialwinlimit" />
                 <xsl:apply-templates select="betsetting" />
                 <xsl:apply-templates select="parlaymaxpayout" />
                 <xsl:call-template name="directMemberPT">

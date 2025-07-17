@@ -1,5 +1,4 @@
-﻿using AlphaPlus.Core.Configurations;
-using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.WinLossLimit;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -14,22 +13,8 @@ public partial class WinLossLimitController(IMediator mediator, IUserSession use
     }
 
     public Task<ActionResult> SportsbookPotentialWinLimit(SportsbookPotentialWinLimitQuery message)
-    {
-        if (!userSession.IsAgent)
-        {
-            return Task.FromResult<ActionResult>(Unauthorized());
-        }
-
-        return View(message, "~/Features/MemberInfo/Views/WinLossLimit/SportsbookPotentialWinLimit.cshtml");
-    }
+        => View(message, "~/Features/MemberInfo/Views/WinLossLimit/SportsbookPotentialWinLimit.cshtml");
 
     public async Task<ActionResult> PotentialExcel(ExcelSportsbookPotentialWinLimitQuery message)
-    {   
-        if (!userSession.IsAgent)
-        {
-            return Unauthorized();
-        }
-
-        return await ExcelView(message);
-    }
+        => await ExcelView(message);
 }

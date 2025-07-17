@@ -19,7 +19,8 @@ public class PotentialWinLimitService(IDynamicRepository repository) : IPotentia
     {
         var criteria = new GetPotentialWinLimitCriteria
         {
-            AgentId = param.CustId,
+            CustId = param.CustId,
+            RoleId = param.RoleId,
             Username = param.Username,
             Status = param.Status,
             ProblemAccount = param.ProblemAccount,

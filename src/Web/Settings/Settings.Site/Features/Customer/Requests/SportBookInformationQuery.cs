@@ -32,13 +32,9 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
                 PTSettingTab,
                 PTCommissionSettingTab,
                 ProductCategorySettingTab,
-                WinLossLimitTab
+                WinLossLimitTab,
+                PotentialWinLimitTab
             };
-
-            if (ViewerLevel.IsAgentLevel())
-            {
-                tabs.Add(PotentialWinLimitTab);
-            }
 
             return tabs;
         }

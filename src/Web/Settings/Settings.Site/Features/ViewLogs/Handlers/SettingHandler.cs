@@ -20,7 +20,7 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
         private readonly TrackingValueFormatter trackingValueFormatter;
         private readonly TransformService transformService;
         private readonly Fanex.Logging.ILogger logger;
-        private static readonly IReadOnlyList<int> PotentialWinLimitActionIds = new[] { 265000, 854 };
+        private static readonly IReadOnlyList<int> PotentialWinLimitActionIds = new[] { 264001, 265000, 854 };
 
         public SettingHandler(
             [FromKeyedServices("settingLogSvc")] LogService logService,

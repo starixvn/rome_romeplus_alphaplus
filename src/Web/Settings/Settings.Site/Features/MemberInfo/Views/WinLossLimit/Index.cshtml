@@ -18,12 +18,7 @@
 @section Styles {
     @StaticResources.RenderStyles("~/Features/MemberInfo/assets/bundles-v2/win-loss-limit")
 }
-@if (!userSession.IsAgent)
-{
-    <div class="page-title">
-        <span class="pull-left">@Resources.MemberWinLossLimit</span>
-    </div>
-}
+
 <form id="win-loss-limit-form" class="form-inline demo-form-inline filter">
     <div class="form-group">
         <label>@Resources.Product</label>

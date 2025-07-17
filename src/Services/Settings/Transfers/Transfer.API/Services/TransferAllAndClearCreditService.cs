@@ -1,8 +1,8 @@
 ﻿using System.Text;
 using AlphaPlus.Settings.Transfer.API.Criteria.TransferAllAndClearCredit;
-using Fanex.Data.Repository;
 using AlphaPlus.Settings.Transfer.API.Models.TransferAllAndClearCredit;
 using AlphaPlus.Settings.Transfer.API.Params.TransferAllAndClearCredit;
+using Fanex.Data.Repository;
 
 namespace AlphaPlus.Settings.Transfer.API.Services
 {
@@ -36,9 +36,7 @@ namespace AlphaPlus.Settings.Transfer.API.Services
                 BuildDownlineNetPositionXml(netPositionModels),
                 getDownlineCriteria.DownlineCustId);
             var (conditionSteps, transferSteps, clearCreditSteps)
-                = repository.FetchMultiple<ConditionStep, TransferStep, ClearCreditStep>(criteria);
-            // var (conditionSteps, transferSteps, clearCreditSteps)
-            //     = repository.FetchMultiple<ConditionStep, TransferStep, ClearCreditStep>(criteria, param.AGIP);
+                = repository.FetchMultiple<ConditionStep, TransferStep, ClearCreditStep>(criteria, param.AGIP);
 
             return new TransferResult(transferSteps, clearCreditSteps, conditionSteps.Select(c => c.Content));
         }
