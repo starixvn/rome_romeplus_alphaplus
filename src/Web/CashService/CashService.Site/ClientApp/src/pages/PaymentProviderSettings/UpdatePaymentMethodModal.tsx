@@ -247,7 +247,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                   >
                     <option value="">{tGlobal('select')}</option>
                     {TRANSACTION_TYPES.filter((type) => type.id !== 0).map((type) => (
-                      <option key={type.id} value={type.id}>
+                      <option key={type.id} value={type.id} selected={type.id === existingPaymentMethod.transactionType}>
                         {tPaymentProviderSettings(`transaction-${type.id}`)}
                       </option>
                     ))}
@@ -259,14 +259,14 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                   <LabelTitleComponent text={`${tPaymentProviderSettings('paymentMethod')}`} required={true} />
                   <select
                     className={`control-field ${fieldErrors.selectedPaymentMethod ? 'error' : ''}`}
-                    value={formState.selectedPaymentMethod}
                     disabled={true}
                   >
                     <option value="">{tGlobal('select')}</option>
                     {paymentMethods
                       .filter((p) => p.id !== 0 && p.status === paymentMethodStatusConstant.fail)
                       .map((method) => (
-                        <option key={method.id} value={method.id} >
+                        <option key={method.id} value={method.id} selected={method.id === existingPaymentMethod.method}
+                        data-state={formState.selectedPaymentMethod}>
                           {method.name}                          
                         </option>
                       ))}
