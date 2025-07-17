@@ -38,48 +38,15 @@ RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r src/Shared/Configuration/shar
 ARG CI_JOB_TOKEN
 RUN echo $TRANSFORM_CONFIG
 RUN mkdir /build/tmp
-RUN if [ "$TRANSFORM_CONFIG" = "PRO" ] \
-  || [ "$TRANSFORM_CONFIG" = "PRO2" ] \
-  || [ "$TRANSFORM_CONFIG" = "PRO3" ] \
-  || [ "$TRANSFORM_CONFIG" = "PRO4" ] \
-  || [ "$TRANSFORM_CONFIG" = "PRO5" ] \
-  || [ "$TRANSFORM_CONFIG" = "INT" ] \
-  || [ "$TRANSFORM_CONFIG" = "INT2" ] \
-  || [ "$TRANSFORM_CONFIG" = "INT3" ] \
-  || [ "$TRANSFORM_CONFIG" = "INT4" ] \
-  || [ "$TRANSFORM_CONFIG" = "INT5" ] \
-  || [ "$TRANSFORM_CONFIG" = "DR" ] \
-  || [ "$TRANSFORM_CONFIG" = "DR2" ] \
-  || [ "$TRANSFORM_CONFIG" = "DR3" ] \
-  || [ "$TRANSFORM_CONFIG" = "DRINT" ] \
-  || [ "$TRANSFORM_CONFIG" = "DRINT2" ] \
-  || [ "$TRANSFORM_CONFIG" = "DRINT3" ] \
-  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPRODINT" ] \
+RUN if [ "$TRANSFORM_CONFIG" = "ALPHAKLPRODINT" ] \
   || [ "$TRANSFORM_CONFIG" = "ALPHAKLPRODINT2" ] \
   || [ "$TRANSFORM_CONFIG" = "ALPHAKLPRODINT3" ] \
-  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLEINT" ] \
-  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLEINT2" ] \
-  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLEINT3" ] \
-  || [ "$TRANSFORM_CONFIG" = "DR4" ] \
-  || [ "$TRANSFORM_CONFIG" = "DR5" ] \
   || [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD" ] \
   || [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD2" ] \
   || [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD3" ] \
-  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD4" ] \
-  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD5" ] \
-  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLE" ] \
-  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLE2" ] \
-  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLE3" ] \
-  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLE4" ] \
-  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLE5" ] \
   || [ "$TRANSFORM_CONFIG" = "ALPHAKLSTG" ] \
   || [ "$TRANSFORM_CONFIG" = "ALPHAKLSTG2" ] \
-  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSTG3" ] \
-  || [ "$TRANSFORM_CONFIG" = "STG" ] \
-  || [ "$TRANSFORM_CONFIG" = "STG2" ] \
-  || [ "$TRANSFORM_CONFIG" = "STG3" ] \
-  || [ "$TRANSFORM_CONFIG" = "STG4" ] \
-  || [ "$TRANSFORM_CONFIG" = "STG5" ]; \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSTG3" ]; \
   then cd /build/tmp && curl --fail -o $TRANSFORM_CONFIG.domainmappings.json --header "PRIVATE-TOKEN:$CI_JOB_TOKEN" https://gitlab.nexdev.net/api/v4/projects/alpha-config%2Flogin-domains/repository/files/src%2F$TRANSFORM_CONFIG.domainmappings.json/raw?ref=main \
   && cd - && cp -r tmp/$TRANSFORM_CONFIG.domainmappings.json src/Web/Main/Main.Site/Domains/domainmappings.$TRANSFORM_CONFIG.json; fi
 

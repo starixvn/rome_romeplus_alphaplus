@@ -23,15 +23,9 @@ RUN echo $TRANSFORM_CONFIG
 RUN if [ "$TRANSFORM_CONFIG" = "LOCAL2" ] \
 		|| [ "$TRANSFORM_CONFIG" = "SIT2" ] \
 		|| [ "$TRANSFORM_CONFIG" = "UAT2" ] \
-		|| [ "$TRANSFORM_CONFIG" = "STG2" ] \
-		|| [ "$TRANSFORM_CONFIG" = "STGINT2" ] \
-		|| [ "$TRANSFORM_CONFIG" = "INT2" ] \
-		|| [ "$TRANSFORM_CONFIG" = "PRO2" ] \
-		|| [ "$TRANSFORM_CONFIG" = "DR2" ] \
 		|| [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD2" ] \
-		|| [ "$TRANSFORM_CONFIG" = "ALPHAKLPRODINT2" ] \
-		|| [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLE2" ] \
-		|| [ "$TRANSFORM_CONFIG" = "ALPHAKLSIMPLEINT2" ]; \
+		|| [ "$TRANSFORM_CONFIG" = "ALPHAKLSTG2" ] \
+		|| [ "$TRANSFORM_CONFIG" = "ALPHAKLPRODINT2" ] ; \
 	then cp ./bundleconfig2.json ./bundleconfig.json; \
 	fi
 
