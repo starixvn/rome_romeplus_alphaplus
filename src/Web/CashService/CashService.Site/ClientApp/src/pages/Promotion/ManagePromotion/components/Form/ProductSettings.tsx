@@ -36,7 +36,7 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
                 )
               }
             />
-            <span className="absolute right-0 top-0 text-[12px] text-[#333333] h-full w-[32px] leading-[32px] text-center font-bold border-l-[1px] border-[var(--border-control)]">
+            <span className={`absolute right-0 top-0 h-full w-[32px] leading-[28px] text-center border-l-[1px] border-[var(--border-control)] ${!selectedProductCategories.includes(product.productCategoryId) ? 'opacity-50' : ''}`}>
               %
             </span>
           </div>
@@ -66,7 +66,7 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
             <div className="flex items-center text-[12px]">
               <input
                 type="checkbox"
-                className={`mr-2 ${!selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
+                className={`mr-[5px] ${!selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
                 checked={product.unlimited}
                 disabled={!selectedProductCategories.includes(product.productCategoryId)}
                 onChange={(e) =>
@@ -76,7 +76,7 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
               />
               <label
                 htmlFor={`${product.productCategoryId}-unlimited`}
-                className="text-[var(--text-color-primary)]"
+                className="text-[var(--text-link-color)]"
               >
                 Unlimited
               </label>
