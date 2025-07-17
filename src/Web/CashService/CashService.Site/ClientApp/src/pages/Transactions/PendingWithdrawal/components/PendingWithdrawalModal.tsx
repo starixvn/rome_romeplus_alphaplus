@@ -128,15 +128,18 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
   };
 
   const handleApprove = async () => {
+    if (!isValidParams()) return;
+
     setShowConfirm('approve');
   };
 
   const handleReject = async () => {
+    if (!isValidParams(true)) return;
+
     setShowConfirm('reject');
   };
 
   const doApprove = async () => {
-    if (!isValidParams()) return;
     try {
       setIsSubmitting(true);
       const response = await approveWithdrawal({
@@ -177,7 +180,6 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
   };
 
   const doReject = async () => {
-    if (!isValidParams(true)) return;
     setIsSubmitting(true);
     const response = await rejectWithdrawal({
       transId: withdrawal?.transId || 0,
