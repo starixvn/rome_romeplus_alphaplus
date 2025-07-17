@@ -245,7 +245,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
                         AppSecret = request.AppSecret,
                         SecretKey = request.APIMethodKey
                     }
-                };
+                }; 
 
                 var response = await _httpClient.PostAsJsonAsync(url, twRequest, cancellationToken);
                 response.EnsureSuccessStatusCode();

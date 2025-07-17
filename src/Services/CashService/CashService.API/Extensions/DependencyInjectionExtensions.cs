@@ -1,10 +1,10 @@
 namespace AlphaPlus.CashService.API.Extensions;
 
 using System.Net;
-using AlphaPlus.CashService.API.Features.PendingWithdrawal.Helpers;
 using AlphaPlus.CashService.API.Features.PendingWithdrawal.Services;
 using AlphaPlus.CashService.API.Features.Shared.Constants;
 using AlphaPlus.CashService.API.Features.Shared.Models;
+using AlphaPlus.CashService.API.Features.Shared.Helpers;
 using Fanex.Data.Repository;
 using Fanex.Data.SqlServer;
 using Fanex.RemotingRef;
@@ -67,7 +67,7 @@ public static class DependencyInjectionExtensions
         });
 
         services.AddSingleton(sp => configuration.GetSection("PaymentGatewayApiConfig").Get<PaymentGatewayApiConfig>());
-        services.AddScoped<PaymentGatewayHttpClientHelper>();
+        services.AddScoped<HttpClientHelper>();
 
         return services;
     }

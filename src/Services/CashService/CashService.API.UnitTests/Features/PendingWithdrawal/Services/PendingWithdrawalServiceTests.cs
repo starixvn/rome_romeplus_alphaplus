@@ -7,6 +7,7 @@ using AlphaPlus.CashService.API.Features.PendingWithdrawal.Criteria;
 using AlphaPlus.CashService.API.Features.PendingWithdrawal.Models;
 using AlphaPlus.CashService.API.Features.PendingWithdrawal.Services;
 using AlphaPlus.CashService.API.Features.Shared.Models;
+using AlphaPlus.CashService.API.Features.Shared.Services;
 using AlphaPlus.CashService.API.Features.Transactions.Models;
 using AlphaPlus.CashService.API.Features.Transactions.Services;
 using Fanex.Data.Repository;

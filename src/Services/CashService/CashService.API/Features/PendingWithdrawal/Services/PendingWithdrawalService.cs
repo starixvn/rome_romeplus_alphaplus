@@ -1,12 +1,13 @@
 namespace AlphaPlus.CashService.API.Features.PendingWithdrawal.Services;
 
 using AlphaPlus.CashService.API.Features.Shared.Models;
+using AlphaPlus.CashService.API.Features.Shared.Models.PaymentGateway;
+using AlphaPlus.CashService.API.Features.Shared.Services;
 using AlphaPlus.CashService.API.Features.Transactions.Models;
 using AlphaPlus.CashService.API.Features.Transactions.Services;
 using Criteria;
 using Fanex.Data.Repository;
 using Models;
-using Models.PaymentGateway;
 using Newtonsoft.Json;
 using Transactions.Enum;
 

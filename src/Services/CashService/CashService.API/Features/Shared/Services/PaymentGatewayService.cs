@@ -1,8 +1,8 @@
-﻿namespace AlphaPlus.CashService.API.Features.PendingWithdrawal.Services;
+﻿namespace AlphaPlus.CashService.API.Features.Shared.Services;
 
 using System.Diagnostics;
+using AlphaPlus.CashService.API.Features.Shared.Helpers;
 using AlphaPlus.CashService.API.Features.Shared.Models;
-using Helpers;
 using Models.PaymentGateway;
 using Newtonsoft.Json;
 using Shared.Criteria;
@@ -16,7 +16,7 @@ public interface IPaymentGatewayService
 public class PaymentGatewayService(
     ICommonService commonService,
     Fanex.Logging.ILogger logger,
-    PaymentGatewayHttpClientHelper httpClient,
+    HttpClientHelper httpClient,
     PaymentGatewayApiConfig apiConfig) : IPaymentGatewayService
 {
     private static PaymentResponse CreateErrorResponse(string message, int? code = null)
@@ -55,7 +55,7 @@ public class PaymentGatewayService(
             requestBody);
         try
         {
-            response = await httpClient.PostAsync<WithdrawalBodyRequest, PaymentResponse>(withdrawalApi, data);
+            response = await httpClient.PostAsync<WithdrawalBodyRequest, PaymentResponse>(apiConfig.BaseUrl, withdrawalApi, data);
 
             criteria.StatusCode = response.Code;
             criteria.ResponseBody = JsonConvert.SerializeObject(response);

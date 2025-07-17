@@ -1,4 +1,4 @@
-﻿namespace AlphaPlus.CashService.API.Features.PendingWithdrawal.Models.PaymentGateway;
+﻿namespace AlphaPlus.CashService.API.Features.Shared.Models.PaymentGateway;
 
 public class WithdrawalBodyRequest
 {
@@ -8,11 +8,4 @@ public class WithdrawalBodyRequest
     public decimal Amount { get; set; }
     public int? ProviderId { get; set; }
     public WithdrawalMemberInfo MemberInfo { get; set; }
-}
-
-public class WithdrawalMemberInfo
-{
-    public string Name { get; set; }
-    public string BankCode { get; set; }
-    public string AccountNumber { get; set; }
 }
