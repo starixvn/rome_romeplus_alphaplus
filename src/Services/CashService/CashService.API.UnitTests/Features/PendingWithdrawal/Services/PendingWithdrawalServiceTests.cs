@@ -177,7 +177,7 @@ public class PendingWithdrawalServiceTests
         Assert.Equal(0, result.Code);
         mockDynamicRepository.Verify(repo => repo.GetAsync<CreditAmount>(It.IsAny<GetLimitAmtWithdrawCriteria>(), It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
         mockDynamicRepository.Verify(repo => repo.FetchAsync<WriteLogDBCommandModel>(It.IsAny<CreateManualWithdrawCommand>(), It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
-        mockTransactionService.Verify(s => s.OnAfterUpdateTransaction(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<List<WriteLogDBCommandModel>>()), Times.Once);
+        mockTransactionService.Verify(s => s.OnAfterUpdateTransaction(It.IsAny<string>(), It.IsAny<short>(), It.IsAny<short>(), It.IsAny<List<WriteLogDBCommandModel>>()), Times.Once);
     }
 
     [Fact]
@@ -222,7 +222,7 @@ public class PendingWithdrawalServiceTests
         Assert.Equal(0, result.Code);
         mockDynamicRepository.Verify(repo => repo.GetAsync<CreditAmount>(It.IsAny<GetLimitAmtWithdrawCriteria>(), It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Never);
         mockDynamicRepository.Verify(repo => repo.FetchAsync<WriteLogDBCommandModel>(It.IsAny<CreateManualWithdrawCommand>(), It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
-        mockTransactionService.Verify(s => s.OnAfterUpdateTransaction(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<List<WriteLogDBCommandModel>>()), Times.Once);
+        mockTransactionService.Verify(s => s.OnAfterUpdateTransaction(It.IsAny<string>(), It.IsAny<short>(), It.IsAny<short>(), It.IsAny<List<WriteLogDBCommandModel>>()), Times.Once);
     }
 
     [Fact]

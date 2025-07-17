@@ -1,4 +1,6 @@
-﻿namespace AlphaPlus.CashService.API.Features.Shared.Models.PaymentGateway;
+﻿using AlphaPlus.CashService.API.Features.Shared.Models.PaymentGateway;
+
+namespace AlphaPlus.CashService.API.Features.Shared.Requests.PaymentGateway;
 
 public class WithdrawalBodyRequest
 {

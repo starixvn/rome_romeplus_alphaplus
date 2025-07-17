@@ -11,6 +11,4 @@ public class UpdatePaymentMethodRequest : BaseActionRequest
     public string APIMethodKey { get; set; } = string.Empty;
     public string MerchantID { get; set; } = string.Empty;
     public string AppSecret { get; set; } = string.Empty;
-    
-    public bool APIResult { get; set; } = false;
 }

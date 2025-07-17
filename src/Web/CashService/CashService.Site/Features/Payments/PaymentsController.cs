@@ -13,21 +13,16 @@ namespace AlphaPlus.CashService.Site.Features.Payments
     [SiteAuthorizationFilter(PageAccessType.CashService)]
     public class PaymentsController : SiteBaseController
     {
-        private readonly string _apiBaseUrl;        
-        private readonly string _twAPIUrl;  
-        private readonly  Fanex.Logging.ILogger _logger;
+        private readonly string _apiBaseUrl;     
 
         public PaymentsController(
             IConfiguration configuration,
             HttpClient httpClient,
             IUserSession userSession,   
             IAntiforgery antiforgery,
-            ICustomerService customerService,
-            Fanex.Logging.ILogger logger) : base(userSession, antiforgery, httpClient, customerService)
+            ICustomerService customerService) : base(userSession, antiforgery, httpClient, customerService)
         {
-            _logger = logger;
             _apiBaseUrl = configuration["CashService:APIUrl"];
-            _twAPIUrl = configuration["CashService:TWAPIUrl"];
         }
 
         private int _custId => _userSession.CustId;
@@ -113,38 +108,14 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         [HttpPost]
         public async Task<IActionResult> AddPaymentMethod(
             [FromBody] InsertPaymentMethodRequest request,
-            CancellationToken cancellationToken) {
-            var validateRequest = new ValidatePaymentMethodRequest {
-                AgentId = _userSession.CustId,
-                ProviderId = request.ProviderId,
-                TransactionType = request.TransactionType,
-                Method = request.Method,
-                APIMethodKey = request.APIMethodKey,
-                MerchantID = request.MerchantID,
-                AppSecret = request.AppSecret
-            };
-
-            request.APIResult = await ValidatePaymentMethod(validateRequest, cancellationToken);
-            return await DoAction<InsertPaymentMethodRequest, object>($"{_apiBaseUrl}/payments/add-payment-method", request, cancellationToken);
-        }
+            CancellationToken cancellationToken) 
+            => await DoAction<InsertPaymentMethodRequest, object>($"{_apiBaseUrl}/payments/add-payment-method", request, cancellationToken);
 
         [HttpPost]
         public async Task<IActionResult> UpdatePaymentMethod(
             [FromBody] UpdatePaymentMethodRequest request,
-            CancellationToken cancellationToken) {
-            var validateRequest = new ValidatePaymentMethodRequest {
-                AgentId = _userSession.CustId,
-                ProviderId = request.ProviderId,
-                TransactionType = request.TransactionType,
-                Method = request.Method,
-                APIMethodKey = request.APIMethodKey,
-                MerchantID = request.MerchantID,
-                AppSecret = request.AppSecret
-            };
-
-            request.APIResult = await ValidatePaymentMethod(validateRequest, cancellationToken);
-            return await DoAction<UpdatePaymentMethodRequest, object>($"{_apiBaseUrl}/payments/update-payment-method", request, cancellationToken);
-        }
+            CancellationToken cancellationToken)
+            => await DoAction<UpdatePaymentMethodRequest, object>($"{_apiBaseUrl}/payments/update-payment-method", request, cancellationToken);
 
         public async Task<IActionResult> GetBanksByTransactionType(int transactionType, CancellationToken cancellationToken)
         {
@@ -231,30 +202,5 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             var countryCodes = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
             return Json(countryCodes);
         }
-
-        private async Task<bool> ValidatePaymentMethod(ValidatePaymentMethodRequest request, CancellationToken cancellationToken)
-        {
-            try {
-                var url = $"{_twAPIUrl}/PaymentGateway/TestConnection";
-                var twRequest = new {
-                    providerId = request.ProviderId,
-                    transactionType = request.TransactionType,
-                    paymentMethod = request.Method,
-                    apiConfig = new {
-                        MerchantNo = request.MerchantID,
-                        AppSecret = request.AppSecret,
-                        SecretKey = request.APIMethodKey
-                    }
-                }; 
-
-                var response = await _httpClient.PostAsJsonAsync(url, twRequest, cancellationToken);
-                response.EnsureSuccessStatusCode();
-                var result = await response.Content.ReadFromJsonAsync<TWAPIResultModel>(cancellationToken: cancellationToken);
-                return result.Code != 0;
-            } catch (Exception ex) {
-                await _logger.ErrorAsync(ex.Message, ex);
-                return true;
-            }
-        }
-    }
+    } 
 }

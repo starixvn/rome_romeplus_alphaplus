@@ -18,7 +18,6 @@ public class UpdatePaymentMethodRequestTests
             APIMethodKey = "test",
             MerchantID = "test",
             AppSecret = "test",
-            APIResult = true
         };
 
         // Act
@@ -41,7 +40,6 @@ public class UpdatePaymentMethodRequestTests
             APIMethodKey = "test",
             MerchantID = "test",
             AppSecret = "test",
-            APIResult = true
         };
 
         // Act
@@ -64,7 +62,6 @@ public class UpdatePaymentMethodRequestTests
             APIMethodKey = "test",
             MerchantID = "test",
             AppSecret = "test",
-            APIResult = true
         };
 
         // Act
@@ -87,7 +84,6 @@ public class UpdatePaymentMethodRequestTests
             APIMethodKey = "test",
             MerchantID = "test",
             AppSecret = "test",
-            APIResult = true
         };
 
         // Act
@@ -110,7 +106,6 @@ public class UpdatePaymentMethodRequestTests
             APIMethodKey = "test",
             MerchantID = "test",
             AppSecret = "test",
-            APIResult = true
         };
 
         // Act
@@ -133,7 +128,6 @@ public class UpdatePaymentMethodRequestTests
             APIMethodKey = "test",
             MerchantID = "test",
             AppSecret = "test",
-            APIResult = true
         };
 
         // Act
@@ -156,7 +150,6 @@ public class UpdatePaymentMethodRequestTests
             APIMethodKey = string.Empty,
             MerchantID = string.Empty,
             AppSecret = string.Empty,
-            APIResult = false
         };
 
         // Act
@@ -242,7 +235,6 @@ public class UpdatePaymentMethodRequestTests
             APIMethodKey = "test-key",
             MerchantID = "test-merchant",
             AppSecret = "test-secret",
-            APIResult = true
         };
 
         // Assert
@@ -259,36 +251,5 @@ public class UpdatePaymentMethodRequestTests
         Assert.Equal("test-key", request.APIMethodKey);
         Assert.Equal("test-merchant", request.MerchantID);
         Assert.Equal("test-secret", request.AppSecret);
-        Assert.True(request.APIResult);
-    }
-
-    [Fact]
-    public void APIResult_WhenSetToTrue_ReturnsTrue()
-    {
-        // Arrange
-        var request = new UpdatePaymentMethodRequest
-        {
-            ActorId = 1,
-            ProviderId = 1,
-            APIResult = true
-        };
-
-        // Act & Assert
-        Assert.True(request.APIResult);
-    }
-
-    [Fact]
-    public void APIResult_WhenSetToFalse_ReturnsFalse()
-    {
-        // Arrange
-        var request = new UpdatePaymentMethodRequest
-        {
-            ActorId = 1,
-            ProviderId = 1,
-            APIResult = false
-        };
-
-        // Act & Assert
-        Assert.False(request.APIResult);
     }
 } 

@@ -30,7 +30,7 @@ public class RevertDepositTransactionToPendingCommandTests
         var remark = "Test Remark";
         var userId = 1;
         var ip = "127.0.0.1";
-        var siteDbGroupId = 2;
+        short siteDbGroupId = 2;
         var errCode = -1;
         var errMsg = "Error Occurred";
 
@@ -56,7 +56,7 @@ public class RevertDepositTransactionToPendingCommandTests
     [Theory]
     [InlineData(1, "SiteDb_1_Age_CashTransaction_RevertDeposit_Upd")]
     [InlineData(5, "SiteDb_5_Age_CashTransaction_RevertDeposit_Upd")]
-    public void GetSettingKey_ShouldReturnCorrectFormat(int siteDbGroupId, string expectedKey)
+    public void GetSettingKey_ShouldReturnCorrectFormat(short siteDbGroupId, string expectedKey)
     {
         // Arrange
         var command = new RevertDepositTransactionToPendingCommand { SiteDbGroupId = siteDbGroupId };

@@ -28,7 +28,7 @@ public class UpdateMemberSiteModelTest
         var ip = "127.0.0.1";
         var language = "en";
         var userId = 2;
-        var siteDB = 3;
+        short siteDB = 3;
 
         // Act
         model.SubAccId = subAccId;

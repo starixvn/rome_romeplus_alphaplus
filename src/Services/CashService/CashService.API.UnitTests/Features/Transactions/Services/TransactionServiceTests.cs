@@ -53,7 +53,7 @@ public class TransactionServiceTests
         // Arrange
         long transactionId = 123;
         var custId = 1;
-        var siteDbGroupId = 1;
+        short siteDbGroupId = 1;
         var expectedTransaction = new TransactionModel { TransId = transactionId, CustId = custId };
 
         mockDynamicRepository
@@ -128,7 +128,7 @@ public class TransactionServiceTests
     {
         // Arrange
         var agentId = 1;
-        var custDbGroupId = 1;
+        short custDbGroupId = 1;
         var expectedMembers = new List<MemberInfo> { new() { CustId = 10, Username = "TestUser" } };
 
         mockDynamicRepository
@@ -155,8 +155,8 @@ public class TransactionServiceTests
     {
         // Arrange
         var cashAccumCreditTbl = "tblAccum";
-        var siteDbGroupId = 1;
-        var custDbGroupId = 1;
+        short siteDbGroupId = 1;
+        short custDbGroupId = 1;
         var logs = new List<WriteLogDBCommandModel>
     {
         new() { LogTypeId = 1, UserId = 1, FromCustId = 2, ToCustId = 3, Ip = "1.1.1.1", Doing = "Transfer" },
@@ -205,8 +205,8 @@ public class TransactionServiceTests
     {
         // Arrange
         var cashAccumCreditTbl = string.Empty;
-        var siteDbGroupId = 1;
-        var custDbGroupId = 1;
+        short siteDbGroupId = 1;
+        short custDbGroupId = 1;
         var logs = new List<WriteLogDBCommandModel>
         {
             new() { LogTypeId = 1, UserId = 1, FromCustId = 2, ToCustId = 3, Ip = "1.1.1.1", Doing = "Transfer" }
@@ -227,8 +227,8 @@ public class TransactionServiceTests
     {
         // Arrange
         var cashAccumCreditTbl = "tblAccum";
-        var siteDbGroupId = 1;
-        var custDbGroupId = 1;
+        short siteDbGroupId = 1;
+        short custDbGroupId = 1;
         var logs = new List<WriteLogDBCommandModel>(); // No logs to simplify
 
         mockDynamicRepository
@@ -254,8 +254,8 @@ public class TransactionServiceTests
     {
         // Arrange
         var cashAccumCreditTbl = "tblTest";
-        var siteDbGroupId = 1;
-        var custDbGroupId = 1;
+        short siteDbGroupId = 1;
+        short custDbGroupId = 1;
         var logs = new List<WriteLogDBCommandModel>
         {
             new() { LogTypeId = 1, UserId = 1, FromCustId = 100, ToCustId = 200, Ip = "127.0.0.1", Doing = "Test Transfer" }

@@ -162,7 +162,7 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
         return new ResultModel(command.ErrCode, command.ErrMsg);
     }
 
-    private void WriteLog(List<WriteLogDBCommandModel> logs, int siteDbGroupId)
+    private void WriteLog(List<WriteLogDBCommandModel> logs, short siteDbGroupId)
     {
         _ = Task.Run(async () =>
         {
@@ -173,7 +173,7 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
         });
     }
 
-    private async Task WriteLogRunSp(WriteLogDBCommandModel log, int siteDbGroupId)
+    private async Task WriteLogRunSp(WriteLogDBCommandModel log, short siteDbGroupId)
     {
         var request = new BaseActionRequest
         {

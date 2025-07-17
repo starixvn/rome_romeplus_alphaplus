@@ -8,8 +8,10 @@ public class BaseActionRequest
     public string Language { get; set; }
 
     public int UserId { get; set; }
-    public int SiteDBGroupId { get; set; }
-    public int CustDBGroupId { get; set; }
+    public short SiteDBGroupId { get; set; }
+    public short CustDBGroupId { get; set; }
+
+    public int ReceivedCustId { get; set; }
 
     public virtual bool IsValid() => ActorId > 0;
 }

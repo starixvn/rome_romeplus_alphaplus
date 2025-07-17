@@ -182,8 +182,7 @@ public class InsertPaymentMethodRequestTests
             Method = 2,
             APIMethodKey = "test-key",
             MerchantID = "test-merchant",
-            AppSecret = "test-secret",
-            APIResult = true
+            AppSecret = "test-secret"
         };
 
         // Assert
@@ -200,6 +199,5 @@ public class InsertPaymentMethodRequestTests
         Assert.Equal("test-key", request.APIMethodKey);
         Assert.Equal("test-merchant", request.MerchantID);
         Assert.Equal("test-secret", request.AppSecret);
-        Assert.True(request.APIResult);
     }
 } 

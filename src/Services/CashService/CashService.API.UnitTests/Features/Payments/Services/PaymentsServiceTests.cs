@@ -17,14 +17,16 @@ public class PaymentsServiceTests
     private readonly Mock<IDynamicRepository> _mockRepository;
     private readonly Mock<ICacheRefService> _mockCacheRefService;
     private readonly Mock<ICommonService> _mockCommonService;
-    private readonly PaymentsService _paymentsService;
+    private readonly Mock<IPaymentGatewayService> _mockPaymentGatewayService;
+    private readonly PaymentsService _paymentsService;  
 
     public PaymentsServiceTests()
     {
         _mockRepository = new Mock<IDynamicRepository>();
         _mockCacheRefService = new Mock<ICacheRefService>();
         _mockCommonService = new Mock<ICommonService>();
-        _paymentsService = new PaymentsService(_mockRepository.Object, _mockCacheRefService.Object, _mockCommonService.Object);
+        _mockPaymentGatewayService = new Mock<IPaymentGatewayService>();
+        _paymentsService = new PaymentsService(_mockRepository.Object, _mockCacheRefService.Object, _mockCommonService.Object, _mockPaymentGatewayService.Object);
     }
 
     [Fact]

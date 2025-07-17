@@ -15,15 +15,15 @@ public interface ITransactionService
 {
     Task<TransactionResponse> GetTransactionsAsync(GetAllTransactionsWithPagingCriteria criteria);
 
-    Task<TransactionModel> GetTransactionByIdAsync(long transactionId, int custId, int siteDbGroupId);
+    Task<TransactionModel> GetTransactionByIdAsync(long transactionId, int custId, short siteDbGroupId);
 
     Task<ResultModel> RevertDepositTransactionToPending(RevertDepositTransactionToPendingCommand command);
 
     Task<ResultModel> RevertWithdrawalTransactionToPending(RevertWithdrawalTransactionToPendingCommand command);
 
-    Task<IEnumerable<MemberInfo>> GetMembersAsync(int agentId, int custDbGroupId);
+    Task<IEnumerable<MemberInfo>> GetMembersAsync(int agentId, short custDbGroupId);
 
-    void OnAfterUpdateTransaction(string cashAccumCreditTbl, int siteDbGroupId, int custDbGroupId, List<WriteLogDBCommandModel> logs);
+    void OnAfterUpdateTransaction(string cashAccumCreditTbl, short siteDbGroupId, short custDbGroupId, List<WriteLogDBCommandModel> logs);
 }
 
 public class TransactionService(IDynamicRepository dynamicRepository, ICommonService commonService, ILogger logger)
@@ -40,7 +40,7 @@ public class TransactionService(IDynamicRepository dynamicRepository, ICommonSer
         };
     }
 
-    public async Task<TransactionModel> GetTransactionByIdAsync(long transactionId, int custId, int siteDbGroupId)
+    public async Task<TransactionModel> GetTransactionByIdAsync(long transactionId, int custId, short siteDbGroupId)
     {
         var criteria = new GetTransactionDetailCriteria
         {
@@ -75,7 +75,7 @@ public class TransactionService(IDynamicRepository dynamicRepository, ICommonSer
         };
     }
 
-    public async Task<IEnumerable<MemberInfo>> GetMembersAsync(int agentId, int custDbGroupId)
+    public async Task<IEnumerable<MemberInfo>> GetMembersAsync(int agentId, short custDbGroupId)
     {
         var criteria = new GetMembersCriteria
         {
@@ -85,7 +85,7 @@ public class TransactionService(IDynamicRepository dynamicRepository, ICommonSer
         return await dynamicRepository.FetchAsync<MemberInfo>(criteria);
     }
 
-    public void OnAfterUpdateTransaction(string cashAccumCreditTbl, int siteDbGroupId, int custDbGroupId, List<WriteLogDBCommandModel> logs)
+    public void OnAfterUpdateTransaction(string cashAccumCreditTbl, short siteDbGroupId, short custDbGroupId, List<WriteLogDBCommandModel> logs)
     {
         _ = Task.Run(async () =>
         {
@@ -119,7 +119,7 @@ public class TransactionService(IDynamicRepository dynamicRepository, ICommonSer
         }
     }
 
-    private async Task WriteLogAsync(List<WriteLogDBCommandModel> logs, int siteDbGroupId, int custDbGroupId)
+    private async Task WriteLogAsync(List<WriteLogDBCommandModel> logs, int siteDbGroupId, short custDbGroupId)
     {
         if (logs.Count > 0)
         {
@@ -162,7 +162,7 @@ public class TransactionService(IDynamicRepository dynamicRepository, ICommonSer
         }
     }
 
-    private async Task WriteLogRunSp(WriteLogDBCommandModel log, int siteDbGroupId)
+    private async Task WriteLogRunSp(WriteLogDBCommandModel log, short siteDbGroupId)
     {
         var request = new BaseActionRequest
         {

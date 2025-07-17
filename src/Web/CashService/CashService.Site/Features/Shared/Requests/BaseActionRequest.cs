@@ -12,9 +12,10 @@ public class BaseActionRequest
         IP = userSession.UserLoginIp;
         Language = userSession.LangKey;
         UserId = userSession.UserId;
-
-        SiteDBGroupId = userSession.SiteDBGroupId;
-        CustDBGroupId = userSession.CustDBGroupId;
+        ReceivedCustId = userSession.CustId;
+        
+        SiteDBGroupId = (short)userSession.SiteDBGroupId;
+        CustDBGroupId = (short)userSession.CustDBGroupId;
     }
 
     public void SetLimitedDateToShowInfo(IUserSession userSession)
@@ -29,8 +30,10 @@ public class BaseActionRequest
     public string Language { get; set; }
     public int UserId { get; set; }
 
-    public int SiteDBGroupId { get; set; }
-    public int CustDBGroupId { get; set; }
+    public int ReceivedCustId { get; set; }
+
+    public short SiteDBGroupId { get; set; }
+    public short CustDBGroupId { get; set; }
 
     public DateTime LimitedDateToShowInfo { get; set; }
 }

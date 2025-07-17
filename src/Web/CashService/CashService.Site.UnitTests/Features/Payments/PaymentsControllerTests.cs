@@ -27,7 +27,6 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
         private readonly Mock<IUserSession> _userSessionMock;
         private readonly Mock<IAntiforgery> _antiforgeryMock;
         private readonly Mock<ICustomerService> _customerServiceMock;
-        private readonly Mock<ILogger> _loggerMock;
         private readonly Mock<HttpContext> _httpContextMock;
         private readonly PaymentsController _controller;
         private readonly string _apiBaseUrl = "https://api.test.com";
@@ -40,11 +39,9 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             _userSessionMock = new Mock<IUserSession>();
             _antiforgeryMock = new Mock<IAntiforgery>();
             _customerServiceMock = new Mock<ICustomerService>();
-            _loggerMock = new Mock<ILogger>();
             _httpContextMock = new Mock<HttpContext>();
 
             _configurationMock.Setup(x => x["CashService:APIUrl"]).Returns(_apiBaseUrl);
-            _configurationMock.Setup(x => x["CashService:TWAPIUrl"]).Returns("https://tw-api.test.com");
 
             _userSessionMock.Setup(x => x.CustId).Returns(123);
             _userSessionMock.Setup(x => x.Language).Returns("en");
@@ -57,8 +54,7 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
                 _httpClient,
                 _userSessionMock.Object,
                 _antiforgeryMock.Object,
-                _customerServiceMock.Object,
-                _loggerMock.Object);
+                _customerServiceMock.Object);
 
             // Setup HttpContext
             _controller.ControllerContext = new ControllerContext
@@ -258,9 +254,6 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             result.Should().BeOfType<JsonResult>();
             var jsonResult = result as JsonResult;
             AssertJsonResultEquals(jsonResult, new ResultModel { Code = 401 });
-            
-            // Verify that APIResult was still set to false even though the request was rejected
-            request.APIResult.Should().BeTrue();
         }
 
         [Fact]
@@ -307,9 +300,6 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             result.Should().BeOfType<JsonResult>();
             var jsonResult = result as JsonResult;
             AssertJsonResultEquals(jsonResult, expectedResponse);
-            
-            // Verify that APIResult was set to false after failed validation
-            request.APIResult.Should().BeTrue();
         }
 
         [Fact]
@@ -332,9 +322,6 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
 
             // Assert
             result.Should().BeOfType<UnauthorizedResult>();
-            
-            // Verify that APIResult was still set to false even though the request was rejected
-            request.APIResult.Should().BeTrue();
         }
 
         [Fact]
@@ -356,9 +343,6 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             // Act & Assert
             await Assert.ThrowsAsync<HttpRequestException>(() =>
                 _controller.AddPaymentMethod(request, CancellationToken.None));
-            
-            // Verify that APIResult was still set to false even though an exception occurred
-            request.APIResult.Should().BeTrue();
         }
 
         [Fact]
@@ -408,12 +392,6 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             result.Should().BeOfType<JsonResult>();
             var jsonResult = result as JsonResult;
             AssertJsonResultEquals(jsonResult, expectedResponse);
-            
-            // Verify that APIResult was set to false after exception during validation
-            request.APIResult.Should().BeTrue();
-            
-            // Verify that logger was called with the exception
-            _loggerMock.Verify(x => x.ErrorAsync(It.IsAny<string>(), It.IsAny<Exception>()), Times.Once);
         }
 
         [Fact]
@@ -814,9 +792,6 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             result.Should().BeOfType<JsonResult>();
             var jsonResult = result as JsonResult;
             AssertJsonResultEquals(jsonResult, new ResultModel { Code = 401 });
-            
-            // Verify that APIResult was still set to false even though the request was rejected
-            request.APIResult.Should().BeTrue();
         }
 
         [Fact]
@@ -839,9 +814,6 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
 
             // Assert
             result.Should().BeOfType<UnauthorizedResult>();
-            
-            // Verify that APIResult was still set to false even though the request was rejected
-            request.APIResult.Should().BeTrue();
         }
 
         [Fact]
@@ -888,9 +860,6 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             result.Should().BeOfType<JsonResult>();
             var jsonResult = result as JsonResult;
             AssertJsonResultEquals(jsonResult, expectedResponse);
-            
-            // Verify that APIResult was set to false after failed validation
-            request.APIResult.Should().BeTrue();
         }
 
         [Fact]
@@ -940,12 +909,6 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             result.Should().BeOfType<JsonResult>();
             var jsonResult = result as JsonResult;
             AssertJsonResultEquals(jsonResult, expectedResponse);
-            
-            // Verify that APIResult was set to false after exception during validation
-            request.APIResult.Should().BeTrue();
-            
-            // Verify that logger was called with the exception
-            _loggerMock.Verify(x => x.ErrorAsync(It.IsAny<string>(), It.IsAny<Exception>()), Times.Once);
         }
 
         private void SetupHttpClientResponse<T>(HttpStatusCode statusCode, T content)

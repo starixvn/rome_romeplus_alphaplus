@@ -20,7 +20,7 @@ public class CreateManualDepositModel
 
     public string Remark { get; set; }
 
-    public int CustDbGroupId { get; set; }
+    public short CustDbGroupId { get; set; }
 
-    public int SiteDbGroupId { get; set; }
+    public short SiteDbGroupId { get; set; }
 }

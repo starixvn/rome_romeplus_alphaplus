@@ -4,7 +4,7 @@ using Fanex.Data;
 
 namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 {
-    public class InsertPaymentMethodCriteria(InsertPaymentMethodRequest request) 
+    public class InsertPaymentMethodCriteria(InsertPaymentMethodRequest request, bool validationResult) 
         : BaseDBCommand(request.ActorId, request.SubAccId, request.IP, request.Language)
     {
         public int ProviderId { get; } = request.ProviderId;
@@ -13,8 +13,7 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
         [SpParam(SqlParamName = "PaymentMethodID")]
         public int Method { get; } = request.Method;
 
-        [SpParam(SqlParamName = "ValidationResult")]
-        public bool APIResult { get; } = request.APIResult;
+        public bool ValidationResult { get; } = validationResult;
         
         public string APIConfig { get; } = request.GetAPIConfigJson();
 

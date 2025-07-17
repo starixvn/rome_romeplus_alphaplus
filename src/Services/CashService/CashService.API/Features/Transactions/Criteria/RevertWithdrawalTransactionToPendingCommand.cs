@@ -9,11 +9,11 @@ public class RevertWithdrawalTransactionToPendingCommand : INonQueryCommand
     public string Remark { get; set; }
     public int UserId { get; set; }
     public string Ip { get; set; }
-    public int SiteDbGroupId { get; set; }
+    public short SiteDbGroupId { get; set; }
     public string CashAccumCreditTbl { get; set; }
 
     [SpParam(Ignored = true)]
-    public int CustDbGroupId { get; set; }
+    public short CustDbGroupId { get; set; }
 
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }

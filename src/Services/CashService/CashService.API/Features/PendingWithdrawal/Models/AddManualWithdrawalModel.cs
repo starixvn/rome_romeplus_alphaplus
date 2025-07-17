@@ -13,6 +13,6 @@ public class AddManualWithdrawalModel
     public byte[] PaySlip { get; set; }
     public string Remark { get; set; }
     public string Ip { get; set; }
-    public int SiteDbGroupId { get; set; }
-    public int CustDbGroupId { get; set; }
+    public short SiteDbGroupId { get; set; }
+    public short CustDbGroupId { get; set; }
 }

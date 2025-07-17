@@ -3,13 +3,14 @@
 using System.Diagnostics;
 using AlphaPlus.CashService.API.Features.Shared.Helpers;
 using AlphaPlus.CashService.API.Features.Shared.Models;
-using Models.PaymentGateway;
+using AlphaPlus.CashService.API.Features.Shared.Requests;
+using AlphaPlus.CashService.API.Features.Shared.Requests.PaymentGateway;
 using Newtonsoft.Json;
 using Shared.Criteria;
-using Shared.Services;
 
 public interface IPaymentGatewayService
 {
+    Task<PaymentResponse> TestConnection(TestConnectionRequest request, BaseActionRequest actionRequest);
     Task<PaymentResponse> WithdrawalViaPaymentGateway(WithdrawalBodyRequest data, short custDbGroupId);
 }
 
@@ -30,20 +31,13 @@ public class PaymentGatewayService(
 
     public async Task<PaymentResponse> WithdrawalViaPaymentGateway(WithdrawalBodyRequest data, short custDbGroupId)
     {
+        var checkConfig = await CheckAPIConfig(nameof(WithdrawalViaPaymentGateway));
+        if (checkConfig != null)
+        {
+            return checkConfig;
+        }
+
         var withdrawalApi = "/api/PaymentGateway/Withdrawal";
-        if (!apiConfig.Enabled)
-        {
-            await logger.InfoAsync("WithdrawalViaPaymentGateway is Disabled now");
-            return CreateErrorResponse("Payment gateway is not enabled.");
-        }
-
-        if (apiConfig.IsTestMode)
-        {
-            await logger.InfoAsync("WithdrawalViaPaymentGateway is Enabled and in Test Mode now");
-            var testCode = Random.Shared.Next(0, 5);
-            return CreateErrorResponse("Payment gateway is in test mode. No transactions will be processed.", testCode);
-        }
-
         var response = new PaymentResponse { Code = 409 };
         var stopwatch = Stopwatch.StartNew();
         var requestBody = JsonConvert.SerializeObject(data);
@@ -77,5 +71,85 @@ public class PaymentGatewayService(
         }
 
         return response;
+    }
+
+    public async Task<PaymentResponse> TestConnection(TestConnectionRequest request, BaseActionRequest actionRequest)
+    { 
+        var apiRequest = new {
+            providerId = request.ProviderId,
+            transactionType = request.TransactionType,
+            paymentMethod = request.PaymentMethod,
+            apiConfig = new {
+                MerchantNo = request.APIConfig.MerchantNo,
+                AppSecret = request.APIConfig.AppSecret,
+                SecretKey = request.APIConfig.SecretKey
+            }
+        };  
+
+        return await PostAsync("/api/PaymentGateway/TestConnection", nameof(TestConnection), apiRequest, actionRequest);
+    }
+    
+    public async Task<PaymentResponse> PostAsync(string apiURL, string functionName, object apiRequest, BaseActionRequest actor)
+    {
+        var checkConfig = await CheckAPIConfig(functionName);
+        if (checkConfig != null)
+        {
+            return checkConfig;
+        }
+
+        var response = new PaymentResponse { Code = 409 };
+        var stopwatch = Stopwatch.StartNew();
+
+        var criteria = new AddRequestLogCommand(
+            actor.UserId,
+            actor.ReceivedCustId,
+            functionName,
+            apiURL,
+            JsonConvert.SerializeObject(apiRequest));
+
+        try {
+            response = await httpClient.PostAsync<object, PaymentResponse>(apiConfig.BaseUrl, apiURL, apiRequest);
+        
+            criteria.StatusCode = response.Code;
+            criteria.ResponseBody = JsonConvert.SerializeObject(response);
+        }
+        catch (Exception ex)
+        {
+            criteria.StatusCode = ex is HttpRequestException { StatusCode: not null } httpEx ? (int)httpEx.StatusCode.Value : 500;
+            criteria.ResponseBody = ex.Message;
+
+            await logger.ErrorAsync(ex.Message, ex);
+        }
+        finally
+        {
+            stopwatch.Stop();
+            var duration = (int)stopwatch.Elapsed.TotalMilliseconds;
+            criteria.Duration = duration;
+
+            await commonService.WriteLogRequestResponse(criteria, actor.CustDBGroupId);
+        }
+
+        return response;
+    }
+
+    private async Task<PaymentResponse> CheckAPIConfig(string functionName)
+    {
+        if (!apiConfig.Enabled)
+        {
+            var message = $"Payment gateway is disabled now for {functionName}.";
+            await logger.InfoAsync(message);
+            return CreateErrorResponse(message);
+        }
+
+        if (apiConfig.IsTestMode)
+        {
+            var message = $"Payment gateway is in test mode for {functionName}.";
+            await logger.InfoAsync(message);
+
+            var testCode = Random.Shared.Next(0, 5);
+            return CreateErrorResponse(message, testCode);
+        }
+
+        return null;
     }
 }

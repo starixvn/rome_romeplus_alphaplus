@@ -44,7 +44,7 @@ public static class TransactionsEndpoints
 
         group.MapGet("/detail", async ([FromQuery] long transactionId
                 , [FromQuery] int custId
-                , [FromQuery] int siteDbGroupId
+                , [FromQuery] short siteDbGroupId
                 , ITransactionService service) =>
         {
             var transactionDetail = await service.GetTransactionByIdAsync(transactionId, custId, siteDbGroupId);
@@ -80,7 +80,7 @@ public static class TransactionsEndpoints
             Description = "Revert transaction to pending"
         });
 
-        group.MapGet("/get-members", async ([FromQuery] int agentId, [FromQuery] int custDbGroupId, ITransactionService service) =>
+        group.MapGet("/get-members", async ([FromQuery] int agentId, [FromQuery] short custDbGroupId, ITransactionService service) =>
         {
             var members = await service.GetMembersAsync(agentId, custDbGroupId);
             return Results.Ok(members);

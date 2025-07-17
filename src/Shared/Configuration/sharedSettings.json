@@ -280,7 +280,6 @@
     "OfferProfilePictureTour": true,
     "CashService": {
         "OfferedSites": "*",
-        "APIUrl": "http://cash-service-api:5000/api",
-        "TWAPIUrl": "https://payment-service-001.playonesit.com/api"
+        "APIUrl": "http://cash-service-api:5000/api"
     }
 }

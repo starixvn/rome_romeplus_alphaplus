@@ -22,9 +22,8 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
                 APIMethodKey = "test_key",
                 MerchantID = "test_merchant",
                 AppSecret = "test_secret",
-                APIResult = true
             };
-            var criteria = new UpdatePaymentMethodCriteria(request);
+            var criteria = new UpdatePaymentMethodCriteria(request, true);
 
             // Act
             var result = criteria.GetSettingKey();
@@ -49,9 +48,8 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
                 APIMethodKey = "test_key",
                 MerchantID = "test_merchant",
                 AppSecret = "test_secret",
-                APIResult = true
             };
-            var criteria = new UpdatePaymentMethodCriteria(request);
+            var criteria = new UpdatePaymentMethodCriteria(request, true);
 
             // Act
             var result = criteria.IsValid();
@@ -76,9 +74,8 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
                 APIMethodKey = "test_key",
                 MerchantID = "test_merchant",
                 AppSecret = "test_secret",
-                APIResult = true
             };
-            var criteria = new UpdatePaymentMethodCriteria(request);
+            var criteria = new UpdatePaymentMethodCriteria(request, true);
 
             // Act
             var result = criteria.IsValid();
@@ -103,17 +100,16 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
                 APIMethodKey = "test_key",
                 MerchantID = "test_merchant",
                 AppSecret = "test_secret",
-                APIResult = true
             };
 
+
             // Act
-            var criteria = new UpdatePaymentMethodCriteria(request);
+            var criteria = new UpdatePaymentMethodCriteria(request, true);
 
             // Assert
             Assert.Equal(request.ProviderId, criteria.ProviderId);
             Assert.Equal(request.TransactionType, criteria.TransactionType);
             Assert.Equal(request.Method, criteria.Method);
-            Assert.Equal(request.APIResult, criteria.APIResult);
         }
 
         [Fact]
@@ -132,9 +128,8 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
                 APIMethodKey = "test_key",
                 MerchantID = "test_merchant",
                 AppSecret = "test_secret",
-                APIResult = true
             };
-            var criteria = new UpdatePaymentMethodCriteria(request);
+            var criteria = new UpdatePaymentMethodCriteria(request, true);
 
             // Act
             var result = criteria.IsValid();
@@ -159,11 +154,11 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
                 APIMethodKey = "test_key",
                 MerchantID = "test_merchant",
                 AppSecret = "test_secret",
-                APIResult = true
             };
 
+
             // Act
-            var criteria = new UpdatePaymentMethodCriteria(request);
+            var criteria = new UpdatePaymentMethodCriteria(request, true);
 
             // Assert
             var expectedJson = "{\"APIMethodKey\":\"test_key\",\"MerchantID\":\"test_merchant\",\"AppSecret\":\"test_secret\"}";
@@ -186,11 +181,10 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
                 APIMethodKey = "",
                 MerchantID = "",
                 AppSecret = "",
-                APIResult = false
             };
 
             // Act
-            var criteria = new UpdatePaymentMethodCriteria(request);
+            var criteria = new UpdatePaymentMethodCriteria(request, false);
 
             // Assert
             var expectedJson = "{\"APIMethodKey\":\"\",\"MerchantID\":\"\",\"AppSecret\":\"\"}";
@@ -212,15 +206,14 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
                 Method = 1,
                 APIMethodKey = "test_key",
                 MerchantID = "test_merchant",
-                AppSecret = "test_secret",
-                APIResult = true
+                AppSecret = "test_secret",      
             };
 
             // Act
-            var criteria = new UpdatePaymentMethodCriteria(request);
+            var criteria = new UpdatePaymentMethodCriteria(request, true);
 
             // Assert
-            Assert.True(criteria.APIResult);
+            Assert.True(criteria.ValidationResult);
         }
 
         [Fact]
@@ -239,14 +232,13 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
                 APIMethodKey = "test_key",
                 MerchantID = "test_merchant",
                 AppSecret = "test_secret",
-                APIResult = false
             };
 
             // Act
-            var criteria = new UpdatePaymentMethodCriteria(request);
+            var criteria = new UpdatePaymentMethodCriteria(request, false);
 
             // Assert
-            Assert.False(criteria.APIResult);
+            Assert.False(criteria.ValidationResult);
         }
     }
 } 
