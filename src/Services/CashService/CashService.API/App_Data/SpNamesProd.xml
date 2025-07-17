@@ -130,8 +130,10 @@
         </Setting>
         <Setting Key="Age_CashService_CashPromotionIns" SpName="Age_CashService_CashPromotionIns" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
         <Setting Key="CustDb_0_Age_CashService_CashPromotionDel" SpName="Age_CashService_CashPromotionDel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_CashPromotionUpd" SpName="Age_CashService_CashPromotionUpd" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
         <Setting Key="Age_CashService_PromotionProductList" SpName="Age_CashService_PromotionProductList" DbName="DBAGE.bodb02.wsv_CashService" Plain="0" />
         <Setting Key="Age_CashPromotion_PromotionReport" SpName="Age_CashPromotion_PromotionReport" DbName="DBAGE.bodb02.wsv_CashService" />
+        <Setting Key="Age_CashService_CashPromotionSelByID" SpName="Age_CashService_CashPromotionSelByID" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
         <Setting Key="Age_CashPromotion_PromotionDetailsReport" SpName="Age_CashPromotion_PromotionDetailsReport" DbName="DBAGE.bodb02.wsv_CashService" />
     </Function>
 </Functions>

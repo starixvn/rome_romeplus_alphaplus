@@ -16,6 +16,7 @@ interface InformationProps {
   selectedProductIds: number[];
   handleProductChange: (values: (string | number)[], highestParents: TreeNodeOption[]) => void;
   PROMOTION_TYPES: { value: number; label: string }[];
+  readOnlyMode: boolean;
 }
 
 const Information: React.FC<InformationProps> = ({
@@ -29,11 +30,12 @@ const Information: React.FC<InformationProps> = ({
   selectedProductIds,
   handleProductChange,
   PROMOTION_TYPES,
+  readOnlyMode
 }) => (
   <>
     <MediumTitleComponent text="Current Promotion"/>
     <p className="my-[8px]">
-      Do you want to keep your promotion active? You can only run one promotion at a time.
+        Only one promotion can be active at a time.
     </p>
     <div
       className="mb-[16px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]"
@@ -44,15 +46,12 @@ const Information: React.FC<InformationProps> = ({
     </div>
 
     <MediumTitleComponent text="Promotion Settings" isShowIcon={false} />
-    <div className="flex items-center mb-[8px]">
-      <p className="">Promotion runs on a weekly basis.</p>
-      <span className="ml-[4px]" title="Promotion runs on a weekly basis."/>
-    </div>
 
     <div className="flex flex-wrap w-full">
       <div className="w-[190px] mr-[12px] mb-[12px]">
         <LabelTitleComponent text="Promotion Type" required={true} isShowIcon={false} />        
         <CustomDropdown
+          disable={readOnlyMode}
           options={PROMOTION_TYPES}
           onSelect={(option) => setPromotionType(option.value as number)}
           initialValue={promotionType}

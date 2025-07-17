@@ -103,12 +103,14 @@ const PromotionInfo: React.FC<PromotionInfoProps> = ({
   activeLang,
   setActiveLang,
 }) => {
+  
   const langFields = value[activeLang] || {
     title: '',
     banner: null,
     prevBanner: null,
     content: '',
   };
+  
   return (
     <div className="max-w-3xl">
       <LanguageTabs languages={languages} activeLang={activeLang} setActiveLang={setActiveLang} />

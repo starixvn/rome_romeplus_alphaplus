@@ -3,14 +3,17 @@
   promotionTitle: string;
   promotionTypeId: number;
   promotionTypeName: string;
-  statusId: number;
-  status: string;
   fromDate: Date | null;
   toDate: Date | null;
   productSettings: ProductSetting[];
-  promotionInfo: LanguageInfo[];
+  languageSettings: LanguageInfo[];
   enabled: boolean;
-  lastUpdated: string;
+}
+
+export interface EditPromotionRequest {  
+  promotionId: number;
+  enabled: boolean;
+  contents: LanguageInfo[];
 }
 
 export interface PromotionRequest {

@@ -6,12 +6,14 @@ interface ProductSettingsProps {
   productCategories: ProductSetting[];
   handleProductFieldChange: (productId: number, field: string, value: number | boolean) => void;
   selectedProductCategories: number[];
+  readOnlyMode: boolean;
 }
 
 const ProductSettings: React.FC<ProductSettingsProps> = ({
   productCategories,
   handleProductFieldChange,
   selectedProductCategories,
+  readOnlyMode
 }) => (
   <>
     {productCategories.map((product) => (
@@ -25,9 +27,9 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
               type="number"
               min="0"
               step="0.01"
-              className={`control-field pr-[41px]! ${!selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
+              className={`control-field pr-[41px]! ${readOnlyMode || !selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
               value={product.percentage}
-              disabled={!selectedProductCategories.includes(product.productCategoryId)}
+              disabled={readOnlyMode || !selectedProductCategories.includes(product.productCategoryId)}
               onChange={(e) =>
                 handleProductFieldChange(
                   product.productCategoryId,
@@ -47,9 +49,9 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
           <input
             type="number"
             min="0"
-            className={`control-field ${!selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
+            className={`control-field ${readOnlyMode || !selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
             value={product.minTurnover}
-            disabled={!selectedProductCategories.includes(product.productCategoryId)}
+            disabled={readOnlyMode || !selectedProductCategories.includes(product.productCategoryId)}
             onChange={(e) =>
               handleProductFieldChange(
                 product.productCategoryId,
@@ -66,9 +68,9 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
             <div className="flex items-center text-[12px]">
               <input
                 type="checkbox"
-                className={`mr-[5px] ${!selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
+                className={`mr-[5px] ${readOnlyMode || !selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
                 checked={product.unlimited}
-                disabled={!selectedProductCategories.includes(product.productCategoryId)}
+                disabled={readOnlyMode || !selectedProductCategories.includes(product.productCategoryId)}
                 onChange={(e) =>
                   handleProductFieldChange(product.productCategoryId, 'unlimited', e.target.checked)
                 }
@@ -85,9 +87,9 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
           <input
             type="text"
             min="0"
-            className={`control-field ${product.unlimited ? 'opacity-50' : ''} ${!selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
+            className={`control-field ${product.unlimited ? 'opacity-50' : ''} ${readOnlyMode || !selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
             value={product.maxPayout}
-            disabled={!selectedProductCategories.includes(product.productCategoryId) || product.unlimited}
+            disabled={readOnlyMode || !selectedProductCategories.includes(product.productCategoryId) || product.unlimited}
             onChange={(e) =>
               handleProductFieldChange(
                 product.productCategoryId,

@@ -14,11 +14,11 @@ public interface IPromotionService
 
     Task<IEnumerable<Promotion>> GetPromotionAsync(PromotionRequest request);
 
-    Task<Promotion> GetPromotionByIdAsync(int promotionId, int custId);
+    Task<Promotion> GetPromotionByIdAsync(int promotionId, int custId, int siteDBGroupId, string language);
 
     Task<ResultModel> AddPromotionAsync(PromotionRequest request);
 
-    Task<ResultModel> EditPromotion(int promotionId, PromotionRequest request);
+    Task<ResultModel> EditPromotionAsync(EditPromotionRequest request);
 
     Task<ResultModel> DeletePromotion(int promotionId, BaseActionRequest request);
 }
@@ -63,10 +63,32 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
         return model.FirstResultSet;
     }
 
-    public async Task<Promotion> GetPromotionByIdAsync(int promotionId, int custId)
+    public async Task<Promotion> GetPromotionByIdAsync(int promotionId, int custId, int siteDBGroupId, string language)
     {
-        var promotion = CreateFakePromotionModel().FirstOrDefault(p => p.PromotionId == promotionId);
-        return await Task.FromResult(promotion);
+        var criteria = new GetPromotionByIdCriteria(promotionId, siteDBGroupId, custId);
+        var model = await repository.FetchMultipleAsync<Promotion, PromotionProductSetting, PromotionLanguageSetting>(criteria);
+
+        foreach (var item in model.FirstResultSet)
+        {
+            item.ProductSettings = model.SecondResultSet.ToList();
+            foreach (var productSetting in item.ProductSettings)
+            {
+                productSetting.Products = string.IsNullOrEmpty(productSetting.ProductList)
+                                            ? new List<Product>()
+                                            : productSetting.ProductList.Split(',')
+                                                .Select(p => p.Trim())
+                                                .Select(p => new Product
+                                                {
+                                                    ProductCategoryId = productSetting.ProductCategoryId,
+                                                    ProductId = Convert.ToInt32(p),
+                                                    ProductName = cacheRef.GetProductName(Convert.ToInt32(p), language)
+                                                }).ToList();
+                productSetting.ProductCategoryName = cacheRef.GetProductName(productSetting.ProductCategoryId, language);
+            }
+            item.LanguageSettings = model.ThirdResultSet.ToList();
+        }
+        
+        return model.FirstResultSet.FirstOrDefault();
     }
 
     public async Task<ResultModel> AddPromotionAsync(PromotionRequest request)
@@ -96,24 +118,18 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
         return result;
     }
 
-    public async Task<ResultModel> EditPromotion(int promotionId, PromotionRequest addPromotionMdoel)
+    public async Task<ResultModel> EditPromotionAsync(EditPromotionRequest editPromotionMdoel)
     {
         var editPromotionCriteria = new EditPromotionCriteria
         {
-            PromotionId = promotionId,
-            PromotionType = addPromotionMdoel.PromotionType,
-            StatusId = addPromotionMdoel.StatusId,
-            FromDate = addPromotionMdoel.FromDate,
-            ToDate = addPromotionMdoel.ToDate,
-            //Title = addPromotionMdoel.Title,
-            //Content = addPromotionMdoel.Content,
-            // Banner = addPromotionMdoel.Banner,
-            ProductSettings = addPromotionMdoel.ProductSettings != null
-                ? System.Text.Json.JsonSerializer.Serialize(addPromotionMdoel.ProductSettings)
-                : string.Empty,
-            CreatedBy = addPromotionMdoel.UserId,
-            IP = addPromotionMdoel.IP,
-            SiteDbGroupId = addPromotionMdoel.SiteDBGroupId,
+            PromotionId = editPromotionMdoel.PromotionId,            
+            PromotionContents = editPromotionMdoel.Contents != null
+                ? JsonConvert.SerializeObject(editPromotionMdoel.Contents)
+                : string.Empty,            
+            AgentId = editPromotionMdoel.UserId,
+            IP = editPromotionMdoel.IP,
+            SiteDbGroupId = editPromotionMdoel.SiteDBGroupId,
+            Language = editPromotionMdoel.Language,
         };
 
         await repository.ExecuteAsync(editPromotionCriteria);

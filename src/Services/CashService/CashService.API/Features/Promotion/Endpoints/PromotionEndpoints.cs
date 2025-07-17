@@ -37,9 +37,9 @@ public static class PromotionEndpoints
             Description = "Returns a list of available promotion"
         });
 
-        group.MapGet("/", async (int promotionId, int custId, IPromotionService service) =>
+        group.MapGet("/{promotionId}", async (int promotionId, int custId, int siteDBGroupId, string language, IPromotionService service) =>
         {
-            var promotion = await service.GetPromotionByIdAsync(promotionId, custId);
+            var promotion = await service.GetPromotionByIdAsync(promotionId, custId, siteDBGroupId, language);
             return Results.Ok(promotion);
         })
         .WithName("GetPromotions")
@@ -61,9 +61,9 @@ public static class PromotionEndpoints
             Description = "Add a new promotion"
         });
 
-        group.MapPut("/{promotionId}", async (int promotionId, [FromBody] PromotionRequest request, IPromotionService service) =>
+        group.MapPut("/{promotionId}", async ([FromBody] EditPromotionRequest request, IPromotionService service) =>
         {
-            var result = await service.EditPromotion(promotionId, request);
+            var result = await service.EditPromotionAsync(request);
             return Results.Ok(result);
         })
         .WithName("EditPromotion")

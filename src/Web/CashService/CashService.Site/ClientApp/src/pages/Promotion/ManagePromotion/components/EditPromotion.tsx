@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   BackButtonComponent,
   ButtonApplyComponent,
@@ -8,10 +8,11 @@ import { ErrorMessageComponent, SuccessMessageComponent } from '../../../../comp
 import { TitleComponent } from '../../../../components/Title';
 import { TreeNodeOption } from '../../../../components/TreeSelect/TreeSelect';
 import {
+  EditPromotionRequest,
   Language,
   ProductDropdown,
   ProductSetting,
-  PromotionRequest,
+  PromotionDetail
 } from '../../../../services/interfaces/Promotion';
 import { promotionService } from '../../../../services/promotionAPI';
 import Information from './Form/Information';
@@ -23,13 +24,7 @@ interface EditPromotionProps {
   promotionId: number;
 }
 
-const PROMOTION_TYPES = [{ value: 1, label: 'Rebate on Turnover' }];
-
-export const LANGUAGES = [
-  { key: 'en', label: 'English (default)', isDefault: true },
-  { key: 'th', label: 'ภาษาไทย', isDefault: false },
-  { key: 'vi', label: 'Tiếng Việt', isDefault: false },
-];
+const PROMOTION_TYPES = [{ value: 1, label: 'Turnover Rebate' }];
 
 function convertProductToTreeNodeOption(products: ProductDropdown[]): TreeNodeOption[] {
   return products.map((product) => ({
@@ -38,9 +33,9 @@ function convertProductToTreeNodeOption(products: ProductDropdown[]): TreeNodeOp
     children:
       product.products && product.products.length > 0
         ? product.products.map((p) => ({
-            label: p.productName,
-            value: p.productId,
-          }))
+          label: p.productName,
+          value: p.productId,
+        }))
         : [],
   }));
 }
@@ -50,12 +45,9 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [isActive, setIsActive] = useState<boolean>(true);
-  const promotionTypeRef = useRef<number>(PROMOTION_TYPES[0].value);
-  const periodRef = useRef<[Date | null, Date | null]>([null, null]);
+  const [promotion, setPromotion] = useState<PromotionDetail | null>(null);
   const [productOptions, setProductOptions] = useState<ProductDropdown[]>([]);
-  const [productSettings, setProductSettings] = useState<ProductSetting[]>([]);
-  const [selectedProductIds, setSelectedProductIds] = useState<number[]>([]);
-  const [activeLang, setActiveLang] = useState(LANGUAGES[0].key);
+  const [activeLang, setActiveLang] = useState("en");
   const [promotionInfo, setPromotionInfo] = useState<Record<string, PromotionLangFields>>({});
   const [languages, setLanguages] = useState<Language[]>([]);
 
@@ -81,157 +73,168 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
       const loadPromotionData = async () => {
         try {
           setLoading(true);
-          const promotionData = await promotionService.getPromotionById(promotionId);
+          const promotion = await promotionService.getPromotionById(promotionId);
 
-          if (promotionData) {
-            promotionTypeRef.current = promotionData.promotionTypeId;
-            if (promotionData.fromDate && promotionData.toDate) {
-              periodRef.current = [
-                new Date(promotionData.fromDate),
-                new Date(promotionData.toDate),
-              ];
-            }
+          setPromotion(promotion);
+          if (promotion.languageSettings) {
 
-            setIsActive(promotionData.enabled);
+            const infoMap: Record<string, PromotionLangFields> = {};
+            promotion.languageSettings.forEach((info) => {
+              infoMap[info.language] = {
+                title: info.title || '',
+                banner: info.banner,
+                prevBanner: info.banner,
+                content: info.content || '',
+              };
+            });
 
-            if (promotionData.productSettings) {
-              setProductSettings(promotionData.productSettings);
-              setSelectedProductIds(
-                promotionData.productSettings.map((p: ProductSetting) => p.productCategoryId)
-              );
-            }
-
-            if (promotionData.promotionInfo) {
-              const infoMap: Record<string, PromotionLangFields> = {};
-              promotionData.promotionInfo.forEach((info) => {
-                infoMap[info.language] = {
-                  title: info.title || '',
-                  banner: info.banner,
-                  prevBanner: info.banner,
-                  content: info.content || '',
-                };
-              });
-              setPromotionInfo(infoMap);
-            }
-          }
+            setPromotionInfo(infoMap);
+            
+          }        
         } catch (err: any) {
-          setError('Failed to load promotion data');
-          console.error('Error loading promotion:', err);
-        } finally {
-          setLoading(false);
-        }
-      };
-      loadPromotionData();
-    });
-  }, [promotionId]);
-
-  const handlePromotionInfoChange = (
-    lang: string,
-    field: keyof PromotionLangFields,
-    value: any
-  ) => {
-    setPromotionInfo((prev) => ({ ...prev, [lang]: { ...prev[lang], [field]: value } }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setError(null);
-    setLoading(true);
-
-    const [fromDate, toDate] = periodRef.current.map((date) => (date ? new Date(date) : null));
-    const promotionData: PromotionRequest = {
-      promotionType: promotionTypeRef.current,
-      fromDate,
-      toDate,
-      productSettings: productSettings,
-      enabled: isActive,
-      contents: Object.entries(promotionInfo).map(([lang, info]) => ({
-        language: lang,
-        title: info.title,
-        banner: info.banner as string | null,
-        content: info.content,
-      })),
+        setError('Failed to load promotion data');
+        console.error('Error loading promotion:', err);
+      } finally {
+        setLoading(false);
+      }
     };
+    loadPromotionData();
+  });
 
-    console.log(promotionData);
+}, [promotionId]);
 
-    setTimeout(() => {
+const handlePromotionInfoChange = (
+  lang: string,
+  field: keyof PromotionLangFields,
+  value: any
+) => {
+  setPromotionInfo((prev) => ({ ...prev, [lang]: { ...prev[lang], [field]: value } }));
+};
+
+const validateForm = () => {
+  const errors = [
+    {
+      condition: !promotionInfo.en,
+      message: 'Title is required'
+    },
+    {
+      condition: promotionInfo.en && !promotionInfo.en.title,
+      message: 'Title is required'
+    },
+    //{
+      //condition: promotionInfo.en && !promotionInfo.en.banner,
+      //message: 'Banner is required'
+    //},
+    {
+      condition: promotionInfo.en && !promotionInfo.en.content,
+      message: 'Content is required'
+    }
+  ];
+  const failedValidation = errors.find(check => check.condition);
+  if (failedValidation) {
+    setError(failedValidation.message);
+    return false;
+  }
+  return true;
+}
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+  
+  if (!validateForm()) return;
+  setError(null);
+  setLoading(true);
+  const promotionData: EditPromotionRequest = {
+    promotionId: promotionId,
+    enabled: isActive,
+    contents: Object.entries(promotionInfo).map(([lang, info]) => ({
+      language: lang,
+      title: info.title,
+      banner: "Razor harcode",//info.banner as string | null,
+      content: info.content,
+    })),
+  };
+  
+  promotionService.editPromotion(promotionId, promotionData).then((result) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (result.isSuccessful) {
       setSuccessMessage('Promotion updated successfully');
       setTimeout(() => {
         onClose();
-      }, 1500);
-    }, 1000);
-
+      }, 3000);
+    } else {
+      setError(result.message);
+    }
+  }).finally(() => {
     setLoading(false);
-  };
+  });
+};
 
-  if (loading && !promotionInfo) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <div>Loading promotion data...</div>
-      </div>
-    );
-  }
-
+if (loading && !promotionInfo) {
   return (
-    <>
-      <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-        <BackButtonComponent onClick={onClose} />
-        <TitleComponent title={`Edit Promotion`} />
-      </div>
+    <div className="flex items-center justify-center h-64">
+      <div>Loading promotion data...</div>
+    </div>
+  );
+}
 
-      <form onSubmit={handleSubmit} className="pb-[16px]">
-        <div className="modal-body">
-          <ErrorMessageComponent className="mb-[16px] max-[768px]:mb-[0]" message={error} />
-          <SuccessMessageComponent
-            className="mb-[16px] max-[768px]:mb-[0]"
-            message={successMessage}
-          />
+return (
+  <>
+    <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
+      <BackButtonComponent onClick={onClose} />
+      <TitleComponent title={`Edit Promotion`} />
+    </div>
 
-          <Information
-            isActive={isActive}
-            setIsActive={setIsActive}
-            promotionType={promotionTypeRef.current}
-            setPromotionType={(newPromotionType) => {
-              promotionTypeRef.current = newPromotionType;
-            }}
-            period={periodRef.current}
-            setPeriod={(newPeriod) => {
+    <form onSubmit={handleSubmit} className="pb-[16px]">
+      <div className="modal-body">
+        <ErrorMessageComponent className="mb-[16px] max-[768px]:mb-[0]" message={error} />
+        <SuccessMessageComponent
+          className="mb-[16px] max-[768px]:mb-[0]"
+          message={successMessage}
+        />
+
+        <Information
+          readOnlyMode={true}
+          isActive={isActive}
+          setIsActive={setIsActive}
+          promotionType={promotion?.promotionTypeId || 0}
+          setPromotionType={() => { void(0); }}
+          period={promotion?.fromDate && promotion?.toDate ? [new Date(promotion.fromDate), new Date(promotion.toDate)] : [null, null]}
+          setPeriod={() => { void(0); }}
               periodRef.current = newPeriod;
             }}
-            productOptions={convertProductToTreeNodeOption(productOptions)}
-            selectedProductIds={selectedProductIds}
-            handleProductChange={() => {
+          productOptions={convertProductToTreeNodeOption(productOptions)}
+          selectedProductIds={promotion?.productSettings?.map((p: ProductSetting) => p.productCategoryId) || []}
+          handleProductChange={() => { void (0) }}
               void 0;
             }}
-            PROMOTION_TYPES={PROMOTION_TYPES}
-          />
-        </div>
-        <ProductSettings
-          productCategories={productSettings}
-          selectedProductCategories={[]}
-          handleProductFieldChange={() => {
-            void 0;
+          PROMOTION_TYPES={PROMOTION_TYPES}
+        />
+      </div>
+      <ProductSettings
+        productCategories={promotion?.productSettings || []}
+        selectedProductCategories={promotion?.productSettings.map((p: ProductSetting) => p.productCategoryId) || []}
+        handleProductFieldChange={() => { void (0) }}
+        readOnlyMode={true}
           }}
-        />
+      />
 
-        <PromotionInfo
-          languages={languages}
-          value={promotionInfo}
-          setValue={handlePromotionInfoChange}
-          error={error || ''}
-          success={successMessage || ''}
-          activeLang={activeLang}
-          setActiveLang={setActiveLang}
-        />
+      <PromotionInfo
+        languages={languages}
+        value={promotionInfo}
+        setValue={handlePromotionInfoChange}
+        error={error || ''}
+        success={successMessage || ''}
+        activeLang={activeLang}
+        setActiveLang={setActiveLang}
+      />
 
-        <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]">
-          <ButtonCancelComponent text="Cancel" onClick={onClose} />
-          <ButtonApplyComponent text="Update" type="submit" disabled={loading} />
-        </div>
-      </form>
-    </>
-  );
+      <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]">
+        <ButtonCancelComponent text="Cancel" onClick={onClose} />
+        <ButtonApplyComponent text="Update" type="submit" disabled={loading} />
+      </div>
+    </form>
+  </>
+);
 };
 
 export default EditPromotion;

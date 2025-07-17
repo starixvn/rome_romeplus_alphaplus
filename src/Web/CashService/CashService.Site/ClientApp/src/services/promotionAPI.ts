@@ -1,5 +1,5 @@
 import { api, axiosInstance, createHeaderXMLHttp } from './axios';
-import { ProductDropdown, PromotionDetail, PromotionParams, PromotionRequest } from './interfaces/Promotion';
+import { EditPromotionRequest, ProductDropdown, PromotionDetail, PromotionParams, PromotionRequest } from './interfaces/Promotion';
 import { ResultModel } from './interfaces/ResultModel';
 
 export const promotionService = {
@@ -42,6 +42,20 @@ export const promotionService = {
   addPromotion: async (promotionRequest: PromotionRequest): Promise<ResultModel> => {
     try {
       const response = await axiosInstance.post<ResultModel>(`AddPromotion`, promotionRequest, {
+        headers: {
+          ...createHeaderXMLHttp(),
+          'Content-Type': 'application/json',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error adding promotion:', error);
+      throw error;
+    }
+  },
+  editPromotion: async (promotionId: number, promotionRequest: EditPromotionRequest): Promise<ResultModel> => {
+    try {
+      const response = await axiosInstance.put<ResultModel>(`EditPromotion/${promotionId}`, promotionRequest, {
         headers: {
           ...createHeaderXMLHttp(),
           'Content-Type': 'application/json',

@@ -110,7 +110,7 @@ public class PromotionController(
 
     public async Task<IActionResult> GetPromotionById(int promotionId, CancellationToken cancellationToken)
     {
-        var url = $"/promotions?promotionId={promotionId}&custId={userSession.CustId}";
+        var url = $"/promotions/{promotionId}?promotionId={promotionId}&custId={userSession.CustId}&sitedbgroupId={userSession.SiteDBGroupId}&language={userSession.Language}";
 
         var result = await httpClientHelper.GetAsync<object>(url);
 
@@ -137,7 +137,6 @@ public class PromotionController(
     {
         request
             .SetUserSession(userSession);
-        Console.WriteLine(JsonConvert.SerializeObject(request));
         if (request.IsValid())
         {
             var url = $"/api/promotions";
@@ -150,11 +149,19 @@ public class PromotionController(
     }
 
     [HttpPut]
-    public async Task<IActionResult> EditPromotion(int promotionId, [FromBody] object request)
+    public async Task<IActionResult> EditPromotion(int promotionId, [FromBody] EditPromotionRequest request)
     {
-        var url = $"/api/promotions/{promotionId}";
-        await httpClientHelper.PutAsync<object>(url, request);
-        return Json(new { success = true });
+        request.SetUserSession(userSession);
+        Console.WriteLine(JsonConvert.SerializeObject(request));
+        if (request.IsValid())
+        {
+            Console.WriteLine("Valid!");
+            var url = $"/api/promotions/{promotionId}";
+            var result = await httpClientHelper.PutAsync<EditPromotionRequest, object>(url, request);
+            return Json(result);
+        }
+
+        return Json(new { Code = "01", Message = "Invalid request" });
     }
 
     [HttpDelete]

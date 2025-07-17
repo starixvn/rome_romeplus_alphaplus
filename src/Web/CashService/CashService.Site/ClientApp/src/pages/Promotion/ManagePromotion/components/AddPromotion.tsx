@@ -22,7 +22,7 @@ interface AddPromotionProps {
   onClose: () => void;
 }
 
-const PROMOTION_TYPES = [{ value: 1, label: 'Rebate on Turnover' }];
+const PROMOTION_TYPES = [{ value: 1, label: 'Turnover Rebate' }];
 
 function convertProductToTreeNodeOption(products: ProductDropdown[]): TreeNodeOption[] {
   return products.map((product) => ({
@@ -165,8 +165,11 @@ const validateForm = () => {
 }
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (!validateForm()) return;
+    if (!validateForm())
+      {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
     setError(null);
     setLoading(true);
     
@@ -184,8 +187,9 @@ const validateForm = () => {
         content: info.content,
       })),
     };
-    console.log('promotionData', promotionData);
+    
     promotionService.addPromotion(promotionData).then((result) => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       if (result.isSuccessful) {
         setSuccessMessage('Promotion saved successfully');        
         setTimeout(() => {
@@ -215,6 +219,7 @@ const validateForm = () => {
           />
 
           <Information
+            readOnlyMode={false}
             isActive={isActive}
             setIsActive={setIsActive}
             promotionType={promotionType}
@@ -231,6 +236,7 @@ const validateForm = () => {
           productCategories={productSettings}
           handleProductFieldChange={handleProductFieldChange}
           selectedProductCategories={selectedProductCategories}
+          readOnlyMode={false}
         />
 
         <PromotionInfo
