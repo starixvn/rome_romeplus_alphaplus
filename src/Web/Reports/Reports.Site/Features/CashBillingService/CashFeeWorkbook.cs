@@ -38,7 +38,7 @@ public class CashFeeWorkbook(IWebHostEnvironment webHostEnvironment) :
                 GetExcelTemplatePath("CashFee"),
                 noInfomationText: Resources.NoInformationIsAvailable,
                 bodyStartIndex: BodyStartRowIndex))
-            .Title($"{custName} --> {Resources.CashServiceBilling} {fromDateString} --> {toDateString}")
+            .Title($"{Resources.CashServiceBilling} {fromDateString} --> {toDateString} - {custName}")
             .Header(Resources.ResourceManager.GetString)
             .Footer(cashFeeModel.GrandTotal, GetTotalRowMapper())
             .Sheet(Resources.DefaultSheetName)

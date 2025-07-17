@@ -24,6 +24,7 @@ CashFeeModel cashFeeModel)
        => new Dictionary<string, string>
        {
            ["CustId"] = message.CustId.ToString(),
+           ["CustName"] = message.CustName,
            ["FromDate"] = message.FromDate.ToShortDateWithSlash(),
            ["ToDate"] = message.ToDate.ToShortDateWithSlash()
        };
