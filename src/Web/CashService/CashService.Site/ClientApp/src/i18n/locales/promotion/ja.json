@@ -27,5 +27,6 @@
     },
     "search": {
         "placeholder": "タイトルまたはタイプで検索..."
-    }
+    },
+    "promotionType_1": "売上リベート"
 }

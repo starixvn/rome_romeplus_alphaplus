@@ -1,5 +1,3 @@
-using System.Text.Json.Serialization;
-
 namespace AlphaPlus.CashService.API.Features.Promotion.Models;
 
 public class PromotionDetails
@@ -12,20 +10,17 @@ public class PromotionDetails
 
     public string LastName { get; init; }
 
-    public string PromotionType { get; init; }
-
-    [JsonIgnore]
     public DateTime FromDate { get; init; }
 
-    [JsonIgnore]
     public DateTime ToDate { get; init; }
 
-    public string DateRange
-        => $"{FromDate.ToString("MM/dd/yyyy")} - {ToDate.ToString("MM/dd/yyyy")}";
+    public decimal Amount { get; init; }
 
-    public decimal BonusAmount { get; init; }
+    public string OperatedBy { get; init; }
 
-    public DateTime LastUpdated { get; init; }
+    public DateTime OperatedTime { get; init; }
 
-    public byte Status { get; init; }
+    public string SubAccName { get; init; }
+
+    public byte StatusId { get; init; }
 }

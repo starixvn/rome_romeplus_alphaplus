@@ -5,11 +5,6 @@ import CustomDropdownComponent, {
 } from '../../../../components/CustomDropdownComponent';
 import { LabelTitleComponent } from '../../../../components/Title';
 
-const promotionTypeOptions: DropdownOption[] = [
-  { value: '0', label: 'All' },
-  { value: 1, label: 'Rebate on Turnover' },
-];
-
 export default function MainReportFilter({
   minDate,
   maxDate,
@@ -30,6 +25,10 @@ export default function MainReportFilter({
   setStatus: (status: string) => void;
 }) {
   const { t } = useTranslation(['promotion', 'global']);
+  const promotionTypeOptions: DropdownOption[] = [
+    { value: '0', label: t('global:all') },
+    { value: 1, label: t('promotion:promotionType_1') },
+  ];
   const statusOptions: DropdownOption[] = [
     { value: '2', label: t('global:all') },
     { value: 1, label: t('global:enabled') },

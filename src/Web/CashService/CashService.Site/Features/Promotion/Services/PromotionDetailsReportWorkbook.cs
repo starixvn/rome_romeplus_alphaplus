@@ -65,15 +65,15 @@ public class PromotionDetailsReportWorkbook(IWebHostEnvironment webHostEnvironme
         .Map(A, p => number++)
         .Map(B, p => BuildTextBreakline(p.Username, p.Nickname))
         .Map(C, p => BuildTextBreakline(p.FirstName, p.LastName))
-        .Map(D, p => p.PromotionType)
-        .Map(E, p => p.DateRange)
-        .Map(F, p => p.BonusAmount)
+        .Map(D, p => p.Period)
+        .Map(E, p => p.Amount)
+        .Map(F, p => string.IsNullOrWhiteSpace(p.OperatedBy) ? p.SubAccName : p.OperatedBy)
         .Map(G, p => p.LastUpdated)
-        .Map(H, p => p.Status switch
+        .Map(H, p => p.StatusId switch
         {
-            1 => CashServicesResx.Approved,
+            4 => CashServicesResx.Approved,
             2 => Resources.Pending,
-            3 => Resources.Rejected,
+            5 => Resources.Rejected,
             _ => string.Empty
         });
 

@@ -17,8 +17,8 @@ function calculatedDates() {
   todayInGMT4.setHours(0, 0, 0, 0);
 
   // Max Date is tomorrow in GMT-4
-  const maxDate = new Date(todayInGMT4);
-  maxDate.setDate(maxDate.getDate() + 1);
+  let maxDate = new Date(todayInGMT4);
+  maxDate = new Date(maxDate.getFullYear() + 1, 11, 31);
 
   // Min Date
   let minDate;

@@ -1,4 +1,3 @@
-using System.Text.Json.Serialization;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Shared.AppResources.CashServices;
 
@@ -10,7 +9,6 @@ public class PromotionReport
 
     public string PromotionTitle { get; init; }
 
-    [JsonIgnore]
     public byte PromotionType { get; init; }
 
     public string PromotionTypeName => PromotionType switch
@@ -19,10 +17,8 @@ public class PromotionReport
         _ => string.Empty
     };
 
-    [JsonIgnore]
     public DateTime FromDate { get; init; }
 
-    [JsonIgnore]
     public DateTime ToDate { get; init; }
 
     public string Period => $"{FromDate.ToShortDateWithSlash()} - {ToDate.ToShortDateWithSlash()}";

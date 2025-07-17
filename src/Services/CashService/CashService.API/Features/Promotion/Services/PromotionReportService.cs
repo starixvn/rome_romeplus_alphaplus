@@ -8,6 +8,8 @@ namespace AlphaPlus.CashService.API.Features.Promotion.Services;
 public interface IPromotionReportService
 {
     Task<IEnumerable<PromotionReport>> GetMainReport(GetPromotionReportRequest request);
+
+    Task<PromotionDetailsReport> GetDetailsReport(GetPromotionDetailsReportRequest request);
 }
 
 public class PromotionReportService(IDynamicRepository repository) : IPromotionReportService
@@ -24,5 +26,37 @@ public class PromotionReportService(IDynamicRepository repository) : IPromotionR
             request.Status);
 
         return repository.FetchAsync<PromotionReport>(criteria);
+    }
+
+    public async Task<PromotionDetailsReport> GetDetailsReport(GetPromotionDetailsReportRequest request)
+    {
+        var criteria = new GetPromotionDetailsReportCriteria(
+            request.CustId,
+            request.PromotionId,
+            request.FromDate,
+            request.ToDate,
+            request.Status);
+
+        var promotionDetails = await repository.FetchAsync<PromotionDetails>(criteria);
+        var totalBonus = 0m;
+        var totalApproved = 0;
+        var totalRejected = 0;
+
+        foreach (var item in promotionDetails)
+        {
+            if (item.StatusId == 4) // Approved
+            {
+                totalApproved++;
+                totalBonus += item.Amount; // Assuming Amount is the bonus amount
+            }
+            else if (item.StatusId == 5) // Rejected
+            {
+                totalRejected++;
+            }
+        }
+
+        return new PromotionDetailsReport(
+            new PromotionDetailsSummary(totalBonus, totalApproved, totalRejected),
+            promotionDetails);
     }
 }

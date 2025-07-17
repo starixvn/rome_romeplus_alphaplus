@@ -13,16 +13,16 @@ interface DetailsReportTableProps {
 }
 
 function DetailsReportStatusRow({ status }: { status: number }) {
-  const { t } = useTranslation(['promotion', 'global']);
-  if (status === 1) {
+  const { t } = useTranslation('global');
+  if (status === 4) {
     return <StatusCompletedComponent text={t('global:status.approved')} />;
   }
 
-  if (status === 2) {
-    return <StatusProcessingComponent text={t('global:status.pending')} />;
+  if (status === 5) {
+    return <StatusDisabledComponent text={t('global:status.rejected')} />;
   }
 
-  return <StatusDisabledComponent text={t('global:status.rejected')} />;
+  return <StatusProcessingComponent text={t('global:status.pending')} />;
 }
 
 function DetailsReportRow({ idx, data }: { idx: number; data: any }) {
@@ -39,12 +39,12 @@ function DetailsReportRow({ idx, data }: { idx: number; data: any }) {
         <div>{data.firstName}</div>
         <div>{data.lastName}</div>
       </td>
-      <td>{data.promotionType}</td>
-      <td>{data.dateRange}</td>
-      <td className="text-right">{formatNumber(data.bonusAmount)}</td>
+      <td>{data.period}</td>
+      <td className="text-right">{formatNumber(data.amount)}</td>
+      <td className="text-left">{data.operatedBy ? data.operatedBy : data.subAccName}</td>
       <td>{data.lastUpdated}</td>
       <td>
-        <DetailsReportStatusRow status={data.status} />
+        <DetailsReportStatusRow status={data.statusId} />
       </td>
     </tr>
   );
@@ -70,9 +70,9 @@ const DetailsReportTable = React.forwardRef<HTMLTableElement, DetailsReportTable
                 <div>{t('global:nickname')}</div>
               </th>
               <th>{t('global:firstAndLastName')}</th>
-              <th>{t('promotion:table.promotionTitle')}</th>
               <th>{t('promotion:table.period')}</th>
               <th>{t('promotion:table.bonusAmount')}</th>
+              <th>{t('promotion:table.lastUpdated')}</th>
               <th>{t('promotion:table.lastUpdated')}</th>
               <th className="w-[140px] min-w-[140px]">{t('global:statusText')}</th>
             </tr>

@@ -1,9 +1,8 @@
+namespace AlphaPlus.CashService.API.Features.Promotion.Endpoints;
+
 using AlphaPlus.CashService.API.Features.Promotion.Models;
 using AlphaPlus.CashService.API.Features.Promotion.Requests;
 using AlphaPlus.CashService.API.Features.Promotion.Services;
-
-namespace AlphaPlus.CashService.API.Features.Promotion.Endpoints;
-
 using Microsoft.AspNetCore.Mvc;
 using Shared.Requests;
 
@@ -88,84 +87,10 @@ public static class PromotionEndpoints
             Results.Ok(await service.GetMainReport(request))
         ).WithName("PromotionReport");
 
-        group.MapGet("/reports/{id}", (int id, [AsParameters] GetPromotionDetailsReportRequest request, IPromotionReportService service) =>
+        group.MapGet("/reports/{id}", async (int id, [AsParameters] GetPromotionDetailsReportRequest request, IPromotionReportService service) =>
         {
-            var details = new[]
-            {
-                new PromotionDetails
-                {
-                    Username = "john_doe",
-                    Nickname = "john_doe_123",
-                    FirstName = "John",
-                    LastName = "Doe",
-                    PromotionType = "Discount",
-                    FromDate = new DateTime(2023, 1, 1),
-                    ToDate = new DateTime(2023, 1, 31),
-                    BonusAmount = 100.00m,
-                    LastUpdated = DateTime.Now,
-                    Status = 1
-                },
-                new PromotionDetails
-                {
-                    Username = "jane_smith",
-                    Nickname = "jane_smith_456",
-                    FirstName = "Jane",
-                    LastName = "Smith",
-                    PromotionType = "Cashback",
-                    FromDate = new DateTime(2023, 6, 1),
-                    ToDate = new DateTime(2023, 6, 30),
-                    BonusAmount = 200.00m,
-                    LastUpdated = DateTime.Now,
-                    Status = 1
-                },
-                new PromotionDetails
-                {
-                    Username = "alice_jones",
-                    Nickname = "alice_jones_789",
-                    FirstName = "Alice",
-                    LastName = "Jones",
-                    PromotionType = "Discount",
-                    FromDate = new DateTime(2023, 11, 24),
-                    ToDate = new DateTime(2023, 11, 30),
-                    BonusAmount = 150.00m,
-                    LastUpdated = DateTime.Now,
-                    Status = 1
-                },
-                new PromotionDetails
-                {
-                    Username = "bob_brown",
-                    FirstName = "Bob",
-                    LastName = "Brown",
-                    PromotionType = "Cashback",
-                    FromDate = new DateTime(2023, 12, 1),
-                    ToDate = new DateTime(2023, 12, 31),
-                    BonusAmount = 300.00m,
-                    LastUpdated = DateTime.Now,
-                    Status = 2
-                },
-                new PromotionDetails
-                {
-                    Username = "charlie_white",
-                    Nickname = "",
-                    FirstName = "Charlie",
-                    LastName = "White",
-                    PromotionType = "Discount",
-                    FromDate = new DateTime(2023, 3, 1),
-                    ToDate = new DateTime(2023, 3, 31),
-                    BonusAmount = 50.00m,
-                    LastUpdated = DateTime.Now,
-                    Status = 3
-                }
-            };
-            var reports = new PromotionDetailsReport(
-                new PromotionDetailsSummary
-                {
-                    TotalBonus = details.Sum(d => d.BonusAmount),
-                    TotalApproved = details.Count(d => d.Status == 1),
-                    TotalRejected = details.Count(d => d.Status == 3)
-                },
-                details);
-            return TypedResults.Ok(reports);
+            request.PromotionId = id;
+            Results.Ok(await service.GetDetailsReport(request));
         }).WithName("PromotionDetailsReport");
     }
 }
