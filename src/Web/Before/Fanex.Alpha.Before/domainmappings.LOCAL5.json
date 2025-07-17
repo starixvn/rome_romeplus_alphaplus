@@ -1,8 +1,0 @@
-{
-    "DomainMappings": [
-        {
-            "Before": "alp20.nexdev.net",
-            "After": "http://mbp20.nexdev.net/main"
-        }
-    ]
-}

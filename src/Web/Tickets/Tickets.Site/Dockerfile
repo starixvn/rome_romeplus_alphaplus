@@ -47,18 +47,14 @@ RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r src/Shared/Configuration/shar
 
 RUN if [ "${TRANSFORM_CONFIG}" = "SIT" ] || \
   [ "${TRANSFORM_CONFIG}" = "SIT2" ] || \
-  [ "${TRANSFORM_CONFIG}" = "SIT3" ] || \
-  [ "${TRANSFORM_CONFIG}" = "SIT4" ] || \
-  [ "${TRANSFORM_CONFIG}" = "SIT5" ]; then \
+  [ "${TRANSFORM_CONFIG}" = "SIT3" ]; then \
     cp -r src/Web/Tickets/Tickets.Site/results.SIT.json src/Web/Tickets/Tickets.Site/results.json; \
     cp -r src/Web/Tickets/Tickets.Site/results3rd.SIT.json src/Web/Tickets/Tickets.Site/results3rd.json; \
 fi
 
 RUN if [ "${TRANSFORM_CONFIG}" = "UAT" ] || \
   [ "${TRANSFORM_CONFIG}" = "UAT2" ] || \
-  [ "${TRANSFORM_CONFIG}" = "UAT3" ] || \
-  [ "${TRANSFORM_CONFIG}" = "UAT4" ] || \
-  [ "${TRANSFORM_CONFIG}" = "UAT5" ]; then \
+  [ "${TRANSFORM_CONFIG}" = "UAT3" ]; then \
     cp -r src/Web/Tickets/Tickets.Site/results.UAT.json src/Web/Tickets/Tickets.Site/results.json; \
     cp -r src/Web/Tickets/Tickets.Site/results3rd.UAT.json src/Web/Tickets/Tickets.Site/results3rd.json; \
 fi
