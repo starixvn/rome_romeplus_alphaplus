@@ -74,10 +74,15 @@ public static class PromotionEndpoints
             Description = "Edit an existing promotion"
         });
 
-        group.MapPost("/{promotionId}", async (int promotionId, [FromBody] BaseActionRequest request, IPromotionService service) =>
+        group.MapPost("/delete/{promotionId}", async (int promotionId, [FromBody] BaseActionRequest request, IPromotionService service) =>
         {
             var result = await service.DeletePromotion(promotionId, request);
             return Results.Ok(result);
+        }).WithName("DeletePromotion")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Delete promotion",
+            Description = "Delete a promotion"
         });
         group.MapGet("/reports", async ([AsParameters] GetPromotionReportRequest request, IPromotionReportService service) =>
             Results.Ok(await service.GetMainReport(request))

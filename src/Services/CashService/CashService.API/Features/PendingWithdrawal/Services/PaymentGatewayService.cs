@@ -33,11 +33,13 @@ public class PaymentGatewayService(
         var withdrawalApi = "/api/PaymentGateway/Withdrawal";
         if (!apiConfig.Enabled)
         {
+            await logger.InfoAsync("WithdrawalViaPaymentGateway is Disabled now");
             return CreateErrorResponse("Payment gateway is not enabled.");
         }
 
         if (apiConfig.IsTestMode)
         {
+            await logger.InfoAsync("WithdrawalViaPaymentGateway is Enabled and in Test Mode now");
             var testCode = Random.Shared.Next(0, 5);
             return CreateErrorResponse("Payment gateway is in test mode. No transactions will be processed.", testCode);
         }

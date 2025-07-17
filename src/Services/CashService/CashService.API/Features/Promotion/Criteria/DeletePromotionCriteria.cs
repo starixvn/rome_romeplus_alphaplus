@@ -17,7 +17,7 @@ public class DeletePromotionCriteria : NonQueryCommand
     [SpParam(Ignored = true)]
     public int CustDbGroupId { get; set; }
 
-    public override string GetSettingKey() => $"CustDb_{CustDbGroupId}_Age_CashService_Promotion_Delete";
+    public override string GetSettingKey() => $"CustDb_{CustDbGroupId}_Age_CashService_CashPromotionDel";
 
     public override bool IsValid() => PromotionId > 0 && AgentId > 0;
 }

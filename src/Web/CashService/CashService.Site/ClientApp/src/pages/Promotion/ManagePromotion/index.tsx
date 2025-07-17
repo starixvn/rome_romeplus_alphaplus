@@ -68,14 +68,16 @@ const Promotion: React.FC = () => {
     try {
       var deleteResult = await promotionService.deletePromotion(promotionId);
       if (deleteResult.isSuccessful) {
-        setValidationMessage({ type: 'success', message: t('promotionList.deleteSuccess') });
+        setValidationMessage({ type: 'success', message: t('table.deleteSuccess') });
         setTimeout(() => {
           fetchPromotions();
         }, 3000);
       } else {
         setValidationMessage({ type: 'error', message: deleteResult.message });
+        setTimeout(() => {
+          fetchPromotions();
+        }, 3000);
       }
-      fetchPromotions();
     } catch (err) {
       setValidationMessage({ type: 'error', message: 'Failed to delete promotion' });
       console.error('Error deleting promotion:', err);
@@ -93,8 +95,8 @@ const Promotion: React.FC = () => {
       )}
       {showConfirmDelete && (
         <ConfirmPopup
-          title={t('promotionList.confirmDeleteTitle')}
-          message={t('promotionList.confirmDeleteMessage')}
+          title={t('table.confirmDeleteTitle')}
+          message={t('table.confirmDeleteMessage')}
           onCancel={() => {
             setShowConfirmDelete(false);
             setDeletePromotionId(0);

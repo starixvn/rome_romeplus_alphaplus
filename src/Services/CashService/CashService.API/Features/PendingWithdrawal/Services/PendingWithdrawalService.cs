@@ -7,6 +7,7 @@ using Criteria;
 using Fanex.Data.Repository;
 using Models;
 using Models.PaymentGateway;
+using Newtonsoft.Json;
 using Transactions.Enum;
 
 public interface IPendingWithdrawalService
@@ -144,6 +145,7 @@ public class PendingWithdrawalService(
         };
 
         var response = await paymentGateway.WithdrawalViaPaymentGateway(model, (short)command.CustDBGroupId);
+        Console.WriteLine($"Response message: {JsonConvert.SerializeObject(response)}");
         if (response.IsSuccessful)
         {
             result.Code = response.Code;

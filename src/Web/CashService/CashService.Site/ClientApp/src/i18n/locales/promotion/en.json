@@ -23,7 +23,10 @@
     "totalRequest": "Total Request",
     "totalApproved": "Total Approved",
     "totalRejected": "Total Rejected",
-    "totalBonusGiven": "Total Bonus Given"
+    "totalBonusGiven": "Total Bonus Given",
+    "deleteSuccess": "Promotion deleted successfully",
+    "confirmDeleteTitle": "Confirm Delete",
+    "confirmDeleteMessage": "Are you sure you want to delete this promotion?"
   },
   "search": {
     "placeholder": "Search by title or type..."

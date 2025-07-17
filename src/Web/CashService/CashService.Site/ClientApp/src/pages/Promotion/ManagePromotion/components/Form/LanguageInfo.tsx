@@ -102,8 +102,7 @@ const PromotionInfo: React.FC<PromotionInfoProps> = ({
   setValue,
   activeLang,
   setActiveLang,
-}) => {  
-  debugger;
+}) => {
   const langFields = value[activeLang] || {
     title: '',
     banner: null,

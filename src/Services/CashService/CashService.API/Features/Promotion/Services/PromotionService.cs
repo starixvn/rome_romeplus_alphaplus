@@ -125,7 +125,8 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
 
     public async Task<ResultModel> DeletePromotion(int promotionId, BaseActionRequest request)
     {
-        var command = new DeletePromotionCriteria()
+        Console.Write($"Delete promotion {promotionId}: {JsonConvert.SerializeObject(request)}");
+        var command = new DeletePromotionCriteria
         {
             PromotionId = promotionId,
             AgentId = request.ActorId,
@@ -137,7 +138,7 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
         };
 
         var logs = await repository.FetchAsync<WriteLogDBCommandModel>(command);
-        if (logs is not null && logs.Any())
+        if (command.ErrCode == 0 && logs is not null && logs.Any())
         {
             WriteLog(logs.ToList(), request.SiteDBGroupId);
         }
