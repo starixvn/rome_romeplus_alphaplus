@@ -6,6 +6,7 @@ import {
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../../../components/Message';
 import { TitleComponent } from '../../../../components/Title';
 import { TreeNodeOption } from '../../../../components/TreeSelect/TreeSelect';
+import { PROMOTION_TYPES } from '../../../../constants/promotionConstants';
 import {
   EditPromotionRequest,
   Language,
@@ -23,8 +24,6 @@ interface EditPromotionProps {
   onClose: () => void;
   promotionId: number;
 }
-
-const PROMOTION_TYPES = [{ value: 1, label: 'Turnover Rebate' }];
 
 function convertProductToTreeNodeOption(products: ProductDropdown[]): TreeNodeOption[] {
   return products.map((product) => ({
@@ -46,10 +45,12 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [isActive, setIsActive] = useState<boolean>(true);
+  const [originalStatus, setOriginalStatus] = useState<boolean>(true);
   const [promotion, setPromotion] = useState<PromotionDetail | null>(null);
   const [productOptions, setProductOptions] = useState<ProductDropdown[]>([]);
   const [activeLang, setActiveLang] = useState("en");
   const [promotionInfo, setPromotionInfo] = useState<Record<string, PromotionLangFields>>({});
+  const [originalPromotionInfo, setOriginalPromotionInfo] = useState<Record<string, PromotionLangFields>>({});
   const [languages, setLanguages] = useState<Language[]>([]);
 
   useEffect(() => {
@@ -77,6 +78,9 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
           const promotion = await promotionService.getPromotionById(promotionId);
 
           setPromotion(promotion);
+          setIsActive(promotion.enabled);
+          setOriginalStatus(promotion.enabled);
+
           if (promotion.languageSettings) {
 
             const infoMap: Record<string, PromotionLangFields> = {};
@@ -90,147 +94,171 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
             });
 
             setPromotionInfo(infoMap);
-            
-          }        
+            setOriginalPromotionInfo({ ...infoMap });
+
+          }
         } catch (err: any) {
-        setError('Failed to load promotion data');
-        console.error('Error loading promotion:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    loadPromotionData();
-  });
+          setError('Failed to load promotion data');
+          console.error('Error loading promotion:', err);
+        } finally {
+          setLoading(false);
+        }
+      };
+      loadPromotionData();
+    });
 
-}, [promotionId]);
+  }, [promotionId]);
 
-const handlePromotionInfoChange = (
-  lang: string,
-  field: keyof PromotionLangFields,
-  value: any
-) => {
-  setPromotionInfo((prev) => ({ ...prev, [lang]: { ...prev[lang], [field]: value } }));
-};
 
-const validateForm = () => {
-  const errors = [
-    {
-      condition: !promotionInfo.en,
-      message: 'Title is required'
-    },
-    {
-      condition: promotionInfo.en && !promotionInfo.en.title,
-      message: 'Title is required'
-    },
-    //{
+  const handlePromotionInfoChange = (
+    lang: string,
+    field: keyof PromotionLangFields,
+    value: any
+  ) => {
+    setPromotionInfo((prev) => ({ ...prev, [lang]: { ...prev[lang], [field]: value } }));
+  };
+
+  const validateForm = () => {
+    const errors = [
+      {
+        condition: !hasChanges(),
+        message: 'There is no change to update'
+      },
+      {
+        condition: !promotionInfo.en,
+        message: 'Title is required'
+      },
+      {
+        condition: promotionInfo.en && !promotionInfo.en.title,
+        message: 'Title is required'
+      },
+      //{
       //condition: promotionInfo.en && !promotionInfo.en.banner,
       //message: 'Banner is required'
-    //},
-    {
-      condition: promotionInfo.en && !promotionInfo.en.content,
-      message: 'Content is required'
+      //},
+      {
+        condition: promotionInfo.en && !promotionInfo.en.content,
+        message: 'Content is required'
+      }
+    ];
+    debugger;
+    const failedValidation = errors.find(check => check.condition);
+    if (failedValidation) {
+      setError(failedValidation.message);
+      return false;
     }
-  ];
-  const failedValidation = errors.find(check => check.condition);
-  if (failedValidation) {
-    setError(failedValidation.message);
-    return false;
+    return true;
   }
-  return true;
-}
-const handleSubmit = (e: React.FormEvent) => {
-  e.preventDefault();
-  
-  if (!validateForm()) return;
-  setError(null);
-  setLoading(true);
-  const promotionData: EditPromotionRequest = {
-    promotionId: promotionId,
-    enabled: isActive,
-    contents: Object.entries(promotionInfo).map(([lang, info]) => ({
-      language: lang,
-      title: info.title,
-      banner: "Razor harcode",//info.banner as string | null,
-      content: info.content,
-    })),
-  };
-  
-  promotionService.editPromotion(promotionId, promotionData).then((result) => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (result.isSuccessful) {
-      setSuccessMessage('Promotion updated successfully');
-      setTimeout(() => {
-        onClose();
-      }, 3000);
-    } else {
-      setError(result.message);
+
+  const hasChanges = () => {
+    const statusChanged = originalStatus !== isActive;
+
+    const contentChanged = JSON.stringify(promotionInfo) !== JSON.stringify(originalPromotionInfo);
+
+    return statusChanged || contentChanged;
+  }
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateForm()) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
     }
-  }).finally(() => {
-    setLoading(false);
-  });
-};
+    setError(null);
+    setLoading(true);
+    const promotionData: EditPromotionRequest = {
+      promotionId: promotionId,
+      enabled: isActive,
+      originalEnabled: originalStatus,
+      contents: Object.entries(promotionInfo).map(([lang, info]) => ({
+        language: lang,
+        title: info.title,
+        banner: "Razor harcode",//info.banner as string | null,
+        content: info.content,
+      })),
+      originalContents: Object.entries(originalPromotionInfo).map(([lang, info]) => ({
+        language: lang,
+        title: info.title,
+        banner: "Razor harcode",//info.banner as string | null,
+        content: info.content,
+      })),
+    };
 
-if (loading && !promotionInfo) {
-  return (
-    <div className="flex items-center justify-center h-64">
-      <div>Loading promotion data...</div>
-    </div>
-  );
-}
+    promotionService.editPromotion(promotionId, promotionData).then((result) => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (result.isSuccessful) {
+        setSuccessMessage('Promotion updated successfully');
+        setTimeout(() => {
+          onClose();
+        }, 3000);
+      } else {
+        setError(result.message);
+      }
+    }).finally(() => {
+      setLoading(false);
+    });
+  };
 
-return (
-  <>
-    <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-      <BackButtonComponent onClick={onClose} />
-      <TitleComponent title={`Edit Promotion`} />
-    </div>
-
-    <form onSubmit={handleSubmit} className="pb-[16px]">
-      <div className="modal-body">
-        <ErrorMessageComponent className="mb-[16px] max-[768px]:mb-[0]" message={error} />
-        <SuccessMessageComponent
-          className="mb-[16px] max-[768px]:mb-[0]"
-          message={successMessage}
-        />
-
-        <Information
-          readOnlyMode={true}
-          isActive={isActive}
-          setIsActive={setIsActive}
-          promotionType={promotion?.promotionTypeId || 0}
-          setPromotionType={() => { void(0); }}
-          period={promotion?.fromDate && promotion?.toDate ? [new Date(promotion.fromDate), new Date(promotion.toDate)] : [null, null]}
-          setPeriod={() => { void(0); }}
-          productOptions={convertProductToTreeNodeOption(productOptions)}
-          selectedProductIds={promotion?.productSettings?.map((p: ProductSetting) => p.productCategoryId) || []}
-          handleProductChange={() => { void (0) }}
-          PROMOTION_TYPES={PROMOTION_TYPES}
-        />
+  if (loading && !promotionInfo) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div>Loading promotion data...</div>
       </div>
-      <ProductSettings
-        productCategories={promotion?.productSettings || []}
-        selectedProductCategories={promotion?.productSettings.map((p: ProductSetting) => p.productCategoryId) || []}
-        handleProductFieldChange={() => { void (0) }}
-        readOnlyMode={true}
-      />
+    );
+  }
 
-      <PromotionInfo
-        languages={languages}
-        value={promotionInfo}
-        setValue={handlePromotionInfoChange}
-        error={error || ''}
-        success={successMessage || ''}
-        activeLang={activeLang}
-        setActiveLang={setActiveLang}
-      />
+  return (
+    <>
+      <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
+        <BackButtonComponent onClick={onClose} />
+        <TitleComponent title={`Edit Promotion`} />
+      </div>
 
-      <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]">
+      <form onSubmit={handleSubmit} className="pb-[16px]">
+        <div className="modal-body">
+          <ErrorMessageComponent className="mb-[16px] max-[768px]:mb-[0]" message={error} />
+          <SuccessMessageComponent
+            className="mb-[16px] max-[768px]:mb-[0]"
+            message={successMessage}
+          />
+
+          <Information
+            readOnlyMode={true}
+            isActive={isActive}
+            setIsActive={(value: boolean) => { setIsActive(value); }}
+            promotionType={promotion?.promotionTypeId || 0}
+            setPromotionType={() => { void (0); }}
+            period={promotion?.fromDate && promotion?.toDate ? [new Date(promotion.fromDate), new Date(promotion.toDate)] : [null, null]}
+            setPeriod={() => { void (0); }}
+            productOptions={convertProductToTreeNodeOption(productOptions)}
+            selectedProductIds={promotion?.productSettings?.map((p: ProductSetting) => p.productCategoryId) || []}
+            handleProductChange={() => { void (0) }}
+            PROMOTION_TYPES={PROMOTION_TYPES}
+          />
+        </div>
+        <ProductSettings
+          productCategories={promotion?.productSettings || []}
+          selectedProductCategories={promotion?.productSettings.map((p: ProductSetting) => p.productCategoryId) || []}
+          handleProductFieldChange={() => { void (0) }}
+          readOnlyMode={true}
+        />
+
+        <PromotionInfo
+          languages={languages}
+          value={promotionInfo}
+          setValue={handlePromotionInfoChange}
+          error={error || ''}
+          success={successMessage || ''}
+          activeLang={activeLang}
+          setActiveLang={setActiveLang}
+        />
+
+        <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]">
           <ButtonComponent variant="cancel" text={tGlobal('cancel')} onClick={onClose} />
           <ButtonComponent variant="apply" text={tGlobal('update')} type="submit" disabled={loading} />
-      </div>
-    </form>
-  </>
-);
+        </div>
+      </form>
+    </>
+  );
 };
 
 export default EditPromotion;

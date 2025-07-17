@@ -61,7 +61,7 @@ public static class PromotionEndpoints
             Description = "Add a new promotion"
         });
 
-        group.MapPut("/{promotionId}", async ([FromBody] EditPromotionRequest request, IPromotionService service) =>
+        group.MapPut("/{promotionId}", async (string promotionId, [FromBody] EditPromotionRequest request, IPromotionService service) =>
         {
             var result = await service.EditPromotionAsync(request);
             return Results.Ok(result);

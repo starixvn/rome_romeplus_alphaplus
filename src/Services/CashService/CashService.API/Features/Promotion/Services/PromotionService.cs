@@ -123,23 +123,59 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
 
     public async Task<ResultModel> EditPromotionAsync(EditPromotionRequest editPromotionMdoel)
     {
-        var editPromotionCriteria = new EditPromotionCriteria
+        var result = new ResultModel(0, "Success");
+
+        if (HasContentChanged(editPromotionMdoel.Contents, editPromotionMdoel.OriginalContents))
         {
-            PromotionId = editPromotionMdoel.PromotionId,            
-            PromotionContents = editPromotionMdoel.Contents != null
-                ? JsonConvert.SerializeObject(editPromotionMdoel.Contents)
-                : string.Empty,            
-            AgentId = editPromotionMdoel.UserId,
-            IP = editPromotionMdoel.IP,
-            SiteDbGroupId = editPromotionMdoel.SiteDBGroupId,
-            Language = editPromotionMdoel.Language,
-        };
+            var editPromotionCriteria = new EditPromotionCriteria
+            {
+                PromotionId = editPromotionMdoel.PromotionId,            
+                PromotionContents = editPromotionMdoel.Contents != null
+                    ? JsonConvert.SerializeObject(editPromotionMdoel.Contents)
+                    : string.Empty,            
+                AgentId = editPromotionMdoel.UserId,
+                IP = editPromotionMdoel.IP,
+                SiteDbGroupId = editPromotionMdoel.SiteDBGroupId,
+                Language = editPromotionMdoel.Language,
+            };
 
-        await repository.ExecuteAsync(editPromotionCriteria);
+            await repository.ExecuteAsync(editPromotionCriteria);
+            result = new ResultModel(editPromotionCriteria.ErrCode, editPromotionCriteria.ErrMsg);
+        }
+        
+        if (editPromotionMdoel.OriginalEnabled.HasValue && editPromotionMdoel.OriginalEnabled.Value != editPromotionMdoel.Enabled)
+        {
+            var updateStatusCriteria = new UpdatePromotionStatusCriteria
+            {
+                PromotionId = editPromotionMdoel.PromotionId,
+                AgentId = editPromotionMdoel.UserId,
+                SubAccId = editPromotionMdoel.SubAccId,
+                IP = editPromotionMdoel.IP,
+                SiteDbGroupId = editPromotionMdoel.SiteDBGroupId,
+                Enabled = editPromotionMdoel.Enabled,
+                Language = editPromotionMdoel.Language
+            };
 
-        var result = new ResultModel(editPromotionCriteria.ErrCode, editPromotionCriteria.ErrMsg);
+            await repository.ExecuteAsync(updateStatusCriteria);
+            if (!HasContentChanged(editPromotionMdoel.Contents, editPromotionMdoel.OriginalContents))
+            {
+                result = new ResultModel(updateStatusCriteria.ErrCode, updateStatusCriteria.ErrMsg);
+            }
+        }
 
         return result;
+    }
+
+    private static bool HasContentChanged(List<PromotionLanguageSetting> current, List<PromotionLanguageSetting> original)
+    {
+        if (current == null && original == null) return false;
+        if (current == null || original == null) return true;
+        if (current.Count != original.Count) return true;
+
+        var currentJson = JsonConvert.SerializeObject(current.OrderBy(x => x.Language));
+        var originalJson = JsonConvert.SerializeObject(original.OrderBy(x => x.Language));
+        
+        return currentJson != originalJson;
     }
 
     public async Task<ResultModel> DeletePromotion(int promotionId, BaseActionRequest request)
@@ -201,38 +237,5 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
             UserId = log.UserId,
         };
         await commonService.WriteLogDBCommand(request, log);
-    }
-
-    private static List<Promotion> CreateFakePromotionModel()
-    {
-        var fakeList = new List<Promotion>();
-        for (var i = 1; i <= 10; i++)
-        {
-            fakeList.Add(new Promotion
-            {
-                PromotionId = i,
-                PromotionTitle = $"Promotion Title {i}",
-                SiteDbGroupId = i,
-                PromotionTypeId = i % 3 + 1,
-                FromDate = DateTime.Now.AddDays(-i * 10),
-                ToDate = DateTime.Now.AddDays(i * 10),
-                Enabled = i % 2 == 0,
-
-                ProductSettings =
-                [
-                    new()
-                    {
-                        PromotionId = i,
-                        SiteDbGroupId = i,
-                        ProductCategoryId = i % 4 + 1,
-                        Percentage = 10 + i,
-                        MaxPayout = 5000 + i * 200,
-                        ProductList = $"Product {i}, Product {i + 10}"
-                    }
-                ],
-                LanguageSettings = new List<PromotionLanguageSetting>()
-            });
-        }
-        return fakeList;
     }
 }

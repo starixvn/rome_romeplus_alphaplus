@@ -13,7 +13,9 @@
 export interface EditPromotionRequest {  
   promotionId: number;
   enabled: boolean;
+  originalEnabled?: boolean;
   contents: LanguageInfo[];
+  originalContents?: LanguageInfo[];
 }
 
 export interface PromotionRequest {

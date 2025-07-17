@@ -6,6 +6,7 @@ import {
 import { ErrorMessageComponent, SuccessMessageComponent } from '../../../../components/Message';
 import { TitleComponent } from '../../../../components/Title';
 import { TreeNodeOption } from '../../../../components/TreeSelect/TreeSelect';
+import { PROMOTION_TYPES } from '../../../../constants/promotionConstants';
 import {
   Language,
   ProductDropdown,
@@ -21,8 +22,6 @@ import { useTranslation } from 'react-i18next';
 interface AddPromotionProps {
   onClose: () => void;
 }
-
-const PROMOTION_TYPES = [{ value: 1, label: 'Turnover Rebate' }];
 
 function convertProductToTreeNodeOption(products: ProductDropdown[]): TreeNodeOption[] {
   return products.map((product) => ({

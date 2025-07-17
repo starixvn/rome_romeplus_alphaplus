@@ -187,4 +187,6 @@ public class PromotionController(
         var result = await httpClientHelper.GetAsync<PromotionTransactionResponse>("/promotions/transactions", ObjectConverter.ToDictionary(request));
         return Json(result);
     }
+
+
 }

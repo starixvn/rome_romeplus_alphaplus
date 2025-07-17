@@ -116,6 +116,8 @@ export const promotionService = {
     }
   },
 
+
+
   getMainReport: async (filterParams: {
     fromDate: string;
     toDate: string;

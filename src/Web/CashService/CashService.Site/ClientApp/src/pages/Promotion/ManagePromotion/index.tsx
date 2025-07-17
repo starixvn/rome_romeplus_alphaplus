@@ -84,6 +84,8 @@ const Promotion: React.FC = () => {
     }
   };
 
+
+
   return (
     <div className="pb-[12px] h-full flex flex-col promotion-page">
       {validationMessage.message !== '' && (

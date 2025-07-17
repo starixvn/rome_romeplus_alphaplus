@@ -1,6 +1,6 @@
 import React from 'react';
-import Table from './Table';
 import type { PromotionDetail } from '../../../../services/interfaces/Promotion';
+import Table from './Table';
 
 interface PromotionListProps {
   items: PromotionDetail[];

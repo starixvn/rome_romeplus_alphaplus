@@ -1,19 +1,19 @@
 ﻿import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
-  ButtonDeleteComponent,
-  ButtonPenComponent,
+    ButtonDeleteComponent,
+    ButtonPenComponent,
 } from '../../../../components/Buttons/ButtonIconComponent';
 import NoRecordFound from '../../../../components/NoRecordFoundComponent';
+import { StatusCompletedComponent, StatusDisabledComponent } from '../../../../components/Status/';
 import { useCookieLanguage } from '../../../../hooks/useCookieLanguage';
 import i18n from '../../../../i18n/i18n-promotion';
 import {
-  Product,
-  ProductSetting,
-  PromotionDetail,
+    Product,
+    ProductSetting,
+    PromotionDetail,
 } from '../../../../services/interfaces/Promotion';
 import { formatDate } from '../../../../utils/commonFunctions';
-import { StatusCompletedComponent, StatusDisabledComponent } from '../../../../components/Status/';
  
 
 interface TableProps {
