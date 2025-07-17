@@ -200,13 +200,9 @@ return (
           setPromotionType={() => { void(0); }}
           period={promotion?.fromDate && promotion?.toDate ? [new Date(promotion.fromDate), new Date(promotion.toDate)] : [null, null]}
           setPeriod={() => { void(0); }}
-              periodRef.current = newPeriod;
-            }}
           productOptions={convertProductToTreeNodeOption(productOptions)}
           selectedProductIds={promotion?.productSettings?.map((p: ProductSetting) => p.productCategoryId) || []}
           handleProductChange={() => { void (0) }}
-              void 0;
-            }}
           PROMOTION_TYPES={PROMOTION_TYPES}
         />
       </div>
@@ -215,7 +211,6 @@ return (
         selectedProductCategories={promotion?.productSettings.map((p: ProductSetting) => p.productCategoryId) || []}
         handleProductFieldChange={() => { void (0) }}
         readOnlyMode={true}
-          }}
       />
 
       <PromotionInfo
