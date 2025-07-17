@@ -10,7 +10,6 @@ using Criteria;
 using Fanex.Data.Repository;
 using Models;
 using Shared.Requests;
-using Shared.Services;
 using Transactions.Enum;
 
 public interface IPendingWithdrawalService
@@ -211,7 +210,7 @@ public class PendingWithdrawalService(
         }
     }
 
-    private async Task WriteLogRunSp(WriteLogDBCommandModel log, int siteDbGroupId)
+    private async Task WriteLogRunSp(WriteLogDBCommandModel log, short siteDbGroupId)
     {
         var request = new BaseActionRequest
         {

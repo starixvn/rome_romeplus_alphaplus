@@ -10,7 +10,8 @@ import BankIcon from '../../../../components/BankComponents.tsx';
 import {
   ButtonCancelComponent,
   ButtonClosePopupComponent,
-  ButtonComponent,
+  ButtonRejectComponent,
+  ButtonApplyComponent,
 } from '../../../../components/Buttons/index';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import { ResultMessageComponent } from '../../../../components/Message';
@@ -398,7 +399,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
                   text={t('pendingWithdrawalModal.reject')}
                 />
                 <ButtonApplyComponent
-              variant="apply"
+                  variant="apply"
                   onClick={handleApprove}
                   disabled={isSubmitting || isLoading}
                   text={t('pendingWithdrawalModal.approve')}

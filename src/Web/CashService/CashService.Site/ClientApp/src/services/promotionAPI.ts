@@ -1,5 +1,5 @@
 import { api, axiosInstance, createHeaderXMLHttp } from './axios';
-mport {
+import {
   EditPromotionRequest,
   ProductDropdown,
   PromotionDetail,
@@ -83,14 +83,21 @@ export const promotionService = {
       throw error;
     }
   },
-  editPromotion: async (promotionId: number, promotionRequest: EditPromotionRequest): Promise<ResultModel> => {
+  editPromotion: async (
+    promotionId: number,
+    promotionRequest: EditPromotionRequest
+  ): Promise<ResultModel> => {
     try {
-      const response = await axiosInstance.put<ResultModel>(`EditPromotion/${promotionId}`, promotionRequest, {
-        headers: {
-          ...createHeaderXMLHttp(),
-          'Content-Type': 'application/json',
-        },
-      });
+      const response = await axiosInstance.put<ResultModel>(
+        `EditPromotion/${promotionId}`,
+        promotionRequest,
+        {
+          headers: {
+            ...createHeaderXMLHttp(),
+            'Content-Type': 'application/json',
+          },
+        }
+      );
       return response.data;
     } catch (error) {
       console.error('Error adding promotion:', error);

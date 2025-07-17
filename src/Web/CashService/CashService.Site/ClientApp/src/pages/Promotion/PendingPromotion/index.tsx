@@ -31,9 +31,8 @@ const PendingPromotion: React.FC = () => {
         <div className="flex h-full flex-col">
           <TitleComponent title={t('pendingPromotion')} />
           <div className="mb-[8px]">
-            <ButtonComponent
+            <ButtonFullComponent
               text={t('addBonus')}
-	      variant="full"
               onClick={() => setShowAddBonus(true)}
               className="min-w-[183px] [&>*]:min-w-[183px] [&>*]:inline-block"
             />
