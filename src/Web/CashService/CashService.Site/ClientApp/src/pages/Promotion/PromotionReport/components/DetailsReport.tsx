@@ -64,7 +64,7 @@ export default function DetailsReport({
     status,
   };
   const exportExcel = useExportExcel(
-    `ExportDetailsReport?${new URLSearchParams(filterParams).toString()}`
+    `ExportDetailsReport?${new URLSearchParams({ ...filterParams, promotionTitle: promotionTitle }).toString()}`
   );
   const tableRef = useRef<HTMLTableElement>(null);
   const [search, setSearch] = useState<string>('');

@@ -120,5 +120,7 @@
   "username": "用户名",
   "firstOrLastName": "名或姓",
   "firstAndLastName": "名和姓",
-  "nickname": "昵称"
+  "nickname": "昵称",
+  "lastUpdated": "最后更新",
+  "updatedBy": "更新者"
 }

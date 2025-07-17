@@ -120,5 +120,7 @@
   "username": "Tên người dùng",
   "firstOrLastName": "Tên hoặc Họ",
   "firstAndLastName": "Tên & Họ",
-  "nickname": "Biệt danh"
+  "nickname": "Biệt danh",
+  "lastUpdated": "Cập nhật lần cuối",
+  "updatedBy": "Được cập nhật bởi"
 }

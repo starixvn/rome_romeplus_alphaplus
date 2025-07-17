@@ -178,7 +178,7 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last Updated .
+        ///   Looks up a localized string similar to Last Updated.
         /// </summary>
         public static string LastUpdated {
             get {
@@ -471,6 +471,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         public static string UnableToProcessDeposits {
             get {
                 return ResourceManager.GetString("UnableToProcessDeposits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated By.
+        /// </summary>
+        public static string UpdatedBy {
+            get {
+                return ResourceManager.GetString("UpdatedBy", resourceCulture);
             }
         }
     }

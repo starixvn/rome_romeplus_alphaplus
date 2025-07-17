@@ -8,9 +8,11 @@ namespace AlphaPlus.CashService.Site.Features.Promotion.Requests;
 public class GetPromotionDetailsReportRequest : BaseActionRequest
 {
     public int PromotionId { get; init; }
+    public string PromotionTitle { get; init; }
     public DateTime FromDate { get; set; }
     public DateTime ToDate { get; init; }
     public byte Status { get; init; }
+    public string Username { get; set; }
 
     public bool IsValid()
     {
@@ -22,14 +24,21 @@ public class GetPromotionDetailsReportRequest : BaseActionRequest
     {
         base.SetUserSession(userSession);
         SetLimitedDateToShowInfo(userSession);
+        Username = userSession.IsSubAcc ? userSession.SubUserName : userSession.UserName;
     }
 
     public string ToQueryString()
-        => QueryString.Create(new[]
-        {
+    {
+        var queryString = QueryString.Create([
             KeyValuePair.Create("custId", ActorId.ToString()),
             KeyValuePair.Create(nameof(FromDate), FromDate.ToShortDateWithSlash()),
-            KeyValuePair.Create(nameof(ToDate), ToDate.ToShortDateWithSlash()),
-            KeyValuePair.Create(nameof(Status), Status.ToString())
-        }).ToString();
+            KeyValuePair.Create(nameof(ToDate), ToDate.ToShortDateWithSlash())
+        ]);
+        if (Status > 0)
+        {
+            queryString = queryString.Add(nameof(Status), Status.ToString());
+        }
+
+        return queryString.ToString();
+    }
 }

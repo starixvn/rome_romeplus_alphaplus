@@ -120,5 +120,7 @@
   "username": "Username",
   "firstOrLastName": "First or Last Name",
   "firstAndLastName": "First & Last Name",
-  "nickname": "Nickname"
+  "nickname": "Nickname",
+  "lastUpdated": "Last Updated",
+  "updatedBy": "Updated By"
 }

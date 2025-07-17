@@ -59,7 +59,7 @@ public class PromotionController(
     public async Task<IActionResult> ExportDetailsReport(GetPromotionDetailsReportRequest request)
     {
         var reportData = await GetPromotionDetailsReport(request);
-        var excelFileViewModel = promotionDetailsReportWorkbook.BuildExcelFile(reportData);
+        var excelFileViewModel = promotionDetailsReportWorkbook.BuildExcelFile(request, reportData);
 
         return File(excelFileViewModel.Content, excelFileViewModel.ContentType, excelFileViewModel.Name);
     }

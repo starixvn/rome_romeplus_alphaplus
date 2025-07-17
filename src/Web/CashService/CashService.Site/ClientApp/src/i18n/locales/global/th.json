@@ -120,5 +120,7 @@
   "username": "ชื่อผู้ใช้",
   "firstOrLastName": "ชื่อหรือนามสกุล",
   "firstAndLastName": "ชื่อและนามสกุล",
-  "nickname": "ชื่อเล่น"
+  "nickname": "ชื่อเล่น",
+  "lastUpdated": "อัปเดตล่าสุด",
+  "updatedBy": "อัปเดตโดย"
 }

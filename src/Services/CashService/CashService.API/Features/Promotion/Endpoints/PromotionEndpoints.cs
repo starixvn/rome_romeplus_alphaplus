@@ -88,9 +88,7 @@ public static class PromotionEndpoints
         ).WithName("PromotionReport");
 
         group.MapGet("/reports/{id}", async (int id, [AsParameters] GetPromotionDetailsReportRequest request, IPromotionReportService service) =>
-        {
-            request.PromotionId = id;
-            Results.Ok(await service.GetDetailsReport(request));
-        }).WithName("PromotionDetailsReport");
+            Results.Ok(await service.GetDetailsReport(id, request))
+        ).WithName("PromotionDetailsReport");
     }
 }

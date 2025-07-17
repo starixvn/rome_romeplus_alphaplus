@@ -1,4 +1,5 @@
 using AlphaPlus.CashService.Site.Features.Promotion.Models;
+using AlphaPlus.CashService.Site.Features.Promotion.Requests;
 using AlphaPlus.CashService.Site.Features.Shared;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
@@ -12,7 +13,7 @@ namespace AlphaPlus.CashService.Site.Features.Promotion.Services;
 
 public interface IPromotionDetailsReportWorkbook
 {
-    ExcelFileViewModel BuildExcelFile(PromotionDetailsReport reportData);
+    ExcelFileViewModel BuildExcelFile(GetPromotionDetailsReportRequest request, PromotionDetailsReport reportData);
 }
 
 public class PromotionDetailsReportWorkbook(IWebHostEnvironment webHostEnvironment) :
@@ -21,19 +22,17 @@ public class PromotionDetailsReportWorkbook(IWebHostEnvironment webHostEnvironme
 {
     private int number = 1;
 
-    public ExcelFileViewModel BuildExcelFile(PromotionDetailsReport reportData)
+    public ExcelFileViewModel BuildExcelFile(GetPromotionDetailsReportRequest request, PromotionDetailsReport reportData)
     {
-        var promotionTitle = "Monthly Event 2";
-        var fromDate = DateTime.Today.AddDays(-7).ToShortDateWithSlash();
-        var toDate = DateTime.Today.ToShortDateWithSlash();
-        var username = "SUPERMAY690200";
+        var fromDate = request.FromDate.ToShortDateWithSlash();
+        var toDate = request.ToDate.ToShortDateWithSlash();
         var fileContent = UseTemplate(
             new TemplateInfo(
                 GetExcelTemplatePath("PromotionDetailsReport"),
                 noInfomationText: CommonResx.NoInformationIsAvailable,
                 bodyStartIndex: 3,
                 bodyEndIndex: 4))
-            .Title(BuildTitle(reportData.Summary))
+            .Title(BuildTitle(request.PromotionTitle, fromDate, toDate, reportData.Summary))
             .Header(key => key switch
             {
                 "#" => "#",
@@ -43,22 +42,20 @@ public class PromotionDetailsReportWorkbook(IWebHostEnvironment webHostEnvironme
             .Body(reportData.PromotionDetails, GetRowMapper())
             .ExportToBytes();
 
-        return new ExcelFileViewModel($"{promotionTitle}-{username}-{fromDate}-{toDate}", fileContent);
+        return new ExcelFileViewModel($"{CashServicesResx.PromotionReport}-{request.Username}-{fromDate}-{toDate}", fileContent);
     }
 
-    private static string BuildTitle(PromotionDetailsSummary summary)
-    {
-        var fromDate = DateTime.Today.AddDays(-7).ToShortDateWithSlash();
-        var toDate = DateTime.Today.ToShortDateWithSlash();
-        var promotionTitle = "Monthly Event 2";
-
-        return string.Join("\n", [
+    private static string BuildTitle(
+        string promotionTitle,
+        string fromDate,
+        string toDate,
+        PromotionDetailsSummary summary)
+        => string.Join("\n", [
             $"{promotionTitle} {fromDate} --> {toDate}",
             $"{CashServicesResx.TotalBonusGiven}: {summary.TotalBonus}",
             $"{CashServicesResx.TotalRequestApproved}: {summary.TotalApproved}",
             $"{CashServicesResx.TotalRequestRejected}: {summary.TotalRejected}"
         ]);
-    }
 
     private Mapper<PromotionDetails> GetRowMapper()
         => new Mapper<PromotionDetails>()
@@ -67,7 +64,7 @@ public class PromotionDetailsReportWorkbook(IWebHostEnvironment webHostEnvironme
         .Map(C, p => BuildTextBreakline(p.FirstName, p.LastName))
         .Map(D, p => p.Period)
         .Map(E, p => p.Amount)
-        .Map(F, p => string.IsNullOrWhiteSpace(p.OperatedBy) ? p.SubAccName : p.OperatedBy)
+        .Map(F, p => string.IsNullOrWhiteSpace(p.SubAccName) ? p.OperatedBy : p.SubAccName)
         .Map(G, p => p.LastUpdated)
         .Map(H, p => p.StatusId switch
         {

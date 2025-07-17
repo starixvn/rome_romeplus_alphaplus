@@ -9,7 +9,7 @@ public interface IPromotionReportService
 {
     Task<IEnumerable<PromotionReport>> GetMainReport(GetPromotionReportRequest request);
 
-    Task<PromotionDetailsReport> GetDetailsReport(GetPromotionDetailsReportRequest request);
+    Task<PromotionDetailsReport> GetDetailsReport(int promotionId, GetPromotionDetailsReportRequest request);
 }
 
 public class PromotionReportService(IDynamicRepository repository) : IPromotionReportService
@@ -28,11 +28,11 @@ public class PromotionReportService(IDynamicRepository repository) : IPromotionR
         return repository.FetchAsync<PromotionReport>(criteria);
     }
 
-    public async Task<PromotionDetailsReport> GetDetailsReport(GetPromotionDetailsReportRequest request)
+    public async Task<PromotionDetailsReport> GetDetailsReport(int promotionId, GetPromotionDetailsReportRequest request)
     {
         var criteria = new GetPromotionDetailsReportCriteria(
             request.CustId,
-            request.PromotionId,
+            promotionId,
             request.FromDate,
             request.ToDate,
             request.Status);

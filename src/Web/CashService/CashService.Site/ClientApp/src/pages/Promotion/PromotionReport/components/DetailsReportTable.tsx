@@ -41,7 +41,7 @@ function DetailsReportRow({ idx, data }: { idx: number; data: any }) {
       </td>
       <td>{data.period}</td>
       <td className="text-right">{formatNumber(data.amount)}</td>
-      <td className="text-left">{data.operatedBy ? data.operatedBy : data.subAccName}</td>
+      <td className="text-left">{data.subAccName ? data.subAccName : data.operatedBy}</td>
       <td>{data.lastUpdated}</td>
       <td>
         <DetailsReportStatusRow status={data.statusId} />
@@ -72,8 +72,8 @@ const DetailsReportTable = React.forwardRef<HTMLTableElement, DetailsReportTable
               <th>{t('global:firstAndLastName')}</th>
               <th>{t('promotion:table.period')}</th>
               <th>{t('promotion:table.bonusAmount')}</th>
-              <th>{t('promotion:table.lastUpdated')}</th>
-              <th>{t('promotion:table.lastUpdated')}</th>
+              <th>{t('global:updatedBy')}</th>
+              <th>{t('global:lastUpdated')}</th>
               <th className="w-[140px] min-w-[140px]">{t('global:statusText')}</th>
             </tr>
           </thead>

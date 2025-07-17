@@ -120,5 +120,7 @@
   "username": "사용자 이름",
   "firstOrLastName": "이름 또는 성",
   "firstAndLastName": "이름과 성",
-  "nickname": "닉네임"
+  "nickname": "닉네임",
+  "lastUpdated": "마지막 업데이트",
+  "updatedBy": "업데이트한 사람"
 }
