@@ -18,6 +18,8 @@ public partial class WinLossLimitController(IMediator mediator, IUserSession use
 
     public Task<ActionResult> SportsbookPotentialWinLimit(SportsbookPotentialWinLimitQuery message)
         => View(message, "~/Features/MemberInfo/Views/WinLossLimit/SportsbookPotentialWinLimit.cshtml");
+        var tokens = antiforgery.GetAndStoreTokens(HttpContext);
+        ViewData["RequestVerificationToken"] = tokens.RequestToken;	
 
     public async Task<ActionResult> PotentialExcel(ExcelSportsbookPotentialWinLimitQuery message)
         => await ExcelView(message);

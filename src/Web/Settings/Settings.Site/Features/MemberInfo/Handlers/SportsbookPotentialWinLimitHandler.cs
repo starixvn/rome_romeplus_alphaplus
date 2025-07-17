@@ -24,6 +24,8 @@ public class SportsbookPotentialWinLimitHandler(IPotentialWinLimitService potent
             message.PageSize,
             message.PageIndex,
             message.AGIP,
+            message.BetType,
+            message.SportType,  
             message.AccountType);
 
         var potentialWinLimitPage = await potentialWinLimitService.GetPotentialWinLimitPage(param);

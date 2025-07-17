@@ -31,7 +31,7 @@ public class WinLossLimitViewModel
         WinLossLimitPage winLossLimitPage,
         WinLossLimitParam param)
     {
-        IsOfferedCashService = isOfferedCashService;
+        IsOfferedCashService = false; //isOfferedCashService;
 
         ViewerLevel = message.ActorLevel;
         UserSelectedId = $"{param.ProductId}-{param.SportType}";

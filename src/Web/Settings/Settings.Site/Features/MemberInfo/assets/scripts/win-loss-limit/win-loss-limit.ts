@@ -190,8 +190,8 @@ class WinLossLimit {
                     betType: betType
                 },
                 success: (response: any) => {
-                    window.top.bootboxAlert(response.message || errorMessage);
-                    if (response && response.isSuccessful) {
+                    window.top.bootboxAlert(response.Message || errorMessage);
+                    if (response && response.IsSuccessful) {
                         setTimeout(() => {
                             // Refresh the page to show updated data
                             this.submitForm();

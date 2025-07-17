@@ -106,10 +106,10 @@
         <div class="form-group">
             <label for="dropdown-account-type">@Resources.AccountType</label>
             <select id="dropdown-account-type" name="AccountType" @(Model.ViewerLevel.IsSuperLevel() && Model.MasterId == 0 ? "disabled=disabled" : string.Empty)>
+                <option value="2" @(Model.AccountType == AccountTypeConstant.All ? "selected" : string.Empty)>@Resources.All</option>
                 <option value="0" @(Model.AccountType == AccountTypeConstant.Credit ? "selected" : string.Empty)>@Resources.Credit</option>
                 <option value="1" @(Model.AccountType == AccountTypeConstant.Cash ? "selected" : string.Empty)>@Resources.Cash</option>
-                <option value="2" @(Model.AccountType == AccountTypeConstant.All ? "selected" : string.Empty)>@Resources.All</option>
-            </select>
+             </select>
         </div>
     }
     <div class="form-group">
@@ -196,7 +196,10 @@
                         <td class="text-center">
                             <div class="col-reset">
                                 @WinLossLimitViewModel.GetCurrentWinAnmout(winLossLimitDetail.CurrentWinAnmout)
-                                @if (!winLossLimitDetail.IsCashMember)   
+                                @if (winLossLimitDetail.IsCashMember
+                                    && !winLossLimitDetail.IsAutoReset 
+                                    && winLossLimitDetail.CurrentWinAnmout > 0 
+                                    && winLossLimitDetail.MaxWinLimit > 0)   
                                 {
                                     <span class="ic-refresh reset-win-amount" 
                                         data-cust-id="@winLossLimitDetail.CustId" 
