@@ -1,8 +1,15 @@
+import './TitleComponents.scss';
+
 import Tippy from '@tippyjs/react';
+
 import { IconInfo } from '../Icons';
 import { TitleComponentProps } from './types';
-import './TitleComponents.scss';
-export default function TitleComponent({ title, showTippy, children }: TitleComponentProps) {
+
+export default function TitleComponent({
+  title,
+  showTippy,
+  children,
+}: Readonly<TitleComponentProps>) {
   return (
     <h2 className="mb-[12px] flex text-[14px] font-semibold items-center uppercase text-[var(--titleComponent-color)] border-b border-[var(--titleComponent-border-color)] leading-[39px]">
       {title}
@@ -15,4 +22,4 @@ export default function TitleComponent({ title, showTippy, children }: TitleComp
       )}
     </h2>
   );
-} 
+}

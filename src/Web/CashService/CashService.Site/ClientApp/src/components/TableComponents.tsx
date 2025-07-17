@@ -16,37 +16,42 @@ interface TableComponentProps {
   className?: string;
 }
 
-export const TableComponent: React.FC<TableComponentProps> = ({ 
+export const TableComponent: React.FC<TableComponentProps> = ({
   numOfColumns,
   resourcesTranslation,
   headerRows,
   headerStyle,
   bodyRows,
   className,
-  }) => {
+}) => {
   const { t } = useTranslation('global');
 
   return (
     <table className={`w-full ${className}`}>
       <thead className={headerStyle || ''}>
         {headerRows.map((headerRow) => (
-          <tr>
-            {headerRow.map((header) => (<th>{resourcesTranslation(header) || header}</th>))}
+          <tr key={headerRow.join('-')}>
+            {headerRow.map((header) => (
+              <th key={header}>{resourcesTranslation(header) || header}</th>
+            ))}
           </tr>
         ))}
       </thead>
-      <tbody className='font-[500]'>
+      <tbody className="font-[500]">
         {bodyRows.length === 0 && (
-            <tr>
-              <td colSpan={numOfColumns} className="text-center">{t('noData')}</td>
-            </tr>
+          <tr>
+            <td colSpan={numOfColumns} className="text-center">
+              {t('noData')}
+            </td>
+          </tr>
         )}
 
-        {bodyRows.length > 0 && bodyRows.map((bodyRow, rowIndex) => (
-          <tr key={bodyRow.key || rowIndex} className={bodyRow.className || ''}>
-            {bodyRow.columns}
-          </tr>
-        ))}
+        {bodyRows.length > 0 &&
+          bodyRows.map((bodyRow, rowIndex) => (
+            <tr key={bodyRow.key || rowIndex} className={bodyRow.className || ''}>
+              {bodyRow.columns}
+            </tr>
+          ))}
       </tbody>
     </table>
   );
