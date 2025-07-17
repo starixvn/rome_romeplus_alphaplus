@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+
 import { StatusComponentProps } from './types';
 
 export const StatusMaintenanceComponent: React.FC<StatusComponentProps> = ({ text }) => {
@@ -6,8 +7,8 @@ export const StatusMaintenanceComponent: React.FC<StatusComponentProps> = ({ tex
   return (
     <div role="alert">
       <span className=" inline-block font-semibold rounded-[4px] min-w-[90px] text-center px-[10px] py-[3px] bg-[#fcae7b] dark:bg-[#955e39]">
-        {text ? text : t('maintenance')}
+        {text || t('maintenance')}
       </span>
     </div>
   );
-}; 
+};
