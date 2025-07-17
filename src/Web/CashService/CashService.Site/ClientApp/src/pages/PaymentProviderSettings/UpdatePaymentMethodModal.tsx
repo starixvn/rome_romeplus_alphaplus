@@ -22,6 +22,7 @@ import { PaymentMethod } from '../../services/interfaces/Payments/PaymentMethod'
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { createDefaultAddPaymentMethodViewModel } from '../../services/interfaces/Payments/AddPaymentMethodViewModel';
 import { createErrorResultModel } from '../../services/interfaces/ResultModel';
+import { IconArrowDown } from '../../components/Icons';
 
 interface UpdatePaymentMethodModalProps {
   onClose: () => void;
@@ -240,6 +241,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
               <div className="flex gap-[10px]">
                 <div className="w-[48%]">
                   <LabelTitleComponent text={`${tPaymentProviderSettings('transactionType')}`} required={true} />
+                  <div className="relative">
                   <select
                     className={`control-field ${fieldErrors.selectedTransactionType ? 'error' : ''}`}
                     value={formState.selectedTransactionType}
@@ -252,11 +254,14 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                       </option>
                     ))}
                   </select>
+                  <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
+                  </div>
                   <ValidateMessageComponent message={fieldErrors.selectedTransactionType} />
                 </div>
 
                 <div className="w-[48%]">
                   <LabelTitleComponent text={`${tPaymentProviderSettings('paymentMethod')}`} required={true} />
+                  <div className="relative">
                   <select
                     className={`control-field ${fieldErrors.selectedPaymentMethod ? 'error' : ''}`}
                     disabled={true}
@@ -271,6 +276,8 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                         </option>
                       ))}
                   </select>
+                  <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
+                  </div>
                   <ValidateMessageComponent message={fieldErrors.selectedPaymentMethod} />
                 </div>
               </div>

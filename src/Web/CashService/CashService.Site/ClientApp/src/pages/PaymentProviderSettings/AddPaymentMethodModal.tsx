@@ -22,6 +22,7 @@ import { PaymentMethod } from '../../services/interfaces/Payments/PaymentMethod'
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { createDefaultAddPaymentMethodViewModel } from '../../services/interfaces/Payments/AddPaymentMethodViewModel';
 import { createErrorResultModel } from '../../services/interfaces/ResultModel';
+import { IconArrowDown } from '../../components/Icons';
 
 interface AddPaymentMethodModalProps {
   onClose: () => void;
@@ -201,6 +202,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
               <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={`${tPaymentProviderSettings('transactionType')}`} required={true} />
+                  <div className="relative">
                   <select
                     className={`control-field ${fieldErrors.selectedTransactionType ? 'error' : ''}`}
                     value={formState.selectedTransactionType}
@@ -213,30 +215,35 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
                       </option>
                     ))}
                   </select>
+                  <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
+                  </div>
                   <ValidateMessageComponent message={fieldErrors.selectedTransactionType} />
                 </div>
 
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <LabelTitleComponent text={`${tPaymentProviderSettings('paymentMethod')}`} required={true} />
-                  <select
-                    className={`control-field ${fieldErrors.selectedPaymentMethod ? 'error' : ''}`}
-                    value={formState.selectedPaymentMethod}
-                    onChange={(e) => { onInputChange('selectedPaymentMethod', e.target.value); }}
-                  >
-                    <option value="">{tGlobal('select')}</option>
-                    {paymentMethods
-                      .filter((p) => p.id !== 0)
-                      .map((method) => (
-                        <option
-                          key={method.id}
-                          value={method.id}
-                          disabled={method.status === inactiveStatus}
-                        >
-                          {method.name}
-                          {method.status === inactiveStatus ? ` (${tGlobal('underMaintenance')})` : ''}
-                        </option>
-                      ))}
-                  </select>
+                  <div className="relative">
+                    <select
+                      className={`control-field ${fieldErrors.selectedPaymentMethod ? 'error' : ''}`}
+                      value={formState.selectedPaymentMethod}
+                      onChange={(e) => { onInputChange('selectedPaymentMethod', e.target.value); }}
+                    >
+                      <option value="">{tGlobal('select')}</option>
+                      {paymentMethods
+                        .filter((p) => p.id !== 0)
+                        .map((method) => (
+                          <option
+                            key={method.id}
+                            value={method.id}
+                            disabled={method.status === inactiveStatus}
+                          >
+                            {method.name}
+                            {method.status === inactiveStatus ? ` (${tGlobal('underMaintenance')})` : ''}
+                          </option>
+                        ))}
+                    </select>
+                    <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
+                  </div>
                   <ValidateMessageComponent message={fieldErrors.selectedPaymentMethod} />
                 </div>
               </div>
