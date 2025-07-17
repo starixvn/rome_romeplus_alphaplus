@@ -6,7 +6,7 @@ export const StatusDisabledComponent: React.FC<StatusComponentProps> = ({ text }
   return (
     <div role="alert">
       <span className=" inline-block font-semibold rounded-[4px] min-w-[90px] text-center px-[10px] py-[3px] bg-[#FBD8D8] dark:bg-[#af4646]">
-        {text ? "-" : t('disabled')}
+        {text ? text : t('disabled')}
         
       </span>
     </div>

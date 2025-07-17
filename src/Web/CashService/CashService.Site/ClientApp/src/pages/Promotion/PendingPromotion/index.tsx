@@ -4,7 +4,6 @@ import { TitleComponent } from '../../../components/Title';
 import Filter from './components/Filter.tsx';
 import Table from './components/Table.tsx';
 import Search from './components/Search.tsx';
-import './PendingPromotion.css';
 import i18n from '../../../i18n/i18n-promotion';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 import '../../../styles/common.css';
