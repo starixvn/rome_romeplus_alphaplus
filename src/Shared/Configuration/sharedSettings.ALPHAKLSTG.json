@@ -275,7 +275,7 @@
     "OfferProfilePictureTour": true,
     "CashService": {
         "OfferedSites": "222227",
-        "APIUrl": "http://alphaplus_staging_api_cashservice_alphaklprod:5000/api"
+        "APIUrl": "http://alphaplus_staging_api_cash_ALPHAKLPROD:5000/api"
     },
     "IndirectLogin": {
         "AllowSuperIds": "*",
