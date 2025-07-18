@@ -122,5 +122,7 @@
   "firstAndLastName": "ชื่อและนามสกุล",
   "nickname": "ชื่อเล่น",
   "lastUpdated": "อัปเดตล่าสุด",
-  "updatedBy": "อัปเดตโดย"
+  "updatedBy": "อัปเดตโดย",
+  "pleaseReferTo": "กรุณาอ้างอิง",
+  "checklist": "รายการตรวจสอบ"
 }

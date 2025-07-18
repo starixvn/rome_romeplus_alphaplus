@@ -122,5 +122,7 @@
   "firstAndLastName": "名和姓",
   "nickname": "昵称",
   "lastUpdated": "最后更新",
-  "updatedBy": "更新者"
+  "updatedBy": "更新者",
+  "pleaseReferTo": "请参考",
+  "checklist": "检查清单"
 }

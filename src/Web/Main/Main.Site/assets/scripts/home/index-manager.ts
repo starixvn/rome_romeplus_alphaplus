@@ -608,7 +608,12 @@ var indexManager = {
 
         $.get(indexManager.urls.cashServiceSetupChecklist, function (result) {
             var checklistDiv = $('#cash-service-checklist');
-            checklistDiv.removeClass('hide');
+
+            if(result.isCompleteAll) {
+                checklistDiv.addClass('hide');
+            } else {
+                checklistDiv.removeClass('hide');
+            }
             
             var content = checklistDiv.find('.checklist-content');
 

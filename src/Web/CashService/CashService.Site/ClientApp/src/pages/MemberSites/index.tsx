@@ -16,9 +16,12 @@ import {
   MemberSiteManagementDataDefault,
 } from '../../services/interfaces/MemberSites';
 import { memberSitesService } from '../../services/memberSitesAPI';
+import { baseAPI } from '../../services/commonAPI';
+
 import GeneralSettings from './components/GeneralSettings';
 import MessageForm from './components/MessageForm';
 import RegistrationLinks from './components/RegistrationLinks';
+import { SetupChecklistModel } from '../../services/interfaces/SetupChecklistModel';
 
 const MemberSiteManagement: React.FC = () => {
   const { t } = useTranslation(['memberSite', 'global']);
@@ -27,6 +30,7 @@ const MemberSiteManagement: React.FC = () => {
   const [result, setResult] = useState<{ type: ResultType; text: string } | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [isCashServiceEnabled, setIsCashServiceEnabled] = useState(false);
+  const [setupCheckList, setSetupCheckList] = useState<SetupChecklistModel | null>(null);
 
   const methods = useForm<MemberSiteManagementData>({
     defaultValues: MemberSiteManagementDataDefault,
@@ -43,7 +47,13 @@ const MemberSiteManagement: React.FC = () => {
   useEffect(() => {
     fetchData();
     const isCashServiceEnabled = document.getElementById('IsCashServiceEnabled')?.getAttribute('value');
-    setIsCashServiceEnabled(isCashServiceEnabled === '1');
+
+    const enabled = isCashServiceEnabled === '1';
+    setIsCashServiceEnabled(enabled);
+
+    if(enabled) {
+      fetchSetupCheckList();
+    }
   }, []);
 
   const showResult = (type: ResultType, text: string) => {
@@ -66,6 +76,15 @@ const MemberSiteManagement: React.FC = () => {
       showResult('error', t('errors.loadFailed'));
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchSetupCheckList = async () => {
+    try {
+      const response = await baseAPI.getSetupCheckList();
+      setSetupCheckList(response);
+    } catch (err) {
+      showResult('error', t('errors.loadFailed'));
     }
   };
 
@@ -113,7 +132,7 @@ const MemberSiteManagement: React.FC = () => {
           <TitleComponent title={t('title')} showTippy={false} />
         </div>
         <div className="max-w-[950px]">               
-              {result && <ResultMessageComponent className="mb-[10px]" type={result.type} message={result.text} />}
+          {result && <ResultMessageComponent className="mb-[10px]" type={result.type} message={result.text} />}
           <FormProvider {...methods}>
             <form onSubmit={handleSubmit(onSubmit)} className="py-[5px] ">              
                 <RegistrationLinks
@@ -121,6 +140,8 @@ const MemberSiteManagement: React.FC = () => {
                     .watch('domains')
                     .map((domain) => ({ ...domain, status: 'active' }))}
                   loading={loading}
+                  isCashServiceEnabled={isCashServiceEnabled}
+                  setupChecklist={setupCheckList}
                 />             
               <div className="block w-[100%] h-[1px] bg-[var(--border-color)] my-[10px]" ></div>              
               <GeneralSettings loading={loading} />               

@@ -122,5 +122,7 @@
   "firstAndLastName": "First & Last Name",
   "nickname": "Nickname",
   "lastUpdated": "Last Updated",
-  "updatedBy": "Updated By"
+  "updatedBy": "Updated By",
+  "pleaseReferTo": "Please refer to",
+  "checklist": "Checklist"
 }

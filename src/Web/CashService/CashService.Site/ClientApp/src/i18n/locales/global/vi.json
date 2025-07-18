@@ -122,5 +122,7 @@
   "firstAndLastName": "Tên & Họ",
   "nickname": "Biệt danh",
   "lastUpdated": "Cập nhật lần cuối",
-  "updatedBy": "Được cập nhật bởi"
+  "updatedBy": "Được cập nhật bởi",
+  "pleaseReferTo": "Vui lòng tham khảo",
+  "checklist": "Danh sách kiểm tra"
 }

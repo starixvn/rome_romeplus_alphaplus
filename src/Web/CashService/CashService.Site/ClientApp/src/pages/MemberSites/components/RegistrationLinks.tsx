@@ -3,10 +3,19 @@ import { Domain } from '../../../services/interfaces/MemberSites';
 import DomainCard from './DomainCard';
 import { useTranslation } from 'react-i18next';
 import { MediumTitleComponent } from '../../../components/Title';
+import { SetupChecklistModel } from '../../../services/interfaces/SetupChecklistModel';
+
+declare global {
+  interface Window {
+    indexManager: any;
+  }
+}
 
 interface Props {
   domains: Domain[];
   loading: boolean;
+  setupChecklist: SetupChecklistModel | null; 
+  isCashServiceEnabled: boolean;
 }
 
 const RegistrationLinksSkeleton = () => {
@@ -26,11 +35,15 @@ const RegistrationLinksSkeleton = () => {
   );
 };
 
-const RegistrationLinks: React.FC<Props> = ({ domains, loading }) => {
+const RegistrationLinks: React.FC<Props> = ({ domains, loading, setupChecklist, isCashServiceEnabled }) => {
   const { t } = useTranslation('memberSite');
 
   if (loading) {
     return <RegistrationLinksSkeleton />
+  }
+
+  const showChecklist = () => {
+    window.top && window.top.indexManager.showHideCashServiceChecklist(true);
   }
 
   return (
@@ -44,12 +57,16 @@ const RegistrationLinks: React.FC<Props> = ({ domains, loading }) => {
         </div>
       </div>
 
+      {!setupChecklist?.isCompleteAll && isCashServiceEnabled && (
+        <div>{t('global:pleaseReferTo')} <button type="button" onClick={showChecklist}>{t('global:checklist')}</button></div>
+      )}
       <div className="flex gap-[30px] flex-wrap w-[100%] max-[768px]:flex-col">
         {domains.map((domain, index) => (
           <DomainCard
             key={`${domain.id}-${index}`}
             domain={domain}
             index={index}
+            disabled={!setupChecklist?.isCompleteAll}
           />
         ))}
       </div>

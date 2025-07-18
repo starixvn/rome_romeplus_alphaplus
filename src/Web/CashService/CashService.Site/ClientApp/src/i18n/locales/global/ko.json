@@ -122,5 +122,7 @@
   "firstAndLastName": "이름과 성",
   "nickname": "닉네임",
   "lastUpdated": "마지막 업데이트",
-  "updatedBy": "업데이트한 사람"
+  "updatedBy": "업데이트한 사람",
+  "pleaseReferTo": "다음을 참조하세요",
+  "checklist": "체크리스트"
 }
