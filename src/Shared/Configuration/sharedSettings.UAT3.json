@@ -128,11 +128,11 @@
   "LogLibs": "Rabbit",
   "Fanex.Logging": {
     "DefaultCategory": "Alpha-IBC-AF-UAT-Linux",
-    "RabbitMQConnectionStrings": "host=10.143.58.203;virtualHost=/fanex_logging;username=fanexlogging;password=VKREKUBBd2T3DAtosbDPojl4YQFDnDp7Yilb8JGcLQ8=",
-    "SentryUrl": "https://520a3541329b4ffe876899de8f7c9495@sentry.starixplay.com/18",
-    "SentryBackendUrl": "https://520a3541329b4ffe876899de8f7c9495@10.99.99.51:801/18"
+    "RabbitMQConnectionStrings": "host=rabbit.tcp-kluat.gamora.prod:5672;virtualHost=/fanex_logging;username=fanexlogging;password=VKREKUBBd2T3DAtosbDPojl4YQFDnDp7Yilb8JGcLQ8=",
+    "SentryUrl": "https://520a3541329b4ffe876899de8f7c9495@sentry-ovs.starixuat.com/18",
+    "SentryBackendUrl": "http://520a3541329b4ffe876899de8f7c9495@sentryst-ovs.ops-kluat.gamora.prod/18"
   },
-  "RedisConfiguration": "vn-alpha-state383.gamora.prod:16383,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged,connectTimeout=6300",
+  "RedisConfiguration": "vn-alpha-state383.tcp-kluat.gamora.prod:16383,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged,connectTimeout=6300",
   "RemotingRefUrl": "http://shared_fanex_remotingref_UAT:5000/",
   "Fanex.Customer": {
     "ServiceUri": "http://alphaplus_api_settings_UAT_2:5000/api/",
@@ -238,7 +238,7 @@
   "Fanex.Caching.Redis": {
     "ConnectionOptions": {
       "EndPoints": [
-        "vn-alpha-cache380.gamora.prod:16380"
+        "vn-alpha-cache380.tcp-kluat.gamora.prod:16380"
       ],
       "Password": "foo1@bared",
       "AbortOnConnectFail": false,
