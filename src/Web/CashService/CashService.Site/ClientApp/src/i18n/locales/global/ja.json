@@ -124,5 +124,6 @@
   "lastUpdated": "最終更新日",
   "updatedBy": "更新者",
   "pleaseReferTo": "以下を参照してください",
-  "checklist": "チェックリスト"
+  "checklist": "チェックリスト",
+  "error-0": "支払いプロバイダーは現在利用できません。後でもう一度お試しください。"
 }

@@ -124,5 +124,6 @@
   "lastUpdated": "Cập nhật lần cuối",
   "updatedBy": "Được cập nhật bởi",
   "pleaseReferTo": "Vui lòng tham khảo",
-  "checklist": "Danh sách kiểm tra"
+  "checklist": "Danh sách kiểm tra",
+  "error-0": "Nhà cung cấp thanh toán hiện không khả dụng. Vui lòng thử lại sau."
 }

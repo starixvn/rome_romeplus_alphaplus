@@ -7,8 +7,8 @@ import {
   ButtonClosePopupComponent,
 } from '../../components/Buttons/index';
 import {
-  ErrorMessageComponent,
-  SuccessMessageComponent,
+  ResultMessageComponent,
+  ResultType,
   ValidateMessageComponent,
 } from '../../components/Message';
 import {
@@ -51,9 +51,10 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
   const { t: tGlobal } = useTranslation('global');
   const { t: tPaymentProviderSettings } = useTranslation('paymentProviderSettings');
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [error, setError] = React.useState<string>('');
-  const [successMessage, setSuccessMessage] = React.useState<string>('');
   const [isBlockAction, setIsBlockAction] = React.useState<boolean>(false);
+  
+  const [resultType, setResultType] = React.useState<ResultType | undefined>(undefined);
+  const [resultMessage, setResultMessage] = React.useState<string>('');
 
   // Combined form state
   const [formState, setFormState] = React.useState<PaymentMethodFormState>({
@@ -108,7 +109,8 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
       const transactionType = parseInt(formState.selectedTransactionType);
       const response = await paymentProviderService.getAddPaymentMethodInfo(providerId, transactionType);
       if (response.error) {
-        setError(response.error.message);
+        setResultType('error');
+        setResultMessage(response.error.message);
         return;
       }
 
@@ -128,8 +130,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    setError('');
-    setSuccessMessage('');
+    setResultType(undefined);
 
     const isValid = validateFormState();
     if (!isValid) {
@@ -159,7 +160,8 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
       : await paymentProviderService.addPaymentMethod(newSetting);
 
     if (response.error) {
-      setError(response.error.message);
+      setResultType('error');
+      setResultMessage(response.error.message);
       setIsLoading(false);
       return;
     }
@@ -168,13 +170,22 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
 
     if (result.isSuccessful) {
       setIsBlockAction(true);
-      setSuccessMessage(isUpdate ? tGlobal('updateSuccess') : tGlobal('addSuccess'));
+      setResultType('success');
+      setResultMessage(isUpdate ? tGlobal('updateSuccess') : tGlobal('addSuccess'));
+      setTimeout(() => {
+        onClose();
+        onSuccess();
+      }, 3000);
+    } else if(result.code === -1){
+      setResultType('warning');
+      setResultMessage(tGlobal(`error-${result.code}`));
       setTimeout(() => {
         onClose();
         onSuccess();
       }, 3000);
     } else {
-      setError(result.message || (isUpdate ? tGlobal('updateFailed') : tGlobal('addFailed')));
+      setResultType('error');
+      setResultMessage(result.message || (isUpdate ? tGlobal('updateFailed') : tGlobal('addFailed')));
     }
 
     setIsLoading(false);
@@ -192,8 +203,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
           <MediumTitleComponent text={tPaymentProviderSettings('setUpPaymentMethods')} />
           <ButtonClosePopupComponent onClick={onClose} />
         </div>
-        <ErrorMessageComponent className="mt-[8px]" message={error} />
-        <SuccessMessageComponent className="mt-[8px]" message={successMessage} />
+        <ResultMessageComponent type={resultType} message={resultMessage} className="mt-[8px]" />
         <form onSubmit={onSubmit}>
           <div className="modal-body ">
             <div>

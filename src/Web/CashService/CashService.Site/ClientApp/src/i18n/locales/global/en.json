@@ -124,5 +124,7 @@
   "lastUpdated": "Last Updated",
   "updatedBy": "Updated By",
   "pleaseReferTo": "Please refer to",
-  "checklist": "Checklist"
+  "checklist": "Checklist",
+
+  "error-0": "Payment provider is currently unavailable. Please try again later."
 }
