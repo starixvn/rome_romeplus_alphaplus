@@ -131,7 +131,7 @@
         <Setting Key="Age_CashService_CashPromotionIns" SpName="Age_CashService_CashPromotionIns" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
         <Setting Key="CustDb_0_Age_CashService_CashPromotionDel" SpName="Age_CashService_CashPromotionDel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
         <Setting Key="Age_CashService_CashPromotionUpd" SpName="Age_CashService_CashPromotionUpd" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
-        <Setting Key="SiteDb_0_Age_CashPromotion_Transaction_Sel" SpName="Age_CashPromotion_Transaction_Sel_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0" />
+        <Setting Key="SiteDb_3_Age_CashPromotion_Transaction_Sel" SpName="Age_CashPromotion_Transaction_Sel" DbName="DBSIC.bodb02.wsv_CashService" Plain="0" />
         <Setting Key="Age_CashService_CashPromotionStatusUpd" SpName="Age_CashService_CashPromotionStatusUpd" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
         <Setting Key="Age_CashService_PromotionProductList" SpName="Age_CashService_PromotionProductList" DbName="DBAGE.bodb02.wsv_CashService" Plain="0" />
         <Setting Key="Age_CashPromotion_PromotionReport" SpName="Age_CashPromotion_PromotionReport" DbName="DBAGE.bodb02.wsv_CashService" />
