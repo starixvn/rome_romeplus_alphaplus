@@ -1,11 +1,11 @@
 ﻿namespace AlphaPlus.CashService.API.Features.Promotion.Services;
 
-using AlphaPlus.CashService.API.Features.Promotion.Requests;
 using AlphaPlus.CashService.API.Features.Shared.Services;
 using Criteria;
 using Fanex.Data.Repository;
 using Models;
 using Newtonsoft.Json;
+using Requests;
 using Shared.Models;
 using Shared.Requests;
 
@@ -90,7 +90,7 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
             }
             item.LanguageSettings = model.ThirdResultSet.ToList();
         }
-        
+
         return model.FirstResultSet.FirstOrDefault();
     }
 

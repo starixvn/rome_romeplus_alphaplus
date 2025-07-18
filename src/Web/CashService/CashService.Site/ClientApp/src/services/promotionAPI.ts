@@ -9,6 +9,7 @@ import {
   PromotionTransactionResponse,
 } from './interfaces/Promotion';
 import { ResultModel } from './interfaces/ResultModel';
+import { DropdownOption } from '../components/CustomDropdownComponent';
 
 export const promotionService = {
   getLanguages: async (): Promise<Record<string, string>> => {
@@ -36,7 +37,7 @@ export const promotionService = {
   ): Promise<PromotionTransactionResponse> => {
     try {
       const queryParams = new URLSearchParams({
-        promotionTypeId: request.promotionTypeId.toString(),
+        promotionTypeId: request.promotionTypeId != 0 ? request.promotionTypeId.toString() : '',
         fromDate: request.fromDate,
         toDate: request.toDate,
       });
@@ -116,7 +117,10 @@ export const promotionService = {
     }
   },
 
-
+  getPromotionTypeOptions: async (): Promise<DropdownOption[]> => {
+    const response = await axiosInstance.get<DropdownOption[]>(`GetPromotionTypeOptions`);
+    return response.data;
+  },
 
   getMainReport: async (filterParams: {
     fromDate: string;
@@ -133,6 +137,7 @@ export const promotionService = {
 
     return data;
   },
+
   getDetailsReport: async (filterParams: {
     promotionId: string;
     fromDate: string;

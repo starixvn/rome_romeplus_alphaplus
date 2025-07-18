@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import LoadingComponent from '../../../../components/LoadingComponent';
 import NoRecordFound from '../../../../components/NoRecordFoundComponent';
 import { PromotionTransaction } from '../../../../services/interfaces/Promotion';
-import { displayAmount, formatDateTime } from '../../../../utils/commonFunctions';
+import { displayAmount, formatDate } from '../../../../utils/commonFunctions';
 import { ButtonFullComponent } from '../../../../components/Buttons';
 
 interface DataGridProps {
@@ -36,32 +36,35 @@ const DataGrid: React.FC<DataGridProps> = ({ items, pageIndex, pageSize, isLoadi
             >
               {t('table.no')}
             </th>
-            <th
-              scope="col"
-              className="w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-header-background)] z-11 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]"
-            >
-              <div>{t('table.username')}</div>
-              <div>{t('table.nickname')}</div>
+            <th scope="col" className="w-[150px] min-w-[150px] left-[32px]">
+              {t('table.username')}
+              <br />
+              {t('table.nickname')}
             </th>
-            <th scope="col">{t('table.name')}</th>
-            <th scope="col">{t('table.title')}</th>
+            <th scope="col">
+              {t('table.firstName')}
+              <br />
+              {t('table.lastName')}
+            </th>
+            <th scope="col" className="w-[200px]">
+              {t('table.title')}
+            </th>
             <th scope="col">{t('table.promotionType')}</th>
-            <th scope="col" className="min-w-[150px]">
+            <th scope="col" className="min-w-[80px]">
               {t('table.amount')}
             </th>
-            <th scope="col">{t('table.status')}</th>
             <th scope="col">{t('table.dateRange')}</th>
-            <th scope="col">{t('table.actions')}</th>
+            <th scope="col" className="w-[100px]">
+              {t('table.actions')}
+            </th>
           </tr>
         </thead>
         <tbody className="font-[500]">
           {items && items.length > 0 ? (
             items.map((item, index) => (
               <tr key={item.promotionId}>
-                <td className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-background)] z-10">
-                  {index + 1 + (pageIndex - 1) * pageSize}
-                </td>
-                <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
+                <td className="w-[32px] min-w-[32px]">{index + 1 + (pageIndex - 1) * pageSize}</td>
+                <td className="w-[150px] min-w-[150px]">
                   <div>{item.username}</div>
                   <div>{item.nickname}</div>
                 </td>
@@ -72,14 +75,14 @@ const DataGrid: React.FC<DataGridProps> = ({ items, pageIndex, pageSize, isLoadi
                 <td className="text-center">{item.title}</td>
                 <td className="text-center">{item.promotionTypeName}</td>
                 <td className="text-right">
-                  <div className="flex items-center justify-end pr-[25px] relative">
+                  <div className="flex w-full justify-end relative">
                     {displayAmount(item.amount)}
                   </div>
                 </td>
-                <td className="text-center">{item.status}</td>
                 <td className="text-center">
-                  <div>{formatDateTime(item.fromDate)}</div>
-                  <div>{formatDateTime(item.toDate)}</div>
+                  <div>
+                    {formatDate(item.fromDate)} - {formatDate(item.toDate)}
+                  </div>
                 </td>
                 <td className="text-center">
                   <ButtonFullComponent

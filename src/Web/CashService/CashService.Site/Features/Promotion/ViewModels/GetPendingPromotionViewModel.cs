@@ -6,7 +6,7 @@ public class GetPendingPromotionViewModel
     public DateTime FromDate { get; set; }
     public DateTime ToDate { get; set; }
     public short StatusId { get; set; }
-    public int PromotionTypeId { get; set; }
+    public int? PromotionTypeId { get; set; }
     public int SiteDbGroupId { get; set; }
     public int PageIndex { get; set; } = 1;
     public int PageSize { get; set; } = 5000;

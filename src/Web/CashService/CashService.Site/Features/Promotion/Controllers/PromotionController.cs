@@ -1,8 +1,10 @@
 namespace AlphaPlus.CashService.Site.Features.Promotion.Controllers;
 
 using AlphaPlus.CashService.Site.Features.Shared.Requests;
+using AlphaPlus.Shared.AppResources.CashServices;
 using Core.Configurations;
 using Core.Models;
+using Enum;
 using Fanex.Customer.Client.Services;
 using Helpers;
 using Microsoft.AspNetCore.Antiforgery;
@@ -182,11 +184,11 @@ public class PromotionController(
     {
         request.StatusId = 2;
         request.CustId = userSession.CustId;
-        request.PromotionTypeId = 1;
         request.SiteDbGroupId = userSession.SiteDBGroupId;
         var result = await httpClientHelper.GetAsync<PromotionTransactionResponse>("/promotions/transactions", ObjectConverter.ToDictionary(request));
         return Json(result);
     }
 
-
+    public IActionResult GetPromotionTypeOptions()
+        => Json(EnumHelper.GetEnumOptions<PromotionType>(CashServicesResx.ResourceManager));
 }

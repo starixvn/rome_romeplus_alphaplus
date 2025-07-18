@@ -1,9 +1,9 @@
 namespace AlphaPlus.CashService.API.Features.Promotion.Endpoints;
 
-using AlphaPlus.CashService.API.Features.Promotion.Models;
-using AlphaPlus.CashService.API.Features.Promotion.Requests;
-using AlphaPlus.CashService.API.Features.Promotion.Services;
 using Microsoft.AspNetCore.Mvc;
+using Models;
+using Requests;
+using Services;
 using Shared.Requests;
 
 public static class PromotionEndpoints
@@ -88,7 +88,7 @@ public static class PromotionEndpoints
             async ([AsParameters] GetPromotionTransactionRequest request, IPromotionService service) =>
             {
                 var (promotions, totalCount) = await service.GetPromotionTransactionAsync(request);
-                return Results.Ok(new { PendingPromotions = promotions, TotalCount = totalCount });
+                return Results.Ok(new { PromotionTransactions = promotions, TotalCount = totalCount });
             }).WithName("GetPendingPromotions");
 
         group.MapGet("/reports", async ([AsParameters] GetPromotionReportRequest request, IPromotionReportService service) =>

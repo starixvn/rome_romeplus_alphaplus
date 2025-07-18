@@ -268,6 +268,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rebate on Turnover.
+        /// </summary>
+        public static string PromotionType_RebateOnTurnover {
+            get {
+                return ResourceManager.GetString("PromotionType_RebateOnTurnover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your withdrawal request has been rejected by provider.
         /// </summary>
         public static string ProviderRejectErrorMessage {

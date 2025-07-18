@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import CustomDropdown from '../../../../../components/CustomDropdownComponent';
+import CustomDropdown, { DropdownOption } from '../../../../../components/CustomDropdownComponent';
 import { LabelTitleComponent } from '../../../../../components/Title';
+import { promotionService } from '../../../../../services/promotionAPI';
 
 interface PromotionTypeFilterProps {
   promotionTypeId: number;
@@ -13,14 +14,14 @@ const PromotionTypeFilter: React.FC<PromotionTypeFilterProps> = ({
   onPromotionTypeChange,
 }) => {
   const { t } = useTranslation('promotion');
-
-  const promotionTypeOptions = [
-    { value: -1, label: t('filter.all') },
-    { value: 1, label: t('promotionType.welcome') },
-    { value: 2, label: t('promotionType.reload') },
-    { value: 3, label: t('promotionType.cashback') },
-    { value: 4, label: t('promotionType.freebet') },
-  ];
+  const [promotionTypeOptions, setPromotionTypeOptions] = useState<DropdownOption[]>([]);
+  useEffect(() => {
+    const fetchPromotionTypeOptions = async () => {
+      const options = await promotionService.getPromotionTypeOptions();
+      setPromotionTypeOptions(options);
+    };
+    fetchPromotionTypeOptions();
+  }, []);
 
   return (
     <div className="form-group">
@@ -29,7 +30,7 @@ const PromotionTypeFilter: React.FC<PromotionTypeFilterProps> = ({
         options={promotionTypeOptions}
         onSelect={(option) => onPromotionTypeChange(Number(option.value))}
         initialValue={promotionTypeId}
-        showOptionAll={false}
+        showOptionAll={true}
       />
     </div>
   );

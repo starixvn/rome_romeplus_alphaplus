@@ -8,8 +8,11 @@ public class GetPromotionTransactionCriteria : CriteriaBase
     public int CustId { get; set; }
     public DateTime FromDate { get; set; }
     public DateTime ToDate { get; set; }
-    public short Status { get; set; }
-    public int PromotionType { get; set; }
+    public int Status { get; set; }
+
+    [SpParam(AllowNull = true)]
+    public int? PromotionType { get; set; }
+
     public int PageSize { get; set; }
     public int PageIndex { get; set; }
     public int TotalRecords { get; set; } = 0;

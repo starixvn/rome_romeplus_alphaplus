@@ -2,6 +2,18 @@
   "promotionReport": "Promotion Report",
   "pendingPromotion": "Pending Promotion",
   "addBonus": "Add Bonus",
+  "addBonusForm": {
+    "title": "Add Bonus",
+    "accountInformation": "Account Information",
+    "memberLoginName": "Member Login Name",
+    "bonusAmount": "Bonus Amount",
+    "agentAvailableCredit": "Agent Available Credit",
+    "remarks": "Remarks",
+    "remarksPlaceholder": "Remarks",
+    "selectMember": "Select Member",
+    "cancel": "Cancel",
+    "approve": "Approve"
+  },
   "table": {
     "no": "#",
     "action": "Action",

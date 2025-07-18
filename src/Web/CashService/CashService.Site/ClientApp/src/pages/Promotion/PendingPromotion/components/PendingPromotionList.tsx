@@ -68,7 +68,7 @@ const useApiParams = () => {
         sevenDaysAgoInGMT4.toLocaleString('en-US'),
         todayInGMT4.toLocaleString('en-US'),
       ] as [string, string],
-      promotionTypeId: -1,
+      promotionTypeId: 0,
       pageIndex: 1,
       pageSize: PAGE_SIZE_OPTIONS[2],
     };
