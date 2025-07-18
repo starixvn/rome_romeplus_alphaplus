@@ -4,6 +4,7 @@ import CustomDropdownComponent, {
   DropdownOption,
 } from '../../../../components/CustomDropdownComponent';
 import { LabelTitleComponent } from '../../../../components/Title';
+import { PROMOTION_BONUS_STATUS_OPTIONS } from '../../../../constants/promotionConstants';
 
 export default function DetailsReportFilter({
   minDate,
@@ -21,12 +22,14 @@ export default function DetailsReportFilter({
   setStatus: (status: string) => void;
 }) {
   const { t } = useTranslation('global');
-  const statusOptions: DropdownOption[] = [
-    { value: '0', label: t('global:all') },
-    { value: 1, label: t('global:status.approved') },
-    { value: 2, label: t('global:status.pending') },
-    { value: 3, label: t('global:status.rejected') },
-  ];
+  const statusOptions: DropdownOption[] = Object.keys(PROMOTION_BONUS_STATUS_OPTIONS).map((key) => {
+    const value =
+      PROMOTION_BONUS_STATUS_OPTIONS[key as keyof typeof PROMOTION_BONUS_STATUS_OPTIONS];
+    return {
+      value: value,
+      label: value === 0 ? t(`global:${key}`) : t(`global:status.${key}`),
+    };
+  });
   return (
     <div className="flex flex-nowrap gap-[16px] max-[768px]:gap-[12px] max-[768px]:flex-wrap w-full">
       <div className="w-[190px] mb-[12px]">

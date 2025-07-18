@@ -4,6 +4,10 @@ import CustomDropdownComponent, {
   DropdownOption,
 } from '../../../../components/CustomDropdownComponent';
 import { LabelTitleComponent } from '../../../../components/Title';
+import {
+  PROMOTION_TYPES,
+  PROMOTION_STATUS_OPTIONS,
+} from '../../../../constants/promotionConstants';
 
 export default function MainReportFilter({
   minDate,
@@ -27,13 +31,15 @@ export default function MainReportFilter({
   const { t } = useTranslation(['promotion', 'global']);
   const promotionTypeOptions: DropdownOption[] = [
     { value: '0', label: t('global:all') },
-    { value: 1, label: t('promotion:promotionType_1') },
+    ...PROMOTION_TYPES.map((type) => ({
+      value: type.value.toString(),
+      label: t(`promotion:promotionType_${type.value}`),
+    })),
   ];
-  const statusOptions: DropdownOption[] = [
-    { value: '2', label: t('global:all') },
-    { value: 1, label: t('global:enabled') },
-    { value: 0, label: t('global:disabled') },
-  ];
+  const statusOptions: DropdownOption[] = Object.keys(PROMOTION_STATUS_OPTIONS).map((key) => ({
+    value: PROMOTION_STATUS_OPTIONS[key as keyof typeof PROMOTION_STATUS_OPTIONS],
+    label: t(`global:${key}`),
+  }));
   return (
     <div className="flex flex-nowrap max-[768px]:flex-wrap w-full">
       <div className="w-[190px] mb-[12px] mr-[12px]">

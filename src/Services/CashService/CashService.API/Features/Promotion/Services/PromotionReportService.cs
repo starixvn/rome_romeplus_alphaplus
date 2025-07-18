@@ -14,6 +14,8 @@ public interface IPromotionReportService
 
 public class PromotionReportService(IDynamicRepository repository) : IPromotionReportService
 {
+    private const byte ApprovedStatusId = 4;
+    private const byte RejectedStatusId = 5;
     private readonly IDynamicRepository repository = repository;
 
     public Task<IEnumerable<PromotionReport>> GetMainReport(GetPromotionReportRequest request)
@@ -44,12 +46,12 @@ public class PromotionReportService(IDynamicRepository repository) : IPromotionR
 
         foreach (var item in promotionDetails)
         {
-            if (item.StatusId == 4) // Approved
+            if (item.StatusId == ApprovedStatusId)
             {
                 totalApproved++;
-                totalBonus += item.Amount; // Assuming Amount is the bonus amount
+                totalBonus += item.Amount;
             }
-            else if (item.StatusId == 5) // Rejected
+            else if (item.StatusId == RejectedStatusId)
             {
                 totalRejected++;
             }
