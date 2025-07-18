@@ -19,7 +19,7 @@ export interface ButtonComponentProps {
   /** Tooltip text */
   title?: string;
   /** Visual variant of the button */
-  variant?: 'apply' | 'cancel' | 'full' | 'outline' | 'reject';
+  variant?: ButtonVariant;
   /** Accessibility label for screen readers */
   'aria-label'?: string;
   /** Accessibility description */
