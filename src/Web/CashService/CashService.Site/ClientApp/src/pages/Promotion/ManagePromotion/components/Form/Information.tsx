@@ -43,23 +43,19 @@ const Information: React.FC<InformationProps> = ({
     >
       <EnableButtonComponent isActive={isActive} onClick={() => setIsActive(true)} />
       <DisableButtonComponent isActive={!isActive} onClick={() => setIsActive(false)} />
-    </div>
-    <div className="flex items-center mb-[10px] ">
-      <div className='inline-block mr-[5px]'>
-        <TitleComponent title={"Promotion Settings"} showTippy={true}>
-          <div>During the promotion period, bonus amounts will be calculated every Tuesday based on qualified net turnover from the previous week (Monday to Sunday).</div>
-          <div>The bonus is a rebate on qualified net turnover, calculated from WON and LOST bet tickets on selected products.</div>
-          <div><b>Qualified Net Turnover:</b></div>
-          <div>•  Sportsbook & Virtual Sports: Excludes Draw bets and Cash Out.</div>
-          <div>•  RNG Casino: Slot games only.</div>
-          <div>•  Live Casino: Includes Draw bets.</div>
-          <div><b>Note:</b></div>
-          <div>•  For Live Casino and RNG Casino, if a member bets on both sides of a game, the qualified net turnover is calculated as: Total payout – Total stake</div>
-          <div>•  Example: A member bets 100 on both Player and Banker in a Baccarat game. Banker wins with odds = 1.</div>
-          <div>•  Payout = 200, Stake = 200 → Net turnover = 0 (200 - 200)</div>
-        </TitleComponent>
-      </div>
-    </div>
+    </div>   
+    <TitleComponent title={"Promotion Settings"} showTippy={true} classNameTippy={"max-w-[640px]!"} >
+      <div>During the promotion period, bonus amounts will be calculated every Tuesday based on qualified net turnover from the previous week (Monday to Sunday).</div>
+      <div>The bonus is a rebate on qualified net turnover, calculated from WON and LOST bet tickets on selected products.</div>
+      <div><b>Qualified Net Turnover:</b></div>
+      <div>•  Sportsbook & Virtual Sports: Excludes Draw bets and Cash Out.</div>
+      <div>•  RNG Casino: Slot games only.</div>
+      <div>•  Live Casino: Includes Draw bets.</div>
+      <div><b>Note:</b></div>
+      <div>•  For Live Casino and RNG Casino, if a member bets on both sides of a game, the qualified net turnover is calculated as: Total payout – Total stake</div>
+      <div>•  Example: A member bets 100 on both Player and Banker in a Baccarat game. Banker wins with odds = 1.</div>
+      <div>•  Payout = 200, Stake = 200 → Net turnover = 0 (200 - 200)</div>
+    </TitleComponent>     
     <div className="flex flex-wrap w-full">
       <div className="w-[190px] mr-[12px] mb-[12px]">
         <div className="flex items-center">

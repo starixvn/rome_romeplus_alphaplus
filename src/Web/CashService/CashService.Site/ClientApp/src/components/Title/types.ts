@@ -4,6 +4,7 @@ export interface TitleComponentProps {
   children?: React.ReactNode;
   className?: string;
   required?: boolean;
+  classNameTippy?: string;
 }
 
 export interface BaseTitleProps {
