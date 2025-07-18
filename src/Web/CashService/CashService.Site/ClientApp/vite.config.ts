@@ -1,35 +1,11 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
-import fs from 'fs';
-import path from 'path';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 
-const copyWithoutHash = () => {
-  return {
-    name: 'copy-without-hash',
-    writeBundle() {
-      const distDir = 'dist';
-      const files = fs.readdirSync(distDir);
-
-      files.forEach((file) => {
-        if (file.includes('updateInfoCustomer') && file.includes('.js')) {
-          const sourcePath = path.join(distDir, file);
-          const targetPath = path.join(distDir, 'updateInfoCustomer.js');
-          fs.copyFileSync(sourcePath, targetPath);
-        }
-        if (file.includes('index') && file.includes('.css')) {
-          const sourcePath = path.join(distDir, file);
-          const targetPath = path.join(distDir, 'index.css');
-          fs.copyFileSync(sourcePath, targetPath);
-        }
-      });
-    },
-  };
-};
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss(), copyWithoutHash()],
+  plugins: [react(), tailwindcss()],
   test: {
     globals: true,
     environment: 'jsdom',
@@ -61,7 +37,6 @@ export default defineConfig({
         pendingWithdrawal: 'src/pages/Transactions/PendingWithdrawal/index.tsx',
         transactionsHistory: 'src/pages/Transactions/History/index.tsx',
         paymentProviderSettings: 'src/pages/PaymentProviderSettings/index.tsx',
-        updateInfoCustomer: 'src/pages/CustomerSites/pages/UpdateInfoCustomer/index.tsx',
         managePromotion: 'src/pages/Promotion/ManagePromotion/index.tsx',
         pendingPromotion: 'src/pages/Promotion/PendingPromotion/index.tsx',
         promotionReport: 'src/pages/Promotion/PromotionReport/index.tsx',
