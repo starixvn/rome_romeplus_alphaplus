@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import NoRecordFound from '../../../../components/NoRecordFoundComponent';
 import { StatusDisabledComponent, StatusCompletedComponent } from '../../../../components/Status';
 import { formatNumber } from '../../../../utils/numberFormatting';
+import { formatDate } from '../../../../utils/commonFunctions';
 
 interface MainReportTableProps {
   data: any[];
@@ -48,7 +49,7 @@ function MainReportRow({
         </a>
       </td>
       <td>{t(`promotionType_${data.promotionType}`)}</td>
-      <td>{data.period}</td>
+      <td>{`${formatDate(data.fromDate)} - ${formatDate(data.toDate)}`}</td>
       <td className="text-right">{formatNumber(data.totalRequest)}</td>
       <td className="text-right">
         <div>{formatNumber(data.totalApproved)}</div>

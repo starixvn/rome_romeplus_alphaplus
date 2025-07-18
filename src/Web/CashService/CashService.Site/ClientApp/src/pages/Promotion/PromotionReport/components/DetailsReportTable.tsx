@@ -7,6 +7,7 @@ import {
   StatusDisabledComponent,
 } from '../../../../components/Status';
 import { formatNumber } from '../../../../utils/numberFormatting';
+import { formatDate, formatDateTime } from '../../../../utils/commonFunctions';
 
 interface DetailsReportTableProps {
   data: any[];
@@ -39,10 +40,10 @@ function DetailsReportRow({ idx, data }: { idx: number; data: any }) {
         <div>{data.firstName}</div>
         <div>{data.lastName}</div>
       </td>
-      <td>{data.period}</td>
+      <td>{`${formatDate(data.fromDate)} - ${formatDate(data.toDate)}`}</td>
       <td className="text-right">{formatNumber(data.amount)}</td>
       <td className="text-left">{data.subAccName ? data.subAccName : data.operatedBy}</td>
-      <td>{data.lastUpdated}</td>
+      <td>{formatDateTime(data.operatedTime)}</td>
       <td>
         <DetailsReportStatusRow status={data.statusId} />
       </td>

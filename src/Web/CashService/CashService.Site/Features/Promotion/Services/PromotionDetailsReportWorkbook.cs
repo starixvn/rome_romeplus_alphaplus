@@ -63,10 +63,10 @@ public class PromotionDetailsReportWorkbook(IWebHostEnvironment webHostEnvironme
         .Map(A, p => number++)
         .Map(B, p => BuildTextBreakline(p.Username, p.Nickname))
         .Map(C, p => BuildTextBreakline(p.FirstName, p.LastName))
-        .Map(D, p => p.Period)
+        .Map(D, p => $"{p.FromDate.ToShortDateWithSlash()} - {p.ToDate.ToShortDateWithSlash()}")
         .Map(E, p => p.Amount)
         .Map(F, p => string.IsNullOrWhiteSpace(p.SubAccName) ? p.OperatedBy : p.SubAccName)
-        .Map(G, p => p.LastUpdated)
+        .Map(G, p => p.OperatedTime.ToLongDateTimeWithSlash())
         .Map(H, p => p.StatusId switch
         {
             (byte)TransactionStatus.Completed => CashServicesResx.Approved,

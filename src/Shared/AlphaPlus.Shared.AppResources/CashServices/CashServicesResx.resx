@@ -261,4 +261,7 @@
   <data name="PromotionType_RebateOnTurnover" xml:space="preserve">
     <value>Rebate on Turnover</value>
   </data>
+  <data name="Period" xml:space="preserve">
+    <value>Period</value>
+  </data>
 </root>

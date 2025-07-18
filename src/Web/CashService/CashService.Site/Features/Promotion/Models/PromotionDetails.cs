@@ -1,5 +1,3 @@
-using AlphaPlus.Core.Extensions;
-
 namespace AlphaPlus.CashService.Site.Features.Promotion.Models;
 
 public class PromotionDetails
@@ -16,15 +14,11 @@ public class PromotionDetails
 
     public DateTime ToDate { get; init; }
 
-    public string Period => $"{FromDate.ToShortDateWithSlash()} - {ToDate.ToShortDateWithSlash()}";
-
     public decimal Amount { get; init; }
 
     public string OperatedBy { get; init; }
 
     public DateTime OperatedTime { get; init; }
-
-    public string LastUpdated => OperatedTime.ToLongDateTimeWithSlash();
 
     public string SubAccName { get; init; }
 

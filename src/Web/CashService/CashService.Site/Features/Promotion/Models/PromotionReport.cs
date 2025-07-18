@@ -1,5 +1,3 @@
-using AlphaPlus.Core.Extensions;
-
 namespace AlphaPlus.CashService.Site.Features.Promotion.Models;
 
 public class PromotionReport
@@ -13,8 +11,6 @@ public class PromotionReport
     public DateTime FromDate { get; init; }
 
     public DateTime ToDate { get; init; }
-
-    public string Period => $"{FromDate.ToShortDateWithSlash()} - {ToDate.ToShortDateWithSlash()}";
 
     public bool Enabled { get; init; }
 
