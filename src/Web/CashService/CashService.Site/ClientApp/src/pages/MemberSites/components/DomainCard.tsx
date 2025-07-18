@@ -41,7 +41,7 @@ const DomainCard: React.FC<DomainCardProps> = ({ domain,  index, disabled }) => 
 
 
   return (
-    <div className={`bg-[var(--domain-card-color1)] justify-between rounded-[5px] flex-1 text-[var(--domain-card-color2)] flex flex-nowrap p-[16px] max-w-[450px]`} data-disabled={disabled}>
+    <div className={`bg-[var(--domain-card-color1)] justify-between rounded-[5px] flex-1 text-[var(--domain-card-color2)] flex flex-nowrap p-[16px] max-w-[450px]  ${disabled ? 'cursor-not-allowed opacity-80 [&>*]:pointer-events-none [&>*]:select-none' : ''} `} data-disabled={disabled}>
       <div className="flex justify-between items-center  ">
         <div className="">
           <p className="font-bold text-[110%]">{t('registrationLinks.domain')} {index + 1}</p>

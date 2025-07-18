@@ -1432,7 +1432,7 @@ html * {
             text-transform: none;
             line-height: 1;
             -webkit-font-smoothing: antialiased;
-            content: "\e91f";
+            content: "\e991";
             color: #999;
             font-size: 18px;
             margin-right: 5px;
@@ -1440,6 +1440,8 @@ html * {
         &.complete{
             &:before{
                 color: #1eb71e;
+                content: "\e91f";
+                font-weight: bold;
             }
         }
     }
