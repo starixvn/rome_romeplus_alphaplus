@@ -37,7 +37,7 @@ public class PromotionDetailsReportWorkbook(IWebHostEnvironment webHostEnvironme
             .Header(key => key switch
             {
                 "#" => "#",
-                "UsernameNickname" => $"{Resources.Username}\n{CommonResx.Nickname}",
+                "UsernameNickname" => $"{Resources.Username}{Environment.NewLine}{CommonResx.Nickname}",
                 _ => CashServicesResx.ResourceManager.GetString(key)
             })
             .Body(reportData.PromotionDetails, GetRowMapper())
@@ -51,7 +51,7 @@ public class PromotionDetailsReportWorkbook(IWebHostEnvironment webHostEnvironme
         string fromDate,
         string toDate,
         PromotionDetailsSummary summary)
-        => string.Join("\n", [
+        => string.Join(Environment.NewLine, [
             $"{promotionTitle} {fromDate} --> {toDate}",
             $"{CashServicesResx.TotalBonusGiven}: {summary.TotalBonus}",
             $"{CashServicesResx.TotalRequestApproved}: {summary.TotalApproved}",
@@ -84,7 +84,7 @@ public class PromotionDetailsReportWorkbook(IWebHostEnvironment webHostEnvironme
 
         if (!string.IsNullOrWhiteSpace(text1) && !string.IsNullOrWhiteSpace(text2))
         {
-            return $"{text1}\n{text2}";
+            return $"{text1}{Environment.NewLine}{text2}";
         }
 
         return string.IsNullOrWhiteSpace(text1) ? text2 : text1;

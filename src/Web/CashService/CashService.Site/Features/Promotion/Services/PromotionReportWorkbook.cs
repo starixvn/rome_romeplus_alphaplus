@@ -36,7 +36,7 @@ public class PromotionReportWorkbook(IWebHostEnvironment webHostEnvironment) :
             .Header(key => key switch
             {
                 "#" => "#",
-                "TotalRequestApprovedRejected" => $"{CashServicesResx.TotalRequestApproved}\n{CashServicesResx.TotalRequestRejected}",
+                "TotalRequestApprovedRejected" => $"{CashServicesResx.TotalRequestApproved}{Environment.NewLine}{CashServicesResx.TotalRequestRejected}",
                 _ => CashServicesResx.ResourceManager.GetString(key)
             })
             .Body(reportData, GetRowMapper())
@@ -52,7 +52,7 @@ public class PromotionReportWorkbook(IWebHostEnvironment webHostEnvironment) :
         .Map(C, p => PromotionTypeName(p.PromotionType))
         .Map(D, p => $"{p.FromDate.ToShortDateWithSlash()} - {p.ToDate.ToShortDateWithSlash()}")
         .Map(E, p => p.TotalRequest)
-        .Map(F, p => $"{p.TotalApproved}\n{p.TotalRejected}")
+        .Map(F, p => $"{p.TotalApproved}{Environment.NewLine}{p.TotalRejected}")
         .Map(G, p => p.TotalAmount)
         .Map(H, p => p.Enabled ? Resources.Enabled : Resources.Disabled);
 

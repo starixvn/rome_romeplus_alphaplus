@@ -2,7 +2,7 @@ import React, { ForwardedRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import NoRecordFound from '../../../../components/NoRecordFoundComponent';
 import { StatusDisabledComponent, StatusCompletedComponent } from '../../../../components/Status';
-import { formatNumber } from '../../../../utils/numberFormatting';
+import { formatNumber, formatDecimal } from '../../../../utils/numberFormatting';
 import { formatDate } from '../../../../utils/commonFunctions';
 
 interface MainReportTableProps {
@@ -55,7 +55,7 @@ function MainReportRow({
         <div>{formatNumber(data.totalApproved)}</div>
         <div className="text-[#CC0000] dark:text-[#F23D3D]">{formatNumber(data.totalRejected)}</div>
       </td>
-      <td className="text-right">{formatNumber(data.totalAmount)}</td>
+      <td className="text-right">{formatDecimal(data.totalAmount)}</td>
       <td>
         <MainReportStatusRow status={data.enabled} />
       </td>
