@@ -1,16 +1,17 @@
 ﻿namespace AlphaPlus.CashService.API.Features.Shared.Services;
 
 using System.Diagnostics;
-using AlphaPlus.CashService.API.Features.Shared.Helpers;
-using AlphaPlus.CashService.API.Features.Shared.Models;
-using AlphaPlus.CashService.API.Features.Shared.Requests;
-using AlphaPlus.CashService.API.Features.Shared.Requests.PaymentGateway;
+using Criteria;
+using Helpers;
+using Models;
 using Newtonsoft.Json;
-using Shared.Criteria;
+using Requests;
+using Requests.PaymentGateway;
 
 public interface IPaymentGatewayService
 {
     Task<PaymentResponse> TestConnection(TestConnectionRequest request, BaseActionRequest actionRequest);
+
     Task<PaymentResponse> WithdrawalViaPaymentGateway(WithdrawalBodyRequest data, short custDbGroupId);
 }
 
@@ -37,7 +38,7 @@ public class PaymentGatewayService(
             return checkConfig;
         }
 
-        var withdrawalApi = "/api/PaymentGateway/Withdrawal";
+        const string withdrawalApi = "/api/PaymentGateway/Withdrawal";
         var response = new PaymentResponse { Code = 409 };
         var stopwatch = Stopwatch.StartNew();
         var requestBody = JsonConvert.SerializeObject(data);
@@ -74,21 +75,23 @@ public class PaymentGatewayService(
     }
 
     public async Task<PaymentResponse> TestConnection(TestConnectionRequest request, BaseActionRequest actionRequest)
-    { 
-        var apiRequest = new {
+    {
+        var apiRequest = new
+        {
             providerId = request.ProviderId,
             transactionType = request.TransactionType,
             paymentMethod = request.PaymentMethod,
-            apiConfig = new {
+            apiConfig = new
+            {
                 MerchantNo = request.APIConfig.MerchantNo,
                 AppSecret = request.APIConfig.AppSecret,
                 SecretKey = request.APIConfig.SecretKey
             }
-        };  
+        };
 
         return await PostAsync("/api/PaymentGateway/TestConnection", nameof(TestConnection), apiRequest, actionRequest);
     }
-    
+
     public async Task<PaymentResponse> PostAsync(string apiURL, string functionName, object apiRequest, BaseActionRequest actor)
     {
         var checkConfig = await CheckAPIConfig(functionName);
@@ -105,12 +108,13 @@ public class PaymentGatewayService(
             actor.ReceivedCustId,
             functionName,
             apiConfig.BaseUrl.TrimEnd('/') + apiURL,
-            JsonConvert.SerializeObject(apiRequest), 
+            JsonConvert.SerializeObject(apiRequest),
             subAccId: actor.SubAccId);
 
-        try {
+        try
+        {
             response = await httpClient.PostAsync<object, PaymentResponse>(apiConfig.BaseUrl, apiURL, apiRequest);
-        
+
             criteria.StatusCode = response.Code;
             criteria.ResponseBody = JsonConvert.SerializeObject(response);
         }

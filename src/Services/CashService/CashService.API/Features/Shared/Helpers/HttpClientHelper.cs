@@ -1,19 +1,12 @@
 ﻿namespace AlphaPlus.CashService.API.Features.Shared.Helpers;
 
 using System.Text.Json;
+using Constants;
+using Models;
 using Newtonsoft.Json;
-using Shared.Constants;
-using Shared.Models;
 
-public class HttpClientHelper
+public class HttpClientHelper(IHttpClientFactory httpClientFactory)
 {
-    private readonly IHttpClientFactory httpClientFactory;
-
-    public HttpClientHelper(IHttpClientFactory httpClientFactory)
-    {
-        this.httpClientFactory = httpClientFactory;
-    }
-
     public async Task<TResponse> PostAsync<TRequest, TResponse>(string baseUrl, string path, TRequest data)
     {
         var httpClient = httpClientFactory.CreateClient(HttpClientName.ProxyHttpClient);
