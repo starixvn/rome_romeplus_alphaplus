@@ -40,7 +40,7 @@ public class GetPromotionReportRequest : BaseActionRequest
         }
         if (Status != 2) // All
         {
-            queryString = queryString.Add(nameof(Status), Status.ToString());
+            queryString = queryString.Add(nameof(Status), Convert.ToBoolean(Status).ToString());
         }
 
         return queryString.ToString();
