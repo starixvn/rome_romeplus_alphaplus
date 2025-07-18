@@ -2,10 +2,8 @@ import React from 'react';
 import { DisableButtonComponent, EnableButtonComponent } from '../../../../../components/Buttons';
 import CustomDropdown from '../../../../../components/CustomDropdownComponent';
 import DateRangePickerComponent from '../../../../../components/DateRangePickerComponent';
-import { LabelTitleComponent, MediumTitleComponent } from '../../../../../components/Title';
+import { LabelTitleComponent, MediumTitleComponent, TitleComponent } from '../../../../../components/Title';
 import TreeSelect, { TreeNodeOption } from '../../../../../components/TreeSelect/TreeSelect';
-import { IconInfo } from '../../../../../components/Icons';
-import Tippy from '@tippyjs/react';
 
 interface InformationProps {
   isActive: boolean;
@@ -48,23 +46,24 @@ const Information: React.FC<InformationProps> = ({
     </div>
     <div className="flex items-center mb-[10px] ">
       <div className='inline-block mr-[5px]'>
-        <MediumTitleComponent text="Promotion Settings" />
+        <TitleComponent title={"Promotion Settings"} showTippy={true}>
+          <div>During the promotion period, bonus amounts will be calculated every Tuesday based on qualified net turnover from the previous week (Monday to Sunday).</div>
+          <div>The bonus is a rebate on qualified net turnover, calculated from WON and LOST bet tickets on selected products.</div>
+          <div><b>Qualified Net Turnover:</b></div>
+          <div>•  Sportsbook & Virtual Sports: Excludes Draw bets and Cash Out.</div>
+          <div>•  RNG Casino: Slot games only.</div>
+          <div>•  Live Casino: Includes Draw bets.</div>
+          <div><b>Note:</b></div>
+          <div>•  For Live Casino and RNG Casino, if a member bets on both sides of a game, the qualified net turnover is calculated as: Total payout – Total stake</div>
+          <div>•  Example: A member bets 100 on both Player and Banker in a Baccarat game. Banker wins with odds = 1.</div>
+          <div>•  Payout = 200, Stake = 200 → Net turnover = 0 (200 - 200)</div>
+        </TitleComponent>
       </div>
-      <Tippy content="this is content tooltip for promotion settings" placement="top" theme="light" arrow={true}>
-        <span>
-          <IconInfo className="cursor-pointer fill-[#118AF2] ml-0!" />
-        </span>
-      </Tippy>     
     </div>
     <div className="flex flex-wrap w-full">
       <div className="w-[190px] mr-[12px] mb-[12px]">
         <div className="flex items-center">
           <LabelTitleComponent text="Promotion Type" className="mr-[5px]" required={true} />
-          <Tippy content="this is content tooltip for promotion type" placement="top" theme="light" arrow={true}>
-            <span>
-              <IconInfo className="cursor-pointer w-[18px]! h-[18px]!  fill-[#118AF2] ml-0! mb-[4px]"  />
-            </span>
-          </Tippy>
         </div>
         <CustomDropdown
           disable={readOnlyMode}
@@ -89,11 +88,6 @@ const Information: React.FC<InformationProps> = ({
       <div className="w-[190px] mr-[12px] mb-[12px]">
         <div className="flex items-center">
           <LabelTitleComponent text="Product" className="mr-[5px]" required={true} />
-          <Tippy content="this is content tooltip for product" placement="top" theme="light" arrow={true}>
-            <span>
-              <IconInfo className="cursor-pointer w-[18px]! h-[18px]! fill-[#118AF2] ml-0! mb-[4px]"  />
-            </span>
-          </Tippy>
         </div>
         <TreeSelect
           options={productOptions}
