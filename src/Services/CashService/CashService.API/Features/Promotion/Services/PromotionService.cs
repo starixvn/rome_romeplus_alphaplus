@@ -42,56 +42,56 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
     public async Task<IEnumerable<Promotion>> GetPromotionAsync(PromotionRequest request)
     {
         var criteria = new GetPromotionCriteria(request.PromotionType, request.StatusId, request.SiteDBGroupId, request.ActorId);
-        var model = await repository.FetchMultipleAsync<Promotion, PromotionProductSetting>(criteria);
+        var (FirstResultSet, SecondResultSet) = await repository.FetchMultipleAsync<Promotion, PromotionProductSetting>(criteria);
 
-        foreach (var item in model.FirstResultSet)
+        foreach (var item in FirstResultSet)
         {
-            item.ProductSettings = model.SecondResultSet.Where(i => i.PromotionId == item.PromotionId).ToList();
+            item.ProductSettings = SecondResultSet.Where(i => i.PromotionId == item.PromotionId).ToList();
             foreach (var productSetting in item.ProductSettings)
             {
                 productSetting.Products = string.IsNullOrEmpty(productSetting.ProductList)
-                                            ? new List<Product>()
-                                            : productSetting.ProductList.Split(',')
+                                            ? []
+                                            : [.. productSetting.ProductList.Split(',')
                                                 .Select(p => p.Trim())
                                                 .Select(p => new Product
                                                 {
                                                     ProductCategoryId = productSetting.ProductCategoryId,
                                                     ProductId = Convert.ToInt32(p),
                                                     ProductName = cacheRef.GetProductName(Convert.ToInt32(p), request.Language)
-                                                }).ToList();
+                                                })];
                 productSetting.ProductCategoryName = cacheRef.GetProductName(productSetting.ProductCategoryId, request.Language);
             }
         }
 
-        return model.FirstResultSet;
+        return FirstResultSet;
     }
 
     public async Task<Promotion> GetPromotionByIdAsync(int promotionId, int custId, int siteDBGroupId, string language)
     {
         var criteria = new GetPromotionByIdCriteria(promotionId, siteDBGroupId, custId);
-        var model = await repository.FetchMultipleAsync<Promotion, PromotionProductSetting, PromotionLanguageSetting>(criteria);
+        var (promotion, setting, content) = await repository.FetchMultipleAsync<Promotion, PromotionProductSetting, PromotionLanguageSetting>(criteria);
 
-        foreach (var item in model.FirstResultSet)
+        foreach (var item in promotion)
         {
-            item.ProductSettings = model.SecondResultSet.ToList();
+            item.ProductSettings = [.. setting];
             foreach (var productSetting in item.ProductSettings)
             {
                 productSetting.Products = string.IsNullOrEmpty(productSetting.ProductList)
-                                            ? new List<Product>()
-                                            : productSetting.ProductList.Split(',')
+                                            ? []
+                                            : [.. productSetting.ProductList.Split(',')
                                                 .Select(p => p.Trim())
                                                 .Select(p => new Product
                                                 {
                                                     ProductCategoryId = productSetting.ProductCategoryId,
                                                     ProductId = Convert.ToInt32(p),
                                                     ProductName = cacheRef.GetProductName(Convert.ToInt32(p), language)
-                                                }).ToList();
+                                                })];
                 productSetting.ProductCategoryName = cacheRef.GetProductName(productSetting.ProductCategoryId, language);
             }
-            item.LanguageSettings = model.ThirdResultSet.ToList();
+            item.LanguageSettings = [.. content];
         }
 
-        return model.FirstResultSet.FirstOrDefault();
+        return promotion.FirstOrDefault();
     }
 
     public async Task<ResultModel> AddPromotionAsync(PromotionRequest request)
@@ -113,10 +113,14 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
             Language = request.Language,
             Enabled = request.Enabled,
         };
-        Console.WriteLine(JsonConvert.SerializeObject(addPromotionCriteria));
-        await repository.ExecuteAsync(addPromotionCriteria);
+
+        var logAddPromotion = await repository.FetchAsync<WriteLogDBCommandModel>(addPromotionCriteria);
 
         var result = new ResultModel(addPromotionCriteria.ErrCode, addPromotionCriteria.ErrMsg);
+        if (addPromotionCriteria.ErrCode == 0 && logAddPromotion is not null && logAddPromotion.Any())
+        {
+            WriteLog([.. logAddPromotion], request.SiteDBGroupId);
+        }
 
         return result;
     }
@@ -129,20 +133,23 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
         {
             var editPromotionCriteria = new EditPromotionCriteria
             {
-                PromotionId = editPromotionMdoel.PromotionId,            
+                PromotionId = editPromotionMdoel.PromotionId,
                 PromotionContents = editPromotionMdoel.Contents != null
                     ? JsonConvert.SerializeObject(editPromotionMdoel.Contents)
-                    : string.Empty,            
+                    : string.Empty,
                 AgentId = editPromotionMdoel.UserId,
                 IP = editPromotionMdoel.IP,
                 SiteDbGroupId = editPromotionMdoel.SiteDBGroupId,
                 Language = editPromotionMdoel.Language,
             };
 
-            await repository.ExecuteAsync(editPromotionCriteria);
-            result = new ResultModel(editPromotionCriteria.ErrCode, editPromotionCriteria.ErrMsg);
+            var logEditPromotion= await repository.FetchAsync<WriteLogDBCommandModel>(editPromotionCriteria);
+            if (editPromotionCriteria.ErrCode == 0 && logEditPromotion is not null && logEditPromotion.Any())
+            {
+                WriteLog(logEditPromotion.ToList(), editPromotionMdoel.SiteDBGroupId);
+            }
         }
-        
+
         if (editPromotionMdoel.OriginalEnabled.HasValue && editPromotionMdoel.OriginalEnabled.Value != editPromotionMdoel.Enabled)
         {
             var updateStatusCriteria = new UpdatePromotionStatusCriteria
@@ -156,28 +163,19 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
                 Language = editPromotionMdoel.Language
             };
 
-            await repository.ExecuteAsync(updateStatusCriteria);
+            var logUpdateStatus = await repository.FetchAsync<WriteLogDBCommandModel>(updateStatusCriteria);
             if (!HasContentChanged(editPromotionMdoel.Contents, editPromotionMdoel.OriginalContents))
             {
                 result = new ResultModel(updateStatusCriteria.ErrCode, updateStatusCriteria.ErrMsg);
+                if (updateStatusCriteria.ErrCode == 0 && logUpdateStatus is not null && logUpdateStatus.Any())
+                {
+                    WriteLog(logUpdateStatus.ToList(), editPromotionMdoel.SiteDBGroupId);
+                }
             }
         }
 
         return result;
     }
-
-    private static bool HasContentChanged(List<PromotionLanguageSetting> current, List<PromotionLanguageSetting> original)
-    {
-        if (current == null && original == null) return false;
-        if (current == null || original == null) return true;
-        if (current.Count != original.Count) return true;
-
-        var currentJson = JsonConvert.SerializeObject(current.OrderBy(x => x.Language));
-        var originalJson = JsonConvert.SerializeObject(original.OrderBy(x => x.Language));
-        
-        return currentJson != originalJson;
-    }
-
     public async Task<ResultModel> DeletePromotion(int promotionId, BaseActionRequest request)
     {
         var command = new DeletePromotionCriteria
@@ -237,5 +235,17 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
             UserId = log.UserId,
         };
         await commonService.WriteLogDBCommand(request, log);
+    }
+
+    private static bool HasContentChanged(List<PromotionLanguageSetting> current, List<PromotionLanguageSetting> original)
+    {
+        if (current == null && original == null) return false;
+        if (current == null || original == null) return true;
+        if (current.Count != original.Count) return true;
+
+        var currentJson = JsonConvert.SerializeObject(current.OrderBy(x => x.Language));
+        var originalJson = JsonConvert.SerializeObject(original.OrderBy(x => x.Language));
+
+        return currentJson != originalJson;
     }
 }
