@@ -33,9 +33,7 @@ export {
 
 export { 
   EnableButtonComponent, 
-  DisableButtonComponent, 
-  ButtonOnComponent, 
-  ButtonOffComponent 
+  DisableButtonComponent,
 } from './ButtonToggleComponent';
 
 export { 

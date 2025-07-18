@@ -10,5 +10,5 @@ export interface ButtonComponentProps {
 } 
 
 export interface ButtonIconComponentProps extends ButtonComponentProps {
-  sizeIcon?: { width: number; height: number };
+   
 }

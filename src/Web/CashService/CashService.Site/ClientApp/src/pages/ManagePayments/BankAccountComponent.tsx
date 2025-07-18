@@ -227,7 +227,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
   ) => (
     <div className="bg-[#00000080] fixed inset-0 flex items-start justify-center z-50">
       <div className="px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-w-[400px] w-full max-[768px]:max-w-[90%] rounded-[3px]">
-        <div className="relative my-[10px]">
+        <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]">
           <MediumTitleComponent text={tManagePayments('deleteBankAccount')} />
           <ButtonClosePopupComponent onClick={closeConfirm} />
         </div>

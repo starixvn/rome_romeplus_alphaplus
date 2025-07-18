@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { IconCopy, IconExcel, IconSearch } from '../../../../components/Icons';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { displayAmount, formatDateTime, mappingStatus } from '../../../../utils/commonFunctions';
 import Tippy from '@tippyjs/react';
+import { ButtonCopyComponent, ButtonExcelComponent } from '../../../../components/Buttons/ButtonIconComponent';
+import { IconSearch } from '../../../../components/Icons';
 
 interface SearchProps {
   value: string;
@@ -122,17 +123,10 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, o
           arrow={true}
           hideOnClick={false}
         >
-          <button
-            onClick={handleDownload}
-            className="p-[4px] bg-black/10 rounded-[3px] cursor-pointer"
-          >
-            <IconExcel />
-          </button>
+          <ButtonExcelComponent onClick={handleDownload} />
         </Tippy>
         <Tippy content={textCopy} placement="top" theme="light" arrow={true} hideOnClick={false}>
-          <button onClick={handleCopy} className="p-[4px] bg-black/10 rounded-[3px] cursor-pointer">
-            <IconCopy />
-          </button>
+          <ButtonCopyComponent onClick={handleCopy} />
         </Tippy>
 
         <div className="flex">

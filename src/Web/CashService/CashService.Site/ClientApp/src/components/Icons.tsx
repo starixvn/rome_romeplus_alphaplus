@@ -79,9 +79,9 @@ export const ChevronDownIcon: React.FC<IconProps> = ({ className = '' }) => (
     />
   </svg>
 );
-export const IconPen: React.FC<IconProps> = ({ className, width = 20, height = 20 }) => (
+export const IconPen: React.FC<IconProps> = ({ className = '' }) => (
   <svg
-    className={`w-[${width}px] h-[${height}px] ${className}`}
+    className={`w-[20px] h-[20px] fill-[#333333] dark:fill-[#ededed] ${className}`}
     xmlns="http://www.w3.org/2000/svg"
     version="1.1"
     viewBox="0 0 32 32"
@@ -89,7 +89,7 @@ export const IconPen: React.FC<IconProps> = ({ className, width = 20, height = 2
     <path d="M6.667 25.333h1.885l12.419-12.419-1.885-1.885-12.419 12.419v1.885zM28 28h-24v-5.657l17.913-17.913c0.25-0.25 0.589-0.39 0.943-0.39s0.693 0.14 0.943 0.39l3.772 3.772c0.25 0.25 0.39 0.589 0.39 0.943s-0.14 0.693-0.39 0.943l-15.247 15.247h15.676v2.667zM20.971 9.144l1.885 1.885 1.885-1.885-1.885-1.885-1.885 1.885z"></path>
   </svg>
 );
-export const IconClose: React.FC<IconProps> = ({ className }) => (
+export const IconClose: React.FC<IconProps> = ({ className = '' }) => (
   <svg
     className={`w-[20px] h-[20px] fill-[#333333] dark:fill-[#ededed] ${className}`}
     version="1.1"
@@ -125,9 +125,9 @@ export const IconSearch: React.FC = () => (
     <path d="M23 20.2h-1.4l-0.6-0.6c1.8-2 3-4.8 3-7.6 0-6.6-5.4-12-12-12-6.4 0-11.8 5.4-11.8 11.8 0 6.6 5.4 11.8 11.8 11.8 3 0 5.6-1 7.6-3l0.6 0.6v1.4l9.2 9.2 2.8-2.8-9.2-8.8zM12 20.2c-4.6 0-8.2-3.6-8.2-8.2s3.8-8.4 8.2-8.4 8.2 3.6 8.2 8.2-3.6 8.4-8.2 8.4z"></path>
   </svg>
 );
-export const IconDelete: React.FC<IconProps> = ({ className, width = 16, height = 16 }) => (
+export const IconDelete: React.FC<IconProps> = ({ className }) => (
   <svg
-    className={`w-[${width}px] h-[${height}px] ${className}`}
+    className={`w-[16px] h-[16px] fill-[#d33] dark:fill-[#e54748] ${className}`}
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     width="32"
