@@ -11,7 +11,7 @@ import { ResultMessageComponent } from '../../../../components/Message';
 import AccountInformation from './AccountInformation';
 import { TitleComponent } from '../../../../components/Title';
 import {
-  BackButtonComponent,
+  ButtonBackComponent,
   ButtonComponent,
 } from '../../../../components/Buttons/index';
 import { renderBankOptionValue } from '../../../../utils/commonFunctions';
@@ -45,7 +45,7 @@ interface StatusState {
 
 const Header: React.FC<{ onClose: () => void; title: string }> = ({ onClose, title }) => (
   <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-    <BackButtonComponent onClick={onClose} />
+    <ButtonBackComponent onClick={onClose} />
     <TitleComponent title={title} />
   </div>
 );

@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import BankIcon from '../../components/BankComponents';
 import {
-  BackButtonComponent,
+  ButtonBackComponent,
   ButtonComponent,
   DisableButtonComponent,
   EnableButtonComponent,
@@ -303,7 +303,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
     <div tabIndex={-1}>      
       <div className="modal-content max-w-[1200px]">
         <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-          <BackButtonComponent onClick={onClose} />
+          <ButtonBackComponent onClick={onClose} />
           <TitleComponent title={tManagePayments('bankManagement')} />
         </div>
         {isLoadingBanks ? (<LoadingFullComponent />) : (

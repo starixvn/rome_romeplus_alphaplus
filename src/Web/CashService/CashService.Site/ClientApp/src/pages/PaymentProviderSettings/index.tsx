@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import Tippy from '@tippyjs/react';
 
 import {
-    BackButtonComponent, ButtonComponent, DisableButtonComponent, EnableButtonComponent
+    ButtonBackComponent, ButtonComponent, DisableButtonComponent, EnableButtonComponent
 } from '../../components/Buttons/index';
 import { IconArrowDown, IconInfo, IconReload } from '../../components/Icons';
 import { LoadingFullComponent } from '../../components/LoadingComponent';
@@ -474,7 +474,7 @@ function PaymentProviderSettings() {
          
           <div className="settings-header">
             <div className="flex items-center justify-flex-start mb-[12px] py-[8px] border-[var(--border-color)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-              <BackButtonComponent onClick={onBackNavigation} />
+              <ButtonBackComponent onClick={onBackNavigation} />
               <TitleComponent title={window.providerSettingsViewModel.Provider.Name} />                
             </div>
           </div>

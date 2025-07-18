@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  BackButtonComponent,
+  ButtonBackComponent,
   ButtonApplyComponent,
   ButtonCancelComponent,
 } from '../../../../components/Buttons';
@@ -77,7 +77,7 @@ const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose }) => {
   return (
     <div className="">
       <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-        <BackButtonComponent onClick={onClose} />
+        <ButtonBackComponent onClick={onClose} />
         <TitleComponent title="Add Bonus" />
       </div>
       <div

@@ -1,9 +1,8 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { ButtonComponent } from './Buttons/ButtonComponent';
 import { ButtonClosePopupComponent } from './Buttons/ButtonIconComponent';
 import { MediumTitleComponent } from './Title/MediumTitleComponent';
-import { ButtonCancelComponent } from './Buttons/ButtonCancelComponent';
-import { ButtonApplyComponent } from './Buttons/ButtonApplyComponent';
-import { useTranslation } from 'react-i18next';
 
 interface ConfirmPopupProps {
   title: string;
@@ -35,8 +34,8 @@ const ConfirmPopup: React.FC<ConfirmPopupProps> = ({
         <div className="mb-[20px]">{message}</div>
         {children}
         <div className="flex justify-center gap-[8px] mt-2">
-          <ButtonCancelComponent onClick={onCancel} text={cancelText || tGlobal('cancel')} />
-          <ButtonApplyComponent onClick={onConfirm} text={confirmText || tGlobal('confirm')} />
+          <ButtonComponent onClick={onCancel} text={cancelText || tGlobal('cancel')} variant='cancel' />
+          <ButtonComponent onClick={onConfirm} text={confirmText || tGlobal('confirm')} variant='apply' />
         </div>
       </div>
     </div>
