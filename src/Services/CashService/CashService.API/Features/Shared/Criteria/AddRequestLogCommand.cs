@@ -9,12 +9,15 @@ public class AddRequestLogCommand(int userId,
     string requestUrl,
     string requestBody,
     string from = "Cash Service API",
-    string to = "Payment Gateway API") : NonQueryCommand
+    string to = "Payment Gateway API",
+    int subAccId = 0) : NonQueryCommand
 {
     public int UserId { get; } = userId;
     public int CustId { get; } = custId;
     public string From { get; } = from;
     public string To { get; } = to;
+    public int SubAccId { get; } = subAccId;
+    
     public string FuncName { get; } = funcName;
     public string RequestUrl { get; } = requestUrl;
     public string RequestBody { get; } = requestBody;

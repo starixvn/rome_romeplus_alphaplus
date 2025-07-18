@@ -4,6 +4,8 @@ import CustomDropdown from '../../../../../components/CustomDropdownComponent';
 import DateRangePickerComponent from '../../../../../components/DateRangePickerComponent';
 import { LabelTitleComponent, MediumTitleComponent } from '../../../../../components/Title';
 import TreeSelect, { TreeNodeOption } from '../../../../../components/TreeSelect/TreeSelect';
+import { IconInfo } from '../../../../../components/Icons';
+import Tippy from '@tippyjs/react';
 
 interface InformationProps {
   isActive: boolean;
@@ -44,12 +46,26 @@ const Information: React.FC<InformationProps> = ({
       <EnableButtonComponent isActive={isActive} onClick={() => setIsActive(true)} />
       <DisableButtonComponent isActive={!isActive} onClick={() => setIsActive(false)} />
     </div>
-
-    <MediumTitleComponent text="Promotion Settings" isShowIcon={true} />
-
+    <div className="flex items-center mb-[10px] ">
+      <div className='inline-block mr-[5px]'>
+        <MediumTitleComponent text="Promotion Settings" />
+      </div>
+      <Tippy content="this is content tooltip for promotion settings" placement="top" theme="light" arrow={true}>
+        <span>
+          <IconInfo className="cursor-pointer fill-[#118AF2] ml-0!" />
+        </span>
+      </Tippy>     
+    </div>
     <div className="flex flex-wrap w-full">
       <div className="w-[190px] mr-[12px] mb-[12px]">
-        <LabelTitleComponent text="Promotion Type" required={true} isShowIcon={true} />        
+        <div className="flex items-center">
+          <LabelTitleComponent text="Promotion Type" className="mr-[5px]" required={true} />
+          <Tippy content="this is content tooltip for promotion type" placement="top" theme="light" arrow={true}>
+            <span>
+              <IconInfo className="cursor-pointer w-[18px]! h-[18px]!  fill-[#118AF2] ml-0! mb-[4px]"  />
+            </span>
+          </Tippy>
+        </div>
         <CustomDropdown
           disable={readOnlyMode}
           options={PROMOTION_TYPES}
@@ -71,7 +87,14 @@ const Information: React.FC<InformationProps> = ({
       </div>
 
       <div className="w-[190px] mr-[12px] mb-[12px]">
-        <LabelTitleComponent text="Product" required={true} isShowIcon={true} />
+        <div className="flex items-center">
+          <LabelTitleComponent text="Product" className="mr-[5px]" required={true} />
+          <Tippy content="this is content tooltip for product" placement="top" theme="light" arrow={true}>
+            <span>
+              <IconInfo className="cursor-pointer w-[18px]! h-[18px]! fill-[#118AF2] ml-0! mb-[4px]"  />
+            </span>
+          </Tippy>
+        </div>
         <TreeSelect
           options={productOptions}
           value={selectedProductIds}

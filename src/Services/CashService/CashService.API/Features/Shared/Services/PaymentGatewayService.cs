@@ -104,8 +104,9 @@ public class PaymentGatewayService(
             actor.UserId,
             actor.ReceivedCustId,
             functionName,
-            apiURL,
-            JsonConvert.SerializeObject(apiRequest));
+            apiConfig.BaseUrl.TrimEnd('/') + apiURL,
+            JsonConvert.SerializeObject(apiRequest), 
+            subAccId: actor.SubAccId);
 
         try {
             response = await httpClient.PostAsync<object, PaymentResponse>(apiConfig.BaseUrl, apiURL, apiRequest);

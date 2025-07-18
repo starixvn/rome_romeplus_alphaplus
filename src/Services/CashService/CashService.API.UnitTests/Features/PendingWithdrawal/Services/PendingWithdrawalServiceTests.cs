@@ -19,6 +19,7 @@ public class PendingWithdrawalServiceTests
     private readonly Mock<IDynamicRepository> mockDynamicRepository;
     private readonly Mock<ITransactionService> mockTransactionService;
     private readonly Mock<IPaymentGatewayService> mockPaymentGatewayService;
+    private readonly Mock<ICommonService> mockCommonService;
     private readonly PendingWithdrawalService service;
 
     public PendingWithdrawalServiceTests()
@@ -26,7 +27,8 @@ public class PendingWithdrawalServiceTests
         mockDynamicRepository = new Mock<IDynamicRepository>();
         mockTransactionService = new Mock<ITransactionService>();
         mockPaymentGatewayService = new Mock<IPaymentGatewayService>();
-        service = new PendingWithdrawalService(mockDynamicRepository.Object, mockTransactionService.Object, mockPaymentGatewayService.Object);
+        mockCommonService = new Mock<ICommonService>();
+        service = new PendingWithdrawalService(mockDynamicRepository.Object, mockTransactionService.Object, mockPaymentGatewayService.Object, mockCommonService.Object);
     }
 
     [Fact]
