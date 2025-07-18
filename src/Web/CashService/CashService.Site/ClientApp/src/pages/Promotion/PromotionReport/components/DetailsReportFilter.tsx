@@ -41,7 +41,7 @@ export default function DetailsReportFilter({
           maxDate={maxDate}
         />
       </div>
-      <div className="w-[160px] mb-[12px]">
+      <div className="w-[140px] mb-[12px]">
         <LabelTitleComponent text={t('global:statusText')} />
         <CustomDropdownComponent
           options={statusOptions}

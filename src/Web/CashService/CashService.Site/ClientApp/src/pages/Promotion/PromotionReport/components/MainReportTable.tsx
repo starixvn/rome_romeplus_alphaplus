@@ -10,12 +10,8 @@ interface MainReportTableProps {
 }
 
 function MainReportStatusRow({ status }: { status: boolean }) {
-  const { t: tGlobal } = useTranslation('global');
-  return status ? (
-    <StatusCompletedComponent text={tGlobal('enabled')} />
-  ) : (
-    <StatusDisabledComponent />
-  );
+  const { t } = useTranslation('global');
+  return status ? <StatusCompletedComponent text={t('enabled')} /> : <StatusDisabledComponent />;
 }
 
 function MainReportRow({
@@ -27,6 +23,7 @@ function MainReportRow({
   data: any;
   onClickPromotionTitle: (promotion: any) => void;
 }) {
+  const { t } = useTranslation('promotion');
   const handleDrillDown = (
     event: React.MouseEvent<HTMLAnchorElement>,
     promotionId: number,
@@ -50,7 +47,7 @@ function MainReportRow({
           {data.promotionTitle}
         </a>
       </td>
-      <td>{data.promotionTypeName}</td>
+      <td>{t(`promotionType_${data.promotionType}`)}</td>
       <td>{data.period}</td>
       <td className="text-right">{formatNumber(data.totalRequest)}</td>
       <td className="text-right">

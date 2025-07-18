@@ -24,8 +24,8 @@
         "totalRejected": "総拒否",
         "totalBonusGiven": "総ボーナス付与"
     },
+    "promotionType_1": "売上リベート",
     "search": {
         "placeholder": "タイトルまたはタイプで検索..."
-    },
-    "promotionType_1": "売上リベート"
+    }
 }

@@ -60,7 +60,7 @@ export default function MainReportFilter({
           searchable
         />
       </div>
-      <div className="w-[190px] mb-[12px] mr-[12px]">
+      <div className="w-[140px] mb-[12px] mr-[12px]">
         <LabelTitleComponent text={t('promotion:table.status')} />
         <CustomDropdownComponent
           options={statusOptions}

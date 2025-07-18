@@ -6,8 +6,8 @@ using ONEbook.SpreadSheets;
 using AlphaPlus.Shared.AppResources.CashServices;
 using AlphaPlus.Shared.AppResources.Common;
 using AlphaPlus.Shared.AppResources.Main;
-using static ONEbook.SpreadSheets.Column;
 using AlphaPlus.CashService.Site.Features.Promotion.Requests;
+using static ONEbook.SpreadSheets.Column;
 
 namespace AlphaPlus.CashService.Site.Features.Promotion.Services;
 
@@ -49,10 +49,17 @@ public class PromotionReportWorkbook(IWebHostEnvironment webHostEnvironment) :
         => new Mapper<PromotionReport>()
         .Map(A, p => number++)
         .Map(B, p => p.PromotionTitle)
-        .Map(C, p => p.PromotionTypeName)
+        .Map(C, p => PromotionTypeName(p.PromotionType))
         .Map(D, p => p.Period)
         .Map(E, p => p.TotalRequest)
         .Map(F, p => $"{p.TotalApproved}\n{p.TotalRejected}")
         .Map(G, p => p.TotalAmount)
         .Map(H, p => p.Enabled ? Resources.Enabled : Resources.Disabled);
+
+    private static string PromotionTypeName(byte promotionType)
+        => promotionType switch
+        {
+            1 => CashServicesResx.PromotionType_1,
+            _ => string.Empty
+        };
 }
