@@ -47,7 +47,7 @@ public static class ServiceCollectionExtensions
 
     public static IServiceCollection AddSharedSession(this IServiceCollection services, IConfiguration configuration)
     {
-        const string AppName = "AlphaPlus";
+        var AppName = $"AlphaPlus_{configuration.GetValue<string>("SiteLabel")}";
         var redisConfiguration = configuration.GetValue<string>("RedisConfiguration");
         services
             .AddStackExchangeRedisCache(options =>
