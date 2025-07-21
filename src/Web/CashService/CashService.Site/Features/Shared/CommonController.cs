@@ -1,3 +1,4 @@
+using AlphaPlus.CashService.Site.Features.Shared.Models;
 using AlphaPlus.Core.Models;
 using Fanex.Customer.Client.Services;
 using Microsoft.AspNetCore.Antiforgery;
@@ -25,7 +26,14 @@ namespace AlphaPlus.CashService.Site.Features.Shared
             var url = $"{_apiBaseUrl}/common/setup-checklist/{_userSession.CustId}";
             var response = await _httpClient.GetAsync(url, cancellationToken);
             response.EnsureSuccessStatusCode();
-            var setupChecklist = await response.Content.ReadFromJsonAsync<object>(cancellationToken: cancellationToken);
+            var setupChecklist = await response.Content.ReadFromJsonAsync<SetupCheckListModel>(cancellationToken: cancellationToken);
+
+            if (setupChecklist != null)
+            {
+                setupChecklist.IsCanEditCashService = !_userSession.IsInternal && 
+                    (!_userSession.IsSubAcc || _userSession.SubPageAccess.CashService);
+            }
+
             return Json(setupChecklist);
         }
     }

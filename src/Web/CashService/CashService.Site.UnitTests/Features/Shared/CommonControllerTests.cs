@@ -1,5 +1,6 @@
 using System.Net;
 using AlphaPlus.CashService.Site.Features.Shared;
+using AlphaPlus.CashService.Site.Features.Shared.Models;
 using AlphaPlus.Core.Models;
 using Fanex.Customer.Client.Services;
 using FluentAssertions;
@@ -38,6 +39,9 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Shared
             _configurationMock.Setup(x => x["CashService:APIUrl"]).Returns(_apiBaseUrl);
 
             _userSessionMock.Setup(x => x.CustId).Returns(123);
+            _userSessionMock.Setup(x => x.IsInternal).Returns(false);
+            _userSessionMock.Setup(x => x.IsSubAcc).Returns(false);
+            _userSessionMock.Setup(x => x.SubPageAccess).Returns(new PageAccess { CashService = true });
 
             _controller = new CommonController(
                 _configurationMock.Object,
@@ -57,9 +61,11 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Shared
         public async Task GetSetupChecklist_WhenApiReturnsData_ReturnsJsonResult()
         {
             // Arrange
-            var expectedChecklist = new { 
-                IsComplete = true, 
-                Items = new[] { "Item1", "Item2" } 
+            var expectedChecklist = new SetupCheckListModel
+            {
+                HasDepositMethods = true,
+                HasWithdrawalMethods = true,
+                HasLineID = false
             };
             SetupHttpClientResponse(HttpStatusCode.OK, expectedChecklist);
 
@@ -69,7 +75,15 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Shared
             // Assert
             result.Should().BeOfType<JsonResult>();
             var jsonResult = result as JsonResult;
-            AssertJsonResultEquals(jsonResult, expectedChecklist);
+            var resultValue = jsonResult.Value as SetupCheckListModel;
+            
+            resultValue.Should().NotBeNull();
+            resultValue.HasDepositMethods.Should().Be(expectedChecklist.HasDepositMethods);
+            resultValue.HasWithdrawalMethods.Should().Be(expectedChecklist.HasWithdrawalMethods);
+            resultValue.HasLineID.Should().Be(expectedChecklist.HasLineID);
+            resultValue.IsCompleteAll.Should().Be(expectedChecklist.IsCompleteAll);
+            resultValue.IsCanEditCashService.Should().BeTrue();
+
             _httpMessageHandlerMock.Protected().Verify(
                 "SendAsync",
                 Times.Once(),
@@ -84,7 +98,12 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Shared
         public async Task GetSetupChecklist_WhenApiReturnsEmptyData_ReturnsEmptyJsonResult()
         {
             // Arrange
-            var expectedChecklist = new { IsComplete = false, Items = new string[0] };
+            var expectedChecklist = new SetupCheckListModel
+            {
+                HasDepositMethods = false,
+                HasWithdrawalMethods = false,
+                HasLineID = false
+            };
             SetupHttpClientResponse(HttpStatusCode.OK, expectedChecklist);
 
             // Act
@@ -93,7 +112,14 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Shared
             // Assert
             result.Should().BeOfType<JsonResult>();
             var jsonResult = result as JsonResult;
-            AssertJsonResultEquals(jsonResult, expectedChecklist);
+            var resultValue = jsonResult.Value as SetupCheckListModel;
+            
+            resultValue.Should().NotBeNull();
+            resultValue.HasDepositMethods.Should().BeFalse();
+            resultValue.HasWithdrawalMethods.Should().BeFalse();
+            resultValue.HasLineID.Should().BeFalse();
+            resultValue.IsCompleteAll.Should().BeFalse();
+            resultValue.IsCanEditCashService.Should().BeTrue();
         }
 
         [Fact]
@@ -130,6 +156,17 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Shared
         }
 
         [Fact]
+        public async Task GetSetupChecklist_WhenApiReturnsBadRequest_ThrowsHttpRequestException()
+        {
+            // Arrange
+            SetupHttpClientResponse(HttpStatusCode.BadRequest, new { Error = "Bad Request" });
+
+            // Act & Assert
+            await Assert.ThrowsAsync<HttpRequestException>(() =>
+                _controller.GetSetupChecklist(CancellationToken.None));
+        }
+
+        [Fact]
         public async Task GetSetupChecklist_WhenCancellationTokenIsCancelled_ThrowsOperationCanceledException()
         {
             // Arrange
@@ -146,7 +183,7 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Shared
         {
             // Arrange
             _userSessionMock.Setup(x => x.CustId).Returns(456);
-            var expectedChecklist = new { IsComplete = true };
+            var expectedChecklist = new SetupCheckListModel { HasDepositMethods = true };
             SetupHttpClientResponse(HttpStatusCode.OK, expectedChecklist);
 
             // Act
@@ -182,7 +219,7 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Shared
                 HttpContext = _httpContextMock.Object
             };
 
-            var expectedChecklist = new { IsComplete = true };
+            var expectedChecklist = new SetupCheckListModel { HasDepositMethods = true };
             SetupHttpClientResponse(HttpStatusCode.OK, expectedChecklist);
 
             // Act
@@ -200,20 +237,14 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Shared
         }
 
         [Fact]
-        public async Task GetSetupChecklist_WhenApiReturnsComplexObject_ReturnsCorrectJsonResult()
+        public async Task GetSetupChecklist_WhenApiReturnsCompleteSetup_ReturnsCorrectJsonResult()
         {
             // Arrange
-            var expectedChecklist = new
+            var expectedChecklist = new SetupCheckListModel
             {
-                IsComplete = false,
-                Items = new[]
-                {
-                    new { Id = 1, Name = "Profile Setup", IsCompleted = true },
-                    new { Id = 2, Name = "Payment Method", IsCompleted = false },
-                    new { Id = 3, Name = "Verification", IsCompleted = true }
-                },
-                TotalItems = 3,
-                CompletedItems = 2
+                HasDepositMethods = true,
+                HasWithdrawalMethods = true,
+                HasLineID = true
             };
             SetupHttpClientResponse(HttpStatusCode.OK, expectedChecklist);
 
@@ -223,7 +254,284 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Shared
             // Assert
             result.Should().BeOfType<JsonResult>();
             var jsonResult = result as JsonResult;
-            AssertJsonResultEquals(jsonResult, expectedChecklist);
+            var resultValue = jsonResult.Value as SetupCheckListModel;
+            
+            resultValue.Should().NotBeNull();
+            resultValue.HasDepositMethods.Should().BeTrue();
+            resultValue.HasWithdrawalMethods.Should().BeTrue();
+            resultValue.HasLineID.Should().BeTrue();
+            resultValue.IsCompleteAll.Should().BeTrue();
+            resultValue.IsCanEditCashService.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task GetSetupChecklist_WhenUserIsInternal_IsCanEditCashServiceShouldBeFalse()
+        {
+            // Arrange
+            _userSessionMock.Setup(x => x.IsInternal).Returns(true);
+            var expectedChecklist = new SetupCheckListModel
+            {
+                HasDepositMethods = true,
+                HasWithdrawalMethods = true,
+                HasLineID = true
+            };
+            SetupHttpClientResponse(HttpStatusCode.OK, expectedChecklist);
+
+            // Act
+            var result = await _controller.GetSetupChecklist(CancellationToken.None);
+
+            // Assert
+            result.Should().BeOfType<JsonResult>();
+            var jsonResult = result as JsonResult;
+            var resultValue = jsonResult.Value as SetupCheckListModel;
+            
+            resultValue.IsCanEditCashService.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task GetSetupChecklist_WhenUserIsSubAccWithoutCashServiceAccess_IsCanEditCashServiceShouldBeFalse()
+        {
+            // Arrange
+            _userSessionMock.Setup(x => x.IsSubAcc).Returns(true);
+            _userSessionMock.Setup(x => x.SubPageAccess).Returns(new PageAccess { CashService = false });
+            var expectedChecklist = new SetupCheckListModel
+            {
+                HasDepositMethods = true,
+                HasWithdrawalMethods = true,
+                HasLineID = true
+            };
+            SetupHttpClientResponse(HttpStatusCode.OK, expectedChecklist);
+
+            // Act
+            var result = await _controller.GetSetupChecklist(CancellationToken.None);
+
+            // Assert
+            result.Should().BeOfType<JsonResult>();
+            var jsonResult = result as JsonResult;
+            var resultValue = jsonResult.Value as SetupCheckListModel;
+            
+            resultValue.IsCanEditCashService.Should().BeFalse();
+        }
+
+        [Fact]
+        public async Task GetSetupChecklist_WhenUserIsSubAccWithCashServiceAccess_IsCanEditCashServiceShouldBeTrue()
+        {
+            // Arrange
+            _userSessionMock.Setup(x => x.IsSubAcc).Returns(true);
+            _userSessionMock.Setup(x => x.SubPageAccess).Returns(new PageAccess { CashService = true });
+            var expectedChecklist = new SetupCheckListModel
+            {
+                HasDepositMethods = true,
+                HasWithdrawalMethods = true,
+                HasLineID = true
+            };
+            SetupHttpClientResponse(HttpStatusCode.OK, expectedChecklist);
+
+            // Act
+            var result = await _controller.GetSetupChecklist(CancellationToken.None);
+
+            // Assert
+            result.Should().BeOfType<JsonResult>();
+            var jsonResult = result as JsonResult;
+            var resultValue = jsonResult.Value as SetupCheckListModel;
+            
+            resultValue.IsCanEditCashService.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task GetSetupChecklist_WhenApiReturnsPartialSetup_ReturnsCorrectJsonResult()
+        {
+            // Arrange
+            var expectedChecklist = new SetupCheckListModel
+            {
+                HasDepositMethods = true,
+                HasWithdrawalMethods = false,
+                HasLineID = true
+            };
+            SetupHttpClientResponse(HttpStatusCode.OK, expectedChecklist);
+
+            // Act
+            var result = await _controller.GetSetupChecklist(CancellationToken.None);
+
+            // Assert
+            result.Should().BeOfType<JsonResult>();
+            var jsonResult = result as JsonResult;
+            var resultValue = jsonResult.Value as SetupCheckListModel;
+            
+            resultValue.Should().NotBeNull();
+            resultValue.HasDepositMethods.Should().BeTrue();
+            resultValue.HasWithdrawalMethods.Should().BeFalse();
+            resultValue.HasLineID.Should().BeTrue();
+            resultValue.IsCompleteAll.Should().BeFalse();
+            resultValue.IsCanEditCashService.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task GetSetupChecklist_WhenApiReturnsUnauthorized_ThrowsHttpRequestException()
+        {
+            // Arrange
+            SetupHttpClientResponse(HttpStatusCode.Unauthorized, new { Error = "Unauthorized" });
+
+            // Act & Assert
+            await Assert.ThrowsAsync<HttpRequestException>(() =>
+                _controller.GetSetupChecklist(CancellationToken.None));
+        }
+
+        [Fact]
+        public async Task GetSetupChecklist_WhenApiReturnsForbidden_ThrowsHttpRequestException()
+        {
+            // Arrange
+            SetupHttpClientResponse(HttpStatusCode.Forbidden, new { Error = "Forbidden" });
+
+            // Act & Assert
+            await Assert.ThrowsAsync<HttpRequestException>(() =>
+                _controller.GetSetupChecklist(CancellationToken.None));
+        }
+
+        [Fact]
+        public async Task GetSetupChecklist_WhenApiReturnsServiceUnavailable_ThrowsHttpRequestException()
+        {
+            // Arrange
+            SetupHttpClientResponse(HttpStatusCode.ServiceUnavailable, new { Error = "Service Unavailable" });
+
+            // Act & Assert
+            await Assert.ThrowsAsync<HttpRequestException>(() =>
+                _controller.GetSetupChecklist(CancellationToken.None));
+        }
+
+        [Fact]
+        public async Task GetSetupChecklist_WhenApiReturnsGatewayTimeout_ThrowsHttpRequestException()
+        {
+            // Arrange
+            SetupHttpClientResponse(HttpStatusCode.GatewayTimeout, new { Error = "Gateway Timeout" });
+
+            // Act & Assert
+            await Assert.ThrowsAsync<HttpRequestException>(() =>
+                _controller.GetSetupChecklist(CancellationToken.None));
+        }
+
+        [Fact]
+        public async Task GetSetupChecklist_WhenApiReturnsInvalidJson_ThrowsJsonException()
+        {
+            // Arrange
+            var response = new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent("Invalid JSON content")
+            };
+
+            _httpMessageHandlerMock.Protected()
+                .Setup<Task<HttpResponseMessage>>(
+                    "SendAsync",
+                    ItExpr.IsAny<HttpRequestMessage>(),
+                    ItExpr.IsAny<CancellationToken>())
+                .ReturnsAsync(response);
+
+            // Act & Assert
+            await Assert.ThrowsAsync<System.Text.Json.JsonException>(() =>
+                _controller.GetSetupChecklist(CancellationToken.None));
+        }
+
+        [Fact]
+        public async Task GetSetupChecklist_WhenApiReturnsNullContent_ReturnNull()
+        {
+            // Arrange
+            var response = new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent("null")
+            };
+
+            _httpMessageHandlerMock.Protected()
+                .Setup<Task<HttpResponseMessage>>(
+                    "SendAsync",
+                    ItExpr.IsAny<HttpRequestMessage>(),
+                    ItExpr.IsAny<CancellationToken>())
+                .ReturnsAsync(response);
+
+            var result = await _controller.GetSetupChecklist(CancellationToken.None);
+
+            // Assert       
+            Assert.Null((result as JsonResult).Value);
+        }
+
+        [Fact]
+        public async Task GetSetupChecklist_WhenConfigurationIsNull_ThrowsNullReferenceException()
+        {
+            // Arrange
+            _configurationMock.Setup(x => x["CashService:APIUrl"]).Returns((string)null);
+            
+            var controller = new CommonController(
+                _configurationMock.Object,
+                _httpClient,
+                _userSessionMock.Object,
+                _antiforgeryMock.Object,
+                _customerServiceMock.Object);
+
+            controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = _httpContextMock.Object
+            };
+
+            // Act & Assert
+            await Assert.ThrowsAsync<InvalidOperationException>(() =>
+                controller.GetSetupChecklist(CancellationToken.None));
+        }
+
+        [Fact]
+        public async Task GetSetupChecklist_WhenConfigurationIsEmpty_ThrowsInvalidOperationException()
+        {
+            // Arrange
+            _configurationMock.Setup(x => x["CashService:APIUrl"]).Returns(string.Empty);
+            
+            var controller = new CommonController(
+                _configurationMock.Object,
+                _httpClient,
+                _userSessionMock.Object,
+                _antiforgeryMock.Object,
+                _customerServiceMock.Object);
+
+            controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = _httpContextMock.Object
+            };
+
+            // Act & Assert
+            await Assert.ThrowsAsync<InvalidOperationException>(() =>
+                controller.GetSetupChecklist(CancellationToken.None));
+        }
+
+        [Theory]
+        [InlineData(true, false, false)]
+        [InlineData(false, true, false)]
+        [InlineData(false, false, true)]
+        [InlineData(true, true, false)]
+        [InlineData(true, false, true)]
+        [InlineData(false, true, true)]
+        public async Task GetSetupChecklist_WhenApiReturnsMixedSetup_ReturnsCorrectJsonResult(
+            bool hasDepositMethods, bool hasWithdrawalMethods, bool hasLineID)
+        {
+            // Arrange
+            var expectedChecklist = new SetupCheckListModel
+            {
+                HasDepositMethods = hasDepositMethods,
+                HasWithdrawalMethods = hasWithdrawalMethods,
+                HasLineID = hasLineID
+            };
+            SetupHttpClientResponse(HttpStatusCode.OK, expectedChecklist);
+
+            // Act
+            var result = await _controller.GetSetupChecklist(CancellationToken.None);
+
+            // Assert
+            result.Should().BeOfType<JsonResult>();
+            var jsonResult = result as JsonResult;
+            var resultValue = jsonResult.Value as SetupCheckListModel;
+            
+            resultValue.Should().NotBeNull();
+            resultValue.HasDepositMethods.Should().Be(hasDepositMethods);
+            resultValue.HasWithdrawalMethods.Should().Be(hasWithdrawalMethods);
+            resultValue.HasLineID.Should().Be(hasLineID);
+            resultValue.IsCompleteAll.Should().Be(hasDepositMethods && hasWithdrawalMethods && hasLineID);
+            resultValue.IsCanEditCashService.Should().BeTrue();
         }
 
         private void SetupHttpClientResponse<T>(HttpStatusCode statusCode, T content)
@@ -249,17 +557,6 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Shared
                     ItExpr.IsAny<HttpRequestMessage>(),
                     ItExpr.IsAny<CancellationToken>())
                 .ThrowsAsync(exception);
-        }
-
-        private void AssertJsonResultEquals<T>(JsonResult jsonResult, T expectedValue)
-        {
-            jsonResult.Should().NotBeNull();
-            jsonResult.Value.Should().NotBeNull();
-            
-            // Compare JSON strings to handle anonymous types and complex objects
-            var actualJson = System.Text.Json.JsonSerializer.Serialize(jsonResult.Value);
-            var expectedJson = System.Text.Json.JsonSerializer.Serialize(expectedValue);
-            actualJson.Should().Be(expectedJson);
         }
     }
 } 

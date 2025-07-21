@@ -51,5 +51,5 @@
 @Html.Hidden("Username", Model.Username)
 @Html.Hidden("Username", Model.Username)
 @Html.Hidden("ShowWinningThresholdSurvey", (Model.ShowWinningThresholdSurvey ? 1 : 0))
-@Html.Hidden("ShowCashServiceChecklist", (Model.CashServiceInfoViewModel.IsCanEditCashServicePermission && Model.CashServiceInfoViewModel.IsCashServiceEnabled ? 1 : 0))
+@Html.Hidden("ShowCashServiceChecklist", (Model.CashServiceInfoViewModel.IsCanEditCashService && Model.CashServiceInfoViewModel.IsCashServiceEnabled ? 1 : 0))
  
