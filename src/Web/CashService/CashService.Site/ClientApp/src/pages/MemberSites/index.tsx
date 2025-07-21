@@ -82,7 +82,7 @@ const MemberSiteManagement: React.FC = () => {
   const fetchSetupCheckList = async () => {
     try {
       const response = await baseAPI.getSetupCheckList();
-      setSetupCheckList(response);
+      setSetupCheckList(response.data);
     } catch (err) {
       showResult('error', t('errors.loadFailed'));
     }

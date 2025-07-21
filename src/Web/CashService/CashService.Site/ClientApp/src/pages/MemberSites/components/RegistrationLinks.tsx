@@ -57,8 +57,7 @@ const RegistrationLinks: React.FC<Props> = ({ domains, loading, setupChecklist, 
           </p>
         </div>
       </div>
-     
-      {!setupChecklist?.isCompleteAll && isCashServiceEnabled && (
+      { isCashServiceEnabled && (!setupChecklist ||!setupChecklist.isCompleteAll) && (
         <div className="bg-[#E1F1FF] dark:bg-[#13314D] border-[#7FB3E0] dark:border-[#40A3FF] relative font-[500] border-[1px] rounded-[3px] pl-[35px] pr-[7px] py-[8px] leading-[18px] mb-[10px]"><IconInfo className="w-[20px] h-[20px] fill-[#1C62A3] absolute top-[7px] left-[10px] ml-0!" />{t('global:pleaseReferTo')} <button className='font-bold text-[var(--text-link-color)] underline cursor-pointer' type="button" onClick={showChecklist}>{t('global:checklist')}</button></div>
       )}
       <div className="flex gap-[30px] flex-wrap w-[100%] max-[768px]:flex-col">
