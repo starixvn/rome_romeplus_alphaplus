@@ -1,10 +1,4 @@
-import {
-  StatusCompletedComponent,
-  StatusDisabledComponent,
-  StatusFailedComponent,
-  StatusMaintenanceComponent,
-  StatusProcessingComponent,
-} from '../components/Status';
+import { StatusComponent } from '../components/Status';
 import Tippy from '@tippyjs/react';
 
 export const displayAmount = (amount: number): string => {
@@ -54,21 +48,21 @@ export const renderBankAccount = (bankAccount: string, tGlobal?: any) => {
 export const mappingStatus = (status: number, textContent?: string) => {
   switch (status) {
     case 0:
-      return <StatusProcessingComponent text={textContent} />;
+      return <StatusComponent type='processing' text={textContent} />;
     case 1:
-      return <StatusFailedComponent text={textContent} />;
+      return <StatusComponent type='failed' text={textContent} />;
     case 2:
-      return <StatusMaintenanceComponent text={textContent} />;
+      return <StatusComponent type='maintenance' text={textContent} />;
     case 3:
-      return <StatusFailedComponent text={textContent} />;
+      return <StatusComponent type='failed' text={textContent} />;
     case 4:
-      return <StatusCompletedComponent text={textContent} />;
+      return <StatusComponent type='completed' text={textContent} />;
     case 5:
-      return <StatusDisabledComponent text={textContent} />;
+      return <StatusComponent type='disabled' text={textContent} />;
     case 6:
-      return <StatusDisabledComponent text={textContent} />;
+      return <StatusComponent type='disabled' text={textContent} />;
     default:
-      return <StatusFailedComponent text='-' />;
+      return <StatusComponent type='failed' text='-' />;
   }
 };
 

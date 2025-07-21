@@ -13,9 +13,7 @@ import {
 import { IconArrowDown, IconInfo, IconReload } from '../../components/Icons';
 import { LoadingFullComponent } from '../../components/LoadingComponent';
 import { MessageComponent } from '../../components/Message';
-import {
-    StatusCompletedComponent, StatusFailedComponent, StatusMaintenanceComponent, StatusProcessingComponent
-} from '../../components/Status';
+import { StatusComponent } from '../../components/Status';
 import {
     TitleComponent,
     LabelTitleComponent, MediumTitleComponent
@@ -444,15 +442,15 @@ function PaymentProviderSettings() {
   const renderStatusComponent = (status: number) => {
     switch (status) {
       case paymentMethodStatusConstant.processing:
-        return <StatusProcessingComponent />;
+        return <StatusComponent type='processing' />;
       case paymentMethodStatusConstant.completed:
-        return <StatusCompletedComponent />;
+        return <StatusComponent type='completed' />;
       case paymentMethodStatusConstant.fail:
-        return <StatusFailedComponent />;
+        return <StatusComponent type='failed' />;
       case paymentMethodStatusConstant.maintenance:
-        return <StatusMaintenanceComponent />;
+        return <StatusComponent type='maintenance' />;
       default:
-        return <StatusFailedComponent text="-" />;
+        return <StatusComponent type='failed' text="-" />;
     }
   };
 

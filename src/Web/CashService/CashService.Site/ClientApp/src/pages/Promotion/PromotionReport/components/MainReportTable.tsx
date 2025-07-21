@@ -1,7 +1,7 @@
 import React, { ForwardedRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import NoRecordFound from '../../../../components/NoRecordFoundComponent';
-import { StatusDisabledComponent, StatusCompletedComponent } from '../../../../components/Status';
+import { StatusComponent } from '../../../../components/Status';
 import { formatNumber, formatDecimal } from '../../../../utils/numberFormatting';
 import { formatDate } from '../../../../utils/commonFunctions';
 
@@ -12,7 +12,7 @@ interface MainReportTableProps {
 
 function MainReportStatusRow({ status }: { status: boolean }) {
   const { t } = useTranslation('global');
-  return status ? <StatusCompletedComponent text={t('enabled')} /> : <StatusDisabledComponent />;
+  return status ? <StatusComponent type='completed' text={t('enabled')} /> : <StatusComponent type='disabled' text={t('disabled')} />;
 }
 
 function MainReportRow({

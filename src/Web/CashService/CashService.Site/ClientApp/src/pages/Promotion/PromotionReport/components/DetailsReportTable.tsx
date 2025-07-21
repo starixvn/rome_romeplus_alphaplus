@@ -1,11 +1,7 @@
 import React, { ForwardedRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import NoRecordFound from '../../../../components/NoRecordFoundComponent';
-import {
-  StatusCompletedComponent,
-  StatusProcessingComponent,
-  StatusDisabledComponent,
-} from '../../../../components/Status';
+import { StatusComponent } from '../../../../components/Status';
 import { formatNumber } from '../../../../utils/numberFormatting';
 import { formatDate, formatDateTime } from '../../../../utils/commonFunctions';
 
@@ -16,14 +12,14 @@ interface DetailsReportTableProps {
 function DetailsReportStatusRow({ status }: { status: number }) {
   const { t } = useTranslation('global');
   if (status === 4) {
-    return <StatusCompletedComponent text={t('global:status.approved')} />;
+    return <StatusComponent type='completed' text={t('global:status.approved')} />;
   }
 
   if (status === 5) {
-    return <StatusDisabledComponent text={t('global:status.rejected')} />;
+    return <StatusComponent type='disabled' text={t('global:status.rejected')} />;
   }
 
-  return <StatusProcessingComponent text={t('global:status.pending')} />;
+  return <StatusComponent type='processing' text={t('global:status.pending')} />;
 }
 
 function DetailsReportRow({ idx, data }: { idx: number; data: any }) {

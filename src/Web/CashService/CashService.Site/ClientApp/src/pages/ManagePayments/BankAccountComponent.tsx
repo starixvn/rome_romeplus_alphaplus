@@ -19,7 +19,7 @@ import CustomDropdown from '../../components/CustomDropdownComponent';
 import { IconArrowDown, IconSearch } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
 import { MessageComponent } from '../../components/Message';
-import { StatusCompletedComponent, StatusDisabledComponent } from '../../components/Status';
+import { StatusComponent } from '../../components/Status';  
 import {
   TitleComponent,
   LabelTitleComponent,
@@ -491,11 +491,10 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                         <td className="text-left">{account.accountNumber}</td>
                         <td className="text-left">{account.accountNickname}</td>
                         <td>
-                          {account.status === 1 ? (
-                            <StatusCompletedComponent text={tGlobal('enabled')} />
-                          ) : (
-                            <StatusDisabledComponent />
-                          )}
+                          <StatusComponent 
+                            type={account.status === 1 ? 'completed' : 'disabled'} 
+                            text={account.status === 1 ? tGlobal('enabled') : tGlobal('disabled')}      
+                          />
                         </td>
                       </tr>
                     ))}

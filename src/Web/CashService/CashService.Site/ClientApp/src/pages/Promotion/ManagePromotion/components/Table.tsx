@@ -5,7 +5,7 @@ import {
     ButtonPenComponent,
 } from '../../../../components/Buttons/ButtonIconComponent';
 import NoRecordFound from '../../../../components/NoRecordFoundComponent';
-import { StatusCompletedComponent, StatusDisabledComponent } from '../../../../components/Status/';
+import { StatusComponent } from '../../../../components/Status';
 import { useCookieLanguage } from '../../../../hooks/useCookieLanguage';
 import i18n from '../../../../i18n/i18n-promotion';
 import {
@@ -155,7 +155,7 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
       </td>
       <td className="w-[110px] ">{`${formatDate(item.fromDate?.toString() || '')} - ${formatDate(item.toDate?.toString() || '')}`}</td>
       <td className="w-[110px] ">        
-          {item.enabled ? <StatusCompletedComponent text={tGlobal('enable')} /> : <StatusDisabledComponent text={tGlobal('disable')} />}
+          <StatusComponent type={item.enabled ? 'completed' : 'disabled'} text={item.enabled ? tGlobal('enable') : tGlobal('disable')} />
       </td>
     </tr>
   );
