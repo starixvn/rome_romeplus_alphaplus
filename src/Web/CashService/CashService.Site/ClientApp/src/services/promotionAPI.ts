@@ -136,6 +136,16 @@ export const promotionService = {
     return response.data;
   },
 
+  approvePromotion: async (transId: number): Promise<ResultModel> => {
+    const response = await axiosInstance.post<ResultModel>(`ApprovePendingPromotion`, transId);
+    return response.data;
+  },
+
+  rejectPromotion: async (transId: number): Promise<ResultModel> => {
+    const response = await axiosInstance.post<ResultModel>(`RejectPendingPromotion`, transId);
+    return response.data;
+  },
+
   getMainReport: async (filterParams: {
     fromDate: string;
     toDate: string;

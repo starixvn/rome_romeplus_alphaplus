@@ -5,16 +5,28 @@ import { IconCopy, IconExcel, IconSearch } from '../../../../components/Icons';
 import { PromotionTransaction } from '../../../../services/interfaces/Promotion';
 import { displayAmount, formatDateTime } from '../../../../utils/commonFunctions';
 import Tippy from '@tippyjs/react';
+import { ButtonApplyComponent, ButtonRejectComponent } from '../../../../components/Buttons';
 
 interface SearchProps {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
   items: PromotionTransaction[];
+  selectedItems: number[];
   onDownload: () => void;
+  onReject: () => void;
+  onApprove: () => void;
 }
 
-const Search: React.FC<SearchProps> = ({ value, onChange, items, onDownload }) => {
+const Search: React.FC<SearchProps> = ({
+  value,
+  onChange,
+  items,
+  selectedItems,
+  onDownload,
+  onReject,
+  onApprove,
+}) => {
   const { t } = useTranslation('promotion');
   const [textCopy, setTextCopy] = useState(t('messages.copy'));
 
@@ -61,8 +73,18 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, onDownload }) =
 
   return (
     <div className="flex items-center w-full justify-between">
-      <div className="italic ">
-        <span className="text-[#ff0101] dark:text-[#e54748]">*</span> {t('filter.maxRecords')}
+      <div className="flex items-center gap-[8px]">
+        <ButtonApplyComponent
+          variant="apply"
+          onClick={onApprove}
+          disabled={selectedItems.length === 0}
+          text={t('search.approve') + ' (' + selectedItems.length + ')'}
+        />
+        <ButtonRejectComponent
+          onClick={onReject}
+          disabled={selectedItems.length === 0}
+          text={t('search.reject') + ' (' + selectedItems.length + ')'}
+        />
       </div>
       <div className="flex items-center gap-[8px]">
         <Tippy

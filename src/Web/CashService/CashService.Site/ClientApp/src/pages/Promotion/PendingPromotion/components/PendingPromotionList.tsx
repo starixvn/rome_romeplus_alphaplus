@@ -20,7 +20,7 @@ const usePendingPromotionData = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [apiData, setApiData] = useState<PromotionTransaction[]>([]);
-
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
   const fetchPendingPromotions = useCallback(async (params: PromotionTransactionRequest) => {
     try {
       setLoading(true);
@@ -49,6 +49,8 @@ const usePendingPromotionData = () => {
     fetchPendingPromotions,
     setLoading,
     setError,
+    selectedItems,
+    setSelectedItems,
   };
 };
 
@@ -141,7 +143,8 @@ const useDisplayedItems = (
 
 const PendingPromotionList: React.FC<PendingPromotionListProps> = () => {
   const { t } = useTranslation('promotion');
-  const { loading, error, apiData, fetchPendingPromotions } = usePendingPromotionData();
+  const { loading, error, apiData, fetchPendingPromotions, selectedItems, setSelectedItems } =
+    usePendingPromotionData();
   const { apiParams, updateApiParams } = useApiParams();
   const { localSearchText, handleLocalSearchChange } = useFilters();
   const { displayedItems, tempTotalCount } = useDisplayedItems(apiData, apiParams, localSearchText);
@@ -174,9 +177,27 @@ const PendingPromotionList: React.FC<PendingPromotionListProps> = () => {
     [updateApiParams]
   );
 
+  const handleSelectionChange = useCallback(
+    (selectedIds: (string | number)[]) => {
+      setSelectedItems(selectedIds as number[]);
+    },
+    [setSelectedItems]
+  );
+
   const onDownload = useCallback(() => {
-    // TODO: Implement download functionality
     console.log('Download functionality to be implemented');
+  }, []);
+
+  const onReject = useCallback(() => {
+    selectedItems.forEach((item) => {
+      promotionService.rejectPromotion(item);
+    });
+  }, []);
+
+  const onApprove = useCallback(() => {
+    selectedItems.forEach((item) => {
+      promotionService.approvePromotion(item);
+    });
   }, []);
 
   useEffect(() => {
@@ -216,6 +237,9 @@ const PendingPromotionList: React.FC<PendingPromotionListProps> = () => {
           onChange={handleLocalSearchChange}
           placeholder={t('filter.searchPlaceholder')}
           items={displayedItems}
+          selectedItems={selectedItems}
+          onReject={onReject}
+          onApprove={onApprove}
           onDownload={onDownload}
         />
       </div>
@@ -225,6 +249,7 @@ const PendingPromotionList: React.FC<PendingPromotionListProps> = () => {
         pageIndex={apiParams.pageIndex}
         pageSize={apiParams.pageSize}
         isLoading={loading}
+        onSelectionChange={handleSelectionChange}
       />
 
       {!loading && tempTotalCount > 0 && (
