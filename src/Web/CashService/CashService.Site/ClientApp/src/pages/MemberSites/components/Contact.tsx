@@ -3,7 +3,7 @@ import { Contact as ContactType } from "../../../services/interfaces/MemberSites
 import { FieldError, useFormContext } from "react-hook-form";
 import { CONTACT_MAX_LENGTH, CONTACT_REGEX, LINE_REGEX } from "../../../constants";
 import { LabelTitleComponent } from "../../../components/Title";
-import { ValidateMessageComponent } from "../../../components/Message";
+import { MessageComponent } from "../../../components/Message";
 
 interface ContactProps {
   index: number;
@@ -73,7 +73,7 @@ export const Contact = (props: ContactProps) => {
           maxLength={CONTACT_MAX_LENGTH}
           className={`control-field ${fieldError ? 'error' : '' }`}
         />       
-        <ValidateMessageComponent message={getErrorMessage(fieldError?.value)} />
+        <MessageComponent message={getErrorMessage(fieldError?.value)} type='validate' />
        
       </div>
     </div>

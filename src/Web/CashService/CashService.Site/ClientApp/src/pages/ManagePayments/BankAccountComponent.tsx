@@ -18,7 +18,7 @@ import {
 import CustomDropdown from '../../components/CustomDropdownComponent';
 import { IconArrowDown, IconSearch } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
-import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/Message';
+import { MessageComponent } from '../../components/Message';
 import { StatusCompletedComponent, StatusDisabledComponent } from '../../components/Status';
 import {
   TitleComponent,
@@ -336,8 +336,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
               </li>
             </ul>
             <div className="pt-[8px]">
-              <ErrorMessageComponent message={error} className="mb-[10px]" />
-              <SuccessMessageComponent message={successMessage} className="mb-[10px]" />
+              <MessageComponent message={error} type='error' className="mb-[10px]" />
+              <MessageComponent message={successMessage} type='success' className="mb-[10px]" />
             </div>
             {loading && <Loading />}
             {!loading && banks && banks.length > 0 && (

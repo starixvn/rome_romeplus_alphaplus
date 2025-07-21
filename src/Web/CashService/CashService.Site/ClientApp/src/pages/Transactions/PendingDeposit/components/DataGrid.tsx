@@ -11,7 +11,7 @@ import Pagination from '../../Components/Pagination';
 import { ButtonComponent } from '../../../../components/Buttons/index';
 import PendingDepositModal from './PendingDepositModal';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
-import { ErrorMessageComponent } from '../../../../components/Message';
+import { MessageComponent } from '../../../../components/Message';
 import { IconImage } from '../../../../components/Icons.tsx';
 
 interface DataGridProps {
@@ -174,7 +174,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits, reloadGrid, isCashService
         </table>
       </div>
 
-      {error && <ErrorMessageComponent message={error} />}
+      {error && <MessageComponent message={error} type='error' />}
 
       {showDepositPopup && selectedDeposit && (
         <PendingDepositModal

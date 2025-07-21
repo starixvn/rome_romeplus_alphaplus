@@ -12,7 +12,7 @@ import {
 } from '../../components/Buttons/index';
 import { IconArrowDown, IconInfo, IconReload } from '../../components/Icons';
 import { LoadingFullComponent } from '../../components/LoadingComponent';
-import { ResultMessageComponent } from '../../components/Message';
+import { MessageComponent } from '../../components/Message';
 import {
     StatusCompletedComponent, StatusFailedComponent, StatusMaintenanceComponent, StatusProcessingComponent
 } from '../../components/Status';
@@ -461,14 +461,11 @@ function PaymentProviderSettings() {
       {loading ? (
         <LoadingFullComponent />
       ) : error ? (
-        <ResultMessageComponent type="error" message={error} />
+        <MessageComponent type="error" message={error} />
       ) : (
         <>
           {updateMessage && (
-            <ResultMessageComponent
-              className="mt-[10px] max-[768px]:mx-[16px] max-[768px]:my-0"
-              type={updateMessage.type}
-              message={updateMessage.text}
+            <MessageComponent className="mt-[10px] max-[768px]:mx-[16px] max-[768px]:my-0" type={updateMessage.type} message={updateMessage.text}
             />
           )}
          

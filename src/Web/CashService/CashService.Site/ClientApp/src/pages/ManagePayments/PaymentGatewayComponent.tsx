@@ -9,7 +9,7 @@ import {
 } from '../../components/Buttons/index';
 
 import Loading from '../../components/LoadingComponent';
-import { ErrorMessageComponent } from '../../components/Message';
+import { MessageComponent } from '../../components/Message';
 import {
   StatusDisabledComponent,
   StatusFailedComponent,
@@ -117,7 +117,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
       <div className="max-w-[1000px]">
          
         {loading ? (<Loading />) : 
-          error ? (<ErrorMessageComponent message={error} />) : (
+          error ? (<MessageComponent message={error} type='error' className='mb-[10px]' />) : (
           <>
           <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex">
             <ButtonComponent variant="full" text={tManagePayments('setLimit')} onClick={() => onSetLimitClick()} />

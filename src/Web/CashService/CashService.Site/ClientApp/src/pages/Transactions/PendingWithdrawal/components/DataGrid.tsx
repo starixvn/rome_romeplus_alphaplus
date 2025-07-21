@@ -11,7 +11,7 @@ import NoRecordFound from '../../../../components/NoRecordFoundComponent.tsx';
 import { ButtonComponent } from '../../../../components/Buttons/index';
 import Pagination from '../../Components/Pagination';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
-import { ValidateMessageComponent } from '../../../../components/Message';
+import { MessageComponent } from '../../../../components/Message';
 import { IconImage } from '../../../../components/Icons.tsx';
 
 interface DataGridProps {
@@ -142,7 +142,7 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals, reloadGrid }) => {
           </tbody>
         </table>
       </div>     
-      {error && <ValidateMessageComponent message={error} />}
+      {error && <MessageComponent message={error} type='error' />}
       {showWithdrawalPopup && selectedWithdrawal && (
         <PendingWithdrawalModal
           transId={selectedWithdrawal.transId}

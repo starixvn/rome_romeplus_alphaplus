@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { FieldError, useFormContext } from "react-hook-form";
 import { NUMBER_REGEX, PHONE_CODE_MAX_LENGTH, PHONE_NUMBER_MAX_LENGTH } from "../../../constants";
 import { LabelTitleComponent } from "../../../components/Title";
-import { ValidateMessageComponent } from "../../../components/Message";
+import { MessageComponent } from "../../../components/Message";
 
 interface MobiCodeProps {
     code: string;
@@ -95,7 +95,7 @@ export const MobilePhone = (props: MobilePhoneInputProps) => {
                 />
             </div>
             {(mobilePhoneErrors?.code || mobilePhoneErrors?.phone) && (
-                <ValidateMessageComponent message={getErrorMessage(mobilePhoneErrors?.code || mobilePhoneErrors?.phone)} />
+                <MessageComponent message={getErrorMessage(mobilePhoneErrors?.code || mobilePhoneErrors?.phone)} type='validate' />
             )}
         </div>
     );

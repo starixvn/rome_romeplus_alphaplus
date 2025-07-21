@@ -14,7 +14,7 @@ import {
   ButtonApplyComponent,
 } from '../../../../components/Buttons/index';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
-import { ResultMessageComponent } from '../../../../components/Message';
+import { MessageComponent } from '../../../../components/Message';
 import { LabelTitleComponent, MediumTitleComponent } from '../../../../components/Title';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory.ts';
 import { approveWithdrawal, rejectWithdrawal } from '../../../../services/pendingWithdrawalAPI.ts';
@@ -278,7 +278,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
             <ButtonClosePopupComponent onClick={onClose} />
           </div>
           {resultMessage.type && (
-            <ResultMessageComponent
+            <MessageComponent
               type={resultMessage.type}
               message={resultMessage.message}
               className="mb-[16px] max-[768px]:mb-[0]"

@@ -7,7 +7,7 @@ import pendingDepositAPI from '../../../../services/pendingDepositAPI';
 import UploadImage from '../../Components/UploadImage';
 import { AddDepositManualModel } from '../../../../services/interfaces/AddDepositManualModel';
 import { LoadingFullComponent } from '../../../../components/LoadingComponent';
-import { ResultMessageComponent } from '../../../../components/Message';
+import { MessageComponent } from '../../../../components/Message';
 import AccountInformation from './AccountInformation';
 import { TitleComponent } from '../../../../components/Title';
 import {
@@ -252,7 +252,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
       <Header onClose={() => onClose(false)} title={t('manualDepositForm.title')} />
       <div id="manual-deposit-form" className="max-w-[1100px] w-full max-[768px]:w-full pb-[16px] pt-[10px]">
         {status.validationMessage && (
-          <ResultMessageComponent
+          <MessageComponent
             message={status.validationMessage.message}
             type={status.validationMessage.type}
             className="mb-[16px] max-[768px]:mb-[0]"

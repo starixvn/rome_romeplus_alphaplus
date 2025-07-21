@@ -5,7 +5,7 @@ import 'tippy.js/dist/tippy.css';
 import { useTranslation } from 'react-i18next';
 import { ButtonComponent } from '../../../components/Buttons/index';
 import ConfirmPopup from '../../../components/ConfirmPopup';
-import { ResultMessageComponent, ResultType } from '../../../components/Message';
+import { MessageComponent, ResultType } from '../../../components/Message';
 import { TitleComponent } from '../../../components/Title';
 import type { PromotionDetail } from '../../../services/interfaces/Promotion';
 import { promotionService } from '../../../services/promotionAPI';
@@ -89,7 +89,7 @@ const Promotion: React.FC = () => {
   return (
     <div className="pb-[12px] h-full flex flex-col promotion-page">
       {validationMessage.message !== '' && (
-        <ResultMessageComponent
+        <MessageComponent
           message={validationMessage.message}
           type={validationMessage.type}
           className="mb-[16px] max-[768px]:mb-[0]"

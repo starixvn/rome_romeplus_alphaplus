@@ -7,7 +7,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import { ButtonComponent } from '../../components/Buttons/index';
-import { ResultMessageComponent, ResultType } from '../../components/Message';
+import { MessageComponent, ResultType } from '../../components/Message';
 import { TitleComponent } from '../../components/Title';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import i18n from '../../i18n/i18n-memberSite';
@@ -132,7 +132,7 @@ const MemberSiteManagement: React.FC = () => {
           <TitleComponent title={t('title')} showTippy={false} />
         </div>
         <div className="max-w-[950px]">               
-          {result && <ResultMessageComponent className="mb-[10px]" type={result.type} message={result.text} />}
+          {result && <MessageComponent className="mb-[10px]" type={result.type} message={result.text} />}
           <FormProvider {...methods}>
             <form onSubmit={handleSubmit(onSubmit)} className="py-[5px] ">              
                 <RegistrationLinks

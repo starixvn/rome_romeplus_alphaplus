@@ -11,7 +11,7 @@ import {
 } from '../../../../components/Title';
 import { AmountInput } from '../../../../components/AmountInput';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
-import { ResultMessageComponent } from '../../../../components/Message';
+import { MessageComponent } from '../../../../components/Message';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import { MemberLoginName } from '../../../../services/interfaces/Transactions/MemberLoginName';
 import pendingDepositAPI from '../../../../services/pendingDepositAPI';
@@ -130,7 +130,7 @@ const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose }) => {
         className="max-w-[1100px] w-full max-[768px]:w-full pb-[16px] pt-[10px]"
       >
         {resultMessage.type && (
-          <ResultMessageComponent
+          <MessageComponent
             type={resultMessage.type}
             message={resultMessage.message}
             className="mb-[16px] max-[768px]:mb-[0]"

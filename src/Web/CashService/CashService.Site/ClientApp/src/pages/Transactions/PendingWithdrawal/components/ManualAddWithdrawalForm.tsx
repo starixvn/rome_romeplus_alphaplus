@@ -9,7 +9,7 @@ import {
   getWithdrawalMemberCashBalance,
 } from '../../../../services/pendingWithdrawalAPI';
 import { AddWithdrawalModel } from '../../../../services/interfaces/AddWithdrawalModel';
-import { ResultMessageComponent } from '../../../../components/Message';
+import { MessageComponent } from '../../../../components/Message';
 import UploadImage from '../../Components/UploadImage';
 import BankIcon from '../../../../components/BankComponents';
 import { displayAmount, renderBankOptionValue } from '../../../../utils/commonFunctions';
@@ -279,7 +279,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
         className="max-w-[1100px] w-full max-[768px]:w-full pb-[16px] pt-[10px]"
       >
         {resultMessage.type && (
-          <ResultMessageComponent
+          <MessageComponent
             type={resultMessage.type}
             message={resultMessage.message}
             className="mb-[16px] max-[768px]:mb-[0]"

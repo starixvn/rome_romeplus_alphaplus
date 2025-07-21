@@ -10,11 +10,7 @@ import {
 } from '../../components/Buttons/index';
 import CustomDropdown, { DropdownOption } from '../../components/CustomDropdownComponent';
 import Loading from '../../components/LoadingComponent';
-import {
-  ErrorMessageComponent,
-  SuccessMessageComponent,
-  ValidateMessageComponent,
-} from '../../components/Message';
+import { MessageComponent } from '../../components/Message';
 import MobileComponent from '../../components/MobileComponent';
 import {
   TitleComponent,
@@ -399,8 +395,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
           </div>
           <form onSubmit={onSubmit}>
             <div className="modal-body">
-              <ErrorMessageComponent className="mb-[10px] max-[768px]:mb-[0]" message={error} />
-              <SuccessMessageComponent className="mb-[10px] max-[768px]:mb-[0]" message={successMessage} />
+              <MessageComponent className="mb-[10px] max-[768px]:mb-[0]" message={error} type='error' />
+              <MessageComponent className="mb-[10px] max-[768px]:mb-[0]" message={successMessage} type='success' />
               <div className="mb-[16px]">
                 <MediumTitleComponent text={tManagePayments('bankStatus')} />
                 <p className="pb-[8px] ">{tManagePayments('bankNote1')}</p>
@@ -499,7 +495,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                   </div>
                 )}
               </div>
-              <ValidateMessageComponent message={fieldErrors.selectedTransactionType} />
+              <MessageComponent message={fieldErrors.selectedTransactionType} type='validate' />
 
               {(() => {
                 const selectedBankObj = banks.find(
@@ -557,7 +553,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                           </label>
                         )}
                       </div>
-                      <ValidateMessageComponent message={fieldErrors.selectedDepositMatchingMode} />
+                      <MessageComponent message={fieldErrors.selectedDepositMatchingMode} type='validate' />
                     </div>
                   )
                 );

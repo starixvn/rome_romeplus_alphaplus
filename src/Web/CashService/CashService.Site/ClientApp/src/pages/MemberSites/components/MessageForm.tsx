@@ -6,7 +6,7 @@ import { MobilePhone as MobilePhoneComponent } from './MobiPhone';
 import { useFormContext } from 'react-hook-form';
 import { ANNOUNCEMENT_MAX_LENGTH } from '../../../constants';
 import { LabelTitleComponent, MediumTitleComponent } from '../../../components/Title';
-import { ValidateMessageComponent } from '../../../components/Message';
+import { MessageComponent } from '../../../components/Message';
 
 interface MessageFormProps {
   loading: boolean;
@@ -81,7 +81,7 @@ const MessageForm: React.FC<MessageFormProps> = ({loading}) => {
               maxLength={ANNOUNCEMENT_MAX_LENGTH}
             />
             {errors.announcement && (
-              <ValidateMessageComponent message={errors.announcement?.message as string} />
+              <MessageComponent message={errors.announcement?.message as string} type='validate' />
             )}
           </div>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ensureIntegerInput } from '../utils/inputHandlers';
-import { ValidateMessageComponent } from './Message';
+import { MessageComponent } from './Message';
 import { LabelTitleComponent } from './Title';
 
 interface MobileComponentProps {
@@ -51,7 +51,7 @@ const MobileComponent: React.FC<MobileComponentProps> = ({
             maxLength={40}
           />
         </div>
-        <ValidateMessageComponent message={(fieldErrors.mobile || fieldErrors.countryCode) ?? ''} />
+        <MessageComponent message={(fieldErrors.mobile || fieldErrors.countryCode) ?? ''} type='validate' />
       </div>
     )
   );

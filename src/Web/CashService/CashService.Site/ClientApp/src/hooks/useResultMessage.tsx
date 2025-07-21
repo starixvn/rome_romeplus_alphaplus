@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ResultType } from "../components/Message/types";
-import { ResultMessageComponent } from "../components/Message/ResultMessageComponent";
+import { MessageComponent } from "../components/Message";
 
 export const useResultMessage = () => {
     const [result, setResult] = useState<{ type: ResultType; text: string } | null>(null);
@@ -22,7 +22,7 @@ export const useResultMessage = () => {
 
     const ResultMessage = (): React.ReactNode => {
         if (result) {
-            return <ResultMessageComponent type={result.type} message={result.text} />;
+            return <MessageComponent type={result.type} message={result.text} />;
         }
         return null;
     }

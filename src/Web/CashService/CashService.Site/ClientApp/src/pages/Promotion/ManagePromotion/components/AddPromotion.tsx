@@ -3,7 +3,7 @@ import {
   ButtonBackComponent,
   ButtonComponent,
 } from '../../../../components/Buttons/index';
-import { ErrorMessageComponent, SuccessMessageComponent } from '../../../../components/Message';
+import { MessageComponent } from '../../../../components/Message'; 
 import { TitleComponent } from '../../../../components/Title';
 import { TreeNodeOption } from '../../../../components/TreeSelect/TreeSelect';
 import { PROMOTION_TYPES } from '../../../../constants/promotionConstants';
@@ -212,11 +212,8 @@ const validateForm = () => {
 
       <div className="pb-[16px]">
         <div className="modal-body">
-          <ErrorMessageComponent className="mb-[16px] max-[768px]:mb-[0]" message={error} />
-          <SuccessMessageComponent
-            className="mb-[16px] max-[768px]:mb-[0]"
-            message={successMessage}
-          />
+          <MessageComponent className="mb-[16px] max-[768px]:mb-[0]" message={error} type='error' />
+          <MessageComponent className="mb-[16px] max-[768px]:mb-[0]" message={successMessage} type='success'/>
 
           <Information
             readOnlyMode={false}

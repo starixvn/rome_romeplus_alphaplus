@@ -7,9 +7,8 @@ import {
   ButtonClosePopupComponent,
 } from '../../components/Buttons/index';
 import {
-  ResultMessageComponent, 
+  MessageComponent, 
   ResultType,
-  ValidateMessageComponent,
 } from '../../components/Message';
 import {
   LabelTitleComponent,
@@ -242,7 +241,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
           <MediumTitleComponent text={tPaymentProviderSettings('updatePaymentMethod')} />
           <ButtonClosePopupComponent onClick={onClose} />
         </div>
-        <ResultMessageComponent type={resultType} message={resultMessage} className="mt-[8px]" />
+        <MessageComponent type={resultType} message={resultMessage} className="mt-[8px]" />
         <form onSubmit={onSubmit}>
           <div className="modal-body">
             <div>
@@ -265,7 +264,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                   </select>
                   <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
                   </div>
-                  <ValidateMessageComponent message={fieldErrors.selectedTransactionType} />
+                  <MessageComponent message={fieldErrors.selectedTransactionType} type='validate' />
                 </div>
 
                 <div className="w-[48%]">
@@ -287,7 +286,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                   </select>
                   <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
                   </div>
-                  <ValidateMessageComponent message={fieldErrors.selectedPaymentMethod} />
+                  <MessageComponent message={fieldErrors.selectedPaymentMethod} type='validate' />
                 </div>
               </div>
             </div>
@@ -316,7 +315,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
             <div>
               <hr className="mt-[16px] mb-[16px] border-[#0000001F]" />
               <NormalTitleComponent text={tPaymentProviderSettings('addPaymentMethodStep3')} />
-              <ValidateMessageComponent message={tGlobal('somethingWentWrong')} />
+              <MessageComponent message={tGlobal('somethingWentWrong')} type='validate' />
               <div className="flex flex-wrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="w-[48%]">
                   <LabelTitleComponent text={`${tPaymentProviderSettings('apiKey')}`} required={true} />
@@ -327,7 +326,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                     value={formState.apiKey}
                     onChange={(e) => { onInputChange('apiKey', e.target.value); }}
                   />
-                  <ValidateMessageComponent message={fieldErrors.apiKey} />
+                  <MessageComponent message={fieldErrors.apiKey} type='validate' />
                 </div>
                 <div className="w-[48%]">
                   <LabelTitleComponent text={`${tPaymentProviderSettings('merchantID')}`} required={true} />
@@ -338,7 +337,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                     value={formState.merchantID}
                     onChange={(e) => { onInputChange('merchantID', e.target.value); }}
                   />
-                  <ValidateMessageComponent message={fieldErrors.merchantID} />
+                  <MessageComponent message={fieldErrors.merchantID} type='validate' />
                 </div>
                 <div className="w-[48%]">
                   <LabelTitleComponent text={`${tPaymentProviderSettings('appSecret')}`} required={true} />
@@ -349,7 +348,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                     value={formState.appSecret}
                     onChange={(e) => { onInputChange('appSecret', e.target.value); }}
                   />
-                  <ValidateMessageComponent message={fieldErrors.appSecret} />
+                  <MessageComponent message={fieldErrors.appSecret} type='validate' />
                 </div>
               </div>
             </div>
@@ -368,7 +367,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                 {tPaymentProviderSettings('agreeTermsAndConditions')}
               </span>
             </label>
-            <ValidateMessageComponent message={fieldErrors.agreeToTerms} />
+            <MessageComponent message={fieldErrors.agreeToTerms} type='validate' />
           </div>
           <div className="flex justify-center gap-[8px]">
             <ButtonComponent 

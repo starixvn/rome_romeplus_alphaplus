@@ -11,9 +11,7 @@ import {
 import CustomDropdown, { DropdownOption } from '../../components/CustomDropdownComponent';
 import { LoadingFullComponent } from '../../components/LoadingComponent';
 import {
-  ErrorMessageComponent,
-  SuccessMessageComponent,
-  ValidateMessageComponent,
+  MessageComponent,
 } from '../../components/Message';
 import MobileComponent from '../../components/MobileComponent';
 import {
@@ -312,8 +310,8 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
             className="pb-[16px]"
           >
             <div className="modal-body">
-              <ErrorMessageComponent className='mb-[16px] max-[768px]:mb-[0]' message={error} />
-              <SuccessMessageComponent className='mb-[16px] max-[768px]:mb-[0]' message={successMessage} />
+              <MessageComponent className='mb-[16px] max-[768px]:mb-[0]' message={error} type='error' />
+              <MessageComponent className='mb-[16px] max-[768px]:mb-[0]' message={successMessage} type='success' />
 
               <MediumTitleComponent text={tManagePayments('bankStatus')} />
               <p className=" my-[8px]">{tManagePayments('bankNote1')}</p>
@@ -335,7 +333,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                     initialValue={selectedBank}
                   />
                 </div>
-                <ValidateMessageComponent message={fieldErrors.selectedBank} />
+                <MessageComponent message={fieldErrors.selectedBank} type='validate' />
               </div>
               <div>
                 <MediumTitleComponent
@@ -400,7 +398,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                     </div>
                   )}
                 </div>
-                <ValidateMessageComponent message={fieldErrors.selectedTransactionType} />
+                <MessageComponent message={fieldErrors.selectedTransactionType} type='validate' />
               </div>
 
               {(() => {
@@ -450,7 +448,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                           </label>
                         )}
                       </div>
-                      <ValidateMessageComponent message={fieldErrors.selectedDepositMatchingMode} />
+                      <MessageComponent message={fieldErrors.selectedDepositMatchingMode} type='validate' />
                     </div>
                   )
                 );
@@ -466,7 +464,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                     onChange={onAccountHolderNameChange}
                     maxLength={255}
                   />
-                  <ValidateMessageComponent message={fieldErrors.accountHolderName} />
+                  <MessageComponent message={fieldErrors.accountHolderName} type='validate' />
                   <label className="block mt-[4px] text-[#828282] text-[90%]">
                     {tManagePayments('provideFullName')}
                   </label>
@@ -481,7 +479,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
                     onChange={onAccountNumberChange}
                     maxLength={100}
                   />
-                  <ValidateMessageComponent message={fieldErrors.accountNumber} />
+                  <MessageComponent message={fieldErrors.accountNumber} type='validate' />
                   <label className="block mt-[4px] text-[#828282] text-[90%]">
                     {tGlobal('maxLength').replace('{0}', '100')}
                   </label>

@@ -5,11 +5,7 @@ import {
   ButtonClosePopupComponent,
   ButtonComponent,
 } from '../../components/Buttons/index';
-import {
-  ErrorMessageComponent,
-  SuccessMessageComponent,
-  ValidateMessageComponent,
-} from '../../components/Message';
+import { MessageComponent } from '../../components/Message';
 import { LabelTitleComponent, MediumTitleComponent } from '../../components/Title';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { ensureIntegerInput } from '../../utils/inputHandlers';
@@ -121,8 +117,8 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
           <ButtonClosePopupComponent onClick={onClose} />
         </div>
         <div className="my-[8px]">
-          <ErrorMessageComponent message={error} />
-          <SuccessMessageComponent message={successMessage} />
+          <MessageComponent message={error} type='error' />
+          <MessageComponent message={successMessage} type='success' />
         </div>
         <form onSubmit={onSubmit}>
           <div className="mb-[16px]">
@@ -145,7 +141,7 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
                 onChange={onDailyLimitChange}
                 min="0"
               />
-              <ValidateMessageComponent message={fieldErrors.dailyLimit} />
+              <MessageComponent message={fieldErrors.dailyLimit} type='validate' />
             </div>
           </div>
           <div className="flex justify-center gap-[8px]">

@@ -8,7 +8,7 @@ import {
   ButtonComponent,
 } from '../../../../components/Buttons/index';
 
-import { ResultMessageComponent } from '../../../../components/Message';
+import { MessageComponent } from '../../../../components/Message';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import {
@@ -153,23 +153,15 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
           </div>
 
           {revertAlert.type && (
-            <ResultMessageComponent
-              type={revertAlert.type}
-              message={revertAlert.message}
-              className="mb-[10px] max-[768px]:mb-[0]"
-            />
+            <MessageComponent type={revertAlert.type} message={revertAlert.message} className="mb-[10px] max-[768px]:mb-[0]" />
           )}
 
           {loadingDetail ? (
             <LoadingComponent />
           ) : detailError ? (
-            <ResultMessageComponent type="error" message={detailError} className="mb-4" />
+            <MessageComponent type="error" message={detailError} className="mb-4" />
           ) : !detailData ? (
-            <ResultMessageComponent
-              type="warning"
-              message={t('detail.noDetails')}
-              className="mb-4"
-            />
+            <MessageComponent type="warning" message={t('detail.noDetails')} className="mb-4" />
           ) : (
             <>
               <div className="flex gap-6">

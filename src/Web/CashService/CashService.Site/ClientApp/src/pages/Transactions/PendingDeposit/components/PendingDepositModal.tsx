@@ -9,7 +9,7 @@ import {
   ButtonClosePopupComponent,
   ButtonComponent,
 } from '../../../../components/Buttons/index';
-import { ResultMessageComponent } from '../../../../components/Message';
+import { MessageComponent } from '../../../../components/Message';
 import { LabelTitleComponent, MediumTitleComponent } from '../../../../components/Title';
 import { ApproveRejectDepositModel } from '../../../../services/interfaces/ApproveRejectDepositModel.ts';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
@@ -172,7 +172,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
             <ButtonClosePopupComponent onClick={() => onClose(false)} />
           </div>
           {resultMessage && (
-            <ResultMessageComponent
+            <MessageComponent
               type={resultMessage.type}
               message={resultMessage.message}
               className="mb-[16px] max-[768px]:mb-[0]"
