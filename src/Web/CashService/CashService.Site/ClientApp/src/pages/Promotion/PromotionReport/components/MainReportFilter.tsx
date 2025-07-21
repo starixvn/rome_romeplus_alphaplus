@@ -3,7 +3,7 @@ import DateRangePickerComponent from '../../../../components/DateRangePickerComp
 import CustomDropdownComponent, {
   DropdownOption,
 } from '../../../../components/CustomDropdownComponent';
-import { LabelTitleComponent } from '../../../../components/Title';
+import { TitleComponent } from '../../../../components/Title';
 import {
   PROMOTION_TYPES,
   PROMOTION_STATUS_OPTIONS,
@@ -43,7 +43,7 @@ export default function MainReportFilter({
   return (
     <div className="flex flex-nowrap max-[768px]:flex-wrap w-full">
       <div className="w-[190px] mb-[12px] mr-[12px]">
-        <LabelTitleComponent text={t('global:dateRange')} />
+        <TitleComponent text={t('global:dateRange')} type='label'/>
         <DateRangePickerComponent
           value={dateRange}
           onChange={setDateRange}
@@ -52,7 +52,7 @@ export default function MainReportFilter({
         />
       </div>
       <div className="w-[190px] mb-[12px] mr-[12px]">
-        <LabelTitleComponent text={t('promotion:table.promotionType')} />
+        <TitleComponent text={t('promotion:table.promotionType')} type='label'/>
         <CustomDropdownComponent
           options={promotionTypeOptions}
           onSelect={(opt) => setPromotionType(opt.value as string)}
@@ -61,7 +61,7 @@ export default function MainReportFilter({
         />
       </div>
       <div className="w-[140px] mb-[12px] mr-[12px]">
-        <LabelTitleComponent text={t('promotion:table.status')} />
+        <TitleComponent text={t('promotion:table.status')} type='label'/>
         <CustomDropdownComponent
           options={statusOptions}
           onSelect={(opt) => setStatus(opt.value as string)}

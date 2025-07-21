@@ -6,7 +6,7 @@ import {
   ButtonComponent,
 } from '../../components/Buttons/index';
 import { MessageComponent } from '../../components/Message';
-import { LabelTitleComponent, MediumTitleComponent } from '../../components/Title';
+import { TitleComponent } from '../../components/Title';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { ensureIntegerInput } from '../../utils/inputHandlers';
 import { createErrorResultModel } from '../../services/interfaces/ResultModel';
@@ -113,7 +113,7 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
     <div className="bg-[#00000080] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-start justify-center">
       <div className="p-[12px] pt-[0] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-w-[400px] max-[768px]:max-w-[90%] rounded-[3px]">
         <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]" >
-          <MediumTitleComponent text={t('managePayments:setDailyWithdrawalCount')} />
+          <TitleComponent type='medium' text={t('managePayments:setDailyWithdrawalCount')} />
           <ButtonClosePopupComponent onClick={onClose} />
         </div>
         <div className="my-[8px]">
@@ -126,7 +126,7 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
               <div className="pb-[8px] mb-[8px] block">
                 {t('managePayments:setMaxDailyWithdrawalCountForYourMembers')}{' '}
               </div>
-              <LabelTitleComponent text={`${t('managePayments:dailyWithdrawalCount')}`} />
+              <TitleComponent type='label' text={`${t('managePayments:dailyWithdrawalCount')}`} />
               <input
                 type="text"
                 maxLength={5}

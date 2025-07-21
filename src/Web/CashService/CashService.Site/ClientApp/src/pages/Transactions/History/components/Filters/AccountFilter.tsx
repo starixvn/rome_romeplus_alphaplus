@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import CustomDropdown from '../../../../../components/CustomDropdownComponent';
 import { TransactionType } from '../../../../../utils/commonFunctions';
 import BankIcon from '../../../../../components/BankComponents';
-import { LabelTitleComponent } from '../../../../../components/Title';  
+import { TitleComponent } from '../../../../../components/Title';  
 
 interface AccountFilterProps {
   account: string;
@@ -46,7 +46,7 @@ const AccountFilter: React.FC<AccountFilterProps> = ({
 
   return (
     <div className="form-group">
-      <LabelTitleComponent
+      <TitleComponent type='label'
         text={transactionType === TransactionType.Deposit ? t('filter.to') : t('filter.from')}
       />
       <CustomDropdown

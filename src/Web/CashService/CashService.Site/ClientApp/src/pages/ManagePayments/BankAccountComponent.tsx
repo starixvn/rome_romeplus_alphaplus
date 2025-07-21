@@ -20,11 +20,7 @@ import { IconArrowDown, IconSearch } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
 import { MessageComponent } from '../../components/Message';
 import { StatusComponent } from '../../components/Status';  
-import {
-  TitleComponent,
-  LabelTitleComponent,
-  MediumTitleComponent,
-} from '../../components/Title';
+import { TitleComponent } from '../../components/Title';
 import { BANK_STATUS_OPTIONS } from '../../constants/paymentConstants';
 import { Bank, BankAccount } from '../../services/interfaces/Payments';
 import { paymentProviderService } from '../../services/paymentsAPI';
@@ -228,7 +224,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
     <div className="bg-[#00000080] fixed inset-0 flex items-start justify-center z-50">
       <div className="px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-w-[400px] w-full max-[768px]:max-w-[90%] rounded-[3px]">
         <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]">
-          <MediumTitleComponent text={tManagePayments('deleteBankAccount')} />
+          <TitleComponent type='medium' text={tManagePayments('deleteBankAccount')} />
           <ButtonClosePopupComponent onClick={closeConfirm} />
         </div>
         <p className="mb-[20px]">
@@ -318,7 +314,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
       ) : (
         <>
           <div className="h-full flex flex-col">
-            <TitleComponent title={tManagePayments('managePayments')} showTippy={true}>
+            <TitleComponent type='main' text={tManagePayments('managePayments')} showTippy={true}>
               <div>
                 <div>• {tManagePayments('managePaymentsTip1')}</div>
                 <div>• {tManagePayments('managePaymentsTip2')}</div>
@@ -344,7 +340,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
               <>
                 <div className="flex flex-wrap w-full">
                   <div className="w-[160px] mb-[12px] mr-[12px]">
-                    <LabelTitleComponent text={tManagePayments('bank')} />
+                    <TitleComponent type='label' text={tManagePayments('bank')} />
                     <CustomDropdown
                       className="w-[330px]"
                       options={(() => {
@@ -364,7 +360,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                   </div>
 
                   <div className="w-[160px] mb-[12px] mr-[12px]">
-                    <LabelTitleComponent text={tManagePayments('transactionType')} />
+                    <TitleComponent type='label' text={tManagePayments('transactionType')} />
                     <div className="relative">
                       <select
                         id="transactionTypeSelect"
@@ -387,7 +383,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                   </div>
 
                   <div className="w-[160px] mb-[12px] mr-[12px] ">
-                    <LabelTitleComponent text={tManagePayments('status')} />
+                    <TitleComponent type='label' text={tManagePayments('status')} />
                     <div className="relative">
                       <select
                         id="statusSelect"

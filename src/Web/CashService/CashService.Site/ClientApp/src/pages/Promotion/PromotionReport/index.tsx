@@ -65,7 +65,7 @@ function PromotionReport() {
 
   return (
     <>
-      <TitleComponent title={t('promotionReport')} />
+      <TitleComponent text={t('promotionReport')} type='main'/> 
       {promotion === null ? (
         <MainReport
           onClickPromotionTitle={handleClickPromotionTitle}

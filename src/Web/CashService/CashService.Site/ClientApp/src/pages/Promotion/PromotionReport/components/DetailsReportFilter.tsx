@@ -3,7 +3,7 @@ import DateRangePickerComponent from '../../../../components/DateRangePickerComp
 import CustomDropdownComponent, {
   DropdownOption,
 } from '../../../../components/CustomDropdownComponent';
-import { LabelTitleComponent } from '../../../../components/Title';
+import { TitleComponent } from '../../../../components/Title';
 import { PROMOTION_BONUS_STATUS_OPTIONS } from '../../../../constants/promotionConstants';
 
 export default function DetailsReportFilter({
@@ -33,7 +33,7 @@ export default function DetailsReportFilter({
   return (
     <div className="flex flex-nowrap gap-[16px] max-[768px]:gap-[12px] max-[768px]:flex-wrap w-full">
       <div className="w-[190px] mb-[12px]">
-        <LabelTitleComponent text={t('global:dateRange')} />
+        <TitleComponent text={t('global:dateRange')} type='label'/>
         <DateRangePickerComponent
           value={dateRange}
           onChange={setDateRange}
@@ -42,7 +42,7 @@ export default function DetailsReportFilter({
         />
       </div>
       <div className="w-[140px] mb-[12px]">
-        <LabelTitleComponent text={t('global:statusText')} />
+        <TitleComponent text={t('global:statusText')} type='label'/>
         <CustomDropdownComponent
           options={statusOptions}
           onSelect={(opt) => setStatus(opt.value as string)}

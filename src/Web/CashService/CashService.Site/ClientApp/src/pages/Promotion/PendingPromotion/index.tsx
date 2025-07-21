@@ -29,7 +29,7 @@ const PendingPromotion: React.FC = () => {
         <AddBonusForm onClose={() => setShowAddBonus(false)} />
       ) : (
         <div className="flex h-full flex-col">
-          <TitleComponent title={t('pendingPromotion')} />
+          <TitleComponent text={t('pendingPromotion')} type='main'/> 
           <div className="mb-[8px]">
             <ButtonFullComponent
               text={t('addBonus')}

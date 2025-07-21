@@ -210,7 +210,7 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
     <>
       <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
         <ButtonBackComponent onClick={onClose} />
-        <TitleComponent title={`Edit Promotion`} />
+        <TitleComponent text={`Edit Promotion`} type='main'/>
       </div>
 
       <form onSubmit={handleSubmit} className="pb-[16px]">

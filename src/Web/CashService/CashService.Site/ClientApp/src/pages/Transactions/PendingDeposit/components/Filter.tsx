@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import BankIcon from '../../../../components/BankComponents';
 import CustomDropdown from '../../../../components/CustomDropdownComponent';
 import { IconArrowDown, IconSearch } from '../../../../components/Icons';
-import { LabelTitleComponent } from '../../../../components/Title';
+import { TitleComponent } from '../../../../components/Title';
 
 export enum TimeFilterOptions {
   All = 'All',
@@ -26,7 +26,7 @@ const TimeFilter: React.FC<{
   t: (key: string) => string;
 }> = ({ value, onChange, t }) => (
   <div className="w-[190px] mb-[12px] mr-[12px]">
-    <LabelTitleComponent text={t('filter.recentDeposits')} />
+    <TitleComponent type='label' text={t('filter.recentDeposits')} />
     <div className="select-wrapper relative">
       <select
         value={value}
@@ -48,7 +48,7 @@ const BankFilter: React.FC<{
   t: (key: string) => string;
 }> = ({ options, onSelect, t }) => (
   <div className="w-[190px] mb-[12px] mr-[12px]">
-    <LabelTitleComponent text={t('filter.to')} />
+    <TitleComponent type='label' text={t('filter.to')} />
     <CustomDropdown
       options={options.map((option) => {
         const [bankCode, accountNumber] = option.split('-');

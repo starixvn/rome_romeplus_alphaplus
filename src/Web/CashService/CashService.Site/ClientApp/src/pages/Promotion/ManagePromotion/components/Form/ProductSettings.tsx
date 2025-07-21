@@ -1,5 +1,5 @@
 import React from 'react';
-import { LabelTitleComponent } from '../../../../../components/Title/LabelTitleComponent';
+import { TitleComponent } from '../../../../../components/Title';
 import { ProductSetting } from '../../../../../services/interfaces/Promotion';
 
 interface ProductSettingsProps {
@@ -21,7 +21,7 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
         key={product.productCategoryId}
         className="flex flex-wrap w-full">
         <div className="w-[190px] mr-[12px] mb-[12px]">
-          <LabelTitleComponent text={`${product.productCategoryName} Percentage`} required />
+          <TitleComponent text={`${product.productCategoryName} Percentage`} required type='label'/>
           <div className="flex items-center relative">
             <input
               type="number"
@@ -45,7 +45,7 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
         </div>
 
         <div className="w-[190px] mr-[12px] mb-[12px]">
-          <LabelTitleComponent text="Min Turnover" required={true} />
+          <TitleComponent text="Min Turnover" required={true} type='label'/>
           <input
             type="number"
             min="0"
@@ -64,7 +64,7 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
 
         <div className="w-[190px] mr-[12px] mb-[12px]">
           <div className="flex justify-between items-center">
-            <LabelTitleComponent text="Max Payout" required={true} />
+            <TitleComponent text="Max Payout" required={true} type='label'/>
             <div className="flex items-center text-[12px]">
               <input
                 type="checkbox"

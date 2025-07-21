@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { IconArrowDown, IconSearch } from '../../../../components/Icons';
-import { LabelTitleComponent } from '../../../../components/Title';
+import { TitleComponent } from '../../../../components/Title';
 
 interface FilterProps {
   recentWithdrawals: string;
@@ -23,7 +23,7 @@ const Filter: React.FC<FilterProps> = ({
     <>
       <div className="flex flex-wrap w-full">
         <div className="w-[190px] mb-[12px] mr-[12px]">
-          <LabelTitleComponent text={t('filter.recentWithdrawals')} />
+          <TitleComponent type='label' text={t('filter.recentWithdrawals')} />
           <div className="select-wrapper relative">
             <select
               value={recentWithdrawals}

@@ -15,7 +15,7 @@ import {
 } from '../../../../components/Buttons/index';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import { MessageComponent } from '../../../../components/Message';
-import { LabelTitleComponent, MediumTitleComponent } from '../../../../components/Title';
+import { TitleComponent } from '../../../../components/Title';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory.ts';
 import { approveWithdrawal, rejectWithdrawal } from '../../../../services/pendingWithdrawalAPI.ts';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI.ts';
@@ -272,7 +272,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
       <div className="bg-[#00000080] fixed inset-0 flex justify-center z-50 items-center">
         <div className="max-w-[900px] p-[12px] pt-[0] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] max-[768px]:max-w-[90%] max-h-[90%] overflow-auto rounded-[4px]">
           <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]">
-            <MediumTitleComponent
+            <TitleComponent type='medium'
               text={` ${t('pendingWithdrawalModal.title')} (${withdrawal?.transId})`}
             />
             <ButtonClosePopupComponent onClick={onClose} />
@@ -324,14 +324,14 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
                   <div className="grid grid-cols-2 gap-6">
                     <div>
                       <div className="mb-[10px]">
-                        <LabelTitleComponent text={t('pendingWithdrawalModal.to')} />
+                        <TitleComponent type='label' text={t('pendingWithdrawalModal.to')} />
                         <div className="flex items-center">
                           <span>{renderBankAccount(withdrawal?.paymentTo || '', tGlobal)}</span>
                         </div>
                       </div>
 
                       <div className="mb-[10px]">
-                        <LabelTitleComponent text={t('pendingWithdrawalModal.withdrawalAmount')} />
+                        <TitleComponent type='label' text={t('pendingWithdrawalModal.withdrawalAmount')} />
                         <div className="mt-1">
                           <span className="py-[4px] text-[var(--text-link-color)] font-semibold">
                             {displayAmount(withdrawal?.amount || 0)}
@@ -340,7 +340,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
                       </div>
 
                       <div>
-                        <LabelTitleComponent text={t('pendingWithdrawalModal.from')} required />
+                        <TitleComponent type='label' text={t('pendingWithdrawalModal.from')} required />
                         <div className="w-full">
                           <DropdownComponent
                             options={bankOptions}
@@ -356,14 +356,14 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
 
                     <div>
                       <div className="mb-[16px]">
-                        <LabelTitleComponent text={t('pendingWithdrawalModal.dateAndTime')} />
+                        <TitleComponent type='label' text={t('pendingWithdrawalModal.dateAndTime')} />
                         <div>{formatDateTime(withdrawal?.createdTime || '')}</div>
                       </div>
                     </div>
                   </div>
 
                   <div className="mt-6 h-full">
-                    <LabelTitleComponent text={t('pendingWithdrawalModal.remarks')} />
+                    <TitleComponent type='label' text={t('pendingWithdrawalModal.remarks')} />
                     <textarea
                       value={remark}
                       onChange={(e) => setRemark(e.target.value)}

@@ -3,7 +3,7 @@ import DateRangePickerComponent from '../../../../components/DateRangePickerComp
 import CustomDropdownComponent, {
   DropdownOption,
 } from '../../../../components/CustomDropdownComponent';
-import { LabelTitleComponent } from '../../../../components/Title';
+import { TitleComponent } from '../../../../components/Title'; 
 import { useTranslation } from 'react-i18next';
 
 const promotionTypeOptions: DropdownOption[] = [
@@ -30,7 +30,7 @@ const Filter: React.FC<FilterProps> = ({
     <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
       <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
         <div className="form-group ">
-          <LabelTitleComponent text="Date Range" />
+          <TitleComponent text="Date Range" type='label'/>
           <DateRangePickerComponent
             value={dateRange}
             onChange={setDateRange}
@@ -40,7 +40,7 @@ const Filter: React.FC<FilterProps> = ({
         </div>
       </div>
       <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
-        <LabelTitleComponent text={t('filter.promotionType')} />
+        <TitleComponent text={t('filter.promotionType')} type='label'/>
         <CustomDropdownComponent
           options={promotionTypeOptions}
           onSelect={(opt) => setPromotionType(opt.value as string)}

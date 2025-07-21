@@ -6,8 +6,6 @@ import {
 } from '../../../../components/Buttons';
 import {
   TitleComponent,
-  LabelTitleComponent,
-  MediumTitleComponent,
 } from '../../../../components/Title';
 import { AmountInput } from '../../../../components/AmountInput';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
@@ -123,7 +121,7 @@ const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose }) => {
     <div className="">
       <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
         <ButtonBackComponent onClick={onClose} />
-        <TitleComponent title={`${t('addBonus')}`} />
+        <TitleComponent text={`${t('addBonus')}`} type='main'/>
       </div>
       <div
         id="manual-withdrawal-form"
@@ -138,11 +136,11 @@ const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose }) => {
         )}
         <div className="flex justify-between max-[768px]:flex-col mb-[16px]">
           <div className="flex-1 max-w-[700px] max-[768px]:mb-[16px] mr-[30px] max-[768px]:mr-[0]">
-            <MediumTitleComponent text={`${t('addBonusForm.accountInformation')}`} />
+            <TitleComponent text={`${t('addBonusForm.accountInformation')}`} type='medium'/>
             <div className="flex flex-wrap">
               <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
-                  <LabelTitleComponent text={`${t('addBonusForm.memberLoginName')}`} required />
+                  <TitleComponent text={`${t('addBonusForm.memberLoginName')}`} required type='label'/>
 
                   <div className="relative z-[9999]">
                     <DropdownComponent
@@ -155,7 +153,7 @@ const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose }) => {
                   </div>
                 </div>
                 <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
-                  <LabelTitleComponent text={`${t('addBonusForm.bonusAmount')}`} required />
+                  <TitleComponent text={`${t('addBonusForm.bonusAmount')}`} required type='label'/>
                   <AmountInput
                     id="bonusAmount"
                     value={Number(amount)}
@@ -169,7 +167,7 @@ const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose }) => {
                 </div>
               </div>
               <div className="w-full">
-                <LabelTitleComponent text={`${t('addBonusForm.remarks')}`} required={false} />
+                <TitleComponent text={`${t('addBonusForm.remarks')}`} required={false} type='label'/>
                 <textarea
                   id="remarks"
                   value={remark}

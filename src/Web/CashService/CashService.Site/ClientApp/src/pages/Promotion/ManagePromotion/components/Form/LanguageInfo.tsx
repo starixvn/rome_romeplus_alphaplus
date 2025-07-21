@@ -1,6 +1,6 @@
 import React from 'react';
 import { ButtonTabComponent } from '../../../../../components/Buttons/ButtonTabComponent';
-import { LabelTitleComponent } from '../../../../../components/Title/LabelTitleComponent';
+import { TitleComponent } from '../../../../../components/Title';
 import UploadImage from '../../../../Transactions/Components/UploadImage';
 
 export interface PromotionLangFields {
@@ -47,7 +47,7 @@ export const TitleField: React.FC<{
   isDefault: boolean;
 }> = ({ value, onChange, lang, isDefault }) => (
   <div className="mb-4">
-    <LabelTitleComponent text={`Title`} required={isDefault} />
+    <TitleComponent text={`Title`} required={isDefault} type='label'/>
     <input
       className="control-field w-full"
       key={`title-${lang}`}
@@ -65,7 +65,7 @@ export const BannerField: React.FC<{
   isDefault: boolean;
 }> = ({ prevBanner, setBanner, lang, isDefault }) => (
   <div className="mb-4">
-    <LabelTitleComponent text={`Banner`} required={isDefault} />
+    <TitleComponent text={`Banner`} required={isDefault} type='label'/>
     <UploadImage
       key={`banner-${lang}`}
       setImage={setBanner}
@@ -83,7 +83,7 @@ export const ContentField: React.FC<{
   isDefault: boolean;
 }> = ({ value, onChange, lang, isDefault }) => (
   <div className="mb-4">
-    <LabelTitleComponent text={`Content`} required={isDefault} />
+    <TitleComponent text={`Content`} required={isDefault} type='label'/>
     <div className="border border-[var(--border-control)] rounded">
       <textarea
         key={`content-${lang}`}

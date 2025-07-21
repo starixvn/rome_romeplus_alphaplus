@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CustomDropdown from '../../../../components/CustomDropdownComponent';
-import { LabelTitleComponent } from '../../../../components/Title';
+import { TitleComponent } from '../../../../components/Title';
 
 interface FilterProps {
   onFilterChange: (type: number, status: number) => void;
@@ -35,7 +35,7 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
     <div className="flex flex-wrap w-full">
       <div className="w-[190px] mr-[12px] mb-[12px]">
         <div className="form-group">
-          <LabelTitleComponent text="Promotion Type" />
+          <TitleComponent text="Promotion Type" type='label'/>
           <CustomDropdown
             options={promotionTypes}
             onSelect={handleTypeChange}
@@ -46,7 +46,7 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
 
       <div className="w-[190px] mr-[12px] mb-[12px]">
         <div className="form-group">
-          <LabelTitleComponent text="Status" />
+          <TitleComponent text="Status" type='label'/>
           <CustomDropdown
             options={statusOptions}
             onSelect={handleStatusChange}

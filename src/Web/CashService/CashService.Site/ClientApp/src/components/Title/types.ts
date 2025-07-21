@@ -1,15 +1,12 @@
-export interface TitleComponentProps {
-  title: string;
-  showTippy?: boolean;
-  children?: React.ReactNode;
-  className?: string;
-  required?: boolean;
-  classNameTippy?: string;
-}
+export type TitleType = 'main' | 'medium' | 'normal' | 'label';
 
-export interface BaseTitleProps {
+export interface TitleComponentProps {
+  type?: TitleType;
   text: string;
   className?: string;
   required?: boolean;
+  showTippy?: boolean;
+  children?: React.ReactNode;
+  classNameTippy?: string;
   isShowIcon?: boolean;
 } 

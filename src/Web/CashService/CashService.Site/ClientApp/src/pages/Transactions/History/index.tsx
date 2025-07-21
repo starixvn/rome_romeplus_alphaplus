@@ -26,7 +26,7 @@ const History: React.FC = () => {
 
   return (
     <div className="flex h-full flex-col">
-      <TitleComponent title={tTransactionHistory('transactionHistory')} />
+      <TitleComponent type='main' text={tTransactionHistory('transactionHistory')} />
       <HistoryTab activeTab={activeTab} onTabChange={handleTabChange} />
       <TransactionList transactionType={activeTab} isCashServiceEnabled={isCashServiceEnabled} />
     </div>

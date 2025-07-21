@@ -207,7 +207,7 @@ const validateForm = () => {
     <>
       <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
         <ButtonBackComponent onClick={onClose} />
-        <TitleComponent title={`Add Promotion`} />
+        <TitleComponent text={`Add Promotion`} type='main'/>
       </div>
 
       <div className="pb-[16px]">

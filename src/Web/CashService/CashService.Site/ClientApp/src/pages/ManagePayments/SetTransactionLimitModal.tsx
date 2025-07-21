@@ -6,7 +6,7 @@ import {
   ButtonComponent,
 } from '../../components/Buttons/index';
 import { MessageComponent } from '../../components/Message';
-import { LabelTitleComponent, MediumTitleComponent } from '../../components/Title';
+import { TitleComponent } from '../../components/Title';
 import { createDefaultPaymentTransactionLimit } from '../../services/interfaces/Payments';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { ensureDecimalInput, ensureIntegerInput } from '../../utils/inputHandlers';
@@ -241,7 +241,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
     >
       <div className="p-[12px] pt-[0] bg-[var(--modal-background)] mt-[100px] max-w-[540px] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] max-[768px]:max-w-[90%] rounded-[3px] ">
         <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]">
-          <MediumTitleComponent text={tManagePayments('transactionLimitPreferences')} />
+          <TitleComponent type='medium' text={tManagePayments('transactionLimitPreferences')} />
           <ButtonClosePopupComponent onClick={onClose} />
         </div>
         <form onSubmit={onSubmit}>
@@ -258,7 +258,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
             </div>
             <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                <LabelTitleComponent text={tManagePayments('minPerTransaction')} />
+                <TitleComponent type='label' text={tManagePayments('minPerTransaction')} />
                 <input
                   type="text"
                   className={`control-field ${fieldErrors.minDeposit ? 'error' : ''}`}
@@ -271,7 +271,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
                 <MessageComponent message={fieldErrors.minDeposit} type='validate' />
               </div>
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                <LabelTitleComponent text={tManagePayments('maxPerTransaction')} />
+                <TitleComponent type='label' text={tManagePayments('maxPerTransaction')} />
                 <input
                   type="text"
                   className={`control-field ${fieldErrors.maxDeposit ? 'error' : ''}`}
@@ -289,7 +289,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
             </div>
             <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                <LabelTitleComponent text={tManagePayments('minPerTransaction')} />
+                <TitleComponent type='label' text={tManagePayments('minPerTransaction')} />
                 <input
                   type="text"
                   className={`control-field ${fieldErrors.minWithdrawal ? 'error' : ''}`}
@@ -304,7 +304,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
                 <MessageComponent message={fieldErrors.minWithdrawal} type='validate' />
               </div>
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                <LabelTitleComponent text={tManagePayments('maxPerTransaction')} />
+                <TitleComponent type='label' text={tManagePayments('maxPerTransaction')} />
                 <input
                   type="text"
                   className={`control-field ${fieldErrors.maxWithdrawal ? 'error' : ''}`}
@@ -321,7 +321,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
             </div>
             <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                <LabelTitleComponent text={tManagePayments('dailyWithdrawalCount')} />
+                <TitleComponent type='label' text={tManagePayments('dailyWithdrawalCount')} />
                 <input
                   type="text"
                   className="control-field"

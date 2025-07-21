@@ -157,7 +157,7 @@ const PendingDeposit: React.FC = () => {
         />
       ) : (
         <div className="flex h-full flex-col">
-          <TitleComponent title={t('pendingDeposit')} />
+          <TitleComponent type='main' text={t('pendingDeposit')} />
           <div className="mb-[8px]">
             <ButtonComponent
               variant="full"

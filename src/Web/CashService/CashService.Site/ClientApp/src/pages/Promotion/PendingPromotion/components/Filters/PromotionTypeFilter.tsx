@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import CustomDropdown, { DropdownOption } from '../../../../../components/CustomDropdownComponent';
-import { LabelTitleComponent } from '../../../../../components/Title';
+import { TitleComponent } from '../../../../../components/Title';
 import { promotionService } from '../../../../../services/promotionAPI';
 
 interface PromotionTypeFilterProps {
@@ -25,7 +25,7 @@ const PromotionTypeFilter: React.FC<PromotionTypeFilterProps> = ({
 
   return (
     <div className="form-group">
-      <LabelTitleComponent text={t('filter.promotionType')} />
+      <TitleComponent text={t('filter.promotionType')} type='label'/>
       <CustomDropdown
         options={promotionTypeOptions}
         onSelect={(option) => onPromotionTypeChange(Number(option.value))}

@@ -114,7 +114,7 @@ const Promotion: React.FC = () => {
       )}
       {!showAddPromotion && !showEditPromotion ? (
         <>
-          <TitleComponent title="Manage Promotion" showTippy={false} />
+          <TitleComponent text="Manage Promotion" showTippy={false} type='main'/>
           <div className="mb-[8px]">
             <ButtonComponent
               variant="full"

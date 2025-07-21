@@ -2,7 +2,7 @@ import React from 'react';
 import { DisableButtonComponent, EnableButtonComponent } from '../../../../../components/Buttons';
 import CustomDropdown from '../../../../../components/CustomDropdownComponent';
 import DateRangePickerComponent from '../../../../../components/DateRangePickerComponent';
-import { LabelTitleComponent, MediumTitleComponent, TitleComponent } from '../../../../../components/Title';
+import { TitleComponent } from '../../../../../components/Title';
 import TreeSelect, { TreeNodeOption } from '../../../../../components/TreeSelect/TreeSelect';
 
 interface InformationProps {
@@ -33,7 +33,7 @@ const Information: React.FC<InformationProps> = ({
   readOnlyMode
 }) => (
   <>
-    <MediumTitleComponent text="Current Promotion"/>
+    <TitleComponent text="Current Promotion" type='medium'/>
     <p className="my-[8px]">
         Only one promotion can be active at a time.
     </p>
@@ -44,7 +44,7 @@ const Information: React.FC<InformationProps> = ({
       <EnableButtonComponent isActive={isActive} onClick={() => setIsActive(true)} />
       <DisableButtonComponent isActive={!isActive} onClick={() => setIsActive(false)} />
     </div>   
-    <TitleComponent title={"Promotion Settings"} showTippy={true} classNameTippy={"max-w-[640px]!"} >
+    <TitleComponent text={"Promotion Settings"} showTippy={true} classNameTippy={"max-w-[640px]!"} type='main' >
       <div>During the promotion period, bonus amounts will be calculated every Tuesday based on qualified net turnover from the previous week (Monday to Sunday).</div>
       <div>The bonus is a rebate on qualified net turnover, calculated from WON and LOST bet tickets on selected products.</div>
       <div><b>Qualified Net Turnover:</b></div>
@@ -59,7 +59,7 @@ const Information: React.FC<InformationProps> = ({
     <div className="flex flex-wrap w-full">
       <div className="w-[190px] mr-[12px] mb-[12px]">
         <div className="flex items-center">
-          <LabelTitleComponent text="Promotion Type" className="mr-[5px]" required={true} />
+          <TitleComponent text="Promotion Type" className="mr-[5px]" required={true} type='label'/>
         </div>
         <CustomDropdown
           disable={readOnlyMode}
@@ -71,7 +71,7 @@ const Information: React.FC<InformationProps> = ({
       </div>
 
       <div className="w-[190px] mr-[12px] mb-[12px]">
-        <LabelTitleComponent text="Period" required={true} />
+        <TitleComponent text="Period" required={true} type='label'/>
         <DateRangePickerComponent
           value={period}
           onChange={(value) => setPeriod(value as [Date | null, Date | null])}
@@ -83,7 +83,7 @@ const Information: React.FC<InformationProps> = ({
 
       <div className="w-[190px] mr-[12px] mb-[12px]">
         <div className="flex items-center">
-          <LabelTitleComponent text="Product" className="mr-[5px]" required={true} />
+          <TitleComponent text="Product" className="mr-[5px]" required={true} type='label'/>
         </div>
         <TreeSelect
           options={productOptions}

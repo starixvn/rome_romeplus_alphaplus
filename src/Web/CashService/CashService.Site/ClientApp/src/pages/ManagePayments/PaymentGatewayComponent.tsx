@@ -97,7 +97,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
 
   return (
     <>
-      <TitleComponent title={tManagePayments('managePayments')} showTippy={true}>
+      <TitleComponent type='main' text={tManagePayments('managePayments')} showTippy={true}>
         <div>
           <div>• {tManagePayments('managePaymentsTip1')}</div>
           <div>• {tManagePayments('managePaymentsTip2')}</div>

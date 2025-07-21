@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next";
 import { Contact as ContactType } from "../../../services/interfaces/MemberSites";
 import { FieldError, useFormContext } from "react-hook-form";
 import { CONTACT_MAX_LENGTH, CONTACT_REGEX, LINE_REGEX } from "../../../constants";
-import { LabelTitleComponent } from "../../../components/Title";
+import { TitleComponent } from "../../../components/Title";
 import { MessageComponent } from "../../../components/Message";
 
 interface ContactProps {
@@ -58,7 +58,7 @@ export const Contact = (props: ContactProps) => {
   return (
     <div key={contact.type} className='w-[230px] pt-[4px] max-[768px]:w-[48%]'>
        
-      <LabelTitleComponent text={t(`message.${contact.type}`)}  required={contact.isRequired}/>
+      <TitleComponent text={t(`message.${contact.type}`)}  required={contact.isRequired} type='label'/>
       <div className="relative">
         <input
           id={contact.type}

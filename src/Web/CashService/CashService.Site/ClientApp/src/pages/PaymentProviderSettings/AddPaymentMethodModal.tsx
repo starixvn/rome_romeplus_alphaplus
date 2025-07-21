@@ -8,9 +8,7 @@ import {
 } from '../../components/Buttons/index';
 import { MessageComponent, ResultType } from '../../components/Message';
 import {
-  LabelTitleComponent,
-  MediumTitleComponent,
-  NormalTitleComponent,
+  TitleComponent
 } from '../../components/Title';
 import { TRANSACTION_TYPES, paymentMethodStatusConstant } from '../../constants/paymentConstants';
 import { PaymentMethod } from '../../services/interfaces/Payments/PaymentMethod';
@@ -196,17 +194,17 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
     <div className="bg-[#00000080] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-center justify-center">
       <div className="p-[12px] pt-[0] overflow-y-auto bg-[var(--modal-background)] w-full max-w-[560px] max-[768px]:max-w-[90%] rounded-[3px] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] max-h-[90%] overflow-auto">
         <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]" >
-          <MediumTitleComponent text={tPaymentProviderSettings('setUpPaymentMethods')} />
+          <TitleComponent type='medium' text={tPaymentProviderSettings('setUpPaymentMethods')} />
           <ButtonClosePopupComponent onClick={onClose} />
         </div>
         <MessageComponent type={resultType} message={resultMessage} className="mt-[8px]" />
         <form onSubmit={onSubmit}>
           <div className="modal-body ">
             <div>
-              <NormalTitleComponent text={tPaymentProviderSettings('addPaymentMethodStep1')} />
+              <TitleComponent type='normal' text={tPaymentProviderSettings('addPaymentMethodStep1')} />
               <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent text={`${tPaymentProviderSettings('transactionType')}`} required={true} />
+                  <TitleComponent type='label' text={`${tPaymentProviderSettings('transactionType')}`} required={true} />
                   <div className="relative">
                   <select
                     className={`control-field ${fieldErrors.selectedTransactionType ? 'error' : ''}`}
@@ -226,7 +224,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
                 </div>
 
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent text={`${tPaymentProviderSettings('paymentMethod')}`} required={true} />
+                  <TitleComponent type='label' text={`${tPaymentProviderSettings('paymentMethod')}`} required={true} />
                   <div className="relative">
                     <select
                       className={`control-field ${fieldErrors.selectedPaymentMethod ? 'error' : ''}`}
@@ -255,7 +253,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
             </div>
             <div>
             <hr className="mt-[16px] mb-[8px] border-[#0000001F]" />
-            <NormalTitleComponent text={tPaymentProviderSettings('addPaymentMethodStep2')} />
+            <TitleComponent type='normal' text={tPaymentProviderSettings('addPaymentMethodStep2')} />
             <div className="flex justify-between items-start">
               <div className="pr-[20px]">
                 <p className="mt-[8px] ">{tPaymentProviderSettings('clickLinkOrScanQRCode')}</p>
@@ -277,10 +275,10 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
             </div>
             <div>
               <hr className="mt-[16px] mb-[8px] border-[#0000001F]" />
-              <NormalTitleComponent text={tPaymentProviderSettings('addPaymentMethodStep3')} />
+              <TitleComponent type='normal' text={tPaymentProviderSettings('addPaymentMethodStep3')} />
               <div className="flex flex-wrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent text={`${tPaymentProviderSettings('apiKey')}`} required={true} />
+                  <TitleComponent type='label' text={`${tPaymentProviderSettings('apiKey')}`} required={true} />
                   <input
                     type="text"
                     className={`control-field ${fieldErrors.apiKey ? 'error' : ''}`}
@@ -291,7 +289,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
                   <MessageComponent message={fieldErrors.apiKey} type='validate' />
                 </div>
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent text={`${tPaymentProviderSettings('merchantID')}`} required={true} />
+                  <TitleComponent type='label' text={`${tPaymentProviderSettings('merchantID')}`} required={true} />
                   <input
                     type="text"
                     className={`control-field ${fieldErrors.merchantID ? 'error' : ''}`}
@@ -303,7 +301,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
                   <MessageComponent message={fieldErrors.merchantID} type='validate' />
                 </div>
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent text={`${tPaymentProviderSettings('appSecret')}`} required={true} />
+                  <TitleComponent type='label' text={`${tPaymentProviderSettings('appSecret')}`} required={true} />
                   <input
                     type="password"
                     className={`control-field ${fieldErrors.appSecret ? 'error' : ''}`}

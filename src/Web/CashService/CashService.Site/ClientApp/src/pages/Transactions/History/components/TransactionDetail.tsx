@@ -18,7 +18,7 @@ import {
   renderBankAccount,
   TransactionType,
 } from '../../../../utils/commonFunctions';
-import { LabelTitleComponent, MediumTitleComponent } from '../../../../components/Title';
+import { TitleComponent } from '../../../../components/Title'; 
 import LoadingComponent from '../../../../components/LoadingComponent';
 import ConfirmPopup from '../../../../components/ConfirmPopup';
 
@@ -142,7 +142,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
           className={`${bodyClassName} p-[12px] pt-[0] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] max-[768px]:max-w-[90%] max-h-[90%] overflow-auto rounded-[4px]`}
         >
           <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px] flex items-center">
-            <MediumTitleComponent
+            <TitleComponent type='medium'
               className="w-auto!"
               text={`${t('detail.title')} (${transactionId?.toString() ?? t('detail.loading')})`}
             />
@@ -196,44 +196,44 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
                   </div>
                   <div className="flex flex-wrap gap-[10px] mb-[10px]">
                     <div className="w-[48%] flex flex-col">
-                      <LabelTitleComponent text={t('detail.from')} />
+                      <TitleComponent type='label' text={t('detail.from')} />
                       <div className="flex items-center">
                         {renderBankAccount(detailData.paymentFrom, tGlobal)}
                       </div>
                     </div>
                     <div className="w-[48%]">
-                      <LabelTitleComponent text={t('detail.to')} />
+                      <TitleComponent type='label' text={t('detail.to')} />
                       <div className="flex items-center">
                         {renderBankAccount(detailData.paymentTo, tGlobal)}
                       </div>
                     </div>
                     <div className="w-[48%]">
-                      <LabelTitleComponent text={t('detail.dateAndTime')} />
+                      <TitleComponent type='label' text={t('detail.dateAndTime')} />
                       <div>{formatDateTime(detailData.createdTime)}</div>
                     </div>
                     <div className="w-[48%]">
-                      <LabelTitleComponent text={t('detail.operatedBy')} />
+                      <TitleComponent type='label' text={t('detail.operatedBy')} />
                       <div>{detailData.createdBy}</div>
                     </div>
                     <div className="w-[48%]">
-                      <LabelTitleComponent text={t('detail.transactionType')} />
+                      <TitleComponent type='label' text={t('detail.transactionType')} />
                       <div className="text-[var(--text-link-color)] font-semibold">
                         {detailData.transactionType}
                       </div>
                     </div>
                     <div className="w-[48%]">
-                      <LabelTitleComponent text={t('detail.amount')} />
+                      <TitleComponent type='label' text={t('detail.amount')} />
                       <div className="text-[var(--text-link-color)] font-semibold">
                         {displayAmount(detailData.amount)}
                       </div>
                     </div>
                     <div className="w-[48%]">
-                      <LabelTitleComponent text={t('detail.processedOn')} />
+                      <TitleComponent type='label' text={t('detail.processedOn')} />
                       <div>{formatDateTime(detailData.operatedTime)}</div>
                     </div>
                   </div>
                   <div className="mb-[10px]">
-                    <LabelTitleComponent text={t('detail.remarks')} />
+                    <TitleComponent type='label' text={t('detail.remarks')} />
                     <textarea
                       value={remarks}
                       onChange={(e) => setRemarks(e.target.value)}

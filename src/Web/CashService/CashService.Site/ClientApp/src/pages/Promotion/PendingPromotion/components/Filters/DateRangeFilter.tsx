@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import DateRangePickerComponent from '../../../../../components/DateRangePickerComponent';
-import { LabelTitleComponent } from '../../../../../components/Title';
+import { TitleComponent } from '../../../../../components/Title';
 
 interface DateRangeFilterProps {
   dateRange: [string, string];
@@ -24,7 +24,7 @@ const DateRangeFilter: React.FC<DateRangeFilterProps> = ({ dateRange, onDateRang
   const currentYear = new Date().getFullYear();
   return (
     <div className="form-group ">
-      <LabelTitleComponent text={t('filter.dateRange')} />
+      <TitleComponent text={t('filter.dateRange')} type='label'/>
       <DateRangePickerComponent
         value={value}
         onChange={handleChange}

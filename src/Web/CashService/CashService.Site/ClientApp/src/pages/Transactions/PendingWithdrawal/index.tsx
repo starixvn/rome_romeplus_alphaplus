@@ -113,7 +113,7 @@ const PendingWithdrawal: React.FC = () => {
         />
       ) : (
         <div className="flex h-full flex-col">
-          <TitleComponent title={t('pendingWithdrawal')} />
+          <TitleComponent text={t('pendingWithdrawal')} type='main'/>
           <div className="mb-[8px]">
             <ButtonComponent
               variant="full"

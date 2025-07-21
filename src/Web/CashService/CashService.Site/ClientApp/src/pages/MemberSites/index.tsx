@@ -129,7 +129,7 @@ const MemberSiteManagement: React.FC = () => {
     <div className="">
  
         <div className="mb-[8px]">
-          <TitleComponent title={t('title')} showTippy={false} />
+          <TitleComponent type='main' text={t('title')} />
         </div>
         <div className="max-w-[950px]">               
           {result && <MessageComponent className="mb-[10px]" type={result.type} message={result.text} />}

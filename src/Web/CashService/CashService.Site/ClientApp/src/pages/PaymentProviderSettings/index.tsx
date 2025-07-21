@@ -14,10 +14,7 @@ import { IconArrowDown, IconInfo, IconReload } from '../../components/Icons';
 import { LoadingFullComponent } from '../../components/LoadingComponent';
 import { MessageComponent } from '../../components/Message';
 import { StatusComponent } from '../../components/Status';
-import {
-    TitleComponent,
-    LabelTitleComponent, MediumTitleComponent
-} from '../../components/Title';
+import { TitleComponent } from '../../components/Title';
 import {
   paymentMethodStatusConstant,
   paymentProviderStatusConstant,
@@ -470,14 +467,14 @@ function PaymentProviderSettings() {
           <div className="settings-header">
             <div className="flex items-center justify-flex-start mb-[12px] py-[8px] border-[var(--border-color)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
               <ButtonBackComponent onClick={onBackNavigation} />
-              <TitleComponent title={window.providerSettingsViewModel.Provider.Name} />                
+              <TitleComponent type='main' text={window.providerSettingsViewModel.Provider.Name} />                
             </div>
           </div>
         
           <div className="pb-[10px]">
               <div className="mb-[10px]">
                 <div className="mb-[5px]">
-                  <MediumTitleComponent text={window.providerSettingsViewModel.Provider.Name} />
+                  <TitleComponent type='medium' text={window.providerSettingsViewModel.Provider.Name} />
                 </div>
                 {providerStatus != paymentProviderStatusConstant.notConfigured && (
                     <div
@@ -499,7 +496,7 @@ function PaymentProviderSettings() {
               </div>
               <div className="flex flex-wrap w-full">
                 <div className="w-[160px] mr-[12px] mb-[12px]">
-                  <LabelTitleComponent text={tPaymentProviderSettings('paymentMethod')} />
+                  <TitleComponent type='label' text={tPaymentProviderSettings('paymentMethod')} />
                   <div className="relative">
                     <select
                       className="control-field"
@@ -519,7 +516,7 @@ function PaymentProviderSettings() {
                 </div>
 
                 <div className="w-[160px] mr-[12px] mb-[12px]">
-                  <LabelTitleComponent text={tPaymentProviderSettings('status')} />
+                  <TitleComponent type='label' text={tPaymentProviderSettings('status')} />
                   <div className="relative">
                     <select
                       className="control-field"
@@ -537,7 +534,7 @@ function PaymentProviderSettings() {
                 </div>
 
                 <div className="w-[160px] mr-[12px] mb-[12px]">
-                  <LabelTitleComponent text={tPaymentProviderSettings('transactionType')} />
+                  <TitleComponent type='label' text={tPaymentProviderSettings('transactionType')} />
                   <div className="relative">
                     <select
                       className="control-field"

@@ -20,8 +20,6 @@ import {
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import {
   TitleComponent,
-  LabelTitleComponent,
-  MediumTitleComponent,
 } from '../../../../components/Title';
 import { AmountInput } from '../../../../components/AmountInput';
 
@@ -271,7 +269,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
     <div className="">
       <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
         <ButtonBackComponent onClick={onClose} />
-        <TitleComponent title={t('manualWithdrawalForm.title')} />
+        <TitleComponent type='main' text={t('manualWithdrawalForm.title')} />
       </div>
 
       <div
@@ -287,11 +285,11 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
         )}
         <div className="flex justify-between max-[768px]:flex-col mb-[16px]">
           <div className="flex-1 max-w-[700px] max-[768px]:mb-[16px] mr-[30px] max-[768px]:mr-[0]">
-            <MediumTitleComponent text={t('manualWithdrawalForm.accountInformation')} />
+            <TitleComponent type='medium' text={t('manualWithdrawalForm.accountInformation')} />
             <div className="flex flex-wrap">
               <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
-                  <LabelTitleComponent text={t('manualWithdrawalForm.memberLoginName')} required />
+                  <TitleComponent type='label' text={t('manualWithdrawalForm.memberLoginName')} required />
 
                   <div className="relative z-[9999]">
                     <DropdownComponent
@@ -304,7 +302,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                   </div>
                 </div>
                 <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
-                  <LabelTitleComponent text={t('manualWithdrawalForm.from')} required />
+                  <TitleComponent type='label' text={t('manualWithdrawalForm.from')} required />
                   <DropdownComponent
                     options={agentBankInfo.map((bank) => ({
                       value: bank.value,
@@ -324,7 +322,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
               </div>
               <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full ">
                 <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
-                  <LabelTitleComponent text={t('manualWithdrawalForm.to')} required />
+                  <TitleComponent type='label' text={t('manualWithdrawalForm.to')} required />
                   <DropdownComponent
                     options={memberBankInfo.map((bank) => ({
                       value: bank.value,
@@ -344,7 +342,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                   />
                 </div>
                 <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
-                  <LabelTitleComponent text={t('manualWithdrawalForm.withdrawalAmount')} required />
+                  <TitleComponent type='label' text={t('manualWithdrawalForm.withdrawalAmount')} required />
                   <AmountInput
                     id="withdrawalAmount"
                     value={withdrawalAmount}
@@ -358,7 +356,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                 </div>
               </div>
               <div className="w-full">
-                <LabelTitleComponent text={t('manualWithdrawalForm.remarks')} />
+                <TitleComponent type='label' text={t('manualWithdrawalForm.remarks')} />
                 <textarea
                   id="remarks"
                   value={remarks}

@@ -2,7 +2,7 @@ import React from 'react';
 import { Domain } from '../../../services/interfaces/MemberSites';
 import DomainCard from './DomainCard';
 import { useTranslation } from 'react-i18next';
-import { MediumTitleComponent } from '../../../components/Title';
+import { TitleComponent } from '../../../components/Title';
 import { SetupChecklistModel } from '../../../services/interfaces/SetupChecklistModel';
 import { IconInfo } from '../../../components/Icons';
 
@@ -51,7 +51,7 @@ const RegistrationLinks: React.FC<Props> = ({ domains, loading, setupChecklist, 
     <>
       <div className="flex justify-between items-center">
         <div>
-          <MediumTitleComponent text={t('registrationLinks.title')} />          
+          <TitleComponent type='medium' text={t('registrationLinks.title')} />          
           <p className="pt-[4px] mb-[16px]">
             {t('registrationLinks.note')}
           </p>
@@ -73,7 +73,7 @@ const RegistrationLinks: React.FC<Props> = ({ domains, loading, setupChecklist, 
 
       {domains.length === 0 && (
         <div className="text-center py-8 bg-[var(--background-button)] border-[1px] border-[var(--border-color)] rounded-[3px]">           
-          <MediumTitleComponent text={t('registrationLinks.noRegistrationLinks')} />
+          <TitleComponent type='medium' text={t('registrationLinks.noRegistrationLinks')} />
         </div>
       )}
     </>
