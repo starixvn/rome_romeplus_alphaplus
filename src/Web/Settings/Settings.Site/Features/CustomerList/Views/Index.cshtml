@@ -99,8 +99,8 @@
             </select>
         </div>
 
-        @if (Model.SearchAccountLevel.IsAgentLevel() 
-            && AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(UserSession.Current.Site))
+        @if (Model.SearchAccountLevel.IsAgentLevel()
+                && AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(UserSession.Current.Site))
         {
             <div class="form-group comm-box">
                 <label>
@@ -136,9 +136,13 @@
             <input type="submit" value="@Resources.Submit" class="btn-submit" />
         </div>
     </div>
-    <div class="note">
-        <span class="star"></span>@CashServicesResx.MemberListNoteEditMultipleNotAvailable
-    </div>
+    @if (Model.SearchAccountLevel.IsAgentLevel()
+        && AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(UserSession.Current.Site))
+    {
+        <div class="note">
+            <span class="star"></span>@CashServicesResx.MemberListNoteEditMultipleNotAvailable
+        </div>
+    }
     <table id="tbl-customer-list" class="hidden tblRpt tblRpt-bordered tblRpt-hover display nowrap">
         <thead>
             <tr>
@@ -191,14 +195,14 @@
                     </th>
                 }
                 <th rowspan="2" class="header all padding-icon">
-                   @*  @if (!Model.HideEditMultiple)
+                    @*  @if (!Model.HideEditMultiple)
                     { *@
-                        <div class="edit-multiple icon-table-edit js-service-type-multiple-show" data-url=""
-                             title="@CustomerListResources.EditMultipleSetting" ></div>
+                    <div class="edit-multiple icon-table-edit js-service-type-multiple-show" data-url=""
+                         title="@CustomerListResources.EditMultipleSetting"></div>
                     @*} 
                     else
                     { *@
-                        <span class="js-service-type-multiple-hide">@CustomerListResources.Edit</span>
+                    <span class="js-service-type-multiple-hide">@CustomerListResources.Edit</span>
                     @* } *@
                 </th>
                 <th rowspan="2" class="header all">
