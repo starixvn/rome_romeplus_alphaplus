@@ -151,10 +151,21 @@ public class PaymentGatewayService(
             var message = $"Payment gateway is in test mode for {functionName}.";
             await logger.InfoAsync(message);
 
-            var testCode = Random.Shared.Next(0, 5);
+            var testCode = GetCustomTestCode();
             return CreateErrorResponse(message, testCode);
         }
 
         return null;
+    }
+
+    private static int GetCustomTestCode()
+    {
+        var rand = Random.Shared.Next(0, 10);
+        return rand switch
+        {
+            < 3 => 0,
+            < 6 => Random.Shared.Next(1, 4),
+            _ => 4
+        };
     }
 }
