@@ -389,7 +389,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
         public async Task<ActionResult> GetCurrentWinLossAmount(CustomerWinLossAmountQuery request)
             => Content(await customerService.GetCustomerCurrentWinLossAmounts(request.CustId, request.SportType, request.BetType, request.Language));
-            
+
         public async Task<ActionResult> GetCurrentWinAmount(CustomerWinLossAmountQuery request)
             => Content(await customerService.GetCurrentWinAmounts(request.CustId, request.SportType, request.BetType, request.Language));
 
@@ -414,14 +414,14 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         public async Task<IActionResult> GetCustomerInfo(int custId)
            => Json(await customerService.GetCustomerInfo(custId), serializeOptions);
 
-        public async Task<IActionResult> UpdateInfo(int custId, string username, bool isCashMember)
+        public IActionResult UpdateInfo(int custId, string username, bool isCashMember)
         {
             var viewModel = new UpdateInfoViewModel(
-                GetAssetsVersion(), 
-                custId, username, 
-                isCashMember, 
+                GetAssetsVersion(),
+                custId, username,
+                isCashMember,
                 CDNUri,
-                systemId, 
+                systemId,
                 GetApplicationPath()
             );
             return View(viewModel);
@@ -433,9 +433,9 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         {
             if (request.IsInternal)
             {
-                 return UnAuthorized();
+                return UnAuthorized();
             }
-            
+
             var updateCustomerInfoParam = new UpdateCustomerInfoParam
             {
                 CustId = request.CustId,
@@ -450,7 +450,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 IP = request.IP,
                 Language = request.LangKey
             };
-    
+
             return Json(await customerService.UpdateCustomerInfo(updateCustomerInfoParam), serializeOptions);
         }
 
@@ -627,7 +627,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 return Json(Result.CreateErrorResult(Resources.NotAuthorized), serializeOptions);
             }
 
-            var addMemberBankInfoParam = new AddMemberBankInfoParam{
+            var addMemberBankInfoParam = new AddMemberBankInfoParam
+            {
                 ActorId = request.ViewerId,
                 CustId = request.CustId,
                 MemberBankId = request.MemberBankId,
@@ -651,7 +652,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 return Json(Result.CreateErrorResult(Resources.NotAuthorized), serializeOptions);
             }
 
-            var updateMemberBankInfoParam = new UpdateMemberBankInfoParam{
+            var updateMemberBankInfoParam = new UpdateMemberBankInfoParam
+            {
                 ActorId = request.ViewerId,
                 CustId = request.CustId,
                 MemberBankAccountId = request.MemberBankAccountId,
@@ -675,7 +677,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 return Json(Result.CreateErrorResult(Resources.NotAuthorized), serializeOptions);
             }
 
-            var removeMemberBankInfoParam = new RemoveMemberBankInfoParam{
+            var removeMemberBankInfoParam = new RemoveMemberBankInfoParam
+            {
                 ActorId = request.ViewerId,
                 CustId = request.CustId,
                 MemberBankAccountId = request.MemberBankAccountId,

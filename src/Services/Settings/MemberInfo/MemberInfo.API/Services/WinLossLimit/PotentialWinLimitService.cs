@@ -15,7 +15,7 @@ public interface IPotentialWinLimitService
 
 public class PotentialWinLimitService(IDynamicRepository repository) : IPotentialWinLimitService
 {
-    private readonly IDynamicRepository _repository = repository;
+    private readonly IDynamicRepository repository = repository;
 
     public async Task<PotentialWinLimitPage> GetPotentialWinLimitPage(PotentialWinLimitParam param, bool isGetAll = false)
     {
@@ -31,24 +31,24 @@ public class PotentialWinLimitService(IDynamicRepository repository) : IPotentia
             IsGetAll = isGetAll,
             AccountType = param.AccountType,
         };
-        var potentialLimitDetail = await _repository.FetchAsync<PotentialWinLimitDetail>(criteria);
+        var potentialLimitDetail = await repository.FetchAsync<PotentialWinLimitDetail>(criteria);
         var custIds = string.Join(",", potentialLimitDetail.Select(x => x.CustId.ToString()));
 
         var potentialWinLimitAmountCriteria = new GetPotentialWinLimitAmountCriteria
         {
             CustIds = custIds,
         };
-        var potentialWinLimitAmount = await _repository.FetchAsync<PotentialWinLimitDetail>(potentialWinLimitAmountCriteria, param.AGIP);
-        
+        var potentialWinLimitAmount = await repository.FetchAsync<PotentialWinLimitDetail>(potentialWinLimitAmountCriteria, param.AGIP);
+
         var potentialWinLimitDetail = (from x in potentialLimitDetail
-                                     join y in potentialWinLimitAmount on x.CustId equals y.CustId into joined
-                                     from y in joined.DefaultIfEmpty()
-                                     select new
-                                     {
-                                         x,
-                                         AccumWinLoss = y?.AccumWinLoss ?? 0,
-                                         AccumToWin = y?.AccumToWin ?? 0
-                                     })
+                                       join y in potentialWinLimitAmount on x.CustId equals y.CustId into joined
+                                       from y in joined.DefaultIfEmpty()
+                                       select new
+                                       {
+                                           x,
+                                           AccumWinLoss = y?.AccumWinLoss ?? 0,
+                                           AccumToWin = y?.AccumToWin ?? 0
+                                       })
                                      .Select(result =>
                                      {
                                          result.x.AccumWinLoss = result.AccumWinLoss;

@@ -23,7 +23,7 @@
     <ul class="ul-remark">
         @if (AppSettings.IsOfferedCashService(UserSession.Site) && UserSession.IsAgent)
         {
-            <li>Cash Members are not included on this page</li>
+            <li>สมาชิกประเภทเงินสดจะไม่ถูกรวมอยู่ในหน้านี้</li>
         }
         @if (!string.IsNullOrEmpty(Model.AllowTransfer))
         {
@@ -39,7 +39,7 @@ else
     <ul class="ul-remark">
         @if (AppSettings.IsOfferedCashService(UserSession.Site) && UserSession.IsAgent)
         {
-            <li>Cash Members are not included on this page</li>
+            <li>สมาชิกประเภทเงินสดจะไม่ถูกรวมอยู่ในหน้านี้</li>
         }
         @if (!string.IsNullOrEmpty(Model.AllowTransfer))
         {
