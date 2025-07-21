@@ -5,9 +5,11 @@ using Criteria;
 using Fanex.Data.Repository;
 using Models;
 using Newtonsoft.Json;
+using PendingDeposit.Services;
 using Requests;
 using Shared.Models;
 using Shared.Requests;
+using Transactions.Services;
 
 public interface IPromotionService
 {
@@ -23,10 +25,16 @@ public interface IPromotionService
 
     Task<ResultModel> DeletePromotion(int promotionId, BaseActionRequest request);
 
+    Task<ResultModel> AddBonusAsync(AddBonusRequest request);
+
     Task<(IEnumerable<PromotionTransaction>, int)> GetPromotionTransactionAsync(GetPromotionTransactionRequest criteria);
 }
 
-public class PromotionService(IDynamicRepository repository, ICommonService commonService, ICacheRefService cacheRef) : IPromotionService
+public class PromotionService(IDynamicRepository repository,
+    ICommonService commonService,
+    ICacheRefService cacheRef,
+    IPendingDepositService depositService,
+    ITransactionService transactionService) : IPromotionService
 {
     public async Task<IEnumerable<Product>> GetProductAsync(string site, int currency, int settingStatus, string language)
     {
@@ -143,7 +151,7 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
                 Language = editPromotionMdoel.Language,
             };
 
-            var logEditPromotion= await repository.FetchAsync<WriteLogDBCommandModel>(editPromotionCriteria);
+            var logEditPromotion = await repository.FetchAsync<WriteLogDBCommandModel>(editPromotionCriteria);
             if (editPromotionCriteria.ErrCode == 0 && logEditPromotion is not null && logEditPromotion.Any())
             {
                 WriteLog(logEditPromotion.ToList(), editPromotionMdoel.SiteDBGroupId);
@@ -176,6 +184,7 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
 
         return result;
     }
+
     public async Task<ResultModel> DeletePromotion(int promotionId, BaseActionRequest request)
     {
         var command = new DeletePromotionCriteria
@@ -196,6 +205,27 @@ public class PromotionService(IDynamicRepository repository, ICommonService comm
         }
 
         return new ResultModel(command.ErrCode, command.ErrMsg);
+    }
+
+    public async Task<ResultModel> AddBonusAsync(AddBonusRequest request)
+    {
+        var memberSettings = await depositService.GetMemberSettingDepositWhenProcessTransactionAsync(request.CustId, request.UserId, request.CustDBGroupId);
+        var criteria = new AddBonusCriteria
+        {
+            CustId = request.CustId,
+            UplineId = request.UserId,
+            Amount = request.Amount,
+            Remark = request.Remark,
+            AgentGivenCredit = memberSettings.AgentGivenCredit,
+            CreditMembers_GivenCredit = memberSettings.CreditMembers_GivenCredit,
+            CustDbGroupId = request.CustDBGroupId,
+            SiteDbGroupId = request.SiteDBGroupId,
+            IP = request.IP
+        };
+        var logs = await repository.FetchAsync<WriteLogDBCommandModel>(criteria);
+        var result = new ResultModel(criteria.ErrCode, criteria.ErrMsg);
+        transactionService.OnAfterUpdateTransaction(criteria.CashAccumCreditTbl, request.SiteDBGroupId, request.CustDBGroupId, logs.ToList());
+        return result;
     }
 
     public async Task<(IEnumerable<PromotionTransaction>, int)> GetPromotionTransactionAsync(GetPromotionTransactionRequest request)

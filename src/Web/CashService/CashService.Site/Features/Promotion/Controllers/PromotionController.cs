@@ -191,4 +191,17 @@ public class PromotionController(
 
     public IActionResult GetPromotionTypeOptions()
         => Json(EnumHelper.GetEnumOptions<PromotionType>(CashServicesResx.ResourceManager));
+
+    [HttpPost]
+    public async Task<IActionResult> AddBonus([FromBody] AddBonusRequest request)
+    {
+        request.SetUserSession(userSession);
+        var url = $"/api/promotions/addBonus";
+        var result = await httpClientHelper.PostAsync<AddBonusRequest, ResultModel>(url, request);
+        if (result.Code != 0)
+        {
+            result.Message = ErrorCodeHandler.MappingAddManualWithdrawalErrCode(result.Code);
+        }
+        return Json(result);
+    }
 }

@@ -12,7 +12,10 @@
     "remarksPlaceholder": "Remarks",
     "selectMember": "Select Member",
     "cancel": "Cancel",
-    "approve": "Approve"
+    "approve": "Approve",
+    "memberLoginNameRequired": "Member username is required.",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "The amount must be greater than 0 and less than the agent available credit.",
+    "bonusAddedSuccessfully": "Bonus added successfully!"
   },
   "table": {
     "no": "#",

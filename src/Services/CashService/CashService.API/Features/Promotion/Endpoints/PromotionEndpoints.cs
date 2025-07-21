@@ -84,6 +84,17 @@ public static class PromotionEndpoints
             Description = "Delete a promotion"
         });
 
+        group.MapPost("/addBonus", async ([FromBody] AddBonusRequest request, IPromotionService service) =>
+        {
+            var result = await service.AddBonusAsync(request);
+            return Results.Ok(result);
+        }).WithName("AddBonus")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Add bonus",
+            Description = "Add Bonus"
+        });
+
         group.MapGet("/transactions",
             async ([AsParameters] GetPromotionTransactionRequest request, IPromotionService service) =>
             {

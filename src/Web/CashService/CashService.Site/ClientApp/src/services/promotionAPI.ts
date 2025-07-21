@@ -84,6 +84,20 @@ export const promotionService = {
       throw error;
     }
   },
+  addBonus: async (bonusRequest: any): Promise<ResultModel> => {
+    try {
+      const response = await axiosInstance.post<ResultModel>(`AddBonus`, bonusRequest, {
+        headers: {
+          ...createHeaderXMLHttp(),
+          'Content-Type': 'application/json',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error adding bonus:', error);
+      throw error;
+    }
+  },
   editPromotion: async (
     promotionId: number,
     promotionRequest: EditPromotionRequest

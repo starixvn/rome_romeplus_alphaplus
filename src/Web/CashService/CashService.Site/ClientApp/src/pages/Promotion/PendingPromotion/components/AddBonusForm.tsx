@@ -17,6 +17,7 @@ import { MemberLoginName } from '../../../../services/interfaces/Transactions/Me
 import pendingDepositAPI from '../../../../services/pendingDepositAPI';
 import { displayAmount } from '../../../../utils/commonFunctions';
 import { useTranslation } from 'react-i18next';
+import { promotionService } from '../../../../services/promotionAPI';
 
 interface AddBonusFormProps {
   onClose?: () => void;
@@ -66,19 +67,56 @@ const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose }) => {
     fetchMemberData();
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!member || !amount || isNaN(Number(amount.replace(/,/g, '')))) return;
-    setIsSubmitting(true);
-    setTimeout(() => {
-      setResultMessage({ type: 'success', message: 'Bonus added successfully!' });
-      setIsSubmitting(false);
-      if (onClose) setTimeout(onClose, 1500);
-    }, 1000);
+  const handleMemberLoginChange = async (option: DropdownOption) => {
+    setMember(option.value as string);
+    const agentAvailableCredit = await pendingDepositAPI.getLimitAmtDeposit(Number(option.value));
+    setAgentAvailableCredit(agentAvailableCredit);
   };
 
-  const handleMemberChange = (option: DropdownOption) => {
-    setMember(option.value as string);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!isValidForm()) return;
+    setIsSubmitting(true);
+    const data = {
+      custId: Number(member),
+      amount: Number(amount),
+      remark: remark,
+    };
+    const result = await promotionService.addBonus(data);
+    if (result.isSuccessful) {
+      setResultMessage({ type: 'success', message: t('addBonusForm.bonusAddedSuccessfully') });
+      if (onClose) {
+        setTimeout(() => {
+          onClose();
+        }, 3000);
+      }
+    } else {
+      setIsSubmitting(false);
+      setResultMessage({ type: 'error', message: result.message });
+    }
+  };
+
+  const isValidForm = () => {
+    if (!member) {
+      setResultMessage({
+        type: 'error',
+        message: t('addBonusForm.memberLoginNameRequired'),
+      });
+      return false;
+    }
+    if (
+      !amount ||
+      isNaN(Number(amount.replace(/,/g, ''))) ||
+      Number(amount) <= 0 ||
+      Number(amount) > agentAvailableCredit
+    ) {
+      setResultMessage({
+        type: 'error',
+        message: t('addBonusForm.amountMustBeGreaterThan0AndLessThanMaxLimit'),
+      });
+      return false;
+    }
+    return true;
   };
 
   return (
@@ -109,7 +147,7 @@ const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose }) => {
                   <div className="relative z-[9999]">
                     <DropdownComponent
                       options={memberOptions}
-                      onSelect={handleMemberChange}
+                      onSelect={handleMemberLoginChange}
                       initialValue={member}
                       searchable={true}
                       placeholder={t('manualDepositForm.selectMember')}
