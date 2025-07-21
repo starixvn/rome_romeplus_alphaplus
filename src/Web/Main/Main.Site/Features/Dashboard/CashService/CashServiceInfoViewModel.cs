@@ -25,6 +25,7 @@ public class CashServiceInfoViewModel
     public bool IsOfferedCashService { get; set; }
 
     public bool IsCanUpdateCashServiceStatus { get; set; }
+    public bool IsCanEditCashServicePermission { get; set; }
 
     public string CDNUri { get; set; }
 }

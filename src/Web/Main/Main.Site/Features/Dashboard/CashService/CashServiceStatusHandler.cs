@@ -91,18 +91,20 @@ public class CashServiceStatusHandler :
 
     public async Task<CashServiceInfoViewModel> Handle(GetCashServiceStatusQuery request, CancellationToken cancellationToken)
     {
-
         var isSiteOfferedCashService = AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(request.UserSession.Site);
         var isOfferedCashService = isSiteOfferedCashService && request.UserSession.IsAgent;
-        var isCanUpdateCashServiceStatus = isOfferedCashService && !request.UserSession.IsInternal && !request.UserSession.IsSubAcc;
-
+       
         if (!isOfferedCashService)
         {
             return new CashServiceInfoViewModel();
         }
 
+        var isCanUpdateCashServiceStatus = isOfferedCashService && !request.UserSession.IsInternal && !request.UserSession.IsSubAcc;
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(request.UserSession.CustId);
         var totalCashMember = await _customerService.GetCashServiceTotalDownline(request.UserSession.CustId);
+        
+        var isCanEditCashServicePermission = isOfferedCashService && !request.UserSession.IsInternal &&
+            (!request.UserSession.IsSubAcc || request.UserSession.SubPageAccess.CashService);
 
         return new CashServiceInfoViewModel
         {
@@ -111,7 +113,8 @@ public class CashServiceStatusHandler :
             IsOfferedCashService = true,
             IsCanUpdateCashServiceStatus = isCanUpdateCashServiceStatus,
             CDNUri = CDNUri,
-            NickName = request.UserSession.NickName
+            NickName = request.UserSession.NickName,
+            IsCanEditCashServicePermission = isCanEditCashServicePermission
         };
     }
 }
