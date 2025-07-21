@@ -3,6 +3,7 @@
     "explorer.fileNesting.patterns": {
       "appsettings.json": "appsettings.*.json",
       "results.json": "results.*.json",
+      "results3rd.json": "results3rd.*.json",
       "sharedSettings.json": "sharedSettings.*.json",
       "Labels.resx": "Labels.*.resx"
     },
