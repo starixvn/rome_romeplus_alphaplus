@@ -19,6 +19,7 @@ class CustomerListViewModel {
     CustomerListData: any;
     IsDirectMember: boolean;
     ServiceType: number;
+    OfferedCashService: boolean;
 
     constructor(
         uplineRoleId: number,
@@ -38,7 +39,8 @@ class CustomerListViewModel {
         canUpdateAccount: boolean,
         customerListData: any,
         isDirectMember: boolean,
-        serviceType: number
+        serviceType: number,
+        offeredCashService: boolean
     ) {
         this.UplineRoleId = uplineRoleId;
         this.SearchAccountId = searchAccountId;
@@ -58,6 +60,7 @@ class CustomerListViewModel {
         this.CustomerListData = customerListData;
         this.IsDirectMember = isDirectMember;
         this.ServiceType = serviceType;
+        this.OfferedCashService = offeredCashService;
     }
 }
 

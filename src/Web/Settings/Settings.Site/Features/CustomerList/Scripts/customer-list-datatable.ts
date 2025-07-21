@@ -641,8 +641,10 @@ class CustomerListDataTable {
         });
 
         this.$('thead tr th.control').parent().removeClass('parent');
-
-        if (this.serviceType === ServiceType.All) {
+        
+        if (this.viewModel.OfferedCashService
+            && this.viewModel.SearchAccountRoleId === CustomerLevel.Agent
+            && this.serviceType === ServiceType.All) {
             this.$('.js-service-type-multiple-hide').show();
             this.$('.js-service-type-multiple-show').hide();
         }

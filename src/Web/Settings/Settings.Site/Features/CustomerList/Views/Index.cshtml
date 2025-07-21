@@ -378,6 +378,7 @@
     @Html.Hidden("AllowAutoTransfer", Model.AllowAutoTransfer)
     @Html.Hidden("UnconfirmSettingId", Model.UnconfirmSetting)
     @Html.Hidden("enableAllDayBalanceTransfer", Model.EnableAllDayBalanceTransfer)
+    @Html.Hidden("OfferedCashService", AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(UserSession.Current.Site) ? "true" : "false")
     <input type="hidden" id="searchAccountId" value="@Model.SearchAccountId">
     <input type="hidden" id="searchAccountName" value="@Model.SearchAccountName">
     <input type="hidden" id="searchAccountRoleId" value="@Model.SearchAccountRoleId">

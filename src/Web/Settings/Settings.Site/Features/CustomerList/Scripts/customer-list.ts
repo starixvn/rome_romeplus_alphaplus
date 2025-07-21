@@ -141,7 +141,8 @@ $(function () {
         JSON.parse($('#canUpdateAccount').val()),
         window.customerListData,
         JSON.parse($('#IsDirectMember').val()),
-        parseInt($('#HiddenServiceType').val())
+        parseInt($('#HiddenServiceType').val()),
+        JSON.parse($('#OfferedCashService').val())
     );
 
     const customerListPopup = new CustomerListPopup($, window.top, viewModel.IsMobileView),
