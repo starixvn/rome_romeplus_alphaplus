@@ -166,7 +166,7 @@ public class TransactionService(IDynamicRepository dynamicRepository, ICommonSer
     {
         var request = new BaseActionRequest
         {
-            ActorId = log.ActionId,
+            ActorId = log.CustId,
             CustDBGroupId = custDbGroupId,
             UserId = log.UserId,
         };

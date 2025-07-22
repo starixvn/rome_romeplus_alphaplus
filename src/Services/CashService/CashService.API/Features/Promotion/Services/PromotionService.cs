@@ -236,6 +236,7 @@ public class PromotionService(IDynamicRepository repository,
 
         var criteria = new UpdatePromoteTransactionCriteria
         {
+            TransId = request.TransId,
             CustId = request.CustId,
             AgentId = request.UserId,
             SubAccId = request.SubAccId,

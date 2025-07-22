@@ -97,7 +97,6 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
         try
         {
             var criteria = new WriteLogDBCommandCriteria(custDbGroupId: -1, request, writeLogDBCommandModel);
-            await logger.InfoAsync($"WriteLogDBCommandCriteria. IsValid: {criteria.IsValid()}, SpNames: {criteria.GetSettingKey()}");
             await repository.ExecuteAsync(criteria);
             isSuccess = true;
         }

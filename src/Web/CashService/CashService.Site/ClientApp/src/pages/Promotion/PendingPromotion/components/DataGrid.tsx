@@ -14,6 +14,7 @@ interface DataGridProps {
   pageSize: number;
   isLoading: boolean;
   onSelectionChange?: (selectedItems: PromotionTransaction[]) => void;
+  refreshGrid?: () => void;
 }
 
 const DataGrid: React.FC<DataGridProps> = ({
@@ -22,18 +23,17 @@ const DataGrid: React.FC<DataGridProps> = ({
   pageSize,
   isLoading,
   onSelectionChange,
+  refreshGrid,
 }) => {
   const { t } = useTranslation('promotion');
   const [selectedItems, setSelectedItems] = useState<PromotionTransaction[]>([]);
   const [selectAll, setSelectAll] = useState(false);
   const [editModal, setEditModal] = useState<{
     isOpen: boolean;
-    transId: number;
-    currentAmount: number;
+    item: PromotionTransaction | null;
   }>({
     isOpen: false,
-    transId: 0,
-    currentAmount: 0,
+    item: null,
   });
 
   useEffect(() => {
@@ -58,10 +58,14 @@ const DataGrid: React.FC<DataGridProps> = ({
 
   const handleSelectItem = (item: PromotionTransaction, checked: boolean) => {
     const newSelectedItems = [...selectedItems];
+
     if (checked) {
       newSelectedItems.push(item);
     } else {
-      newSelectedItems.splice(newSelectedItems.indexOf(item), 1);
+      newSelectedItems.splice(
+        newSelectedItems.findIndex((i) => i.transId === item.transId && i.custId === item.custId),
+        1
+      );
     }
     setSelectedItems(newSelectedItems);
     if (checked && newSelectedItems.length === items.length) {
@@ -71,30 +75,19 @@ const DataGrid: React.FC<DataGridProps> = ({
     }
   };
 
-  const onEditSinglePromotion = (transId: number, amount: number) => {
+  const onEditSinglePromotion = (item: PromotionTransaction) => {
     setEditModal({
       isOpen: true,
-      transId,
-      currentAmount: amount,
+      item: item,
     });
   };
 
   const handleCloseEditModal = () => {
     setEditModal({
       isOpen: false,
-      transId: 0,
-      currentAmount: 0,
+      item: null,
     });
-  };
-
-  const handleApprovePromotion = async (transId: number, amount: number) => {
-    console.log('Approving promotion:', transId, 'with amount:', amount);
-    // TODO: Implement API call to approve promotion
-  };
-
-  const handleRejectPromotion = async (transId: number) => {
-    console.log('Rejecting promotion:', transId);
-    // TODO: Implement API call to reject promotion
+    refreshGrid?.();
   };
 
   if (isLoading) {
@@ -153,7 +146,7 @@ const DataGrid: React.FC<DataGridProps> = ({
           <tbody className="font-[500]">
             {items && items.length > 0 ? (
               items.map((item, index) => (
-                <tr key={item.transId}>
+                <tr key={index}>
                   <td className="w-[32px] min-w-[32px]">
                     {index + 1 + (pageIndex - 1) * pageSize}
                   </td>
@@ -161,9 +154,13 @@ const DataGrid: React.FC<DataGridProps> = ({
                     <input
                       type="checkbox"
                       className="w-[16px] h-[16px] cursor-pointer"
-                      checked={selectedItems.some(
-                        (selectedItem) => selectedItem.transId === item.transId
-                      )}
+                      checked={
+                        selectedItems.findIndex(
+                          (selectedItem) =>
+                            selectedItem.transId === item.transId &&
+                            selectedItem.custId === item.custId
+                        ) !== -1
+                      }
                       onChange={(e) => handleSelectItem(item, e.target.checked)}
                     />
                   </td>
@@ -190,7 +187,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                   <td className="text-center">
                     <div
                       className="flex justify-center items-center cursor-pointer"
-                      onClick={() => onEditSinglePromotion(item.transId, item.amount)}
+                      onClick={() => onEditSinglePromotion(item)}
                     >
                       <IconPen className="w-[20px] h-[20px] fill-[#333333] dark:fill-[#ededed]" />
                     </div>
@@ -207,10 +204,7 @@ const DataGrid: React.FC<DataGridProps> = ({
       <EditPendingPromotion
         isOpen={editModal.isOpen}
         onClose={handleCloseEditModal}
-        transId={editModal.transId}
-        currentAmount={editModal.currentAmount}
-        onApprove={handleApprovePromotion}
-        onReject={handleRejectPromotion}
+        item={editModal.item}
       />
     </>
   );

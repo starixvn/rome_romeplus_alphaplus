@@ -142,8 +142,8 @@ export const promotionService = {
     amount: number
   ): Promise<ResultModel> => {
     const response = await axiosInstance.post<ResultModel>(`ApprovePromotionTransaction`, {
-      customerId: custId,
-      promotionTransactionId: transId,
+      custId: custId,
+      transId: transId,
       amount: amount,
       headers: {
         ...createHeaderXMLHttp(),
@@ -161,8 +161,8 @@ export const promotionService = {
     const response = await axiosInstance.post<ResultModel>(
       `RejectPromotionTransaction`,
       {
-        customerId: custId,
-        promotionTransactionId: transId,
+        custId: custId,
+        transId: transId,
         amount: amount,
       },
       {

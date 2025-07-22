@@ -2,7 +2,7 @@
   "promotionReport": "Promotion Report",
   "pendingPromotion": "Pending Promotion",
   "addBonus": "Add Bonus",
-  "managePromotion":{
+  "managePromotion": {
     "addPromotion": "Add Promotion",
     "managePromotion": "Manage Promotion"
   },
@@ -96,7 +96,11 @@
     "lastName": "Last Name",
     "firstName": "First Name",
     "actions": "Actions",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "confirmApproveTitle": "Confirm Approve",
+    "confirmApproveMessage": "Are you sure you want to approve the selected promotion?",
+    "confirmRejectTitle": "Confirm Reject",
+    "confirmRejectMessage": "Are you sure you want to reject the selected promotion?"
   },
   "promotionType_1": "Turnover Rebate",
   "search": {

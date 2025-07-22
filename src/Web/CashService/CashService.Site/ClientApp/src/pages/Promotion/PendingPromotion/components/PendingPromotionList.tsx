@@ -11,6 +11,7 @@ import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
 import { convertToGMT4 } from '../../../../utils/commonFunctions';
 import Pagination from '../../../Transactions/Components/Pagination';
 import { useTranslation } from 'react-i18next';
+import ConfirmPopup from '../../../../components/ConfirmPopup';
 
 interface PendingPromotionListProps {
   isCashServiceEnabled: boolean;
@@ -143,11 +144,13 @@ const useDisplayedItems = (
 
 const PendingPromotionList: React.FC<PendingPromotionListProps> = () => {
   const { t } = useTranslation('promotion');
+  const { t: tGlobal } = useTranslation('global');
   const { loading, error, apiData, fetchPendingPromotions, selectedItems, setSelectedItems } =
     usePendingPromotionData();
   const { apiParams, updateApiParams } = useApiParams();
   const { localSearchText, handleLocalSearchChange } = useFilters();
   const { displayedItems, tempTotalCount } = useDisplayedItems(apiData, apiParams, localSearchText);
+  const [showConfirm, setShowConfirm] = useState<string | null>(null);
 
   const handleDateRangeChange = useCallback(
     (dates: [string, string]) => {
@@ -192,12 +195,14 @@ const PendingPromotionList: React.FC<PendingPromotionListProps> = () => {
     selectedItems.forEach((item) => {
       promotionService.rejectPromotionTransaction(item.custId, item.transId, item.amount);
     });
+    setShowConfirm(null);
   }, []);
 
   const onApprove = useCallback(() => {
     selectedItems.forEach((item) => {
       promotionService.approvePromotionTransaction(item.custId, item.transId, item.amount);
     });
+    setShowConfirm(null);
   }, []);
 
   useEffect(() => {
@@ -215,55 +220,90 @@ const PendingPromotionList: React.FC<PendingPromotionListProps> = () => {
   }, [localSearchText, updateApiParams]);
 
   return (
-    <div className="pending-promotion-list-container">
-      {error && (
-        <div
-          className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
-          role="alert"
-        >
-          <strong className="font-bold">Error!</strong>
-          <span className="block sm:inline"> {error}</span>
-        </div>
-      )}
-      <Filters
-        dateRange={apiParams.dateRange}
-        promotionTypeId={apiParams.promotionTypeId}
-        onDateRangeChange={handleDateRangeChange}
-        onPromotionTypeChange={handlePromotionTypeChange}
-      />
-      <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px]">
-        <Search
-          value={localSearchText}
-          onChange={handleLocalSearchChange}
-          placeholder={t('filter.searchPlaceholder')}
-          items={displayedItems}
-          selectedItems={selectedItems}
-          onReject={onReject}
-          onApprove={onApprove}
-          onDownload={onDownload}
+    <>
+      {showConfirm === 'approve' && (
+        <ConfirmPopup
+          title={t('table.confirmApproveTitle')}
+          message={t('table.confirmApproveMessage')}
+          onCancel={() => setShowConfirm(null)}
+          onConfirm={() => {
+            setShowConfirm(null);
+            onApprove();
+          }}
+          cancelText={tGlobal('cancel')}
+          confirmText={tGlobal('confirm')}
         />
-      </div>
-
-      <DataGrid
-        items={displayedItems}
-        pageIndex={apiParams.pageIndex}
-        pageSize={apiParams.pageSize}
-        isLoading={loading}
-        onSelectionChange={handleSelectionChange}
-      />
-
-      {!loading && tempTotalCount > 0 && (
-        <div className="mt-[-1px]">
-          <Pagination
-            currentPage={apiParams.pageIndex}
-            totalItems={tempTotalCount}
-            pageSize={apiParams.pageSize}
-            onPageChange={handlePageChange}
-            onPageSizeChange={handlePageSizeChange}
+      )}
+      {showConfirm === 'reject' && (
+        <ConfirmPopup
+          title={t('table.confirmRejectTitle')}
+          message={t('table.confirmRejectMessage')}
+          onCancel={() => setShowConfirm(null)}
+          onConfirm={() => {
+            setShowConfirm(null);
+            onReject();
+          }}
+          cancelText={tGlobal('cancel')}
+          confirmText={tGlobal('confirm')}
+        />
+      )}
+      <div className="pending-promotion-list-container">
+        {error && (
+          <div
+            className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
+            role="alert"
+          >
+            <strong className="font-bold">Error!</strong>
+            <span className="block sm:inline"> {error}</span>
+          </div>
+        )}
+        <Filters
+          dateRange={apiParams.dateRange}
+          promotionTypeId={apiParams.promotionTypeId}
+          onDateRangeChange={handleDateRangeChange}
+          onPromotionTypeChange={handlePromotionTypeChange}
+        />
+        <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px]">
+          <Search
+            value={localSearchText}
+            onChange={handleLocalSearchChange}
+            placeholder={t('filter.searchPlaceholder')}
+            items={displayedItems}
+            selectedItems={selectedItems}
+            onReject={() => setShowConfirm('reject')}
+            onApprove={() => setShowConfirm('approve')}
+            onDownload={onDownload}
           />
         </div>
-      )}
-    </div>
+
+        <DataGrid
+          items={displayedItems}
+          pageIndex={apiParams.pageIndex}
+          pageSize={apiParams.pageSize}
+          isLoading={loading}
+          onSelectionChange={handleSelectionChange}
+          refreshGrid={() => {
+            fetchPendingPromotions({
+              promotionTypeId: apiParams.promotionTypeId,
+              fromDate: apiParams.dateRange[0],
+              toDate: apiParams.dateRange[1],
+            });
+          }}
+        />
+
+        {!loading && tempTotalCount > 0 && (
+          <div className="mt-[-1px]">
+            <Pagination
+              currentPage={apiParams.pageIndex}
+              totalItems={tempTotalCount}
+              pageSize={apiParams.pageSize}
+              onPageChange={handlePageChange}
+              onPageSizeChange={handlePageSizeChange}
+            />
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
