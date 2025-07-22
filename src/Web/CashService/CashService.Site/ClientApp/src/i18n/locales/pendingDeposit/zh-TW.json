@@ -19,8 +19,8 @@
     "member": "會員",
     "username": "用戶名",
     "loginName": "登入名稱",
-    "firstName": "名字",
-    "lastName": "姓氏",
+    "firstName": "名",
+    "lastName": "姓",
     "nickname": "暱稱",
     "firstLastName": "姓名",
     "amount": "金額",
@@ -43,8 +43,8 @@
     "title": "待處理存款",
     "username": "用戶名",
     "loginName": "登入名稱",
-    "firstName": "名字",
-    "lastName": "姓氏",
+    "firstName": "名",
+    "lastName": "姓",
     "name": "姓名",
     "betCredit": "投注額度",
     "from": "從",
@@ -56,7 +56,11 @@
     "approve": "批准",
     "reject": "拒絕",
     "close": "關閉",
-    "firstLastName": "姓名"
+    "firstLastName": "姓名",
+    "confirmRejectTitle": "確認拒絕",
+    "confirmRejectMessage": "您確定要拒絕此存款嗎？",
+    "confirmApproveTitle": "確認批准",
+    "confirmApproveMessage": "您確定要批准此存款嗎？"
   },
 
   "manualDepositForm": {
@@ -79,7 +83,7 @@
     "approving": "批准中...",
     "agentAvailableCredit": "代理可用額度",
     "amountMustBeGreaterThan0AndLessThanMaxLimit": "金額必須大於0且小於代理可用額度。",
-    "imageSizeError": "圖片必須小於1MB",
+    "imageSizeError": "圖片大小必須小於1MB",
     "memberLoginNameRequired": "會員登入名稱是必需的。",
     "agentBankSelectionRequired": "從是必需的。",
     "memberBankSelectionRequired": "至是必需的。",
@@ -100,9 +104,9 @@
   },
 
   "successMessages": {
-    "depositSubmitted": "存款請求提交成功！",
-    "depositUpdated": "存款請求更新成功！",
-    "depositApproved": "存款請求批准成功！",
-    "depositRejected": "存款請求拒絕成功！"
+    "depositSubmitted": "存款請求已成功提交",
+    "depositUpdated": "存款請求已成功更新",
+    "depositApproved": "存款請求已成功批准",
+    "depositRejected": "存款請求已成功拒絕"
   }
 }

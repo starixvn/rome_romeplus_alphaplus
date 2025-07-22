@@ -1,4 +1,5 @@
 {
+    "promotionReport": "促销报告",
     "table": {
         "no": "序号",
         "action": "操作",
@@ -13,9 +14,18 @@
         "period": "期间",
         "provider": "供应商",
         "status": "状态",
-        "lastUpdated": "最后更新"
+        "edit": "编辑",
+        "delete": "删除",
+        "products": "产品",
+        "noRecords": "未找到记录",
+        "bonusAmount": "奖金金额",
+        "totalRequest": "总请求",
+        "totalApproved": "总批准",
+        "totalRejected": "总拒绝",
+        "totalBonusGiven": "总奖金发放"
     },
     "search": {
         "placeholder": "按标题或类型搜索..."
-    }
+    },
+    "promotionType_1": "营业额返利"
 }

@@ -102,9 +102,9 @@ namespace AlphaPlus.Main.Site.UnitTests.Features.Language
         }
 
         [Theory]
-        [InlineData("en-US", "E")]
-        [InlineData("zh-TW", "CT")]
-        public async Task Handle_ChangeLanguageCommand_WithoutUpdate_DoesNotCallService(string languageCode, string expectedKey)
+        [InlineData("en-US")]
+        [InlineData("zh-TW")]
+        public async Task Handle_ChangeLanguageCommand_WithoutUpdate_DoesNotCallService(string languageCode)
         {
             // Arrange
             _userSession.Setup(x => x.CustId).Returns(123);

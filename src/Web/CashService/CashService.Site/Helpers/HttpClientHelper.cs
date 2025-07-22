@@ -62,18 +62,20 @@ public class HttpClientHelper
         );
     }
 
-    public async Task PutAsync<TRequest>(string path, TRequest data)
+    public async Task<TResponse> PutAsync<TRequest, TResponse>(string path, TRequest data)
     {
         var response = await httpClient.PutAsJsonAsync(path, data, jsonOptions);
-        if (!response.IsSuccessStatusCode)
+        if (response.IsSuccessStatusCode)
         {
-            throw new CustomHttpClientException(
+            return await response.Content.ReadFromJsonAsync<TResponse>(jsonOptions);
+        }
+
+        throw new CustomHttpClientException(
                 requestUri: new Uri(path),
                 requestContent: JsonConvert.SerializeObject(data),
                 statusCode: response.StatusCode,
                 reasonPhrase: response.ReasonPhrase
             );
-        }
     }
 
     public async Task DeleteAsync(string path, Dictionary<string, string> queryParams = null)

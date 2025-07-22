@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace AgencyCash.API.Shared.DataAnnotations;
 
-[ExcludeFromCodeCoverage]
+[ExcludeFromCodeCoverage(Justification = "Validation attribute logic is tested indirectly through model validation tests.")]
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = true)]
 public class RequiredIfAttribute(string dependentProperty, object targetValue) : ValidationAttribute("{0} is required.")
 {
@@ -12,21 +12,18 @@ public class RequiredIfAttribute(string dependentProperty, object targetValue) :
 
     protected override ValidationResult IsValid(object value, ValidationContext validationContext)
     {
-        var dependentProperty = validationContext.ObjectType.GetProperty(_dependentProperty);
-        if (dependentProperty == null)
+        var dependentPropertyInfo = validationContext.ObjectType.GetProperty(_dependentProperty);
+        if (dependentPropertyInfo == null)
         {
             return new ValidationResult($"Unknown property: {_dependentProperty}");
         }
 
-        var dependentValue = dependentProperty.GetValue(validationContext.ObjectInstance);
+        var dependentValue = dependentPropertyInfo.GetValue(validationContext.ObjectInstance);
         var conditionMet = Equals(dependentValue, _targetValue);
 
-        if (conditionMet)
+        if (conditionMet && value == null || (value is string str && string.IsNullOrWhiteSpace(str)))
         {
-            if (value == null || (value is string str && string.IsNullOrWhiteSpace(str)))
-            {
-                return new ValidationResult(FormatErrorMessage(validationContext.DisplayName), [validationContext.MemberName!]);
-            }
+            return new ValidationResult(FormatErrorMessage(validationContext.DisplayName), [validationContext.MemberName!]);
         }
 
         return ValidationResult.Success;

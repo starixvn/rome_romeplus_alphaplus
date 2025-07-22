@@ -4,43 +4,18 @@ namespace AlphaPlus.CashService.API.Features.Promotion.Criteria
 {
     public class EditPromotionCriteria : NonQueryCommand
     {
-        public string PromotionType { get; set; }
-
-        public DateTime FromDate { get; set; }
-
-        public DateTime ToDate { get; set; }
-
-        public string Provider { get; set; }
-
-        public decimal SportsPercentage { get; set; }
-
-        public decimal SportsMinTurnover { get; set; }
-
-        public decimal SportsMaxPayout { get; set; }
-
-        public decimal VirtualSportsPercentage { get; set; }
-
-        public decimal VirtualSportsMinTurnover { get; set; }
-
-        public decimal VirtualSportsMaxPayout { get; set; }
-
-        public decimal GamesPercentage { get; set; }
-
-        public decimal GamesMinTurnover { get; set; }
-
-        public decimal GamesMaxPayout { get; set; }
-
-        public decimal LiveCasinoPercentage { get; set; }
-
-        public decimal LiveCasinoMinTurnover { get; set; }
-
-        public decimal LiveCasinoMaxPayout { get; set; }
-
+        public int PromotionId { get; set; }
+        public int AgentId { get; set; }
+        public int SubAccId { get; set; }
+        public string IP { get; set; }
+        public int SiteDbGroupId { get; set; }
+        public string PromotionContents { get; set; }
+        public string Language { get; set; }
         public int ErrCode { get; set; }
         public string ErrMsg { get; set; }
 
-        public override string GetSettingKey() => "";
+        public override string GetSettingKey() => "Age_CashService_CashPromotionUpd";
 
-        public override bool IsValid() => true;
+        public override bool IsValid() => PromotionId > 0 && AgentId > 0;
     }
 }

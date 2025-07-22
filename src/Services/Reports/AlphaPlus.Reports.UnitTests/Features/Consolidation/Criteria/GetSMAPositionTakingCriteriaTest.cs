@@ -11,20 +11,22 @@ public class GetSMAPositionTakingCriteriaTest
         // Arrange
         const string custIds = "1,2,3";
         const byte settingStatus = 1;
+        const string cashServicesSites = "site";
 
         // Act
-        var criteria = new GetSMAPositionTakingCriteria(custIds, settingStatus);
+        var criteria = new GetSMAPositionTakingCriteria(custIds, settingStatus, cashServicesSites);
 
         // Assert
         Assert.Equal(custIds, criteria.CustIds);
         Assert.Equal(settingStatus, criteria.SettingStatus);
+        Assert.Equal(cashServicesSites, criteria.CashServiceSites);
     }
 
     [Fact]
     public void GetSettingKey_Should_Return_Correct_Key()
     {
         // Arrange
-        var criteria = new GetSMAPositionTakingCriteria("1", 1);
+        var criteria = new GetSMAPositionTakingCriteria("1", 1, "site");
 
         // Act
         var result = criteria.GetSettingKey();
@@ -42,7 +44,7 @@ public class GetSMAPositionTakingCriteriaTest
     public void IsValid_Should_Return_Expected_Result(string custIds, bool expected)
     {
         // Arrange
-        var criteria = new GetSMAPositionTakingCriteria(custIds, 1);
+        var criteria = new GetSMAPositionTakingCriteria(custIds, 1, "site");
 
         // Act
         var result = criteria.IsValid();

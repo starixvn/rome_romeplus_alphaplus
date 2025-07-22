@@ -6,9 +6,9 @@ import { createRoot } from 'react-dom/client';
 import { FormProvider, useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-import { ButtonApplyComponent } from '../../components/ButtonComponents';
-import { ResultMessageComponent, ResultType } from '../../components/MessageComponents';
-import TitleComponent from '../../components/TitleComponents';
+import { ButtonComponent } from '../../components/Buttons/index';
+import { MessageComponent, ResultType } from '../../components/Message';
+import { TitleComponent } from '../../components/Title';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import i18n from '../../i18n/i18n-memberSite';
 import {
@@ -16,9 +16,12 @@ import {
   MemberSiteManagementDataDefault,
 } from '../../services/interfaces/MemberSites';
 import { memberSitesService } from '../../services/memberSitesAPI';
+import { baseAPI } from '../../services/commonAPI';
+
 import GeneralSettings from './components/GeneralSettings';
 import MessageForm from './components/MessageForm';
 import RegistrationLinks from './components/RegistrationLinks';
+import { SetupChecklistModel } from '../../services/interfaces/SetupChecklistModel';
 
 const MemberSiteManagement: React.FC = () => {
   const { t } = useTranslation(['memberSite', 'global']);
@@ -26,6 +29,8 @@ const MemberSiteManagement: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [result, setResult] = useState<{ type: ResultType; text: string } | null>(null);
   const [isSaving, setIsSaving] = useState(false);
+  const [isCashServiceEnabled, setIsCashServiceEnabled] = useState(false);
+  const [setupCheckList, setSetupCheckList] = useState<SetupChecklistModel | null>(null);
 
   const methods = useForm<MemberSiteManagementData>({
     defaultValues: MemberSiteManagementDataDefault,
@@ -41,6 +46,14 @@ const MemberSiteManagement: React.FC = () => {
 
   useEffect(() => {
     fetchData();
+    const isCashServiceEnabled = document.getElementById('IsCashServiceEnabled')?.getAttribute('value');
+
+    const enabled = isCashServiceEnabled === '1';
+    setIsCashServiceEnabled(enabled);
+
+    if(enabled) {
+      fetchSetupCheckList();
+    }
   }, []);
 
   const showResult = (type: ResultType, text: string) => {
@@ -63,6 +76,15 @@ const MemberSiteManagement: React.FC = () => {
       showResult('error', t('errors.loadFailed'));
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchSetupCheckList = async () => {
+    try {
+      const response = await baseAPI.getSetupCheckList();
+      setSetupCheckList(response.data);
+    } catch (err) {
+      showResult('error', t('errors.loadFailed'));
     }
   };
 
@@ -107,10 +129,10 @@ const MemberSiteManagement: React.FC = () => {
     <div className="">
  
         <div className="mb-[8px]">
-          <TitleComponent title={t('title')} showTippy={false} />
+          <TitleComponent type='main' text={t('title')} />
         </div>
         <div className="max-w-[950px]">               
-              {result && <ResultMessageComponent className="mb-[10px]" type={result.type} message={result.text} />}
+          {result && <MessageComponent className="mb-[10px]" type={result.type} message={result.text} />}
           <FormProvider {...methods}>
             <form onSubmit={handleSubmit(onSubmit)} className="py-[5px] ">              
                 <RegistrationLinks
@@ -118,16 +140,20 @@ const MemberSiteManagement: React.FC = () => {
                     .watch('domains')
                     .map((domain) => ({ ...domain, status: 'active' }))}
                   loading={loading}
+                  isCashServiceEnabled={isCashServiceEnabled}
+                  setupChecklist={setupCheckList}
                 />             
               <div className="block w-[100%] h-[1px] bg-[var(--border-color)] my-[10px]" ></div>              
               <GeneralSettings loading={loading} />               
               <div className="block w-[100%] h-[1px] bg-[var(--border-color)] my-[10px]" ></div>             
               <MessageForm loading={loading} />  
               <div className="flex justify-start py-[8px] mt-[8px]">
-                <ButtonApplyComponent
-                  className="w-[140px] [&>*]:w-[100%]"
+                <ButtonComponent
+                  variant="apply"
                   text={isSaving ? t('actions.saving') : t('actions.save')}
-                  disabled={isSaving}
+                  disabled={isSaving || !isCashServiceEnabled}
+                  title={isCashServiceEnabled ? '' : t('global:cashServiceDisabled')}
+                  type="submit"
                 />
               </div>
             </form>

@@ -110,6 +110,7 @@ public class CommissionService(IDynamicRepository repository, CacheRefService ca
             entity.ClosedReason,
             entity.UGroup,
             entity.DoubleCommLosing,
+            entity.IsCashMember,
             commissions);
 
     private static SportCommissionModel BuildSportCommissionModel(CommissionEntity entity)

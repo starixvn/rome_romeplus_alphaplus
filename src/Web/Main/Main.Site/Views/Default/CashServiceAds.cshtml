@@ -2,7 +2,7 @@
 @using AlphaPlus.Core.Helpers
 @model CashServiceInfoViewModel
 @{
-    var cdnUri = Model.CDNUri ?? "https://cdn-customer.nexdev.net/v3/cash-member/create/";
+    var cdnUri = Model.CDNUri;
 }
 <style>
     /* ========== ANIMATIONS ========== */
@@ -698,6 +698,7 @@
                 },
                 success: (response) => {
                     if (response.isSuccessful) {
+                        window.top.indexManager.showHideCashServiceChecklist(true);
                         closePopup();
                         document.getElementById('main').src = homeUrl;
                     } else {

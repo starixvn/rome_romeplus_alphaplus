@@ -440,7 +440,127 @@ public class DepositServiceTests
 
         // Assert
         _mockLogger.Verify(l => l.ErrorAsync(It.Is<string>(s =>
-            s.Contains("Update Deposit Transaction Status failed") &&
-            s.Contains("Additional error information"))), Times.Once);
+            s.Contains("Deposit - UpdateTransactionStatus failed"))), Times.Once);
+    }
+
+    [Fact]
+    public async Task UpdatePaySlip_Should_Return_Success_Result()
+    {
+        // Arrange
+        long transId = 12345;
+        var request = new UpdatePaySlipRequest
+        {
+            AgentId = 1,
+            CustId = 2,
+            PaySlip = "VGhpcyBpcyBhIHRlc3Qgc3RyaW5nIHdpdGggLyBhbmQgKyBjaGFyYWN0ZXJzLg==",
+            IP = "127.0.0.1"
+        };
+
+        var siteDBConfig = new SiteDBConfig
+        {
+            SiteDBGroupId = 1,
+            CustDBGroupId = 2
+        };
+
+        _mockSiteDBService
+            .Setup(x => x.GetSiteDBConfig(request.AgentId))
+            .ReturnsAsync(siteDBConfig);
+
+        var logs = new List<LogEntry> { new LogEntry() };
+
+        _mockRepository
+            .Setup(x => x.FetchAsync<LogEntry>(It.IsAny<UpdatePaySlipCriteria>(), string.Empty, default))
+            .ReturnsAsync(logs);
+
+        // Act
+        var result = await _depositService.UpdatePaySlip(transId, request);
+
+        // Assert
+        Assert.True(result.IsSuccess);
+        _mockRepository.Verify(x => x.FetchAsync<LogEntry>(
+            It.Is<UpdatePaySlipCriteria>(c =>
+                c.AgentId == request.AgentId &&
+                c.CustId == request.CustId &&
+                c.TransId == transId), string.Empty, default),
+            Times.Once);
+    }
+
+    [Fact]
+    public async Task UpdatePaySlip_Should_Log_Error_When_ErrExtraInfo_IsNotEmpty()
+    {
+        // Arrange
+        long transId = 12345;
+        var request = new UpdatePaySlipRequest
+        {
+            AgentId = 1,
+            CustId = 2,
+            PaySlip = "VGhpcyBpcyBhIHRlc3Qgc3RyaW5nIHdpdGggLyBhbmQgKyBjaGFyYWN0ZXJzLg==",
+            IP = "127.0.0.1"
+        };
+
+        var siteDBConfig = new SiteDBConfig
+        {
+            SiteDBGroupId = 1,
+            CustDBGroupId = 2
+        };
+
+        _mockSiteDBService
+            .Setup(x => x.GetSiteDBConfig(request.AgentId))
+            .ReturnsAsync(siteDBConfig);
+
+        _mockRepository
+            .Setup(x => x.FetchAsync<LogEntry>(It.IsAny<ICriteria>(), string.Empty, default))
+            .ReturnsAsync(new List<LogEntry>())
+            .Callback<ICriteria, string, CancellationToken>((c, s, t) =>
+            {
+                var criteria = c as UpdatePaySlipCriteria;
+                criteria.ErrExtraInfo = "Some error info";
+            });
+
+        // Act
+        await _depositService.UpdatePaySlip(transId, request);
+
+        // Assert
+        _mockLogger.Verify(x => x.ErrorAsync(It.IsAny<string>()), Times.Once);
+    }
+
+    [Fact]
+    public async Task UpdatePaySlip_Should_Write_Logs()
+    {
+        // Arrange
+        long transId = 12345;
+        var request = new UpdatePaySlipRequest
+        {
+            AgentId = 1,
+            CustId = 2,
+            PaySlip = "VGhpcyBpcyBhIHRlc3Qgc3RyaW5nIHdpdGggLyBhbmQgKyBjaGFyYWN0ZXJzLg==",
+            IP = "127.0.0.1"
+        };
+
+        var siteDBConfig = new SiteDBConfig
+        {
+            SiteDBGroupId = 1,
+            CustDBGroupId = 2
+        };
+
+        _mockSiteDBService
+            .Setup(x => x.GetSiteDBConfig(request.AgentId))
+            .ReturnsAsync(siteDBConfig);
+
+        var logs = new List<LogEntry>
+        {
+            new LogEntry { TrackingValueMask = "Log1" },
+            new LogEntry { TrackingValueMask = "Log2" }
+        };
+
+        _mockRepository
+            .Setup(x => x.FetchAsync<LogEntry>(It.IsAny<UpdatePaySlipCriteria>(), string.Empty, default))
+            .ReturnsAsync(logs);
+
+        // Act
+        await _depositService.UpdatePaySlip(transId, request);
+
+        // Assert
+        _mockRepository.Verify(x => x.ExecuteAsync(It.IsAny<WriteLogRunSPCriteria>(), string.Empty, default), Times.Exactly(2));
     }
 }

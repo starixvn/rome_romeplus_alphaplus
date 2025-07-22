@@ -3,6 +3,7 @@ using Fanex.Data.Repository;
 
 namespace AgencyCash.API.Payments.Criteria.Deposit;
 
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "Approved")]
 public class AddTransactionDepositCriteria(
     int agentId,
     int custId,
@@ -16,11 +17,10 @@ public class AddTransactionDepositCriteria(
     short paymentMethodId,
     string paymentFrom,
     string paymentTo,
-    //decimal exchangeRate,
     decimal amount,
     decimal? userInputAmount = null,
     byte? matchingMode = null,
-    byte[] paySlip = null,
+    short? providerId = null,
     string ip = null,
     string remark = null) : CriteriaBase
 {
@@ -48,7 +48,7 @@ public class AddTransactionDepositCriteria(
 
     public string PaymentTo { get; } = paymentTo;
 
-    public decimal ExchangeRate { get; }// = exchangeRate;
+    public decimal ExchangeRate { get; }
 
     public decimal Amount { get; } = amount;
 
@@ -56,7 +56,7 @@ public class AddTransactionDepositCriteria(
 
     public byte? MatchingMode { get; } = matchingMode;
 
-    public byte[] PaySlip { get; } = paySlip;
+    public short? ProviderId { get; } = providerId;
 
     public string IP { get; } = ip;
 

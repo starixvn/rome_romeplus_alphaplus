@@ -6,6 +6,7 @@ using AlphaPlus.Reports.Features.WinLoss;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using AlphaPlus.Shared.AppResources.Report;
+using EasyNetQ;
 
 namespace AlphaPlus.Reports.Site.Features.WinLoss;
 
@@ -28,7 +29,8 @@ public class WinLossViewModel : DrillDownableViewModel<WinLossModel>
             reportData,
             message.SortPropertyName,
             message.DescendingSort,
-            betListPath: "~/WinLoss/Index")
+            betListPath: "~/WinLoss/Index",
+            cashFeePath: "~/WinLoss/CashFee")
     {
         FromDate = message.FromDate.ToShortDateWithSlash();
         ToDate = message.ToDate.ToShortDateWithSlash();
@@ -97,6 +99,14 @@ public class WinLossViewModel : DrillDownableViewModel<WinLossModel>
         queryParams[nameof(ToDate)] = ToDate;
         queryParams["ProductIds"] = ProductViewModel.UserSelectedProductIds;
         queryParams["ResourceIds"] = ProductViewModel.UserSelectedResourceIds;
+
+        return queryParams;
+    }
+
+    protected override IDictionary<string, string> AddMoreCashFeeParams(IDictionary<string, string> queryParams)
+    {
+        queryParams[nameof(FromDate)] = FromDate;
+        queryParams[nameof(ToDate)] = ToDate;
 
         return queryParams;
     }

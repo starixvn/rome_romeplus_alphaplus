@@ -2,21 +2,18 @@
 
 namespace AlphaPlus.CashService.API.Features.Promotion.Criteria;
 
-public class GetPromotionCriteria : CriteriaBase
+public class GetPromotionCriteria(int promotionType, int status, int siteDBGroupId, int agentId) : CriteriaBase
 {
-    public GetPromotionCriteria(int promotionType, string status)
-    {
-        PromotionType = promotionType;
-        Status = status;
-    }
+    public int PromotionType { get; set; } = promotionType;
 
-    public int PromotionType { get; set; }
+    public int Status { get; set; } = status;
 
-    public string Status { get; set; }      
+    public int SiteDBGroupId { get; set; } = siteDBGroupId;
 
-    public override string GetSettingKey() => "Age_Promotion_GetPromotion";
+    public int AgentId { get; set; } = agentId;
 
+    public override string GetSettingKey() => "Age_CashService_CashPromotionSel";
 
-    public override bool IsValid() => true;
-    
+    public override bool IsValid() => AgentId > 0;
+
 }

@@ -13,5 +13,7 @@ public class UpdateTransactionStatusRequest
     [PositiveNumber]
     public byte StatusId { get; init; }
 
+    public string ProviderTransId { get; init; }
+
     public string IP { get; init; }
 }

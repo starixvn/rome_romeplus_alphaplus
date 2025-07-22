@@ -27,7 +27,42 @@
             {
                 "RoleId": 2,
                 "Name": "Agent",
-                "PageAccesses": []
+                "PageAccesses": [
+                    {
+                        "Url": "Payments",
+                        "Permission": "[M]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": false
+                    },
+                    {
+                        "Url": "Transactions",
+                        "Permission": "[M]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": false
+                    },
+                    {
+                        "Url": "MemberSites",
+                        "Permission": "[M]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": false
+                    },
+                    {
+                        "Url": "Promotion",
+                        "Permission": "[N]",
+                        "IsCheckBelonging": false,
+                        "IsAllowToDoByThemselves": false
+                    }
+                ]
+            },
+            {
+                "RoleId": 3,
+                "Name": "Master",
+                "DeniedPages": [
+                    "Payments",
+                    "Transactions",
+                    "MemberSites",
+                    "Promotion"
+                ]
             }
         ]
     }

@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -165,10 +165,100 @@
   <data name="TransactionType" xml:space="preserve">
     <value>ประเภทธุรกรรม</value>
   </data>
+  <data name="TransactionType_ManualWithdrawal" xml:space="preserve">
+    <value>การถอนเงินด้วยตนเอง</value>
+  </data>
+  <data name="TransactionType_SystemAdjust" xml:space="preserve">
+    <value>การปรับระบบ</value>
+  </data>
+  <data name="TransactionType_AutoWithdrawal" xml:space="preserve">
+    <value>การถอนเงินอัตโนมัติ</value>
+  </data>
+  <data name="TransactionType_ManualDeposit" xml:space="preserve">
+    <value>การฝากเงินด้วยตนเอง</value>
+  </data>
+  <data name="TransactionType_AutoDeposit" xml:space="preserve">
+    <value>การฝากเงินอัตโนมัติ</value>
+  </data>
   <data name="FirstAndLastName" xml:space="preserve">
     <value>ชื่อและนามสกุล</value>
   </data>
   <data name="InternalServerError" xml:space="preserve">
     <value>ข้อผิดพลาดภายในเซิร์ฟเวอร์</value>
+  </data>
+  <data name="TransactionStatus_Completed" xml:space="preserve">
+    <value>เสร็จสิ้น</value>
+  </data>
+  <data name="TransactionStatus_ProviderRejected" xml:space="preserve">
+    <value>ผู้ให้บริการปฏิเสธ</value>
+  </data>
+  <data name="TransactionStatus_Rejected" xml:space="preserve">
+    <value>ปฏิเสธ</value>
+  </data>
+  <data name="TransactionStatus_Pending" xml:space="preserve">
+    <value>รอดำเนินการ</value>
+  </data>
+  <data name="TransactionStatus_Expired" xml:space="preserve">
+    <value>หมดอายุ</value>
+  </data>
+  <data name="TransactionHistory" xml:space="preserve">
+    <value>ประวัติธุรกรรม</value>
+  </data>
+  <data name="PromotionReport" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PromotionType" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TotalRequest" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TotalRequestApproved" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TotalBonusGiven" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value />
+  </data>
+  <data name="PromotionTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TotalRequestRejected" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BonusAmount" xml:space="preserve">
+    <value />
+  </data>
+  <data name="LastUpdated" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AccountType" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MemberListNoteEditMultipleNotAvailable" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ProviderRejectErrorMessage" xml:space="preserve">
+    <value>คำขอถอนเงินของคุณถูกปฏิเสธโดยผู้ให้บริการ</value>
+  </data>
+  <data name="PaymentProviderUnavailable" xml:space="preserve">
+    <value>ผู้ให้บริการชำระเงินไม่พร้อมใช้งานในขณะนี้ กรุณาลองใหม่อีกครั้งภายหลัง</value>
+  </data>
+  <data name="PromotionType_1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UpdatedBy" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value />
   </data>
 </root>

@@ -9,28 +9,28 @@ import {
   getWithdrawalMemberCashBalance,
 } from '../../../../services/pendingWithdrawalAPI';
 import { AddWithdrawalModel } from '../../../../services/interfaces/AddWithdrawalModel';
-import { ResultMessageComponent } from '../../../../components/MessageComponents';
+import { MessageComponent } from '../../../../components/Message';
 import UploadImage from '../../Components/UploadImage';
 import BankIcon from '../../../../components/BankComponents';
 import { displayAmount, renderBankOptionValue } from '../../../../utils/commonFunctions';
 import {
-  BackButtonComponent,
-  ButtonApplyComponent,
-  ButtonCancelComponent,
-} from '../../../../components/ButtonComponents';
+  ButtonComponent,
+} from '../../../../components/Buttons/index';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
-import TitleComponent, {
-  LabelTitleComponent,
-  MediumTitleComponent,
-} from '../../../../components/TitleComponents';
+import {
+  TitleComponent,
+} from '../../../../components/Title';
 import { AmountInput } from '../../../../components/AmountInput';
+import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
 
 interface ManualAddWithdrawalFormProps {
-  onClose?: () => void;
+  onClose?: () => void; 
+  isCashServiceEnabled: boolean;
 }
 
-const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClose }) => {
-  const { t } = useTranslation('pendingWithdrawal');
+const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClose, isCashServiceEnabled }) => {
+  const { t } = useTranslation('pendingWithdrawal');  
+  const { t: tGlobal } = useTranslation('global');
   const [custId, setCustId] = useState<number | null>(null);
   const [from, setFrom] = useState<string>('');
   const [to, setTo] = useState<string>('');
@@ -74,7 +74,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       if (addWithdrawalResponse.isSuccessful) {
         setResultMessage({
           type: 'success',
-          message: t('manualWithdrawalForm.addWithdrawalSuccess'),
+          message: t('successMessages.withdrawalSubmitted'),
         });
         if (onClose) {
           setTimeout(() => {
@@ -86,7 +86,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
         setIsSubmitting(false);
       }
     } catch (error) {
-      setResultMessage({ type: 'error', message: t('manualWithdrawalForm.error') });
+      setResultMessage({ type: 'error', message: t('errorMessages.failedToSubmit') });
       setIsSubmitting(false);
     }
   };
@@ -204,7 +204,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
       setMemberOptions(
         memberNames.map((member) => ({
           value: member.custId.toString(),
-          label: member.username + (member.nickName ? ' (' + member.nickName + ')' : ''),
+          label: member.username + (member.nickName ? ' <span class="nickname">(' + member.nickName + ')</span>' : ''),
         }))
       );
       const firstMember = memberNames[0];
@@ -265,20 +265,19 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
   const handleSetWithdrawalAmount = (value: number) => {
     setWithdrawalAmount(value);
   };
-
   return (
     <div className="">
       <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-        <BackButtonComponent onClick={onClose} />
-        <TitleComponent title={t('manualWithdrawalForm.title')} />
+        <ButtonIconComponent style='Back' onClick={onClose || (() => {})} />
+        <TitleComponent type='main' text={t('manualWithdrawalForm.title')} />
       </div>
 
       <div
         id="manual-withdrawal-form"
-        className="max-[768px]:w-full pb-[16px] pt-[10px]"
+        className="max-w-[1100px] w-full max-[768px]:w-full pb-[16px] pt-[10px]"
       >
         {resultMessage.type && (
-          <ResultMessageComponent
+          <MessageComponent
             type={resultMessage.type}
             message={resultMessage.message}
             className="mb-[16px] max-[768px]:mb-[0]"
@@ -286,11 +285,11 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
         )}
         <div className="flex justify-between max-[768px]:flex-col mb-[16px]">
           <div className="flex-1 max-w-[700px] max-[768px]:mb-[16px] mr-[30px] max-[768px]:mr-[0]">
-            <MediumTitleComponent text={t('manualWithdrawalForm.accountInformation')} />
+            <TitleComponent type='medium' text={t('manualWithdrawalForm.accountInformation')} />
             <div className="flex flex-wrap">
               <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
-                  <LabelTitleComponent text={t('manualWithdrawalForm.memberLoginName')} required />
+                  <TitleComponent type='label' text={t('manualWithdrawalForm.memberLoginName')} required />
 
                   <div className="relative z-[9999]">
                     <DropdownComponent
@@ -303,7 +302,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                   </div>
                 </div>
                 <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
-                  <LabelTitleComponent text={t('manualWithdrawalForm.from')} required />
+                  <TitleComponent type='label' text={t('manualWithdrawalForm.from')} required />
                   <DropdownComponent
                     options={agentBankInfo.map((bank) => ({
                       value: bank.value,
@@ -323,7 +322,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
               </div>
               <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full ">
                 <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
-                  <LabelTitleComponent text={t('manualWithdrawalForm.to')} required />
+                  <TitleComponent type='label' text={t('manualWithdrawalForm.to')} required />
                   <DropdownComponent
                     options={memberBankInfo.map((bank) => ({
                       value: bank.value,
@@ -343,7 +342,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                   />
                 </div>
                 <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
-                  <LabelTitleComponent text={t('manualWithdrawalForm.withdrawalAmount')} required />
+                  <TitleComponent type='label' text={t('manualWithdrawalForm.withdrawalAmount')} required />
                   <AmountInput
                     id="withdrawalAmount"
                     value={withdrawalAmount}
@@ -357,7 +356,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
                 </div>
               </div>
               <div className="w-full">
-                <LabelTitleComponent text={t('manualWithdrawalForm.remarks')} />
+                <TitleComponent type='label' text={t('manualWithdrawalForm.remarks')} />
                 <textarea
                   id="remarks"
                   value={remarks}
@@ -372,19 +371,22 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
           <UploadImage setImage={setImage} />
         </div>
         <div className="flex gap-[16px]">
-          <ButtonCancelComponent
+          <ButtonComponent
+            variant="cancel"
             onClick={onClose}
             disabled={isSubmitting}
             text={t('manualWithdrawalForm.cancel')}
           />
-          <ButtonApplyComponent
-            disabled={isSubmitting}
+          <ButtonComponent
+            variant="apply"
+            disabled={isSubmitting || !isCashServiceEnabled}
             text={
               isSubmitting
                 ? t('manualWithdrawalForm.processing')
                 : t('manualWithdrawalForm.approve')
             }
             onClick={handleSubmit}
+            title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
           />
         </div>
       </div>

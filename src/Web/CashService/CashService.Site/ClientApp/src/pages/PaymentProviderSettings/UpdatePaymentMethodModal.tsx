@@ -3,32 +3,30 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ButtonApplyComponent,
-  ButtonCancelComponent,
-  ButtonClosePopupComponent,
-} from '../../components/ButtonComponents';
+  ButtonComponent
+} from '../../components/Buttons/index';
 import {
-  ErrorMessageComponent,
-  SuccessMessageComponent,
-  ValidateMessageComponent,
-} from '../../components/MessageComponents';
+  MessageComponent, 
+  ResultType,
+} from '../../components/Message';
 import {
-  LabelTitleComponent,
-  MediumTitleComponent,
-  NormalTitleComponent,
-} from '../../components/TitleComponents';
+  TitleComponent
+} from '../../components/Title';
 import { paymentMethodStatusConstant, TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { PaymentMethod } from '../../services/interfaces/Payments/PaymentMethod';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { createDefaultAddPaymentMethodViewModel } from '../../services/interfaces/Payments/AddPaymentMethodViewModel';
 import { createErrorResultModel } from '../../services/interfaces/ResultModel';
+import { IconArrowDown } from '../../components/Icons';
+import { ButtonIconComponent } from '../../components/Buttons/ButtonIconComponent';
 
 interface UpdatePaymentMethodModalProps {
   onClose: () => void;
   onSuccess: () => void;
   providerId: number;
   orgTelegramAssistantUrl: string;
-  existingPaymentMethod: PaymentMethod;
+  existingPaymentMethod: PaymentMethod; 
+  isCashServiceEnabled: boolean;
 }
 
 interface PaymentMethodFormState {
@@ -47,12 +45,13 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
   providerId,
   orgTelegramAssistantUrl,
   existingPaymentMethod,
+  isCashServiceEnabled,
 }) => {
   const { t: tGlobal } = useTranslation('global');
   const { t: tPaymentProviderSettings } = useTranslation('paymentProviderSettings');
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [error, setError] = React.useState<string>('');
-  const [successMessage, setSuccessMessage] = React.useState<string>('');
+  const [resultType, setResultType] = React.useState<ResultType | undefined>(undefined);
+  const [resultMessage, setResultMessage] = React.useState<string>('');
   const [isBlockAction, setIsBlockAction] = React.useState<boolean>(false);
 
   // Combined form state
@@ -134,7 +133,8 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
       const response = await paymentProviderService.getAddPaymentMethodInfo(providerId, transactionType);
 
       if (response.error) {
-        setError(response.error.message);
+        setResultType('error');
+        setResultMessage(response.error.message);
         return;
       }
 
@@ -158,8 +158,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    setError('');
-    setSuccessMessage('');
+    setResultType(undefined);
     setFieldErrors({
       selectedTransactionType: '',
       selectedPaymentMethod: '',
@@ -170,7 +169,8 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
     });
 
     if (!hasFormChanged()) {
-      setError(tGlobal('thereNoChangeToUpdate'));
+      setResultType('warning');
+      setResultMessage(tGlobal('thereNoChangeToUpdate'));
       setIsLoading(false);
       return;
     }
@@ -197,7 +197,8 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
 
     const response = await paymentProviderService.updatePaymentMethod(updatedSetting);
     if (response.error) {
-      setError(response.error.message);
+      setResultType('error');
+      setResultMessage(response.error.message);
       setIsLoading(false);
       return;
     }
@@ -205,13 +206,22 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
     const result = response.data || createErrorResultModel(1, tGlobal('errorOccurred'));
     if (result.isSuccessful) {
       setIsBlockAction(true);
-      setSuccessMessage(tGlobal('updateSuccess'));
+      setResultType('success');
+      setResultMessage(tGlobal('updateSuccess'));
+      setTimeout(() => {
+        onClose();
+        onSuccess();
+      }, 3000);
+    } else if(result.code === -1){
+      setResultType('warning');
+      setResultMessage(tGlobal(`error-${result.code}`));
       setTimeout(() => {
         onClose();
         onSuccess();
       }, 3000);
     } else {
-      setError(result.message || tGlobal('updateFailed'));
+      setResultType('error');
+      setResultMessage(result.message || tGlobal('updateFailed'));
     }
 
     setIsLoading(false);
@@ -224,59 +234,64 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
 
   return (
     <div className="bg-[#00000080] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-center justify-center">
-      <div className="px-[20px] py-[10px] max-h-[750px] overflow-y-auto bg-[var(--modal-background)] w-full max-w-[560px] max-[768px]:max-w-[90%] rounded-[3px] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)]">
-        <div className="relative">
-          <MediumTitleComponent className="font-bold!" text={tPaymentProviderSettings('updatePaymentMethod')} />
-          <ButtonClosePopupComponent onClick={onClose} />
+      <div className="p-[12px] pt-[0] overflow-y-auto bg-[var(--modal-background)] w-full max-w-[560px] max-[768px]:max-w-[90%] rounded-[3px] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] max-h-[90%] overflow-auto">
+        <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]" >
+          <TitleComponent type='medium' text={tPaymentProviderSettings('updatePaymentMethod')} />
+          <ButtonIconComponent style='Close' onClick={onClose} />
         </div>
-        <ErrorMessageComponent className="mt-[8px]" message={error} />
-        <SuccessMessageComponent className="mt-[8px]" message={successMessage} />
+        <MessageComponent type={resultType} message={resultMessage} className="mt-[8px]" />
         <form onSubmit={onSubmit}>
           <div className="modal-body">
             <div>
-              <NormalTitleComponent text={tPaymentProviderSettings('addPaymentMethodStep1')} />
+              <TitleComponent type='normal' text={tPaymentProviderSettings('addPaymentMethodStep1')} />
               <div className="flex gap-[10px]">
                 <div className="w-[48%]">
-                  <LabelTitleComponent text={`${tPaymentProviderSettings('transactionType')}`} required={true} />
+                  <TitleComponent type='label' text={`${tPaymentProviderSettings('transactionType')}`} required={true} />
+                  <div className="relative">
                   <select
                     className={`control-field ${fieldErrors.selectedTransactionType ? 'error' : ''}`}
                     value={formState.selectedTransactionType}
-                    onChange={(e) => {  onInputChange('selectedTransactionType', e.target.value); }}
+                    disabled={true}
                   >
                     <option value="">{tGlobal('select')}</option>
                     {TRANSACTION_TYPES.filter((type) => type.id !== 0).map((type) => (
-                      <option key={type.id} value={type.id}>
+                      <option key={type.id} value={type.id} selected={type.id === existingPaymentMethod.transactionType}>
                         {tPaymentProviderSettings(`transaction-${type.id}`)}
                       </option>
                     ))}
                   </select>
-                  <ValidateMessageComponent message={fieldErrors.selectedTransactionType} />
+                  <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
+                  </div>
+                  <MessageComponent message={fieldErrors.selectedTransactionType} type='validate' />
                 </div>
 
                 <div className="w-[48%]">
-                  <LabelTitleComponent text={`${tPaymentProviderSettings('paymentMethod')}`} required={true} />
+                  <TitleComponent type='label' text={`${tPaymentProviderSettings('paymentMethod')}`} required={true} />
+                  <div className="relative">
                   <select
                     className={`control-field ${fieldErrors.selectedPaymentMethod ? 'error' : ''}`}
-                    value={formState.selectedPaymentMethod}
-                    onChange={(e) => { onInputChange('selectedPaymentMethod', e.target.value); }}
+                    disabled={true}
                   >
                     <option value="">{tGlobal('select')}</option>
                     {paymentMethods
                       .filter((p) => p.id !== 0 && p.status === paymentMethodStatusConstant.fail)
                       .map((method) => (
-                        <option key={method.id} value={method.id} >
+                        <option key={method.id} value={method.id} selected={method.id === existingPaymentMethod.method}
+                        data-state={formState.selectedPaymentMethod}>
                           {method.name}                          
                         </option>
                       ))}
                   </select>
-                  <ValidateMessageComponent message={fieldErrors.selectedPaymentMethod} />
+                  <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
+                  </div>
+                  <MessageComponent message={fieldErrors.selectedPaymentMethod} type='validate' />
                 </div>
               </div>
             </div>
             <div>
               <hr className="mt-[16px] border-[#0000001F]" />
-              <NormalTitleComponent text={tPaymentProviderSettings('addPaymentMethodStep2')} />
-              <div className="flex justify-between items-center">
+              <TitleComponent type='normal' text={tPaymentProviderSettings('addPaymentMethodStep2')} />
+              <div className="flex justify-between items-start">
                 <div className="pr-[20px]">
                   <p className="text-[12px]">{tPaymentProviderSettings('clickLinkOrScanQRCode')}</p>
                   <a
@@ -297,11 +312,11 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
             </div>
             <div>
               <hr className="mt-[16px] mb-[16px] border-[#0000001F]" />
-              <NormalTitleComponent text={tPaymentProviderSettings('addPaymentMethodStep3')} />
-              <ValidateMessageComponent message={tGlobal('somethingWentWrong')} />
+              <TitleComponent type='normal' text={tPaymentProviderSettings('addPaymentMethodStep3')} />
+              <MessageComponent message={tGlobal('somethingWentWrong')} type='validate' />
               <div className="flex flex-wrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="w-[48%]">
-                  <LabelTitleComponent text={`${tPaymentProviderSettings('apiKey')}`} required={true} />
+                  <TitleComponent type='label' text={`${tPaymentProviderSettings('apiKey')}`} required={true} />
                   <input
                     type="text"
                     className={`control-field ${fieldErrors.apiKey ? 'error' : ''}`}
@@ -309,10 +324,10 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                     value={formState.apiKey}
                     onChange={(e) => { onInputChange('apiKey', e.target.value); }}
                   />
-                  <ValidateMessageComponent message={fieldErrors.apiKey} />
+                  <MessageComponent message={fieldErrors.apiKey} type='validate' />
                 </div>
                 <div className="w-[48%]">
-                  <LabelTitleComponent text={`${tPaymentProviderSettings('merchantID')}`} required={true} />
+                  <TitleComponent type='label' text={`${tPaymentProviderSettings('merchantID')}`} required={true} />
                   <input
                     type="text"
                     className={`control-field ${fieldErrors.merchantID ? 'error' : ''}`}
@@ -320,10 +335,10 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                     value={formState.merchantID}
                     onChange={(e) => { onInputChange('merchantID', e.target.value); }}
                   />
-                  <ValidateMessageComponent message={fieldErrors.merchantID} />
+                  <MessageComponent message={fieldErrors.merchantID} type='validate' />
                 </div>
                 <div className="w-[48%]">
-                  <LabelTitleComponent text={`${tPaymentProviderSettings('appSecret')}`} required={true} />
+                  <TitleComponent type='label' text={`${tPaymentProviderSettings('appSecret')}`} required={true} />
                   <input
                     type="password"
                     className={`control-field ${fieldErrors.appSecret ? 'error' : ''}`}
@@ -331,7 +346,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                     value={formState.appSecret}
                     onChange={(e) => { onInputChange('appSecret', e.target.value); }}
                   />
-                  <ValidateMessageComponent message={fieldErrors.appSecret} />
+                  <MessageComponent message={fieldErrors.appSecret} type='validate' />
                 </div>
               </div>
             </div>
@@ -350,15 +365,22 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                 {tPaymentProviderSettings('agreeTermsAndConditions')}
               </span>
             </label>
-            <ValidateMessageComponent message={fieldErrors.agreeToTerms} />
+            <MessageComponent message={fieldErrors.agreeToTerms} type='validate' />
           </div>
           <div className="flex justify-center gap-[8px]">
-            <ButtonCancelComponent text={tPaymentProviderSettings('setUpLater')} onClick={onClose} />
-            <ButtonApplyComponent
+            <ButtonComponent 
+              text={tPaymentProviderSettings('setUpLater')} 
+              onClick={onClose} 
+              type='button' 
+              variant="cancel"
+            />
+            <ButtonComponent
               text={isLoading ? tGlobal('loading') : tGlobal('update')}
-              type='submit'
+              type='button'
               onClick={() => onSubmit({ preventDefault: () => {} } as React.FormEvent)}
-              disabled={isLoading || allMethodsInactive || isBlockAction}
+              disabled={isLoading || allMethodsInactive || isBlockAction || !isCashServiceEnabled}
+              title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
+              variant="apply"
             />
           </div>
         </form>

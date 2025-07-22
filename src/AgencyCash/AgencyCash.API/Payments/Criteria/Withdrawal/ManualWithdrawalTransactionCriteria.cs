@@ -3,42 +3,29 @@ using Fanex.Data.Repository;
 
 namespace AgencyCash.API.Payments.Criteria.Withdrawal;
 
-public class ManualWithdrawalTransactionCriteria : NonQueryCommand
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "<Pending>")]
+public class ManualWithdrawalTransactionCriteria(
+    int custId,
+    int agentId,
+    short siteDBGroupId,
+    byte transactionTypeId,
+    decimal minAmt,
+    decimal maxAmt,
+    short dailyWithdrawalCnt_Setting,
+    string paymentTo,
+    decimal amount,
+    string ip) : NonQueryCommand
 {
-    public ManualWithdrawalTransactionCriteria(
-        int custId,
-        int agentId,
-        short siteDBGroupId,
-        byte transactionTypeId,
-        decimal minAmt,
-        decimal maxAmt,
-        short dailyWithdrawalCnt_Setting,
-        string paymentTo,
-        decimal amount,
-        string ip)
-    {
-        CustId = custId;
-        AgentId = agentId;
-        SiteDBGroupId = siteDBGroupId;
-        TransactionTypeId = transactionTypeId;
-        MinAmt = minAmt;
-        MaxAmt = maxAmt;
-        DailyWithdrawalCnt_Setting = dailyWithdrawalCnt_Setting;
-        PaymentTo = paymentTo;
-        Amount = amount;
-        IP = ip;
-    }
-
-    public int CustId { get; }
-    public int AgentId { get; }
-    public short SiteDBGroupId { get; }
-    public byte TransactionTypeId { get; }
-    public decimal MinAmt { get; }
-    public decimal MaxAmt { get; }
-    public short DailyWithdrawalCnt_Setting { get; }
-    public string PaymentTo { get; }
-    public decimal Amount { get; }
-    public string IP { get; }
+    public int CustId { get; } = custId;
+    public int AgentId { get; } = agentId;
+    public short SiteDBGroupId { get; } = siteDBGroupId;
+    public byte TransactionTypeId { get; } = transactionTypeId;
+    public decimal MinAmt { get; } = minAmt;
+    public decimal MaxAmt { get; } = maxAmt;
+    public short DailyWithdrawalCnt_Setting { get; } = dailyWithdrawalCnt_Setting;
+    public string PaymentTo { get; } = paymentTo;
+    public decimal Amount { get; } = amount;
+    public string IP { get; } = ip;
 
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }

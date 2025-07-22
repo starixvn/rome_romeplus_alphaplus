@@ -13,10 +13,12 @@ public class SportsbookPotentialWinLimitViewModel
     private const int SportsbookNumberOfColumns = 12;
 
     public SportsbookPotentialWinLimitViewModel(
+        bool isOfferedCashService,
         SportsbookPotentialWinLimitQuery message,
         PotentialWinLimitPage potentialWinLimitPage,
         PotentialWinLimitParam param)
     {
+        IsOfferedCashService = false; //isOfferedCashService;
 
         ViewerLevel = message.ActorLevel;
         ProblemAccount = param.ProblemAccount;
@@ -29,7 +31,8 @@ public class SportsbookPotentialWinLimitViewModel
 
         SportType = param.SportType;
         BetType = param.BetType;
-        LimitedDateTime = message.LimitedDateToShowInfo;
+        AccountType = param.AccountType;
+        LimitedDateTime = message.LimitedDateToShowInfo;    
     }
 
     private DateTime LimitedDateTime { get; }
@@ -49,6 +52,10 @@ public class SportsbookPotentialWinLimitViewModel
     public int SportType { get; }
 
     public int BetType { get; }
+
+    public int AccountType { get; }
+
+    public bool IsOfferedCashService { get; }
 
     public PotentialWinLimitPage PotentialWinLimitPage { get; }
 

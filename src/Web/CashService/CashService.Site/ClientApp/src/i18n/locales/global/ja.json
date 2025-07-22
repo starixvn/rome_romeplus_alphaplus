@@ -84,7 +84,10 @@
   "uploadImage": "クリックしてアップロード",
   "dragAndDrop": "またはドラッグ＆ドロップ",
   "imageFormat": "jpeg、jpg、pngをアップロード",
-  "maxSize": "最大1 MB",
+  "maxSize": "最大{0} MB",
+  "exportToExcel": "Excelにエクスポート",
+  "copied": "コピーしました",
+  "copy": "コピー",
   "status": {
     "waiting": "待機中",
     "cancelled": "キャンセル済み",
@@ -92,7 +95,8 @@
     "expired": "期限切れ",
     "completed": "完了",
     "rejected": "拒否済み",
-    "providerRejected": "プロバイダーが拒否"
+    "providerRejected": "プロバイダーが拒否",
+    "approved": "承認済み"
   },
   "dateRangePicker": {
     "today": "今日",
@@ -101,6 +105,25 @@
     "last30days": "過去30日間",
     "thismonth": "今月",
     "lastmonth": "先月",
-    "days": "日"
-  }
+    "days": "日",
+    "selected": "選択",
+    "noRangeSelected": "範囲が選択されていません"
+  },
+  "cashServiceDisabled": "キャッシュサービスは無効です",
+  "info": "情報",
+  "removeSuccess": "削除成功",
+  "removeError": "削除失敗",
+  "noneSelected": "選択なし",
+  "selectAll": "すべて選択",
+  "dateRange": "日付範囲",
+  "statusText": "ステータス",
+  "username": "ユーザー名",
+  "firstOrLastName": "名または姓",
+  "firstAndLastName": "名と姓",
+  "nickname": "ニックネーム",
+  "lastUpdated": "最終更新日",
+  "updatedBy": "更新者",
+  "pleaseReferTo": "以下を参照してください",
+  "checklist": "チェックリスト",
+  "error-0": "支払いプロバイダーは現在利用できません。後でもう一度お試しください。"
 }

@@ -6,25 +6,18 @@ import { useTranslation } from 'react-i18next';
 
 import BankIcon from '../../components/BankComponents';
 import {
-  ButtonFullComponent,
-  ButtonOutlineComponent,
-  ButtonPenComponent,
-  ButtonDeleteComponent,
   ButtonTabActiveComponent,
   ButtonTabInactiveComponent,
-  ButtonClosePopupComponent,
   ButtonApplyComponent,
   ButtonCancelComponent,
-} from '../../components/ButtonComponents';
+  ButtonComponent,
+} from '../../components/Buttons/index';
 import CustomDropdown from '../../components/CustomDropdownComponent';
 import { IconArrowDown, IconSearch } from '../../components/Icons';
 import Loading from '../../components/LoadingComponent';
-import { ErrorMessageComponent, SuccessMessageComponent } from '../../components/MessageComponents';
-import { StatusDisabledComponent, StatusEnabledComponent } from '../../components/StatusComponents';
-import TitleComponent, {
-  LabelTitleComponent,
-  MediumTitleComponent,
-} from '../../components/TitleComponents';
+import { MessageComponent } from '../../components/Message';
+import { StatusComponent } from '../../components/Status';  
+import { TitleComponent } from '../../components/Title';
 import { BANK_STATUS_OPTIONS } from '../../constants/paymentConstants';
 import { Bank, BankAccount } from '../../services/interfaces/Payments';
 import { paymentProviderService } from '../../services/paymentsAPI';
@@ -33,12 +26,14 @@ import SetTransactionLimitModal from './SetTransactionLimitModal';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
 import { createErrorResultModel } from '../../services/interfaces/ResultModel';
 import NoRecordFound from '../../components/NoRecordFoundComponent';
+import { ButtonIconComponent } from '../../components/Buttons/ButtonIconComponent';
 
 interface BankAccountComponentProps {
-  setActiveTab: React.Dispatch<React.SetStateAction<string>>;
+  setActiveTab: React.Dispatch<React.SetStateAction<string>>; 
+  isCashServiceEnabled: boolean;
 }
 
-const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTab }) => {
+const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTab, isCashServiceEnabled }) => {
   const { t: tManagePayments } = useTranslation('managePayments');
   const { t: tGlobal } = useTranslation('global');
   const [banks, setBanks] = useState<Bank[]>([]);
@@ -58,7 +53,9 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
   const [selectedBankAccount, setSelectedBankAccount] = useState<BankAccount | null>(null);
   const [transactionTypes, setTransactionTypes] = useState<any[]>([]);
   const searchInputRef = useRef<HTMLInputElement>(null);
-
+  const [isSearchActive, setIsSearchActive] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+  
   const fetchTransactionTypes = async () => {
     setLoading(true);
     const response = await paymentProviderService.getTransactionTypes();
@@ -174,7 +171,23 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
     fetchBankAccounts();
   };
 
-  const handleDeleteBankAccount = async (account: BankAccount) => {
+  const handleSearchClick = () => {
+    setIsSearchActive(!isSearchActive);
+  };
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setIsSearchActive(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+  const handleDeleteBankAccount = async (account: BankAccount) => {    
     setDeleting(account.id);
     setError(null);
     setSuccessMessage(null);
@@ -203,13 +216,14 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
 
   const renderConfirmUI = (
     { onClose: closeConfirm }: { onClose: () => void },
-    account: BankAccount
+    account: BankAccount,
+    isCashServiceEnabled: boolean
   ) => (
     <div className="bg-[#00000080] fixed inset-0 flex items-start justify-center z-50">
       <div className="px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-w-[400px] w-full max-[768px]:max-w-[90%] rounded-[3px]">
-        <div className="relative my-[10px]">
-          <MediumTitleComponent text={tManagePayments('deleteBankAccount')} />
-          <ButtonClosePopupComponent onClick={closeConfirm} />
+        <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]">
+          <TitleComponent type='medium' text={tManagePayments('deleteBankAccount')} />
+          <ButtonIconComponent style='Close' onClick={closeConfirm} />
         </div>
         <p className="mb-[20px]">
           {tManagePayments('confirmDeleteBankAccount').replace(
@@ -225,6 +239,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
               handleDeleteBankAccount(account);
             }}
             text={tGlobal('confirm')}
+            disabled={!isCashServiceEnabled}
+            title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
           />
         </div>
       </div>
@@ -233,7 +249,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
 
   const onDeleteBankAccount = async (account: BankAccount) => {
     confirmAlert({
-      customUI: ({ onClose }) => renderConfirmUI({ onClose }, account),
+      customUI: ({ onClose }) => renderConfirmUI({ onClose }, account, isCashServiceEnabled),
     });
   };
 
@@ -283,18 +299,20 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
       {showAddBankAccountModal ? (
         <AddBankAccountComponent
           onClose={onCloseAddBankAccountModal}
-          onSave={onSaveAddBankAccount}
+          onSave={onSaveAddBankAccount} 
+          isCashServiceEnabled={isCashServiceEnabled}
         />
       ) : showUpdateBankAccountModal && selectedBankAccount ? (
         <UpdateBankAccountComponent
           onClose={onCloseUpdateBankAccountModal}
           onSave={onSaveUpdateBankAccount}
-          bankAccount={selectedBankAccount}
+          bankAccount={selectedBankAccount}   
+          isCashServiceEnabled={isCashServiceEnabled}
         />
       ) : (
         <>
           <div className="h-full flex flex-col">
-            <TitleComponent title={tManagePayments('managePayments')} showTippy={true}>
+            <TitleComponent type='main' text={tManagePayments('managePayments')} showTippy={true}>
               <div>
                 <div>• {tManagePayments('managePaymentsTip1')}</div>
                 <div>• {tManagePayments('managePaymentsTip2')}</div>
@@ -302,25 +320,25 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
             </TitleComponent>
             <ul className="flex mt-[-12px] border-b border-[var(--border-color)]">
               <li className="mr-[8px]">
-                <ButtonTabActiveComponent
+                <ButtonTabInactiveComponent
                   text={tManagePayments('paymentGateway')}
                   onClick={() => setActiveTab('paymentGateway')}
                 />
               </li>
               <li>
-                <ButtonTabInactiveComponent text={tManagePayments('bankAccount')} />
+                <ButtonTabActiveComponent text={tManagePayments('bankAccount')} />
               </li>
             </ul>
             <div className="pt-[8px]">
-              <ErrorMessageComponent message={error} />
-              <SuccessMessageComponent message={successMessage} />
+              <MessageComponent message={error} type='error' className="mb-[10px]" />
+              <MessageComponent message={successMessage} type='success' className="mb-[10px]" />
             </div>
             {loading && <Loading />}
-            {!loading && !error && banks.length > 0 && (
+            {!loading && banks && banks.length > 0 && (
               <>
-                <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
-                  <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
-                    <LabelTitleComponent text={tManagePayments('bank')} />
+                <div className="flex flex-wrap w-full">
+                  <div className="w-[160px] mb-[12px] mr-[12px]">
+                    <TitleComponent type='label' text={tManagePayments('bank')} />
                     <CustomDropdown
                       className="w-[330px]"
                       options={(() => {
@@ -339,8 +357,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                     />
                   </div>
 
-                  <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
-                    <LabelTitleComponent text={tManagePayments('transactionType')} />
+                  <div className="w-[160px] mb-[12px] mr-[12px]">
+                    <TitleComponent type='label' text={tManagePayments('transactionType')} />
                     <div className="relative">
                       <select
                         id="transactionTypeSelect"
@@ -362,8 +380,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                     </div>
                   </div>
 
-                  <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px] ">
-                    <LabelTitleComponent text={tManagePayments('status')} />
+                  <div className="w-[160px] mb-[12px] mr-[12px] ">
+                    <TitleComponent type='label' text={tManagePayments('status')} />
                     <div className="relative">
                       <select
                         id="statusSelect"
@@ -380,39 +398,42 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                       <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
                     </div>
                   </div>
-                </div>
-                <div className="flex pb-[16px] w-full">
-                  <div className="w-[250px] ml-auto ">
-                    <div className="relative">
-                      <span className="absolute transform-[translatey(-50%)] z-[10] top-1/2 left-[8px]">
-                        <IconSearch />
-                      </span>
-                      <input
-                        type="text"
-                        id="searchInput"
-                        className="control-field pl-[30px]!"
-                        placeholder={tManagePayments('searchAccountNumberOrName')}
-                        value={searchInput}
-                        onChange={onSearchChange}
-                        ref={searchInputRef}
-                      />
-                    </div>
-                  </div>
-                </div>
+                </div>                
               </>
             )}
             <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex">
               <div className="flex gap-[8px]">
-                <ButtonFullComponent
+                <ButtonComponent
+                  variant="full"
                   className="w-[183px] [&>*]:w-[100%]"
                   text={`${tManagePayments('addBankAccount')}`}
                   onClick={onAddBankAccount}
                 />
-                <ButtonOutlineComponent
+                <ButtonComponent
+                  variant="outline"
                   className="w-[183px] [&>*]:w-[100%]"
                   text={tManagePayments('setLimit')}
                   onClick={onSetLimit}
                 />
+              </div>
+              <div ref={searchRef} className={`box-search relative w-[250px] max-[768px]:w-[28px] ml-auto ${isSearchActive ? 'active' : ''}`} >
+                <div className="hidden max-[768px]:block bg-black/10 rounded-[3px] p-[6px] cursor-pointer" onClick={handleSearchClick}>
+                  <IconSearch />
+                </div>
+                <div className="relative max-[768px]:hidden child-search">
+                  <span className="absolute transform-[translatey(-50%)] z-[10] top-1/2 left-[8px]">
+                    <IconSearch />
+                  </span>
+                  <input
+                    type="text"
+                    id="searchInput"
+                    className="control-field pl-[30px]!"
+                    placeholder={tManagePayments('searchAccountNumberOrName')}
+                    value={searchInput}
+                    onChange={onSearchChange}
+                    ref={searchInputRef}
+                  />
+                </div>
               </div>
             </div>
             <div className="table table-fixed-body">
@@ -433,7 +454,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                     <th>{tManagePayments('status')}</th>
                   </tr>
                 </thead>
-                {!loading && !error && bankAccounts.length > 0 && (
+                {!loading && bankAccounts && bankAccounts.length > 0 && (
                   <tbody className="font-[500]">
                     {bankAccounts.map((account, index) => (
                       <tr key={account.id}>
@@ -442,11 +463,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                         </td>
                         <td className="col-shadown bg-[var(--table-background)] left-[32px] min-w-[82px] sticky z-11">
                           <div className="flex justify-center">
-                            <ButtonPenComponent
-                              disabled={deleting === account.id}
-                              onClick={() => onEditBankAccount(account.id)}
-                            />
-                            <ButtonDeleteComponent onClick={() => onDeleteBankAccount(account)} />
+                            <ButtonIconComponent style='Edit' disabled={deleting === account.id} onClick={() => onEditBankAccount(account.id)} />
+                            <ButtonIconComponent style='Delete' onClick={() => onDeleteBankAccount(account)} />
                           </div>
                         </td>
                         <td className="text-left">
@@ -464,17 +482,16 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                         <td className="text-left">{account.accountNumber}</td>
                         <td className="text-left">{account.accountNickname}</td>
                         <td>
-                          {account.status === 1 ? (
-                            <StatusEnabledComponent />
-                          ) : (
-                            <StatusDisabledComponent />
-                          )}
+                          <StatusComponent 
+                            type={account.status === 1 ? 'completed' : 'disabled'} 
+                            text={account.status === 1 ? tGlobal('enabled') : tGlobal('disabled')}      
+                          />
                         </td>
                       </tr>
                     ))}
                   </tbody>
                 )}
-                {!loading && !error && banks.length > 0 && bankAccounts.length === 0 && (
+                {!loading && bankAccounts && bankAccounts.length === 0 && (
                   <tbody>
                     <NoRecordFound colSpan={8} />
                   </tbody>
@@ -483,7 +500,10 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
             </div>
 
             {showSetLimitModal && (
-              <SetTransactionLimitModal onClose={onCloseSetLimitModal} onSave={onSaveSetLimit} />
+              <SetTransactionLimitModal 
+                onClose={onCloseSetLimitModal} 
+                onSave={onSaveSetLimit} 
+                isCashServiceEnabled={isCashServiceEnabled} />
             )}
           </div>
         </>

@@ -4,7 +4,7 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 {
     public class GetProvidersCriteria(int custId) : CriteriaBase
     {
-        public int CustId { get; set; } = custId;
+        public int CustId { get; } = custId;
 
         public override string GetSettingKey() => "Age_CashService_PaymentProvider_Sel";
 

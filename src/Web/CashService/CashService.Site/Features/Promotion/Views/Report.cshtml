@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Promotion Report";
+    Layout = "_Layout";
+}
+@model DateTime
+@section Styles {
+    <environment names="Production">
+        <link rel="stylesheet" asp-href-include="/index-*.css" />
+    </environment>
+}
+@section Scripts {
+    <environment names="Development">
+        <script type="module" src="http://localhost:5173/src/pages/Promotion/PromotionReport/index.tsx"></script>
+    </environment>
+    <environment names="Production">
+        <script type="module" asp-src-include="/promotionReport-*.js"></script>
+    </environment>
+}
+<div id="root"></div>
+@if (Model != DateTime.MinValue)
+{
+    <input type="hidden" id="limitedDateToShowInfo" value="@Model" />
+}

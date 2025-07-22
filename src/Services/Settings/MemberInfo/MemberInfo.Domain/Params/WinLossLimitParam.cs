@@ -16,7 +16,8 @@
             int pageSize,
             int pageIndex,
             bool isDirectMember,
-            string agIP)
+            string agIP,
+            int accountType)
         {
             ProductId = productId;
             CustId = custId;
@@ -30,6 +31,7 @@
             PageIndex = pageIndex;
             IsDirectMember = isDirectMember;
             AGIP = agIP;
+            AccountType = accountType;
         }
 
         public int ProductId { get; set; }
@@ -41,6 +43,8 @@
         public int BetType { get; set; }
 
         public int SportType { get; set; }
+
+        public int AccountType { get; set; }
 
         public string Username { get; set; }
 

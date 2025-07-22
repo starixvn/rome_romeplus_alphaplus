@@ -45,7 +45,7 @@ class ConsolidationDetailView extends BaseReport {
         this.dateRangePickerComponent.render(
             new DateRangePickerOption(undefined, undefined, undefined, this.resetConsolidationParams)
         );
-        this.sortComponent.initSort(this.$tableReport, { 0: { sorter: 'text' } });
+        this.sortComponent.initSort(this.$tableReport, { 0: { sorter: 'text' } }, this.afterSortFunction);
         // remove style="visibility:hidden"
         // TableSorter cannot run with style="display:none"
         this.$tableReport.removeAttr('style');
@@ -165,6 +165,11 @@ class ConsolidationDetailView extends BaseReport {
 
         return sortedColumn;
     };
+
+    afterSortFunction = () => {
+        this.sortComponent.handleDormantAccountsAfterSort();
+        this.sortComponent.handleCashFeeDataAfterSort();
+    }
 }
 
 $(function () {

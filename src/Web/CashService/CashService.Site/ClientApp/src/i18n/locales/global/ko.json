@@ -84,7 +84,10 @@
   "uploadImage": "클릭하여 업로드",
   "dragAndDrop": "또는 드래그 앤 드롭",
   "imageFormat": "jpeg, jpg, png 업로드",
-  "maxSize": "최대 1 MB",
+  "maxSize": "최대 {0} MB",
+  "exportToExcel": "Excel로 내보내기",
+  "copied": "복사됨",
+  "copy": "복사",
   "status": {
     "waiting": "대기 중",
     "cancelled": "취소됨",
@@ -92,7 +95,8 @@
     "expired": "만료됨",
     "completed": "완료됨",
     "rejected": "거부됨",
-    "providerRejected": "제공업체 거부"
+    "providerRejected": "제공업체 거부",
+    "approved": "승인됨"
   },
   "dateRangePicker": {
     "today": "오늘",
@@ -101,6 +105,25 @@
     "last30days": "최근 30일",
     "thismonth": "이번 달",
     "lastmonth": "지난달",
-    "days": "일"
-  }
+    "days": "일",
+    "selected": "선택",
+    "noRangeSelected": "범위가 선택되지 않음"
+  },
+  "cashServiceDisabled": "캐시 서비스가 비활성화되었습니다",
+  "info": "정보",
+  "removeSuccess": "삭제 성공",
+  "removeError": "삭제 실패",
+  "noneSelected": "선택되지 않음",
+  "selectAll": "모두 선택",
+  "dateRange": "날짜 범위",
+  "statusText": "상태",
+  "username": "사용자 이름",
+  "firstOrLastName": "이름 또는 성",
+  "firstAndLastName": "이름과 성",
+  "nickname": "닉네임",
+  "lastUpdated": "마지막 업데이트",
+  "updatedBy": "업데이트한 사람",
+  "pleaseReferTo": "다음을 참조하세요",
+  "checklist": "체크리스트",
+  "error-0": "결제 제공업체가 현재 사용할 수 없습니다. 나중에 다시 시도하세요."
 }

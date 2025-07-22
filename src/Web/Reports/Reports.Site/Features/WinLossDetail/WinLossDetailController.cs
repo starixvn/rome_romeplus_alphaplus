@@ -1,5 +1,5 @@
 using AlphaPlus.Core.Filters;
-using AlphaPlus.Reports.Features.WinLossDetail.Models;
+using AlphaPlus.Reports.Features.CashBillingService.Models;
 using AlphaPlus.Reports.Site.Features.Shared;
 using AlphaPlus.Reports.Site.Features.WinLossDetail.Requests;
 using AlphaPlus.Reports.Site.Features.WinLossDetail.ViewModels;
@@ -25,7 +25,7 @@ public class WinLossDetailController(IMediator mediator) : ReportBaseController(
     public Task<IActionResult> CashFee(CashFeeQuery message) => View<CashFeeViewModel>(message);
 
     public Task<IActionResult> GetCashFeeData(CashFeeGetDataQuery message)
-       => View<CashFeeModel>(message, "CashFeeData");
+        => View<CashFeeModel>(message, "~/Features/CashBillingService/Views/CashFeeData.cshtml");
 
     public Task<IActionResult> CashFeeExcel(CashFeeExcelQuery message) => ExcelView(message);
 }

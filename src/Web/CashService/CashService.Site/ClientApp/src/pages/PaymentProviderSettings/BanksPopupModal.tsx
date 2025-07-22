@@ -4,7 +4,7 @@ import { Bank } from '../../services/interfaces/Payments/Bank';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import Loading from '../../components/LoadingComponent';
 import BankIcon from '../../components/BankComponents';
-import { ErrorMessageComponent } from '../../components/MessageComponents';
+import { MessageComponent } from '../../components/Message';
 import PopupModalComponent from '../../components/PopupModalComponent';
 import { TableComponent } from '../../components/TableComponents';
 
@@ -43,7 +43,7 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
   return (
     <PopupModalComponent title={tPaymentProviderSettings('listOfBanks')} onClose={onClose}>
         {loading ? ( <Loading /> ) 
-            : error ? (<ErrorMessageComponent message={error} />) 
+            : error ? (<MessageComponent message={error} type='error' />) 
             : (
             <>
               <p className='block text-[var(--text-label-color)] my-[16px] font-semibold'>{tPaymentProviderSettings(`transaction-${transactionType}`)}</p>

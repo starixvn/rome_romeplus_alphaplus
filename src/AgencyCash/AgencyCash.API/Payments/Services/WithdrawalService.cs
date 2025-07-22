@@ -17,19 +17,13 @@ public interface IWithdrawalService
     Task<Result> UpdateTransactionStatus(long transId, UpdateTransactionStatusRequest request);
 }
 
-public class WithdrawalService : PaymentService, IWithdrawalService
+public class WithdrawalService(
+    IDynamicRepository repository,
+    ISiteDBService siteDBService,
+    Fanex.Logging.ILogger logger) : PaymentService(repository, siteDBService, logger), IWithdrawalService
 {
-    private readonly IDynamicRepository _repository;
-    private readonly ISiteDBService _siteDBService;
-
-    public WithdrawalService(
-        IDynamicRepository repository,
-        ISiteDBService siteDBService,
-        Fanex.Logging.ILogger logger) : base(repository, siteDBService, logger)
-    {
-        _repository = repository;
-        _siteDBService = siteDBService;
-    }
+    private readonly IDynamicRepository _repository = repository;
+    private readonly ISiteDBService _siteDBService = siteDBService;
 
     public async Task<PaymentResult> CreateManualWithdrawal(ManualWithdrawalRequest request)
     {
@@ -84,7 +78,10 @@ public class WithdrawalService : PaymentService, IWithdrawalService
                 await logger.ErrorAsync($"Withdrawal failed. Key: {withdrawalTransactionCriteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(withdrawalTransactionCriteria)}");
             }
 
-            return new PaymentResult(withdrawalTransactionCriteria.ErrCode, withdrawalTransactionCriteria.ErrCode == 0 ? "Ok" : withdrawalTransactionCriteria.ErrMsg, withdrawalTransactionCriteria.TransId);
+            return new PaymentResult(
+                withdrawalTransactionCriteria.ErrCode,
+                withdrawalTransactionCriteria.ErrCode == 0 ? "Ok" : withdrawalTransactionCriteria.ErrMsg,
+                withdrawalTransactionCriteria.TransId);
         }
         catch (Exception ex)
         {
@@ -133,6 +130,7 @@ public class WithdrawalService : PaymentService, IWithdrawalService
             transId,
             request.StatusId,
             siteDBConfig.SiteDBGroupId,
+            request.ProviderTransId,
             request.IP);
         var logs = await repository.FetchAsync<LogEntry>(criteria);
         var result = new Result(criteria.ErrCode, criteria.ErrMsg);

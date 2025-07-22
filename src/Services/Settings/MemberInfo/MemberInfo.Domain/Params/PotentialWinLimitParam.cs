@@ -12,7 +12,9 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Params
             int pageIndex,
             string agIP,
             int betType = 0,
-            int sportType = 0)
+            int sportType = 0,
+            int accountType = 0,
+            int settingStatus = 0)
         {
             CustId = custId;
             RoleId = roleId;
@@ -24,6 +26,8 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Params
             PageSize = pageSize;
             PageIndex = pageIndex;
             AGIP = agIP;
+            AccountType = accountType;
+            SettingStatus = settingStatus;
         }
 
         public int CustId { get; set; }
@@ -44,6 +48,10 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Params
 
         public int PageIndex { get; set; }
 
-        public string AGIP { get; }
+        public string AGIP { get; } 
+
+        public int AccountType { get; set; }
+
+        public int SettingStatus { get; set; }
     }
 }

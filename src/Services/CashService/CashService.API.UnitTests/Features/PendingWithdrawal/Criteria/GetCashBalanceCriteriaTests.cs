@@ -1,7 +1,7 @@
 using AlphaPlus.CashService.API.Features.PendingWithdrawal.Criteria;
 using Xunit;
 
-namespace CashService.API.UnitTests.Features.PendingWithdrawal.Criteria;
+namespace AlphaPlus.CashService.API.UnitTests.Features.PendingWithdrawal.Criteria;
 
 public class GetCashBalanceCriteriaTests
 {

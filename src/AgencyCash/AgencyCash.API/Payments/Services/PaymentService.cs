@@ -46,6 +46,17 @@ public abstract class PaymentService(
         }
     }
 
+    public async Task WriteLogsRunSP(IEnumerable<LogEntry> logs, short custDBGroupId)
+    {
+        if (logs != null)
+        {
+            foreach (var item in logs)
+            {
+                await WriteLogRunSP(item, custDBGroupId);
+            }
+        }
+    }
+
     public async Task WriteLogRunSP(LogEntry log, short custDBGroupId)
     {
         var criteria = new WriteLogRunSPCriteria(
@@ -56,7 +67,7 @@ public abstract class PaymentService(
             log.TrackingValueMask2,
             log.TrackingValue,
             log.TrackingValue2);
-        var functionName = nameof(WriteLogRunSP);
+        const string functionName = nameof(WriteLogRunSP);
         var isSuccess = await WriteLog(criteria, functionName);
 
         if (!isSuccess)
@@ -74,7 +85,7 @@ public abstract class PaymentService(
             log.ToCustId,
             log.IP,
             log.Doing);
-        var functionName = nameof(WriteLogTransfer);
+        const string functionName = nameof(WriteLogTransfer);
         var isSuccess = await WriteLog(criteria, functionName);
 
         if (!isSuccess)

@@ -1,5 +1,8 @@
-﻿@using AlphaPlus.Core.Helpers
+﻿@using AlphaPlus.Core.Configurations
+@using AlphaPlus.Core.Helpers
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
+@using AlphaPlus.Core.Models
+@inject IUserSession UserSession
 @{
     Layout = "~/Features/Transfer/Views/CashBalanceTransfer/_HintLayout.cshtml";
 }
@@ -18,11 +21,15 @@
     </ul>
     <p>Remark</p>
     <ul class="ul-remark">
+        @if (AppSettings.IsOfferedCashService(UserSession.Site) && UserSession.IsAgent)
+        {
+            <li>Cash Members are not included on this page</li>
+        }
         @if (!string.IsNullOrEmpty(Model.AllowTransfer))
         {
             <li>@Html.Raw(Model.AllowTransfer)</li>
         }
-        <li>You can make as many transactions as you wish per day (for both Yesterday Balance and Cash Balance).</li>       
+        <li>You can make as many transactions as you wish per day (for both Yesterday Balance and Cash Balance).</li>
         <li>@Resources.showhidecolumnAd</li>
     </ul>
 }
@@ -30,6 +37,10 @@ else
 {
     <p>Remark</p>
     <ul class="ul-remark">
+        @if (AppSettings.IsOfferedCashService(UserSession.Site) && UserSession.IsAgent)
+        {
+            <li>Cash Members are not included on this page</li>
+        }
         @if (!string.IsNullOrEmpty(Model.AllowTransfer))
         {
             <li>@Html.Raw(Model.AllowTransfer)</li>

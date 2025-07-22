@@ -17,7 +17,7 @@ export default function BalanceInfo() {
         return <NoInformation />;
     }
 
-    const { BalanceInfo } = customer;
+    const { BalanceInfo, IsCashMember } = customer;
 
     const sharedContents = [
         <BalanceInfoRow
@@ -39,7 +39,7 @@ export default function BalanceInfo() {
     ];
 
     const givenCreditContent = (
-        <GivenCreditRow editable={BalanceInfo.CanUpdateAccount} givenCredit={BalanceInfo.GivenCredit} />
+        <GivenCreditRow editable={BalanceInfo.CanUpdateAccount && !IsCashMember} givenCredit={BalanceInfo.GivenCredit} />
     );
     const masterContents = [
         <BalanceInfoRow title={t('TotalCash')} value={BalanceInfo.TotalCash} />,

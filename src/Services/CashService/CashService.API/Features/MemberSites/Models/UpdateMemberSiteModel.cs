@@ -5,6 +5,6 @@ public class UpdateMemberSiteModel : MemberSiteModel
     public string IP { get; set; }
     public string Language { get; set; }
     public int UserId { get; set; }
-    public int SiteDB { get; set; }
+    public short SiteDB { get; set; }
 }
 

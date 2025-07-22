@@ -50,4 +50,7 @@ public class CommissionEntity
     public byte Locked { get; init; }
 
     public byte ClosedReason { get; init; }
+
+    public int ServiceType { get; init; }
+    public bool IsCashMember => ServiceType == 1;
 }

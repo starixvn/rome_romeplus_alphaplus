@@ -3,6 +3,7 @@ using Fanex.Data.Repository;
 
 namespace AgencyCash.API.Payments.Criteria.Deposit;
 
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "<Pending>")]
 public class UpdateDepositTransStatusCriteria(
     int agentId,
     int custId,
@@ -11,6 +12,7 @@ public class UpdateDepositTransStatusCriteria(
     short siteDBGroupId,
     decimal agentGivenCredit,
     decimal creditMembersGivenCredit,
+    string providerTransId,
     string ip) : CriteriaBase
 {
     public int AgentId { get; } = agentId;
@@ -26,6 +28,8 @@ public class UpdateDepositTransStatusCriteria(
     public decimal AgentGivenCredit { get; } = agentGivenCredit;
 
     public decimal CreditMembers_GivenCredit { get; } = creditMembersGivenCredit;
+
+    public string ProviderTransId { get; } = providerTransId;
 
     public string IP { get; } = ip;
 

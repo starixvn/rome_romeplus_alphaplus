@@ -23,6 +23,7 @@ public class WinLossLimitViewModel
     };
 
     public WinLossLimitViewModel(
+        bool isOfferedCashService,
         WinLossLimitQuery message,
         IEnumerable<WinLossLimitGroupProductModel> groupProducts,
         IEnumerable<CustInfo> masterList,
@@ -30,6 +31,8 @@ public class WinLossLimitViewModel
         WinLossLimitPage winLossLimitPage,
         WinLossLimitParam param)
     {
+        IsOfferedCashService = false; //isOfferedCashService;
+
         ViewerLevel = message.ActorLevel;
         UserSelectedId = $"{param.ProductId}-{param.SportType}";
         Username = message.Username ?? string.Empty;
@@ -47,6 +50,7 @@ public class WinLossLimitViewModel
 
         SportType = param.SportType;
         BetType = param.BetType;
+        AccountType = param.AccountType;
     }
 
     public UserLevel ViewerLevel { get; }
@@ -75,11 +79,15 @@ public class WinLossLimitViewModel
 
     public int BetType { get; }
 
+    public int AccountType { get; }
+
     public IEnumerable<CustInfo> MasterList { get; }
 
     public IEnumerable<CustInfo> AgentList { get; }
 
     public WinLossLimitPage WinLossLimitPage { get; }
+
+    public bool IsOfferedCashService { get; }
 
     public PagerViewModel PagerViewModel => new(PageIndex, PageSize, WinLossLimitPage.NumberOfRows);
 
@@ -87,7 +95,9 @@ public class WinLossLimitViewModel
 
     public bool ShowPager => WinLossLimitPage.NumberOfRows >= MaxItemToShowPager;
 
-    public int NumberOfColumns => NumberOfColumnBySportType.ContainsKey(SportType) ? NumberOfColumnBySportType[SportType] : DefaultNumberOfColumns;
+    public int NumberOfColumns => 
+        (NumberOfColumnBySportType.ContainsKey(SportType) ? NumberOfColumnBySportType[SportType] : DefaultNumberOfColumns) 
+        - (AccountType == 1 ? 2 : 0);
 
     public static string GetPlayerIdText(string playerId)
         => string.IsNullOrWhiteSpace(playerId) ? "-" : playerId;

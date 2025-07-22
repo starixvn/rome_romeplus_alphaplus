@@ -1,24 +1,95 @@
-﻿export interface Promotion {
-    promotionId: number;
-    promotionTitle: string;
-    promotionType: string;
-    fromDate: Date;
-    toDate: Date;
-    sportsPercentage: number;
-    virtualSportsPercentage: number;
-    gamesPercentage: number;
-    liveCasinoPercentage: number;
-    sportsMaxPayout: number;
-    virtualSportsMaxPayout: number;
-    gamesMaxPayout: number;
-    liveCasinoMaxPayout: number;
-    period: string;
-    provider: string;
-    status: string;
-    lastUpdated: string;
+﻿export interface PromotionDetail {
+  promotionId: number;
+  promotionTitle: string;
+  promotionTypeId: number;
+  promotionTypeName: string;
+  fromDate: Date | null;
+  toDate: Date | null;
+  productSettings: ProductSetting[];
+  languageSettings: LanguageInfo[];
+  enabled: boolean;
+}
+
+export interface EditPromotionRequest {  
+  promotionId: number;
+  enabled: boolean;
+  originalEnabled?: boolean;
+  contents: LanguageInfo[];
+  originalContents?: LanguageInfo[];
+}
+
+export interface PromotionRequest {
+  promotionType: number;
+  fromDate: Date | null;
+  toDate: Date | null;
+  enabled: boolean;
+  productSettings: ProductSetting[];
+  contents: LanguageInfo[];
+}
+
+export interface PromotionTransactionRequest {
+  promotionTypeId: number;
+  fromDate: string;
+  toDate: string;
+}
+
+export interface PromotionTransaction {
+  promotionId: number;
+  transId: number;
+  custId: number;
+  username: string;
+  nickname: string;
+  firstName: string;
+  lastName: string;
+  amount: number;
+  currency: string;
+  statusId: number;
+  status: string;
+  title: string;
+  promotionType: number;
+  promotionTypeName: string;
+  fromDate: string;
+  toDate: string;
+}
+
+export interface PromotionTransactionResponse {
+  promotionTransactions: PromotionTransaction[];
+  totalCount: number;
+}
+
+export interface Language {
+  key: string;
+  label: string;
+  isDefault: boolean;
+}
+export interface LanguageInfo {
+  language: string;
+  title: string;
+  banner: string | null;
+  content: string;
 }
 
 export interface PromotionParams {
-    type: string;
-    status: string;
+  type: number;
+  status: number;
+}
+
+export interface ProductDropdown {
+  productCategoryId: number;
+  productCategoryName: string;
+  products: Product[];
+}
+
+export interface Product {
+  productCategoryId: number;
+  productId: number;
+  productName: string;
+}
+
+export interface ProductSetting extends ProductDropdown {
+  percentage: number;
+  minTurnover: number;
+  maxPayout: number;
+  unlimited: boolean;
+  productIds: number[];
 }

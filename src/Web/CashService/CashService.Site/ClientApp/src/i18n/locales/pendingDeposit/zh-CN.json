@@ -1,6 +1,6 @@
 {
   "pendingDeposit": "待处理存款",
-  "addManualDeposit": "新增手动存款",
+  "addManualDeposit": "添加手动存款",
 
   "filter": {
     "recentDeposits": "最近存款",
@@ -19,8 +19,8 @@
     "member": "会员",
     "username": "用户名",
     "loginName": "登录名",
-    "firstName": "名字",
-    "lastName": "姓氏",
+    "firstName": "名",
+    "lastName": "姓",
     "nickname": "昵称",
     "firstLastName": "姓名",
     "amount": "金额",
@@ -43,8 +43,8 @@
     "title": "待处理存款",
     "username": "用户名",
     "loginName": "登录名",
-    "firstName": "名字",
-    "lastName": "姓氏",
+    "firstName": "名",
+    "lastName": "姓",
     "name": "姓名",
     "betCredit": "投注额度",
     "from": "从",
@@ -56,11 +56,15 @@
     "approve": "批准",
     "reject": "拒绝",
     "close": "关闭",
-    "firstLastName": "姓名"
+    "firstLastName": "姓名",
+    "confirmRejectTitle": "确认拒绝",
+    "confirmRejectMessage": "您确定要拒绝此存款吗？",
+    "confirmApproveTitle": "确认批准",
+    "confirmApproveMessage": "您确定要批准此存款吗？"
   },
 
   "manualDepositForm": {
-    "title": "新增手动存款",
+    "title": "添加手动存款",
     "accountInformation": "账户信息",
     "memberLoginName": "会员登录名",
     "from": "从",
@@ -100,9 +104,9 @@
   },
 
   "successMessages": {
-    "depositSubmitted": "存款请求提交成功！",
-    "depositUpdated": "存款请求更新成功！",
-    "depositApproved": "存款请求批准成功！",
-    "depositRejected": "存款请求拒绝成功！"
+    "depositSubmitted": "存款请求已成功提交",
+    "depositUpdated": "存款请求已成功更新",
+    "depositApproved": "存款请求已成功批准",
+    "depositRejected": "存款请求已成功拒绝"
   }
 }

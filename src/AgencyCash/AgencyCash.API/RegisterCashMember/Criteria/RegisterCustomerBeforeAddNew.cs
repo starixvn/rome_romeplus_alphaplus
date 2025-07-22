@@ -2,20 +2,12 @@
 
 namespace AgencyCash.API.RegisterCashMember.Criteria
 {
-    public class RegisterCustomerBeforeAddNewCommand : INonQueryCommand
+    public class RegisterCustomerBeforeAddNewCommand(string username, string username2, byte roleId, int uplineId) : INonQueryCommand
     {
-        public RegisterCustomerBeforeAddNewCommand(string username, string username2, byte roleId, int uplineId)
-        {
-            Username = username;
-            Username2 = username2;
-            RoleId = roleId;
-            UplineId = uplineId;
-        }
-
-        public string Username { get; }
-        public string Username2 { get; }
-        public byte RoleId { get; }
-        public int UplineId { get; }
+        public string Username { get; } = username;
+        public string Username2 { get; } = username2;
+        public byte RoleId { get; } = roleId;
+        public int UplineId { get; } = uplineId;
 
         // Output properties
         public int CustId { get; set; }

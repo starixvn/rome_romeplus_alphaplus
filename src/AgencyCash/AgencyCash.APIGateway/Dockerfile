@@ -12,7 +12,7 @@ COPY ["src/AgencyCash/AgencyCash.APIGateway", "src/AgencyCash/AgencyCash.APIGate
 COPY ["src/Shared/Extensions/FanexLoggingExtensions.cs", "src/Shared/Extensions/FanexLoggingExtensions.cs"]
 WORKDIR /build/src/AgencyCash/AgencyCash.APIGateway
 RUN --mount=type=cache,target=/root/.nuget/packages \
-  dotnet publish -c Release -o /app --no-restore
+  dotnet publish -c Release -o /app
 
 FROM hub.nexdev.net/base/dotnet/core/aspnet:9.0-alpine-25h1 AS base
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import CustomDropdown from '../../../../../components/CustomDropdownComponent';
-import { LabelTitleComponent } from '../../../../../components/TitleComponents';
+import { TitleComponent } from '../../../../../components/Title';
 
 interface StatusFilterProps {
   status: number;
@@ -21,7 +21,7 @@ const StatusFilter: React.FC<StatusFilterProps> = ({ status, onStatusChange }) =
 
   return (
     <div className="form-group">
-      <LabelTitleComponent text={t('filter.status')} />
+      <TitleComponent type='label' text={t('filter.status')} />
       <CustomDropdown
         options={statusOptions}
         onSelect={(option) => onStatusChange(Number(option.value))}

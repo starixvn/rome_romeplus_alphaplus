@@ -46,7 +46,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
             Assert.Equal(request.AccountNickname, criteria.AccountNickname);
             Assert.Equal(request.Agent_TransTypeList, criteria.TransactionTypeIDs);
             Assert.Equal(request.PromptPay, criteria.PromptPay);
-            Assert.Equal("", criteria.Mobile);
+            Assert.Equal(request.CountryCode + "-" + request.Mobile, criteria.Mobile);
             Assert.Equal(request.Agent_DepositMatchingMode, criteria.DepositMatchingMode);
             Assert.Equal(request.CountryCode, criteria.CountryCode);
             Assert.Equal(request.Mobile, criteria.MobileNumber);
@@ -211,6 +211,36 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
 
             // Assert
             Assert.False(isValid);  
+        }
+
+        [Fact]
+        public void Constructor_WhenPromptPayIsFalse_ShouldSetMobileToEmptyString()
+        {
+            // Arrange
+            var request = CreateValidRequest();
+            request.PromptPay = false;
+
+            // Act
+            var criteria = new AddBankAccountCriteria(request);
+
+            // Assert
+            Assert.Equal(string.Empty, criteria.Mobile);
+        }
+
+        [Fact]
+        public void Constructor_WhenPromptPayIsTrue_ShouldSetMobileToCountryCodeAndMobile()
+        {
+            // Arrange
+            var request = CreateValidRequest();
+            request.PromptPay = true;
+            request.CountryCode = "66";
+            request.Mobile = "123456789";
+
+            // Act
+            var criteria = new AddBankAccountCriteria(request);
+
+            // Assert
+            Assert.Equal("66-123456789", criteria.Mobile);
         }
     }
 } 

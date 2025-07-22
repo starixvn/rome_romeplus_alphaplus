@@ -204,9 +204,6 @@
   <data name="None" xml:space="preserve">
     <value>沒有</value>
   </data>
-  <data name="NotFilter" xml:space="preserve">
-    <value>未過濾</value>
-  </data>
   <data name="Of" xml:space="preserve">
     <value>之第</value>
   </data>
@@ -258,6 +255,9 @@
   <data name="View" xml:space="preserve">
     <value>瀏覽</value>
   </data>
+  <data name="NotFilter" xml:space="preserve">
+    <value>未過濾</value>
+  </data>
   <data name="AllowDoubleCommission" xml:space="preserve">
     <value>允許雙倍佣金</value>
   </data>
@@ -303,10 +303,10 @@
   <data name="UnlockTooltip" xml:space="preserve">
     <value>點擊解鎖</value>
   </data>
-  <data name="Enabled" xml:space="preserve">
-    <value>開啟</value>
-  </data>
   <data name="AutoTransfer" xml:space="preserve">
     <value>自動轉賬</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>開啟</value>
   </data>
 </root>

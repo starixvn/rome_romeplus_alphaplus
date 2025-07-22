@@ -215,7 +215,8 @@ function App() {
                 SuperId,
                 SuperName,
                 MasterId,
-                MasterName
+                MasterName,
+                IsCashMember
             } = customer;
             let uplineId: number;
             let uplineName: string;
@@ -242,15 +243,16 @@ function App() {
                 }
             }
 
-            SettingsService.GetCustomerAllStatus(
+            SettingsService.GetCustomerAllStatus({
                 CustId,
                 UserName,
                 RoleId,
-                uplineId,
-                uplineName,
-                uplineRoleId,
-                IsDirectMember
-            )
+                UplineId: uplineId,
+                UplineName: uplineName,
+                UplineRoleId: uplineRoleId,
+                IsDirectMember,
+                IsCashMember
+            })
                 .then((responseData) => {
                     if (requestId === LoadCustomerAllStatus.ByClick) {
                         source.cancel(LoadCustomerAllStatus.ByUpdateStatus);

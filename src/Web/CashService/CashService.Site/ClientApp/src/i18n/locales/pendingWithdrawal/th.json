@@ -52,7 +52,11 @@
     "selectBank": "เลือกธนาคาร",
     "bankRequired": "ธนาคารเป็นสิ่งจำเป็น",
     "approveSuccess": "อนุมัติการถอนเงินสำเร็จ",
-    "rejectSuccess": "ปฏิเสธการถอนเงินสำเร็จ"
+    "rejectSuccess": "ปฏิเสธการถอนเงินสำเร็จ",
+    "confirmRejectTitle": "ยืนยันการปฏิเสธ",
+    "confirmRejectMessage": "คุณแน่ใจหรือไม่ว่าต้องการปฏิเสธการถอนเงินนี้?",
+    "confirmApproveTitle": "ยืนยันการอนุมัติ",
+    "confirmApproveMessage": "คุณแน่ใจหรือไม่ว่าต้องการอนุมัติการถอนเงินนี้?"
   },
 
   "manualWithdrawalForm": {
@@ -81,7 +85,7 @@
     "memberBankSelectionRequired": "ถึงเป็นสิ่งจำเป็น",
     "amountRangeError": "จำนวนเงินต้องมากกว่า 0 และน้อยกว่าหรือเท่ากับยอดเงินสดของสมาชิก",
     "imageSizeError": "ขนาดรูปภาพต้องน้อยกว่า 1 MB",
-    "addWithdrawalSuccess": "เพิ่มการถอนเงินสำเร็จ!!!",
+    "addWithdrawalSuccess": "เพิ่มการถอนเงินสำเร็จ",
     "memberCashBalance": "ยอดเงินสดของสมาชิก",
     "minAmount": "ต่ำสุด",
     "maxAmount": "สูงสุด",
@@ -120,9 +124,9 @@
   },
 
   "successMessages": {
-    "withdrawalSubmitted": "ส่งคำขอถอนเงินสำเร็จ",
-    "withdrawalUpdated": "อัปเดตการถอนเงินสำเร็จ",
-    "withdrawalApproved": "อนุมัติการถอนเงินสำเร็จ",
-    "withdrawalRejected": "ปฏิเสธการถอนเงินสำเร็จ"
+    "withdrawalSubmitted": "คำขอถอนเงินได้รับการส่งสำเร็จ",
+    "withdrawalUpdated": "คำขอถอนเงินได้รับการอัปเดตสำเร็จ",
+    "withdrawalApproved": "คำขอถอนเงินได้รับการอนุมัติสำเร็จ",
+    "withdrawalRejected": "คำขอถอนเงินได้รับการปฏิเสธสำเร็จ"
   }
 }

@@ -11,7 +11,6 @@ namespace AlphaPlus.Core
         protected QueryBase(IUserSession userSession)
         {
             this.userSession = userSession;
-            Console.WriteLine("SiteName in QueryBase: " + userSession.SiteName);
             CustId = userSession.CustId;
         }
 
@@ -55,7 +54,7 @@ namespace AlphaPlus.Core
         public string IP => userSession.UserLoginIp;
 
         public int ServerId => userSession.ServerId;
-        
+
         public string Site => userSession.Site;
 
         public virtual bool IsValid() => ViewerId > 0;

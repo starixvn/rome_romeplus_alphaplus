@@ -1,7 +1,7 @@
 ﻿using AlphaPlus.CashService.API.Features.MemberSites.Models;
 using Xunit;
 
-namespace CashService.API.UnitTests.Features.MemberSites.Models;
+namespace AlphaPlus.CashService.API.UnitTests.Features.MemberSites.Models;
 
 public class DomainModelTest
 {

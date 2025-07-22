@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { IconArrowDown, IconSearch } from '../../../../components/Icons';
-import { LabelTitleComponent } from '../../../../components/TitleComponents';
+import { TitleComponent } from '../../../../components/Title';
 
 interface FilterProps {
   recentWithdrawals: string;
@@ -21,9 +21,9 @@ const Filter: React.FC<FilterProps> = ({
 
   return (
     <>
-      <div className="flex flex-nowrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
-        <div className="w-[230px] pt-[4px] max-[768px]:w-[48%] mb-[8px]">
-          <LabelTitleComponent text={t('filter.recentWithdrawals')} />
+      <div className="flex flex-wrap w-full">
+        <div className="w-[190px] mb-[12px] mr-[12px]">
+          <TitleComponent type='label' text={t('filter.recentWithdrawals')} />
           <div className="select-wrapper relative">
             <select
               value={recentWithdrawals}
@@ -38,22 +38,24 @@ const Filter: React.FC<FilterProps> = ({
           </div>
         </div>
       </div>
-      <div className="flex mb-[16px]">
-        <div className="w-[250px] ml-auto">
-          <div className="relative">
-            <span className="absolute transform-[translatey(-50%)] z-[10] top-1/2 left-[8px]">
-              <IconSearch />
-            </span>
-            <input
-              type="text"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="control-field pl-[30px]!"
-              placeholder={t('filter.usernamePlaceholder')}
-            />
+      <div className="search-section w-full border border-[var(--table-border-color)] border-b-0 p-[6px]">
+        <div className="flex">
+          <div className="w-[250px] ml-auto">
+            <div className="relative">
+              <span className="absolute transform-[translatey(-50%)] z-[10] top-1/2 left-[8px]">
+                <IconSearch />
+              </span>
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="control-field pl-[30px]!"
+                placeholder={t('filter.usernamePlaceholder')}
+              />
+            </div>
           </div>
         </div>
-      </div>
+      </div>      
     </>
   );
 };

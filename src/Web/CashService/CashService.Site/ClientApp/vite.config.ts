@@ -1,16 +1,11 @@
 /// <reference types="vitest" />
 import { defineConfig } from 'vite';
-
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    tailwindcss(),
-  ],
-
+  plugins: [react(), tailwindcss()],
   test: {
     globals: true,
     environment: 'jsdom',
@@ -23,11 +18,11 @@ export default defineConfig({
         '**/*.test.{ts,tsx}',
         'src/i18n/**',
         'src/services/interfaces/**',
-        'src/constants/**'        
+        'src/constants/**',
       ],
       include: [
-        'src/**/*.{ts,tsx}'    // Only include TypeScript and TSX files in src
-      ]
+        'src/**/*.{ts,tsx}', // Only include TypeScript and TSX files in src
+      ],
     },
   },
 
@@ -41,22 +36,25 @@ export default defineConfig({
         pendingDeposit: 'src/pages/Transactions/PendingDeposit/index.tsx',
         pendingWithdrawal: 'src/pages/Transactions/PendingWithdrawal/index.tsx',
         transactionsHistory: 'src/pages/Transactions/History/index.tsx',
-        paymentProviderSettings: 'src/pages/PaymentProviderSettings/index.tsx'
+        paymentProviderSettings: 'src/pages/PaymentProviderSettings/index.tsx',
+        managePromotion: 'src/pages/Promotion/ManagePromotion/index.tsx',
+        pendingPromotion: 'src/pages/Promotion/PendingPromotion/index.tsx',
+        promotionReport: 'src/pages/Promotion/PromotionReport/index.tsx',
       },
-      output:{
-        assetFileNames: 'index-[hash][extname]'
-      }
-    }
+      output: {
+        assetFileNames: 'index-[hash][extname]',
+      },
+    },
   },
- 
+
   server: {
     port: 5173,
     strictPort: true,
     proxy: {
       '/api': {
         target: 'http://localhost:5100',
-        changeOrigin: true
-      }
-    }
-  }
-})
+        changeOrigin: true,
+      },
+    },
+  },
+});

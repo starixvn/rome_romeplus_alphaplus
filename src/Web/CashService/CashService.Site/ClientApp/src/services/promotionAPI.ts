@@ -1,28 +1,209 @@
-import { axiosInstance as api } from './axios';
-import { Promotion, PromotionParams } from './interfaces/Promotion';
-
+import { api, axiosInstance, createHeaderXMLHttp } from './axios';
+import {
+  EditPromotionRequest,
+  ProductDropdown,
+  PromotionDetail,
+  PromotionParams,
+  PromotionRequest,
+  PromotionTransactionRequest,
+  PromotionTransactionResponse,
+} from './interfaces/Promotion';
+import { ResultModel } from './interfaces/ResultModel';
+import { DropdownOption } from '../components/CustomDropdownComponent';
 
 export const promotionService = {
-    getPromotion: async (promotionParams: PromotionParams): Promise<Promotion[]> => {
-        try {
-            const queryParams = new URLSearchParams(
-            {
-                promotionType: promotionParams.type,
-                status: promotionParams.status
-            });
-            const response = await api.get<Promotion[]>(`GetPromotion?${queryParams.toString()}`);
+  getLanguages: async (): Promise<Record<string, string>> => {
+    const response = await axiosInstance.get<Record<string, string>>(`GetLanguages`);
+    return response.data;
+  },
+  getPromotion: async (promotionParams: PromotionParams): Promise<PromotionDetail[]> => {
+    try {
+      const queryParams = new URLSearchParams({
+        promotionType: promotionParams.type.toString(),
+        status: promotionParams.status.toString(),
+      });
+      const response = await axiosInstance.get<PromotionDetail[]>(
+        `GetPromotion?${queryParams.toString()}`
+      );
       return response.data;
     } catch (error) {
       console.error('Error fetching promotion:', error);
-            return [];
+      return [];
     }
   },
-  deletePromotion: async (promotionId: number): Promise<void> => {
+
+  getPendingPromotionTransactions: async (
+    request: PromotionTransactionRequest
+  ): Promise<PromotionTransactionResponse> => {
     try {
-      await api.delete(`DeletePromotion/${promotionId}`);
+      const queryParams = new URLSearchParams({
+        promotionTypeId: request.promotionTypeId != 0 ? request.promotionTypeId.toString() : '',
+        fromDate: request.fromDate,
+        toDate: request.toDate,
+      });
+      const response = await axiosInstance.get<PromotionTransactionResponse>(
+        `GetPendingPromotionTransaction?${queryParams.toString()}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching pending promotion:', error);
+      return {
+        promotionTransactions: [],
+        totalCount: 0,
+      };
+    }
+  },
+
+  getPromotionById: async (promotionId: number): Promise<PromotionDetail> => {
+    const response = await axiosInstance.get<PromotionDetail>(
+      `GetPromotionById?promotionId=${promotionId}`
+    );
+    return response.data;
+  },
+
+  getPromotionProducts: async (): Promise<ProductDropdown[]> => {
+    try {
+      const response = await axiosInstance.get<ProductDropdown[]>(`GetPromotionProducts`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching promotion products:', error);
+      return [];
+    }
+  },
+  addPromotion: async (promotionRequest: PromotionRequest): Promise<ResultModel> => {
+    try {
+      const response = await axiosInstance.post<ResultModel>(`AddPromotion`, promotionRequest, {
+        headers: {
+          ...createHeaderXMLHttp(),
+          'Content-Type': 'application/json',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error adding promotion:', error);
+      throw error;
+    }
+  },
+  addBonus: async (bonusRequest: any): Promise<ResultModel> => {
+    try {
+      const response = await axiosInstance.post<ResultModel>(`AddBonus`, bonusRequest, {
+        headers: {
+          ...createHeaderXMLHttp(),
+          'Content-Type': 'application/json',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error adding bonus:', error);
+      throw error;
+    }
+  },
+  editPromotion: async (
+    promotionId: number,
+    promotionRequest: EditPromotionRequest
+  ): Promise<ResultModel> => {
+    try {
+      const response = await axiosInstance.put<ResultModel>(
+        `EditPromotion/${promotionId}`,
+        promotionRequest,
+        {
+          headers: {
+            ...createHeaderXMLHttp(),
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error('Error adding promotion:', error);
+      throw error;
+    }
+  },
+  deletePromotion: async (promotionId: number): Promise<ResultModel> => {
+    try {
+      const response = await axiosInstance.delete<ResultModel>(
+        `DeletePromotion?promotionId=${promotionId}`
+      );
+      return response.data;
     } catch (error) {
       console.error('Error deleting promotion:', error);
       throw error;
     }
-  }
+  },
+
+  getPromotionTypeOptions: async (): Promise<DropdownOption[]> => {
+    const response = await axiosInstance.get<DropdownOption[]>(`GetPromotionTypeOptions`);
+    return response.data;
+  },
+
+  approvePromotionTransaction: async (
+    custId: number,
+    transId: number,
+    amount: number
+  ): Promise<ResultModel> => {
+    const response = await axiosInstance.post<ResultModel>(`ApprovePromotionTransaction`, {
+      customerId: custId,
+      promotionTransactionId: transId,
+      amount: amount,
+      headers: {
+        ...createHeaderXMLHttp(),
+        'Content-Type': 'application/json',
+      },
+    });
+    return response.data;
+  },
+
+  rejectPromotionTransaction: async (
+    custId: number,
+    transId: number,
+    amount: number
+  ): Promise<ResultModel> => {
+    const response = await axiosInstance.post<ResultModel>(
+      `RejectPromotionTransaction`,
+      {
+        customerId: custId,
+        promotionTransactionId: transId,
+        amount: amount,
+      },
+      {
+        headers: {
+          ...createHeaderXMLHttp(),
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    return response.data;
+  },
+
+  getMainReport: async (filterParams: {
+    fromDate: string;
+    toDate: string;
+    promotionType: string;
+    status: string;
+  }): Promise<any> => {
+    const url = `GetMainReport?${new URLSearchParams(filterParams).toString()}`;
+    const { data, error } = await api.get<object[]>(url);
+    if (error) {
+      console.error(`Error get promotion report with url=${url}`, error);
+      return [];
+    }
+
+    return data;
+  },
+
+  getDetailsReport: async (filterParams: {
+    promotionId: string;
+    fromDate: string;
+    toDate: string;
+    status: string;
+  }): Promise<any> => {
+    const url = `GetDetailsReport?${new URLSearchParams(filterParams).toString()}`;
+    const { data, error } = await api.get<object>(url);
+    if (error) {
+      console.error(`Error get promotion details report with url=${url}:`, error);
+      return {};
+    }
+
+    return data;
+  },
 };

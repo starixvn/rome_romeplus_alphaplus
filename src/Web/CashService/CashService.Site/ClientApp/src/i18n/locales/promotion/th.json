@@ -1,4 +1,5 @@
 {
+  "promotionReport": "รายงานโปรโมชั่น",
   "table": {
     "no": "ลำดับ",
     "action": "การดำเนินการ",
@@ -13,9 +14,18 @@
     "period": "ระยะเวลา",
     "provider": "ผู้ให้บริการ",
     "status": "สถานะ",
-    "lastUpdated": "อัปเดตล่าสุด"
+    "edit": "แก้ไข",
+    "delete": "ลบ",
+    "products": "ผลิตภัณฑ์",
+    "noRecords": "ไม่พบข้อมูล",
+    "bonusAmount": "จำนวนโบนัส",
+    "totalRequest": "คำขอทั้งหมด",
+    "totalApproved": "ทั้งหมดที่อนุมัติ",
+    "totalRejected": "ทั้งหมดที่ปฏิเสธ",
+    "totalBonusGiven": "โบนัสทั้งหมดที่มอบให้"
   },
   "search": {
     "placeholder": "ค้นหาตามชื่อหรือประเภท..."
-  }
-} 
+  },
+  "promotionType_1": "การคืนเงินจากยอดหมุนเวียน"
+}

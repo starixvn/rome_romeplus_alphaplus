@@ -1,9 +1,7 @@
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
 
 namespace AgencyCash.API.Shared.DataAnnotations;
 
-[ExcludeFromCodeCoverage]
 [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)]
 public class PositiveNumberAttribute : ValidationAttribute
 {

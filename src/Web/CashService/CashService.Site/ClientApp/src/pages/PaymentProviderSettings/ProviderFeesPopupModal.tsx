@@ -76,15 +76,14 @@ const ProviderFeesPopupModal: React.FC<ProviderFeesPopupModalProps> = ({ provide
                   return rows;
                 })}
               />
-            </div>
-            <div className="mb-[16px]">                       
-              <p>{tPaymentProviderSettings('howItWorks')}</p>           
-              <p>{tPaymentProviderSettings('feesInfo1')}</p>          
-              <ul className='list-disc pl-[24px] mb-[10px]'>
-                <li>{tPaymentProviderSettings('feesFormula')}</li>
-              </ul>
-              <p>{tPaymentProviderSettings('feesInfo2')}</p>
-            </div> 
+            </div>                             
+            <p>{tPaymentProviderSettings('howItWorks')}</p>           
+            <p>{tPaymentProviderSettings('feesInfo1')}</p>          
+            <ul className='list-disc pl-[24px] mb-[10px]'>
+              <li>{tPaymentProviderSettings('feesFormula')}</li>
+            </ul>
+            <p>{tPaymentProviderSettings('feesInfo2')}</p>
+           
           </>
         )}
     </PopupModalComponent>

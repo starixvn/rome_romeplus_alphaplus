@@ -18,6 +18,8 @@ class CustomerListViewModel {
     CanUpdateAccount: boolean;
     CustomerListData: any;
     IsDirectMember: boolean;
+    ServiceType: number;
+    OfferedCashService: boolean;
 
     constructor(
         uplineRoleId: number,
@@ -36,7 +38,9 @@ class CustomerListViewModel {
         canViewReport: boolean,
         canUpdateAccount: boolean,
         customerListData: any,
-        isDirectMember: boolean
+        isDirectMember: boolean,
+        serviceType: number,
+        offeredCashService: boolean
     ) {
         this.UplineRoleId = uplineRoleId;
         this.SearchAccountId = searchAccountId;
@@ -55,7 +59,15 @@ class CustomerListViewModel {
         this.CanUpdateAccount = canUpdateAccount;
         this.CustomerListData = customerListData;
         this.IsDirectMember = isDirectMember;
+        this.ServiceType = serviceType;
+        this.OfferedCashService = offeredCashService;
     }
+}
+
+enum ServiceType {
+    Credit = 0,
+    Cash = 1,
+    All = 2
 }
 
 enum CustomerLevel {

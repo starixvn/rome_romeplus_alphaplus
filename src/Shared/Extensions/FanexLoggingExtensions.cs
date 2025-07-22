@@ -2,6 +2,7 @@ using Fanex.Logging;
 using Fanex.Logging.RabbitMQ;
 using Fanex.Logging.Sentry;
 
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug", "S3903:Types should be defined in named namespaces", Justification = "<Pending>")]
 internal static class FanexLoggingExtensions
 {
     internal static IServiceCollection AddFanexLogging(this IServiceCollection services, IConfiguration configuration)

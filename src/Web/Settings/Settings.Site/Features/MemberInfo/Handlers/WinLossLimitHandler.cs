@@ -12,7 +12,8 @@ using MediatR;
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers;
 
 public class WinLossLimitHandler(IAccountService accountService, WinLossLimitService winLossLimitService)
-    : IRequestHandler<WinLossLimitQuery, WinLossLimitViewModel>
+    : IRequestHandler<WinLossLimitQuery, WinLossLimitViewModel>,
+      IRequestHandler<ResetCurrentWinAmountCommand, Result>
 {
     private readonly IAccountService accountService = accountService;
     private readonly WinLossLimitService winLossLimitService = winLossLimitService;
@@ -50,11 +51,32 @@ public class WinLossLimitHandler(IAccountService accountService, WinLossLimitSer
             message.PageSize,
             message.PageIndex,
             GetIsDirectMemberParam(actorLevel, masterId, agentId),
-            message.AGIP);
+            message.AGIP,
+            message.AccountType);
 
         var noNeedGetData = !param.IsDirectMember && actorLevel.IsMasterOrSuperLevel() && !agentList.Any();
         var winLossLimitPage = noNeedGetData ? new WinLossLimitPage() : await winLossLimitService.GetWinLossLimitPage(param);
-        return new WinLossLimitViewModel(message, products, masterList, agentList, winLossLimitPage, param);
+        var isOfferedCashService = AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(message.Site);
+        return new WinLossLimitViewModel(isOfferedCashService, message, products, masterList, agentList, winLossLimitPage, param);
+    }
+
+    public async Task<Result> Handle(ResetCurrentWinAmountCommand request, CancellationToken cancellation)
+    {
+        var result = await winLossLimitService.ResetCurrentWinAmount(new ResetCurrentWinAmountParam(
+            request.CustId,
+            request.Username,
+            request.ProductId,
+            request.SportType,
+            request.BetType,
+            request.Language,
+            request.SettingStatus));
+
+        if (result.IsSuccessful)
+        {
+            return Result.CreateSuccessfulResult(AlphaPlus.Shared.AppResources.Settings.MemberInfo.Resources.ResetCurrentWinAmountSuccess);
+        }
+
+        return result;
     }
 
     private static int GetDefaultMasterId(WinLossLimitQuery message, UserLevel actorLevel, List<CustInfo> masterList)

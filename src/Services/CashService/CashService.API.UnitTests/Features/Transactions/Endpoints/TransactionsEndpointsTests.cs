@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Moq;
 using Xunit;
 
-namespace CashService.API.UnitTests.Features.Transactions.Endpoints
+namespace AlphaPlus.CashService.API.UnitTests.Features.Transactions.Endpoints
 {
     public class TransactionsEndpointsTests
     {
@@ -38,7 +38,7 @@ namespace CashService.API.UnitTests.Features.Transactions.Endpoints
             // Arrange
             long transactionId = 123;
             var custId = 1;
-            var siteDbGroupId = 1;
+            short siteDbGroupId = 1;
             var expectedDetail = new TransactionModel { TransId = transactionId };
             mockTransactionService.Setup(s => s.GetTransactionByIdAsync(transactionId, custId, siteDbGroupId)).ReturnsAsync(expectedDetail);
 
@@ -90,7 +90,7 @@ namespace CashService.API.UnitTests.Features.Transactions.Endpoints
         {
             // Arrange
             var agentId = 1;
-            var custDbGroupId = 1;
+            short custDbGroupId = 1;
             var expectedMembers = new List<MemberInfo> { new() { CustId = 10 } };
             mockTransactionService.Setup(s => s.GetMembersAsync(agentId, custDbGroupId)).ReturnsAsync(expectedMembers);
 
@@ -182,7 +182,7 @@ namespace AlphaPlus.CashService.API.Features.Transactions.Endpoints
             return Results.Ok(transactionHistory);
         }
 
-        public static async Task<IResult> GetTransactionDetailHandler(long transactionId, int custId, int siteDbGroupId, ITransactionService service)
+        public static async Task<IResult> GetTransactionDetailHandler(long transactionId, int custId, short siteDbGroupId, ITransactionService service)
         {
             var transactionDetail = await service.GetTransactionByIdAsync(transactionId, custId, siteDbGroupId);
             return Results.Ok(transactionDetail);
@@ -200,7 +200,7 @@ namespace AlphaPlus.CashService.API.Features.Transactions.Endpoints
             return Results.Ok(result);
         }
 
-        public static async Task<IResult> GetMembersAsyncHandler(int agentId, int custDbGroupId, ITransactionService service)
+        public static async Task<IResult> GetMembersAsyncHandler(int agentId, short custDbGroupId, ITransactionService service)
         {
             var members = await service.GetMembersAsync(agentId, custDbGroupId);
             return Results.Ok(members);

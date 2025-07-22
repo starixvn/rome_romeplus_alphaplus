@@ -4,9 +4,9 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 {
     public class GetAddPaymentMethodInfoCriteria(int custId, int providerId, int transactionType) : CriteriaBase
     {
-        public int CustId { get; set; } = custId;
-        public int ProviderId { get; set; } = providerId;
-        public int? TransactionType { get; set; } = transactionType == 0 ? null : transactionType;
+        public int CustId { get; } = custId;
+        public int ProviderId { get; } = providerId;
+        public int? TransactionType { get; } = transactionType == 0 ? null : transactionType;
 
         public string ChannelContact { get; set; }
 

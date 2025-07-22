@@ -17,7 +17,7 @@ public static class FileHelper
 
         var encoder = new JpegEncoder
         {
-            Quality = quality // 0–100
+            Quality = quality
         };
 
         await image.SaveAsJpegAsync(outputStream, encoder);

@@ -18,6 +18,10 @@
                 <div id="msg-content">
                     @if (Model.CustLevel.IsAgentLevel())
                     {
+                        if (Model.IsOfferedCashService)
+                        {
+                            <p>- 此頁面不包括現金會員</p>
+                        }
                         if (!string.IsNullOrWhiteSpace(Model.TransferCondition))
                         {
                             <p>- @Model.TransferCondition</p>

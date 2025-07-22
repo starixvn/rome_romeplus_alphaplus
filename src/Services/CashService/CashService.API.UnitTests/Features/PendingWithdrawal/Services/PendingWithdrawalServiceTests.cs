@@ -1,4 +1,4 @@
-namespace CashService.API.UnitTests.Features.PendingWithdrawal.Services;
+namespace AlphaPlus.CashService.API.UnitTests.Features.PendingWithdrawal.Services;
 
 using System.Collections.Generic;
 using System.Threading;
@@ -7,6 +7,7 @@ using AlphaPlus.CashService.API.Features.PendingWithdrawal.Criteria;
 using AlphaPlus.CashService.API.Features.PendingWithdrawal.Models;
 using AlphaPlus.CashService.API.Features.PendingWithdrawal.Services;
 using AlphaPlus.CashService.API.Features.Shared.Models;
+using AlphaPlus.CashService.API.Features.Shared.Services;
 using AlphaPlus.CashService.API.Features.Transactions.Models;
 using AlphaPlus.CashService.API.Features.Transactions.Services;
 using Fanex.Data.Repository;
@@ -17,13 +18,17 @@ public class PendingWithdrawalServiceTests
 {
     private readonly Mock<IDynamicRepository> mockDynamicRepository;
     private readonly Mock<ITransactionService> mockTransactionService;
+    private readonly Mock<IPaymentGatewayService> mockPaymentGatewayService;
+    private readonly Mock<ICommonService> mockCommonService;
     private readonly PendingWithdrawalService service;
 
     public PendingWithdrawalServiceTests()
     {
         mockDynamicRepository = new Mock<IDynamicRepository>();
         mockTransactionService = new Mock<ITransactionService>();
-        service = new PendingWithdrawalService(mockDynamicRepository.Object, mockTransactionService.Object);
+        mockPaymentGatewayService = new Mock<IPaymentGatewayService>();
+        mockCommonService = new Mock<ICommonService>();
+        service = new PendingWithdrawalService(mockDynamicRepository.Object, mockTransactionService.Object, mockPaymentGatewayService.Object, mockCommonService.Object);
     }
 
     [Fact]
@@ -174,7 +179,7 @@ public class PendingWithdrawalServiceTests
         Assert.Equal(0, result.Code);
         mockDynamicRepository.Verify(repo => repo.GetAsync<CreditAmount>(It.IsAny<GetLimitAmtWithdrawCriteria>(), It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
         mockDynamicRepository.Verify(repo => repo.FetchAsync<WriteLogDBCommandModel>(It.IsAny<CreateManualWithdrawCommand>(), It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
-        mockTransactionService.Verify(s => s.OnAfterUpdateTransaction(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<List<WriteLogDBCommandModel>>()), Times.Once);
+        mockTransactionService.Verify(s => s.OnAfterUpdateTransaction(It.IsAny<string>(), It.IsAny<short>(), It.IsAny<short>(), It.IsAny<List<WriteLogDBCommandModel>>()), Times.Once);
     }
 
     [Fact]
@@ -219,7 +224,7 @@ public class PendingWithdrawalServiceTests
         Assert.Equal(0, result.Code);
         mockDynamicRepository.Verify(repo => repo.GetAsync<CreditAmount>(It.IsAny<GetLimitAmtWithdrawCriteria>(), It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Never);
         mockDynamicRepository.Verify(repo => repo.FetchAsync<WriteLogDBCommandModel>(It.IsAny<CreateManualWithdrawCommand>(), It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
-        mockTransactionService.Verify(s => s.OnAfterUpdateTransaction(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<int>(), It.IsAny<List<WriteLogDBCommandModel>>()), Times.Once);
+        mockTransactionService.Verify(s => s.OnAfterUpdateTransaction(It.IsAny<string>(), It.IsAny<short>(), It.IsAny<short>(), It.IsAny<List<WriteLogDBCommandModel>>()), Times.Once);
     }
 
     [Fact]

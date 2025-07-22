@@ -10,6 +10,7 @@ export interface TransactionItem {
   paymentFrom: string;
   paymentTo: string;
   statusId: number;
+  status: string;
   betCredit: number;
   transactionTypeId: number;
   transactionType: string;
@@ -22,6 +23,7 @@ export interface TransactionItem {
   createdBy: string;
   operatedTime: string;
   isHadPayslip: boolean;
+  paymentType: number;
 }
 
 export interface TransactionsHistoryResponse {

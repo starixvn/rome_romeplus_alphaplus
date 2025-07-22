@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { ensureIntegerInput } from '../utils/inputHandlers';
-import { ValidateMessageComponent } from './MessageComponents';
-import { LabelTitleComponent } from './TitleComponents';
+import { MessageComponent } from './Message';
+import { TitleComponent } from './Title';
 
 interface MobileComponentProps {
   isShow: boolean;
@@ -31,8 +31,8 @@ const MobileComponent: React.FC<MobileComponentProps> = ({
   return (
     isShow && (
       <div className="mb-[8px]">
-        <LabelTitleComponent text={label} required={true} />
-        <div className={`flex items-center h-[32px] max-[768px]:h-[40px] w-[476px] border-[1px] rounded-[3px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer before:content-['+'] bg-[var(--background-control)] ${fieldErrors.mobile ? 'border-[var(--border-control-error)]' : 'border-[var(--border-control)]'} `} >
+        <TitleComponent type='label' text={label} required={true} />
+        <div className={`flex items-center h-[28px] w-[476px] border-[1px] rounded-[3px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer before:content-['+'] bg-[var(--background-control)] ${fieldErrors.mobile ? 'border-[var(--border-control-error)]' : 'border-[var(--border-control)]'} `} >
           <input
             type="text"
             className={`focus:outline-none h-[100%] cursor-pointer mr-[5px] w-[30px]  ${fieldErrors.countryCode ? 'border-[var(--border-control-error)]' : ''}`}
@@ -51,7 +51,7 @@ const MobileComponent: React.FC<MobileComponentProps> = ({
             maxLength={40}
           />
         </div>
-        <ValidateMessageComponent message={(fieldErrors.mobile || fieldErrors.countryCode) ?? ''} />
+        <MessageComponent message={(fieldErrors.mobile || fieldErrors.countryCode) ?? ''} type='validate' />
       </div>
     )
   );

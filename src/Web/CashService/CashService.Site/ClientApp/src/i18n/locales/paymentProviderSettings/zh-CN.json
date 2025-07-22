@@ -38,6 +38,7 @@
 
   "setUpPaymentMethodsForMembers": "为您的会员设置支付方式",
   "addPaymentMethod": "添加支付方式",
+  "RequirePaymentMethod": "需要至少一个'已完成'的支付方式。",
   
   "viewProviderFees": "查看{{providerName}}费用",
   "bank": "银行",

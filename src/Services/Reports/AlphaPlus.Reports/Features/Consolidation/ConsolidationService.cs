@@ -47,8 +47,8 @@ public class ConsolidationService(
             {
                 cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductsCacheTimeInMinutes));
                 var ip = allowedSitesToShareLoad.GetIP(siteName);
-
-                return (await repository.FetchAsync<ConsolidationProduct>(new GetConsolidationProductsCriteria(custId, settingStatus), ip))
+                var cashServiceSites = Core.Configurations.AppSettings.CashServiceOfferedSites.JoinWithComma();
+                var products = (await repository.FetchAsync<ConsolidationProduct>(new GetConsolidationProductsCriteria(custId, settingStatus), ip))
                     .Where(product => product.ProductId != ProductIdConstants.Cashout && IsRemainSupportProduct(product, minDate))
                     .Select(product => new Product
                     {
@@ -57,6 +57,21 @@ public class ConsolidationService(
                         Type = product.Type,
                         TypeName = product.Type == 0 ? string.Empty : cacheRefService.GetProductName(product.Type)
                     });
+                
+              
+                    var productExtras = (await repository.FetchAsync<ConsolidationProduct>(
+                    new GetConsolidationExtraProductsCriteria(custId, settingStatus, cashServiceSites),
+                    ip))
+                    .Where(product => IsRemainSupportProduct(product, minDate))
+                    .Select(product => new Product
+                    {
+                        Id = product.ProductId,
+                        Name = cacheRefService.GetProductName(product.ProductId),
+                        Type = product.Type,
+                        TypeName = product.Type == 0 ? string.Empty : cacheRefService.GetProductName(product.Type)
+                    });
+
+                    return products.Concat(productExtras);
             });
 
     private static bool IsRemainSupportProduct(ConsolidationProduct product, DateTime minReportDate)
@@ -74,7 +89,10 @@ public class ConsolidationService(
                 .Select(c => c.CustId)
                 .Distinct()
                 .JoinWithComma();
-            var ptList = await repository.FetchAsync<PositionTakingModel>(new GetSMAPositionTakingCriteria(smaCustIds, param.SettingStatus));
+
+            var cashServicesSite = Core.Configurations.AppSettings.CashServiceOfferedSites.JoinWithComma();
+
+            var ptList = await repository.FetchAsync<PositionTakingModel>(new GetSMAPositionTakingCriteria(smaCustIds, param.SettingStatus, cashServicesSite));
             var UpdatePTValueHandler = (ConsolidationEntity entity, decimal ptValue) =>
             {
                 entity.PositionTaking = ptValue;

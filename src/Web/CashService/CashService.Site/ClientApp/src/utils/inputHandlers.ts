@@ -22,3 +22,12 @@ export const isDecimalInput = (value: string): boolean => {
   var v = value.endsWith('.') ? value.slice(0, -1) : value;
   return !Number.isNaN(Number(v));
 };
+
+
+export const preventFormSubmit = (e: React.KeyboardEvent<HTMLFormElement>) => {
+  if(e.key === 'Enter') {
+    e.preventDefault();
+  }
+  
+  return e;
+};

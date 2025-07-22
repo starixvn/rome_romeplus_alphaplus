@@ -1,6 +1,5 @@
 @import 'tippy.js/dist/tippy.css';
-//@import './roboto/roboto.css';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400..700;1,400..700&display=swap');
+@import './roboto/roboto.css';
 
 :root, :root [data-theme='light'] {  
   --primary-color: #163f78;
@@ -188,6 +187,12 @@
 
 ::-webkit-scrollbar-corner {
   background: transparent;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+  -moz-appearance: textfield;
 }
 html,
 body {
@@ -379,6 +384,9 @@ table:not(.no-hover){
   outline: none;
   cursor: pointer;
   appearance: none;
+  &[type="text"]{
+    cursor: text;
+  }
   &.error{
     border-color: var(--border-control-error);
   }
@@ -389,8 +397,8 @@ table:not(.no-hover){
   }
 }
 .transaction-box{
-  width: 222px;
-  height: 120px;
+  width: 231px;
+  height: 80px;
   border: 1px solid var(--transaction-border);
   background-color: var(--transaction-background);
   border-radius: 4px;
@@ -428,6 +436,26 @@ table:not(.no-hover){
       &:after{
         opacity: 1;
         border-color: #005CC8;
+      }
+    }
+  }
+}
+.box-search{
+  &.active{
+    .child-search{
+      display: block;
+      position: absolute;
+      right: 0 ;
+      top: 0;
+      z-index: 10;
+      width: 200px;
+      > span{
+        right: 6px;
+        left: auto;
+      }
+      .control-field{
+        padding-right: 30px!important;
+        
       }
     }
   }
@@ -532,8 +560,6 @@ table:not(.no-hover){
 .tippy-box{
   font-size: inherit;
 }
-
-
 
 @media (max-width: 768px) {
  

@@ -16,8 +16,8 @@ import {
   TransactionsHistoryParams,
   TransactionsHistoryResponse,
 } from '../../../services/interfaces/Transactions/TransactionHistory';
-import TitleComponent from '../../../components/TitleComponents';
-import { ButtonFullComponent } from '../../../components/ButtonComponents';
+import { TitleComponent } from '../../../components/Title';
+import { ButtonComponent } from '../../../components/Buttons/index';
 import { LoadingFullComponent } from '../../../components/LoadingComponent';
 
 const useDeposits = (recentDeposits: string) => {
@@ -103,6 +103,12 @@ const PendingDeposit: React.FC = () => {
   const [showManualAddDepositForm, setShowManualAddDepositForm] = useState<boolean>(false);
   const [recentDeposits, setRecentDeposits] = useState<TimeFilterOptions>(TimeFilterOptions.All);
   const [cashAgentTo, setCashAgentTo] = useState<string>('');
+  const [isCashServiceEnabled, setIsCashServiceEnabled] = useState(false);
+
+  useEffect(() => {
+    const isCashServiceEnabled = document.getElementById('IsCashServiceEnabled')?.getAttribute('value');
+    setIsCashServiceEnabled(isCashServiceEnabled === '1');
+  }, []);
 
   const { deposits, uniquePaymentToOptions, isLoading, fetchDeposits } =
     useDeposits(recentDeposits);
@@ -147,12 +153,14 @@ const PendingDeposit: React.FC = () => {
         <ManualAddDepositForm
           cashAgentOptions={cashAgentOptions}
           onClose={() => handleCloseManualDepositForm(false)}
+          isCashServiceEnabled={isCashServiceEnabled}
         />
       ) : (
         <div className="flex h-full flex-col">
-          <TitleComponent title={t('pendingDeposit')} />
+          <TitleComponent type='main' text={t('pendingDeposit')} />
           <div className="mb-[8px]">
-            <ButtonFullComponent
+            <ButtonComponent
+              variant="full"
               text={`${t('addManualDeposit')}`}
               onClick={handleAddManualDeposit}
               className="min-w-[183px] [&>*]:min-w-[183px] [&>*]:inline-block"
@@ -173,7 +181,7 @@ const PendingDeposit: React.FC = () => {
               <LoadingFullComponent />
             </div>
           ) : (
-            <DataGrid deposits={filteredDeposits} reloadGrid={fetchDeposits} />
+            <DataGrid deposits={filteredDeposits} reloadGrid={fetchDeposits} isCashServiceEnabled={isCashServiceEnabled} />
           )}
         </div>
       )}

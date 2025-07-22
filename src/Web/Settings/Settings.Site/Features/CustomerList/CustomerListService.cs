@@ -219,6 +219,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                 param.Locked,
                 param.DoubleCommLosing,
                 param.AllowAutoTransfer,
+                param.ServiceType,
                 param.PageSize,
                 param.PageIndex);
 

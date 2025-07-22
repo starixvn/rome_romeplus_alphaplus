@@ -30,7 +30,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Status
             yield return new ConfirmDoubleCommViewModel(request);
             yield return new ConfirmTransferBalanceDailyViewModel(request);
 
-            if (request.SupportAutoTransfer &&
+            if (!request.SearchAccount.IsCashMember && request.SupportAutoTransfer &&
                 (!request.IsSubAcc || request.SubPageAccess.Transfer))
             {
                 yield return new ConfirmAllowAutoTransferViewModel(request, accountService);

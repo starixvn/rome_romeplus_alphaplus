@@ -97,6 +97,7 @@ export const approveWithdrawal = async ({
   paymentMethodId,
   remark,
   image,
+  isRemovePayslip,
 }: {
   transId: number;
   custId: number;
@@ -105,6 +106,7 @@ export const approveWithdrawal = async ({
   paymentMethodId: number;
   remark: string;
   image: File | null;
+  isRemovePayslip: boolean;
 }): Promise<ResultModel> => {
   try {
     const formData = new FormData();
@@ -113,20 +115,14 @@ export const approveWithdrawal = async ({
     formData.append('paymentFrom', paymentFrom);
     formData.append('providerId', providerId.toString());
     formData.append('paymentMethodId', paymentMethodId.toString());
-    formData.append('remark', remark);
+    formData.append('remark', remark || '');
+    formData.append('isRemovePayslip', isRemovePayslip.toString());
 
     if (image) {
       formData.append('image', image);
     }
-    console.log(formData.get('transId'));
-    console.log(formData.get('custId'));
-    console.log(formData.get('paymentFrom'));
 
-    const response = await api.post<ResultModel>('ApproveWithdrawal', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    const response = await api.post<ResultModel>('ApproveWithdrawal', formData);
     return response.data;
   } catch (error) {
     console.error('Error approving withdrawal:', error);
@@ -142,6 +138,7 @@ export const rejectWithdrawal = async ({
   paymentMethodId,
   remark,
   image,
+  isRemovePayslip,
 }: {
   transId: number;
   custId: number;
@@ -150,6 +147,7 @@ export const rejectWithdrawal = async ({
   paymentMethodId: number;
   remark: string;
   image: File | null;
+  isRemovePayslip: boolean;
 }): Promise<ResultModel> => {
   try {
     const formData = new FormData();
@@ -158,16 +156,13 @@ export const rejectWithdrawal = async ({
     formData.append('paymentFrom', paymentFrom);
     formData.append('providerId', providerId.toString());
     formData.append('paymentMethodId', paymentMethodId.toString());
-    formData.append('remark', remark);
+    formData.append('remark', remark || '');
+    formData.append('isRemovePayslip', isRemovePayslip.toString());
     if (image) {
       formData.append('image', image);
     }
 
-    const response = await api.post<ResultModel>('RejectWithdrawal', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    });
+    const response = await api.post<ResultModel>('RejectWithdrawal', formData);
     return response.data;
   } catch (error) {
     console.error('Error rejecting withdrawal:', error);

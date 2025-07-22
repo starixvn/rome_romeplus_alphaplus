@@ -204,9 +204,6 @@
   <data name="None" xml:space="preserve">
     <value>没有</value>
   </data>
-  <data name="NotFilter" xml:space="preserve">
-    <value>未过滤</value>
-  </data>
   <data name="Of" xml:space="preserve">
     <value>之第</value>
   </data>
@@ -258,6 +255,9 @@
   <data name="View" xml:space="preserve">
     <value>游览</value>
   </data>
+  <data name="NotFilter" xml:space="preserve">
+    <value>未过滤</value>
+  </data>
   <data name="AllowDoubleCommission" xml:space="preserve">
     <value>允许双倍佣金</value>
   </data>
@@ -303,10 +303,10 @@
   <data name="UnlockTooltip" xml:space="preserve">
     <value>点击解锁</value>
   </data>
-  <data name="Enabled" xml:space="preserve">
-    <value>开启</value>
-  </data>
   <data name="AutoTransfer" xml:space="preserve">
     <value>自动转账</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>开启</value>
   </data>
 </root>

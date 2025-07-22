@@ -7,6 +7,8 @@ using AlphaPlus.CashService.API.Features.Payments.DTOs;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Payments.ViewModels;
 using AlphaPlus.CashService.API.Features.Shared.Services;
+using AlphaPlus.CashService.API.Features.Shared.Requests.PaymentGateway;
+using AlphaPlus.CashService.API.Features.Shared.Models.PaymentGateway;
 
 namespace AlphaPlus.CashService.API.Features.Payments.Services;
 
@@ -38,7 +40,8 @@ public interface IPaymentsService
 public class PaymentsService(
     IDynamicRepository repository,
     ICacheRefService cacheRefService,
-    ICommonService commonService
+    ICommonService commonService,
+    IPaymentGatewayService paymentGatewayService
 ) : IPaymentsService
 {
     public async Task<IEnumerable<ProviderModel>> GetProviders(int custId, string languageCode)
@@ -127,10 +130,19 @@ public class PaymentsService(
             return new ResultModel(1, "Invalid customer ID or provider ID");
         }
 
-        var criteria = new InsertPaymentMethodCriteria(request) {
-            APIConfig = $"{{\"APIMethodKey\":\"{request.APIMethodKey}\",\"MerchantID\":\"{request.MerchantID}\",\"AppSecret\":\"{request.AppSecret}\"}}",
+        var apiRequest = new TestConnectionRequest {
+            ProviderId = request.ProviderId,
+            TransactionType = request.TransactionType,
+            PaymentMethod = request.Method,
+            APIConfig = new APIConfigModel {
+                MerchantNo = request.MerchantID,
+                AppSecret = request.AppSecret,
+                SecretKey = request.APIMethodKey
+            }
         };
 
+        var apiResponse = await paymentGatewayService.TestConnection(apiRequest, request);
+        var criteria = new InsertPaymentMethodCriteria(request, apiResponse.Code != 0);
         var result = await commonService.RunDBCommand(request, criteria); 
         return result;
     }
@@ -308,10 +320,19 @@ public class PaymentsService(
             return new ResultModel(1, "Invalid customer ID or provider ID");
         }
 
-        var criteria = new UpdatePaymentMethodCriteria(request) {
-            APIConfig = $"{{\"APIMethodKey\":\"{request.APIMethodKey}\",\"MerchantID\":\"{request.MerchantID}\",\"AppSecret\":\"{request.AppSecret}\"}}",
+        var apiRequest = new TestConnectionRequest {
+            ProviderId = request.ProviderId,
+            TransactionType = request.TransactionType,
+            PaymentMethod = request.Method,
+            APIConfig = new APIConfigModel {
+                MerchantNo = request.MerchantID,
+                AppSecret = request.AppSecret,
+                SecretKey = request.APIMethodKey
+            }
         };
 
+        var apiResponse = await paymentGatewayService.TestConnection(apiRequest, request);
+        var criteria = new UpdatePaymentMethodCriteria(request, apiResponse.Code != 0);
         var result = await commonService.RunDBCommand(request, criteria); 
         return result;
     }

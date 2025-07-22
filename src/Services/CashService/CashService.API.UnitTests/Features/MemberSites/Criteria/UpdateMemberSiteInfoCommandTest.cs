@@ -1,7 +1,7 @@
 using AlphaPlus.CashService.API.Features.MemberSites.Criteria;
 using Xunit;
 
-namespace CashService.API.UnitTests.Features.MemberSites.Criteria;
+namespace AlphaPlus.CashService.API.UnitTests.Features.MemberSites.Criteria;
 
 //
 public class UpdateMemberSiteInfoCommandTests

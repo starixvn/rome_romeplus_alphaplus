@@ -102,6 +102,11 @@ class SortComponent {
         dormantAccountsRow.length && this.$tableReport.append(dormantAccountsRow);
     };
 
+    handleCashFeeDataAfterSort = () => {
+        const cashFeeRow = this.$tableReport.find('.cash-fee-row');
+        cashFeeRow.length && this.$tableReport.append(cashFeeRow);
+    };
+
     // getSortInfo = (): SortInfo => {
     //     return {
     //         sortPropertyName: this.$tableReport.data('sortedcolumn'),

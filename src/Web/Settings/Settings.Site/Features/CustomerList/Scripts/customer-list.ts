@@ -22,6 +22,7 @@ class CustomerList {
     private doubleCommDropdown: SingleSelectionDropdownComponent;
     private allowAutoTransferDropdown: SingleSelectionDropdownComponent;
     private levelComponent: SingleSelectionDropdownComponent;
+    private serviceTypeComponent: SingleSelectionDropdownComponent;
 
     constructor(
         $: JQueryStatic,
@@ -31,7 +32,8 @@ class CustomerList {
         statusDropdown: SingleSelectionDropdownComponent,
         doubleCommDropdown: SingleSelectionDropdownComponent,
         allowAutoTransferDropdown: SingleSelectionDropdownComponent,
-        levelComponent: SingleSelectionDropdownComponent
+        levelComponent: SingleSelectionDropdownComponent,
+        serviceTypeComponent: SingleSelectionDropdownComponent
     ) {
         this.$ = $;
         this.viewModel = viewModel;
@@ -42,6 +44,7 @@ class CustomerList {
         this.doubleCommDropdown = doubleCommDropdown;
         this.allowAutoTransferDropdown = allowAutoTransferDropdown;
         this.levelComponent = levelComponent;
+        this.serviceTypeComponent = serviceTypeComponent;
     }
 
     public init = () => {
@@ -52,11 +55,22 @@ class CustomerList {
         );
 
         this.allowAutoTransferDropdown.render(
-            new SingleSelectionDropdownOption('dautoTransferFilter', 'AllowAutoTransfer', () => {}, true, true)
+            new SingleSelectionDropdownOption('dautoTransferFilter', 'AllowAutoTransfer', () => { }, true, true)
         );
 
         this.levelComponent.render(new SingleSelectionDropdownOption('dropdown-level-type', 'HiddenLevelType'));
+        this.serviceTypeComponent.render(new SingleSelectionDropdownOption('serviceType', 'HiddenServiceType', () => {
+            const selectedValue = parseInt(this.serviceTypeComponent.getSelectedItem());
+            if (selectedValue === ServiceType.All || selectedValue === ServiceType.Cash) {
+                this.allowAutoTransferDropdown.disable();
+                this.allowAutoTransferDropdown.changeSelection(2);
+            } else {
+                this.allowAutoTransferDropdown.enable();
+            }
 
+            this.serviceTypeComponent.changeSelection(selectedValue);
+        }));
+        this.serviceTypeComponent.onchange();
         this.bindingTxtUsername();
         this.customerListDataTable.bindingEvent();
         this.customerListPopup.bindingBootstrapModalEvent();
@@ -126,7 +140,9 @@ $(function () {
         JSON.parse($('#canViewReport').val()),
         JSON.parse($('#canUpdateAccount').val()),
         window.customerListData,
-        JSON.parse($('#IsDirectMember').val())
+        JSON.parse($('#IsDirectMember').val()),
+        parseInt($('#HiddenServiceType').val()),
+        JSON.parse($('#OfferedCashService').val())
     );
 
     const customerListPopup = new CustomerListPopup($, window.top, viewModel.IsMobileView),
@@ -157,6 +173,7 @@ $(function () {
             viewModel,
             customerListPopup,
             customerListDataTable,
+            new SingleSelectionDropdownComponent($),
             new SingleSelectionDropdownComponent($),
             new SingleSelectionDropdownComponent($),
             new SingleSelectionDropdownComponent($),

@@ -3035,5 +3035,77 @@ namespace AlphaPlus.Shared.AppResources.Main
                 return ResourceManager.GetString("CashService", resourceCulture);
             }
         }
+
+        public static string CashServiceSetupChecklist_Row1
+        {
+            get
+            {
+                return ResourceManager.GetString("CashServiceSetupChecklist_Row1", resourceCulture);
+            }
+        }
+        
+        public static string CashServiceSetupChecklist_Row2
+        {
+            get
+            {
+                return ResourceManager.GetString("CashServiceSetupChecklist_Row2", resourceCulture);
+            }
+        }
+        
+        public static string CashServiceSetupChecklist_Row3
+        {
+            get
+            {
+                return ResourceManager.GetString("CashServiceSetupChecklist_Row3", resourceCulture);
+            }
+        }
+        
+        public static string CashServiceSetupChecklist_Row4
+        {
+            get
+            {
+                return ResourceManager.GetString("CashServiceSetupChecklist_Row4", resourceCulture);
+            }
+        }
+        
+        public static string CashServiceSetupChecklist_Row5
+        {
+            get
+            {
+                return ResourceManager.GetString("CashServiceSetupChecklist_Row5", resourceCulture);
+            }
+        }
+        
+        public static string CashServiceSetupChecklist_Row6
+        {
+            get
+            {
+                return ResourceManager.GetString("CashServiceSetupChecklist_Row6", resourceCulture);
+            }
+        }
+        
+        public static string CashServiceSetupChecklist_Row7
+        {
+            get
+            {
+                return ResourceManager.GetString("CashServiceSetupChecklist_Row7", resourceCulture);
+            }
+        }
+        
+        public static string CashServiceSetupChecklist_Row8
+        {
+            get
+            {
+                return ResourceManager.GetString("CashServiceSetupChecklist_Row8", resourceCulture);
+            }
+        }
+        
+        public static string Checklist
+        {
+            get
+            {
+                return ResourceManager.GetString("Checklist", resourceCulture);
+            }
+        }
     }
 }

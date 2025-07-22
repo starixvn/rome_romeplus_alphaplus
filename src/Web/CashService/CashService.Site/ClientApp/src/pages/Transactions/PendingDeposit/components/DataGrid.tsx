@@ -8,16 +8,16 @@ import {
 } from '../../../../utils/commonFunctions';
 import NoRecordFound from '../../../../components/NoRecordFoundComponent.tsx';
 import Pagination from '../../Components/Pagination';
-import { ButtonFullComponent } from '../../../../components/ButtonComponents';
+import { ButtonComponent } from '../../../../components/Buttons/index';
 import PendingDepositModal from './PendingDepositModal';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
-import Tippy from '@tippyjs/react';
-import { ErrorMessageComponent } from '../../../../components/MessageComponents';
+import { MessageComponent } from '../../../../components/Message';
 import { IconImage } from '../../../../components/Icons.tsx';
 
 interface DataGridProps {
   deposits: TransactionItem[];
   reloadGrid: () => void;
+  isCashServiceEnabled: boolean;
 }
 
 const TableHeader: React.FC<{ t: (key: string) => string }> = ({ t }) => (
@@ -88,19 +88,16 @@ const TableRow: React.FC<TableRowProps> = ({
         </div>
       </td>
       <td className="text-left">
-        <Tippy content={<p>{tGlobal(deposit.paymentFrom.split('-')[0])}</p>}>
-          {renderBankAccount(deposit.paymentFrom)}
-        </Tippy>
+          {renderBankAccount(deposit.paymentFrom, tGlobal)}
       </td>
       <td className="text-left">
-        <Tippy content={<p>{tGlobal(deposit.paymentTo.split('-')[0])}</p>}>
-          {renderBankAccount(deposit.paymentTo)}
-        </Tippy>
+          {renderBankAccount(deposit.paymentTo, tGlobal)}
       </td>
       <td>{deposit.transId}</td>
       <td>{formatDateTime(deposit.createdTime)}</td>
       <td>
-        <ButtonFullComponent
+        <ButtonComponent
+          variant="full"
           text={t('dataGrid.process')}
           onClick={() => onProcess(deposit)}
           className=""
@@ -110,7 +107,7 @@ const TableRow: React.FC<TableRowProps> = ({
   </>
 );
 
-const DataGrid: React.FC<DataGridProps> = ({ deposits, reloadGrid }) => {
+const DataGrid: React.FC<DataGridProps> = ({ deposits, reloadGrid, isCashServiceEnabled }) => {
   const { t } = useTranslation('pendingDeposit');
   const { t: tGlobal } = useTranslation('global');
   const [currentPage, setCurrentPage] = useState(1);
@@ -153,7 +150,7 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits, reloadGrid }) => {
 
   return (
     <>
-      <div className="table-fixed-header table-fixed-body min-h-0">
+      <div className="table table-fixed-body min-h-0">
         <table className="w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px] border-l-[0px]">
           <TableHeader t={t} />
           <tbody className="font-[500]">
@@ -171,19 +168,20 @@ const DataGrid: React.FC<DataGridProps> = ({ deposits, reloadGrid }) => {
                 />
               ))
             ) : (
-              <NoRecordFound colSpan={11} message={t('dataGrid.noDepositsFound')} />
+              <NoRecordFound colSpan={11} />
             )}
           </tbody>
         </table>
       </div>
 
-      {error && <ErrorMessageComponent message={error} />}
+      {error && <MessageComponent message={error} type='error' />}
 
       {showDepositPopup && selectedDeposit && (
         <PendingDepositModal
           transId={selectedDeposit.transId}
           custId={selectedDeposit.custId}
           onClose={handleCloseProcess}
+          isCashServiceEnabled={isCashServiceEnabled}
         />
       )}
 

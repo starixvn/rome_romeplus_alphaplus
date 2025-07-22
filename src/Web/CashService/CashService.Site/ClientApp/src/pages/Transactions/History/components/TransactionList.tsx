@@ -15,6 +15,7 @@ import Pagination from '../../Components/Pagination';
 
 interface TransactionListProps {
   transactionType: number;
+  isCashServiceEnabled: boolean;
 }
 
 const useTransactionData = () => {
@@ -30,6 +31,12 @@ const useTransactionData = () => {
       setLoading(true);
       setError(null);
       params.account = '';
+
+      if (params.dateRange && params.dateRange[1]) {
+        const toDate = new Date(params.dateRange[1]);
+        toDate.setHours(23, 59, 59, 0);
+        params.dateRange[1] = toDate.toLocaleString('en-US');
+      }
       const response = await transactionAPI.getTransactions(params);
       setApiData(response);
 
@@ -200,7 +207,10 @@ const usePaymentInfo = (apiData: TransactionsHistoryResponse, transactionType: n
   return { paymentInformations };
 };
 
-const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) => {
+const TransactionList: React.FC<TransactionListProps> = ({
+  transactionType,
+  isCashServiceEnabled,
+}) => {
   const { loading, error, apiData, fetchTransactions } = useTransactionData();
   const { apiParams, updateApiParams } = useApiParams(transactionType);
   const { columnFilter, localSearchText, handleColumnChange, handleLocalSearchChange } =
@@ -304,24 +314,20 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
           <strong className="font-bold">Error!</strong>
           <span className="block sm:inline"> {error}</span>
         </div>
-      )}
-
-      <div className="filters-container mb-[5px]">
-        <Filters
-          dateRange={apiParams.dateRange}
-          status={apiParams.status}
-          column={columnFilter}
-          account={apiParams.account}
-          paymentInformations={paymentInformations}
-          transactionType={transactionType}
-          onDateRangeChange={handleDateRangeChange}
-          onStatusChange={handleStatusChange}
-          onColumnChange={handleColumnChange}
-          onAccountChange={handleAccountChange}
-        />
-      </div>
-
-      <div className="search-section w-full border border-[var(--table-border-color)] border-b-0 p-[6px]">
+      )}    
+      <Filters
+        dateRange={apiParams.dateRange}
+        status={apiParams.status}
+        column={columnFilter}
+        account={apiParams.account}
+        paymentInformations={paymentInformations}
+        transactionType={transactionType}
+        onDateRangeChange={handleDateRangeChange}
+        onStatusChange={handleStatusChange}
+        onColumnChange={handleColumnChange}
+        onAccountChange={handleAccountChange}
+      />  
+      <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px]">
         <Search
           value={localSearchText}
           onChange={handleLocalSearchChange}
@@ -340,6 +346,7 @@ const TransactionList: React.FC<TransactionListProps> = ({ transactionType }) =>
         columnFilter={columnFilter}
         transactionType={transactionType}
         onRefreshNeeded={onRefreshNeeded}
+        isCashServiceEnabled={isCashServiceEnabled}
       />
 
       {!loading && tempTotalCount > 0 && (

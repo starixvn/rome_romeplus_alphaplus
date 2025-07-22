@@ -16,8 +16,8 @@ import {
 import { transactionAPI } from '../../../services/transactionsHistoryAPI.ts';
 import { calculateDateRange, TransactionType } from '../../../utils/commonFunctions.tsx';
 import { LoadingFullComponent } from '../../../components/LoadingComponent';
-import TitleComponent from '../../../components/TitleComponents.tsx';
-import { ButtonFullComponent } from '../../../components/ButtonComponents';
+import { TitleComponent } from '../../../components/Title';
+import { ButtonComponent } from '../../../components/Buttons/index';
 
 const PendingWithdrawal: React.FC = () => {
   const { t } = useTranslation('pendingWithdrawal');
@@ -30,6 +30,14 @@ const PendingWithdrawal: React.FC = () => {
   });
   const [showManualAddWithdrawalForm, setShowManualAddWithdrawalForm] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isCashServiceEnabled, setIsCashServiceEnabled] = useState(false);
+
+  useEffect(() => {
+    const isCashServiceEnabled = document
+      .getElementById('IsCashServiceEnabled')
+      ?.getAttribute('value');
+    setIsCashServiceEnabled(isCashServiceEnabled === '1');
+  }, []);
 
   const fetchWithdrawals = async () => {
     setIsLoading(true);
@@ -99,12 +107,16 @@ const PendingWithdrawal: React.FC = () => {
   return (
     <>
       {showManualAddWithdrawalForm ? (
-        <ManualAddWithdrawalForm onClose={() => handleCloseManualWithdrawalForm(false)} />
+        <ManualAddWithdrawalForm
+          onClose={() => handleCloseManualWithdrawalForm(false)}
+          isCashServiceEnabled={isCashServiceEnabled}
+        />
       ) : (
         <div className="flex h-full flex-col">
-          <TitleComponent title={t('pendingWithdrawal')} />
+          <TitleComponent text={t('pendingWithdrawal')} type='main'/>
           <div className="mb-[8px]">
-            <ButtonFullComponent
+            <ButtonComponent
+              variant="full"
               text={`${t('addManualWithdrawal')}`}
               onClick={handleAddManualWithdrawal}
               className="min-w-[183px] [&>*]:min-w-[183px] [&>*]:inline-block"
@@ -123,7 +135,11 @@ const PendingWithdrawal: React.FC = () => {
               <LoadingFullComponent />
             </div>
           ) : (
-            <DataGrid withdrawals={filteredWithdrawals} reloadGrid={fetchWithdrawals} />
+            <DataGrid
+              withdrawals={filteredWithdrawals}
+              reloadGrid={fetchWithdrawals}
+              isCashServiceEnabled={isCashServiceEnabled}
+            />
           )}
         </div>
       )}

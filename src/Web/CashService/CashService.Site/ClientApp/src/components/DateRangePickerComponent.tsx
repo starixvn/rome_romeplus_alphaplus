@@ -1,11 +1,11 @@
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 
-import { enUS } from 'date-fns/locale';
 import React from 'react';
 import { DateRange, Range, RangeKeyDict } from 'react-date-range';
+import { enUS, vi, ja, ko, zhCN, zhTW, th } from 'date-fns/locale';
 
-import { ButtonFullComponent } from './ButtonComponents';
+import { ButtonComponent } from './Buttons/index';
 import { CalendarIcon } from './Icons';
 import { convertToGMT4 } from '../utils/commonFunctions';
 import './DateRangePickerComponent.scss';
@@ -17,6 +17,9 @@ export interface DateRangePickerProps {
   className?: string;
   minYear?: number;
   maxRangeDays?: number;
+  hideQuickRanges?: boolean;
+  minDate?: Date | null;
+  maxDate?: Date | null;
 }
 
 function formatDateWithLeadingZeros(date: Date | null): string {
@@ -170,26 +173,70 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   className,
   minYear,
   maxRangeDays,
+  hideQuickRanges = false,
+  minDate = null,
+  maxDate = null,
 }) => {
   const { t } = useTranslation('global');
+  const { i18n } = useTranslation();
+  const currentLocale = i18n.language;
+  let locale = enUS;
+  switch (currentLocale) {
+    case 'vi':
+      locale = vi;
+      break;
+    case 'th-TH':
+      locale = th;
+      break;
+    case 'ja-JP':
+      locale = ja;
+      break;
+    case 'ko':
+      locale = ko;
+      break;
+    case 'zh-CN':
+      locale = zhCN;
+      break;
+    case 'zh-TW':
+      locale = zhTW;
+      break;
+    default:
+      locale = enUS;
+  }
   const [open, setOpen] = React.useState(false);
   const ref = React.useRef<HTMLDivElement>(null);
 
   const overallMinDate = React.useMemo(() => {
+    if (maxRangeDays) {
+      return minYear ? new Date(minYear, 0, 1) : undefined;
+    }
+
+    if (minDate) {
+      return minDate;
+    }
     return minYear ? new Date(minYear, 0, 1) : undefined;
-  }, [minYear]);
+  }, [minYear, minDate, maxRangeDays]);
 
   const todayForMaxDateDep = new Date();
   const overallMaxDate = React.useMemo(() => {
-    const freshNowInGMT4 = convertToGMT4(new Date());
-    const maxDate = new Date(freshNowInGMT4);
-    maxDate.setDate(freshNowInGMT4.getDate() + 1);
-    maxDate.setHours(23, 59, 59, 999);
-    return maxDate;
+    if (maxRangeDays) {
+      const freshNowInGMT4 = convertToGMT4(new Date());
+      const calculatedMaxDate = new Date(freshNowInGMT4);
+      calculatedMaxDate.setDate(freshNowInGMT4.getDate() + 1);
+      calculatedMaxDate.setHours(23, 59, 59, 999);
+      return calculatedMaxDate;
+    }
+
+    if (maxDate) {
+      return maxDate;
+    }
+    return undefined;
   }, [
     todayForMaxDateDep.getFullYear(),
     todayForMaxDateDep.getMonth(),
     todayForMaxDateDep.getDate(),
+    maxDate,
+    maxRangeDays,
   ]);
 
   const [pendingRange, setPendingRange] = React.useState<Range[]>([
@@ -273,22 +320,22 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
       currentRangeToProcess.endDate = end;
     }
 
-    currentRangeToProcess = applyMaxRangeConstraint(
-      currentRangeToProcess,
-      maxRangeDays,
-      pendingRange[0]
-    );
+    if (maxRangeDays) {
+      currentRangeToProcess = applyMaxRangeConstraint(
+        currentRangeToProcess,
+        maxRangeDays,
+        pendingRange[0]
+      );
+    }
 
     setPendingRange([currentRangeToProcess]);
 
-    const finalSelectedStartDate = currentRangeToProcess.startDate;
-
-    if (finalSelectedStartDate) {
+    if (maxRangeDays && currentRangeToProcess.startDate) {
       const minDate = new Date(
-        finalSelectedStartDate.getTime() - ((maxRangeDays || 0) - 1) * 24 * 60 * 60 * 1000
+        currentRangeToProcess.startDate.getTime() - ((maxRangeDays || 0) - 1) * 24 * 60 * 60 * 1000
       );
       const maxDate = new Date(
-        finalSelectedStartDate.getTime() + (maxRangeDays || 0) * 24 * 60 * 60 * 1000
+        currentRangeToProcess.startDate.getTime() + (maxRangeDays || 0) * 24 * 60 * 60 * 1000
       );
 
       const finalMinDate = overallMinDate && minDate < overallMinDate ? overallMinDate : minDate;
@@ -320,18 +367,20 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
       {open && (
         <div className="absolute z-50 bg-[var(--datarangepicker-background)] dropdown-custom-datarangepicker border border-[var(--datarangepicker-border)] left-0 mt-[7px]">
           <div className="flex">
-            <div className="flex flex-col w-[158px] py-[10px] border-r border-[var(--datarangepicker-border)]">
-              {quickRanges.map((item) => (
-                <button
-                  key={t(`dateRangePicker.${item.label}`)}
-                  className="font-semibold transition cursor-pointer block w-full text-left px-[10px] py-[5px] leading-[20px]  text-[var(--datarangepicker-color)] hover:bg-[var(--datarangepicker-cell-background-active)] hover:text-[var(--datarangepicker-color-hover)]"
-                  onClick={() => handleQuickRangeClick(item)}
-                  type="button"
-                >
-                  {t(`dateRangePicker.${item.label}`)}
-                </button>
-              ))}
-            </div>
+            {!hideQuickRanges && (
+              <div className="flex flex-col w-[158px] py-[10px] border-r border-[var(--datarangepicker-border)]">
+                {quickRanges.map((item) => (
+                  <button
+                    key={t(`dateRangePicker.${item.label}`)}
+                    className="font-semibold transition cursor-pointer block w-full text-left px-[10px] py-[5px] leading-[20px]  text-[var(--datarangepicker-color)] hover:bg-[var(--datarangepicker-cell-background-active)] hover:text-[var(--datarangepicker-color-hover)]"
+                    onClick={() => handleQuickRangeClick(item)}
+                    type="button"
+                  >
+                    {t(`dateRangePicker.${item.label}`)}
+                  </button>
+                ))}
+              </div>
+            )}
             <DateRange
               editableDateInputs={true}
               onChange={handleCalendarChange}
@@ -341,14 +390,14 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
               showDateDisplay={false}
               months={1}
               direction="vertical"
-              locale={enUS}
+              locale={locale || enUS}
               minDate={calendarMinDate}
               maxDate={calendarMaxDate}
             />
           </div>
           <div className="border-t border-[var(--datarangepicker-border)] p-[10px] flex justify-between items-center">
             <div className="">
-              <span className="">{t('selected')}:</span>{' '}
+              <span className="">{t('dateRangePicker.selected')}:</span>{' '}
               <span className="text-[var(--datarangepicker-color-selected-days)] bg-[var(--datarangepicker-cell-background)] px-[4px] py-[3px] rounded-[4px]">
                 {selectedStart && selectedEnd ? (
                   <>
@@ -363,11 +412,11 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
                     </span>
                   </>
                 ) : (
-                  t('noRangeSelected')
+                  t('dateRangePicker.noRangeSelected')
                 )}
               </span>
             </div>
-            <ButtonFullComponent text={t('apply')} onClick={handleApply} />
+            <ButtonComponent variant="apply" text={t('apply')} onClick={handleApply} />
           </div>
         </div>
       )}

@@ -55,7 +55,7 @@
                 <tr
                     class="@BackgroundColorHelper.GetClassNameByAccountStatus(item.Enabled, item.Closed, item.ClosedReason, item.Suspended, item.Locked)">
                     <td class="text-center col-no">@(++number)</td>
-                    <td>@item.Username</td>
+                    <td>@item.Username @(item.IsCashMember ? Html.Raw("<span class='icon-cashservice icon-cashservice-common'></span>"): string.Empty)</td>
                     <td>@item.FirstName</td>
                     <td>@item.LastName</td>
                     @if (Model.IsShowGroup)

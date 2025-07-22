@@ -1,5 +1,8 @@
+@using AlphaPlus.Core.Configurations
 @using AlphaPlus.Core.Helpers
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
+@using AlphaPlus.Core.Models
+@inject IUserSession UserSession
 @{
     Layout = "~/Features/Transfer/Views/CashBalanceTransfer/_HintLayout.cshtml";
 }
@@ -18,11 +21,15 @@
     </ul>
     <p>참고사항</p>
     <ul class="ul-remark">
+        @if (AppSettings.IsOfferedCashService(UserSession.Site) && UserSession.IsAgent)
+        {
+            <li>캐시 회원은 이 페이지에 포함되지 않습니다</li>
+        }
         @if (!string.IsNullOrEmpty(Model.AllowTransfer))
         {
             <li>@Html.Raw(Model.AllowTransfer)</li>
         }
-        <li>하루에 원하는 만큼 거래할 수 있습니다 (어제 잔액과 현금 잔액 모두)</li>        
+        <li>하루에 원하는 만큼 거래할 수 있습니다 (어제 잔액과 현금 잔액 모두)</li>
         <li>@Resources.showhidecolumnAd</li>
     </ul>
 }
@@ -30,6 +37,10 @@ else
 {
     <p>참고사항</p>
     <ul class="ul-remark">
+        @if (AppSettings.IsOfferedCashService(UserSession.Site) && UserSession.IsAgent)
+        {
+            <li>캐시 회원은 이 페이지에 포함되지 않습니다</li>
+        }
         @if (!string.IsNullOrEmpty(Model.AllowTransfer))
         {
             <li>@Html.Raw(Model.AllowTransfer)</li>

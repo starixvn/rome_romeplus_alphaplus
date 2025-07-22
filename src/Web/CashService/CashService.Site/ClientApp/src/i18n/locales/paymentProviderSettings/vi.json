@@ -38,6 +38,7 @@
 
   "setUpPaymentMethodsForMembers": "Thiết lập phương thức thanh toán cho thành viên của bạn",
   "addPaymentMethod": "Thêm phương thức thanh toán",
+  "RequirePaymentMethod": "Yêu cầu ít nhất một phương thức thanh toán 'Hoàn thành'.",
   
   "viewProviderFees": "Xem phí {{providerName}}",
   "bank": "Ngân hàng",

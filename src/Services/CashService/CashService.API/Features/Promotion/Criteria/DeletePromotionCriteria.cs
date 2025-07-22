@@ -1,28 +1,23 @@
+namespace AlphaPlus.CashService.API.Features.Promotion.Criteria;
+
 using Fanex.Data;
 using Fanex.Data.Repository;
 
-namespace AlphaPlus.CashService.API.Features.Promotion.Criteria
+public class DeletePromotionCriteria : NonQueryCommand
 {
-    public class DeletePromotionCriteria : NonQueryCommand
-    {
-        public DeletePromotionCriteria(int promotionId, int custId)
-        {
-            PromotionId = promotionId;
-            CustId = custId;
-        }
+    public int PromotionId { get; set; }
+    public int SiteDbGroupId { get; set; }
+    public int AgentId { get; set; }
+    public int SubAccId { get; set; }
+    public string IP { get; set; }
+    public string Language { get; set; }
+    public int ErrCode { get; set; }
+    public string ErrMsg { get; set; } = string.Empty;
 
-        [SpParam(SqlParamName = "PromotionId")]
-        public int PromotionId { get; }
+    [SpParam(Ignored = true)]
+    public int CustDbGroupId { get; set; }
 
-        [SpParam(SqlParamName = "CustId")]
-        public int CustId { get; }
+    public override string GetSettingKey() => $"CustDb_{CustDbGroupId}_Age_CashService_CashPromotionDel";
 
-        public int ErrCode { get; set; }
-        
-        public string ErrMsg { get; set; } = string.Empty;
-
-        public override string GetSettingKey() => "Age_CashService_Promotion_Delete";
-
-        public override bool IsValid() => PromotionId > 0 && CustId > 0;
-    }
-} 
+    public override bool IsValid() => PromotionId > 0 && AgentId > 0;
+}

@@ -85,6 +85,8 @@ public class CustomerInfoViewModel : AccountInfoViewModelBase
 
     public bool IsDirectMemberOfSuper => customerInfo.IsDirectMemberOfSuper;
 
+    public bool IsCashMember => customerInfo.IsCashMember;
+
     public LoginInfoViewModel LoginInfo => new(customerInfo.CreatDate, customerInfo.LastLogged, customerInfo.LastLoginIP);
 
     public IBalanceInfoViewModel BalanceInfo { get; }

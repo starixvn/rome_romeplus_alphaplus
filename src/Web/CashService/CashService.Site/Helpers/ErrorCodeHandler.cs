@@ -37,15 +37,19 @@ public static class ErrorCodeHandler
         => errCode switch
         {
             405 => CashServicesResx.InvalidParameters,
+            407 => CashServicesResx.TheAmountExceedsTheAllowedMinimumOrMaximumValue,
             409 => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain,
+            410 => CashServicesResx.ProviderRejectErrorMessage,
+            411 => CashServicesResx.PaymentProviderUnavailable,
             499 => $"{CashServicesResx.InternalServerError} {sqlException}",
-            _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain
+            _ => sqlException
         };
 
-    public static string MappingRevertPendingTransactionErrCode(int errCode)
+    public static string MappingRevertTransactionErrCode(int errCode)
         => errCode switch
         {
             405 => CashServicesResx.InvalidParameters,
+            406 => CashServicesResx.MemberCashBalanceIsInsufficient,
             409 => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain,
             _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain
         };

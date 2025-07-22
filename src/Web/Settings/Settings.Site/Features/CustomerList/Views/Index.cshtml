@@ -1,4 +1,5 @@
-﻿@using Microsoft.AspNetCore.Http.Extensions
+﻿@using AlphaPlus.Shared.AppResources.CashServices
+@using Microsoft.AspNetCore.Http.Extensions
 @using Newtonsoft.Json
 @using AlphaPlus.Core.Helpers
 @using AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
@@ -59,7 +60,7 @@
                             {
                                 <li>
                                     <a class="breadcrumb-link view-downline"
-                                        data-url="@(viewModel.BuildBreadcrumbLink(custinfo, AlphaContext.Current.Request.GetEncodedPathAndQuery(), null, linkIndex))">
+                                       data-url="@(viewModel.BuildBreadcrumbLink(custinfo, AlphaContext.Current.Request.GetEncodedPathAndQuery(), null, linkIndex))">
                                         @(custinfo.CustName)
                                     </a>
                                 </li>
@@ -77,7 +78,7 @@
         <div class="form-group username-box">
             <label>@CustomerListResources.Username</label>
             <input type="text" class="txt-search" id="txt-username" value="@Model.Username"
-                placeholder="@CustomerListResources.UsernamePlaceHolder" />
+                   placeholder="@CustomerListResources.UsernamePlaceHolder" />
         </div>
         <div class="form-group status-box">
             <label>@CustomerListResources.Status</label>
@@ -97,6 +98,22 @@
                 }
             </select>
         </div>
+
+        @if (Model.SearchAccountLevel.IsAgentLevel()
+                && AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(UserSession.Current.Site))
+        {
+            <div class="form-group comm-box">
+                <label>
+                    @CashServicesResx.AccountType
+                </label>
+                <select id="serviceType" name="serviceType">
+                    <option value="2">@Resources.All</option>
+                    <option value="0">@Resources.Credit</option>
+                    <option value="1">@Resources.Cash</option>
+                </select>
+            </div>
+        }
+
         @if (Model.EnableAutoTransfer)
         {
             <div class="form-group comm-box">
@@ -104,7 +121,8 @@
                 <select id="dautoTransferFilter" name="dautoTransferFilter">
                     @foreach (var option in Model.AllowAutoTransferOptions)
                     {
-                        <option value="@option.Value" selected="@option.Value.Equals(Model.AllowAutoTransfer)">@option.Text
+                        <option value="@option.Value" selected="@option.Value.Equals(Model.AllowAutoTransfer)">
+                            @option.Text
                         </option>
                     }
                 </select>
@@ -118,7 +136,13 @@
             <input type="submit" value="@Resources.Submit" class="btn-submit" />
         </div>
     </div>
-
+    @if (Model.SearchAccountLevel.IsAgentLevel()
+        && AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(UserSession.Current.Site))
+    {
+        <div class="note">
+            <span class="star"></span>@CashServicesResx.MemberListNoteEditMultipleNotAvailable
+        </div>
+    }
     <table id="tbl-customer-list" class="hidden tblRpt tblRpt-bordered tblRpt-hover display nowrap">
         <thead>
             <tr>
@@ -128,7 +152,7 @@
                 }
                 @if (!Model.HideEditMultiple)
                 {
-                    <th></th>
+                    <th class="js-service-type-multiple-show"></th>
                 }
                 <th></th>
                 <th></th>
@@ -166,20 +190,20 @@
                 }
                 @if (!Model.HideEditMultiple)
                 {
-                    <th rowspan="2" class="header all padding-icon">
+                    <th rowspan="2" class="header all padding-icon js-service-type-multiple-show">
                         <input type="checkbox" class="select-all" />
                     </th>
                 }
                 <th rowspan="2" class="header all padding-icon">
-                    @if (!Model.HideEditMultiple)
-                    {
-                        <div class="edit-multiple icon-table-edit" data-url=""
-                            title="@CustomerListResources.EditMultipleSetting" />
-                    }
+                    @*  @if (!Model.HideEditMultiple)
+                    { *@
+                    <div class="edit-multiple icon-table-edit js-service-type-multiple-show" data-url=""
+                         title="@CustomerListResources.EditMultipleSetting"></div>
+                    @*} 
                     else
-                    {
-                        <span>@CustomerListResources.Edit</span>
-                    }
+                    { *@
+                    <span class="js-service-type-multiple-hide">@CustomerListResources.Edit</span>
+                    @* } *@
                 </th>
                 <th rowspan="2" class="header all">
                     @CustomerListResources.Username <br />
@@ -335,7 +359,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                        id="close-product-popup">
+                            id="close-product-popup">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -348,11 +372,13 @@
 
     @Html.AntiForgeryToken()
     @Html.Hidden("IsDirectMember", Model.IsDirectMember ? "true" : "false")
+    @Html.Hidden("HiddenServiceType", Model.ServiceType)
     @Html.Hidden("StatusId", Model.Status)
     @Html.Hidden("DoubleCommId", Model.DoubleComm)
     @Html.Hidden("AllowAutoTransfer", Model.AllowAutoTransfer)
     @Html.Hidden("UnconfirmSettingId", Model.UnconfirmSetting)
     @Html.Hidden("enableAllDayBalanceTransfer", Model.EnableAllDayBalanceTransfer)
+    @Html.Hidden("OfferedCashService", AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(UserSession.Current.Site) ? "true" : "false")
     <input type="hidden" id="searchAccountId" value="@Model.SearchAccountId">
     <input type="hidden" id="searchAccountName" value="@Model.SearchAccountName">
     <input type="hidden" id="searchAccountRoleId" value="@Model.SearchAccountRoleId">
@@ -386,9 +412,9 @@
     <input type="hidden" id="expandAllText" value='@CustomerListResources.ExpandAll'>
     <input type="hidden" id="unlockTooltipText" value='@CustomerListResources.UnlockTooltip'>
     <input type="hidden" id="confirmUnlockInCaseFalseOTPSC"
-        value='@ProductResources.ConfirmUnlockAccessViewModelInCaseFalseOTPSC'>
+           value='@ProductResources.ConfirmUnlockAccessViewModelInCaseFalseOTPSC'>
     <input type="hidden" id="confirmUnlockInCaseFalsePassword"
-        value='@ProductResources.ConfirmUnlockAccessViewModelInCaseFalsePassword'>
+           value='@ProductResources.ConfirmUnlockAccessViewModelInCaseFalsePassword'>
     <input type="hidden" id="page" value='@CustomerListResources.Page'>
     <input type="hidden" id="of" value='@CustomerListResources.Of'>
     <input type="hidden" id="pageSize" value='@CustomerListResources.PageSize'>

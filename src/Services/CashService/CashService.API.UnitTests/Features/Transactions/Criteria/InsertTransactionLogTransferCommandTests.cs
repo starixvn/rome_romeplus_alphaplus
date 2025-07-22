@@ -2,7 +2,7 @@ using AlphaPlus.CashService.API.Features.Transactions.Criteria;
 using AlphaPlus.CashService.API.Features.Transactions.Models;
 using Xunit;
 
-namespace CashService.API.UnitTests.Features.Transactions.Criteria;
+namespace AlphaPlus.CashService.API.UnitTests.Features.Transactions.Criteria;
 
 public class InsertTransactionLogTransferCommandTests
 {
@@ -38,7 +38,7 @@ public class InsertTransactionLogTransferCommandTests
     {
         // Arrange
         TransactionLog logItem = null;
-        var siteDbGroupId = 1;
+        short siteDbGroupId = 1;
 
         // Act & Assert
         Assert.Throws<NullReferenceException>(() => new InsertTransactionLogTransferCommand(logItem, siteDbGroupId));

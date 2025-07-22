@@ -38,6 +38,7 @@
 
   "setUpPaymentMethodsForMembers": "Set up payment methods for your members",
   "addPaymentMethod": "Add payment method",
+  "RequirePaymentMethod": "Require at least one 'Completed' payment method.",
   
   "viewProviderFees": "View {{providerName}} fees",
   "bank": "Bank",
@@ -71,8 +72,8 @@
   "transactionType-0": "All",
   "transactionType-1": "Manual Deposit",
   "transactionType-2": "Auto Deposit",
-  "transactionType-3": "Manual Withdraw",
-  "transactionType-4": "Auto Withdraw",
+  "transactionType-3": "Manual Withdrawal",
+  "transactionType-4": "Auto Withdrawal",
   "status-0": "All",
   "status-1": "Processing",
   "status-2": "Completed",

@@ -1,14 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using AlphaPlus.Core.Models;
-using MediatR;
-using Microsoft.Extensions.Options;
+﻿using AlphaPlus.Core;
+using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Filters;
-using AlphaPlus.Core;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Main.Site.Features.ContactUs;
 using AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo;
 using AlphaPlus.Main.Site.Features.Dashboard.CashService;
-using AlphaPlus.Main.Site.Features.ContactUs;
-using AlphaPlus.Core.Configurations;
-using AlphaPlus.Shared.AppResources.Common;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Main.Site.Features.Dashboard
 {

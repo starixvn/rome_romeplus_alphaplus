@@ -8,7 +8,28 @@
     void RenderRow(WinLossDetailModel data, bool isTotalRow = false)
     {
         var isDormantAccounts = data.CustId == 0;
-        <tr class="@(isTotalRow ? "tbl-footer" : (isDormantAccounts ? "dormant-accounts-mark" : string.Empty))">
+        var isCashFee = string.IsNullOrEmpty(data.CustName) ? false : data.CustName.Equals("CASH SERVICE BILLING", StringComparison.OrdinalIgnoreCase);
+        var rowClass = string.Empty;
+        @if (isTotalRow)
+        {
+            rowClass = "tbl-footer";
+        }
+        else
+        {
+            if (isDormantAccounts)
+            {
+                rowClass = "dormant-accounts-mark";
+            }
+            else if (isCashFee)
+            {
+                rowClass = "cash-fee-row";
+            }
+            else
+            {
+                rowClass = string.Empty;
+            }
+        }
+        <tr class="@rowClass">
             <td @(isDormantAccounts || isTotalRow ? string.Empty : $"data-sortedvalue={data.CustName}")
                 class="text-left col-username">
                 @if (isTotalRow)
@@ -23,14 +44,21 @@
                 }
                 else if (isAgentLevel || data.IsDirectMember)
                 {
-                    if (data.NumberOfTickets == 0)
+                    if (isCashFee)
                     {
-                        @data.CustName
+                        <a href="javascript:;" class="open-link cash-fee-link" 
+                        data-url="@Model.GetCashFeeUrl(data.CustId)">@data.CustName</a>
                     }
-                    else
-                    {
-                        <a href="javascript:;" class="open-link"
-                        data-url="@Model.GetBetListUrl(data.CustId, data.CustName)">@data.CustName</a>
+                    else {
+                        if (data.NumberOfTickets == 0)
+                        {
+                            @data.CustName
+                        }
+                        else
+                        {
+                            <a href="javascript:;" class="open-link"
+                            data-url="@Model.GetBetListUrl(data.CustId, data.CustName)">@data.CustName</a>
+                        }
                     }
                 }
                 else

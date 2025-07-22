@@ -1,5 +1,6 @@
 using System.Text.Json;
 using AlphaPlus.CashService.Site.Features.ChatHub;
+using AlphaPlus.CashService.Site.Features.Promotion.Services;
 using AlphaPlus.CashService.Site.Features.Transactions.Services;
 using AlphaPlus.CashService.Site.Helpers;
 using AlphaPlus.Core.Extensions;
@@ -28,7 +29,6 @@ configuration
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"authorization.json", optional: false, reloadOnChange: true)
     .AddJsonFile($"securitycode.json", optional: false, reloadOnChange: true)
-    //.AddEnvironmentVariables()
     .AddCommandLine(args);
 
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(builder.Configuration);
@@ -42,6 +42,7 @@ builder.Services
     .AddNetThrottling(configuration)
     .AddSharedSession(configuration)
     .AddSecurityCodeServices(configuration)
+    .AddDependencyInjection(configuration)
     .AddMediatR(cfg =>
     {
         cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
@@ -88,6 +89,8 @@ builder.Services.AddAntiforgery(options =>
 });
 
 builder.Services.AddTransient<ITransactionHistoryWorkbook, TransactionHistoryWorkbook>();
+builder.Services.AddScoped<IPromotionReportWorkbook, PromotionReportWorkbook>();
+builder.Services.AddScoped<IPromotionDetailsReportWorkbook, PromotionDetailsReportWorkbook>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

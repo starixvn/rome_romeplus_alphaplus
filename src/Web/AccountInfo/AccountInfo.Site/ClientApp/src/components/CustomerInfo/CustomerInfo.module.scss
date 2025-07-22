@@ -10,6 +10,11 @@
 
     &:hover {
         color: var(--link-hover-color);
+        [class*=" icon-"], [class^=icon-]{
+            &:before{
+                color: var(--link-hover-color);
+            }
+        }
     }
 }
 
@@ -120,6 +125,9 @@
     .block-info {
         .icon-viewlog {
             margin-left: calculateScale(4px);
+        }
+        .icon-cashservice {
+            margin-right: calculateScale(4px);
         }
 
         .no-information-search {

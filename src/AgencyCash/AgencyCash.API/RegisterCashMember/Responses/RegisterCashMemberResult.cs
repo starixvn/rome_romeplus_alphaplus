@@ -25,7 +25,7 @@ public record ValidateCashMemberResult : RegisterCashMemberResult
     {
         this.AgentUsername = agentUsername;
     }
-    
+
     public string AgentUsername { get; init; }
 }
 

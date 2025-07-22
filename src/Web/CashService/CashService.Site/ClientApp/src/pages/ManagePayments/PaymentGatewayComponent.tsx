@@ -2,32 +2,32 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ButtonFullComponent,
-  ButtonPenComponent,
+  ButtonComponent,
   ButtonTabActiveComponent,
   ButtonTabInactiveComponent,
-} from '../../components/ButtonComponents';
+} from '../../components/Buttons/index';
 
 import Loading from '../../components/LoadingComponent';
-import { ErrorMessageComponent } from '../../components/MessageComponents';
+import { MessageComponent } from '../../components/Message';
 import {
-  StatusEnabledComponent,
-  StatusDisabledComponent,
-  StatusNoneComponent,
-} from '../../components/StatusComponents';
-import TitleComponent from '../../components/TitleComponents';
+  StatusComponent,
+} from '../../components/Status';
+import { TitleComponent } from '../../components/Title';
 import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import DailyLimitPopupModal from './SetDailyLimitPopupModal';
 import NoRecordFound from '../../components/NoRecordFoundComponent';
+import { ButtonIconComponent } from '../../components/Buttons/ButtonIconComponent';
 
 interface PaymentGatewayComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
+  isCashServiceEnabled: boolean;
 }
 
 const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
-  setActiveTab
+  setActiveTab,
+  isCashServiceEnabled
 }) => {
   const { t: tGlobal } = useTranslation('global');
   const { t: tManagePayments } = useTranslation('managePayments');
@@ -81,11 +81,11 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
   const renderProviderStatus = (status: number) => {
     switch (status) {
       case 0:
-        return <StatusDisabledComponent />;
+        return <StatusComponent type='disabled' />;
       case 1:
-        return <StatusEnabledComponent />;
+        return <StatusComponent type='completed' text={tGlobal('enabled')} />;
       default:
-        return <StatusNoneComponent />;
+        return <StatusComponent type='failed' text="-" />;
     }
   };
 
@@ -97,7 +97,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
 
   return (
     <>
-      <TitleComponent title={tManagePayments('managePayments')} showTippy={true}>
+      <TitleComponent type='main' text={tManagePayments('managePayments')} showTippy={true}>
         <div>
           <div>• {tManagePayments('managePaymentsTip1')}</div>
           <div>• {tManagePayments('managePaymentsTip2')}</div>
@@ -105,20 +105,20 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
       </TitleComponent>
       <ul className="flex mt-[-12px] border-b border-[var(--border-color)] mb-[15px]">
         <li className="mr-[8px]">
-          <ButtonTabInactiveComponent text={tManagePayments('paymentGateway')} />
+          <ButtonTabActiveComponent text={tManagePayments('paymentGateway')} />
         </li>
         <li>
-          <ButtonTabActiveComponent text={tManagePayments('bankAccount')} onClick={() => setActiveTab('bankAccount')} />
+          <ButtonTabInactiveComponent text={tManagePayments('bankAccount')} onClick={() => setActiveTab('bankAccount')} />
         </li>
       </ul>
-       
+     
       <div className="max-w-[1000px]">
          
         {loading ? (<Loading />) : 
-          error ? (<ErrorMessageComponent message={error} />) : (
+          error ? (<MessageComponent message={error} type='error' className='mb-[10px]' />) : (
           <>
           <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex">
-            <ButtonFullComponent text={tManagePayments('setLimit')} onClick={() => onSetLimitClick()} />
+            <ButtonComponent variant="full" text={tManagePayments('setLimit')} onClick={() => onSetLimitClick()} />
           </div>
           <div className="table">
             <table className=" w-full border-collapse">
@@ -138,12 +138,12 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
                       <td>{index + 1}</td>
                       <td>
                         <div className="flex justify-center items-center">                          
-                          <ButtonPenComponent onClick={() => onEditClick(provider)} />
+                          <ButtonIconComponent style='Edit' onClick={() => onEditClick(provider)} />
                         </div>
                       </td>
                       <td>{provider.name}</td>
                       <td>
-                        <ButtonFullComponent text={tGlobal('view')} onClick={() => onFeeClick(provider)} />
+                        <ButtonComponent variant="full" text={tGlobal('view')} onClick={() => onFeeClick(provider)} />
                       </td>
                       <td>{renderProviderStatus(provider.status)}</td>
                     </tr>
@@ -165,7 +165,9 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
 
         {/* Daily Limit Popup Modal */}
         {showDailyLimitPopup && (
-          <DailyLimitPopupModal onClose={onCloseDailyLimitPopup} onSave={onSaveDailyLimit} />
+          <DailyLimitPopupModal onClose={onCloseDailyLimitPopup} 
+            onSave={onSaveDailyLimit} 
+            isCashServiceEnabled={isCashServiceEnabled} />
         )}
       </div>    
      

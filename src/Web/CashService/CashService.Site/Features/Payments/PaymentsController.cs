@@ -4,6 +4,7 @@ using AlphaPlus.CashService.Site.Features.Payments.ViewModels;
 using AlphaPlus.CashService.Site.Features.Shared;
 using AlphaPlus.CashService.Site.Features.Shared.Filters;
 using AlphaPlus.Core.Models;
+using Fanex.Customer.Client.Services;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,27 +13,28 @@ namespace AlphaPlus.CashService.Site.Features.Payments
     [SiteAuthorizationFilter(PageAccessType.CashService)]
     public class PaymentsController : SiteBaseController
     {
-        private readonly string _apiBaseUrl;
-        private readonly HttpClient _httpClient;
+        private readonly string _apiBaseUrl;     
 
         public PaymentsController(
             IConfiguration configuration,
             HttpClient httpClient,
-            IUserSession userSession,
-            IAntiforgery antiforgery) : base(userSession, antiforgery)
+            IUserSession userSession,   
+            IAntiforgery antiforgery,
+            ICustomerService customerService) : base(userSession, antiforgery, httpClient, customerService)
         {
             _apiBaseUrl = configuration["CashService:APIUrl"];
-            _httpClient = httpClient;
         }
 
         private int _custId => _userSession.CustId;
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
             var viewModel = new PaymentBaseViewModel
             {
                 Language = _userSession.Language,
-                DarkModeName = _userSession.DarkModeName
+                DarkModeName = _userSession.DarkModeName,
+                IsCashServiceEnabled = isCashServiceEnabled
             };
 
             return View(viewModel);
@@ -72,6 +74,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             var addPaymentMethodViewModel = await _httpClient.GetFromJsonAsync<AddPaymentMethodViewModel>($"{_apiBaseUrl}/payments/get-add-payment-method-info?custId={_custId}&providerId={provider.Id}&transactionType=0&languageCode={_userSession.Language}", cancellationToken);
             var allPaymentMethods = addPaymentMethodViewModel.PaymentMethods.ToList().Prepend(PaymentMethodModel.CreateOptionAll());
 
+            var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
             var viewModel = new ProviderSettingsViewModel
             {
                 Provider = provider,
@@ -81,7 +84,8 @@ namespace AlphaPlus.CashService.Site.Features.Payments
                     ChannelContact = addPaymentMethodViewModel.ChannelContact
                 },
                 Language = _userSession.Language,
-                DarkModeName = _userSession.DarkModeName
+                DarkModeName = _userSession.DarkModeName,
+                IsCashServiceEnabled = isCashServiceEnabled
             };
 
             return View(viewModel);
@@ -104,7 +108,7 @@ namespace AlphaPlus.CashService.Site.Features.Payments
         [HttpPost]
         public async Task<IActionResult> AddPaymentMethod(
             [FromBody] InsertPaymentMethodRequest request,
-            CancellationToken cancellationToken)
+            CancellationToken cancellationToken) 
             => await DoAction<InsertPaymentMethodRequest, object>($"{_apiBaseUrl}/payments/add-payment-method", request, cancellationToken);
 
         [HttpPost]
@@ -198,22 +202,5 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             var countryCodes = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
             return Json(countryCodes);
         }
-
-        private async Task<IActionResult> DoAction<TRequest, TResult>(
-            string url,
-            TRequest request,
-            CancellationToken cancellationToken) where TRequest : Shared.Requests.BaseActionRequest
-        {
-            if (_userSession.IsInternal)
-            {
-                return Unauthorized();
-            }
-
-            request.SetUserSession(_userSession);
-            var response = await _httpClient.PostAsJsonAsync(url, request, cancellationToken);
-            response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadFromJsonAsync<TResult>(cancellationToken: cancellationToken);
-            return Json(result);
-        }
-    }
+    } 
 }

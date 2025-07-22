@@ -1,11 +1,5 @@
-import {
-  StatusCompletedComponent,
-  StatusDisabledComponent,
-  StatusFailedComponent,
-  StatusMaintenanceComponent,
-  StatusNoneComponent,
-  StatusProcessingComponent,
-} from '../components/StatusComponents';
+import { StatusComponent } from '../components/Status';
+import Tippy from '@tippyjs/react';
 
 export const displayAmount = (amount: number): string => {
   if (amount >= 1000) {
@@ -28,43 +22,47 @@ export const renderBankOptionValue = (bankCode: string, bankAccount: string) => 
   return `${bankCode}-${bankAccount}`;
 };
 
-export const renderBankAccount = (bankAccount: string) => {
+export const renderBankAccount = (bankAccount: string, tGlobal?: any) => {
   if (!bankAccount) return <div className="flex items-center max-w-[200px]">-</div>;
   const [bankCode, accountNumber] = bankAccount.split('-');
   if (bankCode && !accountNumber) return <div className="flex items-center">{bankCode}</div>;
   if (!accountNumber && !bankCode) return <div className="inline">-</div>;
   return (
-    <div className="flex items-center max-w-[200px]">
-      {bankCode && (
-        <img
-          src={`../assets/bank/${bankCode}.png`}
-          alt={bankCode}
-          className="w-[16px] h-[16px] mr-[8px] inline-block"
-        />
-      )}
-      <span className="overflow-hidden text-ellipsis whitespace-nowrap">{accountNumber}</span>
-    </div>
+    <>
+      <Tippy content={bankCode ? <p>{tGlobal(bankCode)}</p> : <p>{accountNumber}</p>}>
+        <div className="inline-flex items-center max-w-[200px]">
+          {bankCode && (
+            <img
+              src={`../assets/bank/${bankCode}.png`}
+              alt={bankCode}
+              className="w-[16px] h-[16px] mr-[8px] inline-block"
+            />
+          )}
+          <span className="overflow-hidden text-ellipsis whitespace-nowrap">{accountNumber}</span>
+        </div>
+      </Tippy>
+    </>
   );
 };
 
-export const mappingStatus = (status: number) => {
+export const mappingStatus = (status: number, textContent?: string) => {
   switch (status) {
     case 0:
-      return <StatusProcessingComponent text="status.waiting" />;
+      return <StatusComponent type='processing' text={textContent} />;
     case 1:
-      return <StatusFailedComponent text="status.cancelled" />;
+      return <StatusComponent type='failed' text={textContent} />;
     case 2:
-      return <StatusMaintenanceComponent text="status.pending" />;
+      return <StatusComponent type='maintenance' text={textContent} />;
     case 3:
-      return <StatusFailedComponent text="status.expired" />;
+      return <StatusComponent type='failed' text={textContent} />;
     case 4:
-      return <StatusCompletedComponent text="status.completed" />;
+      return <StatusComponent type='completed' text={textContent} />;
     case 5:
-      return <StatusDisabledComponent text="status.rejected" />;
+      return <StatusComponent type='disabled' text={textContent} />;
     case 6:
-      return <StatusDisabledComponent text="status.providerRejected" />;
+      return <StatusComponent type='disabled' text={textContent} />;
     default:
-      return <StatusNoneComponent />;
+      return <StatusComponent type='failed' text='-' />;
   }
 };
 
@@ -102,6 +100,15 @@ export const calculateDateRange = (recentTransactions: string): [string, string]
       return ['', ''];
   }
   return [startDate.toLocaleString('en-US'), today.toLocaleString('en-US')];
+};
+
+export const formatDate = (date: string) => {
+  if (!date) return '';
+  const dateObj = new Date(date);
+  const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
+  const day = dateObj.getDate().toString().padStart(2, '0');
+  const year = dateObj.getFullYear();
+  return `${month}/${day}/${year}`;
 };
 
 export const convertToGMT4 = (date: Date): Date => {

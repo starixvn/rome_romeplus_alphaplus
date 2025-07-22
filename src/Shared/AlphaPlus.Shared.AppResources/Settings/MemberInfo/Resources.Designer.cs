@@ -4376,5 +4376,45 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
                 return ResourceManager.GetString("PotentialWinLimitNote2", resourceCulture);
             }
         }
+
+        public static string AccountType
+        {
+            get
+            {
+                return ResourceManager.GetString("AccountType", resourceCulture);
+            }
+        }
+
+        public static string CurrentWinAmount
+        {
+            get
+            {
+                return ResourceManager.GetString("CurrentWinAmount", resourceCulture);
+            }
+        }
+
+        public static string ResetCurrentWinAmount
+        {
+            get
+            {
+                return ResourceManager.GetString("ResetCurrentWinAmount", resourceCulture);
+            }
+        }
+
+        public static string ResetCurrentWinAmountConfirmMessage
+        {
+            get
+            {
+                return ResourceManager.GetString("ResetCurrentWinAmountConfirmMessage", resourceCulture);
+            }
+        }
+
+        public static string ResetCurrentWinAmountSuccess
+        {
+            get
+            {
+                return ResourceManager.GetString("ResetCurrentWinAmountSuccess", resourceCulture);
+            }
+        }
     }
 }

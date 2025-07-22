@@ -140,3 +140,11 @@ a, a:focus, a:active, a:target, a:hover {
 .display-none {
     display: none;
 }
+.icon-cashservice-common{
+    margin: 0 5px;
+    position: relative;
+    top: 1px;
+    &::before{
+        color: #045ace;        
+    }
+}

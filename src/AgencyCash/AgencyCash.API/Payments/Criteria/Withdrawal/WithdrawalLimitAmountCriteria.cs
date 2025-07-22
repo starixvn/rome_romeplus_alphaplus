@@ -4,28 +4,19 @@ using Fanex.Data.Repository;
 
 namespace AgencyCash.API.Payments.Criteria.Withdrawal;
 
-public class WithdrawalLimitAmountCriteria : NonQueryCommand
+public class WithdrawalLimitAmountCriteria(
+    int custId,
+    int uplineId,
+    bool isMemberSite,
+    short custDBGroupId,
+    int? withdrawalCnt = null) : NonQueryCommand
 {
-    public WithdrawalLimitAmountCriteria(
-        int custId,
-        int uplineId,
-        bool isMemberSite,
-        short custDBGroupId,
-        int? withdrawalCnt = null)
-    {
-        CustId = custId;
-        UplineId = uplineId;
-        IsMemberSite = isMemberSite;
-        CustDBGroupId = custDBGroupId;
-        WithdrawalCnt = withdrawalCnt;
-    }
-
-    public int CustId { get; }
-    public int UplineId { get; }
-    public bool IsMemberSite { get; }
+    public int CustId { get; } = custId;
+    public int UplineId { get; } = uplineId;
+    public bool IsMemberSite { get; } = isMemberSite;
     [SpParam(Ignored = true)]
-    public short CustDBGroupId { get; }
-    public int? WithdrawalCnt { get; }
+    public short CustDBGroupId { get; } = custDBGroupId;
+    public int? WithdrawalCnt { get; } = withdrawalCnt;
 
     public decimal MinAmt { get; set; }
     public decimal MaxAmt { get; set; }

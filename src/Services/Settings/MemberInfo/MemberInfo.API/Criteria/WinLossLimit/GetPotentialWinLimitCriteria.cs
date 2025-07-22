@@ -1,3 +1,4 @@
+using Fanex.Data;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit
@@ -14,6 +15,9 @@ namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit
         public int PageIndex { get; set; }
         public int TotalRows { get; set; }
 
+        [SpParam(Ignored = true)]
+        public int AccountType { get; set; }
+        
         public override string GetSettingKey()
             => "Age_CustomerSelPotentialWinlimit";
 

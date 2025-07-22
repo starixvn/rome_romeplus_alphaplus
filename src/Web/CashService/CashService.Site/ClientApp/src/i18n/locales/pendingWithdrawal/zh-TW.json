@@ -52,7 +52,11 @@
     "selectBank": "選擇銀行",
     "bankRequired": "銀行是必需的",
     "approveSuccess": "批准提款成功",
-    "rejectSuccess": "拒絕提款成功"
+    "rejectSuccess": "拒絕提款成功",
+    "confirmRejectTitle": "確認拒絕",
+    "confirmRejectMessage": "您確定要拒絕此提款嗎？",
+    "confirmApproveTitle": "確認批准",
+    "confirmApproveMessage": "您確定要批准此提款嗎？"
   },
 
   "manualWithdrawalForm": {
@@ -81,7 +85,7 @@
     "memberBankSelectionRequired": "至是必需的",
     "amountRangeError": "金額必須大於0且小於或等於會員現金餘額",
     "imageSizeError": "圖片大小必須小於1 MB",
-    "addWithdrawalSuccess": "新增提款成功!!!",
+    "addWithdrawalSuccess": "新增提款成功",
     "memberCashBalance": "會員現金餘額",
     "minAmount": "最小",
     "maxAmount": "最大",
@@ -120,9 +124,9 @@
   },
 
   "successMessages": {
-    "withdrawalSubmitted": "提款提交成功",
-    "withdrawalUpdated": "提款更新成功",
-    "withdrawalApproved": "提款批准成功",
-    "withdrawalRejected": "提款拒絕成功"
+    "withdrawalSubmitted": "提款請求已成功提交",
+    "withdrawalUpdated": "提款請求已成功更新",
+    "withdrawalApproved": "提款請求已成功批准",
+    "withdrawalRejected": "提款請求已成功拒絕"
   }
 }

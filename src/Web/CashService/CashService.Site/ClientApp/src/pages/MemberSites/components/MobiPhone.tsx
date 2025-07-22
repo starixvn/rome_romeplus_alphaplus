@@ -2,8 +2,8 @@ import { MobilePhone as MobilePhoneType } from "../../../services/interfaces/Mem
 import { useTranslation } from "react-i18next";
 import { FieldError, useFormContext } from "react-hook-form";
 import { NUMBER_REGEX, PHONE_CODE_MAX_LENGTH, PHONE_NUMBER_MAX_LENGTH } from "../../../constants";
-import { LabelTitleComponent } from "../../../components/TitleComponents";
-import { ValidateMessageComponent } from "../../../components/MessageComponents";
+import { TitleComponent } from "../../../components/Title";
+import { MessageComponent } from "../../../components/Message";
 
 interface MobiCodeProps {
     code: string;
@@ -22,7 +22,7 @@ const getErrorMessage = (error: FieldError | undefined) => {
     return '';
 };
 
-const MobiCode = (props: MobiCodeProps) => {
+export const MobiCode = (props: MobiCodeProps) => {
     const { onChange } = props;
     const { register, formState: { errors } } = useFormContext();
     const { t } = useTranslation('memberSite');
@@ -73,7 +73,7 @@ export const MobilePhone = (props: MobilePhoneInputProps) => {
 
     return (
         <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">             
-            <LabelTitleComponent text={t('message.mobile')}  required={isRequired}/>
+            <TitleComponent type='label' text={t('message.mobile')}  required={isRequired}/>
             <div className={`flex items-center h-[28px] w-full border-[1px] border-[var(--border-control)] rounded-[3px] px-[8px] focus:outline-none focus:border-[var(--button-border)] cursor-pointer bg-[var(--background-control)] ${
                 mobilePhoneErrors ? 'border-[var(--border-control-error)]' : ''
             }`}>
@@ -95,7 +95,7 @@ export const MobilePhone = (props: MobilePhoneInputProps) => {
                 />
             </div>
             {(mobilePhoneErrors?.code || mobilePhoneErrors?.phone) && (
-                <ValidateMessageComponent message={getErrorMessage(mobilePhoneErrors?.code || mobilePhoneErrors?.phone)} />
+                <MessageComponent message={getErrorMessage(mobilePhoneErrors?.code || mobilePhoneErrors?.phone)} type='validate' />
             )}
         </div>
     );

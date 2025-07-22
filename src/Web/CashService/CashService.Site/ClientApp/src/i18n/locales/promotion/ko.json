@@ -1,21 +1,64 @@
 {
-    "table": {
-        "no": "번호",
-        "action": "작업",
-        "promotionTitle": "프로모션 제목",
-        "promotionType": "프로모션 유형",
-        "percentage": "비율 (%)",
-        "maxPayout": "최대 지급액",
-        "sports": "스포츠",
-        "virtualSports": "가상 스포츠",
-        "liveCasino": "라이브 카지노",
-        "games": "게임",
-        "period": "기간",
-        "provider": "제공자",
-        "status": "상태",
-        "lastUpdated": "마지막 업데이트"
-    },
-    "search": {
-        "placeholder": "제목 또는 유형으로 검색..."
-    }
+  "promotionReport": "프로모션 보고서",
+  "pendingPromotion": "대기 중인 프로모션",
+  "addBonus": "보너스 추가",
+  "table": {
+    "no": "번호",
+    "action": "작업",
+    "promotionTitle": "프로모션 제목",
+    "promotionType": "프로모션 유형",
+    "percentage": "비율 (%)",
+    "maxPayout": "최대 지급액",
+    "sports": "스포츠",
+    "virtualSports": "가상 스포츠",
+    "liveCasino": "라이브 카지노",
+    "games": "게임",
+    "period": "기간",
+    "Product": "제품",
+    "status": "상태",
+    "edit": "편집",
+    "delete": "삭제",
+    "products": "제품",
+    "noRecords": "기록을 찾을 수 없습니다",
+    "bonusAmount": "보너스 금액",
+    "totalRequest": "총 요청",
+    "totalApproved": "총 승인",
+    "totalRejected": "총 거부",
+    "totalBonusGiven": "총 지급된 보너스",
+    "deleteSuccess": "프로모션이 성공적으로 삭제되었습니다",
+    "confirmDeleteTitle": "삭제 확인",
+    "confirmDeleteMessage": "이 프로모션을 삭제하시겠습니까?",
+    "username": "사용자 이름",
+    "nickname": "닉네임",
+    "name": "이름",
+    "title": "제목",
+    "amount": "금액",
+    "dateRange": "날짜 범위",
+    "lastName": "성",
+    "firstName": "이름",
+    "actions": "작업",
+    "loading": "로딩 중..."
+  },
+  "promotionType_1": "매출 리베이트",
+  "search": {
+    "placeholder": "제목 또는 유형으로 검색..."
+  },
+  "filter": {
+    "dateRange": "날짜 범위",
+    "promotionType": "프로모션 유형",
+    "all": "전체",
+    "maxRecords": "최대 1000개 기록",
+    "searchPlaceholder": "사용자명/이름/제목"
+  },
+  "promotionType": {
+    "welcome": "웰컴",
+    "reload": "리로드",
+    "cashback": "캐시백",
+    "freebet": "무료 베팅"
+  },
+  "messages": {
+    "copy": "복사",
+    "copied": "복사됨!",
+    "exportToExcel": "Excel로 내보내기"
+  }
 }

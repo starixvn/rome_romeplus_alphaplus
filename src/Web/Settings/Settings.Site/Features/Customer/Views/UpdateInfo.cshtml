@@ -1,8 +1,9 @@
 @using AlphaPlus.Shared.AppResources.Common
-@model Fanex.Customer.Client.Models.CustomerInfo
-@{
+@using AlphaPlus.Core.Helpers
+@model AlphaPlus.Settings.Site.Features.Customer.ViewModels.UpdateInfoViewModel
+@* @{
     Layout = "~/Features/Shared/Views/_Layout.cshtml";
-    ViewBag.Title = $"{Resources.Info} {Model.UserName}";
+    ViewBag.Title = $"{Resources.Info} {Model.CustomerInfo.UserName}";
     var queryString = AlphaContext.Current.Request.Query;
 }
 @section Scripts {
@@ -24,22 +25,22 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><label asp-for="FirstName">@Resources.FirstName</label></td>
-                        <td><input type="text" asp-for="FirstName" maxlength="32" autocomplete="off" /></td>
-                        <td><label asp-for="LastName">@Resources.LastName</label></td>
-                        <td><input type="text" asp-for="LastName" maxlength="32" autocomplete="off" /></td>
+                        <td><label asp-for="CustomerInfo.FirstName">@Resources.FirstName</label></td>
+                        <td><input type="text" asp-for="CustomerInfo.FirstName" maxlength="32" autocomplete="off" /></td>
+                        <td><label asp-for="CustomerInfo.LastName">@Resources.LastName</label></td>
+                        <td><input type="text" asp-for="CustomerInfo.LastName" maxlength="32" autocomplete="off" /></td>
                     </tr>
                     <tr>
-                        <td><label asp-for="Phone">@CommonResx.Phone</label></td>
-                        <td><input type="text" asp-for="Phone" maxlength="32" autocomplete="off" /></td>
-                        <td><label asp-for="MobilePhone">@Resources.MobilePhone</label></td>
-                        <td><input type="text" asp-for="MobilePhone" maxlength="32" autocomplete="off" /></td>
+                        <td><label asp-for="CustomerInfo.Phone">@CommonResx.Phone</label></td>
+                        <td><input type="text" asp-for="CustomerInfo.Phone" maxlength="32" autocomplete="off" /></td>
+                        <td><label asp-for="CustomerInfo.MobilePhone">@Resources.MobilePhone</label></td>
+                        <td><input type="text" asp-for="CustomerInfo.MobilePhone" maxlength="32" autocomplete="off" /></td>
                     </tr>
                     <tr>
-                        <td><label asp-for="Email">@Resources.Email</label></td>
-                        <td><input type="text" asp-for="Email" maxlength="32" autocomplete="off" /></td>
-                        <td><label asp-for="Fax">@CommonResx.Fax</label></td>
-                        <td><input type="text" asp-for="Fax" maxlength="32" autocomplete="off" /></td>
+                        <td><label asp-for="CustomerInfo.Email">@Resources.Email</label></td>
+                        <td><input type="text" asp-for="CustomerInfo.Email" maxlength="32" autocomplete="off" /></td>
+                        <td><label asp-for="CustomerInfo.Fax">@CommonResx.Fax</label></td>
+                        <td><input type="text" asp-for="CustomerInfo.Fax" maxlength="32" autocomplete="off" /></td>
                     </tr>
                 </tbody>
             </table>
@@ -54,4 +55,51 @@
 </div>
 <input type="hidden" id="hidden-EmailNotValidText" value="@Resources.EmailNotValid" />
 <input type="hidden" id="hidden-UpdatedSuccessfullyText" value="@Resources.UpdatedSuccessfully" />
-<input type="hidden" name="NotAuthorizedMessage" value="@CommonResx.NotAuthorized" />
+<input type="hidden" name="NotAuthorizedMessage" value="@CommonResx.NotAuthorized" /> *@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>UpdateInfoCashMember Page</title>
+    <environment names="Production">
+        <link rel="stylesheet" href="@(Model.CdnUri)cash-member/edit-info/index.css?version=@(Model.AssetsVersion)" />
+        <script type="module" src="@(Model.CdnUri)cash-member/edit-info/index.js?version=@(Model.AssetsVersion)"></script>
+    </environment>
+</head>
+
+<div id="root"></div>
+
+<body>
+    <script type="text/javascript">
+        const updateInfoCustomerPageConfig = @Html.Raw(Json.Serialize(
+            new {
+                custId = Model.CustId,
+                username = Model.Username,
+                isCashMember = Model.IsCashMember,
+                applicationPath = Model.ApplicationPath,
+                settingSiteUrl = MicroSites.SettingUrl(),
+                cashServiceUrl = MicroSites.CashServiceUrl(),
+                cdnUri = Model.CdnUri,
+                systemId = Model.SystemId,
+            }
+        ));
+    </script>
+
+    <environment include="Development">
+        <script type="module">
+            import RefreshRuntime from 'http://localhost:4212/@@react-refresh'
+            RefreshRuntime.injectIntoGlobalHook(window)
+            window.$RefreshReg$ = () => { }
+            window.$RefreshSig$ = () => (type) => type
+            window.__vite_plugin_react_preamble_installed__ = true
+        </script>
+        <script type="module" src=@("http://localhost:4212/@vite/client")></script>
+        <script type="module" src="http://localhost:4212/src/main.tsx"></script>
+        <link rel="stylesheet" href="http://localhost:4212/src/styles.scss" />
+    </environment>
+
+    @Html.AntiForgeryToken()
+</body>
+
+</html>

@@ -79,11 +79,47 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account Type.
+        /// </summary>
+        public static string AccountType {
+            get {
+                return ResourceManager.GetString("AccountType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred while processing withdrawal request..
         /// </summary>
         public static string AnErrorOccurredWhileProcessingWithdrawalRequest {
             get {
                 return ResourceManager.GetString("AnErrorOccurredWhileProcessingWithdrawalRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Approved.
+        /// </summary>
+        public static string Approved {
+            get {
+                return ResourceManager.GetString("Approved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bonus Amount.
+        /// </summary>
+        public static string BonusAmount {
+            get {
+                return ResourceManager.GetString("BonusAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Range.
+        /// </summary>
+        public static string DateRange {
+            get {
+                return ResourceManager.GetString("DateRange", resourceCulture);
             }
         }
         
@@ -142,11 +178,29 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last Updated.
+        /// </summary>
+        public static string LastUpdated {
+            get {
+                return ResourceManager.GetString("LastUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Member’s cash balance is insufficient..
         /// </summary>
         public static string MemberCashBalanceIsInsufficient {
             get {
                 return ResourceManager.GetString("MemberCashBalanceIsInsufficient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editing multiple customers isn&apos;t available if Account Type is &apos;All&apos;..
+        /// </summary>
+        public static string MemberListNoteEditMultipleNotAvailable {
+            get {
+                return ResourceManager.GetString("MemberListNoteEditMultipleNotAvailable", resourceCulture);
             }
         }
         
@@ -165,6 +219,87 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         public static string ModelValidationFailed {
             get {
                 return ResourceManager.GetString("ModelValidationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment provider is currently unavailable. Please try again later..
+        /// </summary>
+        public static string PaymentProviderUnavailable {
+            get {
+                return ResourceManager.GetString("PaymentProviderUnavailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Period.
+        /// </summary>
+        public static string Period {
+            get {
+                return ResourceManager.GetString("Period", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Promotion Report.
+        /// </summary>
+        public static string PromotionReport {
+            get {
+                return ResourceManager.GetString("PromotionReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Promotion Title.
+        /// </summary>
+        public static string PromotionTitle {
+            get {
+                return ResourceManager.GetString("PromotionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Promotion Type.
+        /// </summary>
+        public static string PromotionType {
+            get {
+                return ResourceManager.GetString("PromotionType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turnover Rebate.
+        /// </summary>
+        public static string PromotionType_1 {
+            get {
+                return ResourceManager.GetString("PromotionType_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rebate on Turnover.
+        /// </summary>
+        public static string PromotionType_RebateOnTurnover {
+            get {
+                return ResourceManager.GetString("PromotionType_RebateOnTurnover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your withdrawal request has been rejected by provider.
+        /// </summary>
+        public static string ProviderRejectErrorMessage {
+            get {
+                return ResourceManager.GetString("ProviderRejectErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
             }
         }
         
@@ -205,6 +340,96 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Total Bonus Given .
+        /// </summary>
+        public static string TotalBonusGiven {
+            get {
+                return ResourceManager.GetString("TotalBonusGiven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Request.
+        /// </summary>
+        public static string TotalRequest {
+            get {
+                return ResourceManager.GetString("TotalRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Request Approved.
+        /// </summary>
+        public static string TotalRequestApproved {
+            get {
+                return ResourceManager.GetString("TotalRequestApproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Request Rejected.
+        /// </summary>
+        public static string TotalRequestRejected {
+            get {
+                return ResourceManager.GetString("TotalRequestRejected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction History.
+        /// </summary>
+        public static string TransactionHistory {
+            get {
+                return ResourceManager.GetString("TransactionHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completed.
+        /// </summary>
+        public static string TransactionStatus_Completed {
+            get {
+                return ResourceManager.GetString("TransactionStatus_Completed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expired.
+        /// </summary>
+        public static string TransactionStatus_Expired {
+            get {
+                return ResourceManager.GetString("TransactionStatus_Expired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pending.
+        /// </summary>
+        public static string TransactionStatus_Pending {
+            get {
+                return ResourceManager.GetString("TransactionStatus_Pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provider Rejected.
+        /// </summary>
+        public static string TransactionStatus_ProviderRejected {
+            get {
+                return ResourceManager.GetString("TransactionStatus_ProviderRejected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rejected.
+        /// </summary>
+        public static string TransactionStatus_Rejected {
+            get {
+                return ResourceManager.GetString("TransactionStatus_Rejected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Transaction Type.
         /// </summary>
         public static string TransactionType {
@@ -214,11 +439,65 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Auto Deposit.
+        /// </summary>
+        public static string TransactionType_AutoDeposit {
+            get {
+                return ResourceManager.GetString("TransactionType_AutoDeposit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Withdrawal.
+        /// </summary>
+        public static string TransactionType_AutoWithdrawal {
+            get {
+                return ResourceManager.GetString("TransactionType_AutoWithdrawal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual Deposit.
+        /// </summary>
+        public static string TransactionType_ManualDeposit {
+            get {
+                return ResourceManager.GetString("TransactionType_ManualDeposit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual Withdrawal.
+        /// </summary>
+        public static string TransactionType_ManualWithdrawal {
+            get {
+                return ResourceManager.GetString("TransactionType_ManualWithdrawal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System Adjust.
+        /// </summary>
+        public static string TransactionType_SystemAdjust {
+            get {
+                return ResourceManager.GetString("TransactionType_SystemAdjust", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unable to process deposits..
         /// </summary>
         public static string UnableToProcessDeposits {
             get {
                 return ResourceManager.GetString("UnableToProcessDeposits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated By.
+        /// </summary>
+        public static string UpdatedBy {
+            get {
+                return ResourceManager.GetString("UpdatedBy", resourceCulture);
             }
         }
     }

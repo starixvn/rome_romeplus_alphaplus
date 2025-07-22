@@ -6,7 +6,7 @@ import { ApproveRejectDepositModel } from './interfaces/ApproveRejectDepositMode
 export const pendingDepositAPI = {
   getLimitAmtDeposit: async (custId: number): Promise<number> => {
     try {
-      const response = await api.get<number>(`GetLimitAmtDeposit?custId=${custId}`);
+      const response = await api.get<number>(`../Transactions/GetLimitAmtDeposit?custId=${custId}`);
       return response.data;
     } catch (error) {
       console.error('Error fetching credit amount:', error);

@@ -8,19 +8,13 @@ import { useTranslation } from 'react-i18next';
 import Tippy from '@tippyjs/react';
 
 import {
-    BackButtonComponent, ButtonApplyComponent, ButtonCancelComponent, ButtonFullComponent,
-    DisableButtonComponent, EnableButtonComponent
-} from '../../components/ButtonComponents';
+    ButtonComponent, DisableButtonComponent, EnableButtonComponent
+} from '../../components/Buttons/index';
 import { IconArrowDown, IconInfo, IconReload } from '../../components/Icons';
 import { LoadingFullComponent } from '../../components/LoadingComponent';
-import { ResultMessageComponent } from '../../components/MessageComponents';
-import {
-    StatusCompletedComponent, StatusFailedComponent, StatusMaintenanceComponent,
-    StatusNoneComponent, StatusProcessingComponent
-} from '../../components/StatusComponents';
-import TitleComponent, {
-    LabelTitleComponent, MediumTitleComponent
-} from '../../components/TitleComponents';
+import { MessageComponent } from '../../components/Message';
+import { StatusComponent } from '../../components/Status';
+import { TitleComponent } from '../../components/Title';
 import {
   paymentMethodStatusConstant,
   paymentProviderStatusConstant,
@@ -39,6 +33,7 @@ import BanksPopupModal from './BanksPopupModal';
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import UpdatePaymentMethodModal from './UpdatePaymentMethodModal';
 import NoRecordFound from '../../components/NoRecordFoundComponent';
+import { ButtonIconComponent } from '../../components/Buttons/ButtonIconComponent';
 
 declare global {
   interface Window {
@@ -83,6 +78,7 @@ function PaymentProviderSettings() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = React.useState('');
   const [selectedStatus, setSelectedStatus] = React.useState('');
   const [selectedTransactionType, setSelectedTransactionType] = React.useState('');
+  const [isCashServiceEnabled, setIsCashServiceEnabled] = React.useState(false);
 
   const [formState, setFormState] = useState<FormState>({
     providerStatus: window.providerSettingsViewModel.Provider.Status,
@@ -92,6 +88,11 @@ function PaymentProviderSettings() {
     providerStatus: window.providerSettingsViewModel.Provider.Status,
     providerSettings: window.providerSettingsViewModel.Provider.ProviderSettings,
   });
+
+  React.useEffect(() => {
+    const isCashServiceEnabled = document.getElementById('IsCashServiceEnabled')?.getAttribute('value');
+    setIsCashServiceEnabled(isCashServiceEnabled === '1');
+  }, []);
 
   useCookieLanguage(i18n);
   // Fetch provider settings when component mounts or when dropdowns change
@@ -371,8 +372,7 @@ function PaymentProviderSettings() {
   };
 
   // Handler for provider status toggle
-  const onProviderStatusToggle = () => {
-    const newStatus = !providerStatus;
+  const onProviderStatusToggle = (newStatus: number) => {
     setProviderStatus(newStatus);
     setFormState((prev) => ({
       ...prev,
@@ -397,6 +397,22 @@ function PaymentProviderSettings() {
   };
   const hasEditableSettings = () => {
     return providerSettings.some((setting) => isEditable(setting));
+  };
+
+  const getDisabledReason = () => {
+    if (!isCashServiceEnabled) {
+      return tGlobal('cashServiceDisabled');
+    }
+
+    if (updating) {
+      return '';
+    }
+
+    if(providerStatus == paymentProviderStatusConstant.notConfigured || !hasEditableSettings()) {
+      return tPaymentProviderSettings('RequirePaymentMethod');
+    }
+
+    return '';
   };
 
   const hasFormChanged = () => {
@@ -424,62 +440,64 @@ function PaymentProviderSettings() {
   const renderStatusComponent = (status: number) => {
     switch (status) {
       case paymentMethodStatusConstant.processing:
-        return <StatusProcessingComponent />;
+        return <StatusComponent type='processing' />;
       case paymentMethodStatusConstant.completed:
-        return <StatusCompletedComponent />;
+        return <StatusComponent type='completed' />;
       case paymentMethodStatusConstant.fail:
-        return <StatusFailedComponent />;
+        return <StatusComponent type='failed' />;
       case paymentMethodStatusConstant.maintenance:
-        return <StatusMaintenanceComponent />;
+        return <StatusComponent type='maintenance' />;
       default:
-        return <StatusNoneComponent />;
+        return <StatusComponent type='failed' text="-" />;
     }
   };
 
   return (
-    <div className="payment-provider-settings h-full">
+    <div className="payment-provider-settings">
       {loading ? (
         <LoadingFullComponent />
       ) : error ? (
-        <ResultMessageComponent type="error" message={error} />
+        <MessageComponent type="error" message={error} />
       ) : (
         <>
           {updateMessage && (
-            <ResultMessageComponent
-              className="mt-[10px] max-[768px]:mx-[16px] max-[768px]:my-0"
-              type={updateMessage.type}
-              message={updateMessage.text}
+            <MessageComponent className="mt-[10px] max-[768px]:mx-[16px] max-[768px]:my-0" type={updateMessage.type} message={updateMessage.text}
             />
           )}
-          <div>
-            <div className="settings-header">
-              <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-color)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-                <BackButtonComponent onClick={onBackNavigation} />
-                <TitleComponent title={window.providerSettingsViewModel.Provider.Name} />                
-              </div>
+         
+          <div className="settings-header">
+            <div className="flex items-center justify-flex-start mb-[12px] py-[8px] border-[var(--border-color)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
+              <ButtonIconComponent style='Back' onClick={onBackNavigation} />
+              <TitleComponent type='main' text={window.providerSettingsViewModel.Provider.Name} />                
             </div>
           </div>
-          <div className="py-[10px]">
-            <div className="flex flex-wrap mb-[8px]">
-              <MediumTitleComponent text={window.providerSettingsViewModel.Provider.Name} />
-              {providerStatus != paymentProviderStatusConstant.notConfigured && (
-                  <div
-                    className="mt-[5px] mb-[5px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]"
-                    role="group"
-                  >
-                    <EnableButtonComponent
-                      onClick={onProviderStatusToggle}
-                      isActive={providerStatus}
-                    />
-                    <DisableButtonComponent
-                      onClick={onProviderStatusToggle}
-                      isActive={!providerStatus}
-                    />
-                  </div>
-                )}
-              <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
-                <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent text={tPaymentProviderSettings('paymentMethod')} />
+        
+          <div className="pb-[10px]">
+              <div className="mb-[10px]">
+                <div className="mb-[5px]">
+                  <TitleComponent type='medium' text={window.providerSettingsViewModel.Provider.Name} />
+                </div>
+                {providerStatus != paymentProviderStatusConstant.notConfigured && (
+                    <div
+                      className="mb-[10px] inline-block border-[1px] border-[var(--border-control)] rounded-[5px]"
+                      role="group"
+                    >
+                      <EnableButtonComponent
+                        onClick={() => onProviderStatusToggle(1)}
+                        isActive={providerStatus}
+                        text={tGlobal('enable')}
+                      />
+                      <DisableButtonComponent
+                        onClick={() => onProviderStatusToggle(0)}
+                        isActive={!providerStatus}
+                        text={tGlobal('disable')}
+                      />
+                    </div>
+                  )}
+              </div>
+              <div className="flex flex-wrap w-full">
+                <div className="w-[160px] mr-[12px] mb-[12px]">
+                  <TitleComponent type='label' text={tPaymentProviderSettings('paymentMethod')} />
                   <div className="relative">
                     <select
                       className="control-field"
@@ -498,8 +516,8 @@ function PaymentProviderSettings() {
                   </div>
                 </div>
 
-                <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent text={tPaymentProviderSettings('status')} />
+                <div className="w-[160px] mr-[12px] mb-[12px]">
+                  <TitleComponent type='label' text={tPaymentProviderSettings('status')} />
                   <div className="relative">
                     <select
                       className="control-field"
@@ -516,8 +534,8 @@ function PaymentProviderSettings() {
                   </div>
                 </div>
 
-                <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                  <LabelTitleComponent text={tPaymentProviderSettings('transactionType')} />
+                <div className="w-[160px] mr-[12px] mb-[12px]">
+                  <TitleComponent type='label' text={tPaymentProviderSettings('transactionType')} />
                   <div className="relative">
                     <select
                       className="control-field"
@@ -536,13 +554,15 @@ function PaymentProviderSettings() {
                   </div>
                 </div>
               </div>
-            </div>
+             
             <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex">
-              <ButtonFullComponent
+              <ButtonComponent
+                variant="full"
                 text={`${tPaymentProviderSettings('addPaymentMethod')}`}
                 onClick={onAddPaymentMethod}
               />
-              <ButtonFullComponent
+              <ButtonComponent
+                variant="full"
                 className="ml-auto"
                 text={tPaymentProviderSettings('viewProviderFees', {
                   providerName: window.providerSettingsViewModel.Provider.Name,
@@ -680,7 +700,8 @@ function PaymentProviderSettings() {
                         {!isEditable(setting) ? (
                           <>-</>
                         ) : setting.bankRequired ? (
-                          <ButtonFullComponent
+                          <ButtonComponent
+                            variant="full"
                             text={tPaymentProviderSettings('listOfBanks')}
                             onClick={() => onViewBanks(setting)}
                           />
@@ -701,16 +722,23 @@ function PaymentProviderSettings() {
               </table>
             </div>
             <div className="flex justify-start gap-[8px] py-[8px] mt-[8px]">
-              <ButtonCancelComponent text={tGlobal('reset')} onClick={onReset} />
-              <ButtonApplyComponent
+              <ButtonComponent
+                variant="cancel"
+                text={tGlobal('reset')}
+                onClick={onReset}
+              />
+              <ButtonComponent
+                variant="apply"
                 text={updating ? tGlobal('updating') : tGlobal('update')}
                 type="submit"
                 onClick={onUpdate}
                 disabled={
+                  !isCashServiceEnabled ||
                   providerStatus == paymentProviderStatusConstant.notConfigured ||
                   updating ||
                   !hasEditableSettings()
                 }
+                title={getDisabledReason()}
               />
             </div>
           </div>
@@ -735,7 +763,8 @@ function PaymentProviderSettings() {
         <AddPaymentMethodModal
           providerId={window.providerSettingsViewModel.Provider.Id}
           onClose={onCloseAddPaymentMethod}
-          onSuccess={reloadPage}
+          onSuccess={reloadPage}  
+          isCashServiceEnabled={isCashServiceEnabled}
           orgTelegramAssistantUrl={
             window.providerSettingsViewModel.AddPaymentMethodViewModel.ChannelContact.Tele
           }
@@ -759,7 +788,8 @@ function PaymentProviderSettings() {
           orgTelegramAssistantUrl={
             window.providerSettingsViewModel.AddPaymentMethodViewModel.ChannelContact.Tele
           }
-          existingPaymentMethod={selectedSetting}
+          existingPaymentMethod={selectedSetting} 
+          isCashServiceEnabled={isCashServiceEnabled}
         />
       )}
     </div>

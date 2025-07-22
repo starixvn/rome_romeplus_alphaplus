@@ -6,17 +6,17 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
     public class GetProviderSettingsCriteria(int providerId, int custId, int method, int status, int transactionType)
         : CriteriaBase
     {
-        public int ProviderId { get; set; } = providerId;
-        public int CustId { get; set; } = custId;
+        public int ProviderId { get; } = providerId;
+        public int CustId { get; } = custId;
 
         [SpParam(SqlParamName = "PaymentMethodID")]
-        public int Method { get; set; } = method;
+        public int Method { get; } = method;
 
         [SpParam(SqlParamName = "PaymentMethodStatus")]
-        public int Status { get; set; } = status;
+        public int Status { get; } = status;
 
         [SpParam(SqlParamName = "TransactionType")]
-        public int TransactionType { get; set; } = transactionType;
+        public int TransactionType { get; } = transactionType;
 
         public override string GetSettingKey() => "Age_CashService_PaymentProviderDetail_Sel";
 

@@ -56,7 +56,11 @@
     "approve": "อนุมัติ",
     "reject": "ปฏิเสธ",
     "close": "ปิด",
-    "firstLastName": "ชื่อ-นามสกุล"
+    "firstLastName": "ชื่อ-นามสกุล",
+    "confirmRejectTitle": "ยืนยันการปฏิเสธ",
+    "confirmRejectMessage": "คุณแน่ใจหรือไม่ว่าต้องการปฏิเสธการฝากเงินนี้?",
+    "confirmApproveTitle": "ยืนยันการอนุมัติ",
+    "confirmApproveMessage": "คุณแน่ใจหรือไม่ว่าต้องการอนุมัติการฝากเงินนี้?"
   },
 
   "manualDepositForm": {
@@ -72,14 +76,14 @@
     "dragAndDrop": "หรือลากและวาง",
     "imageFormat": "อัปโหลด jpeg, jpg, png",
     "maxSize": "สูงสุด 1 MB",
-    "viewFullSize": "ดูภาพขนาดเต็ม",
-    "removeImage": "ลบภาพ",
+    "viewFullSize": "ดูขนาดเต็ม",
+    "removeImage": "ลบรูปภาพ",
     "cancel": "ยกเลิก",
     "approve": "อนุมัติ",
     "approving": "กำลังอนุมัติ...",
     "agentAvailableCredit": "เครดิตที่ใช้ได้ของตัวแทน",
     "amountMustBeGreaterThan0AndLessThanMaxLimit": "จำนวนเงินต้องมากกว่า 0 และน้อยกว่าเครดิตที่ใช้ได้ของตัวแทน",
-    "imageSizeError": "ภาพต้องมีขนาดน้อยกว่า 1MB",
+    "imageSizeError": "ขนาดรูปภาพต้องน้อยกว่า 1MB",
     "memberLoginNameRequired": "ชื่อเข้าสู่ระบบสมาชิกเป็นสิ่งจำเป็น",
     "agentBankSelectionRequired": "จากเป็นสิ่งจำเป็น",
     "memberBankSelectionRequired": "ถึงเป็นสิ่งจำเป็น",
@@ -100,9 +104,9 @@
   },
 
   "successMessages": {
-    "depositSubmitted": "ส่งคำขอฝากเงินสำเร็จ!",
-    "depositUpdated": "อัปเดตคำขอฝากเงินสำเร็จ!",
-    "depositApproved": "อนุมัติคำขอฝากเงินสำเร็จ!",
-    "depositRejected": "ปฏิเสธคำขอฝากเงินสำเร็จ!"
+    "depositSubmitted": "คำขอฝากเงินได้รับการส่งสำเร็จ",
+    "depositUpdated": "คำขอฝากเงินได้รับการอัปเดตสำเร็จ",
+    "depositApproved": "คำขอฝากเงินได้รับการอนุมัติสำเร็จ",
+    "depositRejected": "คำขอฝากเงินได้รับการปฏิเสธสำเร็จ"
   }
 }

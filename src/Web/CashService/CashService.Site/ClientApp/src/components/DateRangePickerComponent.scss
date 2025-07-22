@@ -213,7 +213,11 @@
     .rdrMonthAndYearWrapper {
         padding: 0 5px;
         height: auto;
-
+        .rdrMonthAndYearPickers{
+            select{
+                background-color: var(--datarangepicker-background)!important;    
+            }
+        }
         .rdrNextPrevButton {
             position: relative;
             height: 32px;

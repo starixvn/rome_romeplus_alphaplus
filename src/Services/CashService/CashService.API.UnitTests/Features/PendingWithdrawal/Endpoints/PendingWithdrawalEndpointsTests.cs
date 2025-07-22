@@ -1,4 +1,4 @@
-namespace CashService.API.UnitTests.Features.PendingWithdrawal.Endpoints;
+namespace AlphaPlus.CashService.API.UnitTests.Features.PendingWithdrawal.Endpoints;
 
 using AlphaPlus.CashService.API.Features.PendingWithdrawal.Models;
 using AlphaPlus.CashService.API.Features.PendingWithdrawal.Services;

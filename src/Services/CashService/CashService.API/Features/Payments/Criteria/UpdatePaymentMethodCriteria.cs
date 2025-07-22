@@ -4,7 +4,7 @@ using Fanex.Data;
 
 namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 {
-    public class UpdatePaymentMethodCriteria(UpdatePaymentMethodRequest request) 
+    public class UpdatePaymentMethodCriteria(UpdatePaymentMethodRequest request, bool validationResult) 
         : BaseDBCommand(request.ActorId, request.SubAccId, request.IP, request.Language)
     {
         public int ProviderId { get; } = request.ProviderId;
@@ -13,7 +13,9 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
         [SpParam(SqlParamName = "PaymentMethodID")]
         public int Method { get; } = request.Method;
 
-        public string APIConfig { get; set; }
+        public bool ValidationResult { get; } = validationResult;
+
+        public string APIConfig { get; } = request.GetAPIConfigJson();
 
         public override string GetSettingKey() => "Age_CashService_PaymentMethod_Config";
 

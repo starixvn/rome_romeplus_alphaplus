@@ -1,7 +1,7 @@
 using AlphaPlus.CashService.API.Features.Transactions.Criteria;
 using Xunit;
 
-namespace CashService.API.UnitTests.Features.Transactions.Criteria;
+namespace AlphaPlus.CashService.API.UnitTests.Features.Transactions.Criteria;
 
 public class RevertWithdrawalTransactionToPendingCommandTests
 {
@@ -30,7 +30,7 @@ public class RevertWithdrawalTransactionToPendingCommandTests
         var remark = "Reverting withdrawal";
         var userId = 10;
         var ip = "192.168.1.1";
-        var siteDbGroupId = 3;
+        short siteDbGroupId = 3;
         var errCode = 0;
         var errMsg = "Success";
 
@@ -56,7 +56,7 @@ public class RevertWithdrawalTransactionToPendingCommandTests
     [Theory]
     [InlineData(1, "SiteDb_1_Age_CashTransaction_RevertWithdrawal_Upd")]
     [InlineData(7, "SiteDb_7_Age_CashTransaction_RevertWithdrawal_Upd")]
-    public void GetSettingKey_ShouldReturnCorrectFormat(int siteDbGroupId, string expectedKey)
+    public void GetSettingKey_ShouldReturnCorrectFormat(short siteDbGroupId, string expectedKey)
     {
         // Arrange
         var command = new RevertWithdrawalTransactionToPendingCommand { SiteDbGroupId = siteDbGroupId };

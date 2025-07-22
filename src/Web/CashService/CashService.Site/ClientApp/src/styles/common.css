@@ -1,30 +1,16 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+.message-validate {
+    @apply mt-[2px] text-[#FE0000] dark:text-[#EB5757] border-0! font-[400]; 
+}
+.message-error {
+    @apply bg-[#FFE8E8] dark:bg-[#501B1B] border-[#E2B6B6] dark:border-[#FF8C8C] relative font-[500] border-[1px] rounded-[3px] pl-[35px] pr-[7px] py-[8px] leading-[18px]; 
+}
+.message-success {
+    @apply bg-[#E2FFF2] dark:bg-[#3A5031] border-[#5CB774] dark:border-[#7ECC4D] relative font-[500] border-[1px] rounded-[3px] pl-[35px] pr-[7px] py-[8px] leading-[18px];
+}
+.message-warning {
+    @apply bg-[#FFF8E2] dark:bg-[#504A31] border-[#B7A674] dark:border-[#CCB84D] relative font-[500] border-[1px] rounded-[3px] pl-[35px] pr-[7px] py-[8px] leading-[18px];
+}
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-@layer base {
-    [data-theme='dark'] {
-        --text-color-primary: #cccccc;
-        --primary-color: #2d2d2d;
-        
-
-        --button-background: #2d2d2d;
-        --button-background-hover: #3d3d3d;
-        --button-border: #3d3d3d;
-        --button-border-hover: #4a9eff;
-
-        /* --button-switch-toggle-background: #2d2d2d;
-        --button-switch-toggle-background-active: #4a9eff;
-        --button-switch-toggle-background-color: #ffffff;
-        --button-switch-toggle-background-color-active: #ffffff; */
-        /* --button-switch-background-active:  #4a9eff; */
-        --button-switch-background: #2d2d2d;
-        --button-switch-background-active:  #2c3946;
-
-        --border-control: #3d3d3d;
-        --border-control-focus: #3d3d3d;
-
-      
-    }
-    
-  }

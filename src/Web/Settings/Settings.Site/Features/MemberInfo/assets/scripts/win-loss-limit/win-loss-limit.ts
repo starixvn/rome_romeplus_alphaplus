@@ -2,6 +2,10 @@
 /// <reference path="../components/pager.ts" />
 'use strict';
 
+interface Window {  
+    bootboxConfirm(message: string, callback: (result: boolean) => void): void;
+}
+
 interface JQuery {
     stickyTableHeaders(): void;
 }
@@ -11,6 +15,7 @@ class WinLossLimit {
     productComponent: SingleSelectionDropdownComponent;
     masterListComponent: SingleSelectionDropdownComponent;
     agentListComponent: SingleSelectionDropdownComponent;
+    accountTypeComponent: SingleSelectionDropdownComponent;
     pager: PagerComponent;
 
     $productList: JQuery;
@@ -21,8 +26,10 @@ class WinLossLimit {
 
     $masterList: JQuery;
     $agentList: JQuery;
+    $accountTypeList: JQuery;
     $masterId: JQuery;
     $agentId: JQuery;
+    $accountTypeId: JQuery;
     $username: JQuery;
     $playerId: JQuery;
     $tableReport: JQuery;
@@ -32,12 +39,14 @@ class WinLossLimit {
         productComponent: SingleSelectionDropdownComponent,
         masterListComponent: SingleSelectionDropdownComponent,
         agentListComponent: SingleSelectionDropdownComponent,
+        accountTypeComponent: SingleSelectionDropdownComponent,
         pager: PagerComponent
     ) {
         this.$ = $;
         this.productComponent = productComponent;
         this.masterListComponent = masterListComponent;
         this.agentListComponent = agentListComponent;
+        this.accountTypeComponent = accountTypeComponent;
         this.pager = pager;
     }
 
@@ -68,6 +77,12 @@ class WinLossLimit {
             );
         }
 
+        if (this.$accountTypeList.length) {
+            this.accountTypeComponent.render(
+                new SingleSelectionDropdownOption('dropdown-account-type', 'AccountTypeId', this.changeAccountType)
+            );
+        }
+
         this.$tableReport.stickyTableHeaders();
         this.pager.render(new PagerOption(this.submitForm, 'report-pager', 'win-loss-limit-form'));
     };
@@ -80,9 +95,11 @@ class WinLossLimit {
 
         this.$masterList = this.$('#dropdown-master');
         this.$agentList = this.$('#dropdown-agent');
+        this.$accountTypeList = this.$('#dropdown-account-type');
 
         this.$masterId = this.$('#MasterId');
         this.$agentId = this.$('#RecommendId');
+        this.$accountTypeId = this.$('#AccountTypeId');
         this.$username = this.$('#txt-username');
         this.$playerId = this.$('#txt-player-id');
         this.$tableReport = this.$('#tbl-report');
@@ -90,6 +107,9 @@ class WinLossLimit {
     bindEvents = () => {
         this.$username.keyup(this.doneInputTextbox);
         this.$playerId.keyup(this.doneInputTextbox);
+        
+        // Bind reset win amount icon click event
+        this.$tableReport.on('click', '.reset-win-amount', this.resetWinAmount);
     };
     changeProduct = () => {
         var selectedOption = this.$productList.find(':selected');
@@ -114,6 +134,11 @@ class WinLossLimit {
         this.$('#PageIndex').val(1);
         this.submitForm();
     };
+    changeAccountType = () => {
+        this.$accountTypeId.val(this.$accountTypeList.val());
+        this.$('#PageIndex').val(1);
+        this.submitForm();
+    };
     submitForm = () => {
         this.$.blockUI();
         this.$winLossLimitForm.submit();
@@ -126,10 +151,67 @@ class WinLossLimit {
             this.submitForm();
         }
     };
+
+    resetWinAmount = (event: any) => {
+        event.preventDefault();
+        
+        var $resetIcon = this.$(event.currentTarget);
+        var custId = $resetIcon.data('cust-id');
+        var username = $resetIcon.data('username');
+        
+        if (!custId || !username) {
+            return;
+        }
+        
+        var confirmMessage = this.$('#ResetCurrentWinAmountConfirmMessage').val();
+        confirmMessage = confirmMessage.replace('{0}', username);
+        
+        window.top.bootboxConfirm(confirmMessage, null, (result: any) => {
+            this.$.blockUI();
+            
+            var selectedOption = this.$productList.find(':selected');
+            var sportType = selectedOption.attr('data-sport-type');
+            var betType = selectedOption.attr('data-bet-type');
+            var productId = selectedOption.attr('data-product-id');
+            
+            const errorMessage = this.$('#ResetCurrentWinAmountErrorMessage').val();
+            this.$.ajax({
+                url: '/settings/WinLossLimit/ResetCurrentWinAmount',
+                type: 'POST',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    RequestVerificationToken: this.$('input[name="__RequestVerificationToken"]').val()
+                },
+                data: {
+                    custId: custId,
+                    username: username,
+                    productId: productId,
+                    sportType: sportType,
+                    betType: betType
+                },
+                success: (response: any) => {
+                    window.top.bootboxAlert(response.Message || errorMessage);
+                    if (response && response.IsSuccessful) {
+                        setTimeout(() => {
+                            // Refresh the page to show updated data
+                            this.submitForm();
+                        }, 3000);
+                    }
+                },
+                error: (xhr: any, status: any, error: any) => {
+                    window.top.bootboxAlert(error || errorMessage);
+                },
+                complete: () => {
+                    this.$.unblockUI();
+                }
+            });
+        });
+    };
 }
 
 const winLossLimit = new WinLossLimit(
     $,
+    new SingleSelectionDropdownComponent($),
     new SingleSelectionDropdownComponent($),
     new SingleSelectionDropdownComponent($),
     new SingleSelectionDropdownComponent($),

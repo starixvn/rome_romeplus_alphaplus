@@ -1,6 +1,6 @@
-using System.Text.RegularExpressions;
 using AlphaPlus.CashService.API.Features.Payments.Requests;
 using AlphaPlus.CashService.API.Features.Shared.Criteria;
+using AlphaPlus.CashService.API.Features.Shared.Helpers;
 using Fanex.Data;
 
 namespace AlphaPlus.CashService.API.Features.Payments.Criteria
@@ -36,21 +36,26 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
         public int Status { get; }
 
         public string AccountHolderName { get; }
+
         [SpParam(SqlParamName = "BankAccountNumber")]
         public string AccountNumber { get; }
+
         public string AccountNickname { get; }
 
         [SpParam(SqlParamName = "TransTypeList")]
         public string TransactionTypeIDs { get; }
+
         public int DepositMatchingMode { get; }
 
         [SpParam(SqlParamName = "PromptPayEnabled")]
         public bool PromptPay { get; }
+
         [SpParam(SqlParamName = "PromptPayMobile")]
         public string Mobile { get; }
 
         [SpParam(Ignored = true)]
         public string CountryCode { get; }
+
         [SpParam(Ignored = true)]
         public string MobileNumber { get; }
 
@@ -59,23 +64,21 @@ namespace AlphaPlus.CashService.API.Features.Payments.Criteria
         public override bool IsValid()
         {
             var isValid = base.IsValid() &&
-            BankId > 0 &&
-            !string.IsNullOrWhiteSpace(AccountNumber) &&
-            !string.IsNullOrWhiteSpace(AccountHolderName) &&
-            Regex.IsMatch(AccountNumber, @"^\d+$") &&
-            AccountHolderName.Length <= 255 &&
-            AccountNumber.Length <= 100 &&
-            AccountNickname.Length <= 255;
+                IsValidBankAccountInfo() &&
+                ValidatorHelper.IsValidAccountNickname(AccountNickname);
 
             if (!isValid || !PromptPay)
             {
                 return isValid;
             }
 
-            return !string.IsNullOrWhiteSpace(CountryCode)
-                && !string.IsNullOrWhiteSpace(MobileNumber)
-                && Regex.IsMatch(CountryCode, @"^\d+$")
-                && Regex.IsMatch(MobileNumber, @"^\d+$");
+            return ValidatorHelper.IsValidCountryCode(CountryCode) && 
+                   ValidatorHelper.IsValidMobileNumber(MobileNumber);
         }
+
+        private bool IsValidBankAccountInfo() =>
+            BankId > 0 &&
+            ValidatorHelper.IsValidAccountHolderName(AccountHolderName) &&
+            ValidatorHelper.IsValidAccountNumber(AccountNumber);
     }
 }

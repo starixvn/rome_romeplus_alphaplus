@@ -84,7 +84,10 @@
   "uploadImage": "Nhấp để tải lên",
   "dragAndDrop": "hoặc kéo và thả",
   "imageFormat": "Tải lên jpeg, jpg, png",
-  "maxSize": "Tối đa 1 MB",
+  "maxSize": "Tối đa {0} MB",
+  "exportToExcel": "Xuất ra Excel",
+  "copied": "Đã sao chép",
+  "copy": "Sao chép",
   "status": {
     "waiting": "Đang chờ",
     "cancelled": "Đã hủy",
@@ -92,7 +95,8 @@
     "expired": "Đã hết hạn",
     "completed": "Hoàn thành",
     "rejected": "Đã từ chối",
-    "providerRejected": "Nhà cung cấp đã từ chối"
+    "providerRejected": "Nhà cung cấp đã từ chối",
+    "approved": "Đã phê duyệt"
   },
   "dateRangePicker": {
     "today": "Hôm nay",
@@ -101,6 +105,25 @@
     "last30days": "30 ngày qua",
     "thismonth": "Tháng này",
     "lastmonth": "Tháng trước",
-    "days": "ngày"
-  }
+    "days": "ngày",
+    "selected": "Đã chọn",
+    "noRangeSelected": "Chưa chọn phạm vi"
+  },
+  "cashServiceDisabled": "Dịch vụ tiền mặt đã bị vô hiệu hóa",
+  "info": "Thông tin",
+  "removeSuccess": "Xóa thành công",
+  "removeError": "Xóa thất bại",
+  "noneSelected": "Không có mục nào được chọn",
+  "selectAll": "Chọn tất cả",
+  "dateRange": "Khoảng thời gian",
+  "statusText": "Trạng thái",
+  "username": "Tên người dùng",
+  "firstOrLastName": "Tên hoặc Họ",
+  "firstAndLastName": "Tên & Họ",
+  "nickname": "Biệt danh",
+  "lastUpdated": "Cập nhật lần cuối",
+  "updatedBy": "Được cập nhật bởi",
+  "pleaseReferTo": "Vui lòng tham khảo",
+  "checklist": "Danh sách kiểm tra",
+  "error-0": "Nhà cung cấp thanh toán hiện không khả dụng. Vui lòng thử lại sau."
 }

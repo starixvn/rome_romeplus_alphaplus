@@ -1,11 +1,16 @@
 namespace AlphaPlus.CashService.API.Features.PendingWithdrawal.Services;
 
 using AlphaPlus.CashService.API.Features.Shared.Models;
+using AlphaPlus.CashService.API.Features.Shared.Models.PaymentGateway;
+using AlphaPlus.CashService.API.Features.Shared.Requests.PaymentGateway;
+using AlphaPlus.CashService.API.Features.Shared.Services;
 using AlphaPlus.CashService.API.Features.Transactions.Models;
 using AlphaPlus.CashService.API.Features.Transactions.Services;
 using Criteria;
 using Fanex.Data.Repository;
 using Models;
+using Shared.Requests;
+using Transactions.Enum;
 
 public interface IPendingWithdrawalService
 {
@@ -17,12 +22,16 @@ public interface IPendingWithdrawalService
 
     Task<ResultModel> AddManualWithdrawAsync(AddManualWithdrawalModel param);
 
+    Task<ResultModel> ApproveByPaymentGatewayAsync(ProcessWithdrawalTransaction command);
+
     Task<ResultModel> ProcessWithdrawAsync(ProcessWithdrawalTransaction param);
 }
 
 public class PendingWithdrawalService(
     IDynamicRepository dynamicRepository,
-    ITransactionService transactionService) : IPendingWithdrawalService
+    ITransactionService transactionService,
+    IPaymentGatewayService paymentGateway,
+    ICommonService commonService) : IPendingWithdrawalService
 {
     public async Task<decimal> GetCashBalanceAsync(int custId, int siteDbGroupId)
     {
@@ -109,6 +118,51 @@ public class PendingWithdrawalService(
         return result;
     }
 
+    public async Task<ResultModel> ApproveByPaymentGatewayAsync(ProcessWithdrawalTransaction command)
+    {
+        var result = new ResultModel(405, "Invalid parameters");
+
+        var transaction = await transactionService.GetTransactionByIdAsync(command.TransId, command.ActorId, command.SiteDBGroupId);
+        var parts = transaction?.PaymentTo?.Split('-') ?? [];
+        var bankCode = parts.ElementAtOrDefault(0) ?? string.Empty;
+        var accountNumber = parts.ElementAtOrDefault(1) ?? string.Empty;
+
+        if (transaction is null || string.IsNullOrWhiteSpace(bankCode) || string.IsNullOrWhiteSpace(accountNumber))
+        {
+            return result;
+        }
+
+        var model = new WithdrawalBodyRequest
+        {
+            AgentId = command.ActorId,
+            CustId = command.CustId,
+            Amount = transaction.Amount,
+            TransId = command.TransId,
+            ProviderId = command.ProviderId,
+            MemberInfo = new WithdrawalMemberInfo
+            {
+                Name = transaction.Username,
+                BankCode = bankCode,
+                AccountNumber = accountNumber
+            }
+        };
+
+        var response = await paymentGateway.WithdrawalViaPaymentGateway(model, (short)command.CustDBGroupId);
+        if (response.IsSuccessful)
+        {
+            result.Code = response.Code;
+            result.Message = string.Empty;
+        }
+        else
+        {
+            await UpdateWithdrawalStatusAsync(command, response.Code == 4 ? (int)TransactionStatus.ProviderRejected : 0);
+            result.Code = response.Code == 4 ? 410 : 411;
+            result.Message = response.Message;
+        }
+
+        return result;
+    }
+
     public async Task<ResultModel> ProcessWithdrawAsync(ProcessWithdrawalTransaction param)
     {
         var command = new ProcessWithdrawalTransactionCommand
@@ -121,9 +175,9 @@ public class PendingWithdrawalService(
             AgentId = param.ActorId,
             SubAccId = param.SubAccId,
             SiteDbGroupId = param.SiteDBGroupId,
-            Remark = param.Remark,
+            Remark = param.Remark ?? string.Empty,
             StatusId = param.StatusId,
-            Payslip = param.Payslip,
+            Payslip = param.IsRemovePayslip ? [] : param.Payslip,
             Ip = param.IP,
         };
         var responseLogs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command) ?? [];
@@ -133,5 +187,37 @@ public class PendingWithdrawalService(
         transactionService.OnAfterUpdateTransaction(command.CashAccumCreditTbl, param.SiteDBGroupId, param.CustDBGroupId, responseLogs.ToList());
 
         return result;
+    }
+
+    private async Task UpdateWithdrawalStatusAsync(ProcessWithdrawalTransaction param, int statusId)
+    {
+        var command = new UpdateWithdrawalTransactionByApiCriteria
+        {
+            TransId = param.TransId,
+            CustId = param.CustId,
+            AgentId = param.ActorId,
+            SiteDbGroupId = param.SiteDBGroupId,
+            IP = param.IP,
+            StatusId = statusId,
+        };
+        var responseLogs = (await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command)).ToArray();
+        if (responseLogs.Any())
+        {
+            foreach (var writeLogDbCommandModel in responseLogs)
+            {
+                await WriteLogRunSp(writeLogDbCommandModel, param.SiteDBGroupId);
+            }
+        }
+    }
+
+    private async Task WriteLogRunSp(WriteLogDBCommandModel log, short siteDbGroupId)
+    {
+        var request = new BaseActionRequest
+        {
+            ActorId = log.CustId,
+            CustDBGroupId = siteDbGroupId,
+            UserId = log.UserId,
+        };
+        await commonService.WriteLogDBCommand(request, log);
     }
 }

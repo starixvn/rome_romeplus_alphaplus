@@ -72,7 +72,7 @@ vi.mock('../AccountInformation', () => ({
   ),
 }));
 
-vi.mock('../../../../../components/ButtonComponents', () => ({
+vi.mock('../../../../../components/Buttons/index', () => ({
   ButtonCancelComponent: ({ onClick }) => <button data-testid="cancel-button" onClick={onClick}>Cancel</button>,
   ButtonApplyComponent: ({ onClick }) => <button data-testid="apply-button" onClick={onClick}>Apply</button>,
   BackButtonComponent: ({ onClick }) => <button data-testid="back-button" onClick={onClick}>Back</button>,

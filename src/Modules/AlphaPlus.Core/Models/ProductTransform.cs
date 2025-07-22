@@ -56,14 +56,12 @@ public class ProductTransform
         {
             return;
         }
-        
+
         var productIds = new List<int>();
 
         foreach (string key in values.Keys)
         {
-            var prefix = StatusDefaultValues
-                .Where(statusPrefix => key.StartsWith(statusPrefix.Key))
-                .FirstOrDefault();
+            var prefix = StatusDefaultValues.FirstOrDefault(statusPrefix => key.StartsWith(statusPrefix.Key));
 
             if (string.IsNullOrEmpty(prefix.Key)
                || !int.TryParse(key[prefix.Key.Length..], out int productId)

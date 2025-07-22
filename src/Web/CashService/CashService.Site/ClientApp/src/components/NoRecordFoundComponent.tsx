@@ -1,11 +1,10 @@
 import React from 'react';
-import { MediumTitleComponent } from './TitleComponents';
+import { TitleComponent } from './Title';
 import { NoDataIcon } from './Icons';
 import { useTranslation } from 'react-i18next';
 
 interface NoRecordFoundProps {
   colSpan: number;
-  message?: string;
 }
 
 const NoRecordFound: React.FC<NoRecordFoundProps> = ({ colSpan }) => {  
@@ -15,7 +14,7 @@ const NoRecordFound: React.FC<NoRecordFoundProps> = ({ colSpan }) => {
       <td colSpan={colSpan} className="p-3 text-center">
         <div className="flex justify-center items-center flex-col py-[20px]" role="alert">
           <NoDataIcon />
-          <MediumTitleComponent text={t('noData')} />
+          <TitleComponent type='medium' text={t('noData')} />
         </div>
       </td>
     </tr>

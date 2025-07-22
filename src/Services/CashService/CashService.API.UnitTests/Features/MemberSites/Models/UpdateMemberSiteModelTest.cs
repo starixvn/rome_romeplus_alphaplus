@@ -1,7 +1,7 @@
 using AlphaPlus.CashService.API.Features.MemberSites.Models;
 using Xunit;
 
-namespace CashService.API.UnitTests.Features.MemberSites.Models;
+namespace AlphaPlus.CashService.API.UnitTests.Features.MemberSites.Models;
 
 public class UpdateMemberSiteModelTest
 {
@@ -28,7 +28,7 @@ public class UpdateMemberSiteModelTest
         var ip = "127.0.0.1";
         var language = "en";
         var userId = 2;
-        var siteDB = 3;
+        short siteDB = 3;
 
         // Act
         model.SubAccId = subAccId;

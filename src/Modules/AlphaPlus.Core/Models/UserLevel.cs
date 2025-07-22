@@ -7,7 +7,7 @@ public class UserLevel : Enumeration
     public static readonly UserLevel Master = new(3, "Master");
     public static readonly UserLevel Agent = new(2, "Agent");
     public static readonly UserLevel Member = new(1, "Member");
-    private static readonly Dictionary<int, string> levels = new Dictionary<int, string>
+    private static readonly Dictionary<int, string> levels = new()
     {
         [1] = "Member",
         [2] = "Agent",

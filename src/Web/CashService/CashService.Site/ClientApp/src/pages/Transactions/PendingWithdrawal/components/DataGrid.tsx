@@ -8,16 +8,16 @@ import {
 } from '../../../../utils/commonFunctions.tsx';
 import PendingWithdrawalModal from './PendingWithdrawalModal.tsx';
 import NoRecordFound from '../../../../components/NoRecordFoundComponent.tsx';
-import { ButtonFullComponent } from '../../../../components/ButtonComponents';
+import { ButtonComponent } from '../../../../components/Buttons/index';
 import Pagination from '../../Components/Pagination';
 import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
-import { ValidateMessageComponent } from '../../../../components/MessageComponents.tsx';
-import Tippy from '@tippyjs/react';
+import { MessageComponent } from '../../../../components/Message';
 import { IconImage } from '../../../../components/Icons.tsx';
 
 interface DataGridProps {
   withdrawals: TransactionItem[];
   reloadGrid: () => void;
+  isCashServiceEnabled: boolean;
 }
 
 const DataGrid: React.FC<DataGridProps> = ({ withdrawals, reloadGrid }) => {
@@ -62,7 +62,7 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals, reloadGrid }) => {
 
   return (
     <>
-      <div className="table-fixed-header table-fixed-body min-h-0">
+      <div className="table table-fixed-body min-h-0">
         <table className="w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px] border-l-[0px] text-[#333333]">
           <thead className="z-11!">
             <tr>
@@ -119,20 +119,17 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals, reloadGrid }) => {
                       )}
                     </div>
                   </td>
-                  <td className="text-left">
-                    <Tippy content={<p>{tGlobal(withdrawal.paymentFrom.split('-')[0])}</p>}>
-                      {renderBankAccount(withdrawal.paymentFrom)}
-                    </Tippy>
+                  <td className="text-left">                   
+                      {renderBankAccount(withdrawal.paymentFrom, tGlobal)}                     
                   </td>
-                  <td className="text-left">
-                    <Tippy content={<p>{tGlobal(withdrawal.paymentTo.split('-')[0])}</p>}>
-                      {renderBankAccount(withdrawal.paymentTo)}
-                    </Tippy>
+                  <td className="text-left">                  
+                      {renderBankAccount(withdrawal.paymentTo, tGlobal)}                   
                   </td>
                   <td>{withdrawal.transId}</td>
                   <td>{formatDateTime(withdrawal.createdTime)}</td>
                   <td>
-                    <ButtonFullComponent
+                    <ButtonComponent
+                      variant="full"
                       text={t('dataGrid.process')}
                       onClick={() => handleProcessClick(withdrawal)}
                     />
@@ -140,12 +137,12 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals, reloadGrid }) => {
                 </tr>
               ))
             ) : (
-              <NoRecordFound colSpan={9} message={t('dataGrid.noWithdrawalsFound')} />
+              <NoRecordFound colSpan={9} />
             )}
           </tbody>
         </table>
       </div>     
-      {error && <ValidateMessageComponent message={error} />}
+      {error && <MessageComponent message={error} type='error' />}
       {showWithdrawalPopup && selectedWithdrawal && (
         <PendingWithdrawalModal
           transId={selectedWithdrawal.transId}

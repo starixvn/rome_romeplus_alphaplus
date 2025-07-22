@@ -84,7 +84,10 @@
   "uploadImage": "点击上传",
   "dragAndDrop": "或拖放",
   "imageFormat": "上传 jpeg、jpg、png",
-  "maxSize": "最大 1 MB",
+  "maxSize": "最大 {0} MB",
+  "exportToExcel": "导出到 Excel",
+  "copied": "已复制",
+  "copy": "复制",
   "status": {
     "waiting": "等待中",
     "cancelled": "已取消",
@@ -92,7 +95,8 @@
     "expired": "已过期",
     "completed": "已完成",
     "rejected": "已拒绝",
-    "providerRejected": "提供商已拒绝"
+    "providerRejected": "提供商已拒绝",
+    "approved": "已批准"
   },
   "dateRangePicker": {
     "today": "今天",
@@ -101,6 +105,25 @@
     "last30days": "最近30天",
     "thismonth": "本月",
     "lastmonth": "上月",
-    "days": "天"
-  }
+    "days": "天",
+    "selected": "已选择",
+    "noRangeSelected": "未选择范围"
+  },
+  "cashServiceDisabled": "现金服务已禁用",
+  "info": "信息",
+  "removeSuccess": "删除成功",
+  "removeError": "删除失败",
+  "noneSelected": "未选择",
+  "selectAll": "全选",
+  "dateRange": "日期范围",
+  "statusText": "状态",
+  "username": "用户名",
+  "firstOrLastName": "名或姓",
+  "firstAndLastName": "名和姓",
+  "nickname": "昵称",
+  "lastUpdated": "最后更新",
+  "updatedBy": "更新者",
+  "pleaseReferTo": "请参考",
+  "checklist": "检查清单",
+  "error-0": "支付提供商目前不可用。请稍后再试。"
 }

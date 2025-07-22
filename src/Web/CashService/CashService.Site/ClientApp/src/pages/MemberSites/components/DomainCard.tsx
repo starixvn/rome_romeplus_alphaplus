@@ -8,9 +8,10 @@ import { IconCopied, IconCopy } from '../../../components/Icons';
 interface DomainCardProps {
   domain: Domain;
   index: number;
+  disabled: boolean;
 }
 
-const DomainCard: React.FC<DomainCardProps> = ({ domain,  index }) => {
+const DomainCard: React.FC<DomainCardProps> = ({ domain,  index, disabled }) => {
   const { t } = useTranslation('memberSite');
   const [copied, setCopied] = useState(false);
   const qrRef = useRef<HTMLDivElement>(null);
@@ -40,11 +41,11 @@ const DomainCard: React.FC<DomainCardProps> = ({ domain,  index }) => {
 
 
   return (
-    <div className={`bg-[var(--domain-card-color1)] justify-between rounded-[5px] flex-1 text-[var(--domain-card-color2)] flex flex-nowrap p-[16px] max-w-[450px]`}>
+    <div className={`bg-[var(--domain-card-color1)] justify-between rounded-[5px] flex-1 text-[var(--domain-card-color2)] flex flex-nowrap p-[16px] max-w-[450px]  ${disabled ? 'cursor-not-allowed opacity-80 [&>*]:pointer-events-none [&>*]:select-none' : ''} `} data-disabled={disabled}>
       <div className="flex justify-between items-center  ">
         <div className="">
           <p className="font-bold text-[110%]">{t('registrationLinks.domain')} {index + 1}</p>
-          <p>{domain.url}</p>
+          <p>{disabled ? "********" : domain.url}</p>
         </div>        
       </div>
       <div className="flex items-center ">
@@ -52,6 +53,7 @@ const DomainCard: React.FC<DomainCardProps> = ({ domain,  index }) => {
             onClick={(e) => handleCopy(e)}
             className="cursor-pointer p-1.5 rounded-[4px] hover:bg-[var(--button-icon-hover)] transition-colors"
             title="Copy URL"
+            disabled={disabled}
           >
             {copied ? (
               <IconCopied />
@@ -60,7 +62,7 @@ const DomainCard: React.FC<DomainCardProps> = ({ domain,  index }) => {
             )}
           </button>
           <button 
-          disabled={domain.status === 'blocked'}
+          disabled={domain.status === 'blocked' || disabled}
           onClick={(e) => downloadQRCode(e)}
           className={`cursor-pointer whitespace-nowrap text-[var(--domain-card-color1)] font-bold bg-[var(--domain-card-color2)] rounded-[5px] p-[6px]  ${
             domain.status === 'active'

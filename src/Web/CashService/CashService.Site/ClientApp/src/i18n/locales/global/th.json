@@ -84,7 +84,10 @@
   "uploadImage": "คลิกเพื่ออัปโหลด",
   "dragAndDrop": "หรือลากและวาง",
   "imageFormat": "อัปโหลด jpeg, jpg, png",
-  "maxSize": "สูงสุด 1 MB",
+  "maxSize": "สูงสุด {0} MB",
+  "exportToExcel": "ส่งออกเป็น Excel",
+  "copied": "คัดลอกแล้ว",
+  "copy": "คัดลอก",
   "status": {
     "waiting": "รอดำเนินการ",
     "cancelled": "ยกเลิกแล้ว",
@@ -92,7 +95,8 @@
     "expired": "หมดอายุแล้ว",
     "completed": "เสร็จสมบูรณ์",
     "rejected": "ปฏิเสธแล้ว",
-    "providerRejected": "ผู้ให้บริการปฏิเสธ"
+    "providerRejected": "ผู้ให้บริการปฏิเสธ",
+    "approved": "ได้รับการอนุมัติ"
   },
   "dateRangePicker": {
     "today": "วันนี้",
@@ -101,6 +105,25 @@
     "last30days": "30 วันที่ผ่านมา",
     "thismonth": "เดือนนี้",
     "lastmonth": "เดือนที่แล้ว",
-    "days": "วัน"
-  }
+    "days": "วัน",
+    "selected": "เลือก",
+    "noRangeSelected": "ไม่ได้เลือกช่วงเวลา"
+  },
+  "cashServiceDisabled": "บริการเงินสดถูกปิดใช้งาน",
+  "info": "ข้อมูล",
+  "removeSuccess": "ลบสำเร็จ",
+  "removeError": "ลบล้มเหลว",
+  "noneSelected": "ไม่มีการเลือก",
+  "selectAll": "เลือกทั้งหมด",
+  "dateRange": "ช่วงวันที่",
+  "statusText": "สถานะ",
+  "username": "ชื่อผู้ใช้",
+  "firstOrLastName": "ชื่อหรือนามสกุล",
+  "firstAndLastName": "ชื่อและนามสกุล",
+  "nickname": "ชื่อเล่น",
+  "lastUpdated": "อัปเดตล่าสุด",
+  "updatedBy": "อัปเดตโดย",
+  "pleaseReferTo": "กรุณาอ้างอิง",
+  "checklist": "รายการตรวจสอบ",
+  "error-0": "ผู้ให้บริการชำระเงินถูกปิดใช้งาน กรุณาลองใหม่อีกครั้ง"
 }

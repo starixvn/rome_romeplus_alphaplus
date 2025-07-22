@@ -2,23 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ButtonApplyComponent,
-  ButtonCancelComponent,
-  ButtonClosePopupComponent,
-} from '../../components/ButtonComponents';
-import {
-  ErrorMessageComponent,
-  SuccessMessageComponent,
-  ValidateMessageComponent,
-} from '../../components/MessageComponents';
-import { LabelTitleComponent, MediumTitleComponent } from '../../components/TitleComponents';
+  ButtonComponent,
+} from '../../components/Buttons/index';
+import { MessageComponent } from '../../components/Message';
+import { TitleComponent } from '../../components/Title';
 import { createDefaultPaymentTransactionLimit } from '../../services/interfaces/Payments';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { ensureDecimalInput, ensureIntegerInput } from '../../utils/inputHandlers';
 import { createErrorResultModel } from '../../services/interfaces/ResultModel';
+import { ButtonIconComponent } from '../../components/Buttons/ButtonIconComponent';
 interface SetTransactionLimitModalProps {
   onClose: () => void;
   onSave: () => void;
+  isCashServiceEnabled: boolean;
 }
 
 interface FormState {
@@ -37,7 +33,7 @@ interface FormErrors {
   dailyWithdrawalCount: string;
 }
 
-const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onClose, onSave }) => {
+const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onClose, onSave, isCashServiceEnabled }) => {
   const { t: tManagePayments } = useTranslation('managePayments');
   const { t: tGlobal } = useTranslation('global');
 
@@ -243,16 +239,16 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
       className="bg-[#00000080] fixed z-[100] top-0 left-0 right-0 bottom-0 flex items-start justify-center"
       tabIndex={-1}
     >
-      <div className="px-[20px] py-[10px] bg-[var(--modal-background)] mt-[100px] max-w-[540px] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] max-[768px]:max-w-[90%] rounded-[3px] ">
-        <div className="relative">
-          <MediumTitleComponent text={tManagePayments('transactionLimitPreferences')} />
-          <ButtonClosePopupComponent onClick={onClose} />
+      <div className="p-[12px] pt-[0] bg-[var(--modal-background)] mt-[100px] max-w-[540px] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] max-[768px]:max-w-[90%] rounded-[3px] ">
+        <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]">
+          <TitleComponent type='medium' text={tManagePayments('transactionLimitPreferences')} />
+          <ButtonIconComponent style='Close' onClick={onClose} />
         </div>
         <form onSubmit={onSubmit}>
           <div className="mb-[16px]">
             <div className="my-[8px]">
-              <ErrorMessageComponent message={error} />
-              <SuccessMessageComponent message={successMessage} />
+              <MessageComponent message={error} type='error' />
+              <MessageComponent message={successMessage} type='success' />
             </div>
             <div className="pt-[4px]">
               {tManagePayments('customizeTransactionLimitPreferences')}
@@ -262,7 +258,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
             </div>
             <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                <LabelTitleComponent text={tManagePayments('minPerTransaction')} />
+                <TitleComponent type='label' text={tManagePayments('minPerTransaction')} />
                 <input
                   type="text"
                   className={`control-field ${fieldErrors.minDeposit ? 'error' : ''}`}
@@ -272,10 +268,10 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
                   step="0.01"
                   maxLength={12}
                 />
-                <ValidateMessageComponent message={fieldErrors.minDeposit} />
+                <MessageComponent message={fieldErrors.minDeposit} type='validate' />
               </div>
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                <LabelTitleComponent text={tManagePayments('maxPerTransaction')} />
+                <TitleComponent type='label' text={tManagePayments('maxPerTransaction')} />
                 <input
                   type="text"
                   className={`control-field ${fieldErrors.maxDeposit ? 'error' : ''}`}
@@ -285,7 +281,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
                   step="0.01"
                   maxLength={12}
                 />
-                <ValidateMessageComponent message={fieldErrors.maxDeposit} />
+                <MessageComponent message={fieldErrors.maxDeposit} type='validate' />
               </div>
             </div>
             <div className="text-[var(--text-label-color)] my-[8px] font-semibold">
@@ -293,7 +289,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
             </div>
             <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                <LabelTitleComponent text={tManagePayments('minPerTransaction')} />
+                <TitleComponent type='label' text={tManagePayments('minPerTransaction')} />
                 <input
                   type="text"
                   className={`control-field ${fieldErrors.minWithdrawal ? 'error' : ''}`}
@@ -305,10 +301,10 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
                   step="0.01"
                   maxLength={12}
                 />
-                <ValidateMessageComponent message={fieldErrors.minWithdrawal} />
+                <MessageComponent message={fieldErrors.minWithdrawal} type='validate' />
               </div>
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                <LabelTitleComponent text={tManagePayments('maxPerTransaction')} />
+                <TitleComponent type='label' text={tManagePayments('maxPerTransaction')} />
                 <input
                   type="text"
                   className={`control-field ${fieldErrors.maxWithdrawal ? 'error' : ''}`}
@@ -320,12 +316,12 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
                   step="0.01"
                   maxLength={12}
                 />
-                <ValidateMessageComponent message={fieldErrors.maxWithdrawal} />
+                <MessageComponent message={fieldErrors.maxWithdrawal} type='validate' />
               </div>
             </div>
             <div className="flex flex-nowrap gap-[16px] mb-[4px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
               <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
-                <LabelTitleComponent text={tManagePayments('dailyWithdrawalCount')} />
+                <TitleComponent type='label' text={tManagePayments('dailyWithdrawalCount')} />
                 <input
                   type="text"
                   className="control-field"
@@ -336,20 +332,22 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
                   min="0"
                   maxLength={5}
                 />
-                <ValidateMessageComponent message={fieldErrors.dailyWithdrawalCount} />
-                <label className=" block mt-[4px] text-[#828282] font-semibold">
+                <MessageComponent message={fieldErrors.dailyWithdrawalCount} type='validate' />
+                <label className=" block mt-[4px] text-[#828282] text-[12px] leading-[12px]">
                   {tManagePayments('dailyWithdrawalCountTip')}
                 </label>
               </div>
             </div>
           </div>
           <div className="flex justify-center gap-[8px]">
-            <ButtonCancelComponent text={tGlobal('cancel')} onClick={onClose} />
-            <ButtonApplyComponent
+            <ButtonComponent variant="cancel" text={tGlobal('cancel')} onClick={onClose} type='button' />
+            <ButtonComponent
+              variant="apply"
               text={loading ? tGlobal('saving') : tGlobal('save')}
               type='submit'
               onClick={() => onSubmit({ preventDefault: () => {} } as React.FormEvent)}
-              disabled={loading || isBlockAction}
+              disabled={!isCashServiceEnabled || loading || isBlockAction}
+              title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
             />
           </div>
         </form>

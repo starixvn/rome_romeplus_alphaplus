@@ -52,7 +52,11 @@
     "selectBank": "銀行を選択",
     "bankRequired": "銀行は必須です",
     "approveSuccess": "出金の承認に成功しました",
-    "rejectSuccess": "出金の拒否に成功しました"
+    "rejectSuccess": "出金の拒否に成功しました",
+    "confirmRejectTitle": "拒否の確認",
+    "confirmRejectMessage": "この出金を拒否してもよろしいですか？",
+    "confirmApproveTitle": "承認の確認",
+    "confirmApproveMessage": "この出金を承認してもよろしいですか？"
   },
 
   "manualWithdrawalForm": {
@@ -81,7 +85,7 @@
     "memberBankSelectionRequired": "までは必須です",
     "amountRangeError": "金額は0より大きく、メンバーのキャッシュ残高以下である必要があります",
     "imageSizeError": "画像サイズは1MB未満である必要があります",
-    "addWithdrawalSuccess": "出金の追加に成功しました!!!",
+    "addWithdrawalSuccess": "出金の追加に成功しました",
     "memberCashBalance": "メンバーのキャッシュ残高",
     "minAmount": "最小",
     "maxAmount": "最大",
@@ -120,9 +124,9 @@
   },
 
   "successMessages": {
-    "withdrawalSubmitted": "出金が正常に送信されました",
-    "withdrawalUpdated": "出金が正常に更新されました",
-    "withdrawalApproved": "出金が正常に承認されました",
-    "withdrawalRejected": "出金が正常に拒否されました"
+    "withdrawalSubmitted": "出金リクエストが正常に送信されました",
+    "withdrawalUpdated": "出金リクエストが正常に更新されました",
+    "withdrawalApproved": "出金リクエストが正常に承認されました",
+    "withdrawalRejected": "出金リクエストが正常に拒否されました"
   }
 }

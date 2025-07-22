@@ -10,6 +10,16 @@ import UsernameSuggestion from '../models/username-suggestion';
 import { axiosInstance } from './axios-helper';
 
 const settingsRootPath = window.top?.alpha.urls['settingsRootPath'];
+export interface GetCustomerAllStatusParams {
+    CustId: number;
+    UserName: string;
+    RoleId: number;
+    UplineId: number;
+    UplineName: string;
+    UplineRoleId: number;
+    IsDirectMember: boolean;
+    IsCashMember: boolean;
+}
 
 const SettingsService = {
     GetUsernameSuggestion: async (query: string) => {
@@ -40,23 +50,16 @@ const SettingsService = {
             })
             .then((response) => response.data);
     },
-    GetCustomerAllStatus: async (
-        custId: number,
-        username: string,
-        roleId: number,
-        uplineId: number,
-        uplineName: string,
-        uplineRoleId: number,
-        isDirectMember: boolean
-    ) => {
+    GetCustomerAllStatus: async (payload: GetCustomerAllStatusParams) => {
         const params = {
-            SearchAccountId: custId,
-            SearchAccountName: username,
-            SearchAccountRoleId: roleId,
-            UplineId: uplineId,
-            UplineName: uplineName,
-            UplineRoleId: uplineRoleId,
-            IsDirectMember: isDirectMember
+            SearchAccountId: payload.CustId,
+            SearchAccountName: payload.UserName,
+            SearchAccountRoleId: payload.RoleId,
+            UplineId: payload.UplineId,
+            UplineName: payload.UplineName,
+            UplineRoleId: payload.UplineRoleId,
+            IsDirectMember: payload.IsDirectMember,
+            IsCashMember: payload.IsCashMember
         };
 
         return axios
@@ -107,5 +110,6 @@ const SettingsService = {
             .then((response) => response.data);
     }
 };
+
 
 export default SettingsService;

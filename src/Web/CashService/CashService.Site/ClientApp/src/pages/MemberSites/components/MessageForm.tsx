@@ -5,8 +5,8 @@ import { Contact as ContactComponent } from './Contact';
 import { MobilePhone as MobilePhoneComponent } from './MobiPhone';
 import { useFormContext } from 'react-hook-form';
 import { ANNOUNCEMENT_MAX_LENGTH } from '../../../constants';
-import { LabelTitleComponent, MediumTitleComponent } from '../../../components/TitleComponents';
-import { ValidateMessageComponent } from '../../../components/MessageComponents';
+import { TitleComponent } from '../../../components/Title';
+import { MessageComponent } from '../../../components/Message';
 
 interface MessageFormProps {
   loading: boolean;
@@ -44,7 +44,7 @@ const MessageForm: React.FC<MessageFormProps> = ({loading}) => {
 
   return (
     <div className="">
-      <MediumTitleComponent text={t('message.title')} />
+      <TitleComponent text={t('message.title')} type='medium'/>
       <p className="pt-[4px] mb-[8px] font-semibold text-[var(--text-color)]">{t('message.description')}</p>
       <div className=''>
         <div className="flex flex-nowrap gap-[16px] mb-[10px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap">
@@ -62,7 +62,7 @@ const MessageForm: React.FC<MessageFormProps> = ({loading}) => {
         </div>
 
         <div className='w-full max-[768px]:w-[100%]'>        
-          <LabelTitleComponent text={t('message.announcement')}  />
+          <TitleComponent text={t('message.announcement')}  type='label'/>
           <div className="relative">
             <textarea
               id="announcement"
@@ -81,7 +81,7 @@ const MessageForm: React.FC<MessageFormProps> = ({loading}) => {
               maxLength={ANNOUNCEMENT_MAX_LENGTH}
             />
             {errors.announcement && (
-              <ValidateMessageComponent message={errors.announcement?.message as string} />
+              <MessageComponent message={errors.announcement?.message as string} type='validate' />
             )}
           </div>
         </div>

@@ -24,7 +24,7 @@
     <PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
     <PackageReference Include="MediatR" Version="12.3.0" />
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.7" />
-
+    <PackageReference Include="Fanex.Customer.Client" Version="1.0.3.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -37,6 +37,25 @@
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.SecurityCode\AlphaPlus.SecurityCode.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Logging\AlphaPlus.Logging.csproj" />
     <ProjectReference Include="..\..\..\Shared\AlphaPlus.Shared.AppResources\AlphaPlus.Shared.AppResources.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Features\Shared\Resources\Messages.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Features\Shared\Resources\Messages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\src\pages\Promotion\PromotionReport\" />
   </ItemGroup>
 
 </Project>

@@ -17,6 +17,10 @@
                 <div id="msg-content">
                     @if (Model.CustLevel.IsAgentLevel())
                     {
+                        if (Model.IsOfferedCashService)
+                        {
+                            <p>- สมาชิกประเภทเงินสดจะไม่ถูกรวมอยู่ในหน้านี้</p>
+                        }
                         if (!string.IsNullOrWhiteSpace(Model.TransferCondition))
                         {
                             <p>- @Model.TransferCondition</p>

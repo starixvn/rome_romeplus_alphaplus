@@ -9,7 +9,10 @@ public class ProcessWithdrawalTransactionCommand : CriteriaBase
     public int CustId { get; set; }
     public int AgentId { get; set; }
     public int SubAccId { get; set; }
-    public int StatusId { get; set; }
+
+    [SpParam(AllowNull = true)]
+    public int? StatusId { get; set; }
+
     public int SiteDbGroupId { get; set; }
 
     [SpParam(AllowNull = true)]
@@ -17,8 +20,13 @@ public class ProcessWithdrawalTransactionCommand : CriteriaBase
 
     public int ProviderId { get; set; }
     public int PaymentMethodId { get; set; }
+
+    [SpParam(AllowNull = true)]
     public string Remark { get; set; }
+
+    [SpParam(AllowNull = true)]
     public byte[] Payslip { get; set; }
+
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }
     public string CashAccumCreditTbl { get; set; }

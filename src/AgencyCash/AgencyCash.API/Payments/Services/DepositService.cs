@@ -1,12 +1,12 @@
 using AgencyCash.API.Payments.Constants;
+using AgencyCash.API.Payments.Criteria;
 using AgencyCash.API.Payments.Criteria.Deposit;
 using AgencyCash.API.Payments.Models;
 using AgencyCash.API.Payments.Requests;
 using AgencyCash.API.Shared;
-using AgencyCash.API.Shared.Models;
 using AgencyCash.API.Shared.Helpers;
+using AgencyCash.API.Shared.Models;
 using Fanex.Data.Repository;
-using AgencyCash.API.Payments.Criteria;
 
 namespace AgencyCash.API.Payments.Services;
 
@@ -19,6 +19,8 @@ public interface IDepositService
     Task<PaymentResult> Auto(AutoDepositRequest request);
 
     Task<Result> UpdateTransactionStatus(long transId, UpdateTransactionStatusRequest request);
+
+    Task<Result> UpdatePaySlip(long transId, UpdatePaySlipRequest request);
 }
 
 public class DepositService(
@@ -85,7 +87,6 @@ public class DepositService(
             request.PaymentFrom,
             request.PaymentTo,
             request.Amount,
-            paySlip: request.PaySlipBuffer,
             ip: request.IP,
             remark: request.Remark);
 
@@ -137,6 +138,7 @@ public class DepositService(
             request.Amount,
             userInputAmount: request.UserInputAmount,
             matchingMode: request.MatchingMode,
+            providerId: request.ProviderId,
             ip: request.IP,
             remark: request.Remark);
 
@@ -169,17 +171,6 @@ public class DepositService(
         return result;
     }
 
-    private async Task WriteLogsRunSP(IEnumerable<LogEntry> logs, short custDBGroupId)
-    {
-        if (logs != null)
-        {
-            foreach (var item in logs)
-            {
-                await WriteLogRunSP(item, custDBGroupId);
-            }
-        }
-    }
-
     public async Task<Result> UpdateTransactionStatus(long transId, UpdateTransactionStatusRequest request)
     {
         var tasks = new List<Task>();
@@ -196,6 +187,7 @@ public class DepositService(
             siteDBConfig.SiteDBGroupId,
             limitCriteria.AgentGivenCredit,
             limitCriteria.CreditMembers_GivenCredit,
+            request.ProviderTransId,
             request.IP);
         var logs = await repository.FetchAsync<LogEntry>(criteria);
         var result = new Result(criteria.ErrCode, criteria.ErrMsg);
@@ -212,6 +204,33 @@ public class DepositService(
             tasks.Add(logger.ErrorAsync($"Deposit - {nameof(UpdateTransactionStatus)} failed. Key: {criteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(criteria)}"));
         }
 
+        await Task.WhenAll(tasks);
+
         return result;
+    }
+
+    public async Task<Result> UpdatePaySlip(long transId, UpdatePaySlipRequest request)
+    {
+        var tasks = new List<Task>();
+        var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
+
+        var criteria = new UpdatePaySlipCriteria(
+            request.AgentId,
+            request.CustId,
+            transId,
+            request.PaySlipBuffer,
+            request.IP,
+            siteDBConfig.SiteDBGroupId);
+        var logs = await repository.FetchAsync<LogEntry>(criteria);
+        tasks.Add(WriteLogsRunSP(logs, siteDBConfig.CustDBGroupId));
+
+        if (!string.IsNullOrWhiteSpace(criteria.ErrExtraInfo))
+        {
+            tasks.Add(logger.ErrorAsync($"Deposit - {nameof(UpdatePaySlipCriteria)} failed. Key: {criteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(criteria)}"));
+        }
+
+        await Task.WhenAll(tasks);
+
+        return new Result(criteria.ErrCode, criteria.ErrMsg);
     }
 }

@@ -6,23 +6,29 @@ import i18n from '../../../i18n/i18n-transactionHistory';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
-import TitleComponent from '../../../components/TitleComponents';
+import { TitleComponent } from '../../../components/Title';
 import { useTranslation } from 'react-i18next';
 
 const History: React.FC = () => {
   useCookieLanguage(i18n);
   const [activeTab, setActiveTab] = useState<number>(1);
   const { t: tTransactionHistory } = useTranslation('transactionHistory');
+  const [isCashServiceEnabled, setIsCashServiceEnabled] = useState(false);
 
+  React.useEffect(() => {
+    const isCashServiceEnabled = document.getElementById('IsCashServiceEnabled')?.getAttribute('value');
+    setIsCashServiceEnabled(isCashServiceEnabled === '1');
+  }, []);
+  
   const handleTabChange = (tab: number) => {
     setActiveTab(tab);
   };
 
   return (
-    <div className="py-[12px] flex h-full flex-col">
-      <TitleComponent title={tTransactionHistory('transactionHistory')} />
+    <div className="flex h-full flex-col">
+      <TitleComponent type='main' text={tTransactionHistory('transactionHistory')} />
       <HistoryTab activeTab={activeTab} onTabChange={handleTabChange} />
-      <TransactionList transactionType={activeTab} />
+      <TransactionList transactionType={activeTab} isCashServiceEnabled={isCashServiceEnabled} />
     </div>
   );
 };

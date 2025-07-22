@@ -776,7 +776,7 @@
                 $("li.multiselect-group > div > b", this.$ul).on("click", $.proxy(function (t) {
                     t.stopPropagation();
                     var n = $(t.target).closest('li');
-                    var r = n.nextUntil("li.multiselect-group");
+                    var r = n.nextUntil("li.multiselect-group").filter(".multiselect-nested-item");
                     var i = true;
 
                     r.each(function () {
@@ -789,7 +789,7 @@
                 $("li.multiselect-group > div > input", this.$ul).on("change", $.proxy(function (t) {
                     t.stopPropagation();
                     var n = $(t.target).closest('li');
-                    var r = n.nextUntil("li.multiselect-group", ':not(.disabled)');
+                    var r = n.nextUntil("li.multiselect-group", ':not(.disabled)').filter(".multiselect-nested-item");
                     var s = r.find("input");
 
                     var i = true;
@@ -815,11 +815,11 @@
 
                 // Update the group checkbox based on new selections among the
                 // corresponding children.
-                $("li:not(.multiselect-group) input", this.$ul).on("change", $.proxy(function (t) {
+                $("li.multiselect-nested-item input", this.$ul).on("change", $.proxy(function (t) {
                     t.stopPropagation();
                     var n = $(t.target).closest('li');
-                    var r1 = n.prevUntil("li.multiselect-group", ':not(.disabled)');
-                    var r2 = n.nextUntil("li.multiselect-group", ':not(.disabled)');
+                    var r1 = n.prevUntil("li.multiselect-group", ':not(.disabled)').filter(".multiselect-nested-item");
+                    var r2 = n.nextUntil("li.multiselect-group", ':not(.disabled)').filter(".multiselect-nested-item");
                     var s1 = r1.find("input");
                     var s2 = r2.find("input");
 

@@ -125,7 +125,9 @@ export const transactionAPI = {
 
   getMemberLoginName: async (): Promise<MemberLoginName[]> => {
     try {
-      const response = await api.get<MemberLoginName[]>('GetMemberLoginName', { method: 'GET' });
+      const response = await api.get<MemberLoginName[]>('../Transactions/GetMemberLoginName', {
+        method: 'GET',
+      });
       return response.data;
     } catch (error) {
       console.error('Error fetching member login names:', error);

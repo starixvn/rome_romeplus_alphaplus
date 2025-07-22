@@ -165,10 +165,103 @@
   <data name="TransactionType" xml:space="preserve">
     <value>Transaction Type</value>
   </data>
+  <data name="TransactionType_ManualWithdrawal" xml:space="preserve">
+    <value>Manual Withdrawal</value>
+  </data>
+  <data name="TransactionType_SystemAdjust" xml:space="preserve">
+    <value>System Adjust</value>
+  </data>
+  <data name="TransactionType_AutoWithdrawal" xml:space="preserve">
+    <value>Auto Withdrawal</value>
+  </data>
+  <data name="TransactionType_ManualDeposit" xml:space="preserve">
+    <value>Manual Deposit</value>
+  </data>
+  <data name="TransactionType_AutoDeposit" xml:space="preserve">
+    <value>Auto Deposit</value>
+  </data>
   <data name="FirstAndLastName" xml:space="preserve">
     <value>First &amp; Last Name</value>
   </data>
   <data name="InternalServerError" xml:space="preserve">
     <value>Internal Server Error</value>
+  </data>
+  <data name="TransactionStatus_Completed" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="TransactionStatus_ProviderRejected" xml:space="preserve">
+    <value>Provider Rejected</value>
+  </data>
+  <data name="TransactionStatus_Rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="TransactionStatus_Pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="TransactionStatus_Expired" xml:space="preserve">
+    <value>Expired</value>
+  </data>
+  <data name="TransactionHistory" xml:space="preserve">
+    <value>Transaction History</value>
+  </data>
+  <data name="PromotionReport" xml:space="preserve">
+    <value>Promotion Report</value>
+  </data>
+  <data name="PromotionType" xml:space="preserve">
+    <value>Promotion Type</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>Date Range</value>
+  </data>
+  <data name="TotalRequest" xml:space="preserve">
+    <value>Total Request</value>
+  </data>
+  <data name="TotalRequestApproved" xml:space="preserve">
+    <value>Total Request Approved</value>
+  </data>
+  <data name="TotalBonusGiven" xml:space="preserve">
+    <value>Total Bonus Given </value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="PromotionTitle" xml:space="preserve">
+    <value>Promotion Title</value>
+  </data>
+  <data name="TotalRequestRejected" xml:space="preserve">
+    <value>Total Request Rejected</value>
+  </data>
+  <data name="BonusAmount" xml:space="preserve">
+    <value>Bonus Amount</value>
+  </data>
+  <data name="LastUpdated" xml:space="preserve">
+    <value>Last Updated</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="AccountType" xml:space="preserve">
+    <value>Account Type</value>
+  </data>
+  <data name="MemberListNoteEditMultipleNotAvailable" xml:space="preserve">
+    <value>Editing multiple customers isn't available if Account Type is 'All'.</value>
+  </data>
+  <data name="ProviderRejectErrorMessage" xml:space="preserve">
+    <value>Your withdrawal request has been rejected by provider</value>
+  </data>
+  <data name="PaymentProviderUnavailable" xml:space="preserve">
+    <value>Payment provider is currently unavailable. Please try again later.</value>
+  </data>
+  <data name="PromotionType_1" xml:space="preserve">
+    <value>Turnover Rebate</value>
+  </data>
+  <data name="UpdatedBy" xml:space="preserve">
+    <value>Updated By</value>
+  </data>
+  <data name="PromotionType_RebateOnTurnover" xml:space="preserve">
+    <value>Rebate on Turnover</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Period</value>
   </data>
 </root>

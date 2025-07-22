@@ -25,7 +25,7 @@ public class AccountController(
     IAesService aesService,
     IOptions<Core.Configurations.AuthorizationOptions> options)
     : Controller
-{ 
+{
     private readonly IUserSession userSession = userSession;
     private readonly IAccountService accountService = accountService;
     private readonly IAesService aesService = aesService;
@@ -94,7 +94,7 @@ public class AccountController(
             : Result.CreateSuccessfulResult());
     }
 
-    private void ClearSession()
+    private static void ClearSession()
     {
         AlphaContext.Current.Session.Clear();
     }

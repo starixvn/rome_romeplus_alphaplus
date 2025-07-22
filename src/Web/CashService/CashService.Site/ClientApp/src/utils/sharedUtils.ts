@@ -1,7 +1,7 @@
 export const onBackNavigation = () => {
   const cacheKey = 'cashsite_previousUrl';
   const previousUrl = localStorage.getItem(cacheKey);
-  
+
   if (previousUrl) {
     localStorage.removeItem(cacheKey);
     window.location.href = previousUrl;
@@ -19,7 +19,7 @@ export const compareObjects = (obj1: any, obj2: any): boolean => {
 
   if (keys1.length !== keys2.length) return true;
 
-  return keys1.some(key => {
+  return keys1.some((key) => {
     const val1 = obj1[key];
     const val2 = obj2[key];
 
@@ -45,13 +45,39 @@ export const isNumberIncludes = (str: string, search: number) => {
   return str.split(',').includes(search.toString());
 };
 
+export const copyHtmlToClipboard = async (
+  table: HTMLTableElement | undefined | null,
+  callback: Function | undefined
+) => {
+  const html = copyHtml(table);
+  if (html) {
+    try {
+      await navigator.clipboard.writeText(html);
+      callback && callback();
+    } catch (err) {
+      console.error('Copy failed: ' + err);
+    }
+  }
+};
 
+export const copyHtml = (table: HTMLTableElement | undefined | null) => {
+  if (table) {
+    const removeClassAttributes = (element: Element) => {
+      element.removeAttribute('class');
+      Array.from(element.children).forEach((child) => removeClassAttributes(child));
+    };
+    const clone = table.cloneNode(true) as HTMLTableElement;
+    removeClassAttributes(clone);
 
+    return clone.outerHTML;
+  }
 
+  return '';
+};
 
-
-
-
-
-
-
+export const formatSimpleDate = (date: Date) =>
+  date.toLocaleString('en-US', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  });

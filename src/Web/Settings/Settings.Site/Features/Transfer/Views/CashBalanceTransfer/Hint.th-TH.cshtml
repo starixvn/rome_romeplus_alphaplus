@@ -1,5 +1,8 @@
-﻿@using AlphaPlus.Core.Helpers
+﻿@using AlphaPlus.Core.Configurations
+@using AlphaPlus.Core.Helpers
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
+@using AlphaPlus.Core.Models
+@inject IUserSession UserSession
 @{
     Layout = "~/Features/Transfer/Views/CashBalanceTransfer/_HintLayout.cshtml";
 }
@@ -18,11 +21,15 @@
     </ul>
     <p>หมายเหตุ</p>
     <ul class="ul-remark">
+        @if (AppSettings.IsOfferedCashService(UserSession.Site) && UserSession.IsAgent)
+        {
+            <li>สมาชิกประเภทเงินสดจะไม่ถูกรวมอยู่ในหน้านี้</li>
+        }
         @if (!string.IsNullOrEmpty(Model.AllowTransfer))
         {
             <li>@Html.Raw(Model.AllowTransfer)</li>
         }
-        <li>คุณสามารถทำรายการได้มากเท่าที่ต้องการต่อวัน (ทั้งยอดคงเหลือเมื่อวานและยอดคงเหลือเงินสด)</li>        
+        <li>คุณสามารถทำรายการได้มากเท่าที่ต้องการต่อวัน (ทั้งยอดคงเหลือเมื่อวานและยอดคงเหลือเงินสด)</li>
         <li>@Resources.showhidecolumnAd</li>
     </ul>
 }
@@ -30,6 +37,10 @@ else
 {
     <p>หมายเหตุ</p>
     <ul class="ul-remark">
+        @if (AppSettings.IsOfferedCashService(UserSession.Site) && UserSession.IsAgent)
+        {
+            <li>สมาชิกประเภทเงินสดจะไม่ถูกรวมอยู่ในหน้านี้</li>
+        }
         @if (!string.IsNullOrEmpty(Model.AllowTransfer))
         {
             <li>@Html.Raw(Model.AllowTransfer)</li>

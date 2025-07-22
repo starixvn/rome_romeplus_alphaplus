@@ -104,6 +104,7 @@ export default function SearchAccountInfo() {
         return (
             <span className={styles[css]} id="search-account-id" data-search-account-username={username}>
                 {isTruncate ? `${username.substring(0, maxLength)}...` : username}
+                {customer?.IsCashMember && <span className="icon-cashservice icon-cashservice-common" />}
             </span>
         );
     };
@@ -130,7 +131,7 @@ export default function SearchAccountInfo() {
     return (
         <div>
             {tooltip === '' ? renderContent() : renderContentWithTooltip()}
-            {customer?.IsShowCreateMemberByQRCode && (
+            {customer?.IsShowCreateMemberByQRCode && !customer?.IsCashMember && (
                 <CustomAnchorTag
                     classNames="pointer"
                     href={customer.CreateMemberByQRCodeUrl}

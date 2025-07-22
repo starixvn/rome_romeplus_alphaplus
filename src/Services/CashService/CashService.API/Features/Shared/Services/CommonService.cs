@@ -5,6 +5,8 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Features.Shared.Services;
 
+using Newtonsoft.Json;
+
 public interface ICommonService
 {
     Task<IEnumerable<string>> GetCountryCodes(string siteName);
@@ -12,6 +14,10 @@ public interface ICommonService
     Task<ResultModel> RunDBCommand(BaseActionRequest request, BaseDBCommand baseDBCommand);
 
     Task WriteLogDBCommand(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel);
+
+    Task<SetupCheckListModel> GetSetupCheckList(int custId);
+
+    Task WriteLogRequestResponse(AddRequestLogCommand requestLog, short custDbGroupId);
 }
 
 public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger logger) : ICommonService
@@ -42,14 +48,56 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
 
     public async Task WriteLogDBCommand(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)
     {
+        var isSuccess = await WriteLogDBCommandIntoDBLog(request, writeLogDBCommandModel);
+        await logger.InfoAsync($"WriteLogDBCommandIntoDBLog completed. Request: {JsonConvert.SerializeObject(request)}, writeLogModel: {JsonConvert.SerializeObject(writeLogDBCommandModel)} Result: {isSuccess}");
+
+        if (isSuccess)
+        {
+            return;
+        }
+
+        await WriteLogDBCommandIntoSiteDB(request, writeLogDBCommandModel);
+    }
+
+    public async Task<SetupCheckListModel> GetSetupCheckList(int custId)
+    {
+        var criteria = new GetSetupCheckListCriteria(custId);
+        var result = await repository.GetAsync<SetupCheckListModel>(criteria);
+        return result;
+    }
+
+    public async Task WriteLogRequestResponse(AddRequestLogCommand criteria, short custDbGroupId)
+    {
+        var isSuccess = await ExecuteNonQuery(criteria);
+
+        if (!isSuccess)
+        {
+            criteria.CustDBGroupId = custDbGroupId;
+            await ExecuteNonQuery(criteria);
+        }
+    }
+
+    private async Task<bool> ExecuteNonQuery(INonQueryCommand criteria)
+    {
+        try
+        {
+            await repository.ExecuteAsync(criteria);
+            return true;
+        }
+        catch (Exception ex)
+        {
+            await logger.ErrorAsync($"{nameof(WriteLogRequestResponse)} failed. Key: {criteria.GetSettingKey()}, Criteria: {JsonConvert.SerializeObject(criteria)}", ex);
+            return false;
+        }
+    }
+
+    public async Task<bool> WriteLogDBCommandIntoDBLog(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)
+    {
         var isSuccess = false;
 
         try
         {
-            var criteria = new WriteLogDBCommandCriteria(request, writeLogDBCommandModel)
-            {
-                SiteDB = -1
-            };
+            var criteria = new WriteLogDBCommandCriteria(custDbGroupId: -1, request, writeLogDBCommandModel);
 
             await repository.ExecuteAsync(criteria);
             isSuccess = true;
@@ -59,14 +107,14 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
             await logger.ErrorAsync(e.Message, e);
         }
 
-        if (isSuccess)
-        {
-            return;
-        }
+        return isSuccess;
+    }
 
+    public async Task WriteLogDBCommandIntoSiteDB(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)
+    {
         try
         {
-            var criteria = new WriteLogDBCommandCriteria(request, writeLogDBCommandModel);
+            var criteria = new WriteLogDBCommandCriteria(custDbGroupId: request.CustDBGroupId, request, writeLogDBCommandModel);
             await repository.ExecuteAsync(criteria);
         }
         catch (Exception e)

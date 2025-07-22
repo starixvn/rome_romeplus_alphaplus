@@ -18,6 +18,10 @@
                 <div id="msg-content">
                     @if (Model.CustLevel.IsAgentLevel())
                     {
+                        if (Model.IsOfferedCashService)
+                        {
+                            <p>- 캐시 회원은 이 페이지에 포함되지 않습니다</p>
+                        }
                         if (!string.IsNullOrWhiteSpace(Model.TransferCondition))
                         {
                             <p>- @Model.TransferCondition</p>
@@ -70,4 +74,4 @@
             </div>
         </div>
     </div>
-</div> 
+</div>

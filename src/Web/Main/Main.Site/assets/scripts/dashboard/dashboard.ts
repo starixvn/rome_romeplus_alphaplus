@@ -1,8 +1,10 @@
 ﻿class DashboardBase {
     protected $: JQueryStatic;
+    protected topWindow: any;
 
-    constructor($: JQueryStatic) {
+    constructor($: JQueryStatic, topWindow: any) {
         this.$ = $;
+        this.topWindow = topWindow;
     }
 
     loadInfo = (id: string, handleOnSuccessLoading: any) => {
@@ -68,6 +70,7 @@
                     toggle.attr("data-state", "on");
                     toggle.addClass("active");
                     this.$("#enableCashServiceModal").modal('hide');
+                    this.topWindow.indexManager.showHideCashServiceChecklist(true);
                 } else {
                     alert(response.message);
                 }
@@ -87,7 +90,7 @@
             type: 'POST',
             data: {
                 IsEnableCash: false
-            },
+            }, 
             headers: {
                 'RequestVerificationToken': this.$('input[name="RequestVerificationToken"]').val()
             },
@@ -97,6 +100,7 @@
                     toggle.attr("data-state", "off");
                     toggle.removeClass("active");
                     this.$("#disableCashServiceModal").modal('hide');
+                    this.topWindow.indexManager.showHideCashServiceChecklist(false);
                 } else {
                     alert(response.message);
                 }
@@ -121,7 +125,7 @@
 }
 
 $(() => {
-    const balance = new DashboardBase($);
+    const balance = new DashboardBase($, window.top);
     balance.loadInfo('#balance', () => {
         balance.registerTooltip({ html: true });
         balance.initializeCashService();

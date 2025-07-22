@@ -1,13 +1,14 @@
-using Microsoft.Data.SqlClient;
 using System.Text;
 using Fanex.Data;
+using Microsoft.Data.SqlClient;
 
+[System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug", "S3903:Types should be defined in named namespaces", Justification = "<Pending>")]
 internal static class ExceptionHelper
 {
     private const string BreakLine = "\r\n";
     private const string TwoBreakLine = "\r\n\r\n";
 
-    public static async Task<string> BuildError(HttpRequest request, Exception exception)
+    internal static async Task<string> BuildError(HttpRequest request, Exception exception)
     {
         var errorBuilder = new StringBuilder();
         errorBuilder

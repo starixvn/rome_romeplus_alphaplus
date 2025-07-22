@@ -34,9 +34,9 @@
     "approving": "승인 중...",
     "reject": "거부",
     "process": "처리",
-    "viewDetails": "상세 보기",
-    "loading": "입금 대기 데이터를 불러오는 중...",
-    "noDepositsFound": "입금 대기 데이터가 없습니다"
+    "viewDetails": "상세보기",
+    "loading": "입금 대기 목록을 불러오는 중...",
+    "noDepositsFound": "입금 대기 내역이 없습니다"
   },
 
   "pendingDepositModal": {
@@ -56,7 +56,11 @@
     "approve": "승인",
     "reject": "거부",
     "close": "닫기",
-    "firstLastName": "성명"
+    "firstLastName": "성명",
+    "confirmRejectTitle": "거부 확인",
+    "confirmRejectMessage": "이 입금을 거부하시겠습니까?",
+    "confirmApproveTitle": "승인 확인",
+    "confirmApproveMessage": "이 입금을 승인하시겠습니까?"
   },
 
   "manualDepositForm": {
@@ -72,14 +76,14 @@
     "dragAndDrop": "또는 드래그 앤 드롭",
     "imageFormat": "jpeg, jpg, png 업로드",
     "maxSize": "최대 1MB",
-    "viewFullSize": "원본 크기로 보기",
+    "viewFullSize": "전체 크기 보기",
     "removeImage": "이미지 삭제",
     "cancel": "취소",
     "approve": "승인",
     "approving": "승인 중...",
     "agentAvailableCredit": "에이전트 사용 가능 크레딧",
     "amountMustBeGreaterThan0AndLessThanMaxLimit": "금액은 0보다 크고 에이전트 사용 가능 크레딧보다 작아야 합니다.",
-    "imageSizeError": "이미지는 1MB 미만이어야 합니다",
+    "imageSizeError": "이미지 크기는 1MB 미만이어야 합니다",
     "memberLoginNameRequired": "회원 로그인명은 필수입니다.",
     "agentBankSelectionRequired": "에서는 필수입니다.",
     "memberBankSelectionRequired": "까지는 필수입니다.",
@@ -100,9 +104,9 @@
   },
 
   "successMessages": {
-    "depositSubmitted": "입금 요청 제출 성공!",
-    "depositUpdated": "입금 요청 업데이트 성공!",
-    "depositApproved": "입금 요청 승인 성공!",
-    "depositRejected": "입금 요청 거부 성공!"
+    "depositSubmitted": "입금 요청이 성공적으로 제출되었습니다",
+    "depositUpdated": "입금 요청이 성공적으로 업데이트되었습니다",
+    "depositApproved": "입금 요청이 성공적으로 승인되었습니다",
+    "depositRejected": "입금 요청이 성공적으로 거부되었습니다"
   }
 }

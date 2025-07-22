@@ -30,7 +30,7 @@ describe('PopupModalComponent', () => {
   it('calls onClose when close button is clicked', () => {
     render(<PopupModalComponent {...defaultProps} />);
     
-    const closeButton = screen.getByText('Close');
+    const closeButton = screen.getByRole('button', { name: /close/i });
     fireEvent.click(closeButton);
     
     expect(mockOnClose).toHaveBeenCalledTimes(1);

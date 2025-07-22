@@ -1,14 +1,9 @@
-﻿using System.ComponentModel;
-
-namespace AlphaPlus.CashService.API.Features.Transactions.Enum;
+﻿namespace AlphaPlus.CashService.API.Features.Transactions.Enum;
 
 public enum TransactionStatus
 {
+    Expired = 3,
     Completed = 4,
     Rejected,
-
-    [Description("Provider Rejected")]
     ProviderRejected,
-
-    Expired
 }

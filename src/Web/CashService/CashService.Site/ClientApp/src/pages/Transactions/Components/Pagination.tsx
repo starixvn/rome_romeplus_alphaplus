@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { PAGE_SIZE_OPTIONS } from '../../../constants/paymentConstants';
 import { useTranslation } from 'react-i18next';
 import './Pagination.scss';
-import { IconFirst, IconLast, IconNext, IconPrev } from '../../../components/Icons';
+import { IconArrowDown, IconFirst, IconLast, IconNext, IconPrev } from '../../../components/Icons';
 interface PaginationProps {
   currentPage: number;
   pageSize: number;
@@ -49,7 +49,7 @@ const Pagination: React.FC<PaginationProps> = ({
  
   return (
     <div className="flex items-center py-[6px] px-[10px] border border-[var(--pager-border)] border-t-0 mb-[2px] shadow-[inset_0px_1px_0px_0px_var(--pager-border)]">
-      <div className="mr-[6px]">    
+      <div className="mr-[6px] relative">    
         <select
           value={pageSize}
           onChange={(e) => onPageSizeChange(Number(e.target.value))}
@@ -61,6 +61,7 @@ const Pagination: React.FC<PaginationProps> = ({
             </option>
           ))}
         </select>
+        <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
       </div>
 
       <div className="flex items-center h-[24px] space-x-1">

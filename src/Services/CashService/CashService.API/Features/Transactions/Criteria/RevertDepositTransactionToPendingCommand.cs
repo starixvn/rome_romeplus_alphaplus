@@ -9,13 +9,13 @@ public class RevertDepositTransactionToPendingCommand : ICriteria
     public string Remark { get; set; }
     public int UserId { get; set; }
     public string Ip { get; set; }
-    public int SiteDbGroupId { get; set; }
+    public short SiteDbGroupId { get; set; }
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }
     public string CashAccumCreditTbl { get; set; }
 
     [SpParam(Ignored = true)]
-    public int CustDbGroupId { get; set; }
+    public short CustDbGroupId { get; set; }
 
     public string GetSettingKey() => $"SiteDb_{SiteDbGroupId}_Age_CashTransaction_RevertDeposit_Upd";
 

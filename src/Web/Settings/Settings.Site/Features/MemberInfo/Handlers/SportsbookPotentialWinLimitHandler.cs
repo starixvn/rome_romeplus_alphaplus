@@ -3,11 +3,13 @@ using AlphaPlus.Settings.MemberInfo.Domain.Params;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.WinLossLimit;
 using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit;
 using MediatR;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers;
 
 public class SportsbookPotentialWinLimitHandler(IPotentialWinLimitService potentialWinLimitService) : 
-    IRequestHandler<SportsbookPotentialWinLimitQuery, SportsbookPotentialWinLimitViewModel>
+    IRequestHandler<SportsbookPotentialWinLimitQuery, SportsbookPotentialWinLimitViewModel>,
+    IRequestHandler<ResetCurrentSportsbookWinAmountCommand, Result>
 {
     private readonly IPotentialWinLimitService potentialWinLimitService = potentialWinLimitService;
 
@@ -21,10 +23,30 @@ public class SportsbookPotentialWinLimitHandler(IPotentialWinLimitService potent
             message.ProblemAccount,
             message.PageSize,
             message.PageIndex,
-            message.AGIP);
+            message.AGIP,
+            message.BetType,
+            message.SportType,  
+            message.AccountType);
 
         var potentialWinLimitPage = await potentialWinLimitService.GetPotentialWinLimitPage(param);
 
-        return new SportsbookPotentialWinLimitViewModel(message, potentialWinLimitPage, param);
+        var isOfferedCashService = AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(message.Site);
+        return new SportsbookPotentialWinLimitViewModel(isOfferedCashService, message, potentialWinLimitPage, param);
+    }
+
+    public async Task<Result> Handle(ResetCurrentSportsbookWinAmountCommand request, CancellationToken cancellation)
+    {
+        var result = await potentialWinLimitService.ResetCurrentSportsbookWinAmount(
+            new ResetCurrentSportsbookWinAmountParam(
+                request.CustId,
+                request.Username,
+                request.ProductId,
+                request.SportType,
+                request.BetType,
+                request.Language,
+                request.SettingStatus
+            )
+        );
+        return result;
     }
 } 

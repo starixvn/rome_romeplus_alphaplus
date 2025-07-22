@@ -20,10 +20,13 @@ export const formatNumber = (value: string | number | null | undefined): string 
 export const formatInputValue = (value: string): string => {
   // Remove any non-numeric characters except decimal point
   const numericValue = value.replace(/[^\d.]/g, '');
-  
+
   // Ensure only one decimal point
   const parts = numericValue.split('.');
-  return parts.length > 1 
-    ? parts[0] + '.' + parts.slice(1).join('') 
-    : numericValue;
-}; 
+  return parts.length > 1 ? parts[0] + '.' + parts.slice(1).join('') : numericValue;
+};
+
+export const formatDecimal = (value: number | null | undefined): string => {
+  if (value === null || value === undefined) return '';
+  return value.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+};

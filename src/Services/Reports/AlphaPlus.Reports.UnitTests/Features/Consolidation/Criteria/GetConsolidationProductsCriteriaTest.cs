@@ -41,7 +41,6 @@ public class GetConsolidationProductsCriteriaTest
         // Arrange
         int expectedCustId = 123;
         byte expectedSettingStatus = 2;
-
         // Act
         var criteria = new GetConsolidationProductsCriteria(expectedCustId, expectedSettingStatus);
 

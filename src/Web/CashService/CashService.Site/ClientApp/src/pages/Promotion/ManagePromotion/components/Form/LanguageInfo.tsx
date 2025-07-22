@@ -1,0 +1,149 @@
+import React from 'react';
+import { ButtonTabComponent } from '../../../../../components/Buttons/ButtonTabComponent';
+import { TitleComponent } from '../../../../../components/Title';
+import UploadImage from '../../../../Transactions/Components/UploadImage';
+import { useTranslation } from 'react-i18next';
+
+export interface PromotionLangFields {
+  title: string;
+  banner: File | string | null;
+  prevBanner: string | null;
+  content: string;
+}
+
+export interface PromotionInfoProps {
+  languages: { key: string; label: string; isDefault: boolean }[];
+  value: Record<string, PromotionLangFields>;
+  setValue: (lang: string, field: keyof PromotionLangFields, val: any) => void;
+  error?: string;
+  success?: string;
+  activeLang: string;
+  setActiveLang: (lang: string) => void;
+}
+
+export const LanguageTabs: React.FC<{
+  languages: { key: string; label: string }[];
+  activeLang: string;
+  setActiveLang: (lang: string) => void;
+}> = ({ languages, activeLang, setActiveLang }) => {
+  return (
+    <div className="flex mt-[-12px] border-b border-[var(--border-color)] mb-[15px]">
+      {languages.map((lang) => (
+        <ButtonTabComponent
+          key={lang.key}
+          text={lang.label}
+          onClick={() => setActiveLang(lang.key)}
+          isActive={activeLang === lang.key}
+          type="button"
+        />
+      ))}
+    </div>
+  );
+};
+
+export const TitleField: React.FC<{
+  value: string;
+  onChange: (v: string) => void;
+  lang: string;
+  isDefault: boolean;
+}> = ({ value, onChange, lang, isDefault }) => {
+  const { t } = useTranslation('promotion');
+  return (
+  <div className="mb-4">
+    <TitleComponent text={t('addPromotionForm.title')} required={isDefault} type='label'/>
+    <input
+      className="control-field w-full"
+      key={`title-${lang}`}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      placeholder=""
+    />
+  </div>
+  );
+};
+
+export const BannerField: React.FC<{
+  prevBanner: string | null;
+  setBanner: (f: File | string | null) => void;
+  lang: string;
+  isDefault: boolean;
+}> = ({ prevBanner, setBanner, lang, isDefault }) => {
+  const { t } = useTranslation('promotion');
+  return (
+  <div className="mb-4">
+    <TitleComponent text={t('addPromotionForm.banner')} required={isDefault} type='label'/>
+    <UploadImage
+      key={`banner-${lang}`}
+      setImage={setBanner}
+      prevImage={prevBanner}
+      maxSize={500}
+      customClassName="w-full h-[300px]"
+    />
+  </div>
+  );
+};
+
+export const ContentField: React.FC<{
+  value: string;
+  onChange: (v: string) => void;
+  lang: string;
+  isDefault: boolean;
+}> = ({ value, onChange, lang, isDefault }) => {
+  const { t } = useTranslation('promotion');
+  return (
+  <div className="mb-4">
+    <TitleComponent text={t('addPromotionForm.content')} required={isDefault} type='label'/>
+    <div className="border border-[var(--border-control)] rounded">
+      <textarea
+        key={`content-${lang}`}
+        className="w-full min-h-[120px] p-2 resize-y border-0 focus:ring-0 focus:outline-none block"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder=""
+      />
+    </div>
+  </div>
+  );
+};
+
+const PromotionInfo: React.FC<PromotionInfoProps> = ({
+  languages,
+  value,
+  setValue,
+  activeLang,
+  setActiveLang,
+}) => {
+  
+  const langFields = value[activeLang] || {
+    title: '',
+    banner: null,
+    prevBanner: null,
+    content: '',
+  };
+  
+  return (
+    <div className="max-w-3xl">
+      <LanguageTabs languages={languages} activeLang={activeLang} setActiveLang={setActiveLang} />
+      <TitleField
+        value={langFields.title}
+        onChange={(v) => setValue(activeLang, 'title', v)}
+        lang={activeLang}
+        isDefault={languages.find((lang) => lang.key === activeLang)?.isDefault || false}
+      />
+      <BannerField
+        prevBanner={langFields.prevBanner}
+        setBanner={(f) => setValue(activeLang, 'banner', f)}
+        lang={activeLang}
+        isDefault={languages.find((lang) => lang.key === activeLang)?.isDefault || false}
+      />
+      <ContentField
+        value={langFields.content}
+        onChange={(v) => setValue(activeLang, 'content', v)}
+        lang={activeLang}
+        isDefault={languages.find((lang) => lang.key === activeLang)?.isDefault || false}
+      />
+    </div>
+  );
+};
+
+export default PromotionInfo;

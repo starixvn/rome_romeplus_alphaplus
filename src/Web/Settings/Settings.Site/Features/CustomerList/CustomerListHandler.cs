@@ -101,6 +101,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                     PageIndex = message.PageIndex,
                     PageSize = message.PageSize,
                     AllowAutoTransfer = message.AllowAutoTransfer,
+                    ServiceType = message.ServiceType,
                     LevelType = message.LevelType
                 },
                 cancellation
@@ -134,6 +135,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                     message.LimitedDateToShowInfo,
                     message.ShowNickname,
                     message.AllowAutoTransfer,
+                    message.ServiceType,
                     message.LevelType == 2);
 
             return new CustomerListPagingViewModel(await customerListService.GetCustomerList(param), message, ipService);
@@ -208,9 +210,10 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                message.SearchAccountName,
                message.SearchAccountRoleId,
                message.AgentId,
+               message.IsCashMember,
                BuildSearchAccountProductStatus(customerStatusModel.DCSProducts.ToList()),
                upline);
-
+            
             return new CustomerStatusViewModel(
                 BuildCustomerProductStatus(actor, searchAccount, message, customerStatusModel, isAllDayBalTransfer),
                 BuildCustomerProductSettings(actor, searchAccount, message, customerStatusModel));
@@ -240,6 +243,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                message.SearchAccountName,
                message.SearchAccountRoleId,
                message.AgentId,
+               message.IsCashMember,
                BuildSearchAccountProductStatus(customerStatusModel.DCSProducts.ToList()),
                upline);
 
@@ -294,7 +298,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                 .AddData(DataKey.SearchAccount.IsAllowAutoTransfer, model.NonProduct.IsAllowAutoTransfer)
                 .AddData(DataKey.SearchAccount.ScheduleWeekDays, model.NonProduct.ScheduleWeekDays);
 
-            request.SupportAutoTransfer = IsEnableAutoTransfer(message, CurrenciesOfferAutoTransfer);
+            request.SupportAutoTransfer = IsEnableAutoTransfer(message, CurrenciesOfferAutoTransfer) && !message.IsCashMember;
             request.AutoTransferAffect = transferService.IsAutoTransferAffect(message.Currency, CurrenciesOfferAutoTransfer);
 
             return statusViewModelFactory.GetViewModels(request).Where(status => status.Visible).OrderBy(status => status.DisplayOrder);

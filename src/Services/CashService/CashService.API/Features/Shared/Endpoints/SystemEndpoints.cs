@@ -4,7 +4,7 @@ public static class SystemEndpoints
 {
     public static void MapSystemEndpoints(this WebApplication app)
     {
-        app.MapGet("/health", () => Results.Ok(new { Status = "Healthy", Timestamp = DateTime.UtcNow }))
+        app.MapGet("/health", () => Results.Ok(new { Status = "Healthy", Timestamp = DateTimeOffset.UtcNow }))
             .WithName("HealthCheck")
             .WithOpenApi(operation => new(operation)
             {

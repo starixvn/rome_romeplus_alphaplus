@@ -17,14 +17,16 @@ public class PaymentsServiceTests
     private readonly Mock<IDynamicRepository> _mockRepository;
     private readonly Mock<ICacheRefService> _mockCacheRefService;
     private readonly Mock<ICommonService> _mockCommonService;
-    private readonly PaymentsService _paymentsService;
+    private readonly Mock<IPaymentGatewayService> _mockPaymentGatewayService;
+    private readonly PaymentsService _paymentsService;  
 
     public PaymentsServiceTests()
     {
         _mockRepository = new Mock<IDynamicRepository>();
         _mockCacheRefService = new Mock<ICacheRefService>();
         _mockCommonService = new Mock<ICommonService>();
-        _paymentsService = new PaymentsService(_mockRepository.Object, _mockCacheRefService.Object, _mockCommonService.Object);
+        _mockPaymentGatewayService = new Mock<IPaymentGatewayService>();
+        _paymentsService = new PaymentsService(_mockRepository.Object, _mockCacheRefService.Object, _mockCommonService.Object, _mockPaymentGatewayService.Object);
     }
 
     [Fact]
@@ -134,6 +136,50 @@ public class PaymentsServiceTests
         Assert.False(result.IsSuccessful);
         Assert.Equal(1, result.Code);
         Assert.Equal("Update failed", result.Message);
+    }
+
+    [Fact]
+    public async Task UpdateProvider_WhenStatusUpdateSucceedsAndNoProviderSettings_ReturnsSuccessResult()
+    {
+        // Arrange
+        var request = new UpdateProviderRequest
+        {
+            Status = 1,
+            ProviderSettings = []
+        };
+
+        _mockCommonService.Setup(c => c.RunDBCommand(request, It.IsAny<BaseDBCommand>()))
+            .ReturnsAsync(new ResultModel(0, "Success"));
+
+        // Act
+        var result = await _paymentsService.UpdateProvider(request);
+
+        // Assert
+        Assert.True(result.IsSuccessful);
+        Assert.Equal(0, result.Code);
+        Assert.Equal("Success", result.Message);
+    }
+
+    [Fact]
+    public async Task UpdateProvider_WhenStatusUpdateSucceedsAndHasProviderSettings_ReturnsSuccessResult()
+    {
+        // Arrange
+        var request = new UpdateProviderRequest
+        {
+            Status = 1,
+            ProviderSettings = new List<ProviderSettingsModel> { new ProviderSettingsModel() } // Non-empty settings
+        };
+
+        _mockCommonService.Setup(c => c.RunDBCommand(request, It.IsAny<BaseDBCommand>()))
+            .ReturnsAsync(new ResultModel(0, "Success"));
+
+        // Act
+        var result = await _paymentsService.UpdateProvider(request);
+
+        // Assert
+        Assert.True(result.IsSuccessful);
+        Assert.Equal(0, result.Code);
+        Assert.Equal("Success", result.Message);
     }
 
     [Fact]
@@ -430,12 +476,19 @@ public class PaymentsServiceTests
         var languageCode = "en";
         var accounts = new List<BankAccountModel>
         {
-            new() { Id = 1, AccountNumber = "123", AccountNickname = "Test Account 1" },
-            new() { Id = 2, AccountNumber = "456", AccountNickname = "Test Account 2" }
+            new() { Id = 1, AccountNumber = "123", AccountNickname = "Test Account 1", BankId = 1, BankName = "Bank1", Bank_DepositMatchingMode = JsonConvert.SerializeObject(new DepositMatchingModeModel { SourceType = "1" }) },
+            new() { Id = 2, AccountNumber = "456", AccountNickname = "Test Account 2", BankId = 2, BankName = "Bank2" }
         };
 
         _mockRepository.Setup(r => r.FetchAsync<BankAccountModel>(It.IsAny<ICriteria>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(accounts);
+
+        _mockCacheRefService.Setup(c => c.GetBankName(1, "Bank1", languageCode))
+            .Returns("Translated Bank1");
+        _mockCacheRefService.Setup(c => c.GetBankName(2, "Bank2", languageCode))
+            .Returns("Translated Bank2");
+        _mockCacheRefService.Setup(c => c.GetDepositAutoModeName("1", "1", languageCode))
+            .Returns("Translated Source Type");
 
         // Act
         var result = await _paymentsService.GetBankAccounts(custId, bankId, transactionType, status, searchText, languageCode);
@@ -444,6 +497,10 @@ public class PaymentsServiceTests
         Assert.Equal(2, result.Count());
         Assert.Equal("123", result.First().AccountNumber);
         Assert.Equal("456", result.Last().AccountNumber);
+        Assert.Equal("Translated Bank1", result.First().BankName);
+        Assert.Equal("Translated Bank2", result.Last().BankName);
+        Assert.NotNull(result.First().BankDepositMatchingMode);
+        Assert.Equal("Translated Source Type", result.First().BankDepositMatchingMode.SourceTypeName);
     }
 
     [Fact]
@@ -456,11 +513,19 @@ public class PaymentsServiceTests
         {
             Id = 1,
             AccountNumber = "123",
-            AccountNickname = "Test Account"
+            AccountNickname = "Test Account",
+            BankId = 1,
+            BankName = "Bank1",
+            Bank_DepositMatchingMode = JsonConvert.SerializeObject(new DepositMatchingModeModel { SourceType = "1" })
         };
 
         _mockRepository.Setup(r => r.FetchAsync<BankAccountModel>(It.IsAny<ICriteria>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(new List<BankAccountModel> { account });
+
+        _mockCacheRefService.Setup(c => c.GetBankName(1, "Bank1", languageCode))
+            .Returns("Translated Bank1");
+        _mockCacheRefService.Setup(c => c.GetDepositAutoModeName("1", "1", languageCode))
+            .Returns("Translated Source Type");
 
         // Act
         var result = await _paymentsService.GetBankAccountById(accountId, languageCode);
@@ -470,6 +535,9 @@ public class PaymentsServiceTests
         Assert.Equal(1, result.Id);
         Assert.Equal("123", result.AccountNumber);
         Assert.Equal("Test Account", result.AccountNickname);
+        Assert.Equal("Translated Bank1", result.BankName);
+        Assert.NotNull(result.BankDepositMatchingMode);
+        Assert.Equal("Translated Source Type", result.BankDepositMatchingMode.SourceTypeName);
     }
 
     [Fact]

@@ -61,6 +61,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
             LevelType = request.LevelType;
             IsDirectMember = LevelType == 2;
             ShowLevelType = request.CustLevel.IsMasterOrSuperLevel();
+            ServiceType = request.ServiceType;
             HideEditMultiple = !request.CanUpdateAccount || (request.ViewerLevel.IsSuperLevel() && request.CustLevel.IsMasterLevel() && !IsDirectMember);
         }
 
@@ -123,6 +124,8 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
         public bool EnableAutoTransfer { get; }
 
         public bool EnableAllDayBalanceTransfer { get; }
+
+        public byte ServiceType { get; }
 
         public IEnumerable<CustomerListOption> StatusOptions
              =>

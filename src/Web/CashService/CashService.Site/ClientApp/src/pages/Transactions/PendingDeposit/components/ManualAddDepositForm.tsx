@@ -7,19 +7,19 @@ import pendingDepositAPI from '../../../../services/pendingDepositAPI';
 import UploadImage from '../../Components/UploadImage';
 import { AddDepositManualModel } from '../../../../services/interfaces/AddDepositManualModel';
 import { LoadingFullComponent } from '../../../../components/LoadingComponent';
-import { ResultMessageComponent } from '../../../../components/MessageComponents';
+import { MessageComponent } from '../../../../components/Message';
 import AccountInformation from './AccountInformation';
-import TitleComponent from '../../../../components/TitleComponents';
+import { TitleComponent } from '../../../../components/Title';
 import {
-  ButtonCancelComponent,
-  ButtonApplyComponent,
-  BackButtonComponent,
-} from '../../../../components/ButtonComponents';
+  ButtonComponent,
+} from '../../../../components/Buttons/index';
 import { renderBankOptionValue } from '../../../../utils/commonFunctions';
+import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
 
 interface ManualAddDepositFormProps {
   cashAgentOptions: BankInfo[];
   onClose: (isSuccess: boolean) => void;
+  isCashServiceEnabled: boolean;
 }
 
 interface FormState {
@@ -45,8 +45,8 @@ interface StatusState {
 
 const Header: React.FC<{ onClose: () => void; title: string }> = ({ onClose, title }) => (
   <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-    <BackButtonComponent onClick={onClose} />
-    <TitleComponent title={title} />
+    <ButtonIconComponent style='Back' onClick={onClose} />
+    <TitleComponent type='main' text={title} />
   </div>
 );
 
@@ -56,14 +56,18 @@ const FormActions: React.FC<{
   isSubmitting: boolean;
   cancelText: string;
   submitText: string;
-  submittingText: string;
-}> = ({ onCancel, onSubmit, isSubmitting, cancelText, submitText, submittingText }) => (
+  submittingText: string; 
+  isCashServiceEnabled: boolean;
+  buttonTitle: string;
+}> = ({ onCancel, onSubmit, isSubmitting, cancelText, submitText, submittingText, isCashServiceEnabled, buttonTitle }) => (
   <div className="flex gap-[16px]">
-    <ButtonCancelComponent text={cancelText} onClick={onCancel} />
-    <ButtonApplyComponent
+    <ButtonComponent variant="cancel" text={cancelText} onClick={onCancel} />
+    <ButtonComponent
+      variant="apply"
       text={isSubmitting ? submittingText : submitText}
-      disabled={isSubmitting}
+      disabled={isSubmitting || !isCashServiceEnabled}
       onClick={onSubmit}
+      title={isCashServiceEnabled ? '' : buttonTitle}
     />
   </div>
 );
@@ -71,8 +75,10 @@ const FormActions: React.FC<{
 const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
   cashAgentOptions,
   onClose,
+  isCashServiceEnabled,
 }) => {
   const { t } = useTranslation('pendingDeposit');
+  const { t: tGlobal } = useTranslation('global');
 
   const [formState, setFormState] = useState<FormState>({
     memberLoginOptions: [],
@@ -246,7 +252,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
       <Header onClose={() => onClose(false)} title={t('manualDepositForm.title')} />
       <div id="manual-deposit-form" className="max-w-[1100px] w-full max-[768px]:w-full pb-[16px] pt-[10px]">
         {status.validationMessage && (
-          <ResultMessageComponent
+          <MessageComponent
             message={status.validationMessage.message}
             type={status.validationMessage.type}
             className="mb-[16px] max-[768px]:mb-[0]"
@@ -280,7 +286,9 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
           cancelText={t('manualDepositForm.cancel')}
           submitText={t('manualDepositForm.approve')}
           submittingText={t('manualDepositForm.approving')}
-        />
+          isCashServiceEnabled={isCashServiceEnabled}
+          buttonTitle={tGlobal('cashServiceDisabled')} 
+        />  
       </div>
     </>
   );

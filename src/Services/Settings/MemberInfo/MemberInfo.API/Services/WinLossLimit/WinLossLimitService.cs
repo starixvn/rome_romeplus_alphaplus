@@ -1,4 +1,5 @@
-﻿using AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit;
 using AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit;
 using AlphaPlus.Settings.MemberInfo.Domain.Params;
 using Fanex.Data.Repository;
@@ -10,6 +11,8 @@ public interface WinLossLimitService
     Task<IEnumerable<WinLossLimitGroupProductModel>> GetWinLossLimitProducts(int custId);
 
     Task<WinLossLimitPage> GetWinLossLimitPage(WinLossLimitParam param);
+
+    Task<Result> ResetCurrentWinAmount(ResetCurrentWinAmountParam param);
 }
 
 public class WinLossLimitServiceImpl(IDynamicRepository repository, CacheRefService cacheRefService) : WinLossLimitService
@@ -60,7 +63,8 @@ public class WinLossLimitServiceImpl(IDynamicRepository repository, CacheRefServ
                 param.PageIndex,
                 param.PageSize,
                 null,
-                param.IsDirectMember));
+                param.IsDirectMember,
+                param.AccountType));
         }
 
         foreach (var playerId in playerIds)
@@ -76,7 +80,8 @@ public class WinLossLimitServiceImpl(IDynamicRepository repository, CacheRefServ
                 param.PageIndex,
                 param.PageSize,
                 playerId,
-                param.IsDirectMember));
+                param.IsDirectMember,
+                param.AccountType));
         }
 
         if (!result.WinLossLimitDetail.Any())
@@ -114,6 +119,19 @@ public class WinLossLimitServiceImpl(IDynamicRepository repository, CacheRefServ
         }
 
         return result;
+    }
+
+    public async Task<Result> ResetCurrentWinAmount(ResetCurrentWinAmountParam param)
+    {
+        var criteria = new ResetCurrentWinAmountCriteria(
+            param.CustId,
+            param.SportType,
+            param.BetType,
+            param.SettingStatus);
+
+        await repository.ExecuteAsync(criteria);
+
+        return new Result { Code = 0, Message = string.Empty };
     }
 
     private Task<IEnumerable<int>> MapPlayerIdToCustId(MapPlayerId3rdToCustIdCriteria criteria)

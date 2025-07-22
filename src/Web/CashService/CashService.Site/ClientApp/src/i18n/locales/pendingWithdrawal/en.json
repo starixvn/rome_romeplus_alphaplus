@@ -52,7 +52,12 @@
     "selectBank": "Select Bank",
     "bankRequired": "Bank is required",
     "approveSuccess": "Approve withdrawal successfully",
-    "rejectSuccess": "Reject withdrawal successfully"
+    "rejectSuccess": "Reject withdrawal successfully",
+    "confirmRejectTitle": "Confirm Reject",
+    "confirmRejectMessage": "Are you sure you want to reject this withdrawal?",
+    "confirmApproveTitle": "Confirm Approve",
+    "confirmApproveMessage": "Are you sure you want to approve this withdrawal?",
+    "providerProcessing": "This withdrawal is being processed by the provider. Please wait for the provider to process it."
   },
 
   "manualWithdrawalForm": {
@@ -79,9 +84,9 @@
     "memberLoginNameRequired": "Member username is required",
     "agentBankSelectionRequired": "From is required",
     "memberBankSelectionRequired": "To is required",
-    "amountRangeError": "The amount must be greater than 0 and less than or equal to the member cash balance",
-    "imageSizeError": "Image size must be less than 1 MB",
-    "addWithdrawalSuccess": "Add withdrawal successfully!!!",
+    "amountRangeError": "The amount must be greater than 0 and less than the member cash balance",
+    "imageSizeError": "Image size must be less than 1MB",
+    "addWithdrawalSuccess": "Add withdrawal successfully",
     "memberCashBalance": "Member Cash Balance",
     "minAmount": "Min",
     "maxAmount": "Max",
@@ -120,9 +125,9 @@
   },
 
   "successMessages": {
-    "withdrawalSubmitted": "Withdrawal submitted successfully",
-    "withdrawalUpdated": "Withdrawal updated successfully",
-    "withdrawalApproved": "Withdrawal approved successfully",
-    "withdrawalRejected": "Withdrawal rejected successfully"
+    "withdrawalSubmitted": "Withdrawal request has been submitted successfully",
+    "withdrawalUpdated": "Withdrawal request has been updated successfully",
+    "withdrawalApproved": "Withdrawal request has been approved successfully",
+    "withdrawalRejected": "Withdrawal request has been rejected successfully"
   }
 }

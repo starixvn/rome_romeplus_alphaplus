@@ -17,6 +17,13 @@
                 ],
                 "PageAccesses": [
                     {
+                        "Url": "WinLoss/CashFee",
+                        "Permission": "[E]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true,
+                        "IsViewedByGroupHeadline": true
+                    },
+                    {
                         "Url": "Outstanding",
                         "Permission": "[E]",
                         "IsCheckBelonging": true,

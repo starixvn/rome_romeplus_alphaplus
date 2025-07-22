@@ -263,7 +263,7 @@
 
         headerColumns.push({
             HeaderText: viewResources.Username,
-            Width: positionTakingInfo.customerList.length ? 180 : 447,
+            Width: positionTakingInfo.customerList.length ? 200 : 467,
             Name: 'ColUsername',
             HeaderAlign: 'center',
             CellAlign: 'left'
@@ -368,9 +368,11 @@
                 MergeRowNumber: uplineLength + 1
             });
 
+            var icon = custPt.customerInfo.isCashMember ? '<span class="icon-cashservice icon-cashservice-common"></span>' : '';
+
             columns.push({
                 Name: 'ColUsername',
-                Value: self.drilldownLink(positionTakingInfo, custPt.customerInfo),
+                Value: self.drilldownLink(positionTakingInfo, custPt.customerInfo) + icon,
                 MergeRowNumber: uplineLength + 1
             });
 
@@ -417,9 +419,10 @@
                 Value: custPt.groupIndex
             });
 
+            var icon = custPt.customerInfo.isCashMember ? '<span class="icon-cashservice icon-cashservice-common"></span>' : '';
             columns.push({
                 Name: 'ColUsername',
-                Value: self.drilldownLink(positionTakingInfo, custPt.customerInfo)
+                Value: self.drilldownLink(positionTakingInfo, custPt.customerInfo) + icon
             });
 
             columns = columns.concat(self.renderPTBySport(custPt));

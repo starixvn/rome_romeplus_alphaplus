@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 export interface DropdownOption {
   value: string | number;
-  label: string;
+  label: string | React.ReactNode;
   icon?: any;
   attributes?: Record<string, any>;
 }
@@ -88,15 +88,21 @@ const CustomDropdownComponent = ({
   const displayOptions = showOptionAll ? [{ value: '', label: t('all') }, ...options] : options;
 
   const filteredOptions = searchTerm
-    ? displayOptions.filter((option) =>
-        option.label.toLowerCase().includes(searchTerm.toLowerCase())
-      )
+    ? displayOptions.filter((option) => {
+        const labelText = typeof option.label === 'string' ? option.label : '';
+        return labelText.toLowerCase().includes(searchTerm.toLowerCase());
+      })
     : displayOptions;
 
   const displaySelected = () => {
     if (selected) return selected.label;
     if (showOptionAll) return t('all');
     return placeholder;
+  };
+
+  const getDisplayText = () => {
+    const display = displaySelected();
+    return typeof display === 'string' ? display : '';
   };
   return (
     <div className="relative" ref={dropdownRef}>
@@ -105,9 +111,7 @@ const CustomDropdownComponent = ({
         onClick={handleToggle}
       >
         {selected && selected.icon}
-        <span className="block whitespace-nowrap overflow-hidden text-ellipsis pr-[12px]">
-          {displaySelected()}
-        </span>
+        <span className="block whitespace-nowrap overflow-hidden text-ellipsis pr-[12px] [&>.nickname]:hidden" dangerouslySetInnerHTML={{ __html: getDisplayText() }} />
         <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
       </div>
 
@@ -127,14 +131,14 @@ const CustomDropdownComponent = ({
             </div>
           )}
           {filteredOptions.length > 0 ? (
-            filteredOptions.map((option) => (
+            filteredOptions.map((option,index) => (
               <div
-                key={option.value}
+                key={`${option.value}-${index}`}
                 onClick={() => handleSelect(option)}
-                className="py-[3px] px-[12px] hover:bg-[#1967D2] hover:text-[#fff] cursor-pointer flex items-center max-[768px]:py-[6px]"
+                className="py-[3px] px-[12px] hover:bg-[#1967D2] hover:text-[#fff] cursor-pointer flex flex-wrap items-start max-[768px]:py-[6px]"
               >
                 {option.icon}
-                {option.label}
+                <span className="flex flex-col" dangerouslySetInnerHTML={{ __html: typeof option.label === 'string' ? option.label : '' }} />
               </div>
             ))
           ) : (

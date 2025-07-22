@@ -4,7 +4,7 @@ namespace AlphaPlus.CashService.Site.Features.Shared.Requests;
 
 public class BaseActionRequest
 {
-    public void SetUserSession(IUserSession userSession)
+    public virtual void SetUserSession(IUserSession userSession)
     {
         ActorId = userSession.CustId;
 
@@ -12,9 +12,16 @@ public class BaseActionRequest
         IP = userSession.UserLoginIp;
         Language = userSession.LangKey;
         UserId = userSession.UserId;
+        ReceivedCustId = userSession.CustId;
         
-        SiteDBGroupId = userSession.SiteDBGroupId;
-        CustDBGroupId = userSession.CustDBGroupId;
+        SiteDBGroupId = (short)userSession.SiteDBGroupId;
+        CustDBGroupId = (short)userSession.CustDBGroupId;
+    }
+
+    public void SetLimitedDateToShowInfo(IUserSession userSession)
+    {
+        const string CustomerDatelimit = "CustomerDateLimit";
+        LimitedDateToShowInfo = userSession.GetProperty<DateTime>(CustomerDatelimit);
     }
 
     public int ActorId { get; set; }
@@ -23,6 +30,10 @@ public class BaseActionRequest
     public string Language { get; set; }
     public int UserId { get; set; }
 
-    public int SiteDBGroupId { get; set; }
-    public int CustDBGroupId { get; set; }
-} 
+    public int ReceivedCustId { get; set; }
+
+    public short SiteDBGroupId { get; set; }
+    public short CustDBGroupId { get; set; }
+
+    public DateTime LimitedDateToShowInfo { get; set; }
+}

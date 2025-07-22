@@ -2,17 +2,12 @@
 
 namespace AgencyCash.API.RegisterCashMember.Criteria
 {
-    public class RollbackRegisterCustomerCommand : INonQueryCommand
+    public class RollbackRegisterCustomerCommand(int custId) : INonQueryCommand
     {
-        public RollbackRegisterCustomerCommand(int custId)
-        {
-            CustId = custId;
-        }
-
-        public int CustId { get; }
+        public int CustId { get; } = custId;
 
         public string GetSettingKey() => "Acc_CustomerIns_Rollback";
-        
+
         public bool IsValid() => true;
     }
 

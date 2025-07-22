@@ -12,6 +12,7 @@
             bool locked,
             byte doubleCommLosing,
             int autoTransfer,
+            byte serviceType,
             int pageSize,
             int pageIndex) : base(username,
             enabled,
@@ -24,12 +25,14 @@
             pageIndex)
         {
             UplineId = uplineId;
+            ServiceType = serviceType;
             UserId = userId;
         }
 
         public int UserId { get; }
 
         public int UplineId { get; }
+        public byte ServiceType { get; }
 
         public override string GetSettingKey() => "Age_CustomerSelByAg";
 

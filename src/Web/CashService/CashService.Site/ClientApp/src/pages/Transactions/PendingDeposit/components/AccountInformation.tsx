@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { displayAmount, renderBankOptionValue } from '../../../../utils/commonFunctions';
 import BankIcon from '../../../../components/BankComponents';
 import CustomDropdown, { DropdownOption } from '../../../../components/CustomDropdownComponent';
-import { LabelTitleComponent, MediumTitleComponent } from '../../../../components/TitleComponents';
+import { TitleComponent } from '../../../../components/Title';
 import { AmountInput } from '../../../../components/AmountInput';
 import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo';
 import { MemberLoginName } from '../../../../services/interfaces/Transactions/MemberLoginName';
@@ -46,11 +46,11 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
 
   return (
     <div className="flex-1 max-w-[700px] max-[768px]:mb-[16px] mr-[30px] max-[768px]:mr-[0]">
-      <MediumTitleComponent text={`${t('manualDepositForm.accountInformation')}`} />
+      <TitleComponent type='medium' text={`${t('manualDepositForm.accountInformation')}`} />
       <div className="flex flex-wrap">
         <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
           <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
-            <LabelTitleComponent
+            <TitleComponent type='label'
               text={`${t('manualDepositForm.memberLoginName')}`}
               required={true}
             />
@@ -58,7 +58,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
               <CustomDropdown
                 options={memberLoginOptions.map((option) => ({
                   value: option.custId.toString(),
-                  label: option.username + (option.nickName ? ' (' + option.nickName + ')' : ''),
+                  label: option.username + (option.nickName ? ' <span class="nickname">(' + option.nickName + ')</span>' : ''),
                 }))}
                 onSelect={(selected) => onMemberChange(selected)}
                 initialValue={memberId?.toString()}
@@ -69,7 +69,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
           </div>
 
           <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
-            <LabelTitleComponent text={`${t('manualDepositForm.from')}`} required={true} />
+            <TitleComponent type='label' text={`${t('manualDepositForm.from')}`} required={true} />
             <CustomDropdown
               options={cashMemberOptions.map((option) => ({
                 value: renderBankOptionValue(option.bankCode, option.bankAccountNumber),
@@ -86,7 +86,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
 
         <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full ">
           <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
-            <LabelTitleComponent text={`${t('manualDepositForm.to')}`} required={true} />
+            <TitleComponent type='label' text={`${t('manualDepositForm.to')}`} required={true} />
             <CustomDropdown
               options={cashAgentOptions.map((option) => ({
                 value: renderBankOptionValue(option.bankCode, option.bankAccountNumber),
@@ -100,7 +100,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
             />
           </div>
           <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
-            <LabelTitleComponent text={`${t('manualDepositForm.depositAmount')}`} required={true} />
+            <TitleComponent type='label' text={`${t('manualDepositForm.depositAmount')}`} required={true} />
             <AmountInput
               id="depositAmount"
               value={depositAmount}
@@ -115,7 +115,7 @@ const AccountInformation: React.FC<AccountInformationProps> = ({
         </div>
 
         <div className="w-full">
-          <LabelTitleComponent text={`${t('manualDepositForm.remarks')}`} required={false} />
+          <TitleComponent type='label' text={`${t('manualDepositForm.remarks')}`} required={false} />
           <textarea
             id="remarks"
             value={remarks}

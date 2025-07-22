@@ -84,7 +84,10 @@
   "uploadImage": "Click to upload",
   "dragAndDrop": "or drag and drop",
   "imageFormat": "Upload jpeg, jpg, png",
-  "maxSize": "Max 1 MB",
+  "maxSize": "Max {0} MB",
+  "exportToExcel": "Export to Excel",
+  "copied": "Copied",
+  "copy": "Copy",
   "status": {
     "waiting": "Waiting",
     "cancelled": "Cancelled",
@@ -92,7 +95,8 @@
     "expired": "Expired",
     "completed": "Completed",
     "rejected": "Rejected",
-    "providerRejected": "Provider Rejected"
+    "providerRejected": "Provider Rejected",
+    "approved": "Approved"
   },
   "dateRangePicker": {
     "today": "Today",
@@ -101,6 +105,26 @@
     "last30days": "Last 30 Days",
     "thismonth": "This Month",
     "lastmonth": "Last Month",
-    "days": "days"
-  }
+    "days": "days",
+    "selected": "Selected",
+    "noRangeSelected": "No range selected"
+  },
+  "cashServiceDisabled": "Cash Service is disabled",
+  "info": "Info",
+  "removeSuccess": "Remove successfully",
+  "removeError": "Remove failed",
+  "noneSelected": "None selected",
+  "selectAll": "Select All",
+  "dateRange": "Date Range",
+  "statusText": "Status",
+  "username": "Username",
+  "firstOrLastName": "First or Last Name",
+  "firstAndLastName": "First & Last Name",
+  "nickname": "Nickname",
+  "lastUpdated": "Last Updated",
+  "updatedBy": "Updated By",
+  "pleaseReferTo": "Please refer to",
+  "checklist": "Checklist",
+
+  "error-0": "Payment provider is currently unavailable. Please try again later."
 }

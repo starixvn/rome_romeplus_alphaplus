@@ -143,5 +143,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Models
 
         public byte Locked { get; set; }
         public bool AutoTransfer { get; set; }
+
+        public byte ServiceType { get; set; }
     }
 }

@@ -12,4 +12,5 @@ public class ProcessWithdrawalTransaction : BaseActionRequest
     public string PaymentFrom { get; set; }
     public IFormFile Image { get; set; }
     public byte[] Payslip { get; set; }
+    public bool IsRemovePayslip { get; set; }
 }

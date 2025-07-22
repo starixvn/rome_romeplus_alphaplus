@@ -1,5 +1,4 @@
 ﻿using System.Web;
-using AlphaPlus.Core.Configurations;
 using AlphaPlus.Settings.Site.Features.ViewLogs.Helpers;
 using AlphaPlus.Settings.Site.Features.ViewLogs.Requests.Setting;
 using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels;

@@ -1,5 +1,8 @@
-﻿@using AlphaPlus.Core.Helpers
+﻿@using AlphaPlus.Core.Configurations
+@using AlphaPlus.Core.Helpers
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
+@using AlphaPlus.Core.Models
+@inject IUserSession UserSession
 @{
     Layout = "~/Features/Transfer/Views/CashBalanceTransfer/_HintLayout.cshtml";
 }
@@ -18,11 +21,15 @@
     </ul>
     <p>备注</p>
     <ul class="ul-remark">
+        @if (AppSettings.IsOfferedCashService(UserSession.Site) && UserSession.IsAgent)
+        {
+            <li>此页面不包括现金会员</li>
+        }
         @if (!string.IsNullOrEmpty(Model.AllowTransfer))
         {
             <li>@Html.Raw(Model.AllowTransfer)</li>
         }
-        <li>您可以根据自己的需要每天做无限次交易（包括昨天余额和现金余额）。</li>      
+        <li>您可以根据自己的需要每天做无限次交易（包括昨天余额和现金余额）。</li>
         <li>@Resources.showhidecolumnAd</li>
     </ul>
 }
@@ -30,6 +37,10 @@ else
 {
     <p>备注</p>
     <ul class="ul-remark">
+        @if (AppSettings.IsOfferedCashService(UserSession.Site) && UserSession.IsAgent)
+        {
+            <li>此页面不包括现金会员</li>
+        }
         @if (!string.IsNullOrEmpty(Model.AllowTransfer))
         {
             <li>@Html.Raw(Model.AllowTransfer)</li>

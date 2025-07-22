@@ -14,4 +14,6 @@ public class WriteLogDBCommandModel
     public int ToCustId { get; set; }
     public string Ip { get; set; }
     public string Doing { get; set; }
+
+    public string Duration { get; set; }
 }

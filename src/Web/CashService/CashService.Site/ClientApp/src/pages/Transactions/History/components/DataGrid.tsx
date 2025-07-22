@@ -11,9 +11,8 @@ import {
   renderBankAccount,
 } from '../../../../utils/commonFunctions';
 import TransactionDetail from './TransactionDetail';
-import { ButtonFullComponent } from '../../../../components/ButtonComponents';
+import { ButtonComponent } from '../../../../components/Buttons/index';
 import { IconImage } from '../../../../components/Icons.tsx';
-import Tippy from '@tippyjs/react';
 
 interface DataGridProps {
   items: TransactionItem[];
@@ -23,6 +22,7 @@ interface DataGridProps {
   transactionType: number;
   onRefreshNeeded?: () => void;
   columnFilter?: string[];
+  isCashServiceEnabled: boolean;
 }
 
 const DataGrid: React.FC<DataGridProps> = ({
@@ -33,6 +33,7 @@ const DataGrid: React.FC<DataGridProps> = ({
   transactionType,
   onRefreshNeeded,
   columnFilter = ['All'],
+  isCashServiceEnabled,
 }) => {
   const { t } = useTranslation('transactionHistory');
   const { t: tGlobal } = useTranslation('global');
@@ -49,11 +50,7 @@ const DataGrid: React.FC<DataGridProps> = ({
   const handleCloseModal = () => {
     setIsDetailModalOpen(false);
     setSelectedTransactionId(null);
-  };
-
-  const handleRevertSuccess = () => {
     onRefreshNeeded?.();
-    handleCloseModal();
   };
 
   const shouldShowColumn = (columnName: string) => {
@@ -132,23 +129,20 @@ const DataGrid: React.FC<DataGridProps> = ({
                   {shouldShowColumn('from') && (
                     <td>
                       <div className="flex items-center">
-                        <Tippy content={<p>{tGlobal(item.paymentFrom.split('-')[0])}</p>}>
-                          {renderBankAccount(item.paymentFrom)}
-                        </Tippy>
+                        {renderBankAccount(item.paymentFrom, tGlobal)}
                       </div>
                     </td>
                   )}
                   {shouldShowColumn('to') && (
                     <td>
                       <div className="flex items-center">
-                        <Tippy content={<p>{tGlobal(item.paymentTo.split('-')[0])}</p>}>
-                          {renderBankAccount(item.paymentTo)}
-                        </Tippy>
+                        {renderBankAccount(item.paymentTo, tGlobal)}
                       </div>
                     </td>
                   )}
                   {shouldShowColumn('status') && (
-                    <td className="text-center">{mappingStatus(item.statusId)}</td>
+                    
+                    <td className="text-center">{mappingStatus(item.statusId, item.status)}</td>
                   )}
                   {shouldShowColumn('type') && (
                     <td className="text-center">{item.transactionType}</td>
@@ -162,7 +156,8 @@ const DataGrid: React.FC<DataGridProps> = ({
                     </td>
                   )}
                   <td className="text-center">
-                    <ButtonFullComponent
+                    <ButtonComponent
+                      variant="full"
                       text={t('table.view')}
                       onClick={() => handleViewTransaction(item.transId, item.custId)}
                     />
@@ -170,7 +165,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                 </tr>
               ))
             ) : (
-              <NoRecordFound colSpan={12} message={t('table.noRecords')} />
+              <NoRecordFound colSpan={12} />
             )}
           </tbody>
         </table>
@@ -183,7 +178,8 @@ const DataGrid: React.FC<DataGridProps> = ({
           isOpen={isDetailModalOpen}
           transactionType={transactionType}
           onClose={handleCloseModal}
-          onRevertSuccess={handleRevertSuccess}
+          onRevertSuccess={handleCloseModal}
+          isCashServiceEnabled={isCashServiceEnabled}
         />
       )}
     </>
