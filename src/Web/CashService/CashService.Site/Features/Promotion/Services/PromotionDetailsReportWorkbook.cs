@@ -58,6 +58,18 @@ public class PromotionDetailsReportWorkbook(IWebHostEnvironment webHostEnvironme
             $"{CashServicesResx.TotalRequestRejected}: {summary.TotalRejected}"
         ]);
 
+    protected override Sheet LoadTemplateSheet()
+    {
+        var sheet = GetSheetAt(TemplateInfo.SheetIndex);
+        var currentRowIndex = TemplateInfo.BodyStartIndex;
+
+        sheet.OddRowTemplate = sheet.GetRow(currentRowIndex++);
+        sheet.EvenRowTemplate = sheet.OddRowTemplate;
+        sheet.FooterRowsTemplate = [];
+
+        return sheet;
+    }
+
     private Mapper<PromotionDetails> GetRowMapper()
         => new Mapper<PromotionDetails>()
         .Map(A, p => number++)

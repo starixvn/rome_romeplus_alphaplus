@@ -45,6 +45,18 @@ public class PromotionReportWorkbook(IWebHostEnvironment webHostEnvironment) :
         return new ExcelFileViewModel($"{CashServicesResx.PromotionReport}-{request.Username}-{fromDate}-{toDate}", fileContent);
     }
 
+    protected override Sheet LoadTemplateSheet()
+    {
+        var sheet = GetSheetAt(TemplateInfo.SheetIndex);
+        var currentRowIndex = TemplateInfo.BodyStartIndex;
+
+        sheet.OddRowTemplate = sheet.GetRow(currentRowIndex++);
+        sheet.EvenRowTemplate = sheet.OddRowTemplate;
+        sheet.FooterRowsTemplate = [];
+
+        return sheet;
+    }
+
     private Mapper<PromotionReport> GetRowMapper()
         => new Mapper<PromotionReport>()
         .Map(A, p => number++)
