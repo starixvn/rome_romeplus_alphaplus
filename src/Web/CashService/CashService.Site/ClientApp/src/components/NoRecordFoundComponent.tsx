@@ -7,7 +7,7 @@ interface NoRecordFoundProps {
   colSpan: number;
 }
 
-const NoRecordFound: React.FC<NoRecordFoundProps> = ({ colSpan }) => {  
+const NoRecordFoundComponent: React.FC<NoRecordFoundProps> = ({ colSpan }) => {  
   const { t } = useTranslation('global');
   return (
     <tr>
@@ -21,4 +21,4 @@ const NoRecordFound: React.FC<NoRecordFoundProps> = ({ colSpan }) => {
   );
 };
 
-export default NoRecordFound;
+export default NoRecordFoundComponent;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ButtonComponent } from './Buttons/ButtonComponent';
 import { ButtonIconComponent } from './Buttons/ButtonIconComponent';
@@ -24,9 +24,25 @@ const ConfirmPopup: React.FC<ConfirmPopupProps> = ({
   confirmText,
 }) => {
   const { t: tGlobal } = useTranslation('global');
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (modalRef.current) {
+      modalRef.current.focus();
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onCancel();
+    };
+    document.addEventListener('keydown', handleEsc);
+    return () => document.removeEventListener('keydown', handleEsc);
+  }, [onCancel]);
+
   return (
     <div className="bg-[#00000080] fixed inset-0 flex items-start justify-center z-[500]">
-      <div className="p-[12px] pt-[0] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-[768px]:max-w-[90%] overflow-auto rounded-[4px]">
+      <div className="p-[12px] pt-[0] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-[768px]:max-w-[90%] overflow-auto rounded-[4px]" ref={modalRef}>
         <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]">
           <TitleComponent type='medium' text={title} />
           <ButtonIconComponent style='Close' onClick={onCancel} />
