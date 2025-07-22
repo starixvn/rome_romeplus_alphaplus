@@ -36,7 +36,7 @@ const Information: React.FC<InformationProps> = ({
   const { t } = useTranslation('promotion');
   return (
   <>
-    <TitleComponent text="{t('addPromotionForm.currentPromotion')}" type='medium'/>
+    <TitleComponent text={t('addPromotionForm.currentPromotion')} type='medium'/>   
     <p className="my-[8px]">
         {t('addPromotionForm.onlyOnePromotionCanBeActiveAtATime')}
     </p>
@@ -63,6 +63,7 @@ const Information: React.FC<InformationProps> = ({
       <div className="w-[190px] mr-[12px] mb-[12px]">
         <div className="flex items-center">
           <TitleComponent text={t('addPromotionForm.promotionType')} className="mr-[5px]" required={true} type='label'/>
+        </div>
         <CustomDropdown
           disable={readOnlyMode}
           options={PROMOTION_TYPES}
