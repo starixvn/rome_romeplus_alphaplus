@@ -95,6 +95,12 @@ public static class PromotionEndpoints
             Description = "Add Bonus"
         });
 
+        group.MapPost("/updateTransactionStatus", async ([FromBody] UpdatePromoteTransactionRequest request, IPromotionService services) =>
+        {
+            var result = await services.UpdatePromoteTransactionStatusAsync(request);
+            return Results.Ok(result);
+        }).WithName("UpdateTransactionStatus");
+
         group.MapGet("/transactions",
             async ([AsParameters] GetPromotionTransactionRequest request, IPromotionService service) =>
             {

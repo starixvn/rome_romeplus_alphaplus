@@ -162,12 +162,12 @@ public class TransactionService(IDynamicRepository dynamicRepository, ICommonSer
         }
     }
 
-    private async Task WriteLogRunSp(WriteLogDBCommandModel log, short siteDbGroupId)
+    private async Task WriteLogRunSp(WriteLogDBCommandModel log, short custDbGroupId)
     {
         var request = new BaseActionRequest
         {
             ActorId = log.CustId,
-            CustDBGroupId = siteDbGroupId,
+            CustDBGroupId = custDbGroupId,
             UserId = log.UserId,
         };
         await commonService.WriteLogDBCommand(request, log);

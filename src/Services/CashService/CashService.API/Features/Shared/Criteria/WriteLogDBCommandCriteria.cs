@@ -7,13 +7,13 @@ namespace AlphaPlus.CashService.API.Features.Shared.Criteria;
 
 public class WriteLogDBCommandCriteria : NonQueryCommand
 {
-    public WriteLogDBCommandCriteria(int siteDB, BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)
+    public WriteLogDBCommandCriteria(int custDbGroupId, BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)
     {
-        SiteDB = siteDB;
+        CustDbGroupId = custDbGroupId;
         CustId = request.ActorId;
         UserId = request.UserId;
-        SiteDB = request.CustDBGroupId;
-        
+        CustDbGroupId = request.CustDBGroupId;
+
         ActionId = writeLogDBCommandModel.ActionId;
         TrackingValue = writeLogDBCommandModel.TrackingValue;
         TrackingValue2 = writeLogDBCommandModel.TrackingValue2;
@@ -23,7 +23,7 @@ public class WriteLogDBCommandCriteria : NonQueryCommand
     }
 
     [SpParam(Ignored = true)]
-    public int SiteDB { get; }
+    public int CustDbGroupId { get; }
 
     public int CustId { get; }
     public int UserId { get; }
@@ -34,8 +34,8 @@ public class WriteLogDBCommandCriteria : NonQueryCommand
     public string TrackingValueMask2 { get; set; }
     public string Duration { get; }
 
-    public override string GetSettingKey() 
-        => SiteDB < 0 ? "WriteLog_CashService_UserLog_RunSP" : $"SiteDB_{SiteDB}_WriteLog_CashService_UserLog_RunSP";
+    public override string GetSettingKey()
+        => CustDbGroupId < 0 ? "WriteLog_CashService_UserLog_RunSP" : $"SiteDB_{CustDbGroupId}_WriteLog_CashService_UserLog_RunSP";
 
     public override bool IsValid() => CustId > 0 && ActionId > 0;
-} 
+}

@@ -2,8 +2,7 @@
 <Functions>
     <Function Name="Shared Functions">
         <Setting Key="WriteLog_CashService_UserLog_RunSP" SpName="WriteLog_CashService_UserLog_RunSP" DbName="DBLOG.bodb_CustomerLog.wsv_CashService" Plain="0" />
-        <Setting Key="SiteDb_0_WriteLog_CashService_UserLog_RunSP" SpName="WriteLog_CashService_UserLog_RunSP" DbName="DBCust.bodb_CustomerLog.wsv_CashService" Plain="0" />
-        <Setting Key="SiteDb_3_WriteLog_CashService_UserLog_RunSP" SpName="WriteLog_CashService_UserLog_RunSP" DbName="DBCust.bodb_CustomerLog.wsv_CashService" Plain="0" />
+        <Setting Key="CustDb_0_WriteLog_CashService_UserLog_RunSP" SpName="WriteLog_CashService_UserLog_RunSP" DbName="DBCust.bodb_CustomerLog.wsv_CashService" Plain="0" />
         <Setting Key="Age_CashService_ConfigureSignUpChecklist" SpName="Age_CashService_ConfigureSignUpChecklist_UAT2" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="HasDeposit" ObjectProperty="HasDepositMethods"></Mapping>
             <Mapping DataField="HasWithdrawal" ObjectProperty="HasWithdrawalMethods"></Mapping>

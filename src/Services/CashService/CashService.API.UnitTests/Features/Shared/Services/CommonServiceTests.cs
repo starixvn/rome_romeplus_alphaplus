@@ -91,15 +91,15 @@ public class CommonServiceTests
             TrackingValueMask = "mask",
             TrackingValueMask2 = "mask2"
         };
-        _repositoryMock.Setup(x => x.ExecuteAsync(It.Is<WriteLogDBCommandCriteria>(c => c.SiteDB == -1), string.Empty, CancellationToken.None))
+        _repositoryMock.Setup(x => x.ExecuteAsync(It.Is<WriteLogDBCommandCriteria>(c => c.CustDbGroupId == -1), string.Empty, CancellationToken.None))
             .Returns(Task.FromResult(0));
 
         // Act
         await _commonService.WriteLogDBCommand(request, writeLogModel);
 
         // Assert
-        _repositoryMock.Verify(x => x.ExecuteAsync(It.Is<WriteLogDBCommandCriteria>(c => c.SiteDB == -1), string.Empty, CancellationToken.None), Times.Once);
-        _repositoryMock.Verify(x => x.ExecuteAsync(It.Is<WriteLogDBCommandCriteria>(c => c.SiteDB != -1), string.Empty, CancellationToken.None), Times.Never);
+        _repositoryMock.Verify(x => x.ExecuteAsync(It.Is<WriteLogDBCommandCriteria>(c => c.CustDbGroupId == -1), string.Empty, CancellationToken.None), Times.Once);
+        _repositoryMock.Verify(x => x.ExecuteAsync(It.Is<WriteLogDBCommandCriteria>(c => c.CustDbGroupId != -1), string.Empty, CancellationToken.None), Times.Never);
     }
 
     [Fact]
@@ -116,17 +116,17 @@ public class CommonServiceTests
             TrackingValueMask2 = "mask2"
         };
 
-        _repositoryMock.Setup(x => x.ExecuteAsync(It.Is<WriteLogDBCommandCriteria>(c => c.SiteDB == -1), string.Empty, CancellationToken.None))
+        _repositoryMock.Setup(x => x.ExecuteAsync(It.Is<WriteLogDBCommandCriteria>(c => c.CustDbGroupId == -1), string.Empty, CancellationToken.None))
             .ThrowsAsync(new Exception("First attempt fails"));
-        _repositoryMock.Setup(x => x.ExecuteAsync(It.Is<WriteLogDBCommandCriteria>(c => c.SiteDB != -1), string.Empty, CancellationToken.None))
+        _repositoryMock.Setup(x => x.ExecuteAsync(It.Is<WriteLogDBCommandCriteria>(c => c.CustDbGroupId != -1), string.Empty, CancellationToken.None))
             .Returns(Task.FromResult(0));
 
         // Act
         await _commonService.WriteLogDBCommand(request, writeLogModel);
 
         // Assert
-        _repositoryMock.Verify(x => x.ExecuteAsync(It.Is<WriteLogDBCommandCriteria>(c => c.SiteDB == -1), string.Empty, CancellationToken.None), Times.Once);
-        _repositoryMock.Verify(x => x.ExecuteAsync(It.Is<WriteLogDBCommandCriteria>(c => c.SiteDB != -1), string.Empty, CancellationToken.None), Times.Once);
+        _repositoryMock.Verify(x => x.ExecuteAsync(It.Is<WriteLogDBCommandCriteria>(c => c.CustDbGroupId == -1), string.Empty, CancellationToken.None), Times.Once);
+        _repositoryMock.Verify(x => x.ExecuteAsync(It.Is<WriteLogDBCommandCriteria>(c => c.CustDbGroupId != -1), string.Empty, CancellationToken.None), Times.Once);
         _loggerMock.Verify(x => x.ErrorAsync(It.IsAny<string>(), It.IsAny<Exception>()), Times.Once);
     }
 

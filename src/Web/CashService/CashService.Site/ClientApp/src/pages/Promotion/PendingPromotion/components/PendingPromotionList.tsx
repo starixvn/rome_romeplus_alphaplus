@@ -20,7 +20,7 @@ const usePendingPromotionData = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [apiData, setApiData] = useState<PromotionTransaction[]>([]);
-  const [selectedItems, setSelectedItems] = useState<number[]>([]);
+  const [selectedItems, setSelectedItems] = useState<PromotionTransaction[]>([]);
   const fetchPendingPromotions = useCallback(async (params: PromotionTransactionRequest) => {
     try {
       setLoading(true);
@@ -178,8 +178,8 @@ const PendingPromotionList: React.FC<PendingPromotionListProps> = () => {
   );
 
   const handleSelectionChange = useCallback(
-    (selectedIds: (string | number)[]) => {
-      setSelectedItems(selectedIds as number[]);
+    (selectedItems: PromotionTransaction[]) => {
+      setSelectedItems(selectedItems);
     },
     [setSelectedItems]
   );
@@ -190,13 +190,13 @@ const PendingPromotionList: React.FC<PendingPromotionListProps> = () => {
 
   const onReject = useCallback(() => {
     selectedItems.forEach((item) => {
-      promotionService.rejectPromotion(item);
+      promotionService.rejectPromotionTransaction(item.custId, item.transId, item.amount);
     });
   }, []);
 
   const onApprove = useCallback(() => {
     selectedItems.forEach((item) => {
-      promotionService.approvePromotion(item);
+      promotionService.approvePromotionTransaction(item.custId, item.transId, item.amount);
     });
   }, []);
 

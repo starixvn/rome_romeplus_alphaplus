@@ -28,12 +28,12 @@ public class WriteLogDBCommandCriteriaTests
         };
 
         // Act
-        var criteria = new WriteLogDBCommandCriteria(request.SiteDBGroupId, request, model);
+        var criteria = new WriteLogDBCommandCriteria(request.CustDBGroupId, request, model);
 
         // Assert
         Assert.Equal(123, criteria.CustId);
         Assert.Equal(456, criteria.UserId);
-        Assert.Equal(789, criteria.SiteDB);
+        Assert.Equal(789, criteria.CustDbGroupId);
         Assert.Equal(1, criteria.ActionId);
         Assert.Equal("track1", criteria.TrackingValue);
         Assert.Equal("track2", criteria.TrackingValue2);
@@ -47,7 +47,7 @@ public class WriteLogDBCommandCriteriaTests
         // Arrange
         var request = new BaseActionRequest { CustDBGroupId = -1 };
         var model = new WriteLogDBCommandModel { ActionId = 1 };
-        var criteria = new WriteLogDBCommandCriteria(request.SiteDBGroupId, request, model);
+        var criteria = new WriteLogDBCommandCriteria(request.CustDBGroupId, request, model);
 
         // Act
         var result = criteria.GetSettingKey();
@@ -62,7 +62,7 @@ public class WriteLogDBCommandCriteriaTests
         // Arrange
         var request = new BaseActionRequest { CustDBGroupId = 123 };
         var model = new WriteLogDBCommandModel { ActionId = 1 };
-        var criteria = new WriteLogDBCommandCriteria(request.SiteDBGroupId, request, model);
+        var criteria = new WriteLogDBCommandCriteria(request.CustDBGroupId, request, model);
 
         // Act
         var result = criteria.GetSettingKey();
@@ -80,7 +80,7 @@ public class WriteLogDBCommandCriteriaTests
         // Arrange
         var request = new BaseActionRequest { ActorId = custId };
         var model = new WriteLogDBCommandModel { ActionId = actionId };
-        var criteria = new WriteLogDBCommandCriteria(request.SiteDBGroupId, request, model);
+        var criteria = new WriteLogDBCommandCriteria(request.CustDBGroupId, request, model);
 
         // Act
         var result = criteria.IsValid();
@@ -88,4 +88,4 @@ public class WriteLogDBCommandCriteriaTests
         // Assert
         Assert.Equal(expected, result);
     }
-} 
+}

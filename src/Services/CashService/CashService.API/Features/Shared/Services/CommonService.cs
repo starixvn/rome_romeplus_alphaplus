@@ -49,6 +49,7 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
     public async Task WriteLogDBCommand(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)
     {
         var isSuccess = await WriteLogDBCommandIntoDBLog(request, writeLogDBCommandModel);
+        await logger.InfoAsync($"WriteLogDBCommandIntoDBLog completed. Request: {JsonConvert.SerializeObject(request)}, writeLogModel: {JsonConvert.SerializeObject(writeLogDBCommandModel)} Result: {isSuccess}");
 
         if (isSuccess)
         {
@@ -96,7 +97,7 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
 
         try
         {
-            var criteria = new WriteLogDBCommandCriteria(siteDB: -1, request, writeLogDBCommandModel);
+            var criteria = new WriteLogDBCommandCriteria(custDbGroupId: -1, request, writeLogDBCommandModel);
 
             await repository.ExecuteAsync(criteria);
             isSuccess = true;
@@ -113,7 +114,7 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
     {
         try
         {
-            var criteria = new WriteLogDBCommandCriteria(siteDB: request.CustDBGroupId, request, writeLogDBCommandModel);
+            var criteria = new WriteLogDBCommandCriteria(custDbGroupId: request.CustDBGroupId, request, writeLogDBCommandModel);
             await repository.ExecuteAsync(criteria);
         }
         catch (Exception e)

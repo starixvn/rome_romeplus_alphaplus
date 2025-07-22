@@ -136,13 +136,42 @@ export const promotionService = {
     return response.data;
   },
 
-  approvePromotion: async (transId: number): Promise<ResultModel> => {
-    const response = await axiosInstance.post<ResultModel>(`ApprovePendingPromotion`, transId);
+  approvePromotionTransaction: async (
+    custId: number,
+    transId: number,
+    amount: number
+  ): Promise<ResultModel> => {
+    const response = await axiosInstance.post<ResultModel>(`ApprovePromotionTransaction`, {
+      customerId: custId,
+      promotionTransactionId: transId,
+      amount: amount,
+      headers: {
+        ...createHeaderXMLHttp(),
+        'Content-Type': 'application/json',
+      },
+    });
     return response.data;
   },
 
-  rejectPromotion: async (transId: number): Promise<ResultModel> => {
-    const response = await axiosInstance.post<ResultModel>(`RejectPendingPromotion`, transId);
+  rejectPromotionTransaction: async (
+    custId: number,
+    transId: number,
+    amount: number
+  ): Promise<ResultModel> => {
+    const response = await axiosInstance.post<ResultModel>(
+      `RejectPromotionTransaction`,
+      {
+        customerId: custId,
+        promotionTransactionId: transId,
+        amount: amount,
+      },
+      {
+        headers: {
+          ...createHeaderXMLHttp(),
+          'Content-Type': 'application/json',
+        },
+      }
+    );
     return response.data;
   },
 

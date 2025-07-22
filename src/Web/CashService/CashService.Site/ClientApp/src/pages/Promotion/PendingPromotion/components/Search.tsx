@@ -13,7 +13,7 @@ interface SearchProps {
   onChange: (value: string) => void;
   placeholder?: string;
   items: PromotionTransaction[];
-  selectedItems: number[];
+  selectedItems: PromotionTransaction[];
   onDownload: () => void;
   onReject: () => void;
   onApprove: () => void;

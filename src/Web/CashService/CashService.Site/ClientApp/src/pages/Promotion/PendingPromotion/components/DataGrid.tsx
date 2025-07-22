@@ -13,7 +13,7 @@ interface DataGridProps {
   pageIndex: number;
   pageSize: number;
   isLoading: boolean;
-  onSelectionChange?: (selectedIds: (string | number)[]) => void;
+  onSelectionChange?: (selectedItems: PromotionTransaction[]) => void;
 }
 
 const DataGrid: React.FC<DataGridProps> = ({
@@ -24,7 +24,7 @@ const DataGrid: React.FC<DataGridProps> = ({
   onSelectionChange,
 }) => {
   const { t } = useTranslation('promotion');
-  const [selectedItems, setSelectedItems] = useState<Set<string | number>>(new Set());
+  const [selectedItems, setSelectedItems] = useState<PromotionTransaction[]>([]);
   const [selectAll, setSelectAll] = useState(false);
   const [editModal, setEditModal] = useState<{
     isOpen: boolean;
@@ -38,35 +38,33 @@ const DataGrid: React.FC<DataGridProps> = ({
 
   useEffect(() => {
     setSelectAll(false);
-    setSelectedItems(new Set());
+    setSelectedItems([]);
   }, [items]);
 
   useEffect(() => {
     if (onSelectionChange) {
-      onSelectionChange(Array.from(selectedItems));
+      onSelectionChange(selectedItems);
     }
   }, [selectedItems, onSelectionChange]);
 
   const handleSelectAll = (checked: boolean) => {
     setSelectAll(checked);
     if (checked) {
-      const allTransIds = items.map((item) => item.transId);
-      setSelectedItems(new Set(allTransIds));
+      setSelectedItems(items);
     } else {
-      setSelectedItems(new Set());
+      setSelectedItems([]);
     }
   };
 
-  const handleSelectItem = (transId: string | number, checked: boolean) => {
-    const newSelectedItems = new Set(selectedItems);
+  const handleSelectItem = (item: PromotionTransaction, checked: boolean) => {
+    const newSelectedItems = [...selectedItems];
     if (checked) {
-      newSelectedItems.add(transId);
+      newSelectedItems.push(item);
     } else {
-      newSelectedItems.delete(transId);
+      newSelectedItems.splice(newSelectedItems.indexOf(item), 1);
     }
     setSelectedItems(newSelectedItems);
-
-    if (checked && newSelectedItems.size === items.length) {
+    if (checked && newSelectedItems.length === items.length) {
       setSelectAll(true);
     } else if (!checked) {
       setSelectAll(false);
@@ -163,8 +161,10 @@ const DataGrid: React.FC<DataGridProps> = ({
                     <input
                       type="checkbox"
                       className="w-[16px] h-[16px] cursor-pointer"
-                      checked={selectedItems.has(item.transId)}
-                      onChange={(e) => handleSelectItem(item.transId, e.target.checked)}
+                      checked={selectedItems.some(
+                        (selectedItem) => selectedItem.transId === item.transId
+                      )}
+                      onChange={(e) => handleSelectItem(item, e.target.checked)}
                     />
                   </td>
                   <td className="w-[150px] min-w-[150px]">
