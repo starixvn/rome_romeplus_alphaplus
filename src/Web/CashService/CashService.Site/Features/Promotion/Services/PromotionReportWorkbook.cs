@@ -45,18 +45,6 @@ public class PromotionReportWorkbook(IWebHostEnvironment webHostEnvironment) :
         return new ExcelFileViewModel($"{CashServicesResx.PromotionReport}-{request.Username}-{fromDate}-{toDate}", fileContent);
     }
 
-    protected override Sheet LoadTemplateSheet()
-    {
-        var sheet = GetSheetAt(TemplateInfo.SheetIndex);
-        var currentRowIndex = TemplateInfo.BodyStartIndex;
-
-        sheet.OddRowTemplate = sheet.GetRow(currentRowIndex++);
-        sheet.EvenRowTemplate = sheet.OddRowTemplate;
-        sheet.FooterRowsTemplate = [];
-
-        return sheet;
-    }
-
     private Mapper<PromotionReport> GetRowMapper()
         => new Mapper<PromotionReport>()
         .Map(A, p => number++)
@@ -64,7 +52,7 @@ public class PromotionReportWorkbook(IWebHostEnvironment webHostEnvironment) :
         .Map(C, p => PromotionTypeName(p.PromotionType))
         .Map(D, p => $"{p.FromDate.ToShortDateWithSlash()} - {p.ToDate.ToShortDateWithSlash()}")
         .Map(E, p => p.TotalRequest)
-        .Map(F, p => $"{p.TotalApproved}{Environment.NewLine}{p.TotalRejected}")
+        .Map(F, p => $"{p.TotalApproved:N0}{Environment.NewLine}{p.TotalRejected:N0}")
         .Map(G, p => p.TotalAmount)
         .Map(H, p => p.Enabled ? Resources.Enabled : Resources.Disabled);
 
