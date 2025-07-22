@@ -3,7 +3,7 @@
     {
       "Name": "GPI Lottery",
       "SportTypeId": 132,
-      "Url": "http://saba-wallet-group-003.3rd-party.t2p.nebula.uat:22080/api/GamePlayIntLotteryInternal/GetBetHistoryUrl",
+      "Url": "http://saba-wallet-group-003.3rd-party.klt2p.gamora.prod:32280/api/GamePlayIntLotteryInternal/GetBetHistoryUrl",
       "Debug": 0
     },
     {
