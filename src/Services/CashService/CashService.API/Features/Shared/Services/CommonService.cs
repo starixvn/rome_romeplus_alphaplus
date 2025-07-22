@@ -49,14 +49,13 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
     public async Task WriteLogDBCommand(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)
     {
         var isSuccess = await WriteLogDBCommandIntoDBLog(request, writeLogDBCommandModel);
-        await logger.InfoAsync($"WriteLogDBCommandIntoDBLog completed. Request: {JsonConvert.SerializeObject(request)}, writeLogModel: {JsonConvert.SerializeObject(writeLogDBCommandModel)} Result: {isSuccess}");
 
         if (isSuccess)
         {
             return;
         }
 
-        await WriteLogDBCommandIntoSiteDB(request, writeLogDBCommandModel);
+        await WriteLogDBCommandIntoCustDB(request, writeLogDBCommandModel);
     }
 
     public async Task<SetupCheckListModel> GetSetupCheckList(int custId)
@@ -98,7 +97,7 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
         try
         {
             var criteria = new WriteLogDBCommandCriteria(custDbGroupId: -1, request, writeLogDBCommandModel);
-
+            await logger.InfoAsync($"WriteLogDBCommandCriteria. IsValid: {criteria.IsValid()}, SpNames: {criteria.GetSettingKey()}");
             await repository.ExecuteAsync(criteria);
             isSuccess = true;
         }
@@ -110,7 +109,7 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
         return isSuccess;
     }
 
-    public async Task WriteLogDBCommandIntoSiteDB(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)
+    public async Task WriteLogDBCommandIntoCustDB(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)
     {
         try
         {
