@@ -41,6 +41,7 @@ function convertProductToTreeNodeOption(products: ProductDropdown[]): TreeNodeOp
 
 const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) => {
   const { t: tGlobal } = useTranslation('global');
+  const { t } = useTranslation('promotion');
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -122,15 +123,15 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
     const errors = [
       {
         condition: !hasChanges(),
-        message: 'There is no change to update'
+        message: tGlobal('thereNoChangeToUpdate')
       },
       {
         condition: !promotionInfo.en,
-        message: 'Title is required'
+        message: t('addPromotionForm.requiredTitle')
       },
       {
         condition: promotionInfo.en && !promotionInfo.en.title,
-        message: 'Title is required'
+        message: t('addPromotionForm.requiredTitle')
       },
       //{
       //condition: promotionInfo.en && !promotionInfo.en.banner,
@@ -138,7 +139,7 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
       //},
       {
         condition: promotionInfo.en && !promotionInfo.en.content,
-        message: 'Content is required'
+        message: t('addPromotionForm.requiredContent')
       }
     ];
     debugger;
@@ -186,7 +187,7 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
     promotionService.editPromotion(promotionId, promotionData).then((result) => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       if (result.isSuccessful) {
-        setSuccessMessage('Promotion updated successfully');
+        setSuccessMessage(t('editPromotionForm.promotionUpdatedSuccessfully'));
         setTimeout(() => {
           onClose();
         }, 3000);
@@ -201,7 +202,7 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
   if (loading && !promotionInfo) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div>Loading promotion data...</div>
+        <div>{tGlobal('loading')}</div>
       </div>
     );
   }
@@ -210,7 +211,7 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
     <>
       <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
         <ButtonBackComponent onClick={onClose} />
-        <TitleComponent text={`Edit Promotion`} type='main'/>
+        <TitleComponent text={t('editPromotionForm.editPromotion')} type='main'/>
       </div>
 
       <form onSubmit={handleSubmit} className="pb-[16px]">

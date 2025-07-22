@@ -1,6 +1,8 @@
 import React from 'react';
 import { TitleComponent } from '../../../../../components/Title';
+import { useTranslation } from 'react-i18next';
 import { ProductSetting } from '../../../../../services/interfaces/Promotion';
+
 
 interface ProductSettingsProps {
   productCategories: ProductSetting[];
@@ -14,14 +16,16 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
   handleProductFieldChange,
   selectedProductCategories,
   readOnlyMode
-}) => (
+}) => {
+  const { t } = useTranslation('promotion');
+  return (
   <>
     {productCategories.map((product) => (
       <div
         key={product.productCategoryId}
         className="flex flex-wrap w-full">
         <div className="w-[190px] mr-[12px] mb-[12px]">
-          <TitleComponent text={`${product.productCategoryName} Percentage`} required type='label'/>
+          <TitleComponent text={`${product.productCategoryName} ${t('addPromotionForm.percentage')}`} required type='label'/>
           <div className="flex items-center relative">
             <input
               type="number"
@@ -45,7 +49,7 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
         </div>
 
         <div className="w-[190px] mr-[12px] mb-[12px]">
-          <TitleComponent text="Min Turnover" required={true} type='label'/>
+          <TitleComponent text={t('addPromotionForm.minTurnover')} required={true} type='label'/>
           <input
             type="number"
             min="0"
@@ -64,7 +68,7 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
 
         <div className="w-[190px] mr-[12px] mb-[12px]">
           <div className="flex justify-between items-center">
-            <TitleComponent text="Max Payout" required={true} type='label'/>
+            <TitleComponent text={t('addPromotionForm.maxPayout')} required={true} type='label'/>
             <div className="flex items-center text-[12px]">
               <input
                 type="checkbox"
@@ -102,6 +106,7 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
       </div>
     ))}
   </>
-);
+  );
+};
 
 export default ProductSettings;

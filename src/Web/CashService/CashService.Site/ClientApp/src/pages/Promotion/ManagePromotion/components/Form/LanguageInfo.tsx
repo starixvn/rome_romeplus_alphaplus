@@ -2,6 +2,7 @@ import React from 'react';
 import { ButtonTabComponent } from '../../../../../components/Buttons/ButtonTabComponent';
 import { TitleComponent } from '../../../../../components/Title';
 import UploadImage from '../../../../Transactions/Components/UploadImage';
+import { useTranslation } from 'react-i18next';
 
 export interface PromotionLangFields {
   title: string;
@@ -45,9 +46,11 @@ export const TitleField: React.FC<{
   onChange: (v: string) => void;
   lang: string;
   isDefault: boolean;
-}> = ({ value, onChange, lang, isDefault }) => (
+}> = ({ value, onChange, lang, isDefault }) => {
+  const { t } = useTranslation('promotion');
+  return (
   <div className="mb-4">
-    <TitleComponent text={`Title`} required={isDefault} type='label'/>
+    <TitleComponent text={t('addPromotionForm.title')} required={isDefault} type='label'/>
     <input
       className="control-field w-full"
       key={`title-${lang}`}
@@ -56,16 +59,19 @@ export const TitleField: React.FC<{
       placeholder=""
     />
   </div>
-);
+  );
+};
 
 export const BannerField: React.FC<{
   prevBanner: string | null;
   setBanner: (f: File | string | null) => void;
   lang: string;
   isDefault: boolean;
-}> = ({ prevBanner, setBanner, lang, isDefault }) => (
+}> = ({ prevBanner, setBanner, lang, isDefault }) => {
+  const { t } = useTranslation('promotion');
+  return (
   <div className="mb-4">
-    <TitleComponent text={`Banner`} required={isDefault} type='label'/>
+    <TitleComponent text={t('addPromotionForm.banner')} required={isDefault} type='label'/>
     <UploadImage
       key={`banner-${lang}`}
       setImage={setBanner}
@@ -74,16 +80,19 @@ export const BannerField: React.FC<{
       customClassName="w-full h-[300px]"
     />
   </div>
-);
+  );
+};
 
 export const ContentField: React.FC<{
   value: string;
   onChange: (v: string) => void;
   lang: string;
   isDefault: boolean;
-}> = ({ value, onChange, lang, isDefault }) => (
+}> = ({ value, onChange, lang, isDefault }) => {
+  const { t } = useTranslation('promotion');
+  return (
   <div className="mb-4">
-    <TitleComponent text={`Content`} required={isDefault} type='label'/>
+    <TitleComponent text={t('addPromotionForm.content')} required={isDefault} type='label'/>
     <div className="border border-[var(--border-control)] rounded">
       <textarea
         key={`content-${lang}`}
@@ -94,7 +103,8 @@ export const ContentField: React.FC<{
       />
     </div>
   </div>
-);
+  );
+};
 
 const PromotionInfo: React.FC<PromotionInfoProps> = ({
   languages,

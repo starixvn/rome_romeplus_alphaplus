@@ -39,6 +39,7 @@ function convertProductToTreeNodeOption(products: ProductDropdown[]): TreeNodeOp
 
 const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
   const { t: tGlobal } = useTranslation('global');
+  const { t } = useTranslation('promotion');
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
@@ -137,15 +138,15 @@ const validateForm = () => {
   const errors = [
     {
       condition: selectedProductCategories.length === 0,
-      message: 'Please select at least one Product'
+      message: t('addPromotionForm.requiredProductCategory')
     },
     { 
       condition: !promotionInfo.en, 
-      message: 'Title is required'
+      message: t('addPromotionForm.requiredTitle')
     },
     {
       condition: promotionInfo.en && !promotionInfo.en.title,
-      message: 'Title is required'
+      message: t('addPromotionForm.requiredTitle')
     },
     /*{
       condition: promotionInfo.en && !promotionInfo.en.banner,
@@ -153,7 +154,7 @@ const validateForm = () => {
     },*/
     {
       condition: promotionInfo.en && !promotionInfo.en.content,
-      message: 'Content is required'
+      message: t('addPromotionForm.requiredContent')
     }    
   ];
   const failedValidation = errors.find(check => check.condition);
@@ -191,7 +192,7 @@ const validateForm = () => {
     promotionService.addPromotion(promotionData).then((result) => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
       if (result.isSuccessful) {
-        setSuccessMessage('Promotion saved successfully');        
+        setSuccessMessage(t('addPromotionForm.promotionSavedSuccessfully'));        
         setTimeout(() => {
           onClose();
         }, 3000);
@@ -207,7 +208,7 @@ const validateForm = () => {
     <>
       <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
         <ButtonBackComponent onClick={onClose} />
-        <TitleComponent text={`Add Promotion`} type='main'/>
+        <TitleComponent text={t('managePromotion.addPromotion')} type='main'/>
       </div>
 
       <div className="pb-[16px]">

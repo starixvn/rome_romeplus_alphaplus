@@ -2,6 +2,42 @@
   "promotionReport": "Promotion Report",
   "pendingPromotion": "Pending Promotion",
   "addBonus": "Add Bonus",
+  "managePromotion":{
+    "addPromotion": "Add Promotion",
+    "managePromotion": "Manage Promotion"
+  },
+  "addPromotionForm": {
+    "requiredProductCategory": "Please select at least one Product",
+    "requiredTitle": "Title is required",
+    "requiredContent": "Content is required",
+    "promotionSavedSuccessfully": "Promotion saved successfully",
+    "currentPromotion": "Current Promotion",
+    "onlyOnePromotionCanBeActiveAtATime": "Only one promotion can be active at a time.",
+    "promotionSettings": {
+      "title": "Promotion Settings",
+      "description1": "During the promotion period, bonus amounts will be calculated every Tuesday based on qualified net turnover from the previous week (Monday to Sunday).",
+      "description2": "The bonus is a rebate on qualified net turnover, calculated from WON and LOST bet tickets on selected products.",
+      "description3": "<b>Qualified Net Turnover:</b>",
+      "description4": "Sportsbook & Virtual Sports: Excludes Draw bets and Cash Out.",
+      "description5": "RNG Casino: Slot games only.",
+      "description6": "Live Casino: Includes Draw bets.",
+      "description7": "<b>Note:</b>",
+      "description8": "For Live Casino and RNG Casino, if a member bets on both sides of a game, the qualified net turnover is calculated as: Total payout – Total stake.",
+      "description9": "Example: A member bets 100 on both Player and Banker in a Baccarat game. Banker wins with odds = 1.",
+      "description10": "Payout = 200, Stake = 200 → Net turnover = 0 (200 - 200)"
+    },
+    "promotionType": "Promotion Type",
+    "minTurnover": "Min Turnover",
+    "percentage": "Percentage",
+    "maxPayout": "Max Payout",
+    "title": "Title",
+    "banner": "Banner",
+    "content": "Content"
+  },
+  "editPromotionForm": {
+    "promotionUpdatedSuccessfully": "Promotion updated successfully",
+    "editPromotion": "Edit Promotion"
+  },
   "addBonusForm": {
     "title": "Add Bonus",
     "accountInformation": "Account Information",
