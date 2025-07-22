@@ -35,7 +35,7 @@ public class WriteLogDBCommandCriteria : NonQueryCommand
     public string Duration { get; }
 
     public override string GetSettingKey()
-        => CustDbGroupId < 0 ? "WriteLog_CashService_UserLog_RunSP" : $"SiteDB_{CustDbGroupId}_WriteLog_CashService_UserLog_RunSP";
+        => CustDbGroupId < 0 ? "WriteLog_CashService_UserLog_RunSP" : $"CustDb_{CustDbGroupId}_WriteLog_CashService_UserLog_RunSP";
 
     public override bool IsValid() => CustId > 0 && ActionId > 0;
 }

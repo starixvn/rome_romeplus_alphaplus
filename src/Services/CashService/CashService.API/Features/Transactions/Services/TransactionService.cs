@@ -170,6 +170,7 @@ public class TransactionService(IDynamicRepository dynamicRepository, ICommonSer
             CustDBGroupId = custDbGroupId,
             UserId = log.UserId,
         };
+
         await commonService.WriteLogDBCommand(request, log);
     }
 }
