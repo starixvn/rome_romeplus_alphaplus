@@ -54,7 +54,7 @@ const Information: React.FC<InformationProps> = ({
       <div>•  {t('addPromotionForm.promotionSettings.description4')}</div>
       <div>•  {t('addPromotionForm.promotionSettings.description5')}</div>
       <div>•  {t('addPromotionForm.promotionSettings.description6')}</div>
-      <div>{t('addPromotionForm.promotionSettings.description7')}</div>
+      <div><b>{t('addPromotionForm.promotionSettings.description7')}</b></div>
       <div>•  {t('addPromotionForm.promotionSettings.description8')}</div>
       <div>•  {t('addPromotionForm.promotionSettings.description9')}</div>
       <div>•  {t('addPromotionForm.promotionSettings.description10')}</div>

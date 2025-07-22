@@ -17,11 +17,11 @@
       "title": "Promotion Settings",
       "description1": "During the promotion period, bonus amounts will be calculated every Tuesday based on qualified net turnover from the previous week (Monday to Sunday).",
       "description2": "The bonus is a rebate on qualified net turnover, calculated from WON and LOST bet tickets on selected products.",
-      "description3": "<b>Qualified Net Turnover:</b>",
+      "description3": "Qualified Net Turnover:",
       "description4": "Sportsbook & Virtual Sports: Excludes Draw bets and Cash Out.",
       "description5": "RNG Casino: Slot games only.",
       "description6": "Live Casino: Includes Draw bets.",
-      "description7": "<b>Note:</b>",
+      "description7": "Note:",
       "description8": "For Live Casino and RNG Casino, if a member bets on both sides of a game, the qualified net turnover is calculated as: Total payout – Total stake.",
       "description9": "Example: A member bets 100 on both Player and Banker in a Baccarat game. Banker wins with odds = 1.",
       "description10": "Payout = 200, Stake = 200 → Net turnover = 0 (200 - 200)"
