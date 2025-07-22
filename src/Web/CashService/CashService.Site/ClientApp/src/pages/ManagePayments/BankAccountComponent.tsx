@@ -6,11 +6,8 @@ import { useTranslation } from 'react-i18next';
 
 import BankIcon from '../../components/BankComponents';
 import {
-  ButtonPenComponent,
-  ButtonDeleteComponent,
   ButtonTabActiveComponent,
   ButtonTabInactiveComponent,
-  ButtonClosePopupComponent,
   ButtonApplyComponent,
   ButtonCancelComponent,
   ButtonComponent,
@@ -29,6 +26,7 @@ import SetTransactionLimitModal from './SetTransactionLimitModal';
 import UpdateBankAccountComponent from './UpdateBankAccountComponent';
 import { createErrorResultModel } from '../../services/interfaces/ResultModel';
 import NoRecordFound from '../../components/NoRecordFoundComponent';
+import { ButtonIconComponent } from '../../components/Buttons/ButtonIconComponent';
 
 interface BankAccountComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>; 
@@ -225,7 +223,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
       <div className="px-[20px] pb-[10px] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-w-[400px] w-full max-[768px]:max-w-[90%] rounded-[3px]">
         <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]">
           <TitleComponent type='medium' text={tManagePayments('deleteBankAccount')} />
-          <ButtonClosePopupComponent onClick={closeConfirm} />
+          <ButtonIconComponent style='Close' onClick={closeConfirm} />
         </div>
         <p className="mb-[20px]">
           {tManagePayments('confirmDeleteBankAccount').replace(
@@ -465,11 +463,8 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
                         </td>
                         <td className="col-shadown bg-[var(--table-background)] left-[32px] min-w-[82px] sticky z-11">
                           <div className="flex justify-center">
-                            <ButtonPenComponent
-                              disabled={deleting === account.id}
-                              onClick={() => onEditBankAccount(account.id)}
-                            />
-                            <ButtonDeleteComponent onClick={() => onDeleteBankAccount(account)} />
+                            <ButtonIconComponent style='Edit' disabled={deleting === account.id} onClick={() => onEditBankAccount(account.id)} />
+                            <ButtonIconComponent style='Delete' onClick={() => onDeleteBankAccount(account)} />
                           </div>
                         </td>
                         <td className="text-left">

@@ -17,8 +17,7 @@ export const TitleComponent: React.FC<TitleComponentProps> = ({
   required = false,
   showTippy = false,
   children,
-  classNameTippy,
-  isShowIcon = false,
+  classNameTippy, 
 }) => {
   // Validate and get safe type
   const safeType = validateTitleType(type);
@@ -69,25 +68,20 @@ export const TitleComponent: React.FC<TitleComponentProps> = ({
     return (
       <Tippy content={children} placement="top" className={classNameTippy} theme="light" arrow={true}>
         <span>
-          <IconInfo className="w-[18px] cursor-pointer h-[18px] ml-[10px] fill-[#118AF2]" />
+          <IconInfo className="cursor-pointer ml-[4px] " />
         </span>
       </Tippy>
     );
   };
 
-  const renderIcon = () => {
-    if (!isShowIcon) return null;
-    return <IconInfo className="w-[18px] h-[18px] ml-[10px] fill-[#118AF2]" />;
-  };
-
+ 
   const Element = styles.element;
 
   return (
     <Element className={styles.container}>
       {text}
       {renderRequired()}
-      {renderTippy()}
-      {renderIcon()}
+      {renderTippy()} 
     </Element>
   );
 };

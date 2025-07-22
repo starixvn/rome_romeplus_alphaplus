@@ -9,7 +9,6 @@ import {
 import BankIcon from '../../../../components/BankComponents.tsx';
 import {
   ButtonCancelComponent,
-  ButtonClosePopupComponent,
   ButtonRejectComponent,
   ButtonApplyComponent,
 } from '../../../../components/Buttons/index';
@@ -24,6 +23,7 @@ import UploadImage from '../../Components/UploadImage';
 import { LoadingFullComponent } from '../../../../components/LoadingComponent';
 import ConfirmPopup from '../../../../components/ConfirmPopup';
 import { ResultModel } from '../../../../services/interfaces/ResultModel.ts';
+import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent.tsx';
 
 interface PendingWithdrawalModalProps {
   transId: number;
@@ -275,7 +275,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
             <TitleComponent type='medium'
               text={` ${t('pendingWithdrawalModal.title')} (${withdrawal?.transId})`}
             />
-            <ButtonClosePopupComponent onClick={onClose} />
+            <ButtonIconComponent style='Close' onClick={onClose} />
           </div>
           {resultMessage.type && (
             <MessageComponent

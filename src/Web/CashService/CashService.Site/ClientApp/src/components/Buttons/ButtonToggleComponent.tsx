@@ -19,10 +19,10 @@ const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(({
   disabled = false,
   ...props
 }, ref) => {
-  const baseClasses = 'w-[90px] p-[4px] cursor-pointer outline-none font-semibold';
+  const baseClasses = 'w-[90px] p-[4px] outline-none font-semibold';
   const activeClasses = 'bg-[var(--button-switch-toggle-background-active)] text-[var(--button-switch-toggle-color-active)]';
   const inactiveClasses = 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-color)]';
-  const disabledClasses = disabled ? 'cursor-not-allowed opacity-80' : '';
+  const disabledClasses = disabled ? 'cursor-not-allowed opacity-80' : 'cursor-pointer';
   
   const borderClasses = isLeftSide 
     ? 'rounded-tl-[4px] rounded-bl-[4px]' 

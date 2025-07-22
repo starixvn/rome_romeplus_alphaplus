@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 import BankIcon from '../../components/BankComponents';
 import {
-  ButtonBackComponent,
   ButtonComponent,
   DisableButtonComponent,
   EnableButtonComponent,
@@ -32,6 +31,7 @@ import {
 import { isNumberIncludes } from '../../utils/sharedUtils';
 import { createErrorResultModel } from '../../services/interfaces/ResultModel';
 import { StatusComponent } from '../../components/Status';
+import { ButtonIconComponent } from '../../components/Buttons/ButtonIconComponent';
 
 interface UpdateBankAccountComponentProps {
   onClose: () => void;
@@ -368,7 +368,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
        
         <div className="modal-content max-w-[1200px]">
           <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-            <ButtonBackComponent onClick={onClose} />
+            <ButtonIconComponent style='Back' onClick={onClose} />
             <TitleComponent type='main' text={tManagePayments('bankManagement')} />
           </div>
           <div className={`bg-[#ffffff] dark:bg-[#2b2b2b] px-[20px] py-[10px] rounded-[5px] max-w-[722px] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f] mb-[15px] border-l-[12px] ${fetchedBankAccount?.status === 1 ? ' border-[#5cb774]' : 'border-[#af4646]'}`} >

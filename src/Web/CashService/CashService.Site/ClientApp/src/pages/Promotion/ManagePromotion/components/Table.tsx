@@ -1,9 +1,6 @@
 ﻿import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import {
-    ButtonDeleteComponent,
-    ButtonPenComponent,
-} from '../../../../components/Buttons/ButtonIconComponent';
+
 import NoRecordFound from '../../../../components/NoRecordFoundComponent';
 import { StatusComponent } from '../../../../components/Status';
 import { useCookieLanguage } from '../../../../hooks/useCookieLanguage';
@@ -14,6 +11,7 @@ import {
     PromotionDetail,
 } from '../../../../services/interfaces/Promotion';
 import { formatDate } from '../../../../utils/commonFunctions';
+import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
  
 
 interface TableProps {
@@ -141,8 +139,8 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
       <td className=" text-center">{index + 1}</td>
       <td className=" text-center">
         <div className="flex justify-center">
-          <ButtonPenComponent onClick={() => onEdit?.(item)} />
-          <ButtonDeleteComponent onClick={() => onDelete?.(item)} />
+          <ButtonIconComponent style='Edit' onClick={() => onEdit?.(item)} />
+          <ButtonIconComponent style='Delete' onClick={() => onDelete?.(item)} />
         </div>
       </td>
       <td className=" text-left">{item.promotionTitle}</td>

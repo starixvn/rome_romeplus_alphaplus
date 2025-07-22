@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {  ButtonClosePopupComponent } from './Buttons/index';
+import {  ButtonIconComponent } from './Buttons/ButtonIconComponent';
 import { TitleComponent } from './Title';
 
 interface PopupModalProps {
@@ -18,7 +18,7 @@ const PopupModalComponent: React.FC<PopupModalProps> = ({
       <div className="p-[12px] pt-[0] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-w-[560px] min-w-[580px] max-[768px]:max-w-[90%] rounded-[3px] dark:bg-[#121212]">
         <div className="relative mb-[10px] text-center border-b-[1px] border-[var(--border-color)] py-[11px]" >
           <TitleComponent type='medium' text={title} />
-          <ButtonClosePopupComponent onClick={onClose} />
+          <ButtonIconComponent style='Close' onClick={onClose} />
         </div>
         <div>
           {children}

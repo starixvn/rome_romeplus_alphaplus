@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import { IconCopy, IconExcel, IconSearch } from '../../../../components/Icons';
+import { IconSearch } from '../../../../components/Icons';
 import { PromotionTransaction } from '../../../../services/interfaces/Promotion';
 import { displayAmount, formatDateTime } from '../../../../utils/commonFunctions';
 import Tippy from '@tippyjs/react';
-import { ButtonApplyComponent, ButtonRejectComponent } from '../../../../components/Buttons';
+import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
+import { ButtonComponent } from '../../../../components/Buttons';
 
 interface SearchProps {
   value: string;
@@ -74,19 +75,20 @@ const Search: React.FC<SearchProps> = ({
   return (
     <div className="flex items-center w-full justify-between">
       <div className="flex items-center gap-[8px]">
-        <ButtonApplyComponent
+        <ButtonComponent
           variant="apply"
           onClick={onApprove}
           disabled={selectedItems.length === 0}
           text={t('search.approve') + ' (' + selectedItems.length + ')'}
         />
-        <ButtonRejectComponent
+        <ButtonComponent
+          variant="reject"
           onClick={onReject}
           disabled={selectedItems.length === 0}
           text={t('search.reject') + ' (' + selectedItems.length + ')'}
         />
       </div>
-      <div className="flex items-center gap-[8px]">
+      <div className="flex items-center">
         <Tippy
           content={t('messages.exportToExcel')}
           placement="top"
@@ -94,20 +96,13 @@ const Search: React.FC<SearchProps> = ({
           arrow={true}
           hideOnClick={false}
         >
-          <button
-            onClick={handleDownload}
-            className="p-[4px] bg-black/10 rounded-[3px] cursor-pointer"
-          >
-            <IconExcel />
-          </button>
+          <ButtonIconComponent style='Excel' onClick={handleDownload} />
         </Tippy>
         <Tippy content={textCopy} placement="top" theme="light" arrow={true} hideOnClick={false}>
-          <button onClick={handleCopy} className="p-[4px] bg-black/10 rounded-[3px] cursor-pointer">
-            <IconCopy />
-          </button>
+          <ButtonIconComponent style='Copy' onClick={handleCopy} />
         </Tippy>
 
-        <div className="flex">
+        <div className="flex ml-[4px]">
           <div className="w-[250px] ml-auto">
             <div className="relative">
               <span className="absolute transform-[translatey(-50%)] z-[10] top-1/2 left-[8px]">

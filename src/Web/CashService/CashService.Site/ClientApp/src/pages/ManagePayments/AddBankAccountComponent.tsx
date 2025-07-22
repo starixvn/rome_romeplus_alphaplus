@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 import BankIcon from '../../components/BankComponents';
 import {
-  ButtonBackComponent,
   ButtonComponent,
   DisableButtonComponent,
   EnableButtonComponent,
@@ -29,6 +28,7 @@ import {
   hasWithdrawalTransactionType,
 } from '../../utils/bankTransactionUtils';
 import { ensureIntegerInput } from '../../utils/inputHandlers';
+import { ButtonIconComponent } from '../../components/Buttons/ButtonIconComponent';
 
 interface AddBankAccountComponentProps {
   onClose: () => void;
@@ -299,7 +299,7 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
     <div tabIndex={-1}>      
       <div className="modal-content max-w-[1200px]">
         <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-          <ButtonBackComponent onClick={onClose} />
+          <ButtonIconComponent style='Back' onClick={onClose} />
           <TitleComponent type='main' text={tManagePayments('bankManagement')} />
         </div>
         {isLoadingBanks ? (<LoadingFullComponent />) : (

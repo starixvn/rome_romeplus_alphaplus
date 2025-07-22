@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ButtonClosePopupComponent,
   ButtonComponent,
 } from '../../components/Buttons/index';
 import { MessageComponent } from '../../components/Message';
@@ -10,6 +9,7 @@ import { TitleComponent } from '../../components/Title';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { ensureIntegerInput } from '../../utils/inputHandlers';
 import { createErrorResultModel } from '../../services/interfaces/ResultModel';
+import { ButtonIconComponent } from '../../components/Buttons/ButtonIconComponent';
 
 interface SetDailyLimitPopupModalProps {
   onClose: () => void;
@@ -114,7 +114,7 @@ const SetDailyLimitPopupModal: React.FC<SetDailyLimitPopupModalProps> = ({ onClo
       <div className="p-[12px] pt-[0] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-w-[400px] max-[768px]:max-w-[90%] rounded-[3px]">
         <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]" >
           <TitleComponent type='medium' text={t('managePayments:setDailyWithdrawalCount')} />
-          <ButtonClosePopupComponent onClick={onClose} />
+          <ButtonIconComponent style='Close' onClick={onClose} />
         </div>
         <div className="my-[8px]">
           <MessageComponent message={error} type='error' />

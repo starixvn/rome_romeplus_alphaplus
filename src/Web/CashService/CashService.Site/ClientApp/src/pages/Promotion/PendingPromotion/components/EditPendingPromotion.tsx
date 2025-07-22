@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ButtonClosePopupComponent } from '../../../../components/Buttons';
+
 import { TitleComponent } from '../../../../components/Title';
 import { ButtonComponent } from '../../../../components/Buttons';
 import { displayAmount } from '../../../../utils/commonFunctions';
 import { AmountInput } from '../../../../components/AmountInput';
+import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
 
 interface EditPendingPromotionProps {
   isOpen: boolean;
@@ -64,7 +65,7 @@ const EditPendingPromotion: React.FC<EditPendingPromotionProps> = ({
       <div className="p-[12px] pt-[0] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] max-w-[400px] w-full mx-4 rounded-[3px] dark:bg-[#121212]">
         <div className="relative mb-[10px] text-center border-b-[1px] border-[var(--border-color)] py-[11px]">
           <TitleComponent text={`${t('editModal.title')} ${transId}`} />
-          <ButtonClosePopupComponent onClick={onClose} />
+          <ButtonIconComponent style='Close' onClick={onClose} />
         </div>
 
         <div className="mb-[20px]">

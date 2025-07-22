@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  ButtonBackComponent,
+
   ButtonApplyComponent,
   ButtonCancelComponent,
 } from '../../../../components/Buttons';
@@ -16,6 +16,7 @@ import pendingDepositAPI from '../../../../services/pendingDepositAPI';
 import { displayAmount } from '../../../../utils/commonFunctions';
 import { useTranslation } from 'react-i18next';
 import { promotionService } from '../../../../services/promotionAPI';
+import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
 
 interface AddBonusFormProps {
   onClose?: () => void;
@@ -120,7 +121,7 @@ const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose }) => {
   return (
     <div className="">
       <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-        <ButtonBackComponent onClick={onClose} />
+        <ButtonIconComponent style='Back' onClick={onClose || (() => {})} />
         <TitleComponent text={`${t('addBonus')}`} type='main'/>
       </div>
       <div

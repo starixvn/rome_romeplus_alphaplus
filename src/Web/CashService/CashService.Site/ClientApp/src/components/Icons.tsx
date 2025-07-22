@@ -125,7 +125,7 @@ export const IconSearch: React.FC = () => (
     <path d="M23 20.2h-1.4l-0.6-0.6c1.8-2 3-4.8 3-7.6 0-6.6-5.4-12-12-12-6.4 0-11.8 5.4-11.8 11.8 0 6.6 5.4 11.8 11.8 11.8 3 0 5.6-1 7.6-3l0.6 0.6v1.4l9.2 9.2 2.8-2.8-9.2-8.8zM12 20.2c-4.6 0-8.2-3.6-8.2-8.2s3.8-8.4 8.2-8.4 8.2 3.6 8.2 8.2-3.6 8.4-8.2 8.4z"></path>
   </svg>
 );
-export const IconDelete: React.FC<IconProps> = ({ className }) => (
+export const IconDelete: React.FC<IconProps> = ({ className = '' }) => (
   <svg
     className={`w-[16px] h-[16px] fill-[#d33] dark:fill-[#e54748] ${className}`}
     version="1.1"
@@ -196,7 +196,7 @@ export const IconArrowDown = ({ className }: { className?: string }) => (
 );
 export const IconInfo = ({ className }: { className?: string }) => (
   <svg
-    className={`w-[20px] h-[20px] ml-[4px] fill-[#118AF2] ${className}`}
+    className={`w-[20px] h-[20px] fill-[#118AF2] ${className}`}
     version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"

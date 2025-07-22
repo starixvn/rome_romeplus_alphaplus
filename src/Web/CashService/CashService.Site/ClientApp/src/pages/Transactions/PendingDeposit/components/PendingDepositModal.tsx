@@ -6,8 +6,7 @@ import {
   renderBankAccount,
 } from '../../../../utils/commonFunctions.tsx';
 import {
-  ButtonClosePopupComponent,
-  ButtonComponent,
+ ButtonComponent,
 } from '../../../../components/Buttons/index';
 import { MessageComponent } from '../../../../components/Message';
 import { TitleComponent } from '../../../../components/Title';
@@ -17,6 +16,7 @@ import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import { LoadingFullComponent } from '../../../../components/LoadingComponent';
 import pendingDepositAPI from '../../../../services/pendingDepositAPI';
 import ConfirmPopup from '../../../../components/ConfirmPopup';
+import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent.tsx';
 
 interface PendingDepositModalProps {
   transId: number;
@@ -169,7 +169,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
             <TitleComponent type='medium'
               text={` ${t('pendingDepositModal.title')} (${deposit?.transId})`}
             />
-            <ButtonClosePopupComponent onClick={() => onClose(false)} />
+            <ButtonIconComponent style='Close' onClick={() => onClose(false)} />
           </div>
           {resultMessage && (
             <MessageComponent

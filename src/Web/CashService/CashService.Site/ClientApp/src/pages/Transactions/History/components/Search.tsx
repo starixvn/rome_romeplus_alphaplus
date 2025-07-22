@@ -4,8 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory';
 import { displayAmount, formatDateTime, mappingStatus } from '../../../../utils/commonFunctions';
 import Tippy from '@tippyjs/react';
-import { ButtonCopyComponent, ButtonExcelComponent } from '../../../../components/Buttons/ButtonIconComponent';
+ 
 import { IconSearch } from '../../../../components/Icons';
+import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
 
 interface SearchProps {
   value: string;
@@ -115,7 +116,7 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, o
       <div className="italic ">
         <span className="text-[#ff0101] dark:text-[#e54748]">*</span> {t('filter.maxRecords')}
       </div>
-      <div className="flex items-center gap-[8px]">
+      <div className="flex items-center">
         <Tippy
           content={t('messages.exportToExcel')}
           placement="top"
@@ -123,13 +124,13 @@ const Search: React.FC<SearchProps> = ({ value, onChange, items, columnFilter, o
           arrow={true}
           hideOnClick={false}
         >
-          <ButtonExcelComponent onClick={handleDownload} />
+          <ButtonIconComponent style='Excel' onClick={handleDownload} />
         </Tippy>
         <Tippy content={textCopy} placement="top" theme="light" arrow={true} hideOnClick={false}>
-          <ButtonCopyComponent onClick={handleCopy} />
+          <ButtonIconComponent style='Copy' onClick={handleCopy} />
         </Tippy>
 
-        <div className="flex">
+        <div className="flex ml-[4px]">
           <div className="w-[250px] ml-auto">
             <div className="relative">
               <span className="absolute transform-[translatey(-50%)] z-[10] top-1/2 left-[8px]">

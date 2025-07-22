@@ -14,7 +14,6 @@ import UploadImage from '../../Components/UploadImage';
 import BankIcon from '../../../../components/BankComponents';
 import { displayAmount, renderBankOptionValue } from '../../../../utils/commonFunctions';
 import {
-  ButtonBackComponent,
   ButtonComponent,
 } from '../../../../components/Buttons/index';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
@@ -22,6 +21,7 @@ import {
   TitleComponent,
 } from '../../../../components/Title';
 import { AmountInput } from '../../../../components/AmountInput';
+import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
 
 interface ManualAddWithdrawalFormProps {
   onClose?: () => void; 
@@ -268,7 +268,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({ onClo
   return (
     <div className="">
       <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-        <ButtonBackComponent onClick={onClose} />
+        <ButtonIconComponent style='Back' onClick={onClose || (() => {})} />
         <TitleComponent type='main' text={t('manualWithdrawalForm.title')} />
       </div>
 

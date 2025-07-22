@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ButtonClosePopupComponent,
   ButtonComponent,
 } from '../../../../components/Buttons/index';
 
@@ -21,6 +20,7 @@ import {
 import { TitleComponent } from '../../../../components/Title'; 
 import LoadingComponent from '../../../../components/LoadingComponent';
 import ConfirmPopup from '../../../../components/ConfirmPopup';
+import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
 
 interface TransactionDetailProps {
   transactionId: number | null;
@@ -149,7 +149,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
             <div className="relative ml-[10px]">
               {detailData && mappingStatus(detailData.statusId, detailData.status)}
             </div>
-            <ButtonClosePopupComponent onClick={onClose} />
+            <ButtonIconComponent style='Close' onClick={onClose} />
           </div>
 
           {revertAlert.type && (

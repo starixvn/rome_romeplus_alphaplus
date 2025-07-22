@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ButtonClosePopupComponent,
   ButtonComponent,
 } from '../../components/Buttons/index';
 import { MessageComponent } from '../../components/Message';
@@ -11,6 +10,7 @@ import { createDefaultPaymentTransactionLimit } from '../../services/interfaces/
 import { paymentProviderService } from '../../services/paymentsAPI';
 import { ensureDecimalInput, ensureIntegerInput } from '../../utils/inputHandlers';
 import { createErrorResultModel } from '../../services/interfaces/ResultModel';
+import { ButtonIconComponent } from '../../components/Buttons/ButtonIconComponent';
 interface SetTransactionLimitModalProps {
   onClose: () => void;
   onSave: () => void;
@@ -242,7 +242,7 @@ const SetTransactionLimitModal: React.FC<SetTransactionLimitModalProps> = ({ onC
       <div className="p-[12px] pt-[0] bg-[var(--modal-background)] mt-[100px] max-w-[540px] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] max-[768px]:max-w-[90%] rounded-[3px] ">
         <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]">
           <TitleComponent type='medium' text={tManagePayments('transactionLimitPreferences')} />
-          <ButtonClosePopupComponent onClick={onClose} />
+          <ButtonIconComponent style='Close' onClick={onClose} />
         </div>
         <form onSubmit={onSubmit}>
           <div className="mb-[16px]">

@@ -3,8 +3,7 @@ import * as React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-  ButtonComponent,
-  ButtonClosePopupComponent,
+  ButtonComponent
 } from '../../components/Buttons/index';
 import {
   MessageComponent, 
@@ -19,6 +18,7 @@ import { paymentProviderService } from '../../services/paymentsAPI';
 import { createDefaultAddPaymentMethodViewModel } from '../../services/interfaces/Payments/AddPaymentMethodViewModel';
 import { createErrorResultModel } from '../../services/interfaces/ResultModel';
 import { IconArrowDown } from '../../components/Icons';
+import { ButtonIconComponent } from '../../components/Buttons/ButtonIconComponent';
 
 interface UpdatePaymentMethodModalProps {
   onClose: () => void;
@@ -237,7 +237,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
       <div className="p-[12px] pt-[0] overflow-y-auto bg-[var(--modal-background)] w-full max-w-[560px] max-[768px]:max-w-[90%] rounded-[3px] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] max-h-[90%] overflow-auto">
         <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]" >
           <TitleComponent type='medium' text={tPaymentProviderSettings('updatePaymentMethod')} />
-          <ButtonClosePopupComponent onClick={onClose} />
+          <ButtonIconComponent style='Close' onClick={onClose} />
         </div>
         <MessageComponent type={resultType} message={resultMessage} className="mt-[8px]" />
         <form onSubmit={onSubmit}>

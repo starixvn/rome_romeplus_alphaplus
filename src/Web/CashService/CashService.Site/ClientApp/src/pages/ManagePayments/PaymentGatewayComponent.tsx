@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 
 import {
   ButtonComponent,
-  ButtonPenComponent,
   ButtonTabActiveComponent,
   ButtonTabInactiveComponent,
 } from '../../components/Buttons/index';
@@ -19,6 +18,7 @@ import { paymentProviderService } from '../../services/paymentsAPI';
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import DailyLimitPopupModal from './SetDailyLimitPopupModal';
 import NoRecordFound from '../../components/NoRecordFoundComponent';
+import { ButtonIconComponent } from '../../components/Buttons/ButtonIconComponent';
 
 interface PaymentGatewayComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
@@ -111,7 +111,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
           <ButtonTabInactiveComponent text={tManagePayments('bankAccount')} onClick={() => setActiveTab('bankAccount')} />
         </li>
       </ul>
-       
+     
       <div className="max-w-[1000px]">
          
         {loading ? (<Loading />) : 
@@ -138,7 +138,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
                       <td>{index + 1}</td>
                       <td>
                         <div className="flex justify-center items-center">                          
-                          <ButtonPenComponent onClick={() => onEditClick(provider)} />
+                          <ButtonIconComponent style='Edit' onClick={() => onEditClick(provider)} />
                         </div>
                       </td>
                       <td>{provider.name}</td>

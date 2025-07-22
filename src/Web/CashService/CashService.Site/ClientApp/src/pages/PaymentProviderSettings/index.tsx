@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import Tippy from '@tippyjs/react';
 
 import {
-    ButtonBackComponent, ButtonComponent, DisableButtonComponent, EnableButtonComponent
+    ButtonComponent, DisableButtonComponent, EnableButtonComponent
 } from '../../components/Buttons/index';
 import { IconArrowDown, IconInfo, IconReload } from '../../components/Icons';
 import { LoadingFullComponent } from '../../components/LoadingComponent';
@@ -33,6 +33,7 @@ import BanksPopupModal from './BanksPopupModal';
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import UpdatePaymentMethodModal from './UpdatePaymentMethodModal';
 import NoRecordFound from '../../components/NoRecordFoundComponent';
+import { ButtonIconComponent } from '../../components/Buttons/ButtonIconComponent';
 
 declare global {
   interface Window {
@@ -466,7 +467,7 @@ function PaymentProviderSettings() {
          
           <div className="settings-header">
             <div className="flex items-center justify-flex-start mb-[12px] py-[8px] border-[var(--border-color)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-              <ButtonBackComponent onClick={onBackNavigation} />
+              <ButtonIconComponent style='Back' onClick={onBackNavigation} />
               <TitleComponent type='main' text={window.providerSettingsViewModel.Provider.Name} />                
             </div>
           </div>

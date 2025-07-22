@@ -1,14 +1,7 @@
 import React from 'react';
 import { ButtonComponent } from './ButtonComponent';
 import { ButtonComponentProps } from './types';
-import { 
-  ButtonClosePopupComponent, 
-  ButtonPenComponent, 
-  ButtonDeleteComponent,
-  ButtonExcelComponent,
-  ButtonCopyComponent,
-  ButtonBackComponent
-} from './ButtonIconComponent';
+
 import { 
   EnableButtonComponent, 
   DisableButtonComponent,
@@ -73,15 +66,6 @@ export const ButtonRejectComponent: React.FC<ButtonComponentProps> = (props) => 
   <ButtonComponent {...props} variant={BUTTON_VARIANTS.REJECT} />
 );
 
-// Export icon button components
-export { 
-  ButtonClosePopupComponent, 
-  ButtonPenComponent, 
-  ButtonDeleteComponent,
-  ButtonExcelComponent,
-  ButtonCopyComponent,
-  ButtonBackComponent
-} from './ButtonIconComponent';
 
 // Export toggle button components
 export { 
@@ -111,15 +95,7 @@ export const Buttons = {
   Full: ButtonFullComponent,
   Outline: ButtonOutlineComponent,
   Reject: ButtonRejectComponent,
-  
-  // Icon buttons
-  Close: ButtonClosePopupComponent,
-  Edit: ButtonPenComponent,
-  Delete: ButtonDeleteComponent,
-  Excel: ButtonExcelComponent,
-  Copy: ButtonCopyComponent,
-  Back: ButtonBackComponent,
-  
+
   // Toggle buttons
   Enable: EnableButtonComponent,
   Disable: DisableButtonComponent,

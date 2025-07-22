@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ButtonComponent } from './Buttons/ButtonComponent';
-import { ButtonClosePopupComponent } from './Buttons/ButtonIconComponent';
+import { ButtonIconComponent } from './Buttons/ButtonIconComponent';
 import { TitleComponent } from './Title';
 
 interface ConfirmPopupProps {
@@ -29,7 +29,7 @@ const ConfirmPopup: React.FC<ConfirmPopupProps> = ({
       <div className="p-[12px] pt-[0] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] mt-[100px] max-[768px]:max-w-[90%] overflow-auto rounded-[4px]">
         <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]">
           <TitleComponent type='medium' text={title} />
-          <ButtonClosePopupComponent onClick={onCancel} />
+          <ButtonIconComponent style='Close' onClick={onCancel} />
         </div>
         <div className="mb-[20px]">{message}</div>
         {children}

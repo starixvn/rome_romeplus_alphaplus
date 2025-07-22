@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {
-  ButtonBackComponent,
   ButtonComponent,
 } from '../../../../components/Buttons/index';
 import { MessageComponent } from '../../../../components/Message'; 
@@ -18,6 +17,7 @@ import Information from './Form/Information';
 import PromotionInfo, { PromotionLangFields } from './Form/LanguageInfo';
 import ProductSettings from './Form/ProductSettings';
 import { useTranslation } from 'react-i18next';
+import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
 
 interface AddPromotionProps {
   onClose: () => void;
@@ -207,7 +207,7 @@ const validateForm = () => {
   return (
     <>
       <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-        <ButtonBackComponent onClick={onClose} />
+        <ButtonIconComponent style='Back' onClick={onClose} />
         <TitleComponent text={t('managePromotion.addPromotion')} type='main'/>
       </div>
 
