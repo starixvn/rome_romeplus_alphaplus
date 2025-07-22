@@ -27,6 +27,8 @@ public interface IPromotionService
 
     Task<ResultModel> AddBonusAsync(AddBonusRequest request);
 
+    Task<ResultModel> UpdatePromoteTransactionStatusAsync(UpdatePromoteTransactionRequest request);
+
     Task<(IEnumerable<PromotionTransaction>, int)> GetPromotionTransactionAsync(GetPromotionTransactionRequest criteria);
 }
 
@@ -221,6 +223,28 @@ public class PromotionService(IDynamicRepository repository,
             CustDbGroupId = request.CustDBGroupId,
             SiteDbGroupId = request.SiteDBGroupId,
             IP = request.IP
+        };
+        var logs = await repository.FetchAsync<WriteLogDBCommandModel>(criteria);
+        var result = new ResultModel(criteria.ErrCode, criteria.ErrMsg);
+        transactionService.OnAfterUpdateTransaction(criteria.CashAccumCreditTbl, request.SiteDBGroupId, request.CustDBGroupId, logs.ToList());
+        return result;
+    }
+
+    public async Task<ResultModel> UpdatePromoteTransactionStatusAsync(UpdatePromoteTransactionRequest request)
+    {
+        var memberSettings = await depositService.GetMemberSettingDepositWhenProcessTransactionAsync(request.CustId, request.UserId, request.CustDBGroupId);
+
+        var criteria = new UpdatePromoteTransactionCriteria
+        {
+            CustId = request.CustId,
+            AgentId = request.UserId,
+            SubAccId = request.SubAccId,
+            StatusId = request.StatusId,
+            NewAmount = request.Amount,
+            IP = request.IP,
+            AgentGivenCredit = memberSettings.AgentGivenCredit,
+            CreditMembersGivenCredit = memberSettings.CreditMembers_GivenCredit,
+            SiteDbGroupId = request.SiteDBGroupId,
         };
         var logs = await repository.FetchAsync<WriteLogDBCommandModel>(criteria);
         var result = new ResultModel(criteria.ErrCode, criteria.ErrMsg);

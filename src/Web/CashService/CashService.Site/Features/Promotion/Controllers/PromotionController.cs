@@ -18,6 +18,7 @@ using Shared;
 using Shared.Contants;
 using Shared.Filters;
 using Shared.Models;
+using Transactions.Enum;
 using ViewModels;
 
 [SiteAuthorizationFilter(PageAccessType.CashPromotion)]
@@ -203,5 +204,34 @@ public class PromotionController(
             result.Message = ErrorCodeHandler.MappingAddManualWithdrawalErrCode(result.Code);
         }
         return Json(result);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> ApprovePromotionTransaction([FromBody] ApprovePromotionTransactionRequest request)
+    {
+        request.SetUserSession(userSession);
+        request.StatusId = (int)TransactionStatus.Completed;
+        var result = await UpdatePromoteTransactionStatus(request);
+        return Json(result);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> RejectPromotionTransaction([FromBody] ApprovePromotionTransactionRequest request)
+    {
+        request.SetUserSession(userSession);
+        request.StatusId = (int)TransactionStatus.Rejected;
+        var result = await UpdatePromoteTransactionStatus(request);
+        return Json(result);
+    }
+
+    private async Task<ResultModel> UpdatePromoteTransactionStatus(
+        [FromBody] ApprovePromotionTransactionRequest request)
+    {
+        var result = await httpClientHelper.PostAsync<ApprovePromotionTransactionRequest, ResultModel>("/api/promotions/updateTransactionStatus", request);
+        if (result.Code != 0)
+        {
+            result.Message = ErrorCodeHandler.MappingAddManualWithdrawalErrCode(result.Code);
+        }
+        return result;
     }
 }
