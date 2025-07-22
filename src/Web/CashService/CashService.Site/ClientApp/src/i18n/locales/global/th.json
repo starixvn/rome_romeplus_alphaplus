@@ -94,9 +94,9 @@
     "pending": "รอดำเนินการ",
     "expired": "หมดอายุแล้ว",
     "completed": "เสร็จสมบูรณ์",
-    "rejected": "ปฏิเสธแล้ว",
+    "rejected": "ถูกปฏิเสธ",
     "providerRejected": "ผู้ให้บริการปฏิเสธ",
-    "approved": "ได้รับการอนุมัติ"
+    "approved": "อนุมัติแล้ว"
   },
   "dateRangePicker": {
     "today": "วันนี้",

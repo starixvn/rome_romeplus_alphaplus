@@ -205,40 +205,37 @@
     <value>交易历史</value>
   </data>
   <data name="PromotionReport" xml:space="preserve">
-    <value />
+    <value>优惠报告</value>
   </data>
   <data name="PromotionType" xml:space="preserve">
-    <value />
-  </data>
-  <data name="DateRange" xml:space="preserve">
-    <value />
+    <value>优惠类型</value>
   </data>
   <data name="TotalRequest" xml:space="preserve">
-    <value />
+    <value>总申请次数</value>
   </data>
   <data name="TotalRequestApproved" xml:space="preserve">
-    <value />
+    <value>已批准申请总数</value>
   </data>
   <data name="TotalBonusGiven" xml:space="preserve">
-    <value />
+    <value>已发放奖金总额</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value />
   </data>
   <data name="PromotionTitle" xml:space="preserve">
-    <value />
+    <value>优惠标题</value>
   </data>
   <data name="TotalRequestRejected" xml:space="preserve">
-    <value />
+    <value>已拒绝申请总数</value>
   </data>
   <data name="BonusAmount" xml:space="preserve">
-    <value />
+    <value>奖金金额</value>
   </data>
   <data name="LastUpdated" xml:space="preserve">
-    <value />
+    <value>最后更新</value>
   </data>
   <data name="Approved" xml:space="preserve">
-    <value />
+    <value>已批准</value>
   </data>
   <data name="AccountType" xml:space="preserve">
     <value />

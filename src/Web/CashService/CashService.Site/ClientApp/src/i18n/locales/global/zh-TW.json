@@ -91,12 +91,12 @@
   "status": {
     "waiting": "等待中",
     "cancelled": "已取消",
-    "pending": "處理中",
+    "pending": "待處理",
     "expired": "已過期",
     "completed": "已完成",
     "rejected": "已拒絕",
     "providerRejected": "提供商已拒絕",
-    "approved": "已批准"
+    "approved": "已批準"
   },
   "dateRangePicker": {
     "today": "今天",

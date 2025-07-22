@@ -115,15 +115,6 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date Range.
-        /// </summary>
-        public static string DateRange {
-            get {
-                return ResourceManager.GetString("DateRange", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Exceeds the daily withdrawal limit..
         /// </summary>
         public static string ExceedsTheDailyWithdrawalLimit {

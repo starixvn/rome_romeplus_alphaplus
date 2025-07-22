@@ -210,9 +210,6 @@
   <data name="PromotionType" xml:space="preserve">
     <value />
   </data>
-  <data name="DateRange" xml:space="preserve">
-    <value />
-  </data>
   <data name="TotalRequest" xml:space="preserve">
     <value />
   </data>
