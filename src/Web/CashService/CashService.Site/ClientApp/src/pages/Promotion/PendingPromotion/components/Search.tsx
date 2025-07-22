@@ -96,10 +96,10 @@ const Search: React.FC<SearchProps> = ({
           arrow={true}
           hideOnClick={false}
         >
-          <ButtonIconComponent style='Excel' onClick={handleDownload} />
+          <span><ButtonIconComponent style='Excel' onClick={handleDownload} /></span>
         </Tippy>
         <Tippy content={textCopy} placement="top" theme="light" arrow={true} hideOnClick={false}>
-          <ButtonIconComponent style='Copy' onClick={handleCopy} />
+          <span><ButtonIconComponent style='Copy' onClick={handleCopy} /></span>
         </Tippy>
 
         <div className="flex ml-[4px]">
