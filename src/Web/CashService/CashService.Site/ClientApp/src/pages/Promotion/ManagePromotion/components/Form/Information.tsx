@@ -47,7 +47,7 @@ const Information: React.FC<InformationProps> = ({
       <EnableButtonComponent isActive={isActive} onClick={() => setIsActive(true)} />
       <DisableButtonComponent isActive={!isActive} onClick={() => setIsActive(false)} />
     </div>   
-    <TitleComponent text={t('addPromotionForm.promotionSettings')} showTippy={true} classNameTippy={"max-w-[640px]!"} type='main' >
+    <TitleComponent text={t('addPromotionForm.promotionSettings.title')} showTippy={true} classNameTippy={"max-w-[640px]!"} type='main' >
       <div>{t('addPromotionForm.promotionSettings.description1')}</div>
       <div>{t('addPromotionForm.promotionSettings.description2')}</div>
       <div><b>{t('addPromotionForm.promotionSettings.description3')}</b></div>
