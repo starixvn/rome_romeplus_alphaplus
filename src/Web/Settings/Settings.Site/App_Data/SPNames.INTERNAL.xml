@@ -186,7 +186,7 @@
         <Setting Key="Age_CustomerSelByMAg" SpName="Age_CustomerSelByMAg" DbName="DBCust.CustDB.wsv_alpv">
             <Mapping DataField="IsAllowAutoTransfer" ObjectProperty="AutoTransfer" />
         </Setting>
-        <Setting Key="Age_CustomerSelByAg" SpName="Age_CustomerSelByAg_UAT2" DbName="DBCust.CustDB.wsv_alpv">
+        <Setting Key="Age_CustomerSelByAg" SpName="Age_CustomerSelByAg" DbName="DBCust.CustDB.wsv_alpv">
             <Mapping DataField="IsAllowAutoTransfer" ObjectProperty="AutoTransfer" />
         </Setting>
     </Function>
