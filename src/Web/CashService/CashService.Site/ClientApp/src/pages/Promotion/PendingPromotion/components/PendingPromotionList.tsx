@@ -61,16 +61,16 @@ const useApiParams = () => {
     const todayInGMT4 = convertToGMT4(today);
     todayInGMT4.setHours(23, 59, 59, 0);
 
-    const sevenDaysAgo = new Date();
-    const sevenDaysAgoInGMT4 = convertToGMT4(sevenDaysAgo);
-    sevenDaysAgoInGMT4.setDate(sevenDaysAgoInGMT4.getDate() - 6);
-    sevenDaysAgoInGMT4.setHours(0, 0, 0, 0);
+    const monthAgo = new Date();
+    const monthAgoInGMT4 = convertToGMT4(monthAgo);
+    monthAgoInGMT4.setDate(monthAgoInGMT4.getDate() - 29);
+    monthAgoInGMT4.setHours(0, 0, 0, 0);
 
     return {
-      dateRange: [
-        sevenDaysAgoInGMT4.toLocaleString('en-US'),
-        todayInGMT4.toLocaleString('en-US'),
-      ] as [string, string],
+      dateRange: [monthAgoInGMT4.toLocaleString('en-US'), todayInGMT4.toLocaleString('en-US')] as [
+        string,
+        string,
+      ],
       promotionTypeId: 0,
       pageIndex: 1,
       pageSize: PAGE_SIZE_OPTIONS[2],
@@ -187,9 +187,18 @@ const PendingPromotionList: React.FC<PendingPromotionListProps> = () => {
     [setSelectedItems]
   );
 
-  const onDownload = useCallback(() => {
-    console.log('Download functionality to be implemented');
-  }, []);
+  const onDownload = useCallback(async () => {
+    try {
+      await promotionService.exportExcelPendingPromotion({
+        promotionTypeId: apiParams.promotionTypeId,
+        fromDate: apiParams.dateRange[0],
+        toDate: apiParams.dateRange[1],
+      });
+    } catch (error) {
+      console.error('Error exporting excel:', error);
+      throw error;
+    }
+  }, [apiParams]);
 
   const onReject = useCallback(() => {
     selectedItems.forEach((item) => {

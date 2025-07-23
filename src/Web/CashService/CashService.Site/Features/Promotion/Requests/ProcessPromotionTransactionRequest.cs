@@ -2,9 +2,9 @@
 
 using Shared.Requests;
 
-public class ApprovePromotionTransactionRequest : BaseActionRequest
+public class ProcessPromotionTransactionRequest : BaseActionRequest
 {
-    public long TransId { get; set; }
+    public string TransId { get; set; }
     public int CustId { get; set; }
     public decimal Amount { get; set; }
     public int StatusId { get; set; }

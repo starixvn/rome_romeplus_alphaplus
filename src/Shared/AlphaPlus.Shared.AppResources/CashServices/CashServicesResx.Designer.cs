@@ -223,6 +223,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pending Promotion.
+        /// </summary>
+        public static string PendingPromotion {
+            get {
+                return ResourceManager.GetString("PendingPromotion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Period.
         /// </summary>
         public static string Period {
@@ -318,6 +327,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         public static string TheTransactionInsertedFailedPleaseTryAgain {
             get {
                 return ResourceManager.GetString("TheTransactionInsertedFailedPleaseTryAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
         

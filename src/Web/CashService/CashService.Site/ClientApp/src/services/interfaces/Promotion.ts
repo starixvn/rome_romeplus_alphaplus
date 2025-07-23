@@ -10,7 +10,7 @@
   enabled: boolean;
 }
 
-export interface EditPromotionRequest {  
+export interface EditPromotionRequest {
   promotionId: number;
   enabled: boolean;
   originalEnabled?: boolean;
@@ -35,7 +35,7 @@ export interface PromotionTransactionRequest {
 
 export interface PromotionTransaction {
   promotionId: number;
-  transId: number;
+  transId: string;
   custId: number;
   username: string;
   nickname: string;

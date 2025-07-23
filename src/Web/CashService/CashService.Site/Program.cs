@@ -89,6 +89,7 @@ builder.Services.AddAntiforgery(options =>
 });
 
 builder.Services.AddTransient<ITransactionHistoryWorkbook, TransactionHistoryWorkbook>();
+builder.Services.AddTransient<IPendingPromotionReportWorkbook, PendingPromotionReportWorkbook>();
 builder.Services.AddScoped<IPromotionReportWorkbook, PromotionReportWorkbook>();
 builder.Services.AddScoped<IPromotionDetailsReportWorkbook, PromotionDetailsReportWorkbook>();
 

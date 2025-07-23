@@ -1,9 +1,10 @@
 ﻿namespace AlphaPlus.CashService.API.Features.Promotion.Models;
 
-public class PromotionTransaction
+using Shared.Models;
+
+public class PromotionTransaction : BaseTransaction
 {
     public int PromotionId { get; set; }
-    public long TransId { get; set; }
     public int CustId { get; set; }
     public string Username { get; set; }
     public string Nickname { get; set; }

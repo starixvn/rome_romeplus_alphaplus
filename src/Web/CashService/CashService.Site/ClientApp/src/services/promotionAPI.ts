@@ -138,7 +138,7 @@ export const promotionService = {
 
   approvePromotionTransaction: async (
     custId: number,
-    transId: number,
+    transId: string,
     amount: number
   ): Promise<ResultModel> => {
     const response = await axiosInstance.post<ResultModel>(`ApprovePromotionTransaction`, {
@@ -155,7 +155,7 @@ export const promotionService = {
 
   rejectPromotionTransaction: async (
     custId: number,
-    transId: number,
+    transId: string,
     amount: number
   ): Promise<ResultModel> => {
     const response = await axiosInstance.post<ResultModel>(
@@ -173,6 +173,37 @@ export const promotionService = {
       }
     );
     return response.data;
+  },
+  exportExcelPendingPromotion: async (request: PromotionTransactionRequest): Promise<void> => {
+    try {
+      const queryParams = new URLSearchParams({
+        promotionTypeId: request.promotionTypeId != 0 ? request.promotionTypeId.toString() : '',
+        fromDate: request.fromDate,
+        toDate: request.toDate,
+      });
+      await axiosInstance
+        .get(`ExportExcel?${queryParams.toString()}`, {
+          responseType: 'blob',
+        })
+        .then((response) => {
+          const fileName = response.headers['content-disposition']
+            .split('filename=')[1]
+            .split(';')[0]
+            .replace(/"/g, '');
+
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', fileName);
+          document.body.appendChild(link);
+          link.click();
+          link.parentNode?.removeChild(link);
+          window.URL.revokeObjectURL(url);
+        });
+    } catch (error) {
+      console.error('Error exporting excel:', error);
+      throw error;
+    }
   },
 
   getMainReport: async (filterParams: {

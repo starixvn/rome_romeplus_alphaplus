@@ -30,6 +30,7 @@ public class PromotionController(
     HttpClient httpClient,
     ICustomerService customerService,
     IPromotionReportWorkbook promotionReportWorkbook,
+    IPendingPromotionReportWorkbook pendingPromotionReportWorkbook,
     IPromotionDetailsReportWorkbook promotionDetailsReportWorkbook) : SiteBaseController(userSession, antiforgery, httpClient, customerService)
 {
     private readonly string _apiBaseUrl = configuration["CashService:APIUrl"];
@@ -190,6 +191,16 @@ public class PromotionController(
         return Json(result);
     }
 
+    public async Task<IActionResult> ExportExcel(GetPendingPromotionViewModel request)
+    {
+        request.StatusId = 2;
+        request.CustId = userSession.CustId;
+        request.SiteDbGroupId = userSession.SiteDBGroupId;
+        var result = await httpClientHelper.GetAsync<PromotionTransactionResponse>("/promotions/transactions", ObjectConverter.ToDictionary(request));
+        var excelFileViewModel = pendingPromotionReportWorkbook.BuildExcelFile(request, result.PromotionTransactions);
+        return File(excelFileViewModel.Content, excelFileViewModel.ContentType, excelFileViewModel.Name);
+    }
+
     public IActionResult GetPromotionTypeOptions()
         => Json(EnumHelper.GetEnumOptions<PromotionType>(CashServicesResx.ResourceManager));
 
@@ -207,7 +218,7 @@ public class PromotionController(
     }
 
     [HttpPost]
-    public async Task<IActionResult> ApprovePromotionTransaction([FromBody] ApprovePromotionTransactionRequest request)
+    public async Task<IActionResult> ApprovePromotionTransaction([FromBody] ProcessPromotionTransactionRequest request)
     {
         request.SetUserSession(userSession);
         request.StatusId = (int)TransactionStatus.Completed;
@@ -216,7 +227,7 @@ public class PromotionController(
     }
 
     [HttpPost]
-    public async Task<IActionResult> RejectPromotionTransaction([FromBody] ApprovePromotionTransactionRequest request)
+    public async Task<IActionResult> RejectPromotionTransaction([FromBody] ProcessPromotionTransactionRequest request)
     {
         request.SetUserSession(userSession);
         request.StatusId = (int)TransactionStatus.Rejected;
@@ -225,9 +236,9 @@ public class PromotionController(
     }
 
     private async Task<ResultModel> UpdatePromoteTransactionStatus(
-        [FromBody] ApprovePromotionTransactionRequest request)
+        [FromBody] ProcessPromotionTransactionRequest request)
     {
-        var result = await httpClientHelper.PostAsync<ApprovePromotionTransactionRequest, ResultModel>("/api/promotions/updateTransactionStatus", request);
+        var result = await httpClientHelper.PostAsync<ProcessPromotionTransactionRequest, ResultModel>("/api/promotions/updateTransactionStatus", request);
         if (result.Code != 0)
         {
             result.Message = ErrorCodeHandler.MappingAddManualWithdrawalErrCode(result.Code);

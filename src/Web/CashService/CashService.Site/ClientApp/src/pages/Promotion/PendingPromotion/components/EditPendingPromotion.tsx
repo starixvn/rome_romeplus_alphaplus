@@ -30,6 +30,13 @@ const EditPendingPromotion: React.FC<EditPendingPromotionProps> = ({ isOpen, onC
   }, [item]);
 
   const handleApprove = async () => {
+    if (bonusAmount <= 0) {
+      setResultMessage({
+        type: 'error',
+        message: t('editModal.bonusAmountMustBeGreaterThan0'),
+      });
+      return;
+    }
     setIsSubmitting(true);
     try {
       var result = await promotionService.approvePromotionTransaction(

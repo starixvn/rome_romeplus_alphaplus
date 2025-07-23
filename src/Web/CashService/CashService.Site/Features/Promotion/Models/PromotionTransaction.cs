@@ -8,7 +8,7 @@ using Transactions.Enum;
 public class PromotionTransaction
 {
     public int PromotionId { get; set; }
-    public long TransId { get; set; }
+    public string TransId { get; set; }
     public int CustId { get; set; }
     public string Username { get; set; }
     public string Nickname { get; set; }

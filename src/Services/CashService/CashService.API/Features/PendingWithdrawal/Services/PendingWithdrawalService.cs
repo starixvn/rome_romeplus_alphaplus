@@ -9,7 +9,6 @@ using AlphaPlus.CashService.API.Features.Transactions.Services;
 using Criteria;
 using Fanex.Data.Repository;
 using Models;
-using Shared.Requests;
 using Transactions.Enum;
 
 public interface IPendingWithdrawalService
@@ -203,21 +202,7 @@ public class PendingWithdrawalService(
         var responseLogs = (await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command)).ToArray();
         if (responseLogs.Any())
         {
-            foreach (var writeLogDbCommandModel in responseLogs)
-            {
-                await WriteLogRunSp(writeLogDbCommandModel, param.SiteDBGroupId);
-            }
+            transactionService.OnAfterUpdateTransaction(string.Empty, param.SiteDBGroupId, param.CustDBGroupId, responseLogs.ToList());
         }
-    }
-
-    private async Task WriteLogRunSp(WriteLogDBCommandModel log, short siteDbGroupId)
-    {
-        var request = new BaseActionRequest
-        {
-            ActorId = log.CustId,
-            CustDBGroupId = siteDbGroupId,
-            UserId = log.UserId,
-        };
-        await commonService.WriteLogDBCommand(request, log);
     }
 }

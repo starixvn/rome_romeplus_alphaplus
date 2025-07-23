@@ -35,11 +35,10 @@ const Search: React.FC<SearchProps> = ({
     const headers = [
       t('table.no'),
       `${t('table.username')} & ${t('table.nickname')}`,
-      t('table.name'),
+      `${t('table.firstName')} & ${t('table.lastName')}`,
       t('table.title'),
       t('table.promotionType'),
       t('table.amount'),
-      t('table.status'),
       t('table.dateRange'),
     ];
 
@@ -50,8 +49,7 @@ const Search: React.FC<SearchProps> = ({
         `${item.firstName} ${item.lastName}`,
         item.title,
         item.promotionTypeName,
-        `${displayAmount(item.amount)} ${item.currency}`,
-        item.status,
+        `${displayAmount(item.amount)}`,
         `${formatDateTime(item.fromDate)} - ${formatDateTime(item.toDate)}`,
       ];
       return rowData.join('\t');
@@ -96,10 +94,14 @@ const Search: React.FC<SearchProps> = ({
           arrow={true}
           hideOnClick={false}
         >
-          <span><ButtonIconComponent style='Excel' onClick={handleDownload} /></span>
+          <span>
+            <ButtonIconComponent style="Excel" onClick={handleDownload} />
+          </span>
         </Tippy>
         <Tippy content={textCopy} placement="top" theme="light" arrow={true} hideOnClick={false}>
-          <span><ButtonIconComponent style='Copy' onClick={handleCopy} /></span>
+          <span>
+            <ButtonIconComponent style="Copy" onClick={handleCopy} />
+          </span>
         </Tippy>
 
         <div className="flex ml-[4px]">
