@@ -396,6 +396,24 @@ html * {
 
     .sub-menu .sub-menu-item {
         padding: 16px 25px 2px 40px;
+        &.has-badge{
+            display: flex;
+            align-items: center;
+          
+            .badge-number{
+                background-color: red;
+                color: #fff;
+                padding: 0px 4px;
+                border-radius: 3px;
+                font-size: 12px;
+                font-weight: 600;
+                margin-left: 10px;
+                min-width: 18px;
+                display: inline-block;
+                text-align: center;
+                line-height: 18px;
+            }
+        }
 
         &.active {
             a {
