@@ -930,4 +930,31 @@
   <data name="TotalDirectMember" xml:space="preserve">
     <value>총 직접 회원</value>
   </data>
+  <data name="Checklist" xml:space="preserve">
+    <value>체크리스트</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row8" xml:space="preserve">
+    <value>도움이 필요하신가요? 가이드를 읽어보세요.</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row7" xml:space="preserve">
+    <value>자신의 &lt;strong&gt;가용 크레딧&lt;/strong&gt; 이 입금과 출금에 충분한지 확인하세요</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row6" xml:space="preserve">
+    <value>&lt;div class="chk-line-id"&gt;&lt;/div&gt;자신의 &lt;strong&gt;LINE ID&lt;/strong&gt;를 입력하고 링크를 공유하세요</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row5" xml:space="preserve">
+    <value>&lt;a class="lnk-member-site-management" target="main" href="{0}"&gt;회원 사이트 관리&lt;/a&gt;로 이동하세요</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row4" xml:space="preserve">
+    <value>&lt;div class="chk-withdrawal-methods"&gt;&lt;/div&gt;출금 방법을 설정하고 &lt;strong&gt;활성화&lt;/strong&gt; 하세요</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row3" xml:space="preserve">
+    <value>&lt;div class="chk-deposit-methods"&gt;&lt;/div&gt;입금 방법을 설정하고 &lt;strong&gt;활성화&lt;/strong&gt; 하세요</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row1" xml:space="preserve">
+    <value>회원과 공유할 고유한 가입 링크를 공유하기 위한 단계.</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row2" xml:space="preserve">
+    <value>&lt;a class="lnk-manage-payments" target="main" href="{0}"&gt;결제 관리&lt;/a&gt;로 이동하여 &lt;strong&gt;결제 게이트웨이&lt;/strong&gt; 또는 &lt;strong&gt;은행 계좌&lt;/strong&gt;을 설정하세요</value>
+  </data>
 </root>

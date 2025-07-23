@@ -870,4 +870,31 @@ Lưu ý: Vui lòng thay đổi &lt;b&gt;mật khẩu&lt;/b&gt; Nova Casino Back 
   <data name="HighlightPopupNewFeatureIntro6" xml:space="preserve">
     <value>Muốn xem cách hoạt động?</value>
   </data>
+  <data name="Checklist" xml:space="preserve">
+    <value>Danh sách kiểm tra</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row8" xml:space="preserve">
+    <value>Cần trợ giúp? Vui lòng đọc hướng dẫn của chúng tôi.</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row7" xml:space="preserve">
+    <value>Đảm bảo số dư tài khoản của bạn đủ để thực hiện giao dịch nạp và rút tiền.</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row5" xml:space="preserve">
+    <value>Đi đến &lt;a class="lnk-member-site-management" target="main" href="{0}"&gt;Quản lý trang thành viên&lt;/a&gt;</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row4" xml:space="preserve">
+    <value>&lt;div class="chk-withdrawal-methods"&gt;&lt;/div&gt;Thiết lập và &lt;strong&gt;Kích hoạt&lt;/strong&gt; phương thức rút tiền của bạn</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row3" xml:space="preserve">
+    <value>&lt;div class="chk-deposit-methods"&gt;&lt;/div&gt;Thiết lập và &lt;strong&gt;Kích hoạt&lt;/strong&gt; phương thức nạp tiền của bạn</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row1" xml:space="preserve">
+    <value>Các bước để chia sẻ liên kết đăng ký độc nhất vô nhị của bạn với thành viên của bạn.</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row2" xml:space="preserve">
+    <value>Đi đến &lt;a class="lnk-manage-payments" target="main" href="{0}"&gt;Quản lý thanh toán&lt;/a&gt; để thiết lập &lt;strong&gt;Gateway thanh toán&lt;/strong&gt; hoặc &lt;strong&gt;Tài khoản ngân hàng&lt;/strong&gt;</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row6" xml:space="preserve">
+    <value>&lt;div class="chk-line-id"&gt;&lt;/div&gt;Điền &lt;strong&gt;LINE ID&lt;/strong&gt; của bạn và chia sẻ liên kết của bạn</value>
+  </data>
 </root>

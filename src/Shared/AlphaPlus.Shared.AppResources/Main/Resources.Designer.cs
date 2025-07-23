@@ -3101,7 +3101,7 @@ namespace AlphaPlus.Shared.AppResources.Main
         }
         
         public static string Checklist
-        {
+        { 
             get
             {
                 return ResourceManager.GetString("Checklist", resourceCulture);

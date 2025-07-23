@@ -846,4 +846,31 @@
   <data name="CashService" xml:space="preserve">
     <value>Cash Service</value>
   </data>
+  <data name="Checklist" xml:space="preserve">
+    <value>チェックリスト</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row8" xml:space="preserve">
+    <value>お困りの際は、ガイドをご覧ください。</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row7" xml:space="preserve">
+    <value>あなたの&lt;strong&gt;利用可能なクレジット&lt;/strong&gt;が入金と出金に十分であることを確認してください</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row6" xml:space="preserve">
+    <value>&lt;div class="chk-line-id"&gt;&lt;/div&gt;あなたの&lt;strong&gt;LINE ID&lt;/strong&gt;を入力し、リンクを共有してください</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row5" xml:space="preserve">
+    <value>&lt;a class="lnk-member-site-management" target="main" href="{0}"&gt;メンバーサイト管理&lt;/a&gt;に移動してください</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row4" xml:space="preserve">
+    <value>&lt;div class="chk-withdrawal-methods"&gt;&lt;/div&gt;出金方法を設定し、&lt;strong&gt;有効&lt;/strong&gt;にしてください</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row1" xml:space="preserve">
+    <value>メンバーと共有するユニークなサインアップリンクを共有するための手順。</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row3" xml:space="preserve">
+    <value>&lt;div class="chk-deposit-methods"&gt;&lt;/div&gt;入金方法を設定し、&lt;strong&gt;有効&lt;/strong&gt;にしてください</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row2" xml:space="preserve">
+    <value>&lt;a class="lnk-manage-payments" target="main" href="{0}"&gt;支払い管理&lt;/a&gt;に移動して、&lt;strong&gt;支払いゲートウェイ&lt;/strong&gt;または&lt;strong&gt;銀行口座&lt;/strong&gt;を設定してください</value>
+  </data>
 </root>

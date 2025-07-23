@@ -889,4 +889,31 @@
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
     <value>กังวลเกี่ยวกับผู้เล่นที่มีความเสี่ยงสูงหรือการจ่ายเงินจำนวนมากโดยไม่คาดคิดใช่ไหม?&lt;br/&gt;ด้วยขีดจำกัดการชนะสูงสุดของกีฬา เอเย่นต์สามารถตั้งค่าให้ระงับการวางเดิมพันของสมาชิกโดยตรงโดยอัตโนมัติ เมื่อยอดชนะถึงระดับที่ตั้งไว้</value>
   </data>
+  <data name="Checklist" xml:space="preserve">
+    <value>รายการตรวจสอบ</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row8" xml:space="preserve">
+    <value>ต้องการความช่วยเหลือ? กรุณาอ่านคู่มือของเรา</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row7" xml:space="preserve">
+    <value>ตรวจสอบให้แน่ใจว่า &lt;strong&gt;ยอดเครดิตที่มีอยู่&lt;/strong&gt; เพียงพอสำหรับการฝากและถอน</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row5" xml:space="preserve">
+    <value>ไปที่ &lt;a class="lnk-member-site-management" target="main" href="{0}"&gt;การจัดการเว็บไซต์สมาชิก&lt;/a&gt;</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row4" xml:space="preserve">
+    <value>&lt;div class="chk-withdrawal-methods"&gt;&lt;/div&gt;ตั้งค่าและ &lt;strong&gt;เปิดใช้งาน&lt;/strong&gt; วิธีการถอนเงินของคุณ</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row3" xml:space="preserve">
+    <value>&lt;div class="chk-deposit-methods"&gt;&lt;/div&gt;ตั้งค่าและ &lt;strong&gt;เปิดใช้งาน&lt;/strong&gt; วิธีการฝากเงินของคุณ</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row1" xml:space="preserve">
+    <value>ขั้นตอนในการแชร์ลิงก์ลงทะเบียนสมาชิกของคุณ</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row2" xml:space="preserve">
+    <value>ไปที่ &lt;a class="lnk-manage-payments" target="main" href="{0}"&gt;การจัดการชำระเงิน&lt;/a&gt; เพื่อตั้งค่า &lt;strong&gt;กล้องวิธีการชำระเงิน&lt;/strong&gt; หรือ &lt;strong&gt;บัญชีธนาคาร&lt;/strong&gt;</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row6" xml:space="preserve">
+    <value>&lt;div class="chk-line-id"&gt;&lt;/div&gt;กรอก &lt;strong&gt;LINE ID&lt;/strong&gt; ของคุณและแชร์ลิงก์ของคุณ</value>
+  </data>
 </root>
