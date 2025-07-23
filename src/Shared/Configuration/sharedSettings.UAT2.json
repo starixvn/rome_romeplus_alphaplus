@@ -1,273 +1,273 @@
-{
-    "Logging": {
-        "LogLevel": {
-            "Default": "Information",
-            "Microsoft.AspNetCore": "Warning"
-        }
-    },
-    "AllowedHosts": "*",
-    "ConnectionStrings": [
-        {
-            "Name": "DBGLOB.GlobCustDB.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=10.40.40.191;Initial Catalog=GLOBCUSTDB;integrated security=false; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==; TrustServerCertificate=true",
-            "ProviderName": "System.Data.SqlClient"
-        },                  
-        {
-            "Name": "DBACC.bodb02.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=10.40.40.91;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "DBAGE.bodb02.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=10.40.40.92;Initial Catalog=bodb02;Connect Timeout=600;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "DBARC.bodb_Archive.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=10.40.40.91;Initial Catalog=bodb_archive;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "DBBAH.bodb02.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=10.40.40.93;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "DBBOF.bodb02.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=10.40.40.82;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "DBCust.CustDB.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=10.40.40.191;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "DBCust.IPDB.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=10.40.40.191;Initial Catalog=IPDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "DBLOG.bodb_CustomerLog.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=10.40.40.227;Initial Catalog=bodb_CustomerLog;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "DBONUSER.ON_USER.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=onuser1.prod.net;Initial Catalog=on_user;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "DBRPT.bodb_report.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=10.40.40.91;Initial Catalog=bodb_report;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "DBTXN.bodb02.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=10.40.40.17;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "DBPOL.NAP_UserControl.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=10.40.40.191;Initial Catalog=NAP_UserControl;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "DBOST.bodb_ost.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=10.40.40.82;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "DBBOT.bodb_Chatbot.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=10.40.40.227;Initial Catalog=bodb_Chatbot;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "SiteDB.bodb02.wsv_alp",
-            "ConnectionString": "packet size=4096;Initial Catalog=bodb02;integrated security=false; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==; TrustServerCertificate=True;",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "DBMSG.bodb_Message.wsv_alp",
-            "ConnectionString": "Data Source=10.40.40.50;Initial Catalog=bodb_message;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "DBAGE.bodb_AGE.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=10.40.40.92;Initial Catalog=bodb_AGE;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "DBCust.bodb_Credit.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=10.40.40.191;Initial Catalog=bodb_Credit;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "DB052.bodb02.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=10.40.40.92;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "DB053.bodb02.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=10.40.40.94;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "SiteDB.CustDB.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=10.40.40.191;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        },
-        {
-            "Name": "DBCRM.bodb_CRM.wsv_alp",
-            "ConnectionString": "packet size=4096; Data Source=10.40.40.86;Initial Catalog=bodb_CRM;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
-            "ProviderName": "System.Data.SqlClient"
-        }
-    ],
-    "StoredProcedurePath": "~/App_Data/SPNames.MAIN.xml",
-    "FanexDataServiceApi": "http://vn-alphadataservice2-prod.nebula.prod",
-    "LogLibs": "Rabbit",
-    "Fanex.Logging": {
-        "DefaultCategory": "Alpha-789y-AF-UAT-Linux",
-        "RabbitMQConnectionStrings": "host=10.99.99.51;virtualHost=/fanex_logging;username=fanexlogging;password=VKREKUBBd2T3DAtosbDPojl4YQFDnDp7Yilb8JGcLQ8=",
-        "SentryUrl": "https://3167377bcf9643bab3d9446cc201eac2@sentry.starixplay.com/24",
-        "SentryBackendUrl": "https://3167377bcf9643bab3d9446cc201eac2@10.99.99.51:801/24"
-    },
-    "RedisConfiguration": "10.99.98.117:16379,Password=foo1@bared,Name=Alpha.NetThrottling.UAT,abortConnect=false,configChannel=__Booksleeve_MasterChanged,connectTimeout=6300",
-    "RemotingRefUrl": "http://vn-remotingref-uat.nebula.prod/",
-    "Fanex.Customer": {
-        "ServiceUri": "http://alphaplus_api_settings_UAT_2:5000/api/",
-        "CdnUri": "//cdn-customer.starixuat.com/v2/",
-        "SystemId": 6
-    },
-    "SystemId": 2,
-    "IdentityUrl": "http://alphaplus_api_identity_UAT:5000/",
-    "AssetAppPath": "/stcdn",
-    "JsVersion": "20250415",
-    "AssetsApp:StaticResourcesVersion": "20250415",
-    "LocalTest": false,
-    "SettingStatus": 1,
-    "ProductOfferProductDetail": [
-        1
-    ],
-    "ForcedHideProductIds": "25",
-    "SiteLabel": "789y",
-    "SiteLabel789y": "789y",
-    "AllowedSitesToViewBonusDetail": [
-        "IBCINDO"
-    ],
-    "AllowedSitesToShareLoad": {
-        "10.40.40.94": "y889,y789,yut,yOther"
-    },
-    "AlphaPlus.NetThrottling": {
-        "Resolver": "HttpError",
-        "Policies": [
-            {
-                "Name": "Any",
-                "Path": "*",
-                "Method": "*",
-                "MaxRequests": 15,
-                "ThrottleDuration": 30,
-                "BlockDuration": 60,
-                "Filter": "Whitelist"
-            },
-            {
-                "Name": "Main",
-                "Path": "*",
-                "Method": "POST",
-                "MaxRequests": 60,
-                "ThrottleDuration": 120,
-                "BlockDuration": 600,
-                "Filter": ""
-            },
-            {
-                "Name": "NewCustomer",
-                "Path": "*",
-                "Method": "POST",
-                "MaxRequests": 10,
-                "ThrottleDuration": 600,
-                "BlockDuration": 1800,
-                "Filter": ""
-            }
-        ],
-        "WhiteListCustIds": [
-            17996464,
-            21984259,
-            20269385,
-            15323100,
-            14771858,
-            24338704,
-            19000014,
-            19562449,
-            19562472,
-            27973467,
-            26912753,
-            23003140,
-            14521687,
-            39061067,
-            27783723,
-            26369026,
-            4664545
-        ]
-    },
-    "ONEbook.UM": {
-        "ServiceUri": "http://10.99.98.117:8889/api",
-        "EnableCheckUM": true,
-        "SiteId": 3300000,
-        "EnableUnscheduledUM": false,
-        "UMFrom": "3:00",
-        "UMTo": "4:00",
-        "UMPageUrl": "/main/Account/Offline",
-        "ResultCacheDuration": 15,
-        "UMLoggingCategory": "ONEbook-UM"
-    },
-    "Fanex.Caching.Redis": {
-        "ConnectionOptions": {
-            "EndPoints": [
-                "10.99.98.117:16379"
-            ],
-            "Password": "foo1@bared",
-            "AbortOnConnectFail": false,
-            "ConnectRetry": 5
-        },
-        "ApplicationName": "Alpha.After.789y.UAT"
-    },
-    "MarketsSupportedNewHandbook": "IBC,MBC",
-    "GoogleAnalyticId": "G-5LBSPVVKVJ",
-    "OfferAutoTransfer.Currencies": "",
-    "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo",
-    "OfferClearGivenCredit:Sites": "KORIBC,INDO",
-    "IndirectLogin": {
-        "AllowSuperIds": "*",
-        "URL": "https://idp2.starixuat.com/main/Account/IndirectLogin"
-    },
-    "ProtectedMode": {
-        "OfferSites": "*"
-    },
-    "Authorization": {
-        "cachedExpireTime": 30,
-        "EnableCheckBelonging": true,
-        "DisabledCheckDuplicationLogin": false,
-        "KickOutUrl": "~/default/kickout"
-    },
-    "DisableMessages": false,
-    "Message": {
-        "Super": "3000,3110",
-        "Master": "3000,3210",
-        "Agent": "3000,3310"
-    },
-    "QRCode": {
-        "API": "http://account-service-credit.membersite-service.t2p.nebula.prod:22080/Login/",
-        "Domains": [],
-        "SiteId": 4120,
-        "ExpireSeconds": 900
-    },
-    "WhiteLabel": {
-        "OfferedSites": "",
-        "BackOfficeApiUrl": "http://vn-s1-alpha-api-uat.nebula.prod/api/"
-    },
-    "OfferProfilePictureTour": true,
-    "CashService": {
-        "OfferedSites": "755555,222227",
-        "APIUrl": "http://alphaplus_api_cashservice_uat_2:5000/api"
+﻿{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
     }
+  },
+  "AllowedHosts": "*",
+  "ConnectionStrings": [
+    {
+      "Name": "DBGLOB.GlobCustDB.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=GLOBCUSTDB;integrated security=false; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==; TrustServerCertificate=true",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DBACC.bodb02.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=db061.gamora.prod;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DBAGE.bodb02.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=db052.gamora.prod;Initial Catalog=bodb02;Connect Timeout=600;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DBARC.bodb_Archive.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=db061.gamora.prod;Initial Catalog=bodb_archive;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DBBAH.bodb02.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=db05.gamora.prod;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DBBOF.bodb02.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=db055.gamora.prod;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DBCust.CustDB.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DBCust.IPDB.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=IPDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DBLOG.bodb_CustomerLog.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=db055.gamora.prod;Initial Catalog=bodb_CustomerLog;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DBONUSER.ON_USER.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=db05.gamora.prod;Initial Catalog=on_user;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DBRPT.bodb_report.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=db061.gamora.prod;Initial Catalog=bodb_report;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DBTXN.bodb02.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=dbtrans.gamora.prod;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DBPOL.NAP_UserControl.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=NAP_UserControl;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DBOST.bodb_ost.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=db055.gamora.prod;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DBBOT.bodb_Chatbot.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=db055.gamora.prod;Initial Catalog=bodb_Chatbot;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "SiteDB.bodb02.wsv_alp",
+      "ConnectionString": "packet size=4096;Initial Catalog=bodb02;integrated security=false; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==; TrustServerCertificate=True;",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DBMSG.bodb_Message.wsv_alp",
+      "ConnectionString": "Data Source=dbmessage.gamora.prod;Initial Catalog=bodb_message;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DBAGE.bodb_AGE.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=db052.gamora.prod;Initial Catalog=bodb_AGE;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DBCust.bodb_Credit.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=bodb_Credit;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DB052.bodb02.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=db052.gamora.prod;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DB053.bodb02.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=db053.gamora.prod;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "SiteDB.CustDB.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DBCRM.bodb_CRM.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=db052.gamora.prod;Initial Catalog=bodb_CRM;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
+    }
+  ],
+  "StoredProcedurePath": "~/App_Data/SPNames.MAIN.xml",
+  "FanexDataServiceApi": "http://alpha_data_service_UAT:5000",
+  "LogLibs": "Rabbit",
+  "Fanex.Logging": {
+    "DefaultCategory": "Alpha-789y-AF-UAT-Linux",
+    "RabbitMQConnectionStrings": "host=rabbit.tcp-kluat.gamora.prod:5672;virtualHost=/fanex_logging;username=fanexlogging;password=VKREKUBBd2T3DAtosbDPojl4YQFDnDp7Yilb8JGcLQ8=",
+    "SentryUrl": "https://3167377bcf9643bab3d9446cc201eac2@sentry-ovs.starixuat.com/24",
+    "SentryBackendUrl": "http://3167377bcf9643bab3d9446cc201eac2@sentryst-ovs.ops-kluat.gamora.prod/24"
+  },
+  "RedisConfiguration": "vn-alpha-state383.tcp-kluat.gamora.prod:16383,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged,connectTimeout=6300",
+  "RemotingRefUrl": "http://shared_fanex_remotingref_UAT:5000/",
+  "Fanex.Customer": {
+    "ServiceUri": "http://customer-api.st-kluat.gamora.prod/main/api/",
+    "CdnUri": "//cdn-customer.starixuat.com/v2/",
+    "SystemId": 6
+  },
+  "SystemId": 2,
+  "IdentityUrl": "http://alphaplus_api_identity_UAT:5000/",
+  "AssetAppPath": "/stcdn",
+  "JsVersion": "20250415",
+  "AssetsApp:StaticResourcesVersion": "20250415",
+  "LocalTest": false,
+  "SettingStatus": 1,
+  "ProductOfferProductDetail": [
+    1
+  ],
+  "ForcedHideProductIds": "25",
+  "SiteLabel": "789y",
+  "SiteLabel789y": "789y",
+  "AllowedSitesToViewBonusDetail": [
+    "IBCINDO"
+  ],
+  "AllowedSitesToShareLoad": {
+    "db052.gamora.prod": "y889,y789,yut,yOther"
+  },
+  "AlphaPlus.NetThrottling": {
+    "Resolver": "HttpError",
+    "Policies": [
+      {
+        "Name": "Any",
+        "Path": "*",
+        "Method": "*",
+        "MaxRequests": 15,
+        "ThrottleDuration": 30,
+        "BlockDuration": 60,
+        "Filter": "Whitelist"
+      },
+      {
+        "Name": "Main",
+        "Path": "*",
+        "Method": "POST",
+        "MaxRequests": 60,
+        "ThrottleDuration": 120,
+        "BlockDuration": 600,
+        "Filter": ""
+      },
+      {
+        "Name": "NewCustomer",
+        "Path": "*",
+        "Method": "POST",
+        "MaxRequests": 10,
+        "ThrottleDuration": 600,
+        "BlockDuration": 1800,
+        "Filter": ""
+      }
+    ],
+    "WhiteListCustIds": [
+      17996464,
+      21984259,
+      20269385,
+      15323100,
+      14771858,
+      24338704,
+      19000014,
+      19562449,
+      19562472,
+      27973467,
+      26912753,
+      23003140,
+      14521687,
+      39061067,
+      27783723,
+      26369026,
+      4664545
+    ]
+  },
+  "ONEbook.UM": {
+    "ServiceUri": "http://onebookum.starix-alphaklprod.gamora.prod/api",
+    "EnableCheckUM": true,
+    "SiteId": 3300000,
+    "EnableUnscheduledUM": false,
+    "UMFrom": "3:00",
+    "UMTo": "4:00",
+    "UMPageUrl": "/main/Account/Offline",
+    "ResultCacheDuration": 15,
+    "UMLoggingCategory": "ONEbook-UM"
+  },
+  "Fanex.Caching.Redis": {
+    "ConnectionOptions": {
+      "EndPoints": [
+        "vn-alpha-cache380.tcp-kluat.gamora.prod:16380"
+      ],
+      "Password": "foo1@bared",
+      "AbortOnConnectFail": false,
+      "ConnectRetry": 5
+    },
+    "ApplicationName": "Alpha.After.789y.UAT"
+  },
+  "MarketsSupportedNewHandbook": "IBC,MBC",
+  "GoogleAnalyticId": "G-5LBSPVVKVJ",
+  "OfferAutoTransfer.Currencies": "",
+  "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo",
+  "OfferClearGivenCredit:Sites": "KORIBC,INDO",
+  "IndirectLogin": {
+    "AllowSuperIds": "*",
+    "URL": "https://idp2.starixuat.com/main/Account/IndirectLogin"
+  },
+  "ProtectedMode": {
+    "OfferSites": "*"
+  },
+  "Authorization": {
+    "cachedExpireTime": 30,
+    "EnableCheckBelonging": true,
+    "DisabledCheckDuplicationLogin": false,
+    "KickOutUrl": "~/default/kickout"
+  },
+  "DisableMessages": false,
+  "Message": {
+    "Super": "3000,3110",
+    "Master": "3000,3210",
+    "Agent": "3000,3310"
+  },
+  "QRCode": {
+    "API": "http://account-service-credit.membersite-service.t2p.nebula.prod:22080/Login/",
+    "Domains": [],
+    "SiteId": 4120,
+    "ExpireSeconds": 900
+  },
+  "WhiteLabel": {
+    "OfferedSites": "",
+    "BackOfficeApiUrl": "http://vn-s1-alpha-api-uat.nebula.prod/api/"
+  },
+  "OfferProfilePictureTour": true,
+  "CashService": {
+    "OfferedSites": "755555,222227",
+    "APIUrl": "http://alphaplus_api_cashservice_uat_2:5000/api"
+  }
 }

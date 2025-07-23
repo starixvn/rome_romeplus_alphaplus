@@ -130,7 +130,7 @@
         "DefaultCategory": "Alpha-789y-AF-SIT",
         "RabbitMQConnectionStrings": "host=172.16.4.76;virtualHost=/Fanex_Logging;username=fanexlogging;password=YKQrMtla7oYZGlP8apPtSw==",
         "SentryUrl": "https://718405a0207344fa863c1334f3054b97@sentry.playonesit.com/12",
-        "SentryBackendUrl": "https://718405a0207344fa863c1334f3054b97@172.16.4.109:800/12"
+        "SentryBackendUrl": "http://718405a0207344fa863c1334f3054b97@172.16.4.109:800/12"
     },
     "RedisConfiguration": "172.16.4.76:16379,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged,connectTimeout=6300",
     "RemotingRefUrl": "http://vn-remotingref-sit.playonesit.com/",
