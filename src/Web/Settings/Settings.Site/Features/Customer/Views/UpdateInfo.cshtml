@@ -1,6 +1,7 @@
 @using AlphaPlus.Shared.AppResources.Common
 @using AlphaPlus.Core.Helpers
 @model AlphaPlus.Settings.Site.Features.Customer.ViewModels.UpdateInfoViewModel
+@inject AlphaPlus.Core.Models.IUserSession userSession
 @* @{
     Layout = "~/Features/Shared/Views/_Layout.cshtml";
     ViewBag.Title = $"{Resources.Info} {Model.CustomerInfo.UserName}";
@@ -68,7 +69,7 @@
     </environment>
 </head>
 
-<div id="root"></div>
+<div id="root" data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "" : "dark")"></div>
 
 <body>
     <script type="text/javascript">
