@@ -8,7 +8,7 @@ export const PROMOTION_STATUS_OPTIONS = {
 
 export const PROMOTION_BONUS_STATUS_OPTIONS = {
   all: 0,
-  approved: 2,
-  pending: 4,
+  approved: 4,
+  pending: 2,
   rejected: 5,
 };

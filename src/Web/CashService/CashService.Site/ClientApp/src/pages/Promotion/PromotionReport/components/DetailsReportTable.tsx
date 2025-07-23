@@ -4,6 +4,7 @@ import NoRecordFound from '../../../../components/NoRecordFoundComponent';
 import { StatusComponent } from '../../../../components/Status';
 import { formatNumber } from '../../../../utils/numberFormatting';
 import { formatDate, formatDateTime } from '../../../../utils/commonFunctions';
+import { PROMOTION_BONUS_STATUS_OPTIONS } from '../../../../constants/promotionConstants';
 
 interface DetailsReportTableProps {
   data: any[];
@@ -11,15 +12,15 @@ interface DetailsReportTableProps {
 
 function DetailsReportStatusRow({ status }: { status: number }) {
   const { t } = useTranslation('global');
-  if (status === 4) {
-    return <StatusComponent type='completed' text={t('global:status.approved')} />;
+  if (status === PROMOTION_BONUS_STATUS_OPTIONS.approved) {
+    return <StatusComponent type="completed" text={t('global:status.approved')} />;
   }
 
-  if (status === 5) {
-    return <StatusComponent type='disabled' text={t('global:status.rejected')} />;
+  if (status === PROMOTION_BONUS_STATUS_OPTIONS.rejected) {
+    return <StatusComponent type="disabled" text={t('global:status.rejected')} />;
   }
 
-  return <StatusComponent type='processing' text={t('global:status.pending')} />;
+  return <StatusComponent type="processing" text={t('global:status.pending')} />;
 }
 
 function DetailsReportRow({ idx, data }: { idx: number; data: any }) {
