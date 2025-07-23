@@ -37,11 +37,11 @@ const DataGrid: React.FC<DataGridProps> = ({
 }) => {
   const { t } = useTranslation('transactionHistory');
   const { t: tGlobal } = useTranslation('global');
-  const [selectedTransactionId, setSelectedTransactionId] = useState<number | null>(null);
+  const [selectedTransactionId, setSelectedTransactionId] = useState<string | null>(null);
   const [selectedCustId, setSelectedCustId] = useState<number | null>(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
 
-  const handleViewTransaction = (transactionId: number, custId: number) => {
+  const handleViewTransaction = (transactionId: string, custId: number) => {
     setSelectedTransactionId(transactionId);
     setSelectedCustId(custId);
     setIsDetailModalOpen(true);
@@ -141,7 +141,6 @@ const DataGrid: React.FC<DataGridProps> = ({
                     </td>
                   )}
                   {shouldShowColumn('status') && (
-                    
                     <td className="text-center">{mappingStatus(item.statusId, item.status)}</td>
                   )}
                   {shouldShowColumn('type') && (

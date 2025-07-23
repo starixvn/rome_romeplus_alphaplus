@@ -5,9 +5,7 @@ import {
   formatDateTime,
   renderBankAccount,
 } from '../../../../utils/commonFunctions.tsx';
-import {
- ButtonComponent,
-} from '../../../../components/Buttons/index';
+import { ButtonComponent } from '../../../../components/Buttons/index';
 import { MessageComponent } from '../../../../components/Message';
 import { TitleComponent } from '../../../../components/Title';
 import { ApproveRejectDepositModel } from '../../../../services/interfaces/ApproveRejectDepositModel.ts';
@@ -19,7 +17,7 @@ import ConfirmPopup from '../../../../components/ConfirmPopup';
 import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent.tsx';
 
 interface PendingDepositModalProps {
-  transId: number;
+  transId: string;
   custId: number;
   onClose: (isSuccess: boolean) => void;
   isCashServiceEnabled: boolean;
@@ -62,7 +60,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
 
   const getParams = () => {
     const params: ApproveRejectDepositModel = {
-      transId: deposit?.transId ? deposit.transId : 0,
+      transId: deposit?.transId ? deposit.transId : '',
       custId: deposit?.custId ? deposit.custId : 0,
       newAmount: depositAmount,
       remark: remark,
@@ -164,12 +162,14 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
       )}
       <div className="bg-[#00000080] fixed inset-0 flex items-center justify-center z-50">
         <div
-          className={` ${classBase64} p-[12px] pt-[0] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] max-[768px]:max-w-[90%] max-h-[90%] overflow-auto rounded-[4px]`}>
+          className={` ${classBase64} p-[12px] pt-[0] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] max-[768px]:max-w-[90%] max-h-[90%] overflow-auto rounded-[4px]`}
+        >
           <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]">
-            <TitleComponent type='medium'
+            <TitleComponent
+              type="medium"
               text={` ${t('pendingDepositModal.title')} (${deposit?.transId})`}
             />
-            <ButtonIconComponent style='Close' onClick={() => onClose(false)} />
+            <ButtonIconComponent style="Close" onClick={() => onClose(false)} />
           </div>
           {resultMessage && (
             <MessageComponent
@@ -210,25 +210,28 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
                   <div className="grid grid-cols-2 gap-6">
                     <div className="w-[230px] max-[768px]:w-[48%]">
                       <div className="mb-[10px]">
-                        <TitleComponent type='label' text={t('pendingDepositModal.from')} />
+                        <TitleComponent type="label" text={t('pendingDepositModal.from')} />
                         <div className="flex items-center">
                           {renderBankAccount(deposit?.paymentFrom || '', tGlobal)}
                         </div>
                       </div>
                       <div>
-                        <TitleComponent type='label' text={t('pendingDepositModal.dateAndTime')} />
+                        <TitleComponent type="label" text={t('pendingDepositModal.dateAndTime')} />
                         <div>{formatDateTime(deposit?.createdTime || '')}</div>
                       </div>
                     </div>
 
                     <div>
                       <div className="mb-[10px]">
-                        <TitleComponent type='label' text={t('pendingDepositModal.to')} />
+                        <TitleComponent type="label" text={t('pendingDepositModal.to')} />
                         {deposit?.paymentTo && renderBankAccount(deposit.paymentTo, tGlobal)}
                       </div>
 
                       <div>
-                        <TitleComponent type='label' text={t('pendingDepositModal.depositAmount')} />
+                        <TitleComponent
+                          type="label"
+                          text={t('pendingDepositModal.depositAmount')}
+                        />
                         <div className="relative">
                           <span className="py-[4px] text-[var(--text-link-color)] font-semibold">
                             {deposit?.amount && displayAmount(deposit.amount)}
@@ -239,7 +242,7 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
                   </div>
                   {deposit?.paymentType === 2 && (
                     <div className="mb-[16px] mt-[10px]">
-                      <TitleComponent type='label' text={t('pendingDepositModal.remarks')} />
+                      <TitleComponent type="label" text={t('pendingDepositModal.remarks')} />
                       <textarea
                         value={remark}
                         onChange={(e) => setRemark(e.target.value)}
@@ -285,7 +288,11 @@ const PendingDepositModal: React.FC<PendingDepositModalProps> = ({
           )}
           {deposit?.paymentType === 1 && (
             <div className="flex gap-4 justify-end">
-              <ButtonComponent variant="cancel" onClick={() => onClose(false)} text={tGlobal('close')} />
+              <ButtonComponent
+                variant="cancel"
+                onClick={() => onClose(false)}
+                text={tGlobal('close')}
+              />
             </div>
           )}
         </div>

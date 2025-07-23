@@ -1,5 +1,5 @@
 export interface TransactionItem {
-  transId: number;
+  transId: string;
   custId: number;
   username: string;
   nickname: string;

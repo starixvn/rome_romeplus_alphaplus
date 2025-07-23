@@ -314,7 +314,7 @@ const TransactionList: React.FC<TransactionListProps> = ({
           <strong className="font-bold">Error!</strong>
           <span className="block sm:inline"> {error}</span>
         </div>
-      )}    
+      )}
       <Filters
         dateRange={apiParams.dateRange}
         status={apiParams.status}
@@ -326,7 +326,7 @@ const TransactionList: React.FC<TransactionListProps> = ({
         onStatusChange={handleStatusChange}
         onColumnChange={handleColumnChange}
         onAccountChange={handleAccountChange}
-      />  
+      />
       <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px]">
         <Search
           value={localSearchText}

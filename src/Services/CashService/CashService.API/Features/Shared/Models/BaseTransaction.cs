@@ -1,12 +1,13 @@
 ﻿namespace AlphaPlus.CashService.API.Features.Shared.Models;
 
+using System.Numerics;
 using System.Text.Json.Serialization;
 
 public class BaseTransaction
 {
     [JsonIgnore]
-    public long TransId { get; set; }
+    public BigInteger TransId { get; set; }
 
     [JsonPropertyName("transId")]
-    public string TransactionId => TransId.ToString();
+    public string TransIdString => TransId.ToString();
 }

@@ -96,26 +96,28 @@ const UploadImage: React.FC<UploadImageProps> = ({
   const renderImagePreview = () => (
     <div className="absolute inset-0 flex flex-col items-center">
       <img src={imageUrl ? imageUrl : ''} alt="Preview" className="w-full h-full object-contain" />
-      <button
-        type="button"
-        onClick={resetImageUpload}
-        className="absolute top-2 right-2 bg-white rounded-full p-1 shadow hover:bg-gray-200 z-20 cursor-pointer"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 text-gray-600"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+      {!disabled && (
+        <button
+          type="button"
+          onClick={resetImageUpload}
+          className="absolute top-2 right-2 bg-white rounded-full p-1 shadow hover:bg-gray-200 z-20 cursor-pointer"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
-      </button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 text-gray-600"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      )}
     </div>
   );
 
@@ -139,10 +141,10 @@ const UploadImage: React.FC<UploadImageProps> = ({
       className={`${customClassName ? customClassName : 'w-[350px]'}  max-[768px]:w-[250px] max-[768px]:h-[200px] border-[2px] border-dashed border-[#0b599c] dark:border-[#459be5] max-[768px]:mx-auto a ${
         isDragging ? ' bg-[#D3DFEC] dark:bg-[#303740]' : 'border-[#0b599c] dark:border-[#459be5]'
       } rounded-[5px] flex flex-col items-center justify-center relative`}
-      onDrop={handleDrop}
-      onDragOver={(e) => handleDragEvents(e, true)}
-      onDragEnter={(e) => handleDragEvents(e, true)}
-      onDragLeave={(e) => handleDragEvents(e, false)}
+      onDrop={disabled ? undefined : handleDrop}
+      onDragOver={disabled ? undefined : (e) => handleDragEvents(e, true)}
+      onDragEnter={disabled ? undefined : (e) => handleDragEvents(e, true)}
+      onDragLeave={disabled ? undefined : (e) => handleDragEvents(e, false)}
     >
       {imageUrl ? renderImagePreview() : renderUploadPlaceholder()}
       <input
