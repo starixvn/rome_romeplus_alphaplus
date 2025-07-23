@@ -135,7 +135,7 @@
   "RedisConfiguration": "vn-alpha-state383.tcp-kluat.gamora.prod:16383,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged,connectTimeout=6300",
   "RemotingRefUrl": "http://shared_fanex_remotingref_UAT:5000/",
   "Fanex.Customer": {
-    "ServiceUri": "http://alphaplus_api_settings_UAT_2:5000/api/",
+    "ServiceUri": "http://customer-api.st-kluat.gamora.prod/main/api/",
     "CdnUri": "//cdn-customer.starixuat.com/v2/",
     "SystemId": 6
   },
@@ -156,7 +156,7 @@
     "IBCINDO"
   ],
   "AllowedSitesToShareLoad": {
-    "10.40.40.94": "y889,y789,yut,yOther"
+    "db052.gamora.prod": "y889,y789,yut,yOther"
   },
   "AlphaPlus.NetThrottling": {
     "Resolver": "HttpError",
@@ -271,7 +271,3 @@
     "APIUrl": "http://alphaplus_api_cashservice_uat_2:5000/api"
   }
 }
-
-
-
-
