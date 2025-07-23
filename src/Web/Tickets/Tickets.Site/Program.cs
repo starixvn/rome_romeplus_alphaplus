@@ -122,6 +122,12 @@ app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
     context.Request.PathBase = PathBase;
+
+    if (context.Request.Cookies.ContainsKey(".AspNetCore.Session"))
+    {
+        context.Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
+    }
+
     await next(context);
 });
 

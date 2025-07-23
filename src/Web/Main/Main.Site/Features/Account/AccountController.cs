@@ -23,8 +23,7 @@ public class AccountController(
     IDeviceHelper deviceHelper,
     IAccountService accountService,
     IAesService aesService,
-    IOptions<Core.Configurations.AuthorizationOptions> options,
-    Fanex.Logging.ILogger logger)
+    IOptions<Core.Configurations.AuthorizationOptions> options)
     : Controller
 {
     private readonly IUserSession userSession = userSession;
@@ -33,7 +32,6 @@ public class AccountController(
     private readonly IDeviceHelper deviceHelper = deviceHelper;
     private readonly Core.Configurations.AuthorizationOptions options = options.Value;
     private const string SecretKey = "!@#$";
-    private readonly Fanex.Logging.ILogger logger = logger;
 
     [AllowProtectedMode]
     public IActionResult Login(string r = null)
@@ -76,12 +74,12 @@ public class AccountController(
 
         if (userSession.IsIndirectLoggedIn || userSession.IsInternal)
         {
-            await ClearSession();
+            ClearSession();
 
             return new EmptyResult();
         }
 
-        await ClearSession();
+        ClearSession();
 
         return Login();
     }
@@ -96,17 +94,9 @@ public class AccountController(
             : Result.CreateSuccessfulResult());
     }
 
-    private async Task ClearSession()
+    private static void ClearSession()
     {
-        try
-        {
-            AlphaContext.Current.Session.Clear();
-            await AlphaContext.Current.Session.CommitAsync();
-        }
-        catch (Exception ex)
-        {
-            await logger.ErrorAsync(ex.Message, ex);
-        }
+        AlphaContext.Current.Session.Clear();
     }
 
     private static string MapKickOutReasonToUserMessage(byte kickOutReason)
@@ -222,7 +212,7 @@ public class AccountController(
     [HttpGet, AllowProtectedMode]
     public async Task<IActionResult> IndirectLogin(string parameter)
     {
-        await ClearSession();
+        ClearSession();
 
         var reqParam = aesService.Decrypt(parameter, SecretKey);
 

@@ -58,7 +58,6 @@ public static class ServiceCollectionExtensions
             })
             .AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromMinutes(20);
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
                 options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
@@ -78,8 +77,6 @@ public static class ServiceCollectionExtensions
             options.SlidingExpiration = true;
             options.AccessDeniedPath = "/Forbidden/";
             options.Cookie.Path = "/";
-            options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-            options.Cookie.SameSite = SameSiteMode.Strict;
             options.Events = new CookieAuthenticationEvents
             {
                 OnRedirectToLogin = ctx =>
