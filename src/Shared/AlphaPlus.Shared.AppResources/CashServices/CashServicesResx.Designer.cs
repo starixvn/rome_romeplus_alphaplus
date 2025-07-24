@@ -295,6 +295,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rebate Period.
+        /// </summary>
+        public static string RebatePeriod {
+            get {
+                return ResourceManager.GetString("RebatePeriod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>
         public static string Status {

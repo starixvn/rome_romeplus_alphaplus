@@ -22,7 +22,8 @@
     "totalRequest": "จำนวนคำขอทั้งหมด",
     "totalApproved": "จำนวนคำขอที่ได้รับอนุมัติทั้งหมด",
     "totalRejected": "จำนวนคำขอที่ถูกปฏิเสธทั้งหมด",
-    "totalBonusGiven": "โบนัสที่มอบให้ทั้งหมด"
+    "totalBonusGiven": "โบนัสที่มอบให้ทั้งหมด",
+    "rebatePeriod": "Rebate Period"
   },
   "search": {
     "placeholder": "ค้นหาตามชื่อหรือประเภท..."

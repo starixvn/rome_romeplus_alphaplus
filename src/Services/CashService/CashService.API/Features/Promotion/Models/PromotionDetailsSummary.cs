@@ -1,10 +1,10 @@
 namespace AlphaPlus.CashService.API.Features.Promotion.Models;
 
-public class PromotionDetailsSummary(decimal totalBonus, int totalApproved, int totalRejected)
+public class PromotionDetailsSummary
 {
-    public decimal TotalBonus { get; } = totalBonus;
+    public int TotalApproved { get; init; }
 
-    public int TotalApproved { get; } = totalApproved;
+    public int TotalRejected { get; init; }
 
-    public int TotalRejected { get; } = totalRejected;
+    public decimal TotalAmount { get; init; }
 }

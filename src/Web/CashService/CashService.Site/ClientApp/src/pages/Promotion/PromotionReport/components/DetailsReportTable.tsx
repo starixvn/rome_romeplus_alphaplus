@@ -68,7 +68,7 @@ const DetailsReportTable = React.forwardRef<HTMLTableElement, DetailsReportTable
                 <div>{t('global:nickname')}</div>
               </th>
               <th>{t('global:firstAndLastName')}</th>
-              <th>{t('promotion:table.period')}</th>
+              <th>{t('promotion:table.rebatePeriod')}</th>
               <th>{t('promotion:table.bonusAmount')}</th>
               <th>{t('global:updatedBy')}</th>
               <th>{t('global:lastUpdated')}</th>
@@ -80,7 +80,7 @@ const DetailsReportTable = React.forwardRef<HTMLTableElement, DetailsReportTable
               <NoRecordFound colSpan={8} />
             ) : (
               data.map((item, idx) => (
-                <DetailsReportRow key={item.username} idx={idx} data={item} />
+                <DetailsReportRow key={`${item.username}_${idx}`} idx={idx} data={item} />
               ))
             )}
           </tbody>

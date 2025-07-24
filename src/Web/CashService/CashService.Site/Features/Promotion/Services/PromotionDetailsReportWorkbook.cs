@@ -53,9 +53,9 @@ public class PromotionDetailsReportWorkbook(IWebHostEnvironment webHostEnvironme
         PromotionDetailsSummary summary)
         => string.Join(Environment.NewLine, [
             $"{promotionTitle} {fromDate} --> {toDate}",
-            $"{CashServicesResx.TotalBonusGiven}: {summary.TotalBonus}",
-            $"{CashServicesResx.TotalRequestApproved}: {summary.TotalApproved}",
-            $"{CashServicesResx.TotalRequestRejected}: {summary.TotalRejected}"
+            $"{CashServicesResx.TotalBonusGiven}: {summary.TotalAmount:N2}",
+            $"{CashServicesResx.TotalRequestApproved}: {summary.TotalApproved:N0}",
+            $"{CashServicesResx.TotalRequestRejected}: {summary.TotalRejected:N0}"
         ]);
 
     private Mapper<PromotionDetails> GetRowMapper()

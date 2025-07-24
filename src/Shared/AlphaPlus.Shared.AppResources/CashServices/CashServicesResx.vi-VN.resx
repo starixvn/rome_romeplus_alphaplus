@@ -258,4 +258,7 @@
   <data name="Period" xml:space="preserve">
     <value />
   </data>
+  <data name="RebatePeriod" xml:space="preserve">
+    <value />
+  </data>
 </root>

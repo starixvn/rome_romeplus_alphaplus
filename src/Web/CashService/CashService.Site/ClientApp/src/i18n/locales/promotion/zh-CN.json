@@ -22,7 +22,8 @@
         "totalRequest": "总申请次数",
         "totalApproved": "已批准申请总数",
         "totalRejected": "已拒绝申请总数",
-        "totalBonusGiven": "已发放奖金总额"
+        "totalBonusGiven": "已发放奖金总额",
+        "rebatePeriod": "Rebate Period"
     },
     "search": {
         "placeholder": "按标题或类型搜索..."

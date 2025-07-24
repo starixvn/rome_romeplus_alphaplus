@@ -22,7 +22,8 @@
         "totalRequest": "Tổng số yêu cầu",
         "totalApproved": "Tổng số đã phê duyệt",
         "totalRejected": "Tổng số đã từ chối",
-        "totalBonusGiven": "Tổng số tiền thưởng đã cấp"
+        "totalBonusGiven": "Tổng số tiền thưởng đã cấp",
+        "rebatePeriod": "Rebate Period"
     },
     "search": {
         "placeholder": "Tìm kiếm theo tiêu đề hoặc loại..."

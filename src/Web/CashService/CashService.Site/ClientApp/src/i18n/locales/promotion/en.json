@@ -103,7 +103,8 @@
     "confirmApproveTitle": "Confirm Approve",
     "confirmApproveMessage": "Are you sure you want to approve the selected promotion?",
     "confirmRejectTitle": "Confirm Reject",
-    "confirmRejectMessage": "Are you sure you want to reject the selected promotion?"
+    "confirmRejectMessage": "Are you sure you want to reject the selected promotion?",
+    "rebatePeriod": "Rebate Period"
   },
   "promotionType_1": "Turnover Rebate",
   "search": {

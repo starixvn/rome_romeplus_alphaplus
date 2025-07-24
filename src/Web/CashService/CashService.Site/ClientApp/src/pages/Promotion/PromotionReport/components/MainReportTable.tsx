@@ -12,7 +12,11 @@ interface MainReportTableProps {
 
 function MainReportStatusRow({ status }: { status: boolean }) {
   const { t } = useTranslation('global');
-  return status ? <StatusComponent type='completed' text={t('enabled')} /> : <StatusComponent type='disabled' text={t('disabled')} />;
+  return status ? (
+    <StatusComponent type="completed" text={t('enabled')} />
+  ) : (
+    <StatusComponent type="disabled" text={t('disabled')} />
+  );
 }
 
 function MainReportRow({
@@ -82,7 +86,7 @@ const MainReportTable = React.forwardRef<HTMLTableElement, MainReportTableProps>
                 {t('promotion:table.promotionTitle')}
               </th>
               <th>{t('promotion:table.promotionType')}</th>
-              <th>{t('promotion:table.period')}</th>
+              <th>{t('promotion:table.rebatePeriod')}</th>
               <th>{t('promotion:table.totalRequest')}</th>
               <th>
                 <div>{t('promotion:table.totalApproved')}</div>
