@@ -4,7 +4,6 @@ using AlphaPlus.CashService.Site.Features.Shared;
 using Microsoft.AspNetCore.Antiforgery;
 using Fanex.Customer.Client.Services;
 using Microsoft.AspNetCore.Mvc;
-using AlphaPlus.CashService.Site.Features.Notifications.Models;
 
 namespace AlphaPlus.CashService.Site.Features.Notifications;
 
