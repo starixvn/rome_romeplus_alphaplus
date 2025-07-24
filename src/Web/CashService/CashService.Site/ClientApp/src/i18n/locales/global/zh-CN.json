@@ -109,7 +109,7 @@
     "selected": "已选择",
     "noRangeSelected": "未选择范围"
   },
-  "cashServiceDisabled": "现金服务已禁用",
+  "cashServiceDisabled": "现金服务已被禁用",
   "info": "信息",
   "removeSuccess": "删除成功",
   "removeError": "删除失败",

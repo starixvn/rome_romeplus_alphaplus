@@ -1304,7 +1304,7 @@
     <value>จำนวนชนะปัจจุบัน</value>
   </data>
   <data name="ResetCurrentWinAmount" xml:space="preserve">
-    <value>รีเซ็ตยอดชนะปัจจุบัน</value>
+    <value>รีเซ็ตจำนวนเงินที่ชนะในปัจจุบัน</value>
   </data>
   <data name="ResetCurrentWinAmountConfirmMessage" xml:space="preserve">
     <value>คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตยอดชนะปัจจุบันของสมาชิก "{0}"?</value>
