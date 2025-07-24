@@ -3,6 +3,8 @@ import { ButtonTabComponent } from '../../../../../components/Buttons/ButtonTabC
 import { TitleComponent } from '../../../../../components/Title';
 import UploadImage from '../../../../Transactions/Components/UploadImage';
 import { useTranslation } from 'react-i18next';
+import { useQuill } from 'react-quilljs';
+import 'quill/dist/quill.snow.css';
 
 export interface PromotionLangFields {
   title: string;
@@ -49,16 +51,16 @@ export const TitleField: React.FC<{
 }> = ({ value, onChange, lang, isDefault }) => {
   const { t } = useTranslation('promotion');
   return (
-  <div className="mb-4">
-    <TitleComponent text={t('addPromotionForm.title')} required={isDefault} type='label'/>
-    <input
-      className="control-field w-full"
-      key={`title-${lang}`}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      placeholder=""
-    />
-  </div>
+    <div className="mb-4">
+      <TitleComponent text={t('addPromotionForm.title')} required={isDefault} type="label" />
+      <input
+        className="control-field w-full"
+        key={`title-${lang}`}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder=""
+      />
+    </div>
   );
 };
 
@@ -70,16 +72,16 @@ export const BannerField: React.FC<{
 }> = ({ prevBanner, setBanner, lang, isDefault }) => {
   const { t } = useTranslation('promotion');
   return (
-  <div className="mb-4">
-    <TitleComponent text={t('addPromotionForm.banner')} required={isDefault} type='label'/>
-    <UploadImage
-      key={`banner-${lang}`}
-      setImage={setBanner}
-      prevImage={prevBanner}
-      maxSize={500}
-      customClassName="w-full h-[300px]"
-    />
-  </div>
+    <div className="mb-4">
+      <TitleComponent text={t('addPromotionForm.banner')} required={isDefault} type="label" />
+      <UploadImage
+        key={`banner-${lang}`}
+        setImage={setBanner}
+        prevImage={prevBanner}
+        maxSize={500}
+        customClassName="w-full h-[300px]"
+      />
+    </div>
   );
 };
 
@@ -90,19 +92,41 @@ export const ContentField: React.FC<{
   isDefault: boolean;
 }> = ({ value, onChange, lang, isDefault }) => {
   const { t } = useTranslation('promotion');
+
+  const options = {
+    theme: 'snow',
+    modules: {
+      toolbar: [
+        ['bold', 'italic', 'underline'],
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        [{ header: [1, 2, 3, false] }],
+        ['link'],
+        ['clean'],
+      ],
+    },
+    placeholder: '',
+  };
+
+  const { quill, quillRef } = useQuill(options);
+
+  React.useEffect(() => {
+    if (quill) {
+      quill.root.innerHTML = value || '';
+
+      quill.on('text-change', () => {
+        const content = quill.root.innerHTML;
+        onChange(content);
+      });
+    }
+  }, [quill, onChange, value]);
+
   return (
-  <div className="mb-4">
-    <TitleComponent text={t('addPromotionForm.content')} required={isDefault} type='label'/>
-    <div className="border border-[var(--border-control)] rounded">
-      <textarea
-        key={`content-${lang}`}
-        className="w-full min-h-[120px] p-2 resize-y border-0 focus:ring-0 focus:outline-none block"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder=""
-      />
+    <div className="mb-4">
+      <TitleComponent text={t('addPromotionForm.content')} required={isDefault} type="label" />
+      <div className="border border-[var(--border-control)] rounded">
+        <div ref={quillRef} key={`content-${lang}`} className="min-h-[120px]" />
+      </div>
     </div>
-  </div>
   );
 };
 
@@ -113,14 +137,13 @@ const PromotionInfo: React.FC<PromotionInfoProps> = ({
   activeLang,
   setActiveLang,
 }) => {
-  
   const langFields = value[activeLang] || {
     title: '',
     banner: null,
     prevBanner: null,
     content: '',
   };
-  
+
   return (
     <div className="max-w-3xl">
       <LanguageTabs languages={languages} activeLang={activeLang} setActiveLang={setActiveLang} />
