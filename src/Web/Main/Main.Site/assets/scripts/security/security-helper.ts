@@ -195,7 +195,8 @@ var securityHelper = {
         }
 
         if (top.productPopupUrl) {
-            top[top.productPopupUrl]();
+            var productPopupUrl = top.productPopupUrl as string;
+            top[productPopupUrl]();
             return;
         }
 

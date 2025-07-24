@@ -39,7 +39,7 @@ public class PromotionDetailsReportWorkbookTest
         (
             new PromotionDetailsSummary
             {
-                TotalBonus = 1000,
+                TotalAmount = 1000,
                 TotalApproved = 10,
                 TotalRejected = 2
             },

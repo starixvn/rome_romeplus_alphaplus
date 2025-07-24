@@ -22,7 +22,7 @@ class TelegramChatBotSetting extends BaseTelegramChatBot {
 
     constructor($: JQueryStatic, topWindow: any, clipboard: any) {
         super($, topWindow);
-        this.clipboard = clipboard;
+        this.clipboard = new clipboard('.icon-content-copy');
     }
 
     resources = {
@@ -226,6 +226,6 @@ class TelegramChatBotSetting extends BaseTelegramChatBot {
 }
 
 $(function () {
-    var telegramChatBotSetting = new TelegramChatBotSetting($, window.top, new Clipboard('.icon-content-copy'));
+    var telegramChatBotSetting = new TelegramChatBotSetting($, window.top, Clipboard);
     telegramChatBotSetting.init();
 });

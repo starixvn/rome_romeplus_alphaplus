@@ -1,6 +1,4 @@
-﻿declare var Clipboard: any;
-
-"use strict";
+﻿"use strict";
 
 class BackupDomainsView {
     $: JQueryStatic;

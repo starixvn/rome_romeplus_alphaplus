@@ -98,7 +98,7 @@ public class PromotionReportServiceTest
         Assert.NotNull(result);
         Assert.NotNull(result.Summary);
         Assert.NotNull(result.PromotionDetails);
-        Assert.Equal(250m, result.Summary.TotalBonus);
+        Assert.Equal(250m, result.Summary.TotalAmount);
         Assert.Equal(2, result.Summary.TotalApproved);
         Assert.Equal(1, result.Summary.TotalRejected);
         Assert.Same(promotionDetails, result.PromotionDetails);
@@ -129,7 +129,7 @@ public class PromotionReportServiceTest
         // Assert
         Assert.NotNull(result);
         Assert.NotNull(result.Summary);
-        Assert.Equal(0m, result.Summary.TotalBonus);
+        Assert.Equal(0m, result.Summary.TotalAmount);
         Assert.Equal(0, result.Summary.TotalApproved);
         Assert.Equal(0, result.Summary.TotalRejected);
         Assert.Same(emptyDetails, result.PromotionDetails);
