@@ -114,7 +114,32 @@ public class PendingWithdrawalService(
 
         transactionService.OnAfterUpdateTransaction(command.CashAccumCreditTbl, param.SiteDbGroupId, param.CustDbGroupId, responseLogs.ToList());
 
+        if (command.ErrCode == 0 && command.ProviderId > 0)
+        {
+            ApproveByPaymentGateway(command, param);
+        }
+
         return result;
+    }
+
+    private void ApproveByPaymentGateway(CreateManualWithdrawCommand command, AddManualWithdrawalModel param)
+    {
+        var processTransaction = new ProcessWithdrawalTransaction
+        {
+            TransId = command.TransId,
+            CustId = command.CustId,
+            ProviderId = command.ProviderId,
+            PaymentFrom = command.PaymentFrom,
+            PaymentMethodId = command.PaymentMethodId,
+            ActorId = command.UplineId,
+            SubAccId = command.SubAccId,
+            SiteDBGroupId = (short)command.SiteDbGroupId,
+            CustDBGroupId = param.CustDbGroupId
+        };
+        Task.Run(() =>
+        {
+            _ = ApproveByPaymentGatewayAsync(processTransaction);
+        });
     }
 
     public async Task<ResultModel> ApproveByPaymentGatewayAsync(ProcessWithdrawalTransaction command)
@@ -146,7 +171,7 @@ public class PendingWithdrawalService(
             }
         };
 
-        var response = await paymentGateway.WithdrawalViaPaymentGateway(model, (short)command.CustDBGroupId);
+        var response = await paymentGateway.WithdrawalViaPaymentGateway(model, command.CustDBGroupId);
         if (response.IsSuccessful)
         {
             result.Code = response.Code;
