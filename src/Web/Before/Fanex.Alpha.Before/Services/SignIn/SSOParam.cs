@@ -26,9 +26,5 @@ public class SSOParam
 
     public string DarkModeName { get; init; }
 
-    public string AssetAppPath { get; init; }
-
     public string UMToken { get; init; }
-
-    public string DCSStaticAppPath { get; init; }
 }

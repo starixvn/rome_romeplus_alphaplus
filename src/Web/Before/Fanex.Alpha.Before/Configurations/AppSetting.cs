@@ -47,10 +47,6 @@ namespace Fanex.Alpha.Before.Configurations
 
         public static bool IsShowTechnicalErrorMessage => !string.IsNullOrWhiteSpace(TechnicalErrorTime);
 
-        public static string AssetAppPaths => GetValue<string>("AssetAppPaths");
-
-        public static string DCSStaticAppPaths => GetValue<string>("DCSStaticAppPaths");
-
         public static bool EnabledCallHashPasswordAPI => GetValue<bool>("PasswordService:IsEnabled");
 
         public static bool IsProfilePictureAllowedWatermark => GetValue<bool>("ProfilePicture:AllowedWatermark");

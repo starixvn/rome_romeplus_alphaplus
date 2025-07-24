@@ -16,10 +16,6 @@
 
         public string DeviceId { get; }
 
-        public string AssetAppPath { get; }
-
-        public string DCSStaticAppPath { get; }
-
         public SignInModel(
             string username,
             string password,
@@ -27,9 +23,7 @@
             string code,
             string captchaToken,
             string browserSize,
-            string deviceId,
-            string assetAppPath,
-            string dcsStaticAppPath)
+            string deviceId)
         {
             Username = username;
             Password = password;
@@ -38,8 +32,6 @@
             CaptchaToken = captchaToken;
             BrowserSize = browserSize;
             DeviceId = deviceId;
-            AssetAppPath = assetAppPath;
-            DCSStaticAppPath = dcsStaticAppPath;
         }
     }
 }

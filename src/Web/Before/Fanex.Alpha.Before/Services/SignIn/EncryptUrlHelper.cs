@@ -15,9 +15,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
             string deviceId,
             string browserSize,
             string encryptCode,
-            string darkModeName,
-            string assetAppPath,
-             string dcsStaticAppPath);
+            string darkModeName);
     }
 
     public class EncryptUrlHelper : IEncryptUrlHelper
@@ -33,9 +31,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
             string deviceId,
             string browserSize,
             string encryptCode,
-            string darkModeName,
-            string assetAppPath,
-            string dcsStaticAppPath)
+            string darkModeName)
         {
             var parameter = new SSOParam
             {
@@ -51,9 +47,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
                 BrowserSize = browserSize,
                 EncryptCode = encryptCode,
                 DarkModeName = darkModeName,
-                AssetAppPath = assetAppPath,
-                UMToken = GetUMToken(httpContext),
-                DCSStaticAppPath = dcsStaticAppPath
+                UMToken = GetUMToken(httpContext)
             };
 
             var host = httpContext.Request.Host.Value.TrimEnd('.');

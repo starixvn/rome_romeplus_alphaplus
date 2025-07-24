@@ -79,10 +79,6 @@ namespace Fanex.Alpha.Before.Models
 
         public bool IsCaptchaVerified { get; set; }
 
-        public string AssetAppPaths { get; } = AppSetting.AssetAppPaths;
-
-        public string DCSStaticAppPaths { get; } = AppSetting.DCSStaticAppPaths;
-
         public DateTime LoginTime { get; set; }
 
         public int NoInteractionTimeInMinutes { get; set; }

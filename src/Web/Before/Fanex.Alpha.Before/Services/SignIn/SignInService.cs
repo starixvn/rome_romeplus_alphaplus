@@ -213,8 +213,6 @@ namespace Fanex.Alpha.Before.Services.SignIn
                 return signInResult;
             }
 
-            var assetAppPath = AssetAppPathHelper.IsValidAssetAppPath(model.AssetAppPath) ? model.AssetAppPath : string.Empty;
-            var dcsStaticAppPath = AssetAppPathHelper.IsValidDCSStaticAppPath(model.DCSStaticAppPath) ? model.DCSStaticAppPath : string.Empty;
             await VerifyDownlineLogin(
                 model.Username,
                 password,
@@ -223,8 +221,6 @@ namespace Fanex.Alpha.Before.Services.SignIn
                 model.BrowserSize,
                 signInResult,
                 DarkModeHelper.GetDarkModeValue(httpContext.Request),
-                assetAppPath,
-                dcsStaticAppPath,
                 httpContext);
 
             return signInResult;
@@ -250,7 +246,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
                 return signInResult;
             }
 
-            await VerifyDownlineLogin(username, password, LanguageHelper.DefaultLanguage, deviceId, browserSize, signInResult, null, string.Empty, string.Empty, httpContext);
+            await VerifyDownlineLogin(username, password, LanguageHelper.DefaultLanguage, deviceId, browserSize, signInResult, null, httpContext);
 
             return signInResult;
         }
@@ -286,8 +282,6 @@ namespace Fanex.Alpha.Before.Services.SignIn
             string deviceId,
             string browserSize,
             string darkModeName,
-            string assetAppPath,
-            string dcsStaticAppPath,
             HttpContext httpContext)
         {
             await cacheService.ResetLoginSession(signInResult.Username);
@@ -303,9 +297,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
                 deviceId,
                 browserSize,
                 signInResult.Captcha,
-                darkModeName,
-                assetAppPath,
-                dcsStaticAppPath);
+                darkModeName);
 
             var baseDomain = httpContext.Request.Host.Value;
             signInResult.ErrMsg = Labels.lblLoginSuccessful;
@@ -368,8 +360,6 @@ namespace Fanex.Alpha.Before.Services.SignIn
             string browserSize,
             SignInResult signInResult,
             string darkModeName,
-            string assetAppPath,
-            string dcsStaticAppPath,
             HttpContext httpContext)
         {
             var verifySignInResult = new VerifySignInResult();
@@ -404,7 +394,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
 
                         signInResult.LoginTime = verifySignInResult.LoginTime;
 
-                        await UpdateResultAfterLoginSuccessfully(password, signInResult, verifySignInResult, language, deviceId, browserSize, darkModeName, assetAppPath, dcsStaticAppPath, httpContext);
+                        await UpdateResultAfterLoginSuccessfully(password, signInResult, verifySignInResult, language, deviceId, browserSize, darkModeName, httpContext);
 
                         if (throttlePolicy.WhitelistSuperIds.Contains(verifySignInResult.SuperId))
                         {
