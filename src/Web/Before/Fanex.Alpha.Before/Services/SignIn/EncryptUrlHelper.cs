@@ -7,8 +7,6 @@ namespace Fanex.Alpha.Before.Services.SignIn
 {
     public interface IEncryptUrlHelper
     {
-        string BuildAfterURL(HttpContext httpContext);
-
         string BuildAfterURL(
             HttpContext httpContext,
             string encryptPassword,
@@ -26,33 +24,6 @@ namespace Fanex.Alpha.Before.Services.SignIn
     {
         public const string UTMS = "__utms";
         private const string SecretKey = "!@#$";
-
-        public string BuildAfterURL(HttpContext httpContext)
-        {
-            var url = BuildAfterURL(
-                httpContext,
-                AppSession.EncryptPassword,
-                new VerifySignInResult
-                {
-                    CustId = AppSession.CustId,
-                    Username = AppSession.Username,
-                    SubAccId = AppSession.SubAccId,
-                    IsNickname = AppSession.IsNickname,
-                    Nickname = AppSession.Nickname,
-                    LoginTime = DateTime.Now
-                },
-                AppSession.Language,
-                AppSession.DeviceId,
-                AppSession.BrowserSize,
-                AppSession.EncryptCode,
-                AppSession.DarkModeName,
-                AppSession.AssetAppPath,
-                AppSession.DCSStaticAppPath);
-
-            AppSession.ResetRobotCaptchaSession();
-
-            return url;
-        }
 
         public string BuildAfterURL(
             HttpContext httpContext,

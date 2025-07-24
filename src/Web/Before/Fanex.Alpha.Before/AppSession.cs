@@ -52,18 +52,6 @@ public static class AppSession
         }
     }
 
-    public static string CaptchaCode
-    {
-        get
-        {
-            return CurrentSession.Get<string>(SessionConstants.CAPTCHACODE);
-        }
-
-        set
-        {
-            CurrentSession.Set<string>(SessionConstants.CAPTCHACODE, value);
-        }
-    }
 
     public static string CookieCode
     {
@@ -223,32 +211,6 @@ public static class AppSession
         }
     }
 
-    public static string RobotResult
-    {
-        get
-        {
-            return CurrentSession.Get<string>(SessionConstants.ROBOTRESULT);
-        }
-
-        set
-        {
-            CurrentSession.Set(SessionConstants.ROBOTRESULT, value);
-        }
-    }
-
-    public static int RobotCaptchaFailedCount
-    {
-        get
-        {
-            return CurrentSession.Get<int>(SessionConstants.ROBOTCAPTCHAFAILEDCOUNT);
-        }
-
-        set
-        {
-            CurrentSession.Set(SessionConstants.ROBOTCAPTCHAFAILEDCOUNT, value);
-        }
-    }
-
     public static string DeviceId
     {
         get
@@ -275,82 +237,7 @@ public static class AppSession
         }
     }
 
-    public static string AssetAppPath
-    {
-        get
-        {
-            return CurrentSession.Get<string>(SessionConstants.ASSETAPPPATH);
-        }
-
-        set
-        {
-            CurrentSession.Set(SessionConstants.ASSETAPPPATH, value);
-        }
-    }
-
-    public static string DCSStaticAppPath
-    {
-        get
-        {
-            return CurrentSession.Get<string>(SessionConstants.DCSStaticAPPPATH);
-        }
-
-        set
-        {
-            CurrentSession.Set(SessionConstants.DCSStaticAPPPATH, value);
-        }
-    }
-
-    public static bool InputCaptchaSuccess
-    {
-        get
-        {
-            return CurrentSession.Get<bool>(SessionConstants.INPUTCAPTCHASUCCESS);
-        }
-
-        set
-        {
-            CurrentSession.Set(SessionConstants.INPUTCAPTCHASUCCESS, value);
-        }
-    }
-
-
-    public static void AssignRobotCaptchaSession(
-        int custId,
-        string username,
-        int subAccId,
-        string subAccName,
-        bool isNickname,
-        string nickname,
-        string encryptPassword,
-        int superId,
-        string site,
-        byte roleId,
-        string robotResult,
-        string deviceId,
-        string browserSize,
-        string assetAppPath,
-        string dcsStaticAppPath)
-    {
-        CustId = custId;
-        Username = username;
-        SubAccId = subAccId;
-        SubAccName = subAccName;
-        IsNickname = isNickname;
-        Nickname = nickname;
-        EncryptPassword = encryptPassword;
-        SuperId = superId;
-        Site = site;
-        RoleId = roleId;
-
-        RobotResult = robotResult;
-        DeviceId = deviceId;
-        BrowserSize = browserSize;
-        AssetAppPath = assetAppPath;
-        DCSStaticAppPath = dcsStaticAppPath;
-    }
-
-    public static void ResetRobotCaptchaSession()
+    public static void ResetSession()
     {
         CustId = 0;
         Username = null;
@@ -362,20 +249,8 @@ public static class AppSession
         SuperId = 0;
         Site = null;
         RoleId = 0;
-
-        RobotResult = null;
-        RobotCaptchaFailedCount = 0;
         DeviceId = null;
         BrowserSize = null;
-        InputCaptchaSuccess = false;
-    }
-
-    public static void IncreaseRobotCaptchaFailedCount()
-    {
-        if (RobotCaptchaFailedCount < int.MaxValue)
-        {
-            RobotCaptchaFailedCount++;
-        }
     }
 
     #endregion

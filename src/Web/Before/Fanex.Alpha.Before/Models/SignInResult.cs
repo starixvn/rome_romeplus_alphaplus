@@ -87,10 +87,6 @@ namespace Fanex.Alpha.Before.Models
 
         public int NoInteractionTimeInMinutes { get; set; }
 
-        public long CustId { get; set; }
-
-        public long CustSubId { get; set; }
-
         public bool IsVerified { get; set; }
 
         public string Avatar { get; set; }
