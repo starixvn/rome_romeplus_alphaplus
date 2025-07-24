@@ -61,7 +61,6 @@ public class AuthController : Controller
         loginResult.ErrMsg = !string.IsNullOrWhiteSpace(r) ? WebUtility.UrlDecode(r) : loginResult.ErrMsg;
 
         ViewBag.FPSToken = FPS.Client.NetStandard.Token.Generate();
-        AppSession.ResetSession();
         AssignDarkModeNameViewData();
 
         return View(loginResult);

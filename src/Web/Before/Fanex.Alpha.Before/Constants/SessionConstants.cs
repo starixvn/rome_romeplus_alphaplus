@@ -10,21 +10,5 @@
         public const string LOGINIPFAILEDCOUNT = "loginipfailedcount.{0}.{1}";
         public const string LOGINIPBLOCKED = "loginipblocked.{0}.{1}";
         public const string DARKMODENAME = "Fanex.Alpha.Before.Common.Constants.SessionConstants.darkmodename";
-
-        #region Robot Captcha
-
-        public const string CUSTID = "RobotCaptcha.CustId";
-        public const string SUBACCID = "RobotCaptcha.SubAccId";
-        public const string SUBACCNAME = "RobotCaptcha.SubAccName";
-        public const string ISNICKNAME = "RobotCaptcha.IsNickname";
-        public const string NICKNAME = "RobotCaptcha.Nickname";
-        public const string ENCRYPTPASSWORD = "RobotCaptcha.EncryptPassword";
-        public const string SUPERID = "RobotCaptcha.SuperId";
-        public const string SITE = "RobotCaptcha.Site";
-        public const string ROLEID = "RobotCaptcha.RoleId";
-
-        public const string DEVICEID = "RobotCaptcha.DeviceId";
-        public const string BROWSERSIZE = "RobotCaptcha.BrowserSize";
-        #endregion
     }
 }
