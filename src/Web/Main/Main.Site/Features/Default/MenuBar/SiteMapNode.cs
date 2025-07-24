@@ -37,6 +37,9 @@ public class SiteMapNode
     [XmlAttribute("isHiddenInMobile")]
     public bool IsHiddenInMobile { get; set; }
 
+    [XmlAttribute("hasBadge")]
+    public bool HasBadge { get; set; }
+
     [XmlAttribute("url")]
     public string Url { get; set; }
 

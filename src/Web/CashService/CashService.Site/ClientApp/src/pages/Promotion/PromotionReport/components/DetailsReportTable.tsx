@@ -2,7 +2,7 @@ import React, { ForwardedRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import NoRecordFound from '../../../../components/NoRecordFoundComponent';
 import { StatusComponent } from '../../../../components/Status';
-import { formatNumber } from '../../../../utils/numberFormatting';
+import { formatNumber, formatDecimal } from '../../../../utils/numberFormatting';
 import { formatDate, formatDateTime } from '../../../../utils/commonFunctions';
 import { PROMOTION_BONUS_STATUS_OPTIONS } from '../../../../constants/promotionConstants';
 
@@ -38,7 +38,7 @@ function DetailsReportRow({ idx, data }: { idx: number; data: any }) {
         <div>{data.lastName}</div>
       </td>
       <td>{`${formatDate(data.fromDate)} - ${formatDate(data.toDate)}`}</td>
-      <td className="text-right">{formatNumber(data.amount)}</td>
+      <td className="text-right">{formatDecimal(data.amount)}</td>
       <td className="text-left">{data.subAccName ? data.subAccName : data.operatedBy}</td>
       <td>{formatDateTime(data.operatedTime)}</td>
       <td>

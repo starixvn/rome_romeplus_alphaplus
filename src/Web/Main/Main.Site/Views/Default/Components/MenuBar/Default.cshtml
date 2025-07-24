@@ -37,7 +37,7 @@
                         @foreach (var subMenuItem in menuItem.VisibleSubMenus)
                         {
                             <li data-url="@subMenuItem.Link"
-                                class="sub-menu-item @(subMenuItem.Status.Disabled ? "disabled-menu" : string.Empty)"
+                                class="sub-menu-item @(subMenuItem.Status.Disabled ? "disabled-menu" : string.Empty) @(subMenuItem.HasBadge ? "has-badge" : string.Empty)"
                                 id="sub-menu-@(subMenuItem.ResourceKey.ToUpper())">
                                 <a href="#" class="redirect-item">
                                     @subMenuItem.DisplayName
@@ -47,6 +47,10 @@
                                              string.Empty)
                                     @Html.Raw(subMenuItem.IsOld ? $"<span> ({Alpha_sitemap.Old})</span>" : string.Empty)
                                 </a>
+                                @if (subMenuItem.HasBadge)
+                                {
+                                    <span class="badge-number" id="badge-number-@(subMenuItem.ResourceKey.ToUpper())"></span>
+                                }
                             </li>
                         }
                     </ul>
@@ -80,7 +84,7 @@
 {
     <!--[if (gt IE 8)|!(IE)]>
 
-                        <!-->
+                                                        <!-->
     <section id="account-info-tab" class="accountinfo-container @(Model.IsSmallDevice ? string.Empty : "mCustomScrollbar")"
         data-mcs-theme="minimal-dark">
         <iframe frameborder="0" id="accountinfo-content" name="menu" marginwidth="0" marginheight="0"
@@ -88,9 +92,9 @@
     </section>
     <!--<![endif]-->
     <!--[if lt IE 9]>
-                                <section id="account-info-tab" class="accountinfo-container">
-                                    <iframe frameborder="0" id="accountinfo-content"
-                                            name="menu" marginwidth="0" marginheight="0" allowtransparency="true" class="accinfo-content" scrolling="auto"></iframe>
-                                </section>
-                            <![endif]-->
+                                                                <section id="account-info-tab" class="accountinfo-container">
+                                                                    <iframe frameborder="0" id="accountinfo-content"
+                                                                            name="menu" marginwidth="0" marginheight="0" allowtransparency="true" class="accinfo-content" scrolling="auto"></iframe>
+                                                                </section>
+                                                            <![endif]-->
 }

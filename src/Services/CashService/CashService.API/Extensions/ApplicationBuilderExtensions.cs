@@ -1,4 +1,5 @@
 using AlphaPlus.CashService.API.Features.MemberSites.Endpoints;
+using AlphaPlus.CashService.API.Features.Notifications.Endpoints;
 using AlphaPlus.CashService.API.Features.Payments.Endpoints;
 using AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints;
 using AlphaPlus.CashService.API.Features.PendingWithdrawal.Endpoints;
@@ -51,6 +52,7 @@ public static class ApplicationBuilderExtensions
         app.MapPendingWithdrawalEndpoints();
         app.MapTransactionsHistoryEndpoints();
         app.MapPromotionEndpoints();
+        app.MapNotificationsEndpoints();
 
         return app;
     }

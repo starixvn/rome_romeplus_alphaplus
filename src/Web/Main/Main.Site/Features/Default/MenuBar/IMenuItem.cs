@@ -24,6 +24,8 @@
 
         bool IsHiddenInMobile { get; set; }
 
+        bool HasBadge { get; set; }
+
         MenuStatus Status { get; }
 
         bool ShowSubMenus { get; set; }

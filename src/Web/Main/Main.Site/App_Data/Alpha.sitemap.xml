@@ -148,14 +148,14 @@
     </siteMapNode>
     <siteMapNode resourceKey="cashService" menuItemType="CashServiceMenuItem" functionType="[M]" roles="Agent">
         <siteMapNode resourceKey="ManagePayments" url="/cash-service/Payments/Index"></siteMapNode>
-        <siteMapNode resourceKey="PendingDeposit" url="/cash-service/Transactions/Deposit"></siteMapNode>
-        <siteMapNode resourceKey="PendingWithdrawal" url="/cash-service/Transactions/Withdrawal"></siteMapNode>
+        <siteMapNode resourceKey="PendingDeposit" url="/cash-service/Transactions/Deposit" hasBadge="true"></siteMapNode>
+        <siteMapNode resourceKey="PendingWithdrawal" url="/cash-service/Transactions/Withdrawal" hasBadge="true"></siteMapNode>
         <siteMapNode resourceKey="TransactionHistory" url="/cash-service/Transactions/History"></siteMapNode>
         <siteMapNode resourceKey="MemberSiteManagement" url="/cash-service/MemberSites/Index"></siteMapNode>
     </siteMapNode>
     <siteMapNode resourceKey="promotion" menuItemType="CashPromotionMenuItem" functionType="[N]" roles="Agent">
         <siteMapNode resourceKey="ManagePromotion" url="/cash-service/Promotion/Index"></siteMapNode>
-        <siteMapNode resourceKey="PendingPromotion" url="/cash-service/Promotion/Pending"></siteMapNode>
+        <siteMapNode resourceKey="PendingPromotion" url="/cash-service/Promotion/Pending" hasBadge="true"></siteMapNode>
         <siteMapNode resourceKey="PromotionReport" url="/cash-service/Promotion/Report"></siteMapNode>
     </siteMapNode>
     <siteMapNode resourceKey="chatbot" url="/main/TelegramChatBot/Setup"></siteMapNode>
@@ -163,7 +163,7 @@
         <siteMapNode resourceKey="SignInS1BackOffice" menuItemType="WhiteLabelSignInBackOffice" roles="Agent" />
         <siteMapNode resourceKey="SettlementReport" url="/reports/WhiteLabel/Settlement" />
     </siteMapNode>
-    <siteMapNode resourceKey="SercurityCode" url="/main/Otp/SetupOtp" isNew="false"></siteMapNode>
+    <siteMapNode resourceKey="SercurityCode" url="/main/Otp/SetupOtp"></siteMapNode>
     <siteMapNode resourceKey="BackupDomains" menuItemType="MemberInfoMenuItem" functionType="[H]" url="/features/backupdomains/index"></siteMapNode>
     <siteMapNode resourceKey="SigninToNovaCasino" menuItemType="SigninNovaCasinoMenuItem" />
     <siteMapNode resourceKey="JoinNovaCasinoNow" menuItemType="JoinNovaCasinoNowMenuItem" />

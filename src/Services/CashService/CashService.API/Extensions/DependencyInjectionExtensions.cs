@@ -14,6 +14,7 @@ using Features.PendingDeposit.Services;
 using Features.Promotion.Services;
 using Features.Shared.Services;
 using Features.Transactions.Services;
+using AlphaPlus.CashService.API.Features.Notifications.Services;
 
 public static class DependencyInjectionExtensions
 {
@@ -36,6 +37,7 @@ public static class DependencyInjectionExtensions
         services.AddScoped<IBankService, BankService>();
         services.AddScoped<IPaymentGatewayService, PaymentGatewayService>();
         services.AddScoped<IPromotionReportService, PromotionReportService>();
+        services.AddScoped<INotificationsService, NotificationsService>();
 
         return services;
     }

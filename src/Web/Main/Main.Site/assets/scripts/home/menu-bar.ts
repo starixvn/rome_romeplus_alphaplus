@@ -53,6 +53,7 @@ var menuBar = {
         menuBar.bindEvents();
         menuBar.initSideBar();
         menuBar.setMenuBarBanner();
+        menuBar.updatePendingCount();
     },
 
     storeElements: function () {
@@ -508,20 +509,20 @@ var menuBar = {
                     carouselBanner.remove();
                 }
 
-                $(".img-banner").click(function (e) {
-                    var href = $(this).attr("data-target-url");
-                    var target = $(this).attr("data-target");
+                $('.img-banner').click(function (e) {
+                    var href = $(this).attr('data-target-url');
+                    var target = $(this).attr('data-target');
                     if (target) {
-                        $("#" + target).attr("src", href);
+                        $('#' + target).attr('src', href);
                     }
                 });
 
-                $(".log-banner").click(() => {
+                $('.log-banner').click(() => {
                     $.ajax({
-                        type: "POST",
-                        url: alpha.urls.mainRootPath + "WhiteLabel/BannerLog?username=" + $("#Username").val(),
+                        type: 'POST',
+                        url: alpha.urls.mainRootPath + 'WhiteLabel/BannerLog?username=' + $('#Username').val(),
                         data: {},
-                        success: function () { }
+                        success: function () {}
                     });
                 });
             });
@@ -543,6 +544,55 @@ var menuBar = {
         const riskManagementMenu = $('#menu-RISKMANAGEMENT');
         riskManagementMenu.find('.parent-menu').trigger('click');
         riskManagementMenu.find('#sub-menu-MYWATCHLIST').addClass('active');
+    },
+
+    updatePendingCount: function () {
+        const pendingDepositMenu = $('#badge-number-PENDINGDEPOSIT');
+        const pendingWithdrawalMenu = $('#badge-number-PENDINGWITHDRAWAL');
+        const pendingPromotionMenu = $('#badge-number-PENDINGPROMOTION');
+        if (pendingDepositMenu.length > 0 || pendingWithdrawalMenu.length > 0 || pendingPromotionMenu.length > 0) {
+            menuBar.updatePendingCountInterval(pendingDepositMenu, pendingWithdrawalMenu, pendingPromotionMenu);
+        }
+    },
+
+    updatePendingCountInterval: function (pendingDepositMenu, pendingWithdrawalMenu, pendingPromotionMenu) {
+        $.get(alpha.urls.cashServiceRootPath + 'Notifications/GetPendingCount')
+            .done(function (data) {
+                if (data) {
+                    if (pendingDepositMenu.length > 0) {
+                        pendingDepositMenu.text(menuBar.formatPendingCount(data.pendingDeposit));
+                    }
+                    if (pendingWithdrawalMenu.length > 0) {
+                        pendingWithdrawalMenu.text(menuBar.formatPendingCount(data.pendingWithdrawal));
+                    }
+                    if (pendingPromotionMenu.length > 0) {
+                        pendingPromotionMenu.text(menuBar.formatPendingCount(data.pendingPromotion));
+                    }
+                }
+            })
+            .always(function () {
+                setTimeout(
+                    () =>
+                        menuBar.updatePendingCountInterval(
+                            pendingDepositMenu,
+                            pendingWithdrawalMenu,
+                            pendingPromotionMenu
+                        ),
+                    1000 * 5
+                );
+            });
+    },
+
+    formatPendingCount: function (count) {
+        if (count === null || count === undefined || count === 0) {
+            return '';
+        }
+
+        if (count > 99) {
+            return '99+';
+        }
+
+        return count.toString();
     }
 };
 

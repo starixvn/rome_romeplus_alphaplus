@@ -42,7 +42,7 @@ var alpha = {
         cashServiceRootPath:
             top.document.getElementById('cashServiceRootPath') != null
                 ? (<HTMLInputElement>top.document.getElementById('cashServiceRootPath')).value
-                : '/site-cash-service/'
+                : '/cash-service/'
     },
     user: {
         onUserId:
@@ -221,23 +221,22 @@ var alpha = {
         event.preventDefault();
 
         var mainFrame = $('#main');
-        if (!mainFrame.attr("src")) {
+        if (!mainFrame.attr('src')) {
             var topWindow: any = window.top;
-            mainFrame = topWindow.$("#main");
+            mainFrame = topWindow.$('#main');
 
             if (!topWindow.alpha.core.isIe()) {
                 mainFrame.contents().find('head').append(topWindow.$('#AssetCommonCssLink').val());
                 mainFrame.contents().find('body').empty().block();
             }
-        }
-        else {
+        } else {
             if (!alpha.core.isIe()) {
                 mainFrame.contents().find('head').append($('#AssetCommonCssLink').val());
                 mainFrame.contents().find('body').empty().block();
             }
         }
 
-        mainFrame.attr('src', $(event.currentTarget).data("url"));
+        mainFrame.attr('src', $(event.currentTarget).data('url'));
     }
 };
 
