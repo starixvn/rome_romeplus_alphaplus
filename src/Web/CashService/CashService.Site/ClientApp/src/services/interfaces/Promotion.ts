@@ -20,6 +20,7 @@ export interface EditPromotionRequest {
 
 export interface PromotionRequest {
   promotionType: number;
+  statusId?: number;
   fromDate: Date | null;
   toDate: Date | null;
   enabled: boolean;

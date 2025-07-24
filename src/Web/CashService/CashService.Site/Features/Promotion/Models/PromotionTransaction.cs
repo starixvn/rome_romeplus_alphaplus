@@ -1,5 +1,6 @@
 ﻿namespace AlphaPlus.CashService.Site.Features.Promotion.Models;
 
+using AlphaPlus.CashService.Site.Helpers;
 using AlphaPlus.Shared.AppResources.CashServices;
 using Enum;
 using Helpers;

@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
 import {
   ButtonComponent,
 } from '../../../../components/Buttons/index';
@@ -17,8 +19,6 @@ import { promotionService } from '../../../../services/promotionAPI';
 import Information from './Form/Information';
 import PromotionInfo, { PromotionLangFields } from './Form/LanguageInfo';
 import ProductSettings from './Form/ProductSettings';
-import { useTranslation } from 'react-i18next';
-import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
 
 interface EditPromotionProps {
   onClose: () => void;
@@ -173,13 +173,13 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
       contents: Object.entries(promotionInfo).map(([lang, info]) => ({
         language: lang,
         title: info.title,
-        banner: "Razor harcode",//info.banner as string | null,
+        banner: info.banner instanceof File ? null : (info.banner as string | null),
         content: info.content,
       })),
       originalContents: Object.entries(originalPromotionInfo).map(([lang, info]) => ({
         language: lang,
         title: info.title,
-        banner: "Razor harcode",//info.banner as string | null,
+        banner: info.banner instanceof File ? null : (info.banner as string | null),
         content: info.content,
       })),
     };

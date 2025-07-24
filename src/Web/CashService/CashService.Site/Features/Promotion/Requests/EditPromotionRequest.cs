@@ -1,6 +1,7 @@
 using System.Data.SqlTypes;
 using AlphaPlus.CashService.Site.Features.Shared.Requests;
 using AlphaPlus.Core.Extensions;
+using Microsoft.AspNetCore.Http;
 
 namespace AlphaPlus.CashService.Site.Features.Promotion.Requests;
 
@@ -10,8 +11,8 @@ public class EditPromotionRequest : BaseActionRequest
     public bool Enabled { get; init; }
     public bool? OriginalEnabled { get; init; }
 
-    public List<Object> Contents { get; set; }
-    public List<Object> OriginalContents { get; set; }
+    public List<PromotionLanguageSetting> Contents { get; set; }
+    public List<PromotionLanguageSetting> OriginalContents { get; set; }
     
     public bool IsValid()
     {

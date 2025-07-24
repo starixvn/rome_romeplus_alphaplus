@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
 import {
   ButtonComponent,
 } from '../../../../components/Buttons/index';
-import { MessageComponent } from '../../../../components/Message'; 
+import { MessageComponent } from '../../../../components/Message';
 import { TitleComponent } from '../../../../components/Title';
 import { TreeNodeOption } from '../../../../components/TreeSelect/TreeSelect';
 import { PROMOTION_TYPES } from '../../../../constants/promotionConstants';
@@ -16,8 +18,6 @@ import { promotionService } from '../../../../services/promotionAPI';
 import Information from './Form/Information';
 import PromotionInfo, { PromotionLangFields } from './Form/LanguageInfo';
 import ProductSettings from './Form/ProductSettings';
-import { useTranslation } from 'react-i18next';
-import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
 
 interface AddPromotionProps {
   onClose: () => void;
@@ -134,6 +134,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
    
     setPromotionInfo((prev) => ({ ...prev, [lang]: { ...prev[lang], [field]: value } }));
   };
+
 const validateForm = () => {
   const errors = [
     {
@@ -164,32 +165,45 @@ const validateForm = () => {
   }
   return true;
 }
-  const handleSubmit = (e: React.FormEvent) => {
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validateForm())
-      {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        return;
-      }
+    if (!validateForm()) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
     setError(null);
     setLoading(true);
     
-    const [fromDate, toDate] = period.map((date) => (date ? new Date(date) : null));
-    const promotionData: PromotionRequest = {
-      promotionType,
-      fromDate,
-      toDate,
-      productSettings: productSettings,
-      enabled: isActive,
-      contents: Object.entries(promotionInfo).map(([lang, info]) => ({
-        language: lang,
-        title: info.title,
-        banner: info.banner as string | null,
-        content: info.content,
-      })),
-    };
-    
-    promotionService.addPromotion(promotionData).then((result) => {
+    try {
+      const [fromDate, toDate] = period.map((date) => (date ? new Date(date) : null));      
+      const formData = new FormData();      
+      Object.entries(promotionInfo).forEach(([lang, info]) => { 
+        console.log(lang);
+        if (info.banner instanceof File) {
+          formData.append(`images`, info.banner);
+        }
+      });
+      
+      const promotionData: PromotionRequest = {
+        promotionType,
+        statusId: 1,
+        fromDate,
+        toDate,
+        productSettings: productSettings,
+        enabled: isActive,
+        contents: Object.entries(promotionInfo).map(([lang, info]) => ({
+          language: lang,
+          title: info.title,
+          banner: info.banner instanceof File ? null : (info.banner as string | null),
+          content: info.content,
+        })),
+      };
+      
+      formData.append('request', JSON.stringify(promotionData));
+      
+      const result = await promotionService.addPromotionWithFormData(formData);
+      
       window.scrollTo({ top: 0, behavior: 'smooth' });
       if (result.isSuccessful) {
         setSuccessMessage(t('addPromotionForm.promotionSavedSuccessfully'));        
@@ -199,9 +213,12 @@ const validateForm = () => {
       } else {
         setError(result.message);
       }
-    }).finally(() => {
+    } catch (error) {
+      console.error('Error adding promotion:', error);
+      setError('An error occurred while saving the promotion');
+    } finally {
       setLoading(false);
-    });
+    }
   };
 
   return (

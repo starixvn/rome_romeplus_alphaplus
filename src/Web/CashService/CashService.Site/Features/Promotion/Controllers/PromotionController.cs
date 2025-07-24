@@ -1,6 +1,8 @@
 namespace AlphaPlus.CashService.Site.Features.Promotion.Controllers;
 
 using AlphaPlus.CashService.Site.Features.Shared.Requests;
+using AlphaPlus.CashService.Site.Features.Promotion.Requests;
+using AlphaPlus.CashService.Site.Helpers;
 using AlphaPlus.Shared.AppResources.CashServices;
 using Core.Configurations;
 using Core.Models;
@@ -138,15 +140,29 @@ public class PromotionController(
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddPromotion([FromBody] AddPromotionRequest request)
+    public async Task<IActionResult> AddPromotion([FromForm] List<IFormFile> images, [FromForm] string request)
     {
-        request
-            .SetUserSession(userSession);
-        if (request.IsValid())
+        var promotionRequest = JsonConvert.DeserializeObject<AddPromotionRequest>(request);
+        promotionRequest.SetUserSession(userSession);
+        
+        if (promotionRequest.IsValid())
         {
+            var processedImages = await ImageUploadHelper.ProcessUploadedImages(images ?? new List<IFormFile>());
+            if (processedImages.Any() && promotionRequest.Contents != null)
+            {
+                var contentsNeedingBanners = promotionRequest.Contents.Where(c => string.IsNullOrEmpty(c.Banner)).ToList();
+                for (int i = 0; i < Math.Min(contentsNeedingBanners.Count, processedImages.Count); i++)
+                {
+                    var imageKey = $"image_{i}";
+                    if (processedImages.ContainsKey(imageKey))
+                    {
+                        contentsNeedingBanners[i].Banner = processedImages[imageKey];
+                    }
+                }
+            }
+            
             var url = $"/api/promotions";
-
-            var result = await httpClientHelper.PostAsync<AddPromotionRequest, object>(url, request);
+            var result = await httpClientHelper.PostAsync<AddPromotionRequest, object>(url, promotionRequest);
             return Json(result);
         }
 
@@ -154,15 +170,30 @@ public class PromotionController(
     }
 
     [HttpPut]
-    public async Task<IActionResult> EditPromotion(int promotionId, [FromBody] EditPromotionRequest request)
+    public async Task<IActionResult> EditPromotion(int promotionId, [FromForm] List<IFormFile> images, [FromForm] string request)
     {
-        request.SetUserSession(userSession);
-        Console.WriteLine(JsonConvert.SerializeObject(request));
-        if (request.IsValid())
+        var editPromotionRequest = JsonConvert.DeserializeObject<EditPromotionRequest>(request);
+        editPromotionRequest.SetUserSession(userSession);
+        
+        if (editPromotionRequest.IsValid())
         {
-            Console.WriteLine("Valid!");
+            var processedImages = await ImageUploadHelper.ProcessUploadedImages(images);
+            
+            if (processedImages.Any() && editPromotionRequest.Contents != null)
+            {
+                var contentsNeedingBanners = editPromotionRequest.Contents.Where(c => string.IsNullOrEmpty(c.Banner)).ToList();
+                for (int i = 0; i < Math.Min(contentsNeedingBanners.Count, processedImages.Count); i++)
+                {
+                    var imageKey = $"image_{i}";
+                    if (processedImages.ContainsKey(imageKey))
+                    {
+                        contentsNeedingBanners[i].Banner = processedImages[imageKey];
+                    }
+                }
+            }
+            
             var url = $"/api/promotions/{promotionId}";
-            var result = await httpClientHelper.PutAsync<EditPromotionRequest, object>(url, request);
+            var result = await httpClientHelper.PutAsync<EditPromotionRequest, object>(url, editPromotionRequest);
             return Json(result);
         }
 

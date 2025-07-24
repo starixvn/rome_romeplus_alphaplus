@@ -84,6 +84,20 @@ export const promotionService = {
       throw error;
     }
   },
+  addPromotionWithFormData: async (formData: FormData): Promise<ResultModel> => {
+    try {
+      const response = await axiosInstance.post<ResultModel>(`AddPromotion`, formData, {
+        headers: {
+          ...createHeaderXMLHttp(),
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error adding promotion with FormData:', error);
+      throw error;
+    }
+  },
   addBonus: async (bonusRequest: any): Promise<ResultModel> => {
     try {
       const response = await axiosInstance.post<ResultModel>(`AddBonus`, bonusRequest, {
@@ -115,7 +129,28 @@ export const promotionService = {
       );
       return response.data;
     } catch (error) {
-      console.error('Error adding promotion:', error);
+      console.error('Error editing promotion:', error);
+      throw error;
+    }
+  },
+  editPromotionWithFormData: async (
+    promotionId: number,
+    formData: FormData
+  ): Promise<ResultModel> => {
+    try {
+      const response = await axiosInstance.put<ResultModel>(
+        `EditPromotion/${promotionId}`,
+        formData,
+        {
+          headers: {
+            ...createHeaderXMLHttp(),
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error('Error editing promotion with FormData:', error);
       throw error;
     }
   },

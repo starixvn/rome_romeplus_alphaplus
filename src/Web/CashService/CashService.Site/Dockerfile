@@ -57,8 +57,7 @@ FROM hub.nexdev.net/base/dotnet/core/aspnet:8.0-alpine-25h1 AS base
 # Set up non-root user
 RUN adduser --disabled-password \
     --home /app \
-    --gecos '' dotnetuser && chown -R dotnetuser /app && chown -R dotnetuser /tmp
-USER dotnetuser
+    --gecos '' dotnetuser
 
 # Configure the application
 ENV COMPlus_EnableDiagnostics=0
@@ -67,5 +66,13 @@ ENV TZ="America/La_Paz"
 
 WORKDIR /app
 COPY --from=server-build /app ./
+
+# Create wwwroot directory and set proper permissions
+RUN mkdir -p /app/wwwroot/PromotionImages && \
+    chown -R dotnetuser:dotnetuser /app && \
+    chmod -R 755 /app/wwwroot && \
+    chmod -R 777 /app/wwwroot/PromotionImages
+
+USER dotnetuser
 
 ENTRYPOINT ["dotnet", "AlphaPlus.CashService.Site.dll"]

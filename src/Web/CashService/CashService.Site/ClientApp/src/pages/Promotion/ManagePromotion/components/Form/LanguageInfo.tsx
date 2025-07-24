@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ButtonTabComponent } from '../../../../../components/Buttons/ButtonTabComponent';
 import { TitleComponent } from '../../../../../components/Title';
-import UploadImage from '../../../../Transactions/Components/UploadImage';
-import { useTranslation } from 'react-i18next';
+import UploadImage from '../../../Components/UploadImage';
 import { useQuill } from 'react-quilljs';
 import 'quill/dist/quill.snow.css';
 
@@ -22,6 +22,21 @@ export interface PromotionInfoProps {
   activeLang: string;
   setActiveLang: (lang: string) => void;
 }
+
+const getBannerUrl = (bannerPath: string | null): string | null => {
+  if (!bannerPath) return null;  
+
+  if (bannerPath.startsWith('http://') || bannerPath.startsWith('https://') || bannerPath.startsWith('data:')) {
+    return bannerPath;
+  }
+
+  if (bannerPath.startsWith('PromotionImages/')) {
+    const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -2).join('/');
+    return `${baseUrl}/${bannerPath}`;
+  }
+  
+  return bannerPath;
+};
 
 export const LanguageTabs: React.FC<{
   languages: { key: string; label: string }[];
@@ -71,13 +86,20 @@ export const BannerField: React.FC<{
   isDefault: boolean;
 }> = ({ prevBanner, setBanner, lang, isDefault }) => {
   const { t } = useTranslation('promotion');
+  
+  const handleSetImage = (file: File | null) => {
+    setBanner(file);
+  };
+  
+  const fullBannerUrl = getBannerUrl(prevBanner);
+  
   return (
     <div className="mb-4">
       <TitleComponent text={t('addPromotionForm.banner')} required={isDefault} type="label" />
       <UploadImage
         key={`banner-${lang}`}
-        setImage={setBanner}
-        prevImage={prevBanner}
+      setImage={handleSetImage}
+      prevImage={fullBannerUrl}
         maxSize={500}
         customClassName="w-full h-[300px]"
       />
