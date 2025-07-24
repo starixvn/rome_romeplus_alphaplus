@@ -335,6 +335,30 @@
                         "IsAllowToDoByThemselves": true
                     },
                     {
+                        "Url": "Customer/GetCustomerBankInfo",
+                        "Permission": "[H]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "Customer/AddMemberBankInfo",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "Customer/UpdateMemberBankInfo",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
+                        "Url": "Customer/RemoveMemberBankInfo",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
                         "Url": "Customer/Create",
                         "Permission": "[A]",
                         "IsCheckBelonging": true,
