@@ -30,7 +30,6 @@
     <PackageReference Include="Fanex.Common" Version="1.1.2.1" />
     <PackageReference Include="Fanex.Data.ProxyClient" Version="1.0.5.5" />
     <PackageReference Include="Fanex.RemotingRef" Version="1.5.5.1" />
-    <PackageReference Include="FPS.Browserless.Detection.Client.NetStandard" Version="1.0.4" />
     <PackageReference Include="FPS.Client.NetStandard" Version="1.0.15" />
     <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="8.0.2" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.2" />

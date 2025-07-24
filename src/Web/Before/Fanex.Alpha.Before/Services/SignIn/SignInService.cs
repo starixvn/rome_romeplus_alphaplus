@@ -14,7 +14,6 @@ using Fanex.Alpha.Before.Models;
 using Fanex.Alpha.Before.NetThrottling;
 using Fanex.Alpha.Before.NetThrottling.Models;
 using Fanex.Alpha.Before.Resources;
-using Fanex.Alpha.Before.Services.FPS;
 using Fanex.Cryptography.Aes;
 using Fanex.Data.Repository;
 using Microsoft.Extensions.Options;
@@ -44,7 +43,6 @@ namespace Fanex.Alpha.Before.Services.SignIn
         private readonly IPHelper ipHelper;
         private readonly IDynamicRepository repository;
         private readonly IDistributedCacheService cacheService;
-        private readonly IRobotDetector robotDetector;
         private readonly CaptchaOptions captchaOptions;
         private readonly ICaptchaService captchaService;
         private readonly IKickoutCustomerService kickoutCustomerService;
@@ -68,7 +66,6 @@ namespace Fanex.Alpha.Before.Services.SignIn
             Logging.ILogger logger,
             IPHelper ipHelper,
             IDynamicRepository repository,
-            IRobotDetector robotDetector,
             IDistributedCacheService cacheService,
             CaptchaOptions captchaOptions,
             ICaptchaService captchaService,
@@ -87,7 +84,6 @@ namespace Fanex.Alpha.Before.Services.SignIn
             this.ipHelper = ipHelper;
             this.repository = repository;
             this.cacheService = cacheService;
-            this.robotDetector = robotDetector;
             this.captchaOptions = captchaOptions;
             this.captchaService = captchaService;
             this.kickoutCustomerService = kickoutCustomerService;
@@ -299,45 +295,17 @@ namespace Fanex.Alpha.Before.Services.SignIn
             var encryptPassword = AesService.Default.Encrypt(password, signInResult.Captcha);
             var crossCookieValue = EncryptExtension.CfsEnCode((verifySignInResult.CustId + verifySignInResult.LoginTime.Minute).ToString());
 
-            string url;
-            var robotResult = await robotDetector.IsRobot(httpContext.Request);
-            if (robotResult == 0 || signInResult.IsCaptchaVerified)
-            {
-                url = encryptUrlHelper.BuildAfterURL(
-                    httpContext,
-                    encryptPassword,
-                    verifySignInResult,
-                    language,
-                    deviceId,
-                    browserSize,
-                    signInResult.Captcha,
-                    darkModeName,
-                    assetAppPath,
-                    dcsStaticAppPath);
-            }
-            else
-            {
-                AppSession.AssignRobotCaptchaSession(
-                   verifySignInResult.CustId,
-                   verifySignInResult.Username,
-                   verifySignInResult.SubAccId,
-                   verifySignInResult.SubUserName,
-                   verifySignInResult.IsNickname,
-                   verifySignInResult.Nickname,
-                   encryptPassword,
-                   verifySignInResult.SuperId,
-                   verifySignInResult.Site,
-                   verifySignInResult.RoleId,
-                   robotResult.ToString(),
-                   deviceId,
-                   browserSize,
-                   assetAppPath,
-                   dcsStaticAppPath);
-
-                encryptUrlHelper.WriteLoginLogs(verifySignInResult.SuperId, $"After set sessionId: {httpContext.Session.Id}, custId:{verifySignInResult.CustId}");
-
-                url = "RobotCaptcha/Index";
-            }
+            string url= encryptUrlHelper.BuildAfterURL(
+                httpContext,
+                encryptPassword,
+                verifySignInResult,
+                language,
+                deviceId,
+                browserSize,
+                signInResult.Captcha,
+                darkModeName,
+                assetAppPath,
+                dcsStaticAppPath);
 
             var baseDomain = httpContext.Request.Host.Value;
             signInResult.ErrMsg = Labels.lblLoginSuccessful;
@@ -425,8 +393,6 @@ namespace Fanex.Alpha.Before.Services.SignIn
 
                     verifySignInResult = await VerifyDownlineLogin(username, await HashPassword(username, password), requestInfo, !string.IsNullOrWhiteSpace(darkModeName));
 
-                    encryptUrlHelper.WriteLoginLogs(verifySignInResult.SuperId, $"Call DB result: {JsonSerializer.Serialize(verifySignInResult)}");
-
                     if (verifySignInResult.ErrorCode == 0)
                     {
                         if (manualUMOptions.Sites.Contains(verifySignInResult.Site))
@@ -464,8 +430,6 @@ namespace Fanex.Alpha.Before.Services.SignIn
                 signInResult.ErrCode = SignInErrorContants.LoginTooOften;
                 signInResult.ErrMsg = string.Format(Labels.LoginTooOftenBlockedMessage, username);
             }
-
-            encryptUrlHelper.WriteLoginLogs(verifySignInResult.SuperId, $"After checking login too often: {JsonSerializer.Serialize(signInResult)}");
         }
 
         private async Task<VerifySignInResult> VerifyDownlineLogin(string username, string password, RequestInfo requestInfo, bool isDarkMode)
