@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ButtonTabComponent } from '../../../../../components/Buttons/ButtonTabComponent';
 import { TitleComponent } from '../../../../../components/Title';
 import UploadImage from '../../../../Transactions/Components/UploadImage';
 import { useTranslation } from 'react-i18next';
+import { useQuill } from 'react-quilljs';
+import 'quill/dist/quill.snow.css';
 
 export interface PromotionLangFields {
   title: string;
@@ -90,17 +92,52 @@ export const ContentField: React.FC<{
   isDefault: boolean;
 }> = ({ value, onChange, lang, isDefault }) => {
   const { t } = useTranslation('promotion');
+
+  const { quill, quillRef } = useQuill({
+    theme: 'snow',
+    modules: {
+      toolbar: [
+        [{ header: [1, 2, 3, false] }],
+        ['bold', 'italic', 'underline', 'strike'],
+        [{ list: 'ordered' }, { list: 'bullet' }],
+        [{ color: [] }, { background: [] }],
+        ['link'],
+        ['clean'],
+      ],
+    },
+    formats: [
+      'header',
+      'bold',
+      'italic',
+      'underline',
+      'strike',
+      'list',
+      'bullet',
+      'color',
+      'background',
+      'link',
+    ],
+  });
+
+  useEffect(() => {
+    if (quill) {
+      quill.on('text-change', () => {
+        onChange(quill.root.innerHTML);
+      });
+    }
+  }, [quill, onChange]);
+
+  useEffect(() => {
+    if (quill && value !== quill.root.innerHTML) {
+      quill.root.innerHTML = value;
+    }
+  }, [quill, value]);
+
   return (
     <div className="mb-4">
       <TitleComponent text={t('addPromotionForm.content')} required={isDefault} type="label" />
       <div className="border border-[var(--border-control)] rounded">
-        <textarea
-          key={`content-${lang}`}
-          className="w-full min-h-[120px] p-2 resize-y border-0 focus:ring-0 focus:outline-none block"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder=""
-        />
+        <div key={`content-${lang}`} ref={quillRef} style={{ height: '120px' }} />
       </div>
     </div>
   );

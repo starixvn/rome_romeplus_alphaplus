@@ -54,15 +54,15 @@
     "bonusAddedSuccessfully": "Bonus added successfully!"
   },
   "editModal": {
-    "title": "Edit Promotion Transaction",
-    "message": "Once you edit, you can choose to reject or approve.",
+    "title": "Pending Promotion",
+    "message": "Once approve/reject, you cannot revert the transaction.",
     "bonusAmount": "Bonus Amount",
-    "suggested": "Suggested",
+    "agentAvailableCredit": "Agent Available Credit",
     "reject": "Reject",
     "approve": "Approve",
     "rejectedSuccess": "Promotion rejected successfully",
     "approvedSuccess": "Promotion approved successfully",
-    "bonusAmountMustBeGreaterThan0": "Bonus amount must be greater than 0"
+    "bonusAmountMustBeGreaterThan0AndLessThanAgentAvailableCredit": "Bonus amount must be greater than 0 and less than agent available credit"
   },
   "table": {
     "no": "#",
