@@ -8,6 +8,7 @@ using Fanex.Data.Repository;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -55,7 +56,13 @@ public static class ServiceCollectionExtensions
                 options.Configuration = redisConfiguration;
                 options.InstanceName = AppName;
             })
-            .AddSession()
+            .AddSession(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+                options.Cookie.SameSite = SameSiteMode.Strict;
+            })
             .AddDataProtection()
             .SetApplicationName(AppName)
             .PersistKeysToStackExchangeRedis(ConnectionMultiplexer.Connect(redisConfiguration));
@@ -74,7 +81,7 @@ public static class ServiceCollectionExtensions
             {
                 OnRedirectToLogin = ctx =>
                 {
-                    ctx.Response.Redirect($"{ctx.Request.Scheme}://{ctx.Request.Host.Value}/main/Account/Login");
+                    ctx.Response.Redirect($"{ctx.Request.Scheme}://{ctx.Request.Host.Value}/main/Account/Login?r=SessionExpired");
                     return Task.CompletedTask;
                 }
             };

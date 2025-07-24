@@ -83,7 +83,7 @@ public static class Extensions
         {
             OnRedirectToLogin = ctx =>
             {
-                ctx.Response.Redirect($"{ctx.Request.Scheme}://{ctx.Request.Host.Value}/main/Account/Login");
+                ctx.Response.Redirect($"{ctx.Request.Scheme}://{ctx.Request.Host.Value}/main/Account/Login?r=SessionExpired");
                 return Task.CompletedTask;
             }
         };
