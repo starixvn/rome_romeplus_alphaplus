@@ -47,7 +47,7 @@ function MainReportRow({
         <a
           href="#"
           onClick={(event) => handleDrillDown(event, data.promotionId, data.promotionTitle)}
-          className="text-[#045ace] dark:text-[#41a4ff] hover:underline"
+          className="text-[#045ace] dark:text-[#41a4ff] hover:underline max-w-[400px] block overflow-hidden text-ellipsis whitespace-nowrap"
         >
           {data.promotionTitle}
         </a>

@@ -60,7 +60,7 @@ export default function DetailsReportTableTitle({
             </a>
           </li>
           <li className="text-[#9d1c1c] dark:text-[#fff] uppercase relative inline-block">
-            <span>{promotionTitle}</span>
+            <span className="max-w-[280px] inline-block align-middle overflow-hidden text-ellipsis whitespace-nowrap">{promotionTitle}</span>
           </li>
         </ul>
       </div>
