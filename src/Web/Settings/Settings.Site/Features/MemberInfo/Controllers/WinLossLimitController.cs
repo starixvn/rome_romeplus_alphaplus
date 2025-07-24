@@ -16,8 +16,11 @@ public partial class WinLossLimitController(IMediator mediator, IUserSession use
         return View(message, "~/Features/MemberInfo/Views/WinLossLimit/Index.cshtml");
     }
 
-    public Task<ActionResult> SportsbookPotentialWinLimit(SportsbookPotentialWinLimitQuery message)
-        => View(message, "~/Features/MemberInfo/Views/WinLossLimit/SportsbookPotentialWinLimit.cshtml");
+    public Task<ActionResult> SportsbookPotentialWinLimit(SportsbookPotentialWinLimitQuery message) {
+        var tokens = antiforgery.GetAndStoreTokens(HttpContext);
+        ViewData["RequestVerificationToken"] = tokens.RequestToken;	
+        return View(message, "~/Features/MemberInfo/Views/WinLossLimit/SportsbookPotentialWinLimit.cshtml");
+    }
 
     public async Task<ActionResult> PotentialExcel(ExcelSportsbookPotentialWinLimitQuery message)
         => await ExcelView(message);
@@ -44,6 +47,7 @@ public partial class WinLossLimitController(IMediator mediator, IUserSession use
             return Json(new { isSuccessful = false, message = "Unauthorized" });
         }
         
+        command.SiteDB = (short)userSession.SiteDBGroupId;
         var result = await mediator.Send(command);
         return Json(result);
     }

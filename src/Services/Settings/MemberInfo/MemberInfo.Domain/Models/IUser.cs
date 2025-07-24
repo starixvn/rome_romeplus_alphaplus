@@ -78,6 +78,8 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Models
 
         string AGIP { get; }
 
+        int SiteDBGroupId { get; }
+
         int CustDBGroupId { get; }
     }
 }

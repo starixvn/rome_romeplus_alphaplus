@@ -1,31 +1,26 @@
+using Fanex.Data;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit
 {
     public class ResetCurrentSportsbookWinAmountCriteria : NonQueryCommand
     {
-        public ResetCurrentSportsbookWinAmountCriteria(
-            int custId,
-            int sportType,
-            int betType,
-            int settingStatus)
+        public ResetCurrentSportsbookWinAmountCriteria(short siteDB, int custId, int settingStatus)
         {
+            SiteDB = siteDB;
             CustId = custId;
-            SportType = sportType;
-            BetType = betType;
             SettingStatus = settingStatus;
         }
 
+        [SpParam(Ignored= true)]
+        public short SiteDB {get;}
+
         public int CustId { get; }
-
-        public int SportType { get; }
-
-        public int BetType { get; }
 
         public int SettingStatus { get; }
 
         public override string GetSettingKey()
-            => "Age_BalanceGameReset_CashMember";
+            => $"SiteDB_{SiteDB}_Acc_CustWinLimitBetReset_CashMember";
 
         public override bool IsValid() => CustId > 0;
     }

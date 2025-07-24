@@ -62,11 +62,7 @@ public class PotentialWinLimitService(IDynamicRepository repository) : IPotentia
 
     public async Task<Result> ResetCurrentSportsbookWinAmount(ResetCurrentSportsbookWinAmountParam param)
     {
-        var criteria = new ResetCurrentSportsbookWinAmountCriteria(
-            param.CustId,
-            param.SportType,
-            param.BetType,
-            param.SettingStatus);
+        var criteria = new ResetCurrentSportsbookWinAmountCriteria(param.SiteDB, param.CustId, param.SettingStatus);
 
         await repository.ExecuteAsync(criteria);
 

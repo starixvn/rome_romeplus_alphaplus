@@ -38,15 +38,19 @@ public class SportsbookPotentialWinLimitHandler(IPotentialWinLimitService potent
     {
         var result = await potentialWinLimitService.ResetCurrentSportsbookWinAmount(
             new ResetCurrentSportsbookWinAmountParam(
+                request.SiteDB,
                 request.CustId,
                 request.Username,
-                request.ProductId,
-                request.SportType,
-                request.BetType,
                 request.Language,
                 request.SettingStatus
             )
         );
+
+         if (result.IsSuccessful)
+        {
+            return Result.CreateSuccessfulResult(AlphaPlus.Shared.AppResources.Settings.MemberInfo.Resources.ResetCurrentWinAmountSuccess);
+        }
+
         return result;
     }
 } 

@@ -13,13 +13,12 @@ public class ResetCurrentSportsbookWinAmountCommand : IRequest<Result>
     {
         Language = viewer.Language;
         SettingStatus = AppSettings.SettingStatus;
+        SiteDB = (short)viewer.SiteDBGroupId;
     }
 
+    public short SiteDB { get; set; }
     public int CustId { get; set; }
     public string Username { get; set; }
-    public int ProductId { get; set; }
-    public int SportType { get; set; }
-    public int BetType { get; set; }
     public string Language { get; set; }
     public int SettingStatus { get; set; }
 } 

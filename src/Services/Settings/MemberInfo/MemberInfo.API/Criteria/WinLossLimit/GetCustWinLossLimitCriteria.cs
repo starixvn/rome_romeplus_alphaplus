@@ -64,7 +64,6 @@ public class GetCustWinLossLimitCriteria : CriteriaBase
 
     public bool IsDirectDownline { get; set; }
 
-    [SpParam(Ignored = true)]
     public int AccountType { get; set; }
 
     public override string GetSettingKey() => "Age_CustomerSelCustWinlimit";
