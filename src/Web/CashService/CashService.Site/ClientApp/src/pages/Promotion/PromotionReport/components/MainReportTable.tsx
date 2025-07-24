@@ -47,7 +47,7 @@ function MainReportRow({
         <a
           href="#"
           onClick={(event) => handleDrillDown(event, data.promotionId, data.promotionTitle)}
-          className="text-[#045ace] dark:text-[#41a4ff] hover:underline max-w-[400px] block overflow-hidden text-ellipsis whitespace-nowrap"
+          className="text-[#045ace] dark:text-[#41a4ff] hover:underline overflow-hidden text-ellipsis break-words line-clamp-[49] max-w-[400px] max-[768px]:max-w-[200px]"
         >
           {data.promotionTitle}
         </a>
@@ -75,7 +75,7 @@ const MainReportTable = React.forwardRef<HTMLTableElement, MainReportTableProps>
       <div className="table-fixed-header table-fixed-body min-h-0">
         <table
           ref={ref}
-          className="w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px] border-l-[0px]"
+          className="w-full border-collapse border border-[#0000001f] border-t-[0px] border-l-[0px]"
         >
           <thead className="z-11!">
             <tr>
