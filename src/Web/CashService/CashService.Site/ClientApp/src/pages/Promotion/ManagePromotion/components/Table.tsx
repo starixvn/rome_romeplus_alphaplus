@@ -1,17 +1,17 @@
 ﻿import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
 import NoRecordFound from '../../../../components/NoRecordFoundComponent';
 import { StatusComponent } from '../../../../components/Status';
 import { useCookieLanguage } from '../../../../hooks/useCookieLanguage';
 import i18n from '../../../../i18n/i18n-promotion';
 import {
-    Product,
-    ProductSetting,
-    PromotionDetail,
+  Product,
+  ProductSetting,
+  PromotionDetail,
 } from '../../../../services/interfaces/Promotion';
 import { formatDate } from '../../../../utils/commonFunctions';
-import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
  
 
 interface TableProps {
@@ -159,8 +159,8 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
   );
 
   const displayPercentageMaxPayout = (productSettings: ProductSetting[], productId: number) => {
-    const product = productSettings.find((p) => p.productCategoryId === productId);
-    if (!product)
+    let product = productSettings.find((p) => p.productCategoryId === productId);
+    if (!product || product.products.length === 0)
       return (
         <td key={productId} className="text-right">
           -
@@ -169,7 +169,7 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
       );
 
     let displayMaxPayout: number | string = product.maxPayout;
-    if (product.unlimited) displayMaxPayout = 'Unlimited';
+    if (displayMaxPayout==0) displayMaxPayout = 'Unlimited';
     return (
       <td key={product.productCategoryId} className="text-right">
         {product.percentage + '%'}

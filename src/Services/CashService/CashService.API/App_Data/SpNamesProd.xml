@@ -134,7 +134,9 @@
         <Setting Key="Age_CashService_CashPromotionStatusUpd" SpName="Age_CashService_CashPromotionStatusUpd" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
         <Setting Key="Age_CashService_PromotionProductList" SpName="Age_CashService_PromotionProductList" DbName="DBAGE.bodb02.wsv_CashService" Plain="0" />
         <Setting Key="Age_CashPromotion_PromotionReport" SpName="Age_CashPromotion_PromotionReport" DbName="DBAGE.bodb02.wsv_CashService" />
-        <Setting Key="Age_CashService_CashPromotionSelByID" SpName="Age_CashService_CashPromotionSelByID" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_CashPromotionSelByID" SpName="Age_CashService_CashPromotionSelByID" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
+            <Mapping DataField="MinTO" ObjectProperty="MinTurnover"></Mapping>
+        </Setting>
         <Setting Key="Age_CashPromotion_PromotionDetailsReport" SpName="Age_CashPromotion_PromotionDetailsReport" DbName="DBAGE.bodb02.wsv_CashService" />
         <Setting Key="SiteDb_3_Age_CashPromotion_ManualAddBonus" SpName="Age_CashPromotion_ManualAddBonus" DbName="DBSIC.bodb02.wsv_CashService" Plain="0" />
         <Setting Key="SiteDb_3_Age_CashPromotion_UpdateTransStatus" SpName="Age_CashPromotion_UpdateTransStatus" DbName="DBSIC.bodb02.wsv_CashService" Plain="0" />

@@ -133,10 +133,10 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
         condition: promotionInfo.en && !promotionInfo.en.title,
         message: t('addPromotionForm.requiredTitle')
       },
-      //{
-      //condition: promotionInfo.en && !promotionInfo.en.banner,
-      //message: 'Banner is required'
-      //},
+      {
+        condition: promotionInfo.en && !promotionInfo.en.banner,
+        message: t('addPromotionForm.requiredBanner')
+      },
       {
         condition: promotionInfo.en && !promotionInfo.en.content,
         message: t('addPromotionForm.requiredContent')
@@ -158,7 +158,7 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
 
     return statusChanged || contentChanged;
   }
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -166,25 +166,39 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
     }
     setError(null);
     setLoading(true);
-    const promotionData: EditPromotionRequest = {
-      promotionId: promotionId,
-      enabled: isActive,
-      originalEnabled: originalStatus,
-      contents: Object.entries(promotionInfo).map(([lang, info]) => ({
-        language: lang,
-        title: info.title,
-        banner: info.banner instanceof File ? null : (info.banner as string | null),
-        content: info.content,
-      })),
-      originalContents: Object.entries(originalPromotionInfo).map(([lang, info]) => ({
-        language: lang,
-        title: info.title,
-        banner: info.banner instanceof File ? null : (info.banner as string | null),
-        content: info.content,
-      })),
-    };
-
-    promotionService.editPromotion(promotionId, promotionData).then((result) => {
+    
+    try {
+      const formData = new FormData();
+      
+      // Add images to FormData
+      Object.entries(promotionInfo).forEach(([lang, info]) => {
+        if (info.banner instanceof File) {
+          formData.append(`images[${lang}]`, info.banner);
+        }
+      });
+      
+      const promotionData: EditPromotionRequest = {
+        promotionId: promotionId,
+        enabled: isActive,
+        originalEnabled: originalStatus,
+        contents: Object.entries(promotionInfo).map(([lang, info]) => ({
+          language: lang,
+          title: info.title,
+          banner: info.banner instanceof File ? null : (info.banner as string | null),
+          content: info.content,
+        })),
+        originalContents: Object.entries(originalPromotionInfo).map(([lang, info]) => ({
+          language: lang,
+          title: info.title,
+          banner: info.banner instanceof File ? null : (info.banner as string | null),
+          content: info.content,
+        })),
+      };
+      
+      formData.append('request', JSON.stringify(promotionData));
+      
+      const result = await promotionService.editPromotionWithFormData(promotionId, formData);
+      
       window.scrollTo({ top: 0, behavior: 'smooth' });
       if (result.isSuccessful) {
         setSuccessMessage(t('editPromotionForm.promotionUpdatedSuccessfully'));
@@ -194,9 +208,12 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
       } else {
         setError(result.message);
       }
-    }).finally(() => {
+    } catch (error) {
+      console.error('Error editing promotion:', error);
+      setError('An error occurred while updating the promotion');
+    } finally {
       setLoading(false);
-    });
+    }
   };
 
   if (loading && !promotionInfo) {
@@ -228,7 +245,11 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
             period={promotion?.fromDate && promotion?.toDate ? [new Date(promotion.fromDate), new Date(promotion.toDate)] : [null, null]}
             setPeriod={() => { void (0); }}
             productOptions={convertProductToTreeNodeOption(productOptions)}
-            selectedProductIds={promotion?.productSettings?.map((p: ProductSetting) => p.productCategoryId) || []}
+            selectedProductIds={promotion?.productSettings?.flatMap((p: ProductSetting) => 
+              p.products && p.products.length > 0 
+                ? p.products.map(product => product.productId)
+                : []
+            ) || []}
             handleProductChange={() => { void (0) }}
             PROMOTION_TYPES={PROMOTION_TYPES}
           />

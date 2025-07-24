@@ -86,7 +86,7 @@ const Information: React.FC<InformationProps> = ({
 
       <div className="w-[190px] mr-[12px] mb-[12px]">
         <div className="flex items-center">
-          <TitleComponent text={t('table.product')} className="mr-[5px]" required={true} type='label'/>
+          <TitleComponent text={t('table.Product')} className="mr-[5px]" required={true} type='label'/>
         </div>
         <TreeSelect
           options={productOptions}

@@ -140,25 +140,58 @@ public class PromotionController(
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddPromotion([FromForm] List<IFormFile> images, [FromForm] string request)
+    public async Task<IActionResult> AddPromotion([FromForm] Dictionary<string, IFormFile> images, [FromForm] string request)
     {
         var promotionRequest = JsonConvert.DeserializeObject<AddPromotionRequest>(request);
         promotionRequest.SetUserSession(userSession);
         
         if (promotionRequest.IsValid())
         {
-            var processedImages = await ImageUploadHelper.ProcessUploadedImages(images ?? new List<IFormFile>());
-            if (processedImages.Any() && promotionRequest.Contents != null)
+            Console.WriteLine($"=== AddPromotion Debug ===");
+            Console.WriteLine($"Total images received: {images.Count}");
+            foreach (var kvp in images)
             {
-                var contentsNeedingBanners = promotionRequest.Contents.Where(c => string.IsNullOrEmpty(c.Banner)).ToList();
-                for (int i = 0; i < Math.Min(contentsNeedingBanners.Count, processedImages.Count); i++)
+                Console.WriteLine($"Image key: {kvp.Key}, File name: {kvp.Value?.FileName}, Size: {kvp.Value?.Length}");
+            }
+            
+            // Process images and map them to the correct language
+            if (images.Any() && promotionRequest.Contents != null)
+            {
+                var processedImages = await ImageUploadHelper.ProcessUploadedImages(images.Values.ToList());
+                Console.WriteLine($"Processed images: {processedImages.Count}");
+                
+                // Create a mapping from processed images to their original keys
+                var imageMapping = new Dictionary<string, string>();
+                var imageKeys = images.Keys.ToList();
+                for (int i = 0; i < Math.Min(imageKeys.Count, processedImages.Count); i++)
                 {
-                    var imageKey = $"image_{i}";
-                    if (processedImages.ContainsKey(imageKey))
+                    var originalKey = imageKeys[i]; // e.g., "images[en]", "images[vi]"
+                    var processedKey = $"image_{i}"; // e.g., "image_0", "image_1"
+                    if (processedImages.ContainsKey(processedKey))
                     {
-                        contentsNeedingBanners[i].Banner = processedImages[imageKey];
+                        imageMapping[originalKey] = processedImages[processedKey];
+                        Console.WriteLine($"Mapped {originalKey} -> {processedKey} -> {processedImages[processedKey]}");
                     }
                 }
+                
+                // Map images to contents by language
+                foreach (var content in promotionRequest.Contents)
+                {
+                    var imageKey = $"images[{content.Language}]";
+                    if (imageMapping.ContainsKey(imageKey))
+                    {
+                        content.Banner = imageMapping[imageKey];
+                        Console.WriteLine($"Mapped image for language {content.Language}: {content.Banner}");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"No image found for language {content.Language}");
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("No images or contents to process");
             }
             
             var url = $"/api/promotions";
@@ -170,24 +203,39 @@ public class PromotionController(
     }
 
     [HttpPut]
-    public async Task<IActionResult> EditPromotion(int promotionId, [FromForm] List<IFormFile> images, [FromForm] string request)
+    public async Task<IActionResult> EditPromotion(int promotionId, [FromForm] Dictionary<string, IFormFile> images, [FromForm] string request)
     {
         var editPromotionRequest = JsonConvert.DeserializeObject<EditPromotionRequest>(request);
         editPromotionRequest.SetUserSession(userSession);
         
         if (editPromotionRequest.IsValid())
         {
-            var processedImages = await ImageUploadHelper.ProcessUploadedImages(images);
-            
-            if (processedImages.Any() && editPromotionRequest.Contents != null)
+            // Process images and map them to the correct language
+            if (images.Any() && editPromotionRequest.Contents != null)
             {
-                var contentsNeedingBanners = editPromotionRequest.Contents.Where(c => string.IsNullOrEmpty(c.Banner)).ToList();
-                for (int i = 0; i < Math.Min(contentsNeedingBanners.Count, processedImages.Count); i++)
+                var processedImages = await ImageUploadHelper.ProcessUploadedImages(images.Values.ToList());
+                
+                // Create a mapping from processed images to their original keys
+                var imageMapping = new Dictionary<string, string>();
+                var imageKeys = images.Keys.ToList();
+                for (int i = 0; i < Math.Min(imageKeys.Count, processedImages.Count); i++)
                 {
-                    var imageKey = $"image_{i}";
-                    if (processedImages.ContainsKey(imageKey))
+                    var originalKey = imageKeys[i]; // e.g., "images[en]", "images[vi]"
+                    var processedKey = $"image_{i}"; // e.g., "image_0", "image_1"
+                    if (processedImages.ContainsKey(processedKey))
                     {
-                        contentsNeedingBanners[i].Banner = processedImages[imageKey];
+                        imageMapping[originalKey] = processedImages[processedKey];
+                    }
+                }
+                
+                // Map images to contents by language
+                foreach (var content in editPromotionRequest.Contents)
+                {
+                    var imageKey = $"images[{content.Language}]";
+                    if (imageMapping.ContainsKey(imageKey))
+                    {
+                        content.Banner = imageMapping[imageKey];
+                        Console.WriteLine($"Mapped image for language {content.Language}: {content.Banner}");
                     }
                 }
             }

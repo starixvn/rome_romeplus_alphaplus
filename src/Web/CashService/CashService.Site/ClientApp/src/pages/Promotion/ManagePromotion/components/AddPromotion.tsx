@@ -93,9 +93,10 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
     
     const selectedIds = values.map((v) => v as number);
     setSelectedProductIds(selectedIds);
-    setSelectedProductCategories(highestParents.map((h) => h.value as number));
+    const selectedCategories = highestParents.map((h) => h.value as number);
+    setSelectedProductCategories(selectedCategories);
     
-    // Update productIds in productSettings for selected categories
+    // Update productIds in productSettings for selected categories and set minimum values
     setProductSettings((prev) =>
       prev.map((setting) => {
         const categoryProducts = setting.products || [];
@@ -103,23 +104,49 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
           categoryProducts.some((product) => product.productId === id)
         );
         
+        const isCategorySelected = selectedCategories.includes(setting.productCategoryId);
+        
         return {
           ...setting,
           productIds: selectedProductsInCategory,
+          // Set default values to 1 for selected categories if current value is 0
+          // Reset values to 0 for unselected categories
+          percentage: isCategorySelected 
+            ? (setting.percentage === 0 ? 1 : setting.percentage)
+            : 0,
+          minTurnover: isCategorySelected 
+            ? (setting.minTurnover === 0 ? 1 : setting.minTurnover)
+            : 0,
+          maxPayout: isCategorySelected 
+            ? (setting.maxPayout === 0 ? 1 : setting.maxPayout)
+            : 0,
+          unlimited: isCategorySelected ? setting.unlimited : false,
         };
       })
     );
   };
 
   const handleProductFieldChange = (productId: number, field: string, value: number | boolean) => {
-    
     setProductSettings((prev) =>
       prev.map((p) => {
         if (p.productCategoryId === productId) {
-          if (field === 'unlimited' && value === true) {
-            return { ...p, [field]: value, maxPayout: 0 };
+          if (field === 'unlimited') {
+            const boolValue = value as boolean;
+            if (boolValue === true) {
+              // When checking unlimited, set maxPayout to 0
+              return { ...p, unlimited: boolValue, maxPayout: 0 };
+            } else {
+              // When unchecking unlimited, set maxPayout to 1
+              return { ...p, unlimited: boolValue, maxPayout: 1 };
+            }
+          } else {
+            // For numeric fields, prevent setting to 0 or negative values
+            let adjustedValue = value;
+            if (typeof value === 'number' && value <= 0) {
+              adjustedValue = 1;
+            }
+            return { ...p, [field]: adjustedValue };
           }
-          return { ...p, [field]: value };
         }
         return p;
       })
@@ -141,6 +168,7 @@ const validateForm = () => {
       condition: selectedProductCategories.length === 0,
       message: t('addPromotionForm.requiredProductCategory')
     },
+    
     { 
       condition: !promotionInfo.en, 
       message: t('addPromotionForm.requiredTitle')
@@ -149,10 +177,10 @@ const validateForm = () => {
       condition: promotionInfo.en && !promotionInfo.en.title,
       message: t('addPromotionForm.requiredTitle')
     },
-    /*{
+    {
       condition: promotionInfo.en && !promotionInfo.en.banner,
-      message: 'Banner is required'
-    },*/
+      message: t('addPromotionForm.requiredBanner')
+    },
     {
       condition: promotionInfo.en && !promotionInfo.en.content,
       message: t('addPromotionForm.requiredContent')
@@ -181,7 +209,7 @@ const validateForm = () => {
       Object.entries(promotionInfo).forEach(([lang, info]) => { 
         console.log(lang);
         if (info.banner instanceof File) {
-          formData.append(`images`, info.banner);
+          formData.append(`images[${lang}]`, info.banner);
         }
       });
       
@@ -199,7 +227,7 @@ const validateForm = () => {
           content: info.content,
         })),
       };
-      
+      debugger;
       formData.append('request', JSON.stringify(promotionData));
       
       const result = await promotionService.addPromotionWithFormData(formData);

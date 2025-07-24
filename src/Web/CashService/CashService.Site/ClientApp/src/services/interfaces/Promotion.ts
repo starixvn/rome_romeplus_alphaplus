@@ -93,4 +93,5 @@ export interface ProductSetting extends ProductDropdown {
   maxPayout: number;
   unlimited: boolean;
   productIds: number[];
+  productList?: string;
 }
