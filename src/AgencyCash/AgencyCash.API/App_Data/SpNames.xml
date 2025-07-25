@@ -38,4 +38,9 @@
     <Function Name="Payments: Update Provider Info">
         <Setting Key="SiteDB3_API_CashTransaction_ProviderInfo_Upd" SpName="API_CashTransaction_ProviderInfo_Upd" DbName="DBSITE03.bodb02.asv_CashService" />
     </Function>
+    <Function Name="Notifications">
+        <Setting Key="Age_Msg_SetMessage" SpName="Age_Msg_SetMessage" DbName="DBMSG.bodb_Message.asv_CashService" />
+        <Setting Key="Age_Msg_SetUsrMessage" SpName="Age_Msg_SetUsrMessage" DbName="DBMSG.bodb_Message.asv_CashService" />
+        <Setting Key="Age_ToastMessage_Ins" SpName="Age_ToastMessage_Ins" DbName="DBMSG.bodb_Message.asv_CashService" />
+    </Function>
 </Functions>

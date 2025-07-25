@@ -75,5 +75,16 @@ namespace AgencyCash.API.Notifications.Resources
                 return ResourceManager.GetString("NotifyPendingDeposit", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to You have a new member withdrawal request awaiting your approval..
+        /// </summary>
+        public static string NotifyPendingWithdrawal
+        {
+            get
+            {
+                return ResourceManager.GetString("NotifyPendingWithdrawal", resourceCulture);
+            }
+        }
     }
 }

@@ -3,17 +3,20 @@ using AgencyCash.API.Notifications.Resources;
 
 namespace AgencyCash.API.Notifications.Models;
 
-public class LocalizedMessage
+public class LocalizedMessage(int agentId, int custId, string agentName)
 {
-    public string En { get; internal set; }
-    public string Ch { get; internal set; }
-    public string Cs { get; internal set; }
-    public string Th { get; internal set; }
-    public string Vi { get; internal set; }
-    public string Jp { get; internal set; }
-    public string Ko { get; internal set; }
+    public int AgentId { get; } = agentId;
+    public int CustId { get; } = custId;
+    public string AgentName { get; } = agentName;
+    public string En { get; private set; }
+    public string Ch { get; private set; }
+    public string Cs { get; private set; }
+    public string Th { get; private set; }
+    public string Vi { get; private set; }
+    public string Jp { get; private set; }
+    public string Ko { get; private set; }
 
-    public void AssignLocalizedMessage(string resourceKey, object[] messageParams)
+    public void AssignLocalizedMessage(string resourceKey, object[] messageParams = null)
     {
         messageParams ??= Array.Empty<object>();
         En = GetMessage(resourceKey, "en-US", messageParams);

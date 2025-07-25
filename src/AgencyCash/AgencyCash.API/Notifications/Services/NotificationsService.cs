@@ -1,4 +1,3 @@
-using AAgencyCash.API.Notifications.Criteria;
 using AgencyCash.API.Notifications.Constants;
 using AgencyCash.API.Notifications.Criteria;
 using AgencyCash.API.Notifications.Models;
@@ -8,14 +7,22 @@ namespace AgencyCash.API.Notifications.Services;
 
 public interface INotificationsService
 {
-
+    Task Notify(int agentId, int custId, string agentName, string resourceKey);
 }
 
 public class NotificationsService(IDynamicRepository repository) : INotificationsService
 {
     private readonly IDynamicRepository repository = repository;
 
-    public async Task AddPersonalMsg(LocalizedMessage message, int agentId, string agentName)
+    public Task Notify(int agentId, int custId, string agentName, string resourceKey)
+    {
+        var message = new LocalizedMessage(agentId, custId, agentName);
+        message.AssignLocalizedMessage(resourceKey);
+
+        return Task.WhenAll(AddPersonalMsg(message), AddToastMsg(message));
+    }
+
+    public async Task AddPersonalMsg(LocalizedMessage message)
     {
         var addPersonalMsgCriteria = new AddPersonalMsgCriteria(
             message.En,
@@ -29,17 +36,17 @@ public class NotificationsService(IDynamicRepository repository) : INotification
 
         await repository.ExecuteAsync(new AssignPersonalMsgCriteria(
             addPersonalMsgCriteria.MessageIdOutput,
-            agentId,
-            agentName));
+            message.AgentId,
+            message.AgentName));
     }
 
-    public async Task AddToastMsg(LocalizedMessage message, int agentId, int custId)
+    public async Task AddToastMsg(LocalizedMessage message)
     {
         var criteria = new AddToastMsgCriteria(
-            agentId,
+            message.AgentId,
             ToastMsgType.Info,
             0,
-            custId,
+            message.CustId,
             message.En,
             message.Ch,
             message.Cs,

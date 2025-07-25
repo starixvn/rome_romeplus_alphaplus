@@ -120,4 +120,7 @@
   <data name="NotifyPendingDeposit" xml:space="preserve">
     <value>You have a new member deposit request awaiting your approval.</value>
   </data>
+  <data name="NotifyPendingWithdrawal" xml:space="preserve">
+    <value>You have a new member withdrawal request awaiting your approval.</value>
+  </data>
 </root>

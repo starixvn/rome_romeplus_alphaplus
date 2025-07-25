@@ -1,3 +1,4 @@
+using AgencyCash.API.Notifications.Services;
 using AgencyCash.API.Payments.Constants;
 using AgencyCash.API.Payments.Criteria;
 using AgencyCash.API.Payments.Criteria.Withdrawal;
@@ -20,30 +21,30 @@ public interface IWithdrawalService
 public class WithdrawalService(
     IDynamicRepository repository,
     ISiteDBService siteDBService,
-    Fanex.Logging.ILogger logger) : PaymentService(repository, siteDBService, logger), IWithdrawalService
+    Fanex.Logging.ILogger logger,
+    INotificationsService notificationsService) : PaymentService(repository, siteDBService, logger), IWithdrawalService
 {
-    private readonly IDynamicRepository _repository = repository;
-    private readonly ISiteDBService _siteDBService = siteDBService;
+    private readonly INotificationsService notificationsService = notificationsService;
 
     public async Task<PaymentResult> CreateManualWithdrawal(ManualWithdrawalRequest request)
     {
         try
         {
             // Step 1: Get site DB config
-            SiteDBConfig siteDBConfig = await _siteDBService.GetSiteDBConfig(request.AgentId);
+            SiteDBConfig siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
 
             // Step 2: Validate payment
             var validatePaymentCriteria = new ValidatePaymentCriteria(
-            request.AgentId,
-            request.CustId,
-            TransactionType.Withdrawal,
-            siteDBConfig.CustDBGroupId,
-            isManual: true,
-            paymentTo: request.PaymentTo);
+                request.AgentId,
+                request.CustId,
+                TransactionType.Withdrawal,
+                siteDBConfig.CustDBGroupId,
+                isManual: true,
+                paymentTo: request.PaymentTo);
 
             var result = await ValidatePayment(validatePaymentCriteria);
 
-            if (result.Code != 0)
+            if (!result.IsSuccess)
             {
                 return result;
             }
@@ -54,8 +55,7 @@ public class WithdrawalService(
                 request.AgentId,
                 isMemberSite: true,
                 siteDBConfig.CustDBGroupId);
-
-            await _repository.ExecuteAsync(withdrawalLimitCriteria);
+            await repository.ExecuteAsync(withdrawalLimitCriteria);
 
             // Step 4: Add withdrawal transaction
             var withdrawalTransactionCriteria = new ManualWithdrawalTransactionCriteria(
@@ -70,7 +70,12 @@ public class WithdrawalService(
                 request.Amount,
                 request.IP);
 
-            var logs = await _repository.FetchAsync<LogEntry>(withdrawalTransactionCriteria);
+            var logs = await repository.FetchAsync<LogEntry>(withdrawalTransactionCriteria);
+            var paymentResult = new PaymentResult(
+                withdrawalTransactionCriteria.ErrCode,
+                withdrawalTransactionCriteria.ErrCode == 0 ? "Ok" : withdrawalTransactionCriteria.ErrMsg,
+                withdrawalTransactionCriteria.TransId);
+
             await WriteLogsTransferAndRunSP(logs, siteDBConfig);
 
             if (!string.IsNullOrWhiteSpace(withdrawalTransactionCriteria.ErrExtraInfo))
@@ -78,10 +83,12 @@ public class WithdrawalService(
                 await logger.ErrorAsync($"Withdrawal failed. Key: {withdrawalTransactionCriteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(withdrawalTransactionCriteria)}");
             }
 
-            return new PaymentResult(
-                withdrawalTransactionCriteria.ErrCode,
-                withdrawalTransactionCriteria.ErrCode == 0 ? "Ok" : withdrawalTransactionCriteria.ErrMsg,
-                withdrawalTransactionCriteria.TransId);
+            if (paymentResult.IsSuccess)
+            {
+                _ = Task.Run(() => Notify(request.AgentId, request.CustId));
+            }
+
+            return paymentResult;
         }
         catch (Exception ex)
         {
@@ -95,20 +102,20 @@ public class WithdrawalService(
         try
         {
             // Step 1: Get site DB config
-            SiteDBConfig siteDBConfig = await _siteDBService.GetSiteDBConfig(request.AgentId);
+            SiteDBConfig siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
 
             // Step 2: Get member cash balance
             var getMemberCashBalanceCriteria = new GetMemberCashBalanceCriteria(request.CustId, siteDBConfig.SiteDBGroupId);
-            await _repository.ExecuteAsync(getMemberCashBalanceCriteria);
+            await repository.ExecuteAsync(getMemberCashBalanceCriteria);
 
             // Step 3: Get daily withdrawal count
             var getDailyWithdrawalCriteria = new GetDailyWithdrawalCriteria(request.CustId, siteDBConfig.SiteDBGroupId);
-            await _repository.ExecuteAsync(getDailyWithdrawalCriteria);
+            await repository.ExecuteAsync(getDailyWithdrawalCriteria);
 
             // Step 4: Get withdrawal limits
             var withdrawalLimitCriteria = new WithdrawalLimitAmountCriteria(request.CustId, request.AgentId, isMemberSite: true, siteDBConfig.CustDBGroupId, getDailyWithdrawalCriteria.WithdrawalCnt);
 
-            await _repository.ExecuteAsync(withdrawalLimitCriteria);
+            await repository.ExecuteAsync(withdrawalLimitCriteria);
 
             return new WithdrawalLimitResult(withdrawalLimitCriteria.MinAmt, withdrawalLimitCriteria.MaxAmt, withdrawalLimitCriteria.WithdrawalLimitCnt, getMemberCashBalanceCriteria.TotalCash);
         }
@@ -148,5 +155,19 @@ public class WithdrawalService(
         }
 
         return result;
+    }
+
+    public async Task Notify(int agentId, int custId)
+    {
+        const string NotifyPendingWithdrawal = "NotifyPendingWithdrawal";
+
+        try
+        {
+            await notificationsService.Notify(agentId, custId, string.Empty, NotifyPendingWithdrawal);
+        }
+        catch (Exception ex)
+        {
+            await logger.ErrorAsync($"{Notify} failed. Agent: {agentId}, CustId: {custId}", ex);
+        }
     }
 }

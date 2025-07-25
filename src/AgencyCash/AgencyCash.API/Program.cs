@@ -1,3 +1,4 @@
+using AgencyCash.API.Notifications.Services;
 using AgencyCash.API.Payments;
 using AgencyCash.API.RegisterCashMember;
 using AgencyCash.API.Shared;
@@ -19,6 +20,7 @@ builder.Services
     .AddSingleton<IRequestLoggingService, RequestLoggingService>()
     .AddSingleton<IRegisterCashMemberService, RegisterCashMemberService>()
     .RegisterPaymentsModule()
+    .AddSingleton<INotificationsService, NotificationsService>()
     .AddSwaggerGen(c =>
     {
         c.SwaggerDoc("v1", new() { Title = "Agency Cash API V1", Version = "v1" });

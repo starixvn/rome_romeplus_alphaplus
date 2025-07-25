@@ -1,3 +1,4 @@
+using AgencyCash.API.Notifications.Services;
 using AgencyCash.API.Payments.Constants;
 using AgencyCash.API.Payments.Criteria;
 using AgencyCash.API.Payments.Criteria.Deposit;
@@ -26,8 +27,11 @@ public interface IDepositService
 public class DepositService(
     IDynamicRepository repository,
     ISiteDBService siteDBService,
-    Fanex.Logging.ILogger logger) : PaymentService(repository, siteDBService, logger), IDepositService
+    Fanex.Logging.ILogger logger,
+    INotificationsService notificationsService) : PaymentService(repository, siteDBService, logger), IDepositService
 {
+    private readonly INotificationsService notificationsService = notificationsService;
+
     public async Task<DepositLimit> GetLimit(GetDepositLimitRequest request)
     {
         var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
@@ -90,7 +94,14 @@ public class DepositService(
             ip: request.IP,
             remark: request.Remark);
 
-        return await AddTransactionAndWriteLogs(criteria, siteDBConfig.CustDBGroupId);
+        var result = await AddTransactionAndWriteLogs(criteria, siteDBConfig.CustDBGroupId);
+
+        if (result.IsSuccess)
+        {
+            _ = Task.Run(() => Notify(request.AgentId, request.CustId));
+        }
+
+        return result;
     }
 
     public async Task<PaymentResult> Auto(AutoDepositRequest request)
@@ -232,5 +243,19 @@ public class DepositService(
         await Task.WhenAll(tasks);
 
         return new Result(criteria.ErrCode, criteria.ErrMsg);
+    }
+
+    public async Task Notify(int agentId, int custId)
+    {
+        const string NotifyPendingDeposit = "NotifyPendingDeposit";
+
+        try
+        {
+            await notificationsService.Notify(agentId, custId, string.Empty, NotifyPendingDeposit);
+        }
+        catch (Exception ex)
+        {
+            await logger.ErrorAsync($"{Notify} failed. Agent: {agentId}, CustId: {custId}", ex);
+        }
     }
 }

@@ -1,19 +1,16 @@
-using Fanex.Data;
 using Fanex.Data.Repository;
 
-namespace AAgencyCash.API.Notifications.Criteria;
+namespace AgencyCash.API.Notifications.Criteria;
 
-public class AssignPersonalMsgCriteria(int messageId, int custId, string custName) : NonQueryCommand
+public class AssignPersonalMsgCriteria(int messageId, int targetId, string targetName) : NonQueryCommand
 {
     public int MessageId { get; } = messageId;
 
-    [SpParam(SqlParamName = "TargetId")]
-    public int CustId { get; } = custId;
+    public int TargetId { get; } = targetId;
 
-    [SpParam(SqlParamName = "TargetName")]
-    public string CustName { get; } = custName;
+    public string TargetName { get; } = targetName;
 
     public override string GetSettingKey() => "Age_Msg_SetUsrMessage";
 
-    public override bool IsValid() => MessageId > 0 && CustId > 0;
+    public override bool IsValid() => MessageId > 0 && TargetId > 0;
 }
