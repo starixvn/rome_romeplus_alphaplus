@@ -133,10 +133,7 @@ a, a:focus, a:active, a:target, a:hover {
     margin: 0 5px;
     position: relative;
     top: 1px;
-    padding: 2px;
-    border-radius: 4px;
-    background: yellow;
     &::before{
-        color: #ededed;        
+        color: #41a4ff;        
     }
 }
