@@ -21,6 +21,11 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Controllers
 
         public async Task<ActionResult> Index(IndexQuery indexQuery)
         {
+            if (!AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(UserSession.Site))
+            {
+                return RedirectToAction("Index", "Settings");
+            }
+
             indexQuery.TrackingValueTransformTemplatePath = $"{AppDomain.CurrentDomain.BaseDirectory}/{TemplatePath}";
 
             var viewModel = await mediator.Send(indexQuery);
