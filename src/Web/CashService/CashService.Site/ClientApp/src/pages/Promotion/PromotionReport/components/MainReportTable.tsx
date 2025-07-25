@@ -44,13 +44,16 @@ function MainReportRow({
         {formatNumber(idx + 1)}
       </td>
       <td className="text-left sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
+        <div className="w-[100%] max-w-[460px]">
         <a
           href="#"
           onClick={(event) => handleDrillDown(event, data.promotionId, data.promotionTitle)}
-          className="text-[#045ace] dark:text-[#41a4ff] hover:underline overflow-hidden text-ellipsis break-words line-clamp-[49] max-w-[400px] max-[768px]:max-w-[200px]"
+          className="text-[#045ace] dark:text-[#41a4ff] hover:underline overflow-hidden text-ellipsis break-words line-clamp-[49] w-[100%] max-[768px]:max-w-[200px]"
         >
           {data.promotionTitle}
         </a>
+        </div>
+        
       </td>
       <td>{t(`promotionType_${data.promotionType}`)}</td>
       <td>{`${formatDate(data.fromDate)} - ${formatDate(data.toDate)}`}</td>
@@ -82,7 +85,7 @@ const MainReportTable = React.forwardRef<HTMLTableElement, MainReportTableProps>
               <th className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-header-background)] z-11">
                 #
               </th>
-              <th className="sticky left-[32px] bg-[var(--table-header-background)] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
+              <th className="sticky left-[32px] bg-[var(--table-header-background)] shadow-[3px_0_4px_0_rgba(99,84,84,0.3)] w-[30%]">
                 {t('promotion:table.promotionTitle')}
               </th>
               <th>{t('promotion:table.promotionType')}</th>
