@@ -73,6 +73,8 @@ export default function MainReport({
 
   function handleClickPromotionTitle(promotion: any) {
     onClickPromotionTitle(promotion, {
+      fromDate: dateRange[0],
+      toDate: dateRange[1],
       promotionType: promotionType,
       status: status,
     });

@@ -15,7 +15,7 @@ public class NotificationsService(IDynamicRepository repository) : INotification
 {
     private readonly IDynamicRepository repository = repository;
 
-    public async Task AddPersonalMsg(LocalizedMessage message, int custId, string custName)
+    public async Task AddPersonalMsg(LocalizedMessage message, int agentId, string agentName)
     {
         var addPersonalMsgCriteria = new AddPersonalMsgCriteria(
             message.En,
@@ -29,17 +29,17 @@ public class NotificationsService(IDynamicRepository repository) : INotification
 
         await repository.ExecuteAsync(new AssignPersonalMsgCriteria(
             addPersonalMsgCriteria.MessageIdOutput,
-            custId,
-            custName));
+            agentId,
+            agentName));
     }
 
-    public async Task AddToastMsg(LocalizedMessage message, int custId, string custName)
+    public async Task AddToastMsg(LocalizedMessage message, int agentId, int custId)
     {
         var criteria = new AddToastMsgCriteria(
-            custId,
+            agentId,
             ToastMsgType.Info,
             0,
-            0,
+            custId,
             message.En,
             message.Ch,
             message.Cs,
