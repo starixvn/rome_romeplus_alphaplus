@@ -18,6 +18,8 @@
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core.Authorization\AlphaPlus.Core.Authorization.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Logging\AlphaPlus.Logging.csproj" />
+    <ProjectReference Include="..\..\..\Modules\AlphaPlus.PartialUM\AlphaPlus.PartialUM.csproj" />
+    <ProjectReference Include="..\..\..\Shared\AlphaPlus.Shared.AppResources\AlphaPlus.Shared.AppResources.csproj" />
   </ItemGroup>
 
   <ItemGroup>
