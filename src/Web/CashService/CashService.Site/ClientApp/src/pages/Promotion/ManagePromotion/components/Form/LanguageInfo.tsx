@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { ButtonTabComponent } from '../../../../../components/Buttons/ButtonTabComponent';
 import { TitleComponent } from '../../../../../components/Title';
 import UploadImage from '../../../Components/UploadImage';
-import { useQuill } from 'react-quilljs';
-import 'quill/dist/quill.snow.css';
+//import { useQuill } from 'react-quilljs';
+//import 'quill/dist/quill.snow.css';
 
 export interface PromotionLangFields {
   title: string;
@@ -114,7 +114,7 @@ export const ContentField: React.FC<{
   isDefault: boolean;
 }> = ({ value, onChange, lang, isDefault }) => {
   const { t } = useTranslation('promotion');
-
+/*
   const { quill, quillRef } = useQuill({
     theme: 'snow',
     modules: {
@@ -154,12 +154,19 @@ export const ContentField: React.FC<{
       quill.root.innerHTML = value;
     }
   }, [quill, value]);
-
+*/
   return (
     <div className="mb-4">
       <TitleComponent text={t('addPromotionForm.content')} required={isDefault} type="label" />
       <div className="border border-[var(--border-control)] rounded">
-        <div key={`content-${lang}`} ref={quillRef} style={{ height: '120px' }} />
+        {/*<div key={`content-${lang}`} ref={quillRef} style={{ height: '120px' }} />*/}
+        <textarea
+          key={`content-${lang}`}
+          className="w-full min-h-[120px] p-2 resize-y border-0 focus:ring-0 focus:outline-none block"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder=""
+        />
       </div>
     </div>
   );
