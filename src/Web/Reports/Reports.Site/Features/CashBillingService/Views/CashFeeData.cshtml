@@ -28,7 +28,7 @@
 	void RenderFeeItemRow(CashFeeItemModel item)
 	{
 		<tr>
-			<td class="text-left">@item.DisplayType</td>
+			<td class="text-left feeitem">@item.DisplayType</td>
 			<td>@item.Fee.FormatNumber()</td>
 			<td>@item.Count.FormatNumber()</td>
 			<td>@item.Agent.FormatNumber()</td>
@@ -37,7 +37,7 @@
 	}
 }
 @model CashFeeModel
-<table class="tb tb-bordered tb-hover w-full tbl-win-loss-by-product"
+<table class="tb tb-bordered tb-hover w-full tb-cashfee tbl-win-loss-by-product "
 	   id="tbl-report">
 	<thead>
 		<tr>
