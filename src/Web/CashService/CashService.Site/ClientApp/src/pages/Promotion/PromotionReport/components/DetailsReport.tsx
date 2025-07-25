@@ -46,14 +46,12 @@ export default function DetailsReport({
   initialDateRange: {
     minDate: Date;
     maxDate: Date;
-    fromDate: Date;
-    toDate: Date;
   };
 }) {
   const { promotionId, promotionTitle } = promotion;
   const [dateRange, setDateRange] = useState<[Date | null, Date | null]>([
-    initialDateRange.fromDate,
-    initialDateRange.toDate,
+    promotion.fromDate,
+    promotion.toDate,
   ]);
   const [status, setStatus] = useState<string>('0');
 

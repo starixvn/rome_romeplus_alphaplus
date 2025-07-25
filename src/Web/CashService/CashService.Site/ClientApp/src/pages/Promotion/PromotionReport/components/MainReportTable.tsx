@@ -32,10 +32,12 @@ function MainReportRow({
   const handleDrillDown = (
     event: React.MouseEvent<HTMLAnchorElement>,
     promotionId: number,
-    promotionTitle: string
+    promotionTitle: string,
+    fromDate: Date,
+    toDate: Date
   ) => {
     event.preventDefault();
-    onClickPromotionTitle({ promotionId, promotionTitle });
+    onClickPromotionTitle({ promotionId, promotionTitle, fromDate, toDate });
   };
 
   return (
@@ -45,15 +47,22 @@ function MainReportRow({
       </td>
       <td className="text-left sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
         <div className="w-[100%] max-w-[460px]">
-        <a
-          href="#"
-          onClick={(event) => handleDrillDown(event, data.promotionId, data.promotionTitle)}
-          className="text-[#045ace] dark:text-[#41a4ff] hover:underline overflow-hidden text-ellipsis break-words line-clamp-[49] w-[100%] max-[768px]:max-w-[200px]"
-        >
-          {data.promotionTitle}
-        </a>
+          <a
+            href="#"
+            onClick={(event) =>
+              handleDrillDown(
+                event,
+                data.promotionId,
+                data.promotionTitle,
+                new Date(data.fromDate),
+                new Date(data.toDate)
+              )
+            }
+            className="text-[#045ace] dark:text-[#41a4ff] hover:underline overflow-hidden text-ellipsis break-words line-clamp-[49] w-[100%] max-[768px]:max-w-[200px]"
+          >
+            {data.promotionTitle}
+          </a>
         </div>
-        
       </td>
       <td>{t(`promotionType_${data.promotionType}`)}</td>
       <td>{`${formatDate(data.fromDate)} - ${formatDate(data.toDate)}`}</td>
@@ -89,7 +98,7 @@ const MainReportTable = React.forwardRef<HTMLTableElement, MainReportTableProps>
                 {t('promotion:table.promotionTitle')}
               </th>
               <th>{t('promotion:table.promotionType')}</th>
-              <th>{t('promotion:table.rebatePeriod')}</th>
+              <th>{t('promotion:table.period')}</th>
               <th>{t('promotion:table.totalRequest')}</th>
               <th>
                 <div>{t('promotion:table.totalApproved')}</div>

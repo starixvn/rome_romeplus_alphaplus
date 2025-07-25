@@ -18,7 +18,7 @@ public class PromotionDetails
 
     public string OperatedBy { get; init; }
 
-    public DateTime OperatedTime { get; init; }
+    public DateTime? OperatedTime { get; init; }
 
     public string SubAccName { get; init; }
 

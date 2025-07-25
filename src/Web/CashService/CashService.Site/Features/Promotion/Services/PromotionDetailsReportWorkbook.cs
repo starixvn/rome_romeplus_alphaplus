@@ -65,8 +65,8 @@ public class PromotionDetailsReportWorkbook(IWebHostEnvironment webHostEnvironme
         .Map(C, p => BuildTextBreakline(p.FirstName, p.LastName))
         .Map(D, p => $"{p.FromDate.ToShortDateWithSlash()} - {p.ToDate.ToShortDateWithSlash()}")
         .Map(E, p => p.Amount)
-        .Map(F, p => string.IsNullOrWhiteSpace(p.SubAccName) ? p.OperatedBy : p.SubAccName)
-        .Map(G, p => p.OperatedTime.ToLongDateTimeWithSlash())
+        .Map(F, p => (p.SubAccName ?? p.OperatedBy) ?? string.Empty)
+        .Map(G, p => p.OperatedTime.HasValue ? p.OperatedTime.Value.ToLongDateTimeWithSlash() : string.Empty)
         .Map(H, p => p.StatusId switch
         {
             (byte)TransactionStatus.Completed => CashServicesResx.Approved,

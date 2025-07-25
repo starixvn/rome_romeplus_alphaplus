@@ -65,7 +65,7 @@ function PromotionReport() {
 
   return (
     <>
-      <TitleComponent text={t('promotionReport')} type='main'/> 
+      <TitleComponent text={t('promotionReport')} type="main" />
       {promotion === null ? (
         <MainReport
           onClickPromotionTitle={handleClickPromotionTitle}
@@ -78,8 +78,6 @@ function PromotionReport() {
           initialDateRange={{
             minDate: mainReportFilterParams.minDate,
             maxDate: mainReportFilterParams.maxDate,
-            fromDate: mainReportFilterParams.fromDate,
-            toDate: mainReportFilterParams.toDate,
           }}
         />
       )}
