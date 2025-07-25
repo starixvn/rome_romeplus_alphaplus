@@ -342,7 +342,7 @@
                 return this.onCasinoResult;
             }
 
-            if (betTypeId >= 12500 && betTypeId <= 12599) {
+            if (betTypeId >= 12500 && betTypeId <= 12999) {
                 this.playtechResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.playtechResult)
                     ? new PlaytechResultDetails()
                     : this.playtechResult;
