@@ -135,7 +135,7 @@
     "RedisConfiguration": "172.16.4.76:16379,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged,connectTimeout=6300",
     "RemotingRefUrl": "http://vn-remotingref-sit.playonesit.com/",
     "Fanex.Customer": {
-        "ServiceUri": "http://alphaplus_api_settings_SIT:5000/api/",
+        "ServiceUri": "http://fanex_customer_api_SIT:5000/api/",
         "CdnUri": "//cdn-customer.playonesit.com/main/",
         "SystemId": 6
     },
