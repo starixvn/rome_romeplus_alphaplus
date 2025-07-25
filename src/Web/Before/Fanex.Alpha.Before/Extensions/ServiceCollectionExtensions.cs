@@ -64,7 +64,6 @@ public static class ServiceCollectionExtensions
     {
         services.Configure<CommonOptions>(configuration.GetSection(CommonOptions.Common));
         services.Configure<AutomationTestOptions>(configuration.GetSection(AutomationTestOptions.AutomationTest));
-        services.Configure<RobotOptions>(configuration.GetSection(RobotOptions.Robot));
         services.Configure<LoginThemeOptions>(configuration.GetSection(LoginThemeOptions.LoginTheme));
         services.Configure<ManualUMOptions>(configuration.GetSection(ManualUMOptions.ManualUM));
 

@@ -11,7 +11,6 @@ using AlphaPlus.Utilities.IP;
 using Fanex.Alpha.Before.Extensions;
 using Fanex.Alpha.Before.Helpers;
 using Fanex.Alpha.Before.Services;
-using Fanex.Alpha.Before.Services.FPS;
 using Fanex.Alpha.Before.Services.SignIn;
 using Fanex.Caching.Redis;
 using Fanex.Data;
@@ -71,7 +70,6 @@ namespace Fanex.Alpha.Before
 
             services.AddFanexData(Configuration);
             services.AddSingleton<IDynamicRepository, DynamicRepository>();
-            services.AddSingleton<IRobotDetector, RobotDetector>();
             services.AddSingleton<IDistributedCacheHelper, DistributedCacheHelper>();
             services.AddSingleton<IDistributedCacheService, DistributedCacheService>();
 
