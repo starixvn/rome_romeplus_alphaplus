@@ -1,4 +1,6 @@
-﻿"use strict";
+﻿declare const Clipboard: any;
+
+"use strict";
 
 class BackupDomainsView {
     $: JQueryStatic;
