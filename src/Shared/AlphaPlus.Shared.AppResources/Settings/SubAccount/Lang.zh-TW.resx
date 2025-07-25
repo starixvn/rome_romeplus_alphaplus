@@ -251,4 +251,7 @@
   <data name="SecurityCode" xml:space="preserve">
     <value>保安碼</value>
   </data>
+  <data name="CashService" xml:space="preserve">
+    <value>現金服務</value>
+  </data>
 </root>

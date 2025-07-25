@@ -959,5 +959,27 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog
                 return ResourceManager.GetString("Weekly", resourceCulture);
             }
         }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Cash Service.
+        /// </summary>
+        public static string CashService
+        {
+            get
+            {
+                return ResourceManager.GetString("CashService", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to View Log Cash Service.
+        /// </summary>
+        public static string ViewLogCashService
+        {
+            get
+            {
+                return ResourceManager.GetString("ViewLogCashService", resourceCulture);
+            }
+        }
     }
 }

@@ -17,4 +17,7 @@
     <li role="presentation" class="@(string.Equals(Model.SelectedTabName, TabType.Login,StringComparison.OrdinalIgnoreCase) ? "active" : string.Empty)">
         <a data-tablink="/settings/login/index")" role="tab" aria-controls="@TabType.Login" data-toggle="tab" class="lnk-changetab">@Resources.Login</a>
     </li>
+    <li role="presentation" class="@(string.Equals(Model.SelectedTabName, TabType.CashService,StringComparison.OrdinalIgnoreCase) ? "active" : string.Empty)">
+        <a data-tablink="/settings/cashservice/index")" role="tab" aria-controls="@TabType.CashService" data-toggle="tab" class="lnk-changetab">@Resources.CashService</a>
+    </li>
 </ul>

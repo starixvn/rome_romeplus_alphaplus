@@ -360,4 +360,10 @@
   <data name="PageAccess_N" xml:space="preserve">
     <value>Cash Promotion</value>
   </data>
+  <data name="CashService" xml:space="preserve">
+    <value>Cash Service</value>
+  </data>
+  <data name="ViewLogCashService" xml:space="preserve">
+    <value>View Log Cash Service</value>
+  </data>
 </root>

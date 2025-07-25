@@ -329,4 +329,7 @@
   <data name="ViewLogCredit" xml:space="preserve">
     <value>Xem nhật ký tín dụng</value>
   </data>
+  <data name="CashService" xml:space="preserve">
+    <value>Dịch vụ tiền mặt</value>
+  </data>
 </root>

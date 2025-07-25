@@ -212,7 +212,8 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddKeyedScoped<LogService, SettingServiceImpl>("settingLogSvc")
                 .AddKeyedScoped<LogService, StatusServiceImpl>("statusLogSvc")
                 .AddKeyedScoped<LogService, CreditServiceImpl>("creditLogSvc")
-                .AddKeyedScoped<LogService, LoginServiceImpl>("loginLogSvc");
+                .AddKeyedScoped<LogService, LoginServiceImpl>("loginLogSvc")
+                .AddKeyedScoped<LogService, CashServiceImpl>("cashServiceLogSvc");
 
             services
                 .AddSingleton<Workbook<TransferToDownlineHistoryModel>, NpoiWorkbook<TransferToDownlineHistoryModel>>()

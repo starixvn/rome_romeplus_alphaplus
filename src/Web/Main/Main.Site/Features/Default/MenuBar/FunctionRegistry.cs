@@ -57,7 +57,8 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
                      && !Current.IsSubAcc
                      && !Current.IsInternal
                      && !Current.IsIndirectLoggedIn;
-                })
+                }),
+            ["CashServiceMenuItem"] = () => new MenuStatus(AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(Current.Site)),
         };
 
         private static bool CreateDirectMemberMenuItemVisible

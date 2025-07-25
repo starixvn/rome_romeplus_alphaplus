@@ -360,4 +360,7 @@
   <data name="PageAccess_N" xml:space="preserve">
     <value>캐시 프로모션</value>
   </data>
+  <data name="CashService" xml:space="preserve">
+    <value>캐시 서비스</value>
+  </data>
 </root>

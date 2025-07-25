@@ -12,14 +12,14 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
 {
     public abstract class BaseService
     {
+        protected const int OneHour = 1;
         private const string LogActionCacheKey = "AlphaPlus.Settings.ViewLogs.API.Setting.LogAction";
         private const string LogActionTypesCacheKey = "AlphaPlus.Settings.ViewLogs.API.Setting.LogActionTypes";
-        private const int OneHour = 1;
 
-        private readonly IDynamicRepository dynamicRepository;
+        protected readonly IMemoryCache cacheService;
+        protected readonly IDynamicRepository dynamicRepository;
         private readonly CustomerService customerService;
         private readonly IUserSession session;
-        private readonly IMemoryCache cacheService;
 
         protected BaseService(IDynamicRepository dynamicRepository, CustomerService customerService, LogDataAccess logDataAccess, IUserSession session, IMemoryCache cacheService)
         {
@@ -51,7 +51,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl.Logs
             };
         }
 
-        public async Task<IEnumerable<LogActionType>> GetLogActionTypes()
+        public virtual async Task<IEnumerable<LogActionType>> GetLogActionTypes()
         {
             var logActionTypes = cacheService.Get<IEnumerable<LogActionType>>(LogActionTypesCacheKey);
 
