@@ -212,7 +212,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
         onClose();
         onSuccess();
       }, 3000);
-    } else if(result.code === -1){
+    } else if(result.code === 200){
       setResultType('warning');
       setResultMessage(tGlobal(`error-${result.code}`));
       setTimeout(() => {
