@@ -70,7 +70,7 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
             EndTime = message.EndTime
         };
 
-        var result = new ThirdPartyResult(config).GetResultGET(request);
+        var result = config.IsPostMethod? new ThirdPartyResult(config).GetResultPOST(request): new ThirdPartyResult(config).GetResultGET(request);
         var viewModel = new ThirdPartyProductViewModel(string.Format(Resources.ResultPopupTitle, sportName), result);
 
         return Task.FromResult(viewModel);
@@ -128,7 +128,21 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
        => Handle(message, "IONCasinoResultConfigs", "IONCasino");
 
     public Task<ThirdPartyProductViewModel> Handle(PlaytechResultQuery message, CancellationToken cancellationToken)
-       => Handle(message, "PlaytechResultConfigs", "Playtech");
+    {
+        var productName = cacheRefService.GetProductName(message.ProductId);
+        var request = new ResultRequest(message.CustId, message.TransId3rd, message.GameId3rd, message.CurrencyId, message.SiteId, message.Language)
+        {
+            IsDarkMode = message.IsDarkMode ? "1" : "0",
+            Platform = browserHelper.IsMobile() ? "M" : "D",
+            BetTypeId = message.BetType,
+            EndTime = message.EndTime
+        };
+
+        var result = GetThirdPartyResult("PlaytechResultConfigs", "Playtech").GetResultPOST(request);
+        var viewModel = new ThirdPartyProductViewModel(string.Format(Resources.ResultPopupTitle, productName), result);
+
+        return Task.FromResult(viewModel);
+    }
 
     public Task<ThirdPartyProductViewModel> Handle(SexyGamingResultQuery message, CancellationToken cancellationToken)
     {

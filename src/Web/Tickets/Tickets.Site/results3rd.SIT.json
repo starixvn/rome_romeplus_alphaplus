@@ -10,7 +10,8 @@
       "Name": "PlaytechLive",
       "SportTypeId": 129,
       "Url": "http://saba-wallet-group-004.3rd-party.k8s.nebula.sit/api/PlayTechLiveInternal/GetBetHistoryUrl",
-      "Debug": 0
+      "Debug": 0,
+      "IsPostMethod": true
     },
     {
       "Name": "RichGaming",

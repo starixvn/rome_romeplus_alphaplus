@@ -1,4 +1,8 @@
 ﻿namespace BetList.Status.ResultDetails {
+    const encodeParam = (value: string | number | undefined): string => {
+        if (value === undefined || value === null) return '';
+        return encodeURIComponent(value.toString());
+    };
     export class AllbetResultDetails extends BaseResultDetails implements ResultDetails {
         public ViewResultDetails = (
             matchId?: number,
@@ -1529,9 +1533,9 @@
                 '?custId=',
                 custId,
                 '&transId3rd=',
-                transId3rd,
+                encodeParam(transId3rd),
                 '&gameId3rd=',
-                gameId3rd,
+                encodeParam(gameId3rd),
                 '&currencyId=',
                 currencyId,
                 '&siteId=',
@@ -1854,7 +1858,7 @@
                 '?custId=',
                 custId,
                 '&transId3rd=',
-                transId3rd,
+                encodeParam(transId3rd),
                 '&currencyId=',
                 currencyId,
                 '&siteId=',
@@ -1864,7 +1868,7 @@
                 '&SportTypeId=',
                 sportTypeId,
                 '&GameId3rd=',
-                gameId3rd
+                encodeParam(gameId3rd)
             ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 `${Common.AppPath.TicketsAppPath}ThirdParty/ViewResult${params}`,
