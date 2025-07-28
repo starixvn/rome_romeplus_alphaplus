@@ -53,6 +53,7 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
     IRequestHandler<HotDogResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<MicrogamingLiveResultQuery, ThirdPartyProductViewModel>
 {
+    private readonly List<int> _memberSiteResultSports = [202, 220, 222];
     public Task<ThirdPartyProductViewModel> Handle(Result3rdQuery message, CancellationToken cancellationToken)
     {
         var sportName = cacheRefService.GetSportName(message.SportTypeId);
@@ -60,6 +61,11 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
         if (config == null)
         {
             return Task.FromResult(new ThirdPartyProductViewModel(string.Format(Resources.ResultPopupTitle, sportName), string.Empty));
+        }
+
+        if(_memberSiteResultSports.Contains(message.SportTypeId))
+        {
+            message.TransId3rd = message.TransId3rd + "&detail=c&app=" + (browserHelper.IsMobile() ? "M" : "D");
         }
         
         var request = new ResultRequest(message.CustId, message.TransId3rd, message.GameId3rd, message.CurrencyId, message.SiteId, message.Language)
