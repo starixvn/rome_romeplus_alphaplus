@@ -10,10 +10,7 @@ public class TabViewComponent(ICacheRefService cacheRefService) : ViewComponent
     {
         var viewModel = new TabViewModel(
             tabName,
-            UserPermission.IsEnableProduct(ProductIdConstants.Keno),
-            UserPermission.IsEnableProduct(ProductIdConstants.Lottery),
             UserPermission.IsEnableProduct(ProductIdConstants.VirtualGames),
-            UserPermission.IsEnableProduct(ProductIdConstants.TableGames),
             UserPermission.IsEnableProduct(ProductIdConstants.SportsLottery),
             cacheRefService.GetProductName);
 

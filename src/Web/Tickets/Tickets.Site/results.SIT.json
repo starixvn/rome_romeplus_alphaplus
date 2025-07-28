@@ -3,21 +3,6 @@
   "GTCasinoResultImagePath": "/tickets/bundles/results/Allbet/template/public/game_result/",
   "SAGamingResultImagePath": "/tickets/bundles/results/SAGaming/template/public/game_result/",
   "WMResultImagePath": "/tickets/bundles/results/WM/images/",
-  "KenoResultConfigs": {
-    "Url": "http://172.16.4.41:7053/api/KenoInternal/GetResultUrl",
-    "SiteId": 3100100,
-    "Debug": 0
-  },
-  "LotteryResultConfigs": {
-    "Url": "http://172.16.4.41:7055/api/LotteryInternal/GetResultUrl",
-    "SiteId": 3100100,
-    "Debug": 0
-  },
-  "TableGameResultConfigs": {
-    "Url": "http://172.16.4.41:7057/api/TableGameInternal/GetResultUrl",
-    "SiteId": 3100100,
-    "Debug": 0
-  },
   "SportsLotteryResultConfigs": {
     "UrlPage": "http://172.16.4.41:7038/api/SportsLotteryInternal/Result",
     "SiteId": "4100200",

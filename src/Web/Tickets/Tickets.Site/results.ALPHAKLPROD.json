@@ -3,21 +3,6 @@
   "GTCasinoResultImagePath": "/tickets/bundles/results/Allbet/template/public/game_result/",
   "SAGamingResultImagePath": "/tickets/bundles/results/SAGaming/template/public/game_result/",
   "WMResultImagePath": "/tickets/bundles/results/WM/images/",
-  "KenoResultConfigs": {
-    "Url": "http://saba-wallet-group-002.3rd-party.klt2p.gamora.prod:32280/api/KenoInternal/GetResultUrl",
-    "SiteId": 3100100,
-    "Debug": 0
-  },
-  "LotteryResultConfigs": {
-    "Url": "http://saba-wallet-group-002.3rd-party.klt2p.gamora.prod:32280/api/LotteryInternal/GetResultUrl",
-    "SiteId": 3100100,
-    "Debug": 0
-  },
-  "TableGameResultConfigs": {
-    "Url": "http://saba-wallet-group-002.3rd-party.klt2p.gamora.prod:32280/api/TableGameInternal/GetResultUrl",
-    "SiteId": 3100100,
-    "Debug": 0
-  },
   "SportsLotteryResultConfigs": {
     "UrlPage": "http://saba-wallet-group-002.3rd-party.klt2p.gamora.prod:32280/api/SportsLotteryInternal/Result",
     "SiteId": "4100200",
