@@ -52,7 +52,6 @@ public static class Extensions
 
         services.AddSingleton<IMenuItemBuilder, MenuItemBuilder>();
         services.AddSingleton<IAesService, AesService>();
-        services.AddSingleton<IUserSessionService, UserSessionService>();
 
         services.AddSingleton<ISiteMenuService, SiteMenuService>();
         services.AddScoped<ISessionManager, SessionManager>();

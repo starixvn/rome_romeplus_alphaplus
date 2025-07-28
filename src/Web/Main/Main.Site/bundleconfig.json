@@ -235,12 +235,7 @@
       "assets/scripts/home/kick-out.js"
     ]
   },
-  {
-    "outputFileName": "wwwroot/assets/bundles/error.css",
-    "inputFiles": [
-      "assets/styles/error/error.css"
-    ]
-  },
+
   {
     "outputFileName": "wwwroot/assets/bundles/partial-um/partial-um.css",
     "inputFiles": [
@@ -396,12 +391,7 @@
       "assets/styles/otp/otp-dark.css"
     ]
   },
-  {
-    "outputFileName": "wwwroot/assets/bundles/error-dark.css",
-    "inputFiles": [
-      "assets/styles/error/error-dark.css"
-    ]
-  },
+
   {
     "outputFileName": "wwwroot/assets/bundles/protection-code/protection-dark.css",
     "inputFiles": [
