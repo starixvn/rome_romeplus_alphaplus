@@ -30,35 +30,35 @@
     },
     {
       "Before": "alp5.starixuat.com",
-      "After": "http://mbp5.starixuat.com/main"
+      "After": "http://mbp5.starixuat.com/auth"
     },
     {
       "Before": "alp6.starixuat.com",
-      "After": "http://mbp6.starixuat.com/main"
+      "After": "http://mbp6.starixuat.com/auth"
     },
     {
       "Before": "alp7.starixuat.com",
-      "After": "http://mbp7.starixuat.com/main"
+      "After": "http://mbp7.starixuat.com/auth"
     },
     {
       "Before": "alp8.starixuat.com",
-      "After": "http://mbp8.starixuat.com/main"
+      "After": "http://mbp8.starixuat.com/auth"
     },
     {
       "Before": "alp17.starixuat.com",
-      "After": "http://mbp17.starixuat.com/main"
+      "After": "http://mbp17.starixuat.com/auth"
     },
     {
       "Before": "alp18.starixuat.com",
-      "After": "http://mbp18.starixuat.com/main"
+      "After": "http://mbp18.starixuat.com/auth"
     },
     {
       "Before": "alp19.starixuat.com",
-      "After": "http://mbp19.starixuat.com/main"
+      "After": "http://mbp19.starixuat.com/auth"
     },
     {
       "Before": "alp20.starixuat.com",
-      "After": "http://mbp20.starixuat.com/main"
+      "After": "http://mbp20.starixuat.com/auth"
     }
   ]
 }

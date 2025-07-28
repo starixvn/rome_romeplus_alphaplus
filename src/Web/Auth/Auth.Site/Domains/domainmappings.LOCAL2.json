@@ -2,15 +2,15 @@
     "DomainMappings": [
         {
             "Before": "alp13.nexdev.net",
-            "After": "http://mbp13.nexdev.net/main"
+            "After": "http://mbp13.nexdev.net/auth"
         },
         {
             "Before": "alp14.nexdev.net",
-            "After": "http://mbp14.nexdev.net/main"
+            "After": "http://mbp14.nexdev.net/auth"
         },
         {
             "Before": "alp15.nexdev.net",
-            "After": "http://mbp15.nexdev.net/main"
+            "After": "http://mbp15.nexdev.net/auth"
         }
     ]
 }
