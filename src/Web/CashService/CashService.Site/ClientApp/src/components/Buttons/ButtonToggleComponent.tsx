@@ -6,11 +6,12 @@ import './ButtonComponents.scss';
 interface ToggleButtonProps extends Omit<ButtonComponentProps, 'text'> {
   text: string;
   position?: 'left' | 'right';
+  isActive?: boolean;
 }
 
 // Base toggle button component
 const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(({ 
-  isActive, 
+  isActive = false, 
   onClick, 
   type = 'button', 
   text, 
