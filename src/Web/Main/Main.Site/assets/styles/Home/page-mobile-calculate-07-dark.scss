@@ -309,6 +309,14 @@ body {
             height: calculateScale(18px);
             background-size: cover !important;
         }
+        &.icon-promotion,&.icon-cashservice {
+            &:after{
+                top: calculateScale(3px);
+                left: calculateScale(3px);                   
+                width: calculateScale(18px);
+                height: calculateScale(18px);                
+            }
+        }
     }
 
     .sub-menu {
