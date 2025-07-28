@@ -18,14 +18,17 @@ public interface IPendingPromotionReportWorkbook
 public class PendingPromotionReportWorkbook(IWebHostEnvironment webHostEnvironment) :
     ReportNpoiWorkbook<PromotionTransaction>(webHostEnvironment), IPendingPromotionReportWorkbook
 {
-    private readonly Mapper<PromotionTransaction> rowMapper
-        = new Mapper<PromotionTransaction>()
-            .Map(A, item => item.Username + WriteNickname(item.Nickname))
-            .Map(B, item => $"{item.FirstName} {item.LastName}")
-            .Map(C, item => item.Title)
-            .Map(D, item => item.PromotionTypeName)
-            .Map(E, item => item.Amount)
-            .Map(F, item => $"{item.FromDate.ToShortDateWithSlash()}-{item.ToDate.ToShortDateWithSlash()}");
+    private int number = 1;
+
+    private Mapper<PromotionTransaction> GetRowMapper()
+        => new Mapper<PromotionTransaction>()
+            .Map(A, _ => number++)
+            .Map(B, item => item.Username + WriteNickname(item.Nickname))
+            .Map(C, item => $"{item.FirstName} {item.LastName}")
+            .Map(D, item => item.Title)
+            .Map(E, item => item.PromotionTypeName)
+            .Map(F, item => item.Amount)
+            .Map(G, item => $"{item.FromDate.ToShortDateWithSlash()}-{item.ToDate.ToShortDateWithSlash()}");
 
     public ExcelFileViewModel BuildExcelFile(GetPendingPromotionViewModel request, IEnumerable<PromotionTransaction> records)
     {
@@ -37,11 +40,11 @@ public class PendingPromotionReportWorkbook(IWebHostEnvironment webHostEnvironme
                     bodyEndIndex: 4))
             .Title(GetTitle(request))
             .Header(AlphaPlus.Shared.AppResources.Report.Resources.ResourceManager.GetString)
-            .Body(records, rowMapper)
+            .Body(records, GetRowMapper())
             .Sheet(AlphaPlus.Shared.AppResources.Report.Resources.DefaultSheetName)
             .ExportToBytes();
 
-        return new ExcelFileViewModel($"PendingPromotion-{request.FromDate.ToShortDateWithSlash()}-{request.ToDate.ToShortDateWithSlash()}", fileContent);
+        return new ExcelFileViewModel($"{CashServicesResx.PendingPromotion}-{request.Username}-{request.FromDate.ToShortDateWithSlash()}-{request.ToDate.ToShortDateWithSlash()}", fileContent);
     }
 
     protected override void FillHeader(Sheet sheet)
@@ -49,6 +52,7 @@ public class PendingPromotionReportWorkbook(IWebHostEnvironment webHostEnvironme
         var row = sheet.GetRow(TemplateInfo.HeaderStartIndex);
         int colIndex = row.FirstCellIndex;
 
+        row.SetCellValue(colIndex++, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.number);
         row.SetCellValue(colIndex++, $"{AlphaPlus.Shared.AppResources.Report.Resources.Username}\n{CommonResx.Nickname}");
         row.SetCellValue(colIndex++, CashServicesResx.FirstAndLastName);
         row.SetCellValue(colIndex++, CashServicesResx.Title);

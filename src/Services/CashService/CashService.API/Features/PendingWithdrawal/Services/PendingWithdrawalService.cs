@@ -116,13 +116,13 @@ public class PendingWithdrawalService(
 
         if (command.ErrCode == 0 && command.ProviderId > 0)
         {
-            ApproveByPaymentGateway(command, param);
+            result = await ApproveByPaymentGateway(command, param);
         }
 
         return result;
     }
 
-    private void ApproveByPaymentGateway(CreateManualWithdrawCommand command, AddManualWithdrawalModel param)
+    private async Task<ResultModel> ApproveByPaymentGateway(CreateManualWithdrawCommand command, AddManualWithdrawalModel param)
     {
         var processTransaction = new ProcessWithdrawalTransaction
         {
@@ -136,10 +136,8 @@ public class PendingWithdrawalService(
             SiteDBGroupId = (short)command.SiteDbGroupId,
             CustDBGroupId = param.CustDbGroupId
         };
-        Task.Run(() =>
-        {
-            _ = ApproveByPaymentGatewayAsync(processTransaction);
-        });
+        var result = await ApproveByPaymentGatewayAsync(processTransaction);
+        return result;
     }
 
     public async Task<ResultModel> ApproveByPaymentGatewayAsync(ProcessWithdrawalTransaction command)

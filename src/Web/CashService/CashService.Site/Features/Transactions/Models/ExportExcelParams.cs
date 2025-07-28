@@ -7,4 +7,5 @@ public class ExportExcelParams
     public string Account { get; set; }
     public int Status { get; set; }
     public int TransactionType { get; set; }
+    public string Username { get; set; }
 }

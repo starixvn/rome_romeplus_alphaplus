@@ -3,6 +3,7 @@
 public class GetPendingPromotionViewModel
 {
     public int CustId { get; set; }
+    public string Username { get; set; }
     public DateTime FromDate { get; set; }
     public DateTime ToDate { get; set; }
     public short StatusId { get; set; }

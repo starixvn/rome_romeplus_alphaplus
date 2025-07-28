@@ -72,7 +72,7 @@ public class TransactionsController(
             CustId = agentId,
             Account = param.Account
         };
-
+        param.Username = userSession.UserName;
         var response = await httpClientHelper.GetAsync<TransactionResponse>("/transactions/history", ObjectConverter.ToDictionary(filter));
         var excelFileViewModel = transactionHistoryWorkbook.BuildExcelFile(param, response.Items);
         return File(excelFileViewModel.Content, excelFileViewModel.ContentType, excelFileViewModel.Name);

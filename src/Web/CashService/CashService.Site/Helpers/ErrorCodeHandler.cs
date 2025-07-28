@@ -14,6 +14,8 @@ public static class ErrorCodeHandler
             405 => CashServicesResx.InvalidParameters,
             407 => CashServicesResx.TheAmountExceedsTheAllowedMinimumOrMaximumValue,
             409 => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain,
+            410 => CashServicesResx.ProviderRejectErrorMessage,
+            411 => CashServicesResx.PaymentProviderUnavailable,
             _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain
         };
 

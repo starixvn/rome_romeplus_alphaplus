@@ -1,7 +1,7 @@
 namespace AlphaPlus.CashService.Site.Features.Promotion.Controllers;
 
-using AlphaPlus.CashService.Site.Features.Shared.Requests;
 using AlphaPlus.CashService.Site.Features.Promotion.Requests;
+using AlphaPlus.CashService.Site.Features.Shared.Requests;
 using AlphaPlus.CashService.Site.Helpers;
 using AlphaPlus.Shared.AppResources.CashServices;
 using Core.Configurations;
@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using Models.Products;
 using Newtonsoft.Json;
-using Requests;
 using Services;
 using Shared;
 using Shared.Contants;
@@ -144,7 +143,7 @@ public class PromotionController(
     {
         var promotionRequest = JsonConvert.DeserializeObject<AddPromotionRequest>(request);
         promotionRequest.SetUserSession(userSession);
-        
+
         if (promotionRequest.IsValid())
         {
             Console.WriteLine($"=== AddPromotion Debug ===");
@@ -153,13 +152,13 @@ public class PromotionController(
             {
                 Console.WriteLine($"Image key: {kvp.Key}, File name: {kvp.Value?.FileName}, Size: {kvp.Value?.Length}");
             }
-            
+
             // Process images and map them to the correct language
             if (images.Any() && promotionRequest.Contents != null)
             {
                 var processedImages = await ImageUploadHelper.ProcessUploadedImages(images.Values.ToList());
                 Console.WriteLine($"Processed images: {processedImages.Count}");
-                
+
                 // Create a mapping from processed images to their original keys
                 var imageMapping = new Dictionary<string, string>();
                 var imageKeys = images.Keys.ToList();
@@ -173,7 +172,7 @@ public class PromotionController(
                         Console.WriteLine($"Mapped {originalKey} -> {processedKey} -> {processedImages[processedKey]}");
                     }
                 }
-                
+
                 // Map images to contents by language
                 foreach (var content in promotionRequest.Contents)
                 {
@@ -193,7 +192,7 @@ public class PromotionController(
             {
                 Console.WriteLine("No images or contents to process");
             }
-            
+
             var url = $"/api/promotions";
             var result = await httpClientHelper.PostAsync<AddPromotionRequest, object>(url, promotionRequest);
             return Json(result);
@@ -207,14 +206,14 @@ public class PromotionController(
     {
         var editPromotionRequest = JsonConvert.DeserializeObject<EditPromotionRequest>(request);
         editPromotionRequest.SetUserSession(userSession);
-        
+
         if (editPromotionRequest.IsValid())
         {
             // Process images and map them to the correct language
             if (images.Any() && editPromotionRequest.Contents != null)
             {
                 var processedImages = await ImageUploadHelper.ProcessUploadedImages(images.Values.ToList());
-                
+
                 // Create a mapping from processed images to their original keys
                 var imageMapping = new Dictionary<string, string>();
                 var imageKeys = images.Keys.ToList();
@@ -227,7 +226,7 @@ public class PromotionController(
                         imageMapping[originalKey] = processedImages[processedKey];
                     }
                 }
-                
+
                 // Map images to contents by language
                 foreach (var content in editPromotionRequest.Contents)
                 {
@@ -239,7 +238,7 @@ public class PromotionController(
                     }
                 }
             }
-            
+
             var url = $"/api/promotions/{promotionId}";
             var result = await httpClientHelper.PutAsync<EditPromotionRequest, object>(url, editPromotionRequest);
             return Json(result);
@@ -275,6 +274,7 @@ public class PromotionController(
         request.StatusId = 2;
         request.CustId = userSession.CustId;
         request.SiteDbGroupId = userSession.SiteDBGroupId;
+        request.Username = userSession.UserName;
         var result = await httpClientHelper.GetAsync<PromotionTransactionResponse>("/promotions/transactions", ObjectConverter.ToDictionary(request));
         var excelFileViewModel = pendingPromotionReportWorkbook.BuildExcelFile(request, result.PromotionTransactions);
         return File(excelFileViewModel.Content, excelFileViewModel.ContentType, excelFileViewModel.Name);
