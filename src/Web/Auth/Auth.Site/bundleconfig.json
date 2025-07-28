@@ -1,0 +1,33 @@
+[
+  {
+    "outputFileName": "wwwroot/assets/bundles/error.css",
+    "inputFiles": [
+      "assets/styles/error/error.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/error-dark.css",
+    "inputFiles": [
+      "assets/styles/error/error-dark.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/core.js",
+    "inputFiles": [
+      "assets/scripts/core.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/security-helper.js",
+    "inputFiles": [
+      "assets/scripts/core.js",
+      "assets/scripts/security-helper.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/aes.js",
+    "inputFiles": [
+      "assets/scripts/aes.js"
+    ]
+  }
+] 

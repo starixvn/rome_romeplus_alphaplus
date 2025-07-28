@@ -2,6 +2,7 @@ using AlphaPlus.Core.Extensions;
 using AlphaPlus.RequestInfo;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.HttpOverrides;
+using AlphaPlus.Auth.Site.Features.Account;
 
 
 ThreadPool.SetMinThreads(100, 100);
@@ -35,6 +36,11 @@ builder.Services.AddHealthChecks();
 builder.Services.AddAlphaPlusCore(configuration)
     .AddSharedSession(configuration)
     .AddRequestInfo();
+
+// Register Account services
+builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IUserSessionService, UserSessionService>();
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 

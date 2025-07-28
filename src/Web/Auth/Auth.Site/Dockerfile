@@ -15,6 +15,7 @@ COPY ["src/Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj", "src/Modules
 COPY ["src/Shared/AlphaPlus.Shared.AppResources/AlphaPlus.Shared.AppResources.csproj", "src/Shared/AlphaPlus.Shared.AppResources/"]
 COPY ["src/Modules/AlphaPlus.RequestInfo/AlphaPlus.RequestInfo.csproj", "src/Modules/AlphaPlus.RequestInfo/"]
 COPY ["src/Modules/AlphaPlus.Utilities.IP/AlphaPlus.Utilities.IP.csproj", "src/Modules/AlphaPlus.Utilities.IP/"]
+COPY ["src/Modules/AlphaPlus.NetThrottling/AlphaPlus.NetThrottling.csproj", "src/Modules/AlphaPlus.NetThrottling/"]
 
 # Restore dependencies
 COPY "src/NuGet.config" "src/NuGet.config"
@@ -30,6 +31,7 @@ COPY "src/Modules/AlphaPlus.PartialUM" "src/Modules/AlphaPlus.PartialUM"
 COPY "src/Shared/AlphaPlus.Shared.AppResources" "src/Shared/AlphaPlus.Shared.AppResources"
 COPY "src/Modules/AlphaPlus.RequestInfo" "src/Modules/AlphaPlus.RequestInfo"
 COPY "src/Modules/AlphaPlus.Utilities.IP" "src/Modules/AlphaPlus.Utilities.IP"
+COPY "src/Modules/AlphaPlus.NetThrottling" "src/Modules/AlphaPlus.NetThrottling"
 COPY "src/Web/Auth/Auth.Site" "src/Web/Auth/Auth.Site"
 
 ARG TRANSFORM_CONFIG
