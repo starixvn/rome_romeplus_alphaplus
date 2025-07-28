@@ -10,7 +10,8 @@ namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
             bool isInternal,
             bool directDownline,
             bool isAccInfo,
-            bool excludeMember);
+            bool excludeMember,
+            bool excludeCashMember);
 
         Task<IEnumerable<UsernameSuggestion>> GetUsernameSuggestionByRole(int custId, string username, byte roleId);
 
@@ -27,7 +28,8 @@ namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
             bool isInternal,
             bool directDownline,
             bool isAccInfo,
-            bool excludeMember)
+            bool excludeMember,
+            bool excludeCashMember)
         {
             var result = await httpClient.PostAsJsonAsync<IEnumerable<UsernameSuggestion>>(
                 $"customer/username-suggestion",
@@ -38,7 +40,8 @@ namespace AlphaPlus.Settings.Site.Features.UserNameSuggestion
                     isInternal,
                     directDownlines = directDownline,
                     isAccInfo,
-                    excludeMember
+                    excludeMember,
+                    excludeCashMember
                 });
 
             return result;

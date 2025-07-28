@@ -12,6 +12,8 @@ public class UserNameSuggestionQuery : MemberInfoBaseQuery, IRequest<IEnumerable
     public bool IsAccInfo { get; set; } = true;
 
     public bool ExcludeMember { get; set; }
+    
+    public bool ExcludeCashMember { get; set; }
 
     public override bool IsValid()
         => !string.IsNullOrWhiteSpace(Query) && Query.Length > 1 && base.IsValid();

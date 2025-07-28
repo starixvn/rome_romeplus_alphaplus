@@ -349,7 +349,7 @@ class CopyAccount {
     bidingEasyAutoComplete = () => {
         const options = {
             url: (phrase) => {
-                return `/settings/UserNameSuggestion?IsAccInfo=false&DirectDownlines=true&ExcludeMember=true&Query=${phrase}`;
+                return `/settings/UserNameSuggestion?IsAccInfo=false&DirectDownlines=true&ExcludeMember=true&ExcludeCashMember=true&Query=${phrase}`;
             },
             getValue: 'UserName',
             requestDelay: 200,
