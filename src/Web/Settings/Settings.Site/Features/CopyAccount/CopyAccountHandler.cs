@@ -9,6 +9,7 @@ using Fanex.Customer.Client.Services;
 using Fanex.Customer.Client.Params;
 using Fanex.Customer.Client.Models;
 using AlphaPlus.Core.Utils;
+using AlphaPlus.Core.Constants;
 
 namespace AlphaPlus.Settings.Site.Features.CopyAccount
 {
@@ -115,9 +116,15 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
 
         public async Task<Core.Models.Result> Handle(CheckUsernameQuery message, CancellationToken cancellation)
         {
+
             var result = await customerService.GetDownlineByUsername(message.ViewerId, message.SubAccId, message.CustName);
             if (result.CustId > 0 && Enumeration.FromValue<UserLevel>(result.RoleId).IsDirectDownlineOf(message.ViewerLevel))
             {
+                if (await customerService.GetCashServiceStatus(result.CustId) == ServiceType.Cash)
+                {
+                    return Core.Models.Result.CreateErrorResult(Resources.UserNotExist);
+                }
+
                 if (await customerService.IsCustomerEnabled(result.CustId))
                 {
                     return Core.Models.Result.CreateSuccessfulResult();
