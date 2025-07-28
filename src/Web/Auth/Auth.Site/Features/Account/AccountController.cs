@@ -49,67 +49,9 @@ public class AccountController(
         return result;
     }
 
-    [AllowProtectedMode]
-    public IActionResult Logout(string r = null)
-    {
-        return Login(r);
-    }
-
-    [Authorize, AllowProtectedMode]
-    public async Task<IActionResult> Logout2()
-    {
-        if (!options.DisabledCheckDuplicationLogin)
-        {
-            try
-            {
-                await accountService.CheckOut();
-            }
-            finally
-            {
-                // Prevent exception from sql login account is disabled
-            }
-        }
-
-        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-
-        if (userSession.IsIndirectLoggedIn || userSession.IsInternal)
-        {
-            ClearSession();
-
-            return new EmptyResult();
-        }
-
-        ClearSession();
-
-        return Login();
-    }
-
-    [HttpPost]
-    [Authorize, AllowProtectedMode]
-    public async Task<IActionResult> ReCheckIn(int onid)
-    {
-        var result = onid < 0 ? new ReCheckInResult { IsKickedOut = true } : await accountService.ReCheckIn(onid);
-        return Json(result.IsKickedOut
-            ? Result.CreateErrorResult(MapKickOutReasonToUserMessage(result.KickOutReason))
-            : Result.CreateSuccessfulResult());
-    }
-
     private static void ClearSession()
     {
         AlphaContext.Current.Session.Clear();
-    }
-
-    private static string MapKickOutReasonToUserMessage(byte kickOutReason)
-    {
-        const byte ResetPasswordForceKickOut = 1;
-        const byte ProtectedModeForceKickOut = 2;
-
-        return kickOutReason switch
-        {
-            ResetPasswordForceKickOut => Security.KickoutMessageByForceChangePassword,
-            ProtectedModeForceKickOut => Security.KickoutMessageByProtectedMode,
-            _ => Security.stringSessionLogged.Replace("\n", string.Empty),
-        };
     }
 
     [HttpGet, AllowProtectedMode]
@@ -124,7 +66,7 @@ public class AccountController(
         SSOParam param;
         try
         {
-            param = JsonSerializer.Deserialize<SSOParam>(aesService.Decrypt(parameter, SecretKey));
+            param = JsonSerializer.Deserialize<SSOParam>(aesService.Decrypt(parameter, SecretKey))!;
         }
         catch
         {
@@ -162,7 +104,8 @@ public class AccountController(
             };
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-            return RedirectToAction("Redirect", "Default");
+            
+            return Redirect("~/main/Default/Redirect");
         }
 
         return Login(WebUtility.UrlEncode(signInResult.Message));
@@ -202,7 +145,8 @@ public class AccountController(
             };
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-            return RedirectToAction("Redirect", "Default");
+            
+            return Redirect("~/main/Default/Redirect");
         }
 
         return new EmptyResult();
@@ -252,15 +196,9 @@ public class AccountController(
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
-            return RedirectToAction("Redirect", "Default");
+            return Redirect("~/main/Default/Redirect");
         }
 
         return new EmptyResult();
     }
-
-    [HttpGet, AllowProtectedMode]
-    public async Task<IActionResult> Offline()
-    {
-        return await Logout2();
-    }
-} 
+}

@@ -1,5 +1,3 @@
-using System.Text;
-using System.Text.Json;
 using AlphaPlus.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,10 +8,6 @@ public interface IAccountService
     Task<SignInResult> AfterSignIn(SignInParam param);
 
     Task CheckIn();
-
-    Task<ReCheckInResult> ReCheckIn(int onlineUserId);
-
-    Task CheckOut(string reason = null);
 
     Task<SignInResult> InternalLogin(InternalLoginParam param);
 
@@ -39,26 +33,6 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
         });
 
         session.OnUserId = onlineUserId;
-    }
-
-    public Task<ReCheckInResult> ReCheckIn(int onlineUserId)
-        => client.GetAsJsonAsync<ReCheckInResult>($"api/auth/re-check-in?onlineUserId={onlineUserId}");
-
-    public async Task CheckOut(string reason = null)
-    {
-        using StringContent payload = new(JsonSerializer.Serialize(new
-        {
-            onlineUserId = session.OnUserId,
-            username = session.IsSubAcc ? session.SubUserName : session.UserName,
-            nickname = session.IsNickname ? session.NickName : string.Empty,
-            roleId = session.RoleId,
-            serverId = session.ServerId,
-            reason
-        }),
-        Encoding.UTF8,
-        "application/json");
-
-        await client.PostAsync("api/auth/check-out", payload);
     }
 
     [HttpGet]

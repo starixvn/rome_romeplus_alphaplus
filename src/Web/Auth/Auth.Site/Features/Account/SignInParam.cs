@@ -10,8 +10,6 @@ public class SignInParam
 
     public int SubAccId { get; init; }
 
-    public bool IsSubAcc => SubAccId > 0;
-
     public string Nickname { get; init; }
 
     public bool IsNickname { get; init; }

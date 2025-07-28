@@ -36,17 +36,9 @@ namespace AlphaPlus.Auth.Site.Features.Account
 
         public string SecurityCode { get; init; }
 
-        public bool IsSubAcc { get; init; }
-
-        public bool IsInternal { get; init; }
-
-        public bool IsIndirectLoggedIn { get; init; }
-
         public string NickName { get; init; }
 
         public bool IsNickname { get; init; }
-
-        public string NetSessionId { get; init; }
 
         public string UserLoginIp { get; init; }
 
@@ -55,12 +47,6 @@ namespace AlphaPlus.Auth.Site.Features.Account
         public int SRecommendId { get; init; }
 
         public int MRecommendId { get; init; }
-
-        public bool ShowSearchAccount { get; init; }
-
-        public bool ShowCreateMemberByQRCode { get; init; }
-
-        public bool DisableMessages { get; init; }
 
         public bool IsProtectedMode { get; init; }
 
@@ -89,7 +75,5 @@ namespace AlphaPlus.Auth.Site.Features.Account
         public string DarkModeName { get; set; }
 
         public string AssetAppPath { get; set; }
-
-        public string DCSStaticAppPath { get; set; }
     }
 } 

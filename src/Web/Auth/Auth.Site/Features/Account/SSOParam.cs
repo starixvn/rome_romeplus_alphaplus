@@ -14,12 +14,6 @@ namespace AlphaPlus.Auth.Site.Features.Account
 
         public bool IsNickname { get; set; }
 
-        public string Language { get; set; }
-
-        public bool NumberCrossCookie { get; set; }
-
-        public string DeviceId { get; set; }
-
         public string BrowserSize { get; set; }
 
         public string EncryptCode { get; set; }
@@ -27,8 +21,6 @@ namespace AlphaPlus.Auth.Site.Features.Account
         public string DarkModeName { get; set; }
 
         public string AssetAppPath { get; set; }
-
-        public string UMToken { get; set; }
 
         public string DCSStaticAppPath { get; set; }
     }
