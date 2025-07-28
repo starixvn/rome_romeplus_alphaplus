@@ -12,7 +12,7 @@ const Filter: React.FC<FilterProps> = ({ onFilterChange }) => {
 
   const promotionTypes = [
     { value: 0, label: 'All' },
-    { value: 1, label: 'Rebate on Turnover' }
+    { value: 1, label: 'Turnover Rebate' }
   ];
 
   const statusOptions = [

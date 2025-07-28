@@ -277,7 +277,7 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rebate on Turnover.
+        ///   Looks up a localized string similar to Turnover Rebate.
         /// </summary>
         public static string PromotionType_RebateOnTurnover {
             get {

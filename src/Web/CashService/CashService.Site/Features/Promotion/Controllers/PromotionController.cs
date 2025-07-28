@@ -139,108 +139,35 @@ public class PromotionController(
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddPromotion([FromForm] Dictionary<string, IFormFile> images, [FromForm] string request)
+    public async Task<IActionResult> AddPromotion([FromForm] AddPromotionRequest request)
     {
-        var promotionRequest = JsonConvert.DeserializeObject<AddPromotionRequest>(request);
-        promotionRequest.SetUserSession(userSession);
+        request.SetUserSession(userSession);
+        request.ProductSettings = JsonConvert.DeserializeObject<List<PromotionProductSetting>>(request.ProductSettingsJson);
 
-        if (promotionRequest.IsValid())
+        if (request.IsValid())
         {
-            Console.WriteLine($"=== AddPromotion Debug ===");
-            Console.WriteLine($"Total images received: {images.Count}");
-            foreach (var kvp in images)
+            foreach (var content in request.Contents)
             {
-                Console.WriteLine($"Image key: {kvp.Key}, File name: {kvp.Value?.FileName}, Size: {kvp.Value?.Length}");
+                var fileName = await ImageUploadHelper.ProcessUploadedImages(content.Banner, content.Banner.FileName);
+                content.BannerName = fileName;
+                content.Banner = null;
             }
-
-            // Process images and map them to the correct language
-            if (images.Any() && promotionRequest.Contents != null)
-            {
-                var processedImages = await ImageUploadHelper.ProcessUploadedImages(images.Values.ToList());
-                Console.WriteLine($"Processed images: {processedImages.Count}");
-
-                // Create a mapping from processed images to their original keys
-                var imageMapping = new Dictionary<string, string>();
-                var imageKeys = images.Keys.ToList();
-                for (int i = 0; i < Math.Min(imageKeys.Count, processedImages.Count); i++)
-                {
-                    var originalKey = imageKeys[i]; // e.g., "images[en]", "images[vi]"
-                    var processedKey = $"image_{i}"; // e.g., "image_0", "image_1"
-                    if (processedImages.ContainsKey(processedKey))
-                    {
-                        imageMapping[originalKey] = processedImages[processedKey];
-                        Console.WriteLine($"Mapped {originalKey} -> {processedKey} -> {processedImages[processedKey]}");
-                    }
-                }
-
-                // Map images to contents by language
-                foreach (var content in promotionRequest.Contents)
-                {
-                    var imageKey = $"images[{content.Language}]";
-                    if (imageMapping.ContainsKey(imageKey))
-                    {
-                        content.Banner = imageMapping[imageKey];
-                        Console.WriteLine($"Mapped image for language {content.Language}: {content.Banner}");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"No image found for language {content.Language}");
-                    }
-                }
-            }
-            else
-            {
-                Console.WriteLine("No images or contents to process");
-            }
-
-            var url = $"/api/promotions";
-            var result = await httpClientHelper.PostAsync<AddPromotionRequest, object>(url, promotionRequest);
-            return Json(result);
         }
-
-        return Json(new { Code = "01", Message = "Invalid request" });
+        
+        var url = $"/api/promotions";        
+        var result = await httpClientHelper.PostAsync<object, object>(url, request);
+        return Json(result);
     }
 
     [HttpPut]
-    public async Task<IActionResult> EditPromotion(int promotionId, [FromForm] Dictionary<string, IFormFile> images, [FromForm] string request)
+    public async Task<IActionResult> EditPromotion(int promotionId, [FromForm] EditPromotionRequest request)
     {
-        var editPromotionRequest = JsonConvert.DeserializeObject<EditPromotionRequest>(request);
-        editPromotionRequest.SetUserSession(userSession);
+        request.SetUserSession(userSession);
 
-        if (editPromotionRequest.IsValid())
+        if (request.IsValid())
         {
-            // Process images and map them to the correct language
-            if (images.Any() && editPromotionRequest.Contents != null)
-            {
-                var processedImages = await ImageUploadHelper.ProcessUploadedImages(images.Values.ToList());
-
-                // Create a mapping from processed images to their original keys
-                var imageMapping = new Dictionary<string, string>();
-                var imageKeys = images.Keys.ToList();
-                for (int i = 0; i < Math.Min(imageKeys.Count, processedImages.Count); i++)
-                {
-                    var originalKey = imageKeys[i]; // e.g., "images[en]", "images[vi]"
-                    var processedKey = $"image_{i}"; // e.g., "image_0", "image_1"
-                    if (processedImages.ContainsKey(processedKey))
-                    {
-                        imageMapping[originalKey] = processedImages[processedKey];
-                    }
-                }
-
-                // Map images to contents by language
-                foreach (var content in editPromotionRequest.Contents)
-                {
-                    var imageKey = $"images[{content.Language}]";
-                    if (imageMapping.ContainsKey(imageKey))
-                    {
-                        content.Banner = imageMapping[imageKey];
-                        Console.WriteLine($"Mapped image for language {content.Language}: {content.Banner}");
-                    }
-                }
-            }
-
             var url = $"/api/promotions/{promotionId}";
-            var result = await httpClientHelper.PutAsync<EditPromotionRequest, object>(url, editPromotionRequest);
+            var result = await httpClientHelper.PutAsync<EditPromotionRequest, object>(url, request);
             return Json(result);
         }
 

@@ -14,5 +14,7 @@ public class PromotionLanguageSetting : BasePromotion
     public string Content { get; set; }
     
     [JsonProperty("banner")]
-    public string Banner { get; set; }
+    public string BannerName { get; set; }
+
+
 }

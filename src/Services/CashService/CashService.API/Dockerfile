@@ -9,6 +9,7 @@ RUN --mount=type=cache,target=/root/.nuget/packages \
   dotnet restore "src/Services/CashService/CashService.API/CashService.API.csproj" -v d
 
 # Copy only the necessary source code and publish
+COPY "src/Shared" "src/Shared"
 COPY "src/Modules/AlphaPlus.Shared" "src/Modules/AlphaPlus.Shared"
 COPY "src/Services/CashService/CashService.API" "src/Services/CashService/CashService.API"
 WORKDIR /build/src/Services/CashService/CashService.API

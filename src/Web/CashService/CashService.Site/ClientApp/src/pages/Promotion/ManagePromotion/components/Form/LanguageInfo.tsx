@@ -7,7 +7,7 @@ import UploadImage from '../../../Components/UploadImage';
 export interface PromotionLangFields {
   title: string;
   banner: File | string | null;
-  prevBanner: string | null;
+  bannerName: string | null;
   content: string;
 }
 
@@ -21,24 +21,11 @@ export interface PromotionInfoProps {
   setActiveLang: (lang: string) => void;
 }
 
-const getBannerUrl = (bannerPath: string | null): string | null => {
-  if (!bannerPath) return null;
+const getBannerUrl = (bannerName: string | null): string | null => {
+  if (!bannerName) return null;
 
-  if (
-    bannerPath.startsWith('http://') ||
-    bannerPath.startsWith('https://') ||
-    bannerPath.startsWith('data:')
-  ) {
-    return bannerPath;
-  }
-
-  if (bannerPath.startsWith('PromotionImages/')) {
-    const baseUrl =
-      window.location.origin + window.location.pathname.split('/').slice(0, -2).join('/');
-    return `${baseUrl}/${bannerPath}`;
-  }
-
-  return bannerPath;
+  const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -2).join('/');
+  return `${baseUrl}/PromotionImages/${bannerName}`;
 };
 
 export const LanguageTabs: React.FC<{
@@ -93,7 +80,6 @@ export const BannerField: React.FC<{
   const handleSetImage = (file: File | null) => {
     setBanner(file);
   };
-
   const fullBannerUrl = getBannerUrl(prevBanner);
 
   return (
@@ -143,10 +129,9 @@ const PromotionInfo: React.FC<PromotionInfoProps> = ({
   const langFields = value[activeLang] || {
     title: '',
     banner: null,
-    prevBanner: null,
+    bannerName: null,
     content: '',
   };
-
   return (
     <div className="max-w-3xl">
       <LanguageTabs languages={languages} activeLang={activeLang} setActiveLang={setActiveLang} />
@@ -157,7 +142,7 @@ const PromotionInfo: React.FC<PromotionInfoProps> = ({
         isDefault={languages.find((lang) => lang.key === activeLang)?.isDefault || false}
       />
       <BannerField
-        prevBanner={langFields.prevBanner}
+        prevBanner={langFields.bannerName}
         setBanner={(f) => setValue(activeLang, 'banner', f)}
         lang={activeLang}
         isDefault={languages.find((lang) => lang.key === activeLang)?.isDefault || false}

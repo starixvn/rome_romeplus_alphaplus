@@ -66,7 +66,7 @@ export interface Language {
 export interface LanguageInfo {
   language: string;
   title: string;
-  banner: string | null;
+  bannerName: string | null;
   content: string;
 }
 

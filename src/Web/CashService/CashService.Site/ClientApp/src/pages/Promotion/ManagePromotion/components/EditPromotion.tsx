@@ -88,12 +88,11 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
             promotion.languageSettings.forEach((info) => {
               infoMap[info.language] = {
                 title: info.title || '',
-                banner: info.banner,
-                prevBanner: info.banner,
+                banner: info.bannerName,
+                bannerName: info.bannerName,
                 content: info.content || '',
               };
             });
-
             setPromotionInfo(infoMap);
             setOriginalPromotionInfo({ ...infoMap });
 
@@ -142,7 +141,6 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
         message: t('addPromotionForm.requiredContent')
       }
     ];
-    debugger;
     const failedValidation = errors.find(check => check.condition);
     if (failedValidation) {
       setError(failedValidation.message);
@@ -169,34 +167,33 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
     
     try {
       const formData = new FormData();
-      
-      // Add images to FormData
-      Object.entries(promotionInfo).forEach(([lang, info]) => {
+      formData.append('PromotionId', promotionId.toString());
+      formData.append('Enabled', isActive.toString());
+      formData.append('OriginalEnabled', originalStatus.toString());     
+      Object.entries(promotionInfo).forEach(([lang, info], index) => {
+        formData.append(`Contents[${index}].Language`, lang);
+        formData.append(`Contents[${index}].Title`, info.title || '');
+        formData.append(`Contents[${index}].Content`, info.content || '');
+        
         if (info.banner instanceof File) {
-          formData.append(`images[${lang}]`, info.banner);
+          formData.append(`Contents[${index}].Banner`, info.banner);
+        } else if (info.banner) {
+          formData.append(`Contents[${index}].BannerName`, info.banner as string);
         }
       });
-      
-      const promotionData: EditPromotionRequest = {
-        promotionId: promotionId,
-        enabled: isActive,
-        originalEnabled: originalStatus,
-        contents: Object.entries(promotionInfo).map(([lang, info]) => ({
-          language: lang,
-          title: info.title,
-          banner: info.banner instanceof File ? null : (info.banner as string | null),
-          content: info.content,
-        })),
-        originalContents: Object.entries(originalPromotionInfo).map(([lang, info]) => ({
-          language: lang,
-          title: info.title,
-          banner: info.banner instanceof File ? null : (info.banner as string | null),
-          content: info.content,
-        })),
-      };
-      
-      formData.append('request', JSON.stringify(promotionData));
-      
+
+      Object.entries(promotionInfo).forEach(([lang, info], index) => {
+        formData.append(`OriginalContents[${index}].Language`, lang);
+        formData.append(`OriginalContents[${index}].Title`, info.title || '');
+        formData.append(`OriginalContents[${index}].Content`, info.content || '');
+        
+        if (info.banner instanceof File) {
+          formData.append(`OriginalContents[${index}].Banner`, info.banner);
+        } else if (info.banner) {
+          formData.append(`OriginalContents[${index}].BannerName`, info.banner as string);
+        }
+      });
+
       const result = await promotionService.editPromotionWithFormData(promotionId, formData);
       
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -260,7 +257,6 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
           handleProductFieldChange={() => { void (0) }}
           readOnlyMode={true}
         />
-
         <PromotionInfo
           languages={languages}
           value={promotionInfo}

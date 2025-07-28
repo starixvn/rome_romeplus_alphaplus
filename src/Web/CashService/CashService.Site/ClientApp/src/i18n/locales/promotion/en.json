@@ -8,9 +8,9 @@
   },
   "addPromotionForm": {
     "requiredProductCategory": "Please select at least one Product",
-    "requiredTitle": "Title is required",
-    "requiredContent": "Content is required",
-    "requiredBanner": "Banner is required",
+    "requiredTitle": "Title (English) is required",
+    "requiredContent": "Content (English) is required",
+    "requiredBanner": "Banner (English) is required",
     "promotionSavedSuccessfully": "Promotion saved successfully",
     "currentPromotion": "Current Promotion",
     "onlyOnePromotionCanBeActiveAtATime": "Only one promotion can be active at a time.",

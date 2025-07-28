@@ -1,15 +1,15 @@
+import { DropdownOption } from '../components/CustomDropdownComponent';
 import { api, axiosInstance, createHeaderXMLHttp } from './axios';
 import {
-  EditPromotionRequest,
-  ProductDropdown,
-  PromotionDetail,
-  PromotionParams,
-  PromotionRequest,
-  PromotionTransactionRequest,
-  PromotionTransactionResponse,
+    EditPromotionRequest,
+    ProductDropdown,
+    PromotionDetail,
+    PromotionParams,
+    PromotionRequest,
+    PromotionTransactionRequest,
+    PromotionTransactionResponse,
 } from './interfaces/Promotion';
 import { ResultModel } from './interfaces/ResultModel';
-import { DropdownOption } from '../components/CustomDropdownComponent';
 
 export const promotionService = {
   getLanguages: async (): Promise<Record<string, string>> => {
@@ -89,7 +89,7 @@ export const promotionService = {
       const response = await axiosInstance.post<ResultModel>(`AddPromotion`, formData, {
         headers: {
           ...createHeaderXMLHttp(),
-          'Content-Type': 'multipart/form-data',
+          // Don't set Content-Type for FormData, browser will set it automatically with boundary
         },
       });
       return response.data;

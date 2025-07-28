@@ -1,7 +1,4 @@
-using System.Data.SqlTypes;
 using AlphaPlus.CashService.Site.Features.Shared.Requests;
-using AlphaPlus.Core.Extensions;
-using Microsoft.AspNetCore.Http;
 
 namespace AlphaPlus.CashService.Site.Features.Promotion.Requests;
 

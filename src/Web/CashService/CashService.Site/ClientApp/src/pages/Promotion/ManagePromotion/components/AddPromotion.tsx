@@ -11,8 +11,7 @@ import { PROMOTION_TYPES } from '../../../../constants/promotionConstants';
 import {
   Language,
   ProductDropdown,
-  ProductSetting,
-  PromotionRequest,
+  ProductSetting
 } from '../../../../services/interfaces/Promotion';
 import { promotionService } from '../../../../services/promotionAPI';
 import Information from './Form/Information';
@@ -115,7 +114,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
             ? (setting.percentage === 0 ? 1 : setting.percentage)
             : 0,
           minTurnover: isCategorySelected 
-            ? (setting.minTurnover === 0 ? 1 : setting.minTurnover)
+            ? (setting.minTurnover === 0 ? 0 : setting.minTurnover)
             : 0,
           maxPayout: isCategorySelected 
             ? (setting.maxPayout === 0 ? 1 : setting.maxPayout)
@@ -205,30 +204,31 @@ const validateForm = () => {
     
     try {
       const [fromDate, toDate] = period.map((date) => (date ? new Date(date) : null));      
-      const formData = new FormData();      
-      Object.entries(promotionInfo).forEach(([lang, info]) => { 
-        console.log(lang);
+      const formData = new FormData();
+      formData.append('PromotionType', promotionType.toString());
+      formData.append('StatusId', '1');
+      formData.append('FromDate', fromDate?.toISOString() || '');
+      formData.append('ToDate', toDate?.toISOString() || '');
+      formData.append('Enabled', isActive.toString());
+      if (productSettings && productSettings.length > 0) {
+        formData.append('ProductSettingsJson', JSON.stringify(productSettings));
+      }
+      Object.entries(promotionInfo).forEach(([lang, info], index) => {
+        formData.append(`Contents[${index}].Language`, lang);
+        formData.append(`Contents[${index}].Title`, info.title || '');
+        formData.append(`Contents[${index}].Content`, info.content || '');
+        
         if (info.banner instanceof File) {
-          formData.append(`images[${lang}]`, info.banner);
+          formData.append(`Contents[${index}].Banner`, info.banner);
+        } else if (info.banner) {
+          formData.append(`Contents[${index}].BannerName`, info.banner as string);
         }
       });
       
-      const promotionData: PromotionRequest = {
-        promotionType,
-        statusId: 1,
-        fromDate,
-        toDate,
-        productSettings: productSettings,
-        enabled: isActive,
-        contents: Object.entries(promotionInfo).map(([lang, info]) => ({
-          language: lang,
-          title: info.title,
-          banner: info.banner instanceof File ? null : (info.banner as string | null),
-          content: info.content,
-        })),
-      };
-      debugger;
-      formData.append('request', JSON.stringify(promotionData));
+      console.log('FormData entries:');
+      for (let [key, value] of formData.entries()) {
+        console.log(`${key}:`, value);
+      }
       
       const result = await promotionService.addPromotionWithFormData(formData);
       
