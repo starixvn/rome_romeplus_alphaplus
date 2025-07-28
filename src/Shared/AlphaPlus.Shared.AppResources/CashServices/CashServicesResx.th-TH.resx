@@ -238,10 +238,10 @@
     <value>อนุมัติแล้ว</value>
   </data>
   <data name="AccountType" xml:space="preserve">
-    <value />
+    <value>ประเภทบัญชี</value>
   </data>
   <data name="MemberListNoteEditMultipleNotAvailable" xml:space="preserve">
-    <value />
+    <value>ไม่สามารถแก้ไขข้อมูลลูกค้าหลายรายได้ หากเลือกประเภทบัญชีเป็น "ทั้งหมด"</value>
   </data>
   <data name="ProviderRejectErrorMessage" xml:space="preserve">
     <value>คำขอถอนเงินของคุณถูกปฏิเสธโดยผู้ให้บริการ</value>

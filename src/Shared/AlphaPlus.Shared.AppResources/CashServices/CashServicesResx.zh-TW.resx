@@ -238,10 +238,10 @@
     <value>已批準</value>
   </data>
   <data name="AccountType" xml:space="preserve">
-    <value />
+    <value>賬戶類型</value>
   </data>
   <data name="MemberListNoteEditMultipleNotAvailable" xml:space="preserve">
-    <value />
+    <value>如果帳戶類型為“全部”，則無法編輯多個客戶。</value>
   </data>
   <data name="ProviderRejectErrorMessage" xml:space="preserve">
     <value>您的提款申請已被支付服務商拒絕。</value>

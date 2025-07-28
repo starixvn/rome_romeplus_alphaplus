@@ -238,10 +238,10 @@
     <value>已批准</value>
   </data>
   <data name="AccountType" xml:space="preserve">
-    <value />
+    <value>账户类型</value>
   </data>
   <data name="MemberListNoteEditMultipleNotAvailable" xml:space="preserve">
-    <value />
+    <value>如果账户类型为“全部”，则无法编辑多个客户。</value>
   </data>
   <data name="ProviderRejectErrorMessage" xml:space="preserve">
     <value>您的提款请求已被支付服务商拒绝。</value>
