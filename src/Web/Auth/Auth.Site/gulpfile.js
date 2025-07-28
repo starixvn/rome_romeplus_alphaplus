@@ -13,8 +13,8 @@ import bundleConfig from './bundleconfig.json' with { type: 'json' };
 const sass = gulpSass(dartSass);
 
 const regex = {
-    css: /\.css$/,
-    js: /\.js$/
+    css: /\.css$/ //,
+    //js: /\.js$/
 };
 
 function getBundles(regexPattern) {
@@ -62,4 +62,4 @@ function minCss() {
     return merge(tasks);
 }
 
-gulp.task('default', gulp.series(clean, compileCss, gulp.parallel(minCss, minJs)));
+gulp.task('default', gulp.series(clean, compileCss, gulp.parallel(minCss/*, minJs*/)));
