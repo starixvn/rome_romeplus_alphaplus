@@ -44,21 +44,21 @@
       "Name": "RNG Keno",
       "SportTypeId": 202,
       "VendorId": 8,
-      "Url": "http://10.40.40.248:7053/api/KenoInternal/GetStatementUrl",
+      "Url": "http://saba-wallet-group-002.3rd-party.klt2p.gamora.prod:32280/api/KenoInternal/GetStatementUrl",
       "Debug": 0
     },
     {
       "Name": "Lottery",
       "SportTypeId": 220,
       "VendorId": 28,
-      "Url": "http://10.40.40.248:7053/api/LotteryInternal/GetStatementUrl",
+      "Url": "http://saba-wallet-group-002.3rd-party.klt2p.gamora.prod:32280/api/LotteryInternal/GetStatementUrl",
       "Debug": 0
     },
     {
       "Name": "Table Game",
       "SportTypeId": 222,
       "VendorId": 40,
-      "Url": "http://10.40.40.248:7053/api/TableGameInternal/GetStatementUrl",
+      "Url": "http://saba-wallet-group-002.3rd-party.klt2p.gamora.prod:32280/api/TableGameInternal/GetStatementUrl",
       "Debug": 0
     }
   ]

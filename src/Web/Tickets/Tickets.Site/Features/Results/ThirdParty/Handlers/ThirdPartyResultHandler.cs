@@ -56,6 +56,7 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
     private readonly List<int> _memberSiteResultSports = [202, 220, 222];
     public Task<ThirdPartyProductViewModel> Handle(Result3rdQuery message, CancellationToken cancellationToken)
     {
+        Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(message));
         var sportName = cacheRefService.GetSportName(message.SportTypeId);
         var config = GetThirdPartyConfig(message.SportTypeId);
         if (config == null)
@@ -65,7 +66,11 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
 
         if(_memberSiteResultSports.Contains(message.SportTypeId))
         {
-            message.TransId3rd = message.TransId3rd + "&detail=c&app=" + (browserHelper.IsMobile() ? "M" : "D");
+            message.GameId3rd += "&detail=c&app=" + (browserHelper.IsMobile() ? "S" : "W") + "&EventDate=" + GetDateTime(message.EndTime);
+            if(string.IsNullOrWhiteSpace(message.TransId3rd))
+            {
+                message.TransId3rd = "TransId3rd";
+            }
         }
         
         var request = new ResultRequest(message.CustId, message.TransId3rd, message.GameId3rd, message.CurrencyId, message.SiteId, message.Language)
@@ -73,7 +78,8 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
             IsDarkMode = message.IsDarkMode ? "1" : "0",
             Platform = browserHelper.IsMobile() ? "M" : "D",
             BetTypeId = message.BetType,
-            EndTime = message.EndTime
+            EndTime = message.EndTime,
+            OwTransId = message.RefNo
         };
 
         var result = config.IsPostMethod? new ThirdPartyResult(config).GetResultPOST(request): new ThirdPartyResult(config).GetResultGET(request);
@@ -277,5 +283,16 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
         configs.Name = gameName;
 
         return new ThirdPartyResult(configs);
+    }
+
+    private string GetDateTime(string endTime)
+    {
+        if(string.IsNullOrWhiteSpace(endTime))
+        {
+            return string.Empty;
+        }
+
+        var dateTime = DateTime.Parse(endTime);
+        return dateTime.ToString("yyyyMMdd");
     }
 }

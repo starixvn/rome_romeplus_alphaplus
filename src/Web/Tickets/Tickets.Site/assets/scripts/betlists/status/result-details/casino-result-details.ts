@@ -1868,7 +1868,11 @@
                 '&SportTypeId=',
                 sportTypeId,
                 '&GameId3rd=',
-                encodeParam(gameId3rd)
+                encodeParam(gameId3rd),
+                '&RefNo=',
+                refNo,
+                '&endtime=',
+                winLostDate
             ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 `${Common.AppPath.TicketsAppPath}ThirdParty/ViewResult${params}`,
