@@ -9,8 +9,8 @@ public static class NotificationsEndpoints
         var group = app.MapGroup("/api/notifications")
             .WithTags("Notifications");
 
-        group.MapGet("/GetPendingCount", async (int custId, INotificationsService service) =>
-            Results.Ok(await service.GetPendingCount(custId))
-        ).WithName("PendingCount");
+        group.MapGet("/GetPendingCount", async (int custId, byte type, INotificationsService service) =>
+            Results.Ok(await service.GetPendingCount(custId, type))
+        ).WithName("TransactionPendingCount");
     }
 }

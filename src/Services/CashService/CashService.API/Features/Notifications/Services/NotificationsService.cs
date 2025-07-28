@@ -1,26 +1,18 @@
+using AlphaPlus.CashService.API.Features.Notifications.Criteria;
 using AlphaPlus.CashService.API.Features.Notifications.Models;
+using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Features.Notifications.Services;
 
 public interface INotificationsService
 {
-    Task<PendingCount> GetPendingCount(int custId);
+    Task<TransactionPendingCount> GetPendingCount(int custId, byte type);
 }
 
-public class NotificationsService : INotificationsService
+public class NotificationsService(IDynamicRepository repository) : INotificationsService
 {
-    public Task<PendingCount> GetPendingCount(int custId)
-    {
-        Random random = new Random();
-        int pendingDeposit = random.Next(0, 120);
-        int pendingWithdrawal = random.Next(0, 120);
-        int pendingPromotion = random.Next(0, 120);
+    private readonly IDynamicRepository repository = repository;
 
-        return Task.FromResult(new PendingCount
-        {
-            PendingDeposit = pendingDeposit,
-            PendingWithdrawal = pendingWithdrawal,
-            PendingPromotion = pendingPromotion
-        });
-    }
+    public Task<TransactionPendingCount> GetPendingCount(int custId, byte typeId)
+        => repository.GetAsync<TransactionPendingCount>(new GetTransactionPendingCountCriteria(custId, typeId));
 }

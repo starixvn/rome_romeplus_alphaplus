@@ -16,14 +16,14 @@ public class NotificationsController(
 {
     private readonly string _apiBaseUrl = configuration["CashService:APIUrl"];
 
-    public async Task<IActionResult> GetPendingCount()
+    public async Task<IActionResult> GetPendingCount(byte type)
     {
         object pendingCount = null;
 
         if (AppSettings.IsOfferedCashService(userSession.Site)
                 && (!userSession.IsSubAcc || userSession.SubPageAccess.CashService || userSession.SubPageAccess.CashPromotion))
         {
-            var url = $"{_apiBaseUrl}/notifications/GetPendingCount?custId={userSession.CustId}";
+            var url = $"{_apiBaseUrl}/notifications/GetPendingCount?custId={userSession.CustId}&type={type}";
 
             pendingCount = await _httpClient.GetFromJsonAsync<object>(url);
         }

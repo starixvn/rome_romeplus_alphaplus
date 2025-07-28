@@ -12,6 +12,7 @@ public interface INotificationsService
 
 public class NotificationsService(IDynamicRepository repository) : INotificationsService
 {
+    private const byte AgencyCashAPIToastMsgSiteFunctionId = 5;
     private readonly IDynamicRepository repository = repository;
 
     public Task Notify(int agentId, int custId, string agentName, string resourceKey)
@@ -45,7 +46,7 @@ public class NotificationsService(IDynamicRepository repository) : INotification
         var criteria = new AddToastMsgCriteria(
             message.AgentId,
             ToastMsgType.Info,
-            0,
+            AgencyCashAPIToastMsgSiteFunctionId,
             message.CustId,
             message.En,
             message.Ch,

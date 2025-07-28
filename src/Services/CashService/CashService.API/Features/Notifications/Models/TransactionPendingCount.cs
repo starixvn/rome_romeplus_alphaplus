@@ -1,6 +1,6 @@
 namespace AlphaPlus.CashService.API.Features.Notifications.Models;
 
-public class PendingCount
+public class TransactionPendingCount
 {
     public int PendingDeposit { get; init; }
     public int PendingWithdrawal { get; init; }

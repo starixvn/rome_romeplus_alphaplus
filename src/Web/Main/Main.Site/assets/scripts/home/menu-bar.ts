@@ -41,6 +41,7 @@ var menuBar = {
     resources: {
         novaCasinoBriefIntroduction: ''
     },
+    pendingCountTimerId: null,
 
     urls: {
         accountInfo: alpha.urls.accountInfoRootPath + 'SearchAccount',
@@ -53,7 +54,6 @@ var menuBar = {
         menuBar.bindEvents();
         menuBar.initSideBar();
         menuBar.setMenuBarBanner();
-        menuBar.updatePendingCount();
     },
 
     storeElements: function () {
@@ -147,6 +147,8 @@ var menuBar = {
             } else {
                 menuBar.toggleMainMenu($this);
             }
+
+            menuBar.checkAndStartPendingCountTimer($this.parent().attr('id'), isActive);
         });
 
         menuBar.domElements.subMenuItems.click(function () {
@@ -546,45 +548,34 @@ var menuBar = {
         riskManagementMenu.find('#sub-menu-MYWATCHLIST').addClass('active');
     },
 
-    updatePendingCount: function () {
-        const pendingDepositMenu = $('#badge-number-PENDINGDEPOSIT');
-        const pendingWithdrawalMenu = $('#badge-number-PENDINGWITHDRAWAL');
-        const pendingPromotionMenu = $('#badge-number-PENDINGPROMOTION');
-        if (pendingDepositMenu.length > 0 || pendingWithdrawalMenu.length > 0 || pendingPromotionMenu.length > 0) {
-            menuBar.updatePendingCountInterval(pendingDepositMenu, pendingWithdrawalMenu, pendingPromotionMenu);
+    checkAndStartPendingCountTimer: function (menuId: string, isActive: boolean) {
+        if (menuBar.pendingCountTimerId) {
+            clearTimeout(menuBar.pendingCountTimerId);
+            menuBar.pendingCountTimerId = null;
+        }
+
+        if ((menuId === 'menu-CASHSERVICE' || menuId === 'menu-PROMOTION') && !isActive) {
+            menuBar.updatePendingCountInterval(menuId === 'menu-CASHSERVICE' ? 1 : 2);
         }
     },
 
-    updatePendingCountInterval: function (pendingDepositMenu, pendingWithdrawalMenu, pendingPromotionMenu) {
-        $.get(alpha.urls.cashServiceRootPath + 'Notifications/GetPendingCount')
+    updatePendingCountInterval: function (type: number) {
+        $.get(alpha.urls.cashServiceRootPath + `Notifications/GetPendingCount?type=${type}`)
             .done(function (data) {
-                if (data) {
-                    if (pendingDepositMenu.length > 0) {
-                        pendingDepositMenu.text(menuBar.formatPendingCount(data.pendingDeposit));
-                    }
-                    if (pendingWithdrawalMenu.length > 0) {
-                        pendingWithdrawalMenu.text(menuBar.formatPendingCount(data.pendingWithdrawal));
-                    }
-                    if (pendingPromotionMenu.length > 0) {
-                        pendingPromotionMenu.text(menuBar.formatPendingCount(data.pendingPromotion));
-                    }
+                if (type === 1) {
+                    $('#badge-number-PENDINGDEPOSIT').text(menuBar.formatPendingCount(data.pendingDeposit));
+                    $('#badge-number-PENDINGWITHDRAWAL').text(menuBar.formatPendingCount(data.pendingWithdrawal));
+                } else if (type === 2) {
+                    $('#badge-number-PENDINGPROMOTION').text(menuBar.formatPendingCount(data.pendingPromotion));
                 }
             })
             .always(function () {
-                setTimeout(
-                    () =>
-                        menuBar.updatePendingCountInterval(
-                            pendingDepositMenu,
-                            pendingWithdrawalMenu,
-                            pendingPromotionMenu
-                        ),
-                    1000 * 5
-                );
+                menuBar.pendingCountTimerId = setTimeout(() => menuBar.updatePendingCountInterval(type), 1000 * 30);
             });
     },
 
     formatPendingCount: function (count) {
-        if (count === null || count === undefined || count === 0) {
+        if (!count) {
             return '';
         }
 

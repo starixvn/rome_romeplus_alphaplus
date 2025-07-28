@@ -141,4 +141,8 @@
         <Setting Key="SiteDb_3_Age_CashPromotion_ManualAddBonus" SpName="Age_CashPromotion_ManualAddBonus" DbName="DBSIC.bodb02.wsv_CashService" Plain="0" />
         <Setting Key="SiteDb_3_Age_CashPromotion_UpdateTransStatus" SpName="Age_CashPromotion_UpdateTransStatus" DbName="DBSIC.bodb02.wsv_CashService" Plain="0" />
     </Function>
+
+    <Function Name="Notifications">
+        <Setting Key="Age_CashTransaction_PendingCount" SpName="Age_CashTransaction_PendingCount" DbName="DBAGE.bodb02.wsv_CashService" />
+    </Function>
 </Functions>

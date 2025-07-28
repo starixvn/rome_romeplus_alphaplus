@@ -38,7 +38,7 @@ public class AddPersonalMsgCriteria(
     [SpParam(SqlParamName = "msgtype")]
     public int MessageType { get; } = PersonalMsgType;
 
-    public string CreatorName { get; } = "Agency-Cash-API";
+    public string CreatorName { get; } = string.Empty;
 
     public bool IsBatch { get; } = true;
 
