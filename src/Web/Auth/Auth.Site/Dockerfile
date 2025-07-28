@@ -41,6 +41,26 @@ RUN if [ "${TRANSFORM_CONFIG}" = "" ]; then cp -r src/Shared/Configuration/share
 
 RUN if [ "${TRANSFORM_CONFIG}" != "" ]; then cp -r src/Shared/Configuration/sharedSettings.${TRANSFORM_CONFIG}.json src/Web/Auth/Auth.Site/sharedSettings.json; fi
 
+ARG CI_JOB_TOKEN
+RUN echo $TRANSFORM_CONFIG
+RUN mkdir /build/tmp
+RUN if [ "$TRANSFORM_CONFIG" = "ALPHAKLPRODINT" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPRODINT2" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPRODINT3" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD2" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLPROD3" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSTG" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSTG2" ] \
+  || [ "$TRANSFORM_CONFIG" = "ALPHAKLSTG3" ]; \
+  then cd /build/tmp && curl --fail -o $TRANSFORM_CONFIG.domainmappings.json --header "PRIVATE-TOKEN:$CI_JOB_TOKEN" https://gitlab.nexdev.net/api/v4/projects/alpha-config%2Flogin-domains/repository/files/src%2F$TRANSFORM_CONFIG.domainmappings.json/raw?ref=main \
+  && cd - && cp -r tmp/$TRANSFORM_CONFIG.domainmappings.json src/Web/Auth/Auth.Site/Domains/domainmappings.$TRANSFORM_CONFIG.json; fi
+
+RUN if [ "$TRANSFORM_CONFIG" != "" ]; \
+  then \
+  cp "src/Web/Auth/Auth.Site/Domains/domainmappings.$TRANSFORM_CONFIG.json" "src/Web/Auth/Auth.Site/Domains/domainmappings.json"; \
+  fi
+
 # Build
 WORKDIR "/build/src/Web/Auth/Auth.Site"
 RUN dotnet build "Auth.Site.csproj" -c Release -o /app/build
