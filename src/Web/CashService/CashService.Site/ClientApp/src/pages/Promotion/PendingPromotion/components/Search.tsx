@@ -17,6 +17,7 @@ interface SearchProps {
   onDownload: () => void;
   onReject: () => void;
   onApprove: () => void;
+  isProcessing: boolean;
 }
 
 const Search: React.FC<SearchProps> = ({
@@ -27,6 +28,7 @@ const Search: React.FC<SearchProps> = ({
   onDownload,
   onReject,
   onApprove,
+  isProcessing,
 }) => {
   const { t } = useTranslation('promotion');
   const [textCopy, setTextCopy] = useState(t('messages.copy'));
@@ -76,13 +78,13 @@ const Search: React.FC<SearchProps> = ({
         <ButtonComponent
           variant="apply"
           onClick={onApprove}
-          disabled={selectedItems.length === 0}
+          disabled={selectedItems.length === 0 || isProcessing}
           text={t('search.approve') + ' (' + selectedItems.length + ')'}
         />
         <ButtonComponent
           variant="reject"
           onClick={onReject}
-          disabled={selectedItems.length === 0}
+          disabled={selectedItems.length === 0 || isProcessing}
           text={t('search.reject') + ' (' + selectedItems.length + ')'}
         />
       </div>

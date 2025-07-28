@@ -12,6 +12,7 @@ import { convertToGMT4 } from '../../../../utils/commonFunctions';
 import Pagination from '../../../Transactions/Components/Pagination';
 import { useTranslation } from 'react-i18next';
 import ConfirmPopup from '../../../../components/ConfirmPopup';
+import { toast } from 'react-toastify';
 
 interface PendingPromotionListProps {
   isCashServiceEnabled: boolean;
@@ -151,6 +152,7 @@ const PendingPromotionList: React.FC<PendingPromotionListProps> = () => {
   const { localSearchText, handleLocalSearchChange } = useFilters();
   const { displayedItems, tempTotalCount } = useDisplayedItems(apiData, apiParams, localSearchText);
   const [showConfirm, setShowConfirm] = useState<string | null>(null);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const handleDateRangeChange = useCallback(
     (dates: [string, string]) => {
@@ -200,19 +202,93 @@ const PendingPromotionList: React.FC<PendingPromotionListProps> = () => {
     }
   }, [apiParams]);
 
-  const onReject = useCallback(() => {
-    selectedItems.forEach((item) => {
-      promotionService.rejectPromotionTransaction(item.custId, item.transId, item.amount);
-    });
+  const onReject = useCallback(async () => {
+    setIsProcessing(true);
     setShowConfirm(null);
-  }, []);
 
-  const onApprove = useCallback(() => {
-    selectedItems.forEach((item) => {
-      promotionService.approvePromotionTransaction(item.custId, item.transId, item.amount);
-    });
+    try {
+      await Promise.all(
+        selectedItems.map(async (item) => {
+          try {
+            const response = await promotionService.rejectPromotionTransaction(
+              item.custId,
+              item.transId,
+              item.amount
+            );
+
+            if (response.isSuccessful) {
+              toast.success('#' + item.transId + ' ' + t('table.rejectSuccess'));
+            } else {
+              toast.error('#' + item.transId + ' ' + response.message);
+            }
+          } catch (error) {
+            console.error(`Error rejecting transaction ${item.transId}:`, error);
+            toast.error('#' + item.transId + ' ' + t('table.rejectError'));
+          }
+        })
+      );
+
+      await new Promise((resolve) => {
+        setTimeout(async () => {
+          await fetchPendingPromotions({
+            promotionTypeId: apiParams.promotionTypeId,
+            fromDate: apiParams.dateRange[0],
+            toDate: apiParams.dateRange[1],
+          });
+          resolve(true);
+        }, 3000);
+      });
+    } catch (error) {
+      console.error('Error in onReject:', error);
+      toast.error(t('table.rejectError'));
+    } finally {
+      setIsProcessing(false);
+    }
+  }, [selectedItems, apiParams.promotionTypeId, apiParams.dateRange, fetchPendingPromotions, t]);
+
+  const onApprove = useCallback(async () => {
+    setIsProcessing(true);
     setShowConfirm(null);
-  }, []);
+
+    try {
+      await Promise.all(
+        selectedItems.map(async (item) => {
+          try {
+            const response = await promotionService.approvePromotionTransaction(
+              item.custId,
+              item.transId,
+              item.amount
+            );
+
+            if (response.isSuccessful) {
+              toast.success('#' + item.transId + ' ' + t('table.approveSuccess'));
+            } else {
+              toast.error('#' + item.transId + ' ' + response.message);
+            }
+          } catch (error) {
+            console.error(`Error approving transaction ${item.transId}:`, error);
+            toast.error('#' + item.transId + ' ' + t('table.approveError'));
+          }
+        })
+      );
+
+      await new Promise((resolve) => {
+        setTimeout(async () => {
+          await fetchPendingPromotions({
+            promotionTypeId: apiParams.promotionTypeId,
+            fromDate: apiParams.dateRange[0],
+            toDate: apiParams.dateRange[1],
+          });
+          resolve(true);
+        }, 3000);
+      });
+    } catch (error) {
+      console.error('Error in onApprove:', error);
+      toast.error(t('table.approveError'));
+    } finally {
+      setIsProcessing(false);
+    }
+  }, [selectedItems, apiParams.promotionTypeId, apiParams.dateRange, fetchPendingPromotions, t]);
 
   useEffect(() => {
     const paramsForFilterChange: PromotionTransactionRequest = {
@@ -282,6 +358,7 @@ const PendingPromotionList: React.FC<PendingPromotionListProps> = () => {
             onReject={() => setShowConfirm('reject')}
             onApprove={() => setShowConfirm('approve')}
             onDownload={onDownload}
+            isProcessing={isProcessing}
           />
         </div>
 

@@ -9,6 +9,8 @@ import '../../../styles/global.scss';
 import { useTranslation } from 'react-i18next';
 import AddBonusForm from './components/AddBonusForm';
 import { ButtonFullComponent } from '../../../components/Buttons';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const PendingPromotion: React.FC = () => {
   useCookieLanguage(i18n);
@@ -25,11 +27,20 @@ const PendingPromotion: React.FC = () => {
 
   return (
     <>
+      <ToastContainer
+        aria-label="toast-container"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        pauseOnFocusLoss
+        pauseOnHover
+        position="top-center"
+      />
       {showAddBonus ? (
         <AddBonusForm onClose={() => setShowAddBonus(false)} />
       ) : (
         <div className="flex h-full flex-col">
-          <TitleComponent text={t('pendingPromotion')} type='main'/> 
+          <TitleComponent text={t('pendingPromotion')} type="main" />
           <div className="mb-[8px]">
             <ButtonFullComponent
               text={t('addBonus')}
