@@ -26,13 +26,14 @@ export const ButtonComponent = forwardRef<HTMLButtonElement, ButtonComponentProp
 
   return (
     <button
+      role="button"
       ref={ref}
       type={type}
       className={`${baseClasses} ${variantClasses} ${disabledClasses} ${className}`}
       onClick={onClick}
       disabled={disabled}
       title={title}
-      aria-label={title}
+      {...(title ? { 'aria-label': title } : {})}
       {...props}
     >
       {text}
