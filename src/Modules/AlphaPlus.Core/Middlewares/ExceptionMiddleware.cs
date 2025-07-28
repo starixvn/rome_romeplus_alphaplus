@@ -61,7 +61,7 @@ public class ExceptionMiddleware(RequestDelegate next, ILogger logger, IUserSess
         else
         {
             context.Response.ContentType = "text/html";
-            context.Response.Redirect(MicroSites.MainUrl("~/error"));
+            context.Response.Redirect(MicroSites.AuthUrl("~/error"));
         }
     }
 }
