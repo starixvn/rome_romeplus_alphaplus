@@ -3,7 +3,7 @@
   <xsl:param name="IsInternal" select="0"></xsl:param>
   <xsl:output method="html" indent="no" />
 
-  <xsl:template match="acc_customerinsmember_directmember">
+  <xsl:template match="root">
     <table class="tblDesc">
       <tr>
         <td class="colW1">
