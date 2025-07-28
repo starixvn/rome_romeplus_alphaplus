@@ -38,30 +38,35 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
     [HttpGet]
     public async Task<SignInResult> AfterSignIn(SignInParam param)
     {
-        var query = QueryString.Create([
-            KeyValuePair.Create(nameof(param.CustId), param.CustId.ToString()),
-            KeyValuePair.Create(nameof(param.SubAccId), param.SubAccId.ToString()),
-            KeyValuePair.Create(nameof(param.Password), param.Password),
-            KeyValuePair.Create(nameof(param.Nickname), param.Nickname),
-            KeyValuePair.Create(nameof(param.IsNickname), param.IsNickname.ToString()),
-            KeyValuePair.Create(nameof(param.Language), param.Language),
-            KeyValuePair.Create(nameof(param.RequestInfo.CountryCode), param.RequestInfo.CountryCode),
-            KeyValuePair.Create(nameof(param.RequestInfo.BrowserName), param.RequestInfo.BrowserName),
-            KeyValuePair.Create(nameof(param.RequestInfo.LoginDomain), param.RequestInfo.LoginDomain),
-            KeyValuePair.Create(nameof(param.RequestInfo.LoginIp), param.RequestInfo.LoginIp),
-            KeyValuePair.Create(nameof(param.LoginTime), param.LoginTime.ToString()),
-            KeyValuePair.Create(nameof(param.RequestInfo.Platform), param.RequestInfo.Platform),
-            KeyValuePair.Create(nameof(param.DarkModeName), param.DarkModeName),
-            KeyValuePair.Create(nameof(param.AssetAppPath), param.AssetAppPath),
-            KeyValuePair.Create(nameof(param.DCSStaticAppPath), param.DCSStaticAppPath)
-        ]);
-
-        var result = await client.GetAsJsonAsync<SignInResult>($"api/auth/after-sign-in{query}");
-
-        if (result.IsSuccessful)
+        var result = await client.PostAsJsonAsync<SignInResult>("api/auth/after", new
         {
-            userSessionService.SetUserSessionValues(result);
+            param.CustId,
+            param.Password,
+            param.SubAccId,
+            param.Nickname,
+            param.IsNickname,
+            param.LoginTime,
+            param.Language,
+            param.RequestInfo.LoginIp,
+            param.RequestInfo.CountryCode,
+            param.RequestInfo.LoginDomain,
+            param.RequestInfo.BrowserName,
+            param.RequestInfo.Platform,
+            SessionId = session.NetSessionId
+        });
+
+        if (result.IsFailed)
+        {
+            return result;
         }
+
+        result.DarkModeName = param.DarkModeName;
+        result.AssetAppPath = param.AssetAppPath;
+        result.DCSStaticAppPath = param.DCSStaticAppPath;
+
+        userSessionService.SetUserSessionValues(result);
+
+        session.UserLoginIp = param.RequestInfo.LoginIp;
 
         return result;
     }

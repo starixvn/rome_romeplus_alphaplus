@@ -1,4 +1,4 @@
-﻿/// <reference path="../core.ts" />
+﻿/// <reference path="./core.ts" />
 
 interface Window {
     hasPopupOpen(): boolean;

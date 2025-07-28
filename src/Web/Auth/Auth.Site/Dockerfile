@@ -5,6 +5,10 @@ EXPOSE 5000
 FROM hub.nexdev.net/base/dotnet/core/sdk:9.0-alpine AS build
 WORKDIR /build
 
+# Install Node.js and Yarn
+RUN apk add --no-cache nodejs npm && \
+    npm install -g yarn
+
 
 # Copy project files
 COPY ["src/Web/Auth/Auth.Site/Auth.Site.csproj", "src/Web/Auth/Auth.Site/"]
@@ -63,14 +67,27 @@ RUN if [ "$TRANSFORM_CONFIG" != "" ]; \
 
 # Build
 WORKDIR "/build/src/Web/Auth/Auth.Site"
-RUN dotnet build "Auth.Site.csproj" -c Release -o /app/build
 
-# Publish
-FROM build AS publish
+# Install yarn dependencies and build
+RUN --mount=type=cache,target=/root/.yarn \
+    --mount=type=cache,target=/root/.cache/yarn \
+    --mount=type=cache,target=/build/src/Web/Auth/Auth.Site/node_modules \
+    yarn config set cache-folder /root/.cache/yarn && \
+    yarn install --frozen-lockfile
+
+RUN --mount=type=cache,target=/root/.yarn \
+    --mount=type=cache,target=/root/.cache/yarn \
+    --mount=type=cache,target=/build/src/Web/Auth/Auth.Site/node_modules \
+    yarn config set cache-folder /root/.cache/yarn && \
+    yarn build
+
+# Publish directly without build step
 RUN dotnet publish "Auth.Site.csproj" -c Release -o /app/publish /p:UseAppHost=false
+
+RUN cp -r /build/src/Web/Auth/Auth.Site/wwwroot /app/publish/wwwroot
 
 # Final stage
 FROM base AS final
 WORKDIR /app
-COPY --from=publish /app/publish .
+COPY --from=build /app/publish .
 ENTRYPOINT ["dotnet", "Auth.Site.dll"] 

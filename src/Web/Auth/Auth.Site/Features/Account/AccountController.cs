@@ -105,7 +105,7 @@ public class AccountController(
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
             
-            return Redirect("~/main/Default/Redirect");
+            return Redirect($"{Request.Scheme}://{Request.Host}/main/Default/Redirect");
         }
 
         return Login(WebUtility.UrlEncode(signInResult.Message));
@@ -146,7 +146,7 @@ public class AccountController(
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
             
-            return Redirect("~/main/Default/Redirect");
+            return Redirect($"{Request.Scheme}://{Request.Host}/main/Default/Redirect");
         }
 
         return new EmptyResult();
@@ -196,7 +196,7 @@ public class AccountController(
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
-            return Redirect("~/main/Default/Redirect");
+            return Redirect($"{Request.Scheme}://{Request.Host}/main/Default/Redirect");
         }
 
         return new EmptyResult();

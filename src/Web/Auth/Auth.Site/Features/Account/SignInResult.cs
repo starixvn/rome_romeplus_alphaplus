@@ -10,7 +10,7 @@ namespace AlphaPlus.Auth.Site.Features.Account
 
         public int SubAccId { get; init; }
 
-        public string SubUserName { get; init; }
+        public string SubUsername { get; init; }
 
         public string SubPageAccess { get; init; }
 
@@ -26,43 +26,39 @@ namespace AlphaPlus.Auth.Site.Features.Account
 
         public int AdminId { get; init; } = 0;
 
-        public string AdminName { get; init; } = string.Empty;
+        public string AccUserName { get; init; } = string.Empty;
 
-        public bool IsLogged { get; init; }
+        public bool IsFirstLogin { get; init; }
 
-        public bool IsPasswordExpired { get; init; }
-
-        public bool IsForcedSecurityCode { get; init; }
+        public bool IsForcedChangeSecurityCode { get; init; }
 
         public string SecurityCode { get; init; }
 
-        public string NickName { get; init; }
+        public DateTime PwdExpiry { get; init; }
 
-        public bool IsNickname { get; init; }
+        public string Nickname { get; init; }
 
-        public string UserLoginIp { get; init; }
+        public bool IsNickName { get; init; }
 
-        public string LangKey { get; init; }
+        public IDictionary<string, string> Status { get; init; }
 
-        public int SRecommendId { get; init; }
+        public bool IsShowConsolidatedReport { get; init; }
 
-        public int MRecommendId { get; init; }
-
-        public bool IsProtectedMode { get; init; }
-
-        public bool IsOfferProtectedMode { get; init; }
+        public bool IsShowBetChoiceLimit { get; init; }
 
         public SiteDB SiteDB { get; init; }
 
-        public bool IsAdminCanUpdateSubAccount { get; init; }
+        public bool IsAllowTotalBalanceTransfer { get; init; }
 
         public DateTime DateLimit { get; init; }
+
+        public bool IsAdminCanUpdateSubAccount { get; init; }
 
         public bool IsEnabledSecurityCodeInBetLists { get; init; }
 
         public bool IsEnabledSecurityCodeInStatement { get; init; }
 
-        public bool AutoFollowBetIsDummyAgent { get; init; }
+        public bool AutoFollowBet { get; init; }
 
         public IList<int> OfferedJackpotProducts { get; init; }
 
@@ -75,5 +71,13 @@ namespace AlphaPlus.Auth.Site.Features.Account
         public string DarkModeName { get; set; }
 
         public string AssetAppPath { get; set; }
+
+        public string LanguageUsage { get; set; }
+
+        public string LoginIp { get; set; }
+
+        public int[] OfferedProductGroupIds { get; set; }
+
+        public string DCSStaticAppPath { get; set; }
     }
-} 
+}

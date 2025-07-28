@@ -98,7 +98,7 @@ var alpha = {
                 });
             } else {
                 try {
-                    localStorage.removeItem(indexManager.currentUrlCookieName);
+                    localStorage.removeItem('currentUrl');
                 } finally {
                     index.location = signOutUrl;
                 }
@@ -123,7 +123,10 @@ var alpha = {
                 });
             } else {
                 try {
-                    indexManager.removeCookies();
+                    // Clear cookies manually
+                    document.cookie.split(";").forEach(function(c) { 
+                        document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); 
+                    });
                 } finally {
                     index.location = signOutUrl;
                 }

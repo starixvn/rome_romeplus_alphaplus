@@ -3,7 +3,10 @@ using AlphaPlus.RequestInfo;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.HttpOverrides;
 using AlphaPlus.Auth.Site.Features.Account;
-
+using Fanex.Cryptography.Aes;
+using Fanex.Data;
+using AlphaPlus.Logging;
+using AlphaPlus.Core.Helpers;
 
 ThreadPool.SetMinThreads(100, 100);
 
@@ -31,19 +34,38 @@ builder.Services
     .AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddSharedCookie();
 
-builder.Services.AddControllersWithViews();
+builder.Services
+    .AddControllersWithViews()
+    .AddRazorOptions(options =>
+    {
+        options.ViewLocationFormats.Clear();
+        options.ViewLocationFormats.Add("/Features/Views/{1}/{0}.cshtml");
+        options.ViewLocationFormats.Add("/Views/Shared/{0}.cshtml");
+    });
+
 builder.Services.AddHealthChecks();
-builder.Services.AddAlphaPlusCore(configuration)
+builder.Services
+    .AddAlphaPlusCore(configuration)
+    .AddFanexData(configuration)
+    .AddFanexLogging(configuration)
     .AddSharedSession(configuration)
     .AddRequestInfo();
 
 // Register Account services
-builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddHttpClient<IAccountService, AccountService>(client =>
+{
+    client.BaseAddress = new Uri(configuration.GetValue<string>("IdentityUrl"));
+});
 builder.Services.AddScoped<IUserSessionService, UserSessionService>();
+builder.Services.AddSingleton<IAesService, AesService>();
 builder.Services.AddHttpClient();
+
+AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
+LoggingConfig.Init(["password", "seccode", "securitycode"]);
 
 var app = builder.Build();
 
+app.UsePathBase(PathBase);
 app.UseDefaultFiles();
 app.UseStaticFiles();
 
@@ -53,7 +75,6 @@ app.UseRouting();
 app.UseSession();
 app.MapControllers();
 app.UseForwardedHeaders();
-app.UsePathBase(PathBase);
 app.MapHealthChecks("/health");
 
 app.Use(async (context, next) =>
@@ -68,5 +89,9 @@ app.Use(async (context, next) =>
 
     await next(context);
 });
+
+AlphaContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
+
+app.MapControllerRoute(name: "default", pattern: "{controller=Default}/{action=Index}/{id?}");
 
 app.Run();
