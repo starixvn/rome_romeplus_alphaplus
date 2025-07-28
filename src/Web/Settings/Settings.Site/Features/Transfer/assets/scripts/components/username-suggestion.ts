@@ -8,6 +8,7 @@ interface UsernameSuggestionOption {
     directDownlines?: boolean;
     isAccInfo?: boolean;
     onBlur?: Function;
+    excludeCashMember?: boolean;
 }
 
 class UsernameSuggestionComponent {
