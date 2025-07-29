@@ -38,11 +38,13 @@ function convertProductToTreeNodeOption(products: ProductDropdown[]): TreeNodeOp
   }));
 }
 
+// Function to get banner URL from banner name
 function getBannerUrl(bannerName: string): string {
   const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -2).join('/');
   return `${baseUrl}/PromotionImages/${bannerName}`;
 }
 
+// Function to load image from URL and create File object
 async function loadImageAsFile(imageUrl: string, fileName: string): Promise<File | null> {
   try {
     const response = await fetch(imageUrl, {
@@ -115,11 +117,15 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
               let bannerFile: File | string | null = null;
               
               if (info.bannerName) {
+                // Load the image as a File object
                 const imageUrl = getBannerUrl(info.bannerName);
+
                 bannerFile = await loadImageAsFile(imageUrl, info.bannerName);
                 
+                // If loading failed, keep as null - will be handled by UI
                 if (!bannerFile) {
-                  bannerFile = info.bannerName;
+                  console.warn(`Failed to load image for ${info.bannerName}`);
+                  bannerFile = null;
                 }
               }
               

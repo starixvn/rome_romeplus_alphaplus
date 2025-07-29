@@ -21,11 +21,14 @@ export interface PromotionInfoProps {
   setActiveLang: (lang: string) => void;
 }
 
-const getBannerUrl = (bannerName: string | null): string | null => {
-  if (!bannerName) return null;
-
-  const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -2).join('/');
-  return `${baseUrl}/PromotionImages/${bannerName}`;
+// Function to get image URL from File object only
+const getImageUrl = (banner: File | string | null): string | null => {
+  if (banner instanceof File) {
+    // If banner is a File object, create object URL
+    return URL.createObjectURL(banner);
+  }
+  // If banner is not a File object, return null (no image to display)
+  return null;
 };
 
 export const LanguageTabs: React.FC<{
@@ -70,12 +73,13 @@ export const TitleField: React.FC<{
 };
 
 export const BannerField: React.FC<{
-  prevBanner: string | null;
+  banner: File | string | null;
+  bannerName: string | null;
   setBanner: (f: File | string | null) => void;
   setBannerName?: (name: string | null) => void;
   lang: string;
   isDefault: boolean;
-}> = ({ prevBanner, setBanner, setBannerName, lang, isDefault }) => {
+}> = ({ banner, setBanner, setBannerName, lang, isDefault }) => {
   const { t } = useTranslation('promotion');
 
   const handleSetImage = (file: File | null) => {
@@ -88,7 +92,17 @@ export const BannerField: React.FC<{
       setBannerName(null);
     }
   };
-  const fullBannerUrl = getBannerUrl(prevBanner);
+  
+  const fullBannerUrl = getImageUrl(banner);
+  
+  // Cleanup object URL when component unmounts or banner changes
+  React.useEffect(() => {
+    return () => {
+      if (banner instanceof File && fullBannerUrl && fullBannerUrl.startsWith('blob:')) {
+        URL.revokeObjectURL(fullBannerUrl);
+      }
+    };
+  }, [banner, fullBannerUrl]);
 
   return (
     <div className="mb-4">
@@ -150,7 +164,8 @@ const PromotionInfo: React.FC<PromotionInfoProps> = ({
         isDefault={languages.find((lang) => lang.key === activeLang)?.isDefault || false}
       />
       <BannerField
-        prevBanner={langFields.bannerName}
+        banner={langFields.banner}
+        bannerName={langFields.bannerName}
         setBanner={(f) => setValue(activeLang, 'banner', f)}
         setBannerName={(name) => setValue(activeLang, 'bannerName', name)}
         lang={activeLang}
