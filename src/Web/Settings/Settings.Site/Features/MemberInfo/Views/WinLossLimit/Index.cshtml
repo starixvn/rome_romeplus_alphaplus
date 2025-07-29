@@ -173,8 +173,13 @@
                         <td class="text-center">@index</td>
                         <td class="text-left">@WinLossLimitViewModel.GetStatusText(winLossLimitDetail.Status)</td>
                         <td class="text-left" title="@winLossLimitDetail.Username">
-                            @winLossLimitDetail.Username
-                            @(winLossLimitDetail.IsCashMember ? Html.Raw("<span class='icon-cashservice icon-cashservice-common'></span>"): string.Empty)
+                            <div class="row-icon-inline">
+                                <span class="text">
+                                    @winLossLimitDetail.Username
+                                </span>                                
+                                @(winLossLimitDetail.IsCashMember ? Html.Raw("<span class='ic-cashservice'></span>"): string.Empty)
+                          
+                            </div>
                         </td>
                         <td class="text-left" title="@winLossLimitDetail.Firstname">
                             <div class="col-first-name">

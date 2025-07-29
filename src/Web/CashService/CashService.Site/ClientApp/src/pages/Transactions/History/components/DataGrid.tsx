@@ -106,12 +106,12 @@ const DataGrid: React.FC<DataGridProps> = ({
                   <td className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-background)] z-10">
                     {index + 1 + (pageIndex - 1) * pageSize}
                   </td>
-                  <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
+                  <td className="text-left w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
                     <div>{item.username}</div>
                     <div>{item.nickname}</div>
                   </td>
                   {shouldShowColumn('name') && (
-                    <td>
+                    <td className="text-left">
                       <div>{item.firstName}</div>
                       <div>{item.lastName}</div>
                     </td>
