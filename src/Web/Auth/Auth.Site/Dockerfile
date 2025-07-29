@@ -13,7 +13,6 @@ RUN apk add --no-cache nodejs npm && \
 # Copy project files
 COPY ["src/Web/Auth/Auth.Site/Auth.Site.csproj", "src/Web/Auth/Auth.Site/"]
 COPY ["src/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj", "src/Modules/AlphaPlus.Core/"]
-COPY ["src/Modules/AlphaPlus.Core.Authorization/AlphaPlus.Core.Authorization.csproj", "src/Modules/AlphaPlus.Core.Authorization/"]
 COPY ["src/Modules/AlphaPlus.Logging/AlphaPlus.Logging.csproj", "src/Modules/AlphaPlus.Logging/"]
 COPY ["src/Modules/AlphaPlus.PartialUM/AlphaPlus.PartialUM.csproj", "src/Modules/AlphaPlus.PartialUM/"]
 COPY ["src/Shared/AlphaPlus.Shared.AppResources/AlphaPlus.Shared.AppResources.csproj", "src/Shared/AlphaPlus.Shared.AppResources/"]
@@ -29,7 +28,6 @@ RUN --mount=type=cache,target=/root/.nuget/packages \
 # copy all source code
 COPY "src/Shared" "src/Shared"
 COPY "src/Modules/AlphaPlus.Core" "src/Modules/AlphaPlus.Core"
-COPY "src/Modules/AlphaPlus.Core.Authorization" "src/Modules/AlphaPlus.Core.Authorization"
 COPY "src/Modules/AlphaPlus.Logging" "src/Modules/AlphaPlus.Logging"
 COPY "src/Modules/AlphaPlus.PartialUM" "src/Modules/AlphaPlus.PartialUM"
 COPY "src/Shared/AlphaPlus.Shared.AppResources" "src/Shared/AlphaPlus.Shared.AppResources"
