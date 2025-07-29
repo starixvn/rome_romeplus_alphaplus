@@ -86,7 +86,7 @@ public class WithdrawalService(
 
             if (paymentResult.IsSuccess)
             {
-                _ = Task.Run(() => Notify(request.AgentId, request.CustId));
+                _ = Task.Run(() => NotifyPendingWithdrawal(request.AgentId, request.CustId));
             }
 
             return paymentResult;
@@ -158,23 +158,15 @@ public class WithdrawalService(
         return result;
     }
 
-    public async Task Notify(int agentId, int custId)
+    public async Task NotifyPendingWithdrawal(int agentId, int custId)
     {
-        const string NotifyPendingWithdrawal = "NotifyPendingWithdrawal";
-        var param = new NotificationParam(
-            agentId,
-            string.Empty,
-            custId,
-            NotifyPendingWithdrawal,
-            "NotifyPendingWithdrawal_Title",
-            NotifyPendingWithdrawal);
         try
         {
-            await notificationsService.Notify(param);
+            await notificationsService.NotifyPendingWithdrawal(agentId, custId);
         }
         catch (Exception ex)
         {
-            await logger.ErrorAsync($"{Notify} failed. Param: ${JsonHelper.ToJson(param)}", ex);
+            await logger.ErrorAsync($"{nameof(NotifyPendingWithdrawal)} failed. Agent: ${agentId}, CustId: ${custId}", ex);
         }
     }
 }

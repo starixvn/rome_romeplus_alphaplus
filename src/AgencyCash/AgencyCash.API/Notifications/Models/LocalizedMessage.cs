@@ -1,5 +1,6 @@
 using System.Globalization;
 using AgencyCash.API.Notifications.Resources;
+using AgencyCash.API.Shared.Constants;
 using AgencyCash.API.Shared.Helpers;
 
 namespace AgencyCash.API.Notifications.Models;
@@ -20,34 +21,25 @@ public class LocalizedMessage(int targetId, string targetName, int creator)
     public void AssignPersonalMessage(string resourceKey, object[] messageParams = null)
     {
         messageParams ??= Array.Empty<object>();
-        En = BuildPersonalMessage(resourceKey, "en-US", messageParams);
-        Ch = BuildPersonalMessage(resourceKey, "zh-TW", messageParams);
-        Cs = BuildPersonalMessage(resourceKey, "zh-CN", messageParams);
-        Th = BuildPersonalMessage(resourceKey, "th-TH", messageParams);
-        Vi = BuildPersonalMessage(resourceKey, "vi-VN", messageParams);
-        Jp = BuildPersonalMessage(resourceKey, "ja-JP", messageParams);
-        Ko = BuildPersonalMessage(resourceKey, "ko-KR", messageParams);
-    }
-
-    private static string BuildPersonalMessage(string resourceKey, string culture, object[] messageParams)
-    {
-        var resourceString = NotificationsResx.ResourceManager.GetString(resourceKey, CultureInfo.CreateSpecificCulture(culture));
-
-        return string.IsNullOrWhiteSpace(resourceString)
-            ? string.Empty
-            : string.Format(resourceString, messageParams);
+        En = BuildMessage(resourceKey, Language.English, messageParams);
+        Ch = BuildMessage(resourceKey, Language.ChineseTraditional, messageParams);
+        Cs = BuildMessage(resourceKey, Language.ChineseSimplified, messageParams);
+        Th = BuildMessage(resourceKey, Language.Thai, messageParams);
+        Vi = BuildMessage(resourceKey, Language.Vietnamese, messageParams);
+        Jp = BuildMessage(resourceKey, Language.Japanese, messageParams);
+        Ko = BuildMessage(resourceKey, Language.Korean, messageParams);
     }
 
     public void AssignToastMessage(string titleResourceKey, string bodyResourceKey, object[] bodyParams = null)
     {
         bodyParams ??= Array.Empty<object>();
-        En = BuildToastMessage(titleResourceKey, bodyResourceKey, "en-US", bodyParams);
-        Ch = BuildToastMessage(titleResourceKey, bodyResourceKey, "zh-TW", bodyParams);
-        Cs = BuildToastMessage(titleResourceKey, bodyResourceKey, "zh-CN", bodyParams);
-        Th = BuildToastMessage(titleResourceKey, bodyResourceKey, "th-TH", bodyParams);
-        Vi = BuildToastMessage(titleResourceKey, bodyResourceKey, "vi-VN", bodyParams);
-        Jp = BuildToastMessage(titleResourceKey, bodyResourceKey, "ja-JP", bodyParams);
-        Ko = BuildToastMessage(titleResourceKey, bodyResourceKey, "ko-KR", bodyParams);
+        En = BuildToastMessage(titleResourceKey, bodyResourceKey, Language.English, bodyParams);
+        Ch = BuildToastMessage(titleResourceKey, bodyResourceKey, Language.ChineseTraditional, bodyParams);
+        Cs = BuildToastMessage(titleResourceKey, bodyResourceKey, Language.ChineseSimplified, bodyParams);
+        Th = BuildToastMessage(titleResourceKey, bodyResourceKey, Language.Thai, bodyParams);
+        Vi = BuildToastMessage(titleResourceKey, bodyResourceKey, Language.Vietnamese, bodyParams);
+        Jp = BuildToastMessage(titleResourceKey, bodyResourceKey, Language.Japanese, bodyParams);
+        Ko = BuildToastMessage(titleResourceKey, bodyResourceKey, Language.Korean, bodyParams);
     }
 
     private static string BuildToastMessage(
@@ -59,9 +51,18 @@ public class LocalizedMessage(int targetId, string targetName, int creator)
         var content = new ToastContentModel
         {
             Title = NotificationsResx.ResourceManager.GetString(titleResourceKey, CultureInfo.CreateSpecificCulture(culture)),
-            Body = string.Format(NotificationsResx.ResourceManager.GetString(bodyResourceKey, CultureInfo.CreateSpecificCulture(culture)), bodyParams)
+            Body = BuildMessage(bodyResourceKey, culture, bodyParams)
         };
 
         return JsonHelper.ToJson(content);
+    }
+
+    private static string BuildMessage(string resourceKey, string culture, object[] messageParams)
+    {
+        var resourceString = NotificationsResx.ResourceManager.GetString(resourceKey, CultureInfo.CreateSpecificCulture(culture));
+
+        return string.IsNullOrWhiteSpace(resourceString)
+            ? string.Empty
+            : string.Format(resourceString, messageParams);
     }
 }

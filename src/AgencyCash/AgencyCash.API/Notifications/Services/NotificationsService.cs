@@ -7,7 +7,9 @@ namespace AgencyCash.API.Notifications.Services;
 
 public interface INotificationsService
 {
-    Task Notify(NotificationParam param);
+    Task NotifyPendingDeposit(int agentId, int custId);
+
+    Task NotifyPendingWithdrawal(int agentId, int custId);
 }
 
 public class NotificationsService(IDynamicRepository repository) : INotificationsService
@@ -15,8 +17,33 @@ public class NotificationsService(IDynamicRepository repository) : INotification
     private const byte AgencyCashAPIToastMsgSiteFunctionId = 5;
     private readonly IDynamicRepository repository = repository;
 
-    public Task Notify(NotificationParam param)
-        => Task.WhenAll(AddPersonalMsg(param), AddToastMsg(param));
+    public Task NotifyPendingDeposit(int agentId, int custId)
+    {
+        const string NotifyPendingDeposit = "NotifyPendingDeposit";
+        var param = new NotificationParam(
+            agentId,
+            string.Empty,
+            custId,
+            NotifyPendingDeposit,
+            "NotifyPendingDeposit_Title",
+            NotifyPendingDeposit);
+
+        return Task.WhenAll(AddPersonalMsg(param), AddToastMsg(param));
+    }
+
+    public Task NotifyPendingWithdrawal(int agentId, int custId)
+    {
+        const string NotifyPendingWithdrawal = "NotifyPendingWithdrawal";
+        var param = new NotificationParam(
+            agentId,
+            string.Empty,
+            custId,
+            NotifyPendingWithdrawal,
+            "NotifyPendingWithdrawal_Title",
+            NotifyPendingWithdrawal);
+
+        return Task.WhenAll(AddPersonalMsg(param), AddToastMsg(param));
+    }
 
     public async Task AddPersonalMsg(NotificationParam param)
     {

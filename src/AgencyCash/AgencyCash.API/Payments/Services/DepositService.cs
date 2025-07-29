@@ -99,7 +99,7 @@ public class DepositService(
 
         if (result.IsSuccess)
         {
-            _ = Task.Run(() => Notify(request.AgentId, request.CustId));
+            _ = Task.Run(() => NotifyPendingDeposit(request.AgentId, request.CustId));
         }
 
         return result;
@@ -246,23 +246,15 @@ public class DepositService(
         return new Result(criteria.ErrCode, criteria.ErrMsg);
     }
 
-    public async Task Notify(int agentId, int custId)
+    public async Task NotifyPendingDeposit(int agentId, int custId)
     {
-        const string NotifyPendingDeposit = "NotifyPendingDeposit";
-        var param = new NotificationParam(
-            agentId,
-            string.Empty,
-            custId,
-            NotifyPendingDeposit,
-            "NotifyPendingDeposit_Title",
-            NotifyPendingDeposit);
         try
         {
-            await notificationsService.Notify(param);
+            await notificationsService.NotifyPendingDeposit(agentId, custId);
         }
         catch (Exception ex)
         {
-            await logger.ErrorAsync($"{Notify} failed. Param: ${JsonHelper.ToJson(param)}", ex);
+            await logger.ErrorAsync($"{nameof(NotifyPendingDeposit)} failed. Agent: ${agentId}, CustId: ${custId}", ex);
         }
     }
 }
