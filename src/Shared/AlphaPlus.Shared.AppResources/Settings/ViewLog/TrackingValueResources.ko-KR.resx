@@ -1708,4 +1708,7 @@
   <data name="isactive" xml:space="preserve">
     <value />
   </data>
+  <data name="AgentBankAccount" xml:space="preserve">
+    <value>에이전트 은행 계좌</value>
+  </data>
 </root>

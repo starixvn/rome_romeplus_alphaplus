@@ -3450,4 +3450,7 @@
   <data name="isactive" xml:space="preserve">
     <value />
   </data>
+  <data name="AgentBankAccount" xml:space="preserve">
+    <value>代理的銀行賬戶</value>
+  </data>
 </root>

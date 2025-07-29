@@ -3192,4 +3192,7 @@
   <data name="isactive" xml:space="preserve">
     <value />
   </data>
+  <data name="AgentBankAccount" xml:space="preserve">
+    <value>Tài khoản ngân hàng của Agent</value>
+  </data>
 </root>

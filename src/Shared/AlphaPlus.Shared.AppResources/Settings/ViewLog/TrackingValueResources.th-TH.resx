@@ -4707,4 +4707,7 @@
         <value>ทีเอ็มบีธนชาต</value>
         <comment>TTB</comment>
     </data>
+  <data name="AgentBankAccount" xml:space="preserve">
+    <value>บัญชีธนาคารตัวแทน</value>
+  </data>
 </root>

@@ -3614,4 +3614,7 @@
     <value>TMBThanachart Bank</value>
     <comment>TTB</comment>
   </data>
+  <data name="AgentBankAccount" xml:space="preserve">
+    <value>Agent's Bank Account</value>
+  </data>
 </root>

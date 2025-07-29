@@ -13,11 +13,20 @@
       <DependentUpon>CashServicesResx.resx</DependentUpon>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </Compile>
+    <Compile Update="Settings\ViewLog\TrackingValueResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TrackingValueResources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="CashServices\CashServicesResx.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CashServicesResx.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Settings\ViewLog\TrackingValueResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TrackingValueResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 
