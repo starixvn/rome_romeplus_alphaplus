@@ -34,7 +34,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Criteria.CashService
 
         public override string GetSettingKey()
         {
-            return "Acc_UserLog_RunSPSelTotalRecords";
+            return "Acc_CashService_UserLog_RunSPSelTotalRecords";
         }
 
         public override bool IsValid()
