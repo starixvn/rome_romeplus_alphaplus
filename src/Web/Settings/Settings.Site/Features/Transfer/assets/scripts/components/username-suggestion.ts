@@ -69,6 +69,10 @@ class UsernameSuggestionComponent {
             queryString.push(`isaccinfo=${options.isAccInfo}`);
         }
 
+        if (options.excludeCashMember) {
+            queryString.push(`excludecashmember=${options.excludeCashMember}`);
+        }
+
         return queryString.length === 0 ? '' : queryString.join('&');
     }
 
