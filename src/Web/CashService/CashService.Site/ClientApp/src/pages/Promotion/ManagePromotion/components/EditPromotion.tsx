@@ -9,7 +9,6 @@ import { TitleComponent } from '../../../../components/Title';
 import { TreeNodeOption } from '../../../../components/TreeSelect/TreeSelect';
 import { PROMOTION_TYPES } from '../../../../constants/promotionConstants';
 import {
-  EditPromotionRequest,
   Language,
   ProductDropdown,
   ProductSetting,
