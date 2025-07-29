@@ -170,7 +170,7 @@ public class PromotionController(
         {
             foreach (var content in request.Contents)
             {
-                var fileName = await ImageUploadHelper.ProcessUploadedImages(content.Banner, content.Banner.FileName);
+                var fileName = await ImageUploadHelper.ProcessUploadedImages(content.Banner, content.Banner != null ? content.Banner.FileName : content.BannerName);
                 content.BannerName = fileName;
                 content.Banner = null;
             }
