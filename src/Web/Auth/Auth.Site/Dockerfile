@@ -9,7 +9,6 @@ WORKDIR /build
 RUN apk add --no-cache nodejs npm && \
     npm install -g yarn
 
-
 # Copy project files
 COPY ["src/Web/Auth/Auth.Site/Auth.Site.csproj", "src/Web/Auth/Auth.Site/"]
 COPY ["src/Modules/AlphaPlus.Core/AlphaPlus.Core.csproj", "src/Modules/AlphaPlus.Core/"]
@@ -83,6 +82,12 @@ RUN --mount=type=cache,target=/root/.yarn \
 RUN dotnet publish "Auth.Site.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 RUN cp -r /build/src/Web/Auth/Auth.Site/wwwroot /app/publish/wwwroot
+
+# Don't run as root
+RUN adduser --disabled-password \
+  --home /app \
+  --gecos '' dotnetuser && chown -R dotnetuser /app && chown -R dotnetuser /tmp
+USER dotnetuser
 
 # Final stage
 FROM base AS final
