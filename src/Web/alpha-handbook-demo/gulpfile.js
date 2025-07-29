@@ -34,7 +34,7 @@ function minJs() {
         return gulp
             .src(bundle.inputFiles, { base: '.' })
             .pipe(concat(bundle.outputFileName))
-            .pipe(uglify())
+            // .pipe(uglify())
             .pipe(gulp.dest('.'));
     });
     return merge(tasks);
@@ -51,7 +51,9 @@ function compileCss() {
             })
         );
 }
-
+function copyImages() {
+    return gulp.src('assets/styles/handbook/**/*').pipe(gulp.dest('wwwroot/assets/bundles/handbook'));
+}
 function minCss() {
     var tasks = getBundles(regex.css).map(function (bundle) {
         return gulp
@@ -63,4 +65,4 @@ function minCss() {
     return merge(tasks);
 }
 
-gulp.task('default', gulp.series(clean, compileCss, gulp.parallel(minCss, minJs)));
+gulp.task('default', gulp.series(clean, compileCss, gulp.parallel(minCss, minJs, copyImages)));

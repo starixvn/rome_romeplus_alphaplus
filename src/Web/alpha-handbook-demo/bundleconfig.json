@@ -29,6 +29,13 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/assets/bundles/handbook/common.js",
+    "inputFiles": [
+      "assets/scripts/components/jquery-1.11.3.js",
+      "assets/scripts/components/jquery.cookie.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/assets/bundles/handbook/default.js",
     "inputFiles": [
       "assets/scripts/handbook/auto-suggestion.js",

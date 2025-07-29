@@ -4,7 +4,7 @@ function correctDropdownLocales(initialData, slug) {
   switch(slug) {
     case 'api::article.article':
     case 'api::category.category':
-      setTimeout(() => { correctLocale(initialData); }, 300);
+      setTimeout(() => { correctLocale(initialData); }, 1000);
       break;
     default:
       break;
@@ -26,6 +26,8 @@ function correctLocale(initialData) {
   uri = uri.substring(0, iId);
 
   const queryLocale = urlParamsObject.plugins?.i18n?.locale;
+  console.log(qid + "|" + uri + "|" + queryLocale + "|" + initialData.locale);
+  
   if(!parseInt(qid) || (queryLocale && queryLocale == initialData.locale)) {
     return;
   }

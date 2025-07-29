@@ -114,6 +114,8 @@ class DefaultPage {
     };
 
     changeLanguage = (s) => {
+        debugger;
+        
         this.$.ajax({
             type: 'GET',
             url: this.$("#RootPath").val() + "HandbookLanguage/Change?selected=" + s,

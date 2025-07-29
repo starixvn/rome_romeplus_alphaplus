@@ -597,7 +597,6 @@ export default factories.createCoreController('api::article.article', ({ strapi 
 
     const entity = await strapi.db.query('api::article.article').findOne({
       where: {
-        publishedAt: (isProd ? { $null: false } : {}),
         id: { $eqi: id }
       },
       populate: {
