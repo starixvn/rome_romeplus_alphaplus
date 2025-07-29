@@ -38,6 +38,31 @@ function convertProductToTreeNodeOption(products: ProductDropdown[]): TreeNodeOp
   }));
 }
 
+function getBannerUrl(bannerName: string): string {
+  const baseUrl = window.location.origin + window.location.pathname.split('/').slice(0, -2).join('/');
+  return `${baseUrl}/PromotionImages/${bannerName}`;
+}
+
+async function loadImageAsFile(imageUrl: string, fileName: string): Promise<File | null> {
+  try {
+    const response = await fetch(imageUrl, {
+      mode: 'cors',
+      credentials: 'same-origin'
+    });
+    if (!response.ok) {
+      console.warn(`Failed to load image from ${imageUrl}: ${response.status} ${response.statusText}`);
+      return null;
+    }
+    
+    const blob = await response.blob();
+    const file = new File([blob], fileName, { type: blob.type || 'image/jpeg' });
+    return file;
+  } catch (error) {
+    console.error('Error loading image as file:', error);
+    return null;
+  }
+}
+
 const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) => {
   const { t: tGlobal } = useTranslation('global');
   const { t } = useTranslation('promotion');
@@ -84,14 +109,27 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
           if (promotion.languageSettings) {
 
             const infoMap: Record<string, PromotionLangFields> = {};
-            promotion.languageSettings.forEach((info) => {
+            
+            // Load images and create File objects for each language
+            for (const info of promotion.languageSettings) {
+              let bannerFile: File | string | null = null;
+              
+              if (info.bannerName) {
+                const imageUrl = getBannerUrl(info.bannerName);
+                bannerFile = await loadImageAsFile(imageUrl, info.bannerName);
+                
+                if (!bannerFile) {
+                  bannerFile = info.bannerName;
+                }
+              }
+              
               infoMap[info.language] = {
                 title: info.title || '',
-                banner: info.bannerName,
+                banner: bannerFile,
                 bannerName: info.bannerName,
                 content: info.content || '',
               };
-            });
+            }
             setPromotionInfo(infoMap);
             setOriginalPromotionInfo({ ...infoMap });
 
@@ -173,7 +211,6 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
         formData.append(`Contents[${index}].Language`, lang);
         formData.append(`Contents[${index}].Title`, info.title || '');
         formData.append(`Contents[${index}].Content`, info.content || '');
-        
         if (info.banner instanceof File) {
           formData.append(`Contents[${index}].Banner`, info.banner);
         } else if (info.banner) {
@@ -181,7 +218,7 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
         }
       });
 
-      Object.entries(promotionInfo).forEach(([lang, info], index) => {
+      Object.entries(originalPromotionInfo).forEach(([lang, info], index) => {
         formData.append(`OriginalContents[${index}].Language`, lang);
         formData.append(`OriginalContents[${index}].Title`, info.title || '');
         formData.append(`OriginalContents[${index}].Content`, info.content || '');

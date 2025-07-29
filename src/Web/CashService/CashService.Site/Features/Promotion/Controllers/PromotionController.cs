@@ -152,20 +152,29 @@ public class PromotionController(
                 content.BannerName = fileName;
                 content.Banner = null;
             }
+
+             var url = $"/api/promotions";        
+            var result = await httpClientHelper.PostAsync<object, object>(url, request);
+            return Json(result);
         }
         
-        var url = $"/api/promotions";        
-        var result = await httpClientHelper.PostAsync<object, object>(url, request);
-        return Json(result);
+        return Json(new { Code = "01", Message = "Invalid request" });
     }
 
     [HttpPut]
     public async Task<IActionResult> EditPromotion(int promotionId, [FromForm] EditPromotionRequest request)
     {
         request.SetUserSession(userSession);
-
+        Console.WriteLine(JsonConvert.SerializeObject(request));
         if (request.IsValid())
         {
+            foreach (var content in request.Contents)
+            {
+                var fileName = await ImageUploadHelper.ProcessUploadedImages(content.Banner, content.Banner.FileName);
+                content.BannerName = fileName;
+                content.Banner = null;
+            }
+
             var url = $"/api/promotions/{promotionId}";
             var result = await httpClientHelper.PutAsync<EditPromotionRequest, object>(url, request);
             return Json(result);

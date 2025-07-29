@@ -72,13 +72,21 @@ export const TitleField: React.FC<{
 export const BannerField: React.FC<{
   prevBanner: string | null;
   setBanner: (f: File | string | null) => void;
+  setBannerName?: (name: string | null) => void;
   lang: string;
   isDefault: boolean;
-}> = ({ prevBanner, setBanner, lang, isDefault }) => {
+}> = ({ prevBanner, setBanner, setBannerName, lang, isDefault }) => {
   const { t } = useTranslation('promotion');
 
   const handleSetImage = (file: File | null) => {
     setBanner(file);
+    // Update bannerName when a new file is uploaded
+    if (file && setBannerName) {
+      // Set to null because backend will generate new filename
+      setBannerName(null);
+    } else if (!file && setBannerName) {
+      setBannerName(null);
+    }
   };
   const fullBannerUrl = getBannerUrl(prevBanner);
 
@@ -144,6 +152,7 @@ const PromotionInfo: React.FC<PromotionInfoProps> = ({
       <BannerField
         prevBanner={langFields.bannerName}
         setBanner={(f) => setValue(activeLang, 'banner', f)}
+        setBannerName={(name) => setValue(activeLang, 'bannerName', name)}
         lang={activeLang}
         isDefault={languages.find((lang) => lang.key === activeLang)?.isDefault || false}
       />
