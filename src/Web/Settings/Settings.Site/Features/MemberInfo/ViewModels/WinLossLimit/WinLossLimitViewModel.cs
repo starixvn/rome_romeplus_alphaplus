@@ -117,7 +117,7 @@ public class WinLossLimitViewModel
             return "N/A";
         }
 
-        return maxWinLimit == 0 ? Lang.Unlimited : $"{maxWinLimit.ToString("#,##0")}";
+        return maxWinLimit == 0 ? Lang.Unlimited : $"{maxWinLimit.ToString("#,##0.00")}";
     }
 
     public string GetWinPercent(decimal? winPercent, decimal? currentWinLimit, decimal credit, decimal maxWinLimit)
