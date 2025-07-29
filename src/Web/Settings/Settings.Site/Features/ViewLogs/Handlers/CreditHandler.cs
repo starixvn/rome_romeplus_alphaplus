@@ -7,13 +7,18 @@ using AlphaPlus.Settings.Site.Features.ViewLogs.Requests;
 using AlphaPlus.Settings.Site.Features.ViewLogs.Requests.Credit;
 using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels;
 using AlphaPlus.Settings.ViewLogs.API.Extensions;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
 {
     public class CreditHandler : BaseHandler, IRequestHandler<IndexQuery, LogViewModel>
     {
-        public CreditHandler([FromKeyedServices("creditLogSvc")] LogService logService, LogFormatter logFormatter, IDateTime dateTimeWrapper) :
-            base(logService, logFormatter, dateTimeWrapper)
+        public CreditHandler(
+            [FromKeyedServices("creditLogSvc")] LogService logService, 
+            LogFormatter logFormatter, 
+            IDateTime dateTimeWrapper,
+            IUserSession userSession) :
+            base(logService, logFormatter, dateTimeWrapper, userSession)
         {
         }
 
@@ -26,7 +31,7 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
             await TransformLogs(pagingLogs, message, viewModel);
 
             viewModel.ActionTypeId = message.ActionTypeId;
-
+            viewModel.IsOfferedCashService = AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(_userSession.Site);
             return viewModel;
         }
 

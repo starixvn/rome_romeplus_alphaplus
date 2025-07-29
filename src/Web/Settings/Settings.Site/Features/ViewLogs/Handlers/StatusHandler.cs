@@ -7,6 +7,7 @@ using AlphaPlus.Settings.Site.Features.ViewLogs.Helpers;
 using MediatR;
 using AlphaPlus.Settings.Site.Features.ViewLogs.Requests.Status;
 using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
 {
@@ -22,8 +23,9 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
             IDateTime dateTimeWrapper,
             TransformService transformService,
             TrackingValueFormatter trackingValueFormatter,
-            Fanex.Logging.ILogger logger) :
-             base(logService, logFormatter, dateTimeWrapper)
+            Fanex.Logging.ILogger logger,
+            IUserSession userSession) :
+             base(logService, logFormatter, dateTimeWrapper, userSession)
         {
             this.trackingValueFormatter = trackingValueFormatter;
             this.transformService = transformService;
@@ -37,7 +39,8 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
 
             var viewModel = new LogViewModel(logsParam, pagingLogs.TotalRecords)
             {
-                ActionTypeId = message.ActionTypeId
+                ActionTypeId = message.ActionTypeId,
+                IsOfferedCashService = AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(_userSession.Site)
             };
 
             await TransformLogs(pagingLogs, message, viewModel);

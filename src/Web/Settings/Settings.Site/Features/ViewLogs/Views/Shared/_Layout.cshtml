@@ -18,7 +18,7 @@
 <body>
     @GoogleAnalyticHelper.GtagNoScript()
     <div class="container-fluid page-viewlog">
-        @await Html.PartialAsync("~/Features/ViewLogs/Views/Tab/Index.cshtml", new TabViewModel(ViewContext.RouteData.Values["controller"].ToString()))
+        @await Html.PartialAsync("~/Features/ViewLogs/Views/Tab/Index.cshtml", new TabViewModel(ViewContext.RouteData.Values["controller"].ToString(), Model.IsOfferedCashService))
         @RenderBody()
         @await Html.PartialAsync("MonthNames")
     </div>

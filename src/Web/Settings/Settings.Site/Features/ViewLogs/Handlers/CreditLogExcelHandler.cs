@@ -24,7 +24,9 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
             [FromKeyedServices("creditLogSvc")] LogService logService,
             LogFormatter logFormatter,
             IDateTime dateTimeWrapper,
-            CreditLogWorkbook workbook) : base(logService, logFormatter, dateTimeWrapper)
+            CreditLogWorkbook workbook,
+            IUserSession userSession) :
+            base(logService, logFormatter, dateTimeWrapper, userSession)
         {
             this.workbook = workbook;
         }

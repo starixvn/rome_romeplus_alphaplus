@@ -7,6 +7,14 @@
             SelectedTabName = selectedTabName;
         }
 
+        public TabViewModel(string selectedTabName, bool isOfferedCashService)
+        {
+            SelectedTabName = selectedTabName;
+            IsOfferedCashService = isOfferedCashService;
+        }
+
         public string SelectedTabName { get; }
+
+        public bool IsOfferedCashService { get; set; }
     }
 }

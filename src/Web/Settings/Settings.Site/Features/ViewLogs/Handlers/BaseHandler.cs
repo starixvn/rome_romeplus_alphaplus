@@ -4,19 +4,24 @@ using AlphaPlus.Settings.ViewLogs.API.Params;
 using AlphaPlus.Settings.ViewLogs.API.Services;
 using Fanex.Common;
 using AlphaPlus.Settings.Site.Features.ViewLogs.Requests;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
 {
     public class BaseHandler
     {
+        protected readonly IUserSession _userSession;
+
         public BaseHandler(
             LogService logService,
             LogFormatter logFormatter,
-            IDateTime dateTimeWrapper)
+            IDateTime dateTimeWrapper,
+            IUserSession userSession)
         {
             LogFormatter = logFormatter;
             LogService = logService;
             DateTimeWrapper = dateTimeWrapper;
+            _userSession = userSession;
         }
 
         public LogFormatter LogFormatter { get; }
