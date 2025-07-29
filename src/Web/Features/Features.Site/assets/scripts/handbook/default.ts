@@ -143,7 +143,7 @@ class DefaultPage {
 
         this.$.ajax({
             type: "POST",
-            url: this.$("#MainRootPath").val() + 'Account/ReCheckIn',
+            url: this.$("#AuthRootPath").val() + 'Account/ReCheckIn',
             data: { onid: this.$("#OnUserId").val() },
             success: (result) => {
                 try { 

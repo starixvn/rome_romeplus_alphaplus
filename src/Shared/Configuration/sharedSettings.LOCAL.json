@@ -240,7 +240,7 @@
         "EnableUnscheduledUM": false,
         "UMFrom": "3:00",
         "UMTo": "4:00",
-        "UMPageUrl": "/main/Account/Offline",
+        "UMPageUrl": "/auth/Account/Offline",
         "ResultCacheDuration": 15,
         "UMLoggingCategory": "ONEbook-UM"
     },
@@ -268,7 +268,7 @@
         "cachedExpireTime": 30,
         "EnableCheckBelonging": true,
         "DisabledCheckDuplicationLogin": true,
-        "KickOutUrl": "~/default/kickout"
+        "KickOutUrl": "~/account/kickout"
     },
     "DisableMessages": false,
     "Message": {

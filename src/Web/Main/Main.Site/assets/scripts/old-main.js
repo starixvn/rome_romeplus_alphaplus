@@ -141,7 +141,7 @@ window.age = window.age || {
 
         var isInternal = index.$("#isInternal").val();
         isInternal = isInternal || "0";
-        var signOutUrl = alpha.urls.mainRootPath + 'Account/Logout';
+        var signOutUrl = alpha.urls.authRootPath + 'Account/Logout';
 
         if (isInternal.toString() !== "0") {
             $.ajax(signOutUrl, {

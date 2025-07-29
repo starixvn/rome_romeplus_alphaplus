@@ -17,7 +17,6 @@ using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.Auth.Site.Features.Account;
 
-[AllowAnonymous]
 public class AccountController(
     IUserSession userSession,
     IDeviceHelper deviceHelper,
@@ -33,7 +32,7 @@ public class AccountController(
     private readonly Core.Configurations.AuthorizationOptions options = options.Value;
     private const string SecretKey = "!@#$";
 
-    [AllowProtectedMode]
+    [AllowAnonymous, HttpGet, AllowProtectedMode]
     public IActionResult Login(string r = null)
     {
         var domains = DomainsHelper.DomainMappings;
@@ -54,7 +53,7 @@ public class AccountController(
         AlphaContext.Current.Session.Clear();
     }
 
-    [HttpGet, AllowProtectedMode]
+    [AllowAnonymous, HttpGet, AllowProtectedMode]
     public async Task<IActionResult> SSO(string parameter)
     {
         var invalidSession = WebUtility.UrlEncode(Resources.ResourceManager.GetString("invalidsession", new CultureInfo(Request.Cookies["LANGUAGE"] ?? "en-US")));
@@ -111,7 +110,7 @@ public class AccountController(
         return Login(WebUtility.UrlEncode(signInResult.Message));
     }
 
-    [HttpGet, AllowProtectedMode]
+    [AllowAnonymous, HttpGet, AllowProtectedMode]
     public async Task<IActionResult> InternalLogin(string parameter)
     {
         var reqParam = aesService.Decrypt(parameter, SecretKey);
@@ -152,7 +151,7 @@ public class AccountController(
         return new EmptyResult();
     }
 
-    [HttpGet, AllowProtectedMode]
+    [AllowAnonymous, HttpGet, AllowProtectedMode]
     public async Task<IActionResult> IndirectLogin(string parameter)
     {
         ClearSession();
@@ -200,5 +199,93 @@ public class AccountController(
         }
 
         return new EmptyResult();
+    }
+
+    [AllowProtectedMode]
+    public IActionResult Logout(string r = null)
+    {
+        return Login(r);
+    }
+
+    [Authorize, AllowProtectedMode]
+    public async Task<IActionResult> Logout2()
+    {
+        if (!options.DisabledCheckDuplicationLogin)
+        {
+            try
+            {
+                await accountService.CheckOut();
+            }
+            finally
+            {
+                // Prevent exception from sql login account is disabled
+            }
+        }
+
+        await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+        if (userSession.IsIndirectLoggedIn || userSession.IsInternal)
+        {
+            ClearSession();
+
+            return new EmptyResult();
+        }
+
+        ClearSession();
+
+        return Login();
+    }
+
+    [HttpPost]
+    [Authorize, AllowProtectedMode]
+    public async Task<IActionResult> ReCheckIn(int onid)
+    {
+        var result = onid < 0 ? new ReCheckInResult { IsKickedOut = true } : await accountService.ReCheckIn(onid);
+        return Json(result.IsKickedOut
+            ? Result.CreateErrorResult(MapKickOutReasonToUserMessage(result.KickOutReason))
+            : Result.CreateSuccessfulResult());
+    }
+
+    private static string MapKickOutReasonToUserMessage(byte kickOutReason)
+    {
+        const byte ResetPasswordForceKickOut = 1;
+        const byte ProtectedModeForceKickOut = 2;
+
+        return kickOutReason switch
+        {
+            ResetPasswordForceKickOut => Security.KickoutMessageByForceChangePassword,
+            ProtectedModeForceKickOut => Security.KickoutMessageByProtectedMode,
+            _ => Security.stringSessionLogged.Replace("\n", string.Empty),
+        };
+    }
+
+    [HttpGet, AllowProtectedMode]
+    public async Task<IActionResult> Offline()
+    {
+        return await Logout2();
+    }
+
+    [AllowProtectedMode]
+    public async Task<IActionResult> KickOut(string reason)
+    {
+        var message = MapKickOutReasonToUserMessage(reason);
+
+        await accountService.CheckOut(" Kicked out: Session Changed");
+        ClearSession();
+
+        return Login(WebUtility.UrlEncode(message));
+    }
+
+    private static string MapKickOutReasonToUserMessage(string reason)
+    {
+        return reason switch
+        {
+            "DuplicationLogin" => Security.stringSessionLogged,
+            "AccountClosed" => Security.lblConfirmClosed,
+            "AccountLocked" => Security.lblConfirmLocked,
+            "KickoutByForceChangePassword" => Security.KickoutMessageByForceChangePassword,
+            "KickoutByProtectedMode" => Security.KickoutMessageByProtectedMode,
+            _ => Resources.NoPermissionAccessPage,
+        };
     }
 }

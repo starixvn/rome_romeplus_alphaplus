@@ -88,6 +88,8 @@ RUN cp -r /build/src/Web/Auth/Auth.Site/wwwroot /app/publish/wwwroot
 
 # Final stage
 FROM base AS final
+ENV COMPlus_EnableDiagnostics=0
 WORKDIR /app
 COPY --from=build /app/publish .
+ENV TZ="America/La_Paz"
 ENTRYPOINT ["dotnet", "Auth.Site.dll"] 

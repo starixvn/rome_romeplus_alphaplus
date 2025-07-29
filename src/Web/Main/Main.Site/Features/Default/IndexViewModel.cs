@@ -72,6 +72,8 @@ public class IndexViewModel
 
     public string CashServiceRootPath => UrlHelper.MapCashServicePath("~/");
 
+    public string AuthRootPath => UrlHelper.MapAuthPath("~/");
+
     public string PasswordHash { get; }
 
     public string SubPageAccess => message.SubPageAccess;
