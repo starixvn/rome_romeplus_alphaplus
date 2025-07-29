@@ -262,7 +262,7 @@
     "OfferClearGivenCredit:Sites": "*",
     "IndirectLogin": {
         "AllowSuperIds": "*",
-        "URL": "https://indp3.nexdev.net/main/Account/IndirectLogin"
+        "URL": "https://indp3.nexdev.net/auth/Account/IndirectLogin"
     },
     "Authorization": {
         "cachedExpireTime": 30,

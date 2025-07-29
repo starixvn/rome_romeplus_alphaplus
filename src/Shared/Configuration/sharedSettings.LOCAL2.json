@@ -248,7 +248,7 @@
     "OfferClearGivenCredit:Sites": "KORIBC,INDO",
     "IndirectLogin": {
         "AllowSuperIds": "*",
-        "URL": "https://indp2.nexdev.net/main/Account/IndirectLogin"
+        "URL": "https://indp2.nexdev.net/auth/Account/IndirectLogin"
     },
     "ProtectedMode": {
         "OfferSites": "*"

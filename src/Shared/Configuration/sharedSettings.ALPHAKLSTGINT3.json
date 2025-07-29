@@ -289,6 +289,6 @@
             },
             "IndirectLogin": {
                 "AllowSuperIds": "*",
-                "URL": "https://stidp3.gatonic.com/main/Account/IndirectLogin"
+                "URL": "https://stidp3.gatonic.com/auth/Account/IndirectLogin"
             }
         }

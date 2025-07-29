@@ -262,7 +262,7 @@
   "OfferClearGivenCredit:Sites": "*",
   "IndirectLogin": {
     "AllowSuperIds": "*",
-    "URL": "https://idp3.starixuat.com/main/Account/IndirectLogin"
+    "URL": "https://idp3.starixuat.com/auth/Account/IndirectLogin"
   },
   "Authorization": {
     "cachedExpireTime": 30,

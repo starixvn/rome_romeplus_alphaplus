@@ -277,6 +277,6 @@
     },
     "IndirectLogin": {
         "AllowSuperIds": "*",
-        "URL": "https://idp2.alpha-stag-kl.gatonic.com/main/Account/IndirectLogin"
+        "URL": "https://idp2.alpha-stag-kl.gatonic.com/auth/Account/IndirectLogin"
     }
 }

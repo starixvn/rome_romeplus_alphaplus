@@ -248,7 +248,7 @@
   "OfferClearGivenCredit:Sites": "KORIBC,INDO",
   "IndirectLogin": {
     "AllowSuperIds": "*",
-    "URL": "https://idp2.starixuat.com/main/Account/IndirectLogin"
+    "URL": "https://idp2.starixuat.com/auth/Account/IndirectLogin"
   },
   "ProtectedMode": {
     "OfferSites": "*"
