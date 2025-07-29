@@ -21,8 +21,7 @@ namespace AlphaPlus.Features.Site.Handbook.Handlers
                 languageKey = LanguageConsts.EnglishKey;
             }
 
-            var code = LanguageConsts.Codes[languageKey];
-            AppSettingsHelper.SessionLanguageKey = code;
+            AppSettingsHelper.SessionLanguageKey = languageKey;
 
             return Task.FromResult(languageKey);
         }

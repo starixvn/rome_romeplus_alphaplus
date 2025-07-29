@@ -51,7 +51,7 @@ function compileCss() {
             })
         );
 }
-function copyImages() {
+function copyWebResources() {
     return gulp.src('assets/styles/handbook/**/*').pipe(gulp.dest('wwwroot/assets/bundles/handbook'));
 }
 function minCss() {
@@ -65,4 +65,4 @@ function minCss() {
     return merge(tasks);
 }
 
-gulp.task('default', gulp.series(clean, compileCss, gulp.parallel(minCss, minJs, copyImages)));
+gulp.task('default', gulp.series(clean, compileCss, gulp.parallel(minCss, minJs, copyWebResources)));
