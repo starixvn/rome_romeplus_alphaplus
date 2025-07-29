@@ -10,12 +10,14 @@ public class ResetCurrentWinAmountCommand : IRequest<Result>
     public ResetCurrentWinAmountCommand() { }
 
     public ResetCurrentWinAmountCommand(IUser viewer)
-    {
+    {   
+        UserId = viewer.Id;
         Language = viewer.Language;
         SettingStatus = AppSettings.SettingStatus;
     }
 
-    public int CustId { get; set; }
+    public int CustId { get; set; } 
+    public int UserId { get; set; }
     public string Username { get; set; }
     public int ProductId { get; set; }
     public int SportType { get; set; }

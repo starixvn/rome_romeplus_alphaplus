@@ -4,6 +4,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Params
     {
         public ResetCurrentWinAmountParam(
             int custId,
+            int userId,
             string username,
             int productId,
             int sportType,
@@ -12,6 +13,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Params
             int settingStatus)
         {
             CustId = custId;
+            UserId = userId;
             Username = username;
             ProductId = productId;
             SportType = sportType;
@@ -20,7 +22,9 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Params
             SettingStatus = settingStatus;
         }
 
-        public int CustId { get; set; }
+        public int CustId { get; set; } 
+
+        public int UserId { get; set; }
 
         public string Username { get; set; }
 

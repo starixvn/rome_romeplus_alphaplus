@@ -40,6 +40,7 @@ public class SportsbookPotentialWinLimitHandler(IPotentialWinLimitService potent
             new ResetCurrentSportsbookWinAmountParam(
                 request.SiteDB,
                 request.CustId,
+                request.UserId,
                 request.Username,
                 request.Language,
                 request.SettingStatus

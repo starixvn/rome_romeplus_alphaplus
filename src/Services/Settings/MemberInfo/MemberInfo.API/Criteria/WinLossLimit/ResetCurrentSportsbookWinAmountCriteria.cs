@@ -5,17 +5,20 @@ namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit
 {
     public class ResetCurrentSportsbookWinAmountCriteria : NonQueryCommand
     {
-        public ResetCurrentSportsbookWinAmountCriteria(short siteDB, int custId, int settingStatus)
+        public ResetCurrentSportsbookWinAmountCriteria(short siteDB, int custId, int userId, int settingStatus)
         {
             SiteDB = siteDB;
             CustId = custId;
+            UserId = userId;
             SettingStatus = settingStatus;
         }
 
         [SpParam(Ignored= true)]
         public short SiteDB {get;}
 
-        public int CustId { get; }
+        public int CustId { get; }  
+
+        public int UserId { get; }
 
         public int SettingStatus { get; }
 

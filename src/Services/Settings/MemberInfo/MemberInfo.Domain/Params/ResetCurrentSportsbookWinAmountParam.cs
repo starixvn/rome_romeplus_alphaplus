@@ -5,12 +5,14 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Params
         public ResetCurrentSportsbookWinAmountParam(
             short siteDB,
             int custId,
+            int userId,
             string username,
             string language,
             int settingStatus)
         {
             SiteDB = siteDB;
             CustId = custId;
+            UserId = userId;
             Username = username;
             Language = language;
             SettingStatus = settingStatus;
@@ -19,6 +21,8 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Params
         public short SiteDB { get; set; }
 
         public int CustId { get; set; }
+
+        public int UserId { get; set; }
 
         public string Username { get; set; }
 

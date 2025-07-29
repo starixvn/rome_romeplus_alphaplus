@@ -125,6 +125,7 @@ public class WinLossLimitServiceImpl(IDynamicRepository repository, CacheRefServ
     {
         var criteria = new ResetCurrentWinAmountCriteria(
             param.CustId,
+            param.UserId,
             param.SportType,
             param.BetType,
             param.SettingStatus);
