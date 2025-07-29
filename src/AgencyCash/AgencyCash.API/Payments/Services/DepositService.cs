@@ -1,3 +1,4 @@
+using AgencyCash.API.Notifications.Models;
 using AgencyCash.API.Notifications.Services;
 using AgencyCash.API.Payments.Constants;
 using AgencyCash.API.Payments.Criteria;
@@ -248,14 +249,20 @@ public class DepositService(
     public async Task Notify(int agentId, int custId)
     {
         const string NotifyPendingDeposit = "NotifyPendingDeposit";
-
+        var param = new NotificationParam(
+            agentId,
+            string.Empty,
+            custId,
+            NotifyPendingDeposit,
+            "NotifyPendingDeposit_Title",
+            NotifyPendingDeposit);
         try
         {
-            await notificationsService.Notify(agentId, custId, string.Empty, NotifyPendingDeposit);
+            await notificationsService.Notify(param);
         }
         catch (Exception ex)
         {
-            await logger.ErrorAsync($"{Notify} failed. Agent: {agentId}, CustId: {custId}", ex);
+            await logger.ErrorAsync($"{Notify} failed. Param: ${JsonHelper.ToJson(param)}", ex);
         }
     }
 }

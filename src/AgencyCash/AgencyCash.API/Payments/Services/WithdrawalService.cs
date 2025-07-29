@@ -1,3 +1,4 @@
+using AgencyCash.API.Notifications.Models;
 using AgencyCash.API.Notifications.Services;
 using AgencyCash.API.Payments.Constants;
 using AgencyCash.API.Payments.Criteria;
@@ -160,14 +161,20 @@ public class WithdrawalService(
     public async Task Notify(int agentId, int custId)
     {
         const string NotifyPendingWithdrawal = "NotifyPendingWithdrawal";
-
+        var param = new NotificationParam(
+            agentId,
+            string.Empty,
+            custId,
+            NotifyPendingWithdrawal,
+            "NotifyPendingWithdrawal_Title",
+            NotifyPendingWithdrawal);
         try
         {
-            await notificationsService.Notify(agentId, custId, string.Empty, NotifyPendingWithdrawal);
+            await notificationsService.Notify(param);
         }
         catch (Exception ex)
         {
-            await logger.ErrorAsync($"{Notify} failed. Agent: {agentId}, CustId: {custId}", ex);
+            await logger.ErrorAsync($"{Notify} failed. Param: ${JsonHelper.ToJson(param)}", ex);
         }
     }
 }

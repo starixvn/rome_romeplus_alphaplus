@@ -7,7 +7,7 @@ namespace AgencyCash.API.Notifications.Services;
 
 public interface INotificationsService
 {
-    Task Notify(int agentId, int custId, string agentName, string resourceKey);
+    Task Notify(NotificationParam param);
 }
 
 public class NotificationsService(IDynamicRepository repository) : INotificationsService
@@ -15,16 +15,14 @@ public class NotificationsService(IDynamicRepository repository) : INotification
     private const byte AgencyCashAPIToastMsgSiteFunctionId = 5;
     private readonly IDynamicRepository repository = repository;
 
-    public Task Notify(int agentId, int custId, string agentName, string resourceKey)
-    {
-        var message = new LocalizedMessage(agentId, custId, agentName);
-        message.AssignLocalizedMessage(resourceKey);
+    public Task Notify(NotificationParam param)
+        => Task.WhenAll(AddPersonalMsg(param), AddToastMsg(param));
 
-        return Task.WhenAll(AddPersonalMsg(message), AddToastMsg(message));
-    }
-
-    public async Task AddPersonalMsg(LocalizedMessage message)
+    public async Task AddPersonalMsg(NotificationParam param)
     {
+        var message = new LocalizedMessage(param.AgentId, param.AgentName, param.CustId);
+        message.AssignPersonalMessage(param.PersonalMessageResourceKey);
+
         var addPersonalMsgCriteria = new AddPersonalMsgCriteria(
             message.En,
             message.Ch,
@@ -37,17 +35,20 @@ public class NotificationsService(IDynamicRepository repository) : INotification
 
         await repository.ExecuteAsync(new AssignPersonalMsgCriteria(
             addPersonalMsgCriteria.MessageIdOutput,
-            message.AgentId,
-            message.AgentName));
+            message.TargetId,
+            message.TargetName));
     }
 
-    public async Task AddToastMsg(LocalizedMessage message)
+    public async Task AddToastMsg(NotificationParam param)
     {
+        var message = new LocalizedMessage(param.AgentId, param.AgentName, param.CustId);
+        message.AssignToastMessage(param.ToastTitleResourceKey, param.ToastBodyResourceKey);
+
         var criteria = new AddToastMsgCriteria(
-            message.AgentId,
-            ToastMsgType.Info,
+            message.TargetId,
+            ToastMsgType.Warning,
             AgencyCashAPIToastMsgSiteFunctionId,
-            message.CustId,
+            message.Creator,
             message.En,
             message.Ch,
             message.Cs,
