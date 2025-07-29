@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ButtonTabComponent } from '../../../../../components/Buttons/ButtonTabComponent';
 import { TitleComponent } from '../../../../../components/Title';
 import UploadImage from '../../../Components/UploadImage';
+import { RichContentEditor } from './RichContentEditor';
 
 export interface PromotionLangFields {
   title: string;
@@ -128,15 +129,14 @@ export const ContentField: React.FC<{
   return (
     <div className="mb-4">
       <TitleComponent text={t('addPromotionForm.content')} required={isDefault} type="label" />
-      <div className="border border-[var(--border-control)] rounded">
-        <textarea
-          key={`content-${lang}`}
-          className="w-full min-h-[120px] p-2 resize-y border-0 focus:ring-0 focus:outline-none block"
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          placeholder=""
-        />
-      </div>
+      <RichContentEditor
+        key={`content-${lang}`}
+        value={value}
+        onChange={onChange}
+        required={isDefault}
+        className="mb-4"
+        showToolbar={true}
+      />
     </div>
   );
 };

@@ -14,8 +14,6 @@ public static class ErrorCodeHandler
             405 => CashServicesResx.InvalidParameters,
             407 => CashServicesResx.TheAmountExceedsTheAllowedMinimumOrMaximumValue,
             409 => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain,
-            410 => CashServicesResx.ProviderRejectErrorMessage,
-            411 => CashServicesResx.PaymentProviderUnavailable,
             _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain
         };
 
@@ -31,6 +29,8 @@ public static class ErrorCodeHandler
             407 => CashServicesResx.TheAmountExceedsTheAllowedMinimumOrMaximumValue,
             408 => CashServicesResx.ExceedsTheDailyWithdrawalLimit,
             409 => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain,
+            410 => CashServicesResx.ProviderRejectErrorMessage,
+            411 => CashServicesResx.PaymentProviderUnavailable,
             500 => CashServicesResx.AnErrorOccurredWhileProcessingWithdrawalRequest,
             _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain
         };
