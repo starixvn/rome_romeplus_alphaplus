@@ -205,10 +205,11 @@ const validateForm = () => {
     try {
       const [fromDate, toDate] = period.map((date) => (date ? new Date(date) : null));      
       const formData = new FormData();
+      
       formData.append('PromotionType', promotionType.toString());
       formData.append('StatusId', '1');
-      formData.append('FromDate', fromDate?.toISOString() || '');
-      formData.append('ToDate', toDate?.toISOString() || '');
+      formData.append('FromDate', fromDate?.toLocaleString('en-US') || '');
+      formData.append('ToDate', toDate?.toLocaleString('en-US') || '');
       formData.append('Enabled', isActive.toString());
       if (productSettings && productSettings.length > 0) {
         formData.append('ProductSettingsJson', JSON.stringify(productSettings));
