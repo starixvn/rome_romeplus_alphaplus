@@ -110,6 +110,16 @@ public class WinLossLimitViewModel
     public string GetMaxWinLimit(decimal maxWinLimit)
         => FormatMaxWinLimit(maxWinLimit);
 
+    public string GetMaxWinLimitCashMember(decimal maxWinLimit)
+    {
+        if (maxWinLimit == MaxWinLimitToShowNotAvailable)
+        {
+            return "N/A";
+        }
+
+        return maxWinLimit == 0 ? Lang.Unlimited : $"{maxWinLimit.ToString("#,##0")}";
+    }
+
     public string GetWinPercent(decimal? winPercent, decimal? currentWinLimit, decimal credit, decimal maxWinLimit)
         => FormatWinPercent(credit, currentWinLimit, winPercent, maxWinLimit);
 
@@ -126,6 +136,16 @@ public class WinLossLimitViewModel
         => FormatRemainingTransferInAmmount(maxLossLimit, remainingTransferInAmount);
 
     private static string FormatMaxWinLimit(decimal maxWinLimit)
+    {
+        if (maxWinLimit == MaxWinLimitToShowNotAvailable)
+        {
+            return "N/A";
+        }
+
+        return maxWinLimit == 0 ? Lang.Unlimited : $"{maxWinLimit.ToString("#,##0")}X";
+    }
+
+    private static string FormatMaxWinLimit(decimal maxWinLimit, bool isCashMember)
     {
         if (maxWinLimit == MaxWinLimitToShowNotAvailable)
         {
