@@ -14,7 +14,9 @@ public class PromotionProductSetting : BasePromotion
     [JsonProperty("MinTO")]
     public decimal MinTurnover { get; set; }
     public decimal MaxPayout { get; set; }
-
+    
+    [JsonIgnore]
+    public bool Unlimited => MaxPayout == 0 && !string.IsNullOrEmpty(ProductList);
     public string Product => ProductIds != null && ProductIds.Count > 0 ? string.Join(",", ProductIds) : string.Empty;
 
     [JsonIgnore]
