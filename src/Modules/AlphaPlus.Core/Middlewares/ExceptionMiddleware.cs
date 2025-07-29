@@ -60,8 +60,24 @@ public class ExceptionMiddleware(RequestDelegate next, ILogger logger, IUserSess
         }
         else
         {
+            var darkModeName = _userSession.DarkModeName;
             context.Response.ContentType = "text/html";
-            context.Response.Redirect(MicroSites.AuthUrl("~/error"));
+            await context.Response.WriteAsync(@"<!DOCTYPE html>
+            <html lang=""en"">
+            <head>
+                <meta charset=""utf-8"">
+                <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"">
+                <meta name=""viewport"" content=""width=device-width, initial-scale=1"">
+                <title>Index</title>
+                <link href=""/auth/assets/bundles/error" + @darkModeName + @".css"" rel=""stylesheet"" type=""text/css"" />
+            </head>
+            <body>
+                <div class=""container"">
+                    <img src=""/auth/assets/error/images/error2" + @darkModeName + @".png"" title=""Error"" alt="""" class=""error-bg"" />
+                    <div class=""error-txt"">Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [500]</div>
+                </div>
+            </body>
+            </html>");
         }
     }
 }
