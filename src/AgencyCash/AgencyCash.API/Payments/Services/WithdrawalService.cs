@@ -43,11 +43,11 @@ public class WithdrawalService(
                 isManual: true,
                 paymentTo: request.PaymentTo);
 
-            var result = await ValidatePayment(validatePaymentCriteria);
+            var validateResult = await ValidatePayment(validatePaymentCriteria);
 
-            if (!result.IsSuccess)
+            if (!validateResult.IsSuccess)
             {
-                return result;
+                return new PaymentResult(validateResult.Code, validateResult.Message);
             }
 
             // Step 3: Get withdrawal limits
@@ -86,7 +86,11 @@ public class WithdrawalService(
 
             if (paymentResult.IsSuccess)
             {
-                _ = Task.Run(() => NotifyPendingWithdrawal(request.AgentId, request.CustId));
+                _ = Task.Run(() => NotifyPendingWithdrawal(
+                    request.AgentId,
+                    request.CustId,
+                    [request.Amount.ToString("N2"),
+                    validateResult.MemberNickname]));
             }
 
             return paymentResult;
@@ -158,15 +162,15 @@ public class WithdrawalService(
         return result;
     }
 
-    public async Task NotifyPendingWithdrawal(int agentId, int custId)
+    public async Task NotifyPendingWithdrawal(int agentId, int custId, object[] messageParams)
     {
         try
         {
-            await notificationsService.NotifyPendingWithdrawal(agentId, custId);
+            await notificationsService.NotifyPendingWithdrawal(agentId, custId, messageParams);
         }
         catch (Exception ex)
         {
-            await logger.ErrorAsync($"{nameof(NotifyPendingWithdrawal)} failed. Agent: ${agentId}, CustId: ${custId}", ex);
+            await logger.ErrorAsync($"{nameof(NotifyPendingWithdrawal)} failed. Agent: {agentId}, CustId: {custId}", ex);
         }
     }
 }

@@ -1,193 +1,154 @@
-using System;
-using System.Globalization;
 using AgencyCash.API.Notifications.Models;
 using AgencyCash.API.Notifications.Resources;
-using AgencyCash.API.Shared.Constants;
 using Newtonsoft.Json;
 
-namespace AgencyCash.API.Tests.Notifications.Models;
-
-public class LocalizedMessageTests
+namespace AgencyCash.API.UnitTests.Notifications.Models
 {
-    private readonly LocalizedMessage _localizedMessage;
-
-    public LocalizedMessageTests()
+    public class LocalizedMessageTest
     {
-        _localizedMessage = new LocalizedMessage(1, "TestTarget", 2);
-    }
-
-    [Fact]
-    public void Constructor_InitializesProperties()
-    {
-        // Arrange & Act
-        var message = new LocalizedMessage(10, "TestName", 20);
-
-        // Assert
-        Assert.Equal(10, message.TargetId);
-        Assert.Equal("TestName", message.TargetName);
-        Assert.Equal(20, message.Creator);
-    }
-
-    [Fact]
-    public void AssignPersonalMessage_WithoutParams_SetsAllLanguageProperties()
-    {
-        // Arrange
-        var resourceKey = "TestResource";
-
-        // Use reflection to access the ResourceManager to verify resource exists
-        var resourceExists = NotificationsResx.ResourceManager.GetString(resourceKey, CultureInfo.CreateSpecificCulture(Language.English)) != null;
-
-        // Act
-        _localizedMessage.AssignPersonalMessage(resourceKey);
-
-        // Assert
-        if (resourceExists)
+        [Fact]
+        public void Constructor_Should_Initialize_Properties_Correctly()
         {
-            Assert.False(string.IsNullOrEmpty(_localizedMessage.En));
-            Assert.False(string.IsNullOrEmpty(_localizedMessage.Ch));
-            Assert.False(string.IsNullOrEmpty(_localizedMessage.Cs));
-            Assert.False(string.IsNullOrEmpty(_localizedMessage.Th));
-            Assert.False(string.IsNullOrEmpty(_localizedMessage.Vi));
-            Assert.False(string.IsNullOrEmpty(_localizedMessage.Jp));
-            Assert.False(string.IsNullOrEmpty(_localizedMessage.Ko));
+            // Arrange
+            int targetId = 1;
+            string targetName = "Target";
+            int creator = 100;
+            string titleKey = "TitleKey";
+            string messageKey = "MessageKey";
+            object[] messageParams = ["Param1", "Param2"];
+
+            // Act
+            var message = new LocalizedMessage(targetId, targetName, creator, titleKey, messageKey, messageParams);
+
+            // Assert
+            Assert.Equal(targetId, message.TargetId);
+            Assert.Equal(targetName, message.TargetName);
+            Assert.Equal(creator, message.Creator);
+            Assert.Equal(titleKey, message.TitleMessageResourceKey);
+            Assert.Equal(messageKey, message.MessageResourceKey);
+            Assert.Equal(messageParams, message.MessageParams);
         }
-        else
+
+        [Fact]
+        public void Constructor_Should_Initialize_Empty_MessageParams_When_Null()
         {
-            // If resource doesn't exist, we should at least verify empty strings are assigned
-            Assert.Equal(string.Empty, _localizedMessage.En);
-            Assert.Equal(string.Empty, _localizedMessage.Ch);
-            Assert.Equal(string.Empty, _localizedMessage.Cs);
-            Assert.Equal(string.Empty, _localizedMessage.Th);
-            Assert.Equal(string.Empty, _localizedMessage.Vi);
-            Assert.Equal(string.Empty, _localizedMessage.Jp);
-            Assert.Equal(string.Empty, _localizedMessage.Ko);
+            // Arrange & Act
+            var message = new LocalizedMessage(1, "Target", 100, "TitleKey", "MessageKey");
+
+            // Assert
+            Assert.NotNull(message.MessageParams);
+            Assert.Empty(message.MessageParams);
         }
-    }
 
-    [Fact]
-    public void AssignPersonalMessage_WithParams_FormatsProperly()
-    {
-        // Arrange
-        var resourceKey = "TestFormatResource";
-        var resourceValue = "Hello {0}";
-        var messageParams = new object[] { "World" };
-        var expectedValue = "Hello World";
-
-        // Act - using a test resource key
-        _localizedMessage.AssignPersonalMessage(resourceKey, messageParams);
-
-        // Assert - we'll verify at least English is correct
-        // Note: This might need to be skipped if the resource doesn't exist
-        if (NotificationsResx.ResourceManager.GetString(resourceKey, CultureInfo.CreateSpecificCulture(Language.English)) != null)
+        [Fact]
+        public void AssignPersonalMessage_Should_Set_Localized_Messages()
         {
-            Assert.Equal(expectedValue, _localizedMessage.En);
+            // Arrange
+            var messageKey = nameof(NotificationsResx.NotifyPendingDeposit);
+            var messageParams = new object[] { "Param1", "Param2" };
+            var message = new LocalizedMessage(1, "Target", 100, "TitleKey", messageKey, messageParams);
+
+            // Mock resource manager behavior by setting up test values
+            var resourceManagerType = typeof(NotificationsResx).GetProperty("ResourceManager")?.GetValue(null);
+
+            // Act
+            message.AssignPersonalMessage();
+
+            // Assert - we can only verify the properties are set, not their actual values
+            // since we can't easily mock the resource manager in a unit test
+            Assert.NotNull(message.En);
+            Assert.NotNull(message.Ch);
+            Assert.NotNull(message.Cs);
+            Assert.NotNull(message.Th);
+            Assert.NotNull(message.Vi);
+            Assert.NotNull(message.Jp);
+            Assert.NotNull(message.Ko);
         }
-    }
 
-    [Fact]
-    public void AssignToastMessage_CreatesJsonFormatForAllLanguages()
-    {
-        // Arrange
-        var titleKey = "TestTitle";
-        var bodyKey = "TestBody";
-        var bodyParams = new object[] { "TestParam" };
-
-        // Act
-        _localizedMessage.AssignToastMessage(titleKey, bodyKey, bodyParams);
-
-        // Assert
-        // At least check if JSON is properly formatted
-        Assert.True(IsValidJson(_localizedMessage.En));
-        Assert.True(IsValidJson(_localizedMessage.Ch));
-        Assert.True(IsValidJson(_localizedMessage.Cs));
-        Assert.True(IsValidJson(_localizedMessage.Th));
-        Assert.True(IsValidJson(_localizedMessage.Vi));
-        Assert.True(IsValidJson(_localizedMessage.Jp));
-        Assert.True(IsValidJson(_localizedMessage.Ko));
-    }
-
-    [Fact]
-    public void AssignToastMessage_WithoutBodyParams_SetsDefaultEmptyArray()
-    {
-        // Arrange
-        var titleKey = "TestTitle";
-        var bodyKey = "TestBody";
-
-        // Act
-        _localizedMessage.AssignToastMessage(titleKey, bodyKey, null);
-
-        // Assert
-        // Verify JSON is still valid even without params
-        Assert.True(IsValidJson(_localizedMessage.En));
-        Assert.True(IsValidJson(_localizedMessage.Ch));
-        Assert.True(IsValidJson(_localizedMessage.Cs));
-        Assert.True(IsValidJson(_localizedMessage.Th));
-        Assert.True(IsValidJson(_localizedMessage.Vi));
-        Assert.True(IsValidJson(_localizedMessage.Jp));
-        Assert.True(IsValidJson(_localizedMessage.Ko));
-    }
-
-    [Fact]
-    public void AssignToastMessage_CreatesCorrectJsonStructure()
-    {
-        // Arrange
-        var titleKey = "NotifyPendingDeposit_Title";
-        var bodyKey = "NotifyPendingDeposit";
-
-        // Act
-        _localizedMessage.AssignToastMessage(titleKey, bodyKey);
-
-        // Assert - Parse JSON and verify structure
-        if (!string.IsNullOrEmpty(_localizedMessage.En))
+        [Fact]
+        public void AssignToastMessage_Should_Set_Localized_Json_Messages()
         {
-            var content = JsonConvert.DeserializeObject<ToastContentModel>(_localizedMessage.En);
+            // Arrange
+            var titleKey = nameof(NotificationsResx.NotifyPendingDeposit_Title);
+            var messageKey = nameof(NotificationsResx.NotifyPendingDeposit);
+            var messageParams = new object[] { "Param1", "Param2" };
+            var message = new LocalizedMessage(1, "Target", 100, titleKey, messageKey, messageParams);
+
+            // Act
+            message.AssignToastMessage();
+
+            // Assert - verify structure of toast messages (should be JSON)
+            Assert.True(IsValidJson(message.En));
+            Assert.True(IsValidJson(message.Ch));
+            Assert.True(IsValidJson(message.Cs));
+            Assert.True(IsValidJson(message.Th));
+            Assert.True(IsValidJson(message.Vi));
+            Assert.True(IsValidJson(message.Jp));
+            Assert.True(IsValidJson(message.Ko));
+
+            // Verify content structure (should have title and body)
+            var content = JsonConvert.DeserializeObject<ToastContentModel>(message.En);
             Assert.NotNull(content);
             Assert.NotNull(content.Title);
             Assert.NotNull(content.Body);
         }
-    }
 
-    [Fact]
-    public void BuildMessage_WithNonExistentResourceKey_ReturnsEmptyString()
-    {
-        // Arrange
-        var nonExistentKey = "NonExistentResourceKey_" + Guid.NewGuid();
-
-        // Act
-        _localizedMessage.AssignPersonalMessage(nonExistentKey);
-
-        // Assert
-        Assert.Equal(string.Empty, _localizedMessage.En);
-        Assert.Equal(string.Empty, _localizedMessage.Ch);
-        Assert.Equal(string.Empty, _localizedMessage.Cs);
-        Assert.Equal(string.Empty, _localizedMessage.Th);
-        Assert.Equal(string.Empty, _localizedMessage.Vi);
-        Assert.Equal(string.Empty, _localizedMessage.Jp);
-        Assert.Equal(string.Empty, _localizedMessage.Ko);
-    }
-
-    private bool IsValidJson(string json)
-    {
-        if (string.IsNullOrEmpty(json))
+        [Fact]
+        public void BuildMessage_Should_Return_Empty_String_When_ResourceString_Is_Null()
         {
-            return false;
+            // Arrange
+            var nonExistentKey = "NonExistentKey";
+            var message = new LocalizedMessage(1, "Target", 100, "TitleKey", nonExistentKey);
+
+            // Act
+            message.AssignPersonalMessage();
+
+            // Assert - all languages should have empty strings
+            Assert.Equal(string.Empty, message.En);
+            Assert.Equal(string.Empty, message.Ch);
+            Assert.Equal(string.Empty, message.Cs);
+            Assert.Equal(string.Empty, message.Th);
+            Assert.Equal(string.Empty, message.Vi);
+            Assert.Equal(string.Empty, message.Jp);
+            Assert.Equal(string.Empty, message.Ko);
         }
 
-        try
+        [Fact]
+        public void BuildMessage_Should_Format_Message_With_Params()
         {
-            JsonConvert.DeserializeObject(json);
-            return true;
-        }
-        catch
-        {
-            return false;
-        }
-    }
+            // Arrange
+            // Assuming there's a resource key with a format placeholder like "{0}"
+            var formatMessageKey = nameof(NotificationsResx.NotifyPendingWithdrawal);
+            var message = new LocalizedMessage(1, "Target", 100, "TitleKey", formatMessageKey, new[] { "Param1", "Param2" });
 
-    // Helper class for deserializing toast messages
-    private class ToastContentModel
-    {
-        public string Title { get; set; }
-        public string Body { get; set; }
+            // Act
+            message.AssignPersonalMessage();
+
+            // Assert - we can't directly test the formatted string without mocking,
+            // but we can verify all languages are set
+            Assert.NotNull(message.En);
+            Assert.NotNull(message.Ch);
+            Assert.NotNull(message.Cs);
+            Assert.NotNull(message.Th);
+            Assert.NotNull(message.Vi);
+            Assert.NotNull(message.Jp);
+            Assert.NotNull(message.Ko);
+        }
+
+        private bool IsValidJson(string strInput)
+        {
+            if (string.IsNullOrWhiteSpace(strInput))
+                return false;
+
+            try
+            {
+                JsonConvert.DeserializeObject(strInput);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

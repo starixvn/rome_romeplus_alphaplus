@@ -16,7 +16,7 @@ public abstract class PaymentService(
     protected readonly ISiteDBService siteDBService = siteDBService;
     protected readonly Fanex.Logging.ILogger logger = logger;
 
-    public async Task<PaymentResult> ValidatePayment(ValidatePaymentCriteria criteria)
+    public async Task<ValidatePaymentResult> ValidatePayment(ValidatePaymentCriteria criteria)
     {
         await repository.ExecuteAsync(criteria);
 
@@ -25,7 +25,7 @@ public abstract class PaymentService(
             await logger.ErrorAsync($"{nameof(ValidatePayment)} failed. Key: {criteria.GetSettingKey()}, Criteria: {JsonHelper.ToJson(criteria)}");
         }
 
-        return new PaymentResult(criteria.ErrCode, criteria.ErrMsg);
+        return new ValidatePaymentResult(criteria.ErrCode, criteria.ErrMsg, criteria.Username2);
     }
 
     public async Task WriteLogsTransferAndRunSP(IEnumerable<LogEntry> logs, SiteDBConfig siteDBConfig)

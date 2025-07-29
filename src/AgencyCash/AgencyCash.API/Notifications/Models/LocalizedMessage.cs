@@ -5,11 +5,20 @@ using AgencyCash.API.Shared.Helpers;
 
 namespace AgencyCash.API.Notifications.Models;
 
-public class LocalizedMessage(int targetId, string targetName, int creator)
+public class LocalizedMessage(
+    int targetId,
+    string targetName,
+    int creator,
+    string titleMessageResourceKey,
+    string messageResourceKey,
+    object[] messageParams = null)
 {
     public int TargetId { get; } = targetId;
     public string TargetName { get; } = targetName;
-    public int Creator { get; set; } = creator;
+    public int Creator { get; } = creator;
+    public string TitleMessageResourceKey { get; } = titleMessageResourceKey;
+    public string MessageResourceKey { get; } = messageResourceKey;
+    public object[] MessageParams { get; } = messageParams ?? Array.Empty<object>();
     public string En { get; private set; }
     public string Ch { get; private set; }
     public string Cs { get; private set; }
@@ -18,51 +27,48 @@ public class LocalizedMessage(int targetId, string targetName, int creator)
     public string Jp { get; private set; }
     public string Ko { get; private set; }
 
-    public void AssignPersonalMessage(string resourceKey, object[] messageParams = null)
+    public void AssignPersonalMessage()
     {
-        messageParams ??= Array.Empty<object>();
-        En = BuildMessage(resourceKey, Language.English, messageParams);
-        Ch = BuildMessage(resourceKey, Language.ChineseTraditional, messageParams);
-        Cs = BuildMessage(resourceKey, Language.ChineseSimplified, messageParams);
-        Th = BuildMessage(resourceKey, Language.Thai, messageParams);
-        Vi = BuildMessage(resourceKey, Language.Vietnamese, messageParams);
-        Jp = BuildMessage(resourceKey, Language.Japanese, messageParams);
-        Ko = BuildMessage(resourceKey, Language.Korean, messageParams);
+        En = BuildMessage(Language.English);
+        Ch = BuildMessage(Language.ChineseTraditional);
+        Cs = BuildMessage(Language.ChineseSimplified);
+        Th = BuildMessage(Language.Thai);
+        Vi = BuildMessage(Language.Vietnamese);
+        Jp = BuildMessage(Language.Japanese);
+        Ko = BuildMessage(Language.Korean);
     }
 
-    public void AssignToastMessage(string titleResourceKey, string bodyResourceKey, object[] bodyParams = null)
+    public void AssignToastMessage()
     {
-        bodyParams ??= Array.Empty<object>();
-        En = BuildToastMessage(titleResourceKey, bodyResourceKey, Language.English, bodyParams);
-        Ch = BuildToastMessage(titleResourceKey, bodyResourceKey, Language.ChineseTraditional, bodyParams);
-        Cs = BuildToastMessage(titleResourceKey, bodyResourceKey, Language.ChineseSimplified, bodyParams);
-        Th = BuildToastMessage(titleResourceKey, bodyResourceKey, Language.Thai, bodyParams);
-        Vi = BuildToastMessage(titleResourceKey, bodyResourceKey, Language.Vietnamese, bodyParams);
-        Jp = BuildToastMessage(titleResourceKey, bodyResourceKey, Language.Japanese, bodyParams);
-        Ko = BuildToastMessage(titleResourceKey, bodyResourceKey, Language.Korean, bodyParams);
+        En = BuildToastMessage(Language.English);
+        Ch = BuildToastMessage(Language.ChineseTraditional);
+        Cs = BuildToastMessage(Language.ChineseSimplified);
+        Th = BuildToastMessage(Language.Thai);
+        Vi = BuildToastMessage(Language.Vietnamese);
+        Jp = BuildToastMessage(Language.Japanese);
+        Ko = BuildToastMessage(Language.Korean);
     }
 
-    private static string BuildToastMessage(
-        string titleResourceKey,
-        string bodyResourceKey,
-        string culture,
-        object[] bodyParams)
+    private string BuildToastMessage(string language)
     {
-        var content = new ToastContentModel
+        var culture = CultureInfo.CreateSpecificCulture(language);
+
+        return JsonHelper.ToJson(new ToastContentModel
         {
-            Title = NotificationsResx.ResourceManager.GetString(titleResourceKey, CultureInfo.CreateSpecificCulture(culture)),
-            Body = BuildMessage(bodyResourceKey, culture, bodyParams)
-        };
-
-        return JsonHelper.ToJson(content);
+            Title = NotificationsResx.ResourceManager.GetString(TitleMessageResourceKey, culture),
+            Body = BuildMessage(culture)
+        });
     }
 
-    private static string BuildMessage(string resourceKey, string culture, object[] messageParams)
+    private string BuildMessage(string language)
+        => BuildMessage(CultureInfo.CreateSpecificCulture(language));
+
+    private string BuildMessage(CultureInfo culture)
     {
-        var resourceString = NotificationsResx.ResourceManager.GetString(resourceKey, CultureInfo.CreateSpecificCulture(culture));
+        var resourceString = NotificationsResx.ResourceManager.GetString(MessageResourceKey, culture);
 
         return string.IsNullOrWhiteSpace(resourceString)
             ? string.Empty
-            : string.Format(resourceString, messageParams);
+            : string.Format(resourceString, MessageParams);
     }
 }

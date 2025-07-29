@@ -7,9 +7,9 @@ namespace AgencyCash.API.Notifications.Services;
 
 public interface INotificationsService
 {
-    Task NotifyPendingDeposit(int agentId, int custId);
+    Task NotifyPendingDeposit(int agentId, int custId, object[] messageParams);
 
-    Task NotifyPendingWithdrawal(int agentId, int custId);
+    Task NotifyPendingWithdrawal(int agentId, int custId, object[] messageParams);
 }
 
 public class NotificationsService(IDynamicRepository repository) : INotificationsService
@@ -17,39 +17,47 @@ public class NotificationsService(IDynamicRepository repository) : INotification
     private const byte AgencyCashAPIToastMsgSiteFunctionId = 5;
     private readonly IDynamicRepository repository = repository;
 
-    public Task NotifyPendingDeposit(int agentId, int custId)
+    public Task NotifyPendingDeposit(int agentId, int custId, object[] messageParams)
     {
+        const string NotifyPendingDeposit_Title = "NotifyPendingDeposit_Title";
         const string NotifyPendingDeposit = "NotifyPendingDeposit";
-        var param = new NotificationParam(
+        var message = new LocalizedMessage(
             agentId,
             string.Empty,
             custId,
+            NotifyPendingDeposit_Title,
             NotifyPendingDeposit,
-            "NotifyPendingDeposit_Title",
-            NotifyPendingDeposit);
+            messageParams);
 
-        return Task.WhenAll(AddPersonalMsg(param), AddToastMsg(param));
+        return AddPersonalAndToastMsg(message);
     }
 
-    public Task NotifyPendingWithdrawal(int agentId, int custId)
+    public Task NotifyPendingWithdrawal(int agentId, int custId, object[] messageParams)
     {
+        const string NotifyPendingWithdrawal_Title = "NotifyPendingWithdrawal_Title";
         const string NotifyPendingWithdrawal = "NotifyPendingWithdrawal";
-        var param = new NotificationParam(
+        var message = new LocalizedMessage(
             agentId,
             string.Empty,
             custId,
+            NotifyPendingWithdrawal_Title,
             NotifyPendingWithdrawal,
-            "NotifyPendingWithdrawal_Title",
-            NotifyPendingWithdrawal);
+            messageParams);
 
-        return Task.WhenAll(AddPersonalMsg(param), AddToastMsg(param));
+        return AddPersonalAndToastMsg(message);
     }
 
-    public async Task AddPersonalMsg(NotificationParam param)
+    public async Task AddPersonalAndToastMsg(LocalizedMessage message)
     {
-        var message = new LocalizedMessage(param.AgentId, param.AgentName, param.CustId);
-        message.AssignPersonalMessage(param.PersonalMessageResourceKey);
+        message.AssignPersonalMessage();
+        await AddPersonalMsg(message);
 
+        message.AssignToastMessage();
+        await AddToastMsg(message);
+    }
+
+    public async Task AddPersonalMsg(LocalizedMessage message)
+    {
         var addPersonalMsgCriteria = new AddPersonalMsgCriteria(
             message.En,
             message.Ch,
@@ -66,11 +74,8 @@ public class NotificationsService(IDynamicRepository repository) : INotification
             message.TargetName));
     }
 
-    public async Task AddToastMsg(NotificationParam param)
+    public async Task AddToastMsg(LocalizedMessage message)
     {
-        var message = new LocalizedMessage(param.AgentId, param.AgentName, param.CustId);
-        message.AssignToastMessage(param.ToastTitleResourceKey, param.ToastBodyResourceKey);
-
         var criteria = new AddToastMsgCriteria(
             message.TargetId,
             ToastMsgType.Warning,

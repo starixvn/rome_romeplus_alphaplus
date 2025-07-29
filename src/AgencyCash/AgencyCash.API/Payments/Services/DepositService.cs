@@ -67,7 +67,7 @@ public class DepositService(
 
         if (!validateResult.IsSuccess)
         {
-            return validateResult;
+            return new PaymentResult(validateResult.Code, validateResult.Message);
         }
 
         const byte BankAccount = 2;
@@ -99,7 +99,10 @@ public class DepositService(
 
         if (result.IsSuccess)
         {
-            _ = Task.Run(() => NotifyPendingDeposit(request.AgentId, request.CustId));
+            _ = Task.Run(() => NotifyPendingDeposit(
+                request.AgentId,
+                request.CustId,
+                [request.Amount.ToString("N2"), validateResult.MemberNickname]));
         }
 
         return result;
@@ -122,7 +125,7 @@ public class DepositService(
 
         if (!validateResult.IsSuccess)
         {
-            return validateResult;
+            return new PaymentResult(validateResult.Code, validateResult.Message);
         }
 
         var limitCriteria = new GetDepositLimitCriteria(
@@ -246,15 +249,15 @@ public class DepositService(
         return new Result(criteria.ErrCode, criteria.ErrMsg);
     }
 
-    public async Task NotifyPendingDeposit(int agentId, int custId)
+    public async Task NotifyPendingDeposit(int agentId, int custId, object[] messageParams)
     {
         try
         {
-            await notificationsService.NotifyPendingDeposit(agentId, custId);
+            await notificationsService.NotifyPendingDeposit(agentId, custId, messageParams);
         }
         catch (Exception ex)
         {
-            await logger.ErrorAsync($"{nameof(NotifyPendingDeposit)} failed. Agent: ${agentId}, CustId: ${custId}", ex);
+            await logger.ErrorAsync($"{nameof(NotifyPendingDeposit)} failed. Agent: {agentId}, CustId: {custId}", ex);
         }
     }
 }
