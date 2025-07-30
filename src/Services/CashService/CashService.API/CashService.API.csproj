@@ -34,4 +34,8 @@
     <ProjectReference Include="..\..\..\Shared\AlphaPlus.Shared.AppResources\AlphaPlus.Shared.AppResources.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Shared\Constants\" />
+  </ItemGroup>
+
 </Project>

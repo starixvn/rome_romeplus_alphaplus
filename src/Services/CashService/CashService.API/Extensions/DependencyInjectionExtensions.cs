@@ -50,15 +50,10 @@ public static class DependencyInjectionExtensions
         services.AddSingleton<ICacheRefService, CacheRefService>();
     }
 
-    public static IServiceCollection AddConfiguration(this IServiceCollection services, IConfiguration configuration)
-    {
-        services.AddHttpClient();
-        return services;
-    }
-
     public static IServiceCollection AddHttpClientService(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSingleton(sp => configuration.GetSection("PaymentGatewayApiConfig").Get<PaymentGatewayApiConfig>());
+        services.AddHttpClient();
+        services.AddSingleton(configuration.GetSection("PaymentGatewayApiConfig").Get<PaymentGatewayApiConfig>());
         services.AddScoped<HttpClientHelper>();
 
         return services;
