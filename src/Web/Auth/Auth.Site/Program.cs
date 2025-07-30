@@ -18,9 +18,9 @@ var assembly = typeof(Program).Assembly;
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 configuration
-    .AddJsonFile(sharedSettingsPath, optional: true, reloadOnChange: true)
-    .AddJsonFile(SharedSettings, optional: true, reloadOnChange: true)
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile(sharedSettingsPath, optional: true, reloadOnChange: false)
+    .AddJsonFile(SharedSettings, optional: true, reloadOnChange: false)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
     .AddCommandLine(args);
 
 builder.Services
