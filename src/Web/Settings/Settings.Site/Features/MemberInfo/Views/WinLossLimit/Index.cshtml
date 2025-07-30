@@ -201,7 +201,8 @@
                         <td class="text-center">
                             <div class="col-reset">
                                 @WinLossLimitViewModel.GetCurrentWinAnmout(winLossLimitDetail.CurrentWinAnmout)
-                                @if (winLossLimitDetail.IsCashMember
+                                @if (winLossLimitDetail.IsCashMember 
+                                    && Model.ViewerLevel.IsAgentLevel()
                                     && !winLossLimitDetail.IsAutoReset 
                                     && winLossLimitDetail.CurrentWinAnmout > 0 
                                     && winLossLimitDetail.MaxWinLimit > 0)   

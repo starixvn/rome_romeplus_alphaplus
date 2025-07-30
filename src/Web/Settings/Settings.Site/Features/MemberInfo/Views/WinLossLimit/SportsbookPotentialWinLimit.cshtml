@@ -134,6 +134,7 @@
                             <td class="text-right">
                                 @HtmlHelpers.FormatNumber(winLossLimitDetail.AccumWinLoss)
                                 @if (winLossLimitDetail.IsCashMember 
+                                    && Model.ViewerLevel.IsAgentLevel()
                                     && !winLossLimitDetail.IsAutoReset
                                     && winLossLimitDetail.AccumWinLoss > 0)   
                                 {
