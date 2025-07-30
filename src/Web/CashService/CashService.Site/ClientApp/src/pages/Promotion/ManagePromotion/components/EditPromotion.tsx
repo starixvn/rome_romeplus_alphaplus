@@ -134,8 +134,8 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
               infoMap[info.language] = {
                 title: info.title || '',
                 banner: bannerFile,
+                bannerName: info.bannerName || '',
                 content: info.content || '',
-                prevBanner: info.bannerName || '',
               };
             }
             setPromotionInfo(infoMap);
