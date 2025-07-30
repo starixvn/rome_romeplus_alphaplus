@@ -32,6 +32,8 @@ public class AccountController(
     private readonly Core.Configurations.AuthorizationOptions options = options.Value;
     private const string SecretKey = "!@#$";
 
+    private string DefaultAfterLoggedInUrl => $"{Request.Scheme}://{Request.Host}/main/Default/Redirect";
+
     [AllowAnonymous, HttpGet, AllowProtectedMode]
     public IActionResult Login(string r = null)
     {
@@ -104,7 +106,7 @@ public class AccountController(
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
             
-            return Redirect($"{Request.Scheme}://{Request.Host}/main/Default/Redirect");
+            return Redirect(DefaultAfterLoggedInUrl);
         }
 
         return Login(WebUtility.UrlEncode(signInResult.Message));
@@ -145,7 +147,7 @@ public class AccountController(
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
             
-            return Redirect($"{Request.Scheme}://{Request.Host}/main/Default/Redirect");
+            return Redirect(DefaultAfterLoggedInUrl);
         }
 
         return new EmptyResult();
@@ -195,7 +197,7 @@ public class AccountController(
             var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
-            return Redirect($"{Request.Scheme}://{Request.Host}/main/Default/Redirect");
+            return Redirect(DefaultAfterLoggedInUrl);
         }
 
         return new EmptyResult();
