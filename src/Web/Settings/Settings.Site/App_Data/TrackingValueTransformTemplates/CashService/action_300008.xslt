@@ -14,7 +14,7 @@
             </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('bank')" /></td>
             <td class="colW2">
-              <xsl:value-of select="@bank" />
+              <xsl:value-of select="xslLogFormat:GetBankName(@bankcode)" />
             </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('accnumber')" /></td>
             <td class="colW2">
@@ -34,22 +34,6 @@
             <td class="colW2">
               <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
             </td>
-          </tr>
-          <tr>
-            <td class="colW1">
-                <xsl:value-of select="xslLogFormat:GetLogResource('ErrCode')" />
-            </td>
-            <td class="colW2">
-                <xsl:value-of select="@errcode" />
-            </td>
-            <td class="colW1">
-                <xsl:value-of select="xslLogFormat:GetLogResource('ErrMsg')" />
-            </td>
-            <td class="colW2">
-                <xsl:value-of select="@errmsg" />
-            </td>
-            <td class="colW1"></td>
-            <td class="colW2"></td>
           </tr>
         </table>
       </xsl:when>

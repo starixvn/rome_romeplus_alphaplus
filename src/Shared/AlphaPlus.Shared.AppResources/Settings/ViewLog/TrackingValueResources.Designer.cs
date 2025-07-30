@@ -2275,6 +2275,240 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to BANK FOR AGRICULTURE AND AGRICULTURAL COOPERATIVES.
+        /// </summary>
+        public static string BankName_BAAC {
+            get {
+                return ResourceManager.GetString("BankName_BAAC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bangkok Bank (Bualuang iBanking).
+        /// </summary>
+        public static string BankName_BBL {
+            get {
+                return ResourceManager.GetString("BankName_BBL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BNP Paribas.
+        /// </summary>
+        public static string BankName_BNP {
+            get {
+                return ResourceManager.GetString("BankName_BNP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank of Ayudhya - Krungsri Bank.
+        /// </summary>
+        public static string BankName_BOA {
+            get {
+                return ResourceManager.GetString("BankName_BOA", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank Of China.
+        /// </summary>
+        public static string BankName_BOC {
+            get {
+                return ResourceManager.GetString("BankName_BOC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CIMB Thai (CIMB Clicks).
+        /// </summary>
+        public static string BankName_CIMBT {
+            get {
+                return ResourceManager.GetString("BankName_CIMBT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Citibank.
+        /// </summary>
+        public static string BankName_CITI {
+            get {
+                return ResourceManager.GetString("BankName_CITI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deutsche Bank.
+        /// </summary>
+        public static string BankName_DBK {
+            get {
+                return ResourceManager.GetString("BankName_DBK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Government Housing Bank.
+        /// </summary>
+        public static string BankName_GHB {
+            get {
+                return ResourceManager.GetString("BankName_GHB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gov. Savings Bank (GSB Internet Banking).
+        /// </summary>
+        public static string BankName_GSB {
+            get {
+                return ResourceManager.GetString("BankName_GSB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hong Kong and Shanghai Banking Corporation.
+        /// </summary>
+        public static string BankName_HSBC {
+            get {
+                return ResourceManager.GetString("BankName_HSBC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ISLAMIC BANK OF THAILAND.
+        /// </summary>
+        public static string BankName_IBT {
+            get {
+                return ResourceManager.GetString("BankName_IBT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kasikornbank (K-Bank).
+        /// </summary>
+        public static string BankName_KKR {
+            get {
+                return ResourceManager.GetString("BankName_KKR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kiatnakin Bank.
+        /// </summary>
+        public static string BankName_KNK {
+            get {
+                return ResourceManager.GetString("BankName_KNK", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Krung Thai Bank (KTB netbank).
+        /// </summary>
+        public static string BankName_KTB {
+            get {
+                return ResourceManager.GetString("BankName_KTB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Land and Houses Bank.
+        /// </summary>
+        public static string BankName_LHB {
+            get {
+                return ResourceManager.GetString("BankName_LHB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MEGA INTERNATIONAL COMMERCIAL BANK.
+        /// </summary>
+        public static string BankName_MICB {
+            get {
+                return ResourceManager.GetString("BankName_MICB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Siam Commercial Bank (SCB Easy Net).
+        /// </summary>
+        public static string BankName_SCB {
+            get {
+                return ResourceManager.GetString("BankName_SCB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard Chartered Bank Thai.
+        /// </summary>
+        public static string BankName_SCBT {
+            get {
+                return ResourceManager.GetString("BankName_SCBT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank Sumitomo.
+        /// </summary>
+        public static string BankName_SMBC {
+            get {
+                return ResourceManager.GetString("BankName_SMBC", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thanachart Bank (TBank).
+        /// </summary>
+        public static string BankName_TBank {
+            get {
+                return ResourceManager.GetString("BankName_TBank", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to THE THAI CREDIT RETAIL BANK.
+        /// </summary>
+        public static string BankName_TCRB {
+            get {
+                return ResourceManager.GetString("BankName_TCRB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tisco Bank.
+        /// </summary>
+        public static string BankName_TISCO {
+            get {
+                return ResourceManager.GetString("BankName_TISCO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TMBThanachart Bank (TMB Internet Banking).
+        /// </summary>
+        public static string BankName_TMB {
+            get {
+                return ResourceManager.GetString("BankName_TMB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TMBThanachart Bank.
+        /// </summary>
+        public static string BankName_TTB {
+            get {
+                return ResourceManager.GetString("BankName_TTB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to United Overseas Bank (UOB ibanking).
+        /// </summary>
+        public static string BankName_UOB {
+            get {
+                return ResourceManager.GetString("BankName_UOB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Baseball.
         /// </summary>
         public static string Baseball {
