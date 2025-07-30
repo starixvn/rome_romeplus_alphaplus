@@ -38,7 +38,7 @@ public class PaymentGatewayService(
             return checkConfig;
         }
 
-        const string withdrawalApi = "/api/PaymentGateway/Withdrawal";
+        const string withdrawalApi = "/PaymentGateway/Withdrawal";
         var response = new PaymentResponse { Code = 409 };
         var stopwatch = Stopwatch.StartNew();
         var requestBody = JsonConvert.SerializeObject(data);
@@ -89,7 +89,7 @@ public class PaymentGatewayService(
             }
         };
 
-        return await PostAsync("/api/PaymentGateway/TestConnection", nameof(TestConnection), apiRequest, actionRequest);
+        return await PostAsync("/PaymentGateway/TestConnection", nameof(TestConnection), apiRequest, actionRequest);
     }
 
     public async Task<PaymentResponse> PostAsync(string apiURL, string functionName, object apiRequest, BaseActionRequest actor)
