@@ -41,7 +41,7 @@
       "After": "http://mbp10.nexdev.net/auth"
     },
     {
-      "Before": "alp11.nexdev.net",
+      "Before": "alp21.nexdev.net",
       "After": "http://mbp11.nexdev.net/auth"
     },
     {
@@ -49,8 +49,8 @@
       "After": "http://mbp12.nexdev.net/auth"
     },
     {
-      "Before": "alp21.nexdev.net",
-      "After": "http://mbp1.nexdev.net/auth"
+      "Before": "alp11.nexdev.net",
+      "After": "http://mbp11.nexdev.net/auth"
     }
   ]
 }

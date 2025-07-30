@@ -1,5 +1,6 @@
 {
-    "DomainMappings": [
+    "DomainMappings":
+    [
         {
             "Before": "localhost:5001",
             "After": "http://localhost:5100/auth"

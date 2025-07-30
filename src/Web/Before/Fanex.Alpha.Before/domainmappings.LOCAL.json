@@ -1,5 +1,6 @@
 {
-  "DomainMappings": [
+  "DomainMappings":
+  [
     {
       "Before": "alp1.nexdev.net",
       "After": "https://mbp1.nexdev.net/main"
@@ -50,7 +51,7 @@
     },
     {
       "Before": "alp21.nexdev.net",
-      "After": "https://mbp1.nexdev.net/main"
+      "After": "http://mbp11.nexdev.net/auth"
     }
   ]
 }

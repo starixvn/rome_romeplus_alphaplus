@@ -1,12 +1,15 @@
 FROM hub.nexdev.net/base/dotnet/core/aspnet:9.0-alpine-25h1 AS base
 WORKDIR /app
-EXPOSE 5000
 
 FROM hub.nexdev.net/base/dotnet/core/sdk:9.0-alpine AS build
 WORKDIR /build
 
 # Install Node.js and Yarn
-RUN apk add --no-cache nodejs npm && \
+RUN --mount=type=cache,target=/root/.yarn \
+    --mount=type=cache,target=/root/.cache/yarn \
+    --mount=type=cache,target=/build/src/Web/Auth/Auth.Site/node_modules \
+    --mount=type=cache,target=/root/.npm \
+    apk add --no-cache nodejs npm && \
     npm install -g yarn
 
 # Copy project files
@@ -79,9 +82,8 @@ RUN --mount=type=cache,target=/root/.yarn \
     yarn build
 
 # Publish directly without build step
-RUN dotnet publish "Auth.Site.csproj" -c Release -o /app/publish /p:UseAppHost=false
-
-RUN cp -r /build/src/Web/Auth/Auth.Site/wwwroot /app/publish/wwwroot
+RUN --mount=type=cache,target=/root/.nuget/packages \
+    dotnet publish "Auth.Site.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 # Don't run as root
 RUN adduser --disabled-password \
@@ -93,6 +95,7 @@ USER dotnetuser
 FROM base AS final
 ENV COMPlus_EnableDiagnostics=0
 WORKDIR /app
+ENV ASPNETCORE_URLS=http://0.0.0.0:5000
 COPY --from=build /app/publish .
 ENV TZ="America/La_Paz"
 ENTRYPOINT ["dotnet", "Auth.Site.dll"] 
