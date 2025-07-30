@@ -23,7 +23,7 @@ public interface IPromotionService
 
     Task<ResultModel> EditPromotionAsync(EditPromotionRequest request);
 
-    Task<ResultModel> DeletePromotion(int promotionId, BaseActionRequest request);
+    Task<ResultModel> DeletePromotionAsync(int promotionId, BaseActionRequest request);
 
     Task<ResultModel> AddBonusAsync(AddBonusRequest request);
 
@@ -187,7 +187,19 @@ public class PromotionService(IDynamicRepository repository,
         return result;
     }
 
-    public async Task<ResultModel> DeletePromotion(int promotionId, BaseActionRequest request)
+    public async Task<ResultModel> DeletePromotionAsync(int promotionId, BaseActionRequest request)
+    {
+        var commandResult = await RejectPendingPromotionTransactionAsync(promotionId, request);
+
+        if (commandResult.IsSuccessful)
+        {
+            commandResult = await DeletePromotion(promotionId, request);
+        }
+
+        return commandResult;
+    }
+
+    private async Task<ResultModel> DeletePromotion(int promotionId, BaseActionRequest request)
     {
         var command = new DeletePromotionCriteria
         {
@@ -207,6 +219,28 @@ public class PromotionService(IDynamicRepository repository,
         }
 
         return new ResultModel(command.ErrCode, command.ErrMsg);
+    }
+
+    private async Task<ResultModel> RejectPendingPromotionTransactionAsync(int promotionId, BaseActionRequest request)
+    {
+        var criteria = new RejectAllPendingPromotionCriteria
+        {
+            PromotionId = promotionId,
+            AgentId = request.ActorId,
+            SubAccId = request.SubAccId,
+            IP = request.IP,
+            SiteDbGroupId = request.SiteDBGroupId
+        };
+        var logs = await repository.FetchAsync<WriteLogDBCommandModel>(criteria);
+        if (criteria.ErrCode == 0 && logs is not null && logs.Any())
+        {
+            WriteLog(logs.ToList(), request.SiteDBGroupId);
+        }
+        var result = new ResultModel(criteria.ErrCode, criteria.ErrMsg)
+        {
+            ErrExtraInfo = criteria.ErrExtraInfo
+        };
+        return result;
     }
 
     public async Task<ResultModel> AddBonusAsync(AddBonusRequest request)

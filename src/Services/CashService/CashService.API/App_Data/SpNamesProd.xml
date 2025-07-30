@@ -141,6 +141,7 @@
         <Setting Key="Age_CashPromotion_PromotionDetailsReport" SpName="Age_CashPromotion_PromotionDetailsReport" DbName="DBAGE.bodb02.wsv_CashService" />
         <Setting Key="SiteDb_3_Age_CashPromotion_ManualAddBonus" SpName="Age_CashPromotion_ManualAddBonus" DbName="DBSIC.bodb02.wsv_CashService" Plain="0" />
         <Setting Key="SiteDb_3_Age_CashPromotion_UpdateTransStatus" SpName="Age_CashPromotion_UpdateTransStatus" DbName="DBSIC.bodb02.wsv_CashService" Plain="0" />
+        <Setting Key="SiteDb_3_Age_CashPromotion_RejectAll_ByPromotionID" SpName="Age_CashPromotion_RejectAll_ByPromotionID" DbName="DBSIC.bodb02.wsv_CashService" Plain="0" />
     </Function>
 
     <Function Name="Notifications">

@@ -75,7 +75,7 @@ public static class PromotionEndpoints
 
         group.MapPost("/delete/{promotionId}", async (int promotionId, [FromBody] BaseActionRequest request, IPromotionService service) =>
         {
-            var result = await service.DeletePromotion(promotionId, request);
+            var result = await service.DeletePromotionAsync(promotionId, request);
             return Results.Ok(result);
         }).WithName("DeletePromotion")
         .WithOpenApi(operation => new(operation)
