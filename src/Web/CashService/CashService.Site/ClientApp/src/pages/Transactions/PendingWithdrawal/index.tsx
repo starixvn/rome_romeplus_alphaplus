@@ -69,11 +69,9 @@ const PendingWithdrawal: React.FC = () => {
     setShowManualAddWithdrawalForm(true);
   };
 
-  const handleCloseManualWithdrawalForm = (isSuccess: boolean) => {
+  const handleCloseManualWithdrawalForm = () => {
     setShowManualAddWithdrawalForm(false);
-    if (isSuccess) {
-      fetchWithdrawals();
-    }
+    fetchWithdrawals();
   };
 
   const debouncedSetSearchTerm = useDebouncedCallback((value: string) => {
@@ -108,12 +106,12 @@ const PendingWithdrawal: React.FC = () => {
     <>
       {showManualAddWithdrawalForm ? (
         <ManualAddWithdrawalForm
-          onClose={() => handleCloseManualWithdrawalForm(false)}
+          onClose={handleCloseManualWithdrawalForm}
           isCashServiceEnabled={isCashServiceEnabled}
         />
       ) : (
         <div className="flex h-full flex-col">
-          <TitleComponent text={t('pendingWithdrawal')} type='main'/>
+          <TitleComponent text={t('pendingWithdrawal')} type="main" />
           <div className="mb-[8px]">
             <ButtonComponent
               variant="full"
