@@ -54,20 +54,12 @@ public static class DependencyInjectionExtensions
 
     public static IServiceCollection AddConfiguration(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSingleton(configuration.GetSection("ProxySettings").Get<ProxySettings>());
-
+        services.AddHttpClient();
         return services;
     }
 
     public static IServiceCollection AddHttpClientService(this IServiceCollection services, IConfiguration configuration)
     {
-        var proxySettings = configuration.GetSection("ProxySettings").Get<ProxySettings>();
-        services.AddHttpClient(HttpClientName.ProxyHttpClient).ConfigurePrimaryHttpMessageHandler(() => new SocketsHttpHandler
-        {
-            UseProxy = proxySettings.IsUseProxy,
-            Proxy = new WebProxy(proxySettings.ProxyAddress, proxySettings.BypassOnLocal)
-        });
-
         services.AddSingleton(sp => configuration.GetSection("PaymentGatewayApiConfig").Get<PaymentGatewayApiConfig>());
         services.AddScoped<HttpClientHelper>();
 
