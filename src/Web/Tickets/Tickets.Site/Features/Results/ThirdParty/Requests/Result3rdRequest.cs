@@ -33,6 +33,4 @@ public class Result3rdRequest
     public string Language { get; }
 
     public bool IsDarkMode { get; }
-
-    public int RefNo { get; set; }
 }

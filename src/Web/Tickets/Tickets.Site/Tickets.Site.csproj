@@ -100,7 +100,7 @@
     <PackageReference Include="Fanex.Result.Core.ConfigurationHelper" Version="1.0.0" />
     <PackageReference Include="Fanex.Result.Core.GTCasino" Version="3.0.0-upgrade-01" />
     <PackageReference Include="Fanex.Result.Core.Happy5" Version="2.0.0.2-upgrade-03" />
-    <PackageReference Include="Fanex.Result.Core.KenoLotteryTG" Version="3.0.1-upgrade-01" />
+    <PackageReference Include="Fanex.Result.Core.KenoLotteryTG" Version="3.0.2-statement-02" />
     <PackageReference Include="Fanex.Result.Core.LinkedGames" Version="2.0.1-upgrade-01" />
     <PackageReference Include="Fanex.Result.Core.RemotingRef" Version="2.0.0.4" />
     <PackageReference Include="Fanex.Result.Core.SabaClub" Version="2.0.1-upgrade-01" />

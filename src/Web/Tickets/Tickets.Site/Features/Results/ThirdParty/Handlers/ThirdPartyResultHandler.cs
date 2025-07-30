@@ -1,6 +1,7 @@
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Shared.AppResources.Betlist.Site;
 using AlphaPlus.Tickets.Site.Features.Shared;
+using Fanex.Result.Core.KenoLotteryTG;
 using Fanex.Result.Core.ThirdParty;
 using Fanex.Result.Core.ThirdParty.Models;
 using MediatR;
@@ -51,26 +52,16 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
     IRequestHandler<SabaKenoResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<FunkyGamesResultQuery, ThirdPartyProductViewModel>,
     IRequestHandler<HotDogResultQuery, ThirdPartyProductViewModel>,
-    IRequestHandler<MicrogamingLiveResultQuery, ThirdPartyProductViewModel>
+    IRequestHandler<MicrogamingLiveResultQuery, ThirdPartyProductViewModel>,
+    IRequestHandler<StatementResultQuery, ThirdPartyProductViewModel>
 {
-    private readonly List<int> _memberSiteResultSports = [202, 220, 222];
     public Task<ThirdPartyProductViewModel> Handle(Result3rdQuery message, CancellationToken cancellationToken)
     {
-        Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(message));
         var sportName = cacheRefService.GetSportName(message.SportTypeId);
         var config = GetThirdPartyConfig(message.SportTypeId);
         if (config == null)
         {
             return Task.FromResult(new ThirdPartyProductViewModel(string.Format(Resources.ResultPopupTitle, sportName), string.Empty));
-        }
-
-        if(_memberSiteResultSports.Contains(message.SportTypeId))
-        {
-            message.GameId3rd += "&detail=c&app=" + (browserHelper.IsMobile() ? "S" : "W") + "&EventDate=" + GetDateTime(message.EndTime);
-            if(string.IsNullOrWhiteSpace(message.TransId3rd))
-            {
-                message.TransId3rd = "TransId3rd";
-            }
         }
         
         var request = new ResultRequest(message.CustId, message.TransId3rd, message.GameId3rd, message.CurrencyId, message.SiteId, message.Language)
@@ -78,8 +69,7 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
             IsDarkMode = message.IsDarkMode ? "1" : "0",
             Platform = browserHelper.IsMobile() ? "M" : "D",
             BetTypeId = message.BetType,
-            EndTime = message.EndTime,
-            OwTransId = message.RefNo
+            EndTime = message.EndTime
         };
 
         var result = config.IsPostMethod? new ThirdPartyResult(config).GetResultPOST(request): new ThirdPartyResult(config).GetResultGET(request);
@@ -259,6 +249,32 @@ public class ThirdPartyResultHandler(IConfiguration configuration, IBrowserHelpe
 
     public Task<ThirdPartyProductViewModel> Handle(MicrogamingLiveResultQuery message, CancellationToken cancellationToken)
         => Handle(message, "MicrogamingLiveConfigs", "Microgaming Live");
+
+    public Task<ThirdPartyProductViewModel> Handle(StatementResultQuery message, CancellationToken cancellationToken)
+    {
+        var sportName = cacheRefService.GetSportName(message.SportTypeId);
+        var configs = configuration.GetSection("Result3rdConfig").Get<List<ThirdPartyConfigs>>().FirstOrDefault(x => x.SportTypeId == message.SportTypeId);
+        if (configs == null)
+        {
+            return Task.FromResult(new ThirdPartyProductViewModel(string.Format(Resources.ResultPopupTitle, sportName), string.Empty));
+        }
+        Console.WriteLine(configs.Url + " " + sportName);
+        var config = new KenoLotteryTGConfigs
+        {
+            Url = configs.Url,
+            SiteId = string.IsNullOrWhiteSpace(message.SiteId) ? "4100200" : message.SiteId,
+            Debug = configs.Debug,
+            ProxyIP = configs.ProxyIP,
+            ProxyPort = configs.ProxyPort
+        };
+
+        var result = new KenoLotteryTGStatementResult(config).GetStatement(message.CustId.ToString(), !browserHelper.IsMobile(), DateTime.Parse(message.EventDate) , message.RefNo, string.IsNullOrWhiteSpace(message.SiteId) ? "4100200" : message.SiteId, "C", string.Empty, message.Language);
+        
+        Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(result) + " " + sportName);
+        var viewModel = new ThirdPartyProductViewModel(string.Format(Resources.ResultPopupTitle, sportName), result);
+
+        return Task.FromResult(viewModel);
+    }
 
     private Task<ThirdPartyProductViewModel> Handle(Result3rdRequest message, string sectionName, string gameName)
     {

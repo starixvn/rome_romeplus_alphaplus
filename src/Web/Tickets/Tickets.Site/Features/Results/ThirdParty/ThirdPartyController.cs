@@ -140,4 +140,6 @@ public class ThirdPartyController(IMediator mediator) : ResultBaseController(med
     [AllowProtectedMode]
     public Task<IActionResult> FunkyGamesResult(FunkyGamesResultQuery message) => View(message, IndexView);
     
+    [AllowProtectedMode]
+    public Task<IActionResult> StatementResult(StatementResultQuery message) => View(message, IndexView);
 }

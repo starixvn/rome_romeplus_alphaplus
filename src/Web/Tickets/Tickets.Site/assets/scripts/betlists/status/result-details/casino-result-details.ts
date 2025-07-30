@@ -1868,14 +1868,58 @@
                 '&SportTypeId=',
                 sportTypeId,
                 '&GameId3rd=',
-                encodeParam(gameId3rd),
-                '&RefNo=',
-                refNo,
-                '&endtime=',
-                winLostDate
+                encodeParam(gameId3rd)
             ].join('');
             Common.PopupDetails.Instance(window.top).Show(
                 `${Common.AppPath.TicketsAppPath}ThirdParty/ViewResult${params}`,
+                '',
+                835,
+                675
+            );
+        };
+    }
+
+    export class StatementResultDetails extends BaseResultDetails implements ResultDetails {
+        public ViewResultDetails = (
+            matchId?: number,
+            race?: number,
+            betTypeId?: number,
+            sportTypeId?: number,
+            refNo?: string,
+            userName?: string,
+            winLostDate?: Date,
+            refNoMixParlay?: number,
+            league?: number,
+            isOutright?: boolean,
+            currencyId?: number,
+            gameId3rd?: string,
+            custId?: number,
+            transId3rd?: string,
+            siteId?: string,
+            sporttype?: string
+        ) => {
+            const params = [
+                '?custId=',
+                custId,
+                '&transId3rd=',
+                encodeParam(transId3rd),
+                '&currencyId=',
+                currencyId,
+                '&siteId=',
+                siteId,
+                '&BetType=',
+                betTypeId,
+                '&SportTypeId=',
+                sportTypeId,
+                '&GameId3rd=',
+                encodeParam(gameId3rd),
+                '&RefNo=',
+                refNo,
+                '&eventDate=',
+                winLostDate
+            ].join('');
+            Common.PopupDetails.Instance(window.top).Show(
+                `${Common.AppPath.TicketsAppPath}ThirdParty/StatementResult${params}`,
                 '',
                 835,
                 675

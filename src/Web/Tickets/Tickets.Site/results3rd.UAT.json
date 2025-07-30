@@ -45,7 +45,7 @@
       "SportTypeId": 202,
       "VendorId": 8,
       "Url": "http://saba-wallet-group-002.3rd-party.klt2p.gamora.prod:32280/api/KenoInternal/GetStatementUrl",
-      "Debug": 1
+      "Debug": 0
     },
     {
       "Name": "Lottery",

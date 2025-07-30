@@ -52,6 +52,7 @@
         private static hotdogResult: ResultDetails;
         private static microgamingLiveResult: ResultDetails;
         private static result3rd: ResultDetails;
+        private static statementResult: ResultDetails;
 
         public static CreateInstance(betTypeId: number, sportTypeId: number): ResultDetails {
             if (
@@ -409,6 +410,14 @@
                     ? new MicrogamingLiveResultDetails()
                     : this.microgamingLiveResult;
                 return this.microgamingLiveResult;
+            }
+
+            var _memberSiteResultSports = [202, 220, 222];
+            if (_memberSiteResultSports.includes(sportTypeId)) {
+                this.statementResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.statementResult)
+                    ? new StatementResultDetails()
+                    : this.statementResult;
+                return this.statementResult;
             }
 
             var virtualSports = [125, 126, 127, 134, 147, 161, 164, 175, 177, 178, 179, 180, 182, 183, 184, 185, 186, 188, 190, 191, 192, 193, 194, 195, 196, 197, 198, 201, 211, 231, 233, 241, 242, 243, 244, 250, 251, 255, 1000];
