@@ -1307,7 +1307,7 @@
     <value>重置当前赢取金额</value>
   </data>
   <data name="ResetCurrentWinAmountConfirmMessage" xml:space="preserve">
-    <value>您确定要为会员 "{0}" 重置当前赢额吗？</value>
+    <value>您确定要为会员 {0} 重置当前赢额吗？</value>
   </data>
   <data name="ResetCurrentWinAmountSuccess" xml:space="preserve">
     <value>成功重置当前赢额</value>

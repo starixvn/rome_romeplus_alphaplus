@@ -118,5 +118,23 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit
                     -CurrentWinAnmout * Percent / MaxLossLimit.Value;
             }
         }
+   
+        public decimal? WinPercentCashMember
+        {
+            get
+            {
+                if (MaxWinLimit == 0)
+                {
+                    return null;
+                }
+
+                if (CreditBalance - DebitBalance > 0 && MaxWinLimit > 0)
+                {
+                    return (CreditBalance - DebitBalance) * Percent / MaxWinLimit;
+                }
+
+                return 0;
+            }
+        }
     }
 }

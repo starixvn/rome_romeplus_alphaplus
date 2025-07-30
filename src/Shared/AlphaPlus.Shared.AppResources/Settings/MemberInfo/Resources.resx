@@ -1313,7 +1313,7 @@ Notes: your password is cAsE sEnSiTiVe.</value>
     <value>Reset Current Win Amount</value>
   </data>
   <data name="ResetCurrentWinAmountConfirmMessage" xml:space="preserve">
-    <value>Are you sure you want to reset the current win amount for member "{0}"?</value>
+    <value>Are you sure you want to reset the current win amount for member {0}?</value>
   </data>
   <data name="ResetCurrentWinAmountSuccess" xml:space="preserve">
     <value>Reset Current Win Amount Successfully</value>

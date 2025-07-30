@@ -123,6 +123,21 @@ public class WinLossLimitViewModel
     public string GetWinPercent(decimal? winPercent, decimal? currentWinLimit, decimal credit, decimal maxWinLimit)
         => FormatWinPercent(credit, currentWinLimit, winPercent, maxWinLimit);
 
+    public string GetWinPercentCashMember(decimal? winPercent, decimal maxWinLimit) 
+    {
+        if (maxWinLimit == MaxWinLimitToShowNotAvailable)
+        {
+            return "N/A";
+        }
+
+        if (!winPercent.HasValue)
+        {
+            return Lang.Unlimited;
+        }
+
+        return winPercent > 0 ? $"{winPercent.Value.ToString("#,##0.##")}%" : "0%";
+    }
+
     public static string GetLossPercent(decimal? maxLossLimit, decimal? lossPercent)
         => FormatLossPercent(maxLossLimit, lossPercent);
 

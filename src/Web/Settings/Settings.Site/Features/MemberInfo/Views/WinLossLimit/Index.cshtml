@@ -221,7 +221,7 @@
                             @(winLossLimitDetail.IsCashMember ? Model.GetMaxWinLimitCashMember(winLossLimitDetail.MaxWinLimit) : Model.GetMaxWinLimit(winLossLimitDetail.MaxWinLimit))
                         </td>
                         <td class="text-center @((winLossLimitDetail.Credit == 0 && winLossLimitDetail.CurrentWinAnmout > 0 || winLossLimitDetail.WinPercent >= 100 || winLossLimitDetail.WinPercent == -2) && !Model.IsBBin ? "negative-value" : "")">
-                            @Model.GetWinPercent(winLossLimitDetail.WinPercent, winLossLimitDetail.CurrentWinAnmout, winLossLimitDetail.Credit, winLossLimitDetail.MaxWinLimit)
+                            @(winLossLimitDetail.IsCashMember ? Model.GetWinPercentCashMember(winLossLimitDetail.WinPercentCashMember, winLossLimitDetail.MaxWinLimit) : Model.GetWinPercent(winLossLimitDetail.WinPercent, winLossLimitDetail.CurrentWinAnmout, winLossLimitDetail.Credit, winLossLimitDetail.MaxWinLimit))
                         </td>
 
                         <td class="text-center">

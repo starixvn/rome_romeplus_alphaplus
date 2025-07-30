@@ -1271,7 +1271,7 @@ Lưu ý:  Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
     <value>Đặt lại tiền thắng hiện tại</value>
   </data>
   <data name="ResetCurrentWinAmountConfirmMessage" xml:space="preserve">
-    <value>Bạn có chắc chắn muốn đặt lại tiền thắng hiện tại của thành viên "{0}"?</value>
+    <value>Bạn có chắc chắn muốn đặt lại tiền thắng hiện tại của thành viên {0}?</value>
   </data>
   <data name="ResetCurrentWinAmountSuccess" xml:space="preserve">
     <value>Đặt lại tiền thắng hiện tại thành công</value>

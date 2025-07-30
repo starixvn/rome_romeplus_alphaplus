@@ -635,7 +635,7 @@
     <value>現在の勝利額をリセット</value>
   </data>
   <data name="ResetCurrentWinAmountConfirmMessage" xml:space="preserve">
-    <value>メンバー "{0}" の現在の勝利額をリセットしてもよろしいですか？</value>
+    <value>メンバー {0} の現在の勝利額をリセットしてもよろしいですか？</value>
   </data>
   <data name="ResetCurrentWinAmountSuccess" xml:space="preserve">
     <value>現在の勝利額をリセットしました。</value>
