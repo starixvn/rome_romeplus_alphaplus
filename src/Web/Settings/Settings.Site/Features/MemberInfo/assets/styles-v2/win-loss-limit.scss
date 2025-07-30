@@ -91,8 +91,11 @@
     padding: 4px;
     display: inline-block;
     cursor: pointer;
-    &:hover {
-        background-color: var(--button-icon-hover);
+    background-color: var(--cashservice-color);
+    color: var(--btn-color);
+    margin-left: 5px;
+    &:hover{
+        opacity: 0.7;
     }
 }
 .row-icon-inline{
