@@ -24,11 +24,11 @@ var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../",
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 configuration
-    .AddJsonFile(sharedSettingsPath, optional: true, reloadOnChange: true)
-    .AddJsonFile(sharedSettings, optional: true, reloadOnChange: true)
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .AddJsonFile($"authorization.json", optional: false, reloadOnChange: true)
-    .AddJsonFile($"securitycode.json", optional: false, reloadOnChange: true)
+    .AddJsonFile(sharedSettingsPath, optional: true, reloadOnChange: false)
+    .AddJsonFile(sharedSettings, optional: true, reloadOnChange: false)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
+    .AddJsonFile($"authorization.json", optional: false, reloadOnChange: false)
+    .AddJsonFile($"securitycode.json", optional: false, reloadOnChange: false)
     .AddCommandLine(args);
 
 AlphaPlus.Core.Configurations.ConfigurationManager.Init(builder.Configuration);

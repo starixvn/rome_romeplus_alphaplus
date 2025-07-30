@@ -15,8 +15,8 @@ public static class DomainsHelper
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile(configFileName, optional: false, reloadOnChange: true)
-                .AddJsonFile(domainMappingFileName, optional: false, reloadOnChange: true);
+                .AddJsonFile(configFileName, optional: false, reloadOnChange: false)
+                .AddJsonFile(domainMappingFileName, optional: false, reloadOnChange: false);
 
             return builder.Build();
         }

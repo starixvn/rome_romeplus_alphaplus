@@ -13,14 +13,14 @@ const string SharedSettings = "sharedSettings.json";
 var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);
 
 builder.Configuration
-    .AddJsonFile(sharedSettingsPath, optional: true, reloadOnChange: true)
-    .AddJsonFile(SharedSettings, optional: true, reloadOnChange: true)
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .AddJsonFile("Features/ProductConfigs/ProductConfiguration.json", optional: false, reloadOnChange: true)
-    .AddJsonFile("authorization.json", optional: false, reloadOnChange: true)
-    .AddJsonFile("securitycode.json", optional: false, reloadOnChange: true)
-    .AddJsonFile("Products.json", optional: false, reloadOnChange: true)
-    .AddJsonFile("Domains/domainmappings.json", optional: true, reloadOnChange: true)
+    .AddJsonFile(sharedSettingsPath, optional: true, reloadOnChange: false)
+    .AddJsonFile(SharedSettings, optional: true, reloadOnChange: false)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
+    .AddJsonFile("Features/ProductConfigs/ProductConfiguration.json", optional: false, reloadOnChange: false)
+    .AddJsonFile("authorization.json", optional: false, reloadOnChange: false)
+    .AddJsonFile("securitycode.json", optional: false, reloadOnChange: false)
+    .AddJsonFile("Products.json", optional: false, reloadOnChange: false)
+    .AddJsonFile("Domains/domainmappings.json", optional: true, reloadOnChange: false)
     //.AddEnvironmentVariables()
     .AddCommandLine(args);
 

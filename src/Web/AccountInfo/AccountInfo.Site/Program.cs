@@ -16,11 +16,11 @@ var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../",
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 configuration
-    .AddJsonFile(sharedSettingsPath, optional: true, reloadOnChange: true)
-    .AddJsonFile(SharedSettings, optional: true, reloadOnChange: true)
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .AddJsonFile($"authorization.json", optional: false, reloadOnChange: true)
-    .AddJsonFile($"securitycode.json", optional: false, reloadOnChange: true)
+    .AddJsonFile(sharedSettingsPath, optional: true, reloadOnChange: false)
+    .AddJsonFile(SharedSettings, optional: true, reloadOnChange: false)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
+    .AddJsonFile($"authorization.json", optional: false, reloadOnChange: false)
+    .AddJsonFile($"securitycode.json", optional: false, reloadOnChange: false)
     //.AddEnvironmentVariables()
     .AddCommandLine(args);
 

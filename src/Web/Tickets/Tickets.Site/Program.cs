@@ -25,14 +25,14 @@ var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../",
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 configuration
-    .AddJsonFile(sharedSettingsPath, optional: true, reloadOnChange: true) // When running using dotnet run
-    .AddJsonFile(SharedSettings, optional: true, reloadOnChange: true) // When app is published or Docker
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .AddJsonFile("authorization.json", optional: false, reloadOnChange: true)
-    .AddJsonFile("partialum.json", optional: false, reloadOnChange: true)
-    .AddJsonFile("results.json", optional: false, reloadOnChange: true)
-    .AddJsonFile("results3rd.json", optional: false, reloadOnChange: true)
-    .AddJsonFile("securitycode.json", optional: false, reloadOnChange: true)
+    .AddJsonFile(sharedSettingsPath, optional: true, reloadOnChange: false) // When running using dotnet run
+    .AddJsonFile(SharedSettings, optional: true, reloadOnChange: false) // When app is published or Docker
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
+    .AddJsonFile("authorization.json", optional: false, reloadOnChange: false)
+    .AddJsonFile("partialum.json", optional: false, reloadOnChange: false)
+    .AddJsonFile("results.json", optional: false, reloadOnChange: false)
+    .AddJsonFile("results3rd.json", optional: false, reloadOnChange: false)
+    .AddJsonFile("securitycode.json", optional: false, reloadOnChange: false)
     //.AddEnvironmentVariables()
     .AddCommandLine(args);
 
