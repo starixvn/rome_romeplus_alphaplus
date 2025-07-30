@@ -1,9 +1,7 @@
-using System.Text;
 using AgencyCash.API.Shared;
 using AgencyCash.API.Shared.Criteria;
 using AgencyCash.API.Shared.Middlewares;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Primitives;
 using Moq;
 
 namespace AgencyCash.API.Tests.Shared.Middlewares;

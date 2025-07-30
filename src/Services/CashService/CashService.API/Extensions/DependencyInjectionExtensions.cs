@@ -1,10 +1,9 @@
 namespace AlphaPlus.CashService.API.Extensions;
 
-using System.Net;
+using AlphaPlus.CashService.API.Features.Notifications.Services;
 using AlphaPlus.CashService.API.Features.PendingWithdrawal.Services;
-using AlphaPlus.CashService.API.Features.Shared.Constants;
-using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Helpers;
+using AlphaPlus.CashService.API.Features.Shared.Models;
 using Fanex.Data.Repository;
 using Fanex.Data.SqlServer;
 using Fanex.RemotingRef;
@@ -14,7 +13,6 @@ using Features.PendingDeposit.Services;
 using Features.Promotion.Services;
 using Features.Shared.Services;
 using Features.Transactions.Services;
-using AlphaPlus.CashService.API.Features.Notifications.Services;
 
 public static class DependencyInjectionExtensions
 {

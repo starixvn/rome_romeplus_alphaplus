@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using System.Text.Json;
 using Alpha.Captcha.Core;
 using Alpha.Captcha.Core.Services;
 using AlphaPlus.RequestInfo;
@@ -289,7 +288,7 @@ namespace Fanex.Alpha.Before.Services.SignIn
             var encryptPassword = AesService.Default.Encrypt(password, signInResult.Captcha);
             var crossCookieValue = EncryptExtension.CfsEnCode((verifySignInResult.CustId + verifySignInResult.LoginTime.Minute).ToString());
 
-            string url= encryptUrlHelper.BuildAfterURL(
+            string url = encryptUrlHelper.BuildAfterURL(
                 httpContext,
                 encryptPassword,
                 verifySignInResult,

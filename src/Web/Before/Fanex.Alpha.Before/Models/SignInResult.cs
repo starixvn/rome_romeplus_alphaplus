@@ -1,5 +1,4 @@
-﻿using Fanex.Alpha.Before.Configurations;
-using Fanex.Alpha.Before.Resources;
+﻿using Fanex.Alpha.Before.Resources;
 
 namespace Fanex.Alpha.Before.Models
 {

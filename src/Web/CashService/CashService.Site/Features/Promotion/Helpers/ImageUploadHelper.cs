@@ -1,7 +1,3 @@
-using Microsoft.AspNetCore.Http;
-using System.Text.RegularExpressions;
-using System;
-
 namespace AlphaPlus.CashService.Site.Features.Promotion.Helpers;
 
 public static class ImageUploadHelper
@@ -18,7 +14,7 @@ public static class ImageUploadHelper
         {
             // Ensure upload directory exists
             var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), UploadFolder);
-            
+
             // Create directory with proper permissions if it doesn't exist
             if (!Directory.Exists(uploadPath))
             {
@@ -33,7 +29,7 @@ public static class ImageUploadHelper
                     throw new InvalidOperationException($"Cannot create upload directory {uploadPath}: {ex.Message}");
                 }
             }
-            
+
             // Validate file
             if (!IsValidImageFile(image))
             {
@@ -43,7 +39,7 @@ public static class ImageUploadHelper
             // Check if file already exists and generate unique name if needed
             var finalFileName = fileName;
             var filePath = Path.Combine(uploadPath, finalFileName);
-            
+
             // If file exists, generate unique name
             if (File.Exists(filePath))
             {
@@ -51,7 +47,7 @@ public static class ImageUploadHelper
                 var nameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
                 var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
                 var randomString = Path.GetRandomFileName().Replace(".", "").Substring(0, 6);
-                
+
                 finalFileName = $"{nameWithoutExtension}_{timestamp}_{randomString}{extension}";
                 filePath = Path.Combine(uploadPath, finalFileName);
             }
@@ -64,7 +60,7 @@ public static class ImageUploadHelper
 
             // Store relative path for database
             var relativePath = Path.Combine("PromotionImages", finalFileName).Replace("\\", "/");
-            
+
             return finalFileName;
         }
         catch (Exception ex)
@@ -86,7 +82,7 @@ public static class ImageUploadHelper
         {
             // Ensure upload directory exists
             var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), UploadFolder);
-            
+
             // Create directory with proper permissions if it doesn't exist
             if (!Directory.Exists(uploadPath))
             {
@@ -101,7 +97,7 @@ public static class ImageUploadHelper
                     throw new InvalidOperationException($"Cannot create upload directory {uploadPath}: {ex.Message}");
                 }
             }
-            
+
             // Verify directory is writable
             var testFile = Path.Combine(uploadPath, "test.txt");
             try
@@ -115,7 +111,7 @@ public static class ImageUploadHelper
                 Console.WriteLine($"Directory {uploadPath} is not writable: {ex.Message}");
                 Console.WriteLine($"Current user: {Environment.UserName}");
                 Console.WriteLine($"Current directory: {Directory.GetCurrentDirectory()}");
-                
+
                 // Try to get directory permissions info
                 try
                 {
@@ -126,7 +122,7 @@ public static class ImageUploadHelper
                 {
                     Console.WriteLine($"Cannot get directory info: {permEx.Message}");
                 }
-                
+
                 throw new InvalidOperationException($"Directory {uploadPath} is not writable: {ex.Message}");
             }
 
@@ -189,7 +185,7 @@ public static class ImageUploadHelper
         var extension = Path.GetExtension(originalFileName);
         var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
         var randomString = Path.GetRandomFileName().Replace(".", "").Substring(0, 6);
-        
+
         return $"promotion_{timestamp}_{randomString}{extension}";
     }
-} 
+}

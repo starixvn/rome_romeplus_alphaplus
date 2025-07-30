@@ -3,7 +3,6 @@ using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Features.Shared.Models;
 using AlphaPlus.Reports.Features.WinLossDetail;
 using Fanex.Data.Repository;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Reports.UnitTests.Features.WinLossDetail;
 

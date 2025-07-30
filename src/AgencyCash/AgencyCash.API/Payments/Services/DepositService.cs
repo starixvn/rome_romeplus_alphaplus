@@ -1,4 +1,3 @@
-using AgencyCash.API.Notifications.Models;
 using AgencyCash.API.Notifications.Services;
 using AgencyCash.API.Payments.Constants;
 using AgencyCash.API.Payments.Criteria;

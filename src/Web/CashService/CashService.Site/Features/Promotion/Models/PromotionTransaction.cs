@@ -3,7 +3,6 @@
 using AlphaPlus.CashService.Site.Helpers;
 using AlphaPlus.Shared.AppResources.CashServices;
 using Enum;
-using Helpers;
 using Transactions.Enum;
 
 public class PromotionTransaction

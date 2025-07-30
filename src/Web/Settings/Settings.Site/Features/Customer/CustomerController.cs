@@ -6,7 +6,6 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Products.Models;
 using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-using AlphaPlus.Settings.Site.Features.Customer.Models;
 using AlphaPlus.Settings.Site.Features.Customer.Requests;
 using AlphaPlus.Settings.Site.Features.Customer.ViewModels;
 using AlphaPlus.Settings.Site.Features.ProductStatus;
@@ -557,7 +556,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             {
                 return UnAuthorized();
             }
-            
+
             var result = await customerService.GetCountryCodes(userSession.Site);
             return Content(result);
         }
