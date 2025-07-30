@@ -1,3 +1,5 @@
+using AlphaPlus.Shared.AppResources.CashServices;
+
 namespace AlphaPlus.CashService.Site.Features.Promotion.Models;
 
 public class PromotionReport
@@ -7,6 +9,9 @@ public class PromotionReport
     public string PromotionTitle { get; init; }
 
     public byte PromotionType { get; init; }
+
+    public string PromotionTypeName
+        => CashServicesResx.ResourceManager.GetString($"PromotionType_{PromotionType}");
 
     public DateTime FromDate { get; init; }
 

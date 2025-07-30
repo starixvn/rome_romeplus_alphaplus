@@ -250,7 +250,7 @@
     <value>支付服务商当前不可用，请稍后再试。</value>
   </data>
   <data name="PromotionType_1" xml:space="preserve">
-    <value />
+    <value>Turnover Rebate</value>
   </data>
   <data name="UpdatedBy" xml:space="preserve">
     <value />

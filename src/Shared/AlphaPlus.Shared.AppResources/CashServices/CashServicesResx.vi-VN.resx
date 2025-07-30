@@ -250,7 +250,7 @@
     <value>Nhà cung cấp thanh toán hiện không khả dụng. Vui lòng thử lại sau.</value>
   </data>
   <data name="PromotionType_1" xml:space="preserve">
-    <value />
+    <value>Turnover Rebate</value>
   </data>
   <data name="UpdatedBy" xml:space="preserve">
     <value />

@@ -28,7 +28,6 @@ function MainReportRow({
   data: any;
   onClickPromotionTitle: (promotion: any) => void;
 }) {
-  const { t } = useTranslation('promotion');
   const handleDrillDown = (
     event: React.MouseEvent<HTMLAnchorElement>,
     promotionId: number,
@@ -64,7 +63,7 @@ function MainReportRow({
           </a>
         </div>
       </td>
-      <td>{t(`promotionType_${data.promotionType}`)}</td>
+      <td>{data.promotionTypeName}</td>
       <td>{`${formatDate(data.fromDate)} - ${formatDate(data.toDate)}`}</td>
       <td className="text-right">{formatNumber(data.totalRequest)}</td>
       <td className="text-right">

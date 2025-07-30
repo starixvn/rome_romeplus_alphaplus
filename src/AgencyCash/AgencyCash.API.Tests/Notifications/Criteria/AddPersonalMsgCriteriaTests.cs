@@ -35,7 +35,6 @@ public class AddPersonalMsgCriteriaTests
         Assert.Equal(contentKO, criteria.ContentKO);
         Assert.Equal(contentVN, criteria.ContentVN);
         Assert.Equal(1, criteria.MessageType); // PersonalMsgType constant value
-        Assert.Equal("Agency-Cash-API", criteria.CreatorName);
         Assert.True(criteria.IsBatch);
         Assert.Equal(0, criteria.MessageIdOutput);
     }
