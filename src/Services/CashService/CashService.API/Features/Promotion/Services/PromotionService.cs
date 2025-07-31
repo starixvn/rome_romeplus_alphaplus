@@ -174,14 +174,12 @@ public class PromotionService(IDynamicRepository repository,
             };
 
             var logUpdateStatus = await repository.FetchAsync<WriteLogDBCommandModel>(updateStatusCriteria);
-            if (!HasContentChanged(editPromotionMdoel.Contents, editPromotionMdoel.OriginalContents))
+            result = new ResultModel(updateStatusCriteria.ErrCode, updateStatusCriteria.ErrMsg);
+            if (updateStatusCriteria.ErrCode == 0 && logUpdateStatus is not null && logUpdateStatus.Any())
             {
-                result = new ResultModel(updateStatusCriteria.ErrCode, updateStatusCriteria.ErrMsg);
-                if (updateStatusCriteria.ErrCode == 0 && logUpdateStatus is not null && logUpdateStatus.Any())
-                {
-                    WriteLog(logUpdateStatus.ToList(), editPromotionMdoel.SiteDBGroupId);
-                }
+                WriteLog(logUpdateStatus.ToList(), editPromotionMdoel.SiteDBGroupId);
             }
+
         }
 
         return result;
