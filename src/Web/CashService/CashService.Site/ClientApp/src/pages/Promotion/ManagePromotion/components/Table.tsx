@@ -113,12 +113,12 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
         </th>
         <th
           rowSpan={2}
-          className="w-[110px] bg-[var(--table-header-background)] text-center"
+          className="bg-[var(--table-header-background)] text-center"
           scope="col"
         >
           <span className="relative z-3">{t('table.promotionTitle')}</span>
         </th>
-        <th rowSpan={2} scope="col" className="text-center bg-[var(--table-header-background)]">
+        <th rowSpan={2} scope="col" className="w-[120px] text-center bg-[var(--table-header-background)]">
           {t('table.promotionType')}
         </th>
         <th colSpan={gridProducts.length} className="text-center" scope="col">
@@ -129,14 +129,14 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
         <th
           rowSpan={2}
           scope="col"
-          className="w-[110px] bg-[var(--table-header-background)] text-center"
+          className="bg-[var(--table-header-background)] text-center"
         >
           {t('table.products')}
         </th>
         <th
           rowSpan={2}
           scope="col"
-          className="w-[110px] bg-[var(--table-header-background)] text-center"
+          className="bg-[var(--table-header-background)] text-center"
         >
           {t('table.period')}
         </th>
@@ -150,7 +150,7 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
       </tr>
       <tr>
         {gridProducts.map((product) => (
-          <th key={product.productCategoryId} scope="col" className="text-center">
+          <th key={product.productCategoryId} scope="col" className="text-center w-[90px]">
             {product.productCategoryName}
           </th>
         ))}
@@ -171,10 +171,10 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
       {gridProducts.map((product) =>
         displayPercentageMaxPayout(item.productSettings, product.productCategoryId)
       )}
-      <td className="w-[110px] ">
+      <td>
         {displayProducts(item.productSettings.flatMap((p) => p.products))}
       </td>
-      <td className="w-[110px] ">{`${formatDate(item.fromDate?.toString() || '')} - ${formatDate(item.toDate?.toString() || '')}`}</td>
+      <td>{`${formatDate(item.fromDate?.toString() || '')} - ${formatDate(item.toDate?.toString() || '')}`}</td>
       <td className="w-[110px] ">        
           <StatusComponent type={item.enabled ? 'completed' : 'disabled'} text={item.enabled ? tGlobal('enable') : tGlobal('disable')} />
       </td>
