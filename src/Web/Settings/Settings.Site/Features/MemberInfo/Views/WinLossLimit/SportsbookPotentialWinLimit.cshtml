@@ -64,9 +64,11 @@
             <div class="note">
                 <span class="star">*</span>@Resources.PotentialWinLimitNote2
             </div>
-            <div class="note has-icon">
-                <span class="star">*</span>@Html.Raw(Resources.ResetAccumulatedWinAmountNote)
-            </div>
+            @if(Model.ViewerLevel.IsAgentLevel()) {
+                <div class="note has-icon">
+                    <span class="star">*</span>@Html.Raw(Resources.ResetAccumulatedWinAmountNote)
+                </div>
+            }
         </div>
         <div class="list-icon">
             <ul>
