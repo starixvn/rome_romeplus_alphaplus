@@ -14,10 +14,12 @@ import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconCo
 
 interface AddBonusFormProps {
   onClose?: () => void;
+  isCashServiceEnabled: boolean;
 }
 
-const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose }) => {
+const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose, isCashServiceEnabled }) => {
   const { t } = useTranslation('promotion');
+  const { t: tGlobal } = useTranslation('global');
   const [member, setMember] = useState<string>('');
   const [amount, setAmount] = useState<string>('');
   const [remark, setRemark] = useState('');
@@ -122,13 +124,15 @@ const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose }) => {
         id="add-bonus-form"
         className="max-w-[1100px] w-full max-[768px]:w-full pb-[16px] pt-[10px]"
       >
-        {resultMessage.type && (
-          <MessageComponent
-            type={resultMessage.type}
-            message={resultMessage.message}
-            className="mb-[16px] max-[768px]:mb-[0]"
-          />
-        )}
+        <div className="flex-1 max-w-[700px] max-[768px]:mb-[16px] mr-[30px] max-[768px]:mr-[0]">
+          {resultMessage.type && (
+            <MessageComponent
+              type={resultMessage.type}
+              message={resultMessage.message}
+              className="mb-[16px] max-[768px]:mb-[0]"
+            />
+          )}
+        </div>
         <div className="flex justify-between max-[768px]:flex-col mb-[16px]">
           <div className="flex-1 max-w-[700px] max-[768px]:mb-[16px] mr-[30px] max-[768px]:mr-[0]">
             <TitleComponent text={`${t('addBonusForm.accountInformation')}`} type="medium" />
@@ -186,13 +190,14 @@ const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose }) => {
         <div className="flex gap-[16px]">
           <ButtonCancelComponent
             onClick={onClose}
-            disabled={isSubmitting}
+            disabled={isSubmitting || !isCashServiceEnabled}
             text={t('addBonusForm.cancel')}
           />
           <ButtonApplyComponent
-            disabled={isSubmitting}
+            disabled={isSubmitting || !isCashServiceEnabled}
             text={t('addBonusForm.approve')}
             onClick={handleSubmit}
+            title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
           />
         </div>
       </div>

@@ -18,6 +18,7 @@ interface SearchProps {
   onReject: () => void;
   onApprove: () => void;
   isProcessing: boolean;
+  isCashServiceEnabled: boolean;
 }
 
 const Search: React.FC<SearchProps> = ({
@@ -29,8 +30,10 @@ const Search: React.FC<SearchProps> = ({
   onReject,
   onApprove,
   isProcessing,
+  isCashServiceEnabled,
 }) => {
   const { t } = useTranslation('promotion');
+  const { t: tGlobal } = useTranslation('global');
   const [textCopy, setTextCopy] = useState(t('messages.copy'));
 
   const handleCopy = () => {
@@ -78,31 +81,49 @@ const Search: React.FC<SearchProps> = ({
         <ButtonComponent
           variant="apply"
           onClick={onApprove}
-          disabled={selectedItems.length === 0 || isProcessing}
+          disabled={selectedItems.length === 0 || isProcessing || !isCashServiceEnabled}
           text={t('search.approve') + ' (' + selectedItems.length + ')'}
+          title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
         />
         <ButtonComponent
           variant="reject"
           onClick={onReject}
-          disabled={selectedItems.length === 0 || isProcessing}
+          disabled={selectedItems.length === 0 || isProcessing || !isCashServiceEnabled}
           text={t('search.reject') + ' (' + selectedItems.length + ')'}
+          title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
         />
       </div>
       <div className="flex items-center">
         <Tippy
-          content={t('messages.exportToExcel')}
+          content={
+            isCashServiceEnabled ? t('messages.exportToExcel') : tGlobal('cashServiceDisabled')
+          }
           placement="top"
           theme="light"
           arrow={true}
           hideOnClick={false}
         >
           <span>
-            <ButtonIconComponent style="Excel" onClick={handleDownload} />
+            <ButtonIconComponent
+              style="Excel"
+              onClick={handleDownload}
+              disabled={!isCashServiceEnabled}
+            />
           </span>
         </Tippy>
-        <Tippy content={textCopy} placement="top" theme="light" arrow={true} hideOnClick={false}>
+        <Tippy
+          content={isCashServiceEnabled ? textCopy : tGlobal('cashServiceDisabled')}
+          placement="top"
+          theme="light"
+          arrow={true}
+          hideOnClick={false}
+        >
           <span>
-            <ButtonIconComponent style="Copy" onClick={handleCopy} />
+            <ButtonIconComponent
+              style="Copy"
+              onClick={handleCopy}
+              disabled={!isCashServiceEnabled}
+            />
           </span>
         </Tippy>
 

@@ -15,6 +15,7 @@ interface DataGridProps {
   isLoading: boolean;
   onSelectionChange?: (selectedItems: PromotionTransaction[]) => void;
   refreshGrid?: () => void;
+  isCashServiceEnabled: boolean;
 }
 
 const DataGrid: React.FC<DataGridProps> = ({
@@ -24,6 +25,7 @@ const DataGrid: React.FC<DataGridProps> = ({
   isLoading,
   onSelectionChange,
   refreshGrid,
+  isCashServiceEnabled,
 }) => {
   const { t } = useTranslation('promotion');
   const [selectedItems, setSelectedItems] = useState<PromotionTransaction[]>([]);
@@ -115,7 +117,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                   type="checkbox"
                   className="w-[16px] h-[16px] cursor-pointer"
                   name="selectAll"
-                  disabled={items.length === 0}
+                  disabled={items.length === 0 || !isCashServiceEnabled}
                   checked={selectAll}
                   onChange={(e) => handleSelectAll(e.target.checked)}
                 />
@@ -138,9 +140,11 @@ const DataGrid: React.FC<DataGridProps> = ({
                 {t('table.amount')}
               </th>
               <th scope="col">{t('table.dateRange')}</th>
-              <th scope="col" className="w-[60px]">
-                {t('table.actions')}
-              </th>
+              {isCashServiceEnabled && (
+                <th scope="col" className="w-[60px]">
+                  {t('table.actions')}
+                </th>
+              )}
             </tr>
           </thead>
           <tbody className="font-[500]">
@@ -162,6 +166,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                         ) !== -1
                       }
                       onChange={(e) => handleSelectItem(item, e.target.checked)}
+                      disabled={!isCashServiceEnabled}
                     />
                   </td>
                   <td className="w-[150px] min-w-[150px]">
@@ -184,18 +189,20 @@ const DataGrid: React.FC<DataGridProps> = ({
                       {formatDate(item.fromDate)} - {formatDate(item.toDate)}
                     </div>
                   </td>
-                  <td className="text-center">
-                    <div
-                      className="flex justify-center items-center cursor-pointer"
-                      onClick={() => onEditSinglePromotion(item)}
-                    >
-                      <IconPen className="w-[20px] h-[20px] fill-[#333333] dark:fill-[#ededed]" />
-                    </div>
-                  </td>
+                  {isCashServiceEnabled && (
+                    <td className="text-center">
+                      <div
+                        className="flex justify-center items-center cursor-pointer"
+                        onClick={() => onEditSinglePromotion(item)}
+                      >
+                        <IconPen className="w-[20px] h-[20px] fill-[#333333] dark:fill-[#ededed]" />
+                      </div>
+                    </td>
+                  )}
                 </tr>
               ))
             ) : (
-              <NoRecordFound colSpan={9} />
+              <NoRecordFound colSpan={isCashServiceEnabled ? 9 : 8} />
             )}
           </tbody>
         </table>

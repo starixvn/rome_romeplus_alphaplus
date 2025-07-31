@@ -34,6 +34,12 @@ public partial class WinLossLimitController(IMediator mediator, IUserSession use
             return Json(new { isSuccessful = false, message = "Unauthorized" });
         }
 
+        command.SubAccId = viewer.SubAccId;
+        command.SubAccName = viewer.SubAccName;
+        command.UserId = viewer.Id;
+        command.IP = viewer.IP;
+        command.SettingStatus = AppSettings.SettingStatus;
+        command.Language = viewer.Language;
         var result = await mediator.Send(command);
         return Json(result);
     }
@@ -47,7 +53,13 @@ public partial class WinLossLimitController(IMediator mediator, IUserSession use
             return Json(new { isSuccessful = false, message = "Unauthorized" });
         }
         
+        command.SubAccId = viewer.SubAccId;
+        command.SubAccName = viewer.SubAccName;
+        command.UserId = viewer.Id;
+        command.IP = viewer.IP;
+        command.SettingStatus = AppSettings.SettingStatus;
         command.SiteDB = (short)userSession.SiteDBGroupId;
+        command.Language = viewer.Language;
         var result = await mediator.Send(command);
         return Json(result);
     }
