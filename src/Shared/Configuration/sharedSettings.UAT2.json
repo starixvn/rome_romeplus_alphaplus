@@ -140,8 +140,8 @@
   "RedisConfiguration": "vn-alpha-state383.tcp-kluat.gamora.prod:16383,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged,connectTimeout=6300",
   "RemotingRefUrl": "http://shared_fanex_remotingref_UAT:5000/",
   "Fanex.Customer": {
-    "ServiceUri": "http://customer-api.st-kluat.gamora.prod/main/api/",
-    "CdnUri": "//cdn-customer.starixuat.com/v2/",
+    "ServiceUri": "http://customer-api.st-kluat.gamora.prod/v3/api/",
+    "CdnUri": "//cdn-customer.starixuat.com/v3/",
     "SystemId": 6
   },
   "SystemId": 2,
