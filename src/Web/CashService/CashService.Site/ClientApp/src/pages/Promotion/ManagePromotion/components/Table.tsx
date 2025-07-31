@@ -1,4 +1,5 @@
-﻿import React, { useEffect, useState } from 'react';
+﻿import Tippy from '@tippyjs/react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
@@ -38,7 +39,29 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
     if (!products || products.length === 0) return '';
     const names = products.slice(0, maxDisplay).map((p) => p.productName);
     const remain = products.length - maxDisplay;
-    return remain > 0 ? `${names.join('/ ')} + ${remain} more` : names.join('/ ');
+    const remainNames = products.slice(maxDisplay).map((p) => p.productName);
+
+    if (remain > 0) {
+      const tooltipContent = (        
+        <div className="space-y-1">
+          {remainNames.map((name, index) => (
+            <div key={index} className="text-sm">
+              {name}
+            </div>
+          ))}
+        </div>
+      );
+      
+      return (
+        <Tippy content={tooltipContent} placement="top" theme="light" arrow={true}>
+          <span className="cursor-help">
+            {names.join('/ ')} + {remain} more
+          </span>
+        </Tippy>
+      );
+    }
+    
+    return names.join('/ ');
   };
 
   const displayGridProducts = (promotions: PromotionDetail[]): ProductSetting[] => {
