@@ -38,14 +38,20 @@ public class SportsbookPotentialWinLimitHandler(IPotentialWinLimitService potent
     {
         var result = await potentialWinLimitService.ResetCurrentSportsbookWinAmount(
             new ResetCurrentSportsbookWinAmountParam(
-                request.SiteDB,
                 request.CustId,
+                request.ProductId,
+                request.SportType,
+                request.BetType,
+                request.SubAccId,
+                request.SubAccName,
                 request.UserId,
+                request.IP,
+                request.SettingStatus,
                 request.Username,
                 request.Language,
-                request.SettingStatus
+                request.SiteDB
             )
-        );
+        ); 
 
          if (result.IsSuccessful)
         {

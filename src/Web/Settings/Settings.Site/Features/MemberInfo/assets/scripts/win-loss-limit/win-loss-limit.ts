@@ -207,7 +207,7 @@ class WinLossLimit {
             });
         });
     };
-}
+} 
 
 const winLossLimit = new WinLossLimit(
     $,
