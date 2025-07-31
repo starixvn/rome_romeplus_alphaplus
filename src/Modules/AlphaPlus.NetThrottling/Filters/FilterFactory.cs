@@ -26,7 +26,13 @@ namespace AlphaPlus.NetThrottling.Filters
                 _ => throw new NotImplementedException()
             };
 
-            filters.Add(type, filter);
+            // Use TryAdd to handle race conditions
+            if (!filters.TryAdd(type, filter))
+            {
+                // If TryAdd fails, another thread has already added the filter
+                // Get the existing filter from the dictionary
+                return filters[type];
+            }
 
             return filter;
         }
