@@ -5,6 +5,10 @@ namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit
 {
     public class ResetCurrentWinAmountCriteria : NonQueryCommand
     {
+        public ResetCurrentWinAmountCriteria()
+        {
+        }
+
         public ResetCurrentWinAmountCriteria(ResetCurrentWinAmountParam param)
         {
             CustId = param.CustId;

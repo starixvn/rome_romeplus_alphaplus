@@ -6,6 +6,10 @@ namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit
 {
     public class ResetCurrentSportsbookWinAmountCriteria : NonQueryCommand
     {
+        public ResetCurrentSportsbookWinAmountCriteria()
+        {
+        }
+
         public ResetCurrentSportsbookWinAmountCriteria(ResetCurrentSportsbookWinAmountParam param)
         {
             CustId = param.CustId;
