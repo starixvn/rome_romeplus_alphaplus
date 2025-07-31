@@ -3695,4 +3695,7 @@
   <data name="BankName_TTB" xml:space="preserve">
     <value>TMBThanachart Bank</value>
   </data>
+  <data name="winAmount" xml:space="preserve">
+    <value>Win Amount</value>
+  </data>
 </root>

@@ -4710,4 +4710,7 @@
   <data name="AgentBankAccount" xml:space="preserve">
     <value>บัญชีธนาคารตัวแทน</value>
   </data>
+  <data name="winAmount" xml:space="preserve">
+    <value>ยอดชนะ</value>
+  </data>
 </root>

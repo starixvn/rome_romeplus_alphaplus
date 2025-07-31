@@ -2736,4 +2736,7 @@
   <data name="AgentBankAccount" xml:space="preserve">
     <value>エージェントの銀行口座</value>
   </data>
+  <data name="winAmount" xml:space="preserve">
+    <value>当選金額</value>
+  </data>
 </root>

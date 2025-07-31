@@ -10645,6 +10645,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Win Amount.
+        /// </summary>
+        public static string winAmount {
+            get {
+                return ResourceManager.GetString("winAmount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Win Limit.
         /// </summary>
         public static string WinLimit {

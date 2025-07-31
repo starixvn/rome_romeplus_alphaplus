@@ -3453,4 +3453,7 @@
   <data name="AgentBankAccount" xml:space="preserve">
     <value>代理的銀行賬戶</value>
   </data>
+  <data name="winAmount" xml:space="preserve">
+    <value>贏額</value>
+  </data>
 </root>
