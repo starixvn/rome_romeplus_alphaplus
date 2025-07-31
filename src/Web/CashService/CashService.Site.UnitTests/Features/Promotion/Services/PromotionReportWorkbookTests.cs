@@ -1,3 +1,4 @@
+using System.Reflection;
 using AlphaPlus.CashService.Site.Features.Promotion.Models;
 using AlphaPlus.CashService.Site.Features.Promotion.Requests;
 using AlphaPlus.CashService.Site.Features.Promotion.Services;
@@ -5,7 +6,6 @@ using AlphaPlus.Shared.AppResources.CashServices;
 using Microsoft.AspNetCore.Hosting;
 using Moq;
 using ONEbook.SpreadSheets;
-using System.Reflection;
 using Xunit;
 
 namespace AlphaPlus.CashService.Site.UnitTests.Features.Promotion.Services;
@@ -64,9 +64,9 @@ public class PromotionReportWorkbookTests
     public void BuildExcelFile_ShouldReturnExcelFileViewModel_WithCorrectFileName()
     {
         // Arrange
-        var fromDate = _request.FromDate.ToString("dd/MM/yyyy");
-        var toDate = _request.ToDate.ToString("dd/MM/yyyy");
-        var expectedFileName = $"{CashServicesResx.PromotionReport}-{_request.Username}-{fromDate}-{toDate}";
+        var fromDate = _request.FromDate.ToString("MMddyyyy");
+        var toDate = _request.ToDate.ToString("MMddyyyy");
+        var expectedFileName = $"{CashServicesResx.PromotionReport}-{_request.Username}-{fromDate}-{toDate}.xls";
 
         // Act
         var result = _reportWorkbook.BuildExcelFile(_request, _reportData);
