@@ -7,13 +7,17 @@
     --button-icon-hover: rgba(255,255,255,.1);
     --cashservice-color: #41a4ff;
 }
-
-#tbl-report tbody td {
-    overflow: hidden;
-    white-space: nowrap;
-    word-break: break-all;
+.note{
+    &.has-icon{
+        margin-top: -7px;
+        margin-bottom: 7px;
+    }
+    .reset-win-amount{
+        margin: 0 4px 0 0;
+        position: relative;
+        top: 1px;
+    }
 }
-
 .col-no {
     width: 50px;
 }
@@ -26,12 +30,9 @@
     width: 190px;
 }
 
-.col-first-name {
+.col-first-name, .col-last-name {
     width: 120px;
-}
-
-.col-last-name {
-    width: 120px;
+    word-break: break-word;
 }
 
 .col-player-id {
@@ -76,10 +77,13 @@
 .col-reset{
     text-align: center;
     position: relative;
+    min-width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     .ic-refresh{
-        position: absolute;
-        right: 0;
-        top: -2px;
+        position: relative;
     }
 }
 

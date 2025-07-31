@@ -64,6 +64,9 @@
             <div class="note">
                 <span class="star">*</span>@Resources.PotentialWinLimitNote2
             </div>
+            <div class="note">
+                <span class="star">*</span>Lorem ipsum dolor sit <span class='ic-refresh reset-win-amount'></span> amet consectetur adipisicing elit. Quisquam, quos.
+            </div>
         </div>
         <div class="list-icon">
             <ul>
@@ -132,6 +135,7 @@
                             <td class="text-center">@(winLossLimitDetail.IsAutoReset ? Resources.Yes : Resources.No2)</td>
                             <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.AccumToWin)</td>
                             <td class="text-right">
+                                <div class="col-reset">
                                 @HtmlHelpers.FormatNumber(winLossLimitDetail.AccumWinLoss)
                                 @if (winLossLimitDetail.IsCashMember 
                                     && Model.ViewerLevel.IsAgentLevel()
@@ -143,6 +147,7 @@
                                         data-username="@winLossLimitDetail.Username"
                                         title="@Resources.ResetCurrentWinAmount"></span>
                                 }
+                                </div>
                             </td>
                             <td class="text-right">
                                 @HtmlHelpers.FormatNumber(winLossLimitDetail.PotentialWin)
