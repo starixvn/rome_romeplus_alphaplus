@@ -8,6 +8,7 @@ public class RevertWithdrawalTransactionToPendingCommand : INonQueryCommand
     public long TransId { get; set; }
     public string Remark { get; set; }
     public int UserId { get; set; }
+    public int SubAccId { get; set; }
     public string Ip { get; set; }
     public short SiteDbGroupId { get; set; }
     public string CashAccumCreditTbl { get; set; }
