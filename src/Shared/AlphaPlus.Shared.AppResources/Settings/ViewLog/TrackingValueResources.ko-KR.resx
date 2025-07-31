@@ -1714,4 +1714,7 @@
   <data name="winAmount" xml:space="preserve">
     <value>당첨금액</value>
   </data>
+  <data name="NoMatchingBankAccount" xml:space="preserve">
+    <value>일치하는 은행 계좌가 없습니다</value>
+  </data>
 </root>

@@ -2739,4 +2739,7 @@
   <data name="winAmount" xml:space="preserve">
     <value>当選金額</value>
   </data>
+  <data name="NoMatchingBankAccount" xml:space="preserve">
+    <value>一致する銀行口座がありません</value>
+  </data>
 </root>

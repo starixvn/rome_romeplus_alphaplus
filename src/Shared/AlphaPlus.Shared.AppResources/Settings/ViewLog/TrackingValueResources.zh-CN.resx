@@ -3456,4 +3456,7 @@
   <data name="winAmount" xml:space="preserve">
     <value>赢额</value>
   </data>
+  <data name="NoMatchingBankAccount" xml:space="preserve">
+    <value>没有匹配的银行账户</value>
+  </data>
 </root>

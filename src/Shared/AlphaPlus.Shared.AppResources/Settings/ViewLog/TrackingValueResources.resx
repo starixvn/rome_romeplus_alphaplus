@@ -3698,4 +3698,7 @@
   <data name="winAmount" xml:space="preserve">
     <value>Win Amount</value>
   </data>
+  <data name="NoMatchingBankAccount" xml:space="preserve">
+    <value>No Matching Bank Account</value>
+  </data>
 </root>

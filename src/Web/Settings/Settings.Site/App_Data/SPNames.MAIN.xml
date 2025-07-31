@@ -392,9 +392,9 @@
         <Setting Key="Age_UserLog_CreditSelTotalRecords" SpName="Age_UserLog_CreditSelTotalRecords" DbName="DBLOG.bodb_CustomerLog.wsv_alp" />
         <Setting Key="Acc_UserLog_LoginSelTotalRecords" SpName="Acc_UserLog_LoginSelTotalRecords" DbName="DBLOG.bodb_CustomerLog.wsv_alp" />
 
-        <Setting Key="Acc_CashService_UserLog_RunSPSel" SpName="Acc_CashService_UserLog_RunSPSel_uat2" DbName="DBLOG.bodb_CustomerLog.wsv_alp">
+        <Setting Key="Acc_CashService_UserLog_RunSPSel" SpName="Acc_CashService_UserLog_RunSPSel_uat2" DbName="DBLOG.bodb_CustomerLog.wsv_CashService">
             <Mapping DataField="LogID" ObjectProperty="LogId" />
-            <Mapping DataField="UserID" ObjectProperty="UserId" />
+            <Mapping DataField="UserID" ObjectProperty="UserId" /> 
             <Mapping DataField="Username" ObjectProperty="Username" />
             <Mapping DataField="TrackingValueOld" ObjectProperty="TrackingValueOld" />
             <Mapping DataField="TrackingValue" ObjectProperty="TrackingValue" />
@@ -407,7 +407,7 @@
             <Mapping DataField="CustName" ObjectProperty="CustName" />
             <Mapping DataField="ActionName" ObjectProperty="ActionName" />
         </Setting>
-        <Setting Key="Acc_CashService_UserLog_RunSPSelTotalRecords" SpName="Acc_CashService_UserLog_RunSPSelTotalRecords_uat2" DbName="DBLOG.bodb_CustomerLog.wsv_alp" />
+        <Setting Key="Acc_CashService_UserLog_RunSPSelTotalRecords" SpName="Acc_CashService_UserLog_RunSPSelTotalRecords_uat2" DbName="DBLOG.bodb_CustomerLog.wsv_CashService" />
 
         <Setting Key="Acc_UserLog_LogActionTypeSel" SpName="Acc_UserLog_LogActionTypeSel_uat2" DbName="DBLOG.bodb_CustomerLog.wsv_alp" Plain="0">
             <Mapping DataField="ActionTypeID" ObjectProperty="Id" />

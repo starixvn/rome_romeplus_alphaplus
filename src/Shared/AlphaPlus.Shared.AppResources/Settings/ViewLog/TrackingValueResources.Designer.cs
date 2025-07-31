@@ -8053,6 +8053,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No Matching Bank Account.
+        /// </summary>
+        public static string NoMatchingBankAccount {
+            get {
+                return ResourceManager.GetString("NoMatchingBankAccount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Normal Announcement.
         /// </summary>
         public static string NormalAnnouncement {

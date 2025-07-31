@@ -575,5 +575,10 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
             result = result.Replace($"({oldValue})", $"({formatDiffFunc(oldValue)})");
             return result;
         }
+
+        public string FormatBankAccountNumber(string bankAccountNumber)
+        {
+            return bankAccountNumber.Replace("NoMatchingBankAccount", GetLogResource("NoMatchingBankAccount"));
+        }
     }
 }

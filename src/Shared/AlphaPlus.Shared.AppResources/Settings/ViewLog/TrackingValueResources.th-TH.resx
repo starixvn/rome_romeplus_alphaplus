@@ -4713,4 +4713,7 @@
   <data name="winAmount" xml:space="preserve">
     <value>ยอดชนะ</value>
   </data>
+  <data name="NoMatchingBankAccount" xml:space="preserve">
+    <value>ไม่มีบัญชีธนาคารที่ตรงกัน</value>
+  </data>
 </root>

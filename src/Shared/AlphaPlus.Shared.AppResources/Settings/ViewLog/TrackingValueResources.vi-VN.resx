@@ -3198,4 +3198,7 @@
   <data name="winAmount" xml:space="preserve">
     <value>Số tiền thắng</value>
   </data>
+  <data name="NoMatchingBankAccount" xml:space="preserve">
+    <value>Không có tài khoản ngân hàng tương ứng</value>
+  </data>
 </root>
