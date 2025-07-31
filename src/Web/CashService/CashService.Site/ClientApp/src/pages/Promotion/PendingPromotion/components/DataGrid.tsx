@@ -101,7 +101,7 @@ const DataGrid: React.FC<DataGridProps> = ({
   return (
     <>
       <div className="table-fixed-header table-fixed-body min-h-0">
-        <table className="w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px]">
+        <table className="w-full border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px]">
           <thead className="z-11!">
             <tr>
               <th
@@ -172,7 +172,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                     <div>{item.firstName}</div>
                     <div>{item.lastName}</div>
                   </td>
-                  <td className="text-center">{item.title}</td>
+                  <td className="text-center"><div className='w-[100%] max-w-[400px] min-w-[300px] max-[768px]:max-w-[200px] max-[768px]:min-w-[150px]'>{item.title}</div></td>
                   <td className="text-center">{item.promotionTypeName}</td>
                   <td className="text-right">
                     <div className="flex w-full justify-end relative">

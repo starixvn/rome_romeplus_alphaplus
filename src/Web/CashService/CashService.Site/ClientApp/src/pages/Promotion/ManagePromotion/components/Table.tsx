@@ -143,7 +143,7 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
           <ButtonIconComponent style='Delete' onClick={() => onDelete?.(item)} />
         </div>
       </td>
-      <td className=" text-left">{item.promotionTitle}</td>
+      <td className=" text-left"><div className='w-[100%] max-w-[300px] min-w-[200px] max-[768px]:max-w-[200px] max-[768px]:min-w-[150px]'><span className="overflow-hidden text-ellipsis break-words line-clamp-[49] w-[100%]">{item.promotionTitle}</span></div></td>
       <td className=" text-center">{item.promotionTypeName}</td>
       {gridProducts.map((product) =>
         displayPercentageMaxPayout(item.productSettings, product.productCategoryId)
@@ -200,7 +200,7 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
   return (
     <>
       <div className="table-fixed-header table-fixed-body bg-[#ffffff] max-h-[calc(100vh-140px)] overflow-y-auto">
-        <table className="min-w-[1300px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
+        <table className="min-w-[1300px] w-full border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
           {buildHeader()}
           {buildBody()}
         </table>
