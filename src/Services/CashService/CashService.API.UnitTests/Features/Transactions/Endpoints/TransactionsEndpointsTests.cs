@@ -72,7 +72,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Transactions.Endpoints
         public async Task RevertWithdrawalTransactionToPending_ShouldReturnOkResultWithResultModel()
         {
             // Arrange
-            var model = new RevertWithdrawalTransaction { TransId = 1 };
+            var model = new RevertTransaction { TransId = 1 };
             var command = new RevertWithdrawalTransactionToPendingCommand { TransId = 1 };
             var expectedResultModel = new ResultModel { Code = 0, Message = "Success" };
             mockTransactionService.Setup(s => s.RevertWithdrawalTransactionToPending(model)).ReturnsAsync(expectedResultModel);
@@ -195,7 +195,7 @@ namespace AlphaPlus.CashService.API.Features.Transactions.Endpoints
             return Results.Ok(result);
         }
 
-        public static async Task<IResult> RevertWithdrawalTransactionToPendingHandler(ITransactionService service, RevertWithdrawalTransaction command)
+        public static async Task<IResult> RevertWithdrawalTransactionToPendingHandler(ITransactionService service, RevertTransaction command)
         {
             var result = await service.RevertWithdrawalTransactionToPending(command);
             return Results.Ok(result);

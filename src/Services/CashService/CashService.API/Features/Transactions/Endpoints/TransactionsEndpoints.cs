@@ -57,9 +57,9 @@ public static class TransactionsEndpoints
             Description = "Returns transaction details"
         });
 
-        group.MapPost("/revert-pending-deposit", async (ITransactionService service, [FromBody] RevertDepositTransactionToPendingCommand command) =>
+        group.MapPost("/revert-pending-deposit", async (ITransactionService service, [FromBody] RevertTransaction model) =>
         {
-            var result = await service.RevertDepositTransactionToPending(command);
+            var result = await service.RevertDepositTransactionToPending(model);
             return Results.Ok(result);
         })
         .WithName("RevertDepositTransactionToPending")
@@ -69,7 +69,7 @@ public static class TransactionsEndpoints
             Description = "Revert transaction to pending"
         });
 
-        group.MapPost("/revert-pending-withdrawal", async (ITransactionService service, [FromBody] RevertWithdrawalTransaction model) =>
+        group.MapPost("/revert-pending-withdrawal", async (ITransactionService service, [FromBody] RevertTransaction model) =>
         {
             var result = await service.RevertWithdrawalTransactionToPending(model);
             return Results.Ok(result);

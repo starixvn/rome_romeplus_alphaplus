@@ -19,9 +19,9 @@ public interface ITransactionService
 
     Task<TransactionModel> GetTransactionByIdAsync(long transactionId, int custId, short siteDbGroupId);
 
-    Task<ResultModel> RevertDepositTransactionToPending(RevertDepositTransactionToPendingCommand command);
+    Task<ResultModel> RevertDepositTransactionToPending(RevertTransaction command);
 
-    Task<ResultModel> RevertWithdrawalTransactionToPending(RevertWithdrawalTransaction model);
+    Task<ResultModel> RevertWithdrawalTransactionToPending(RevertTransaction model);
 
     Task<IEnumerable<MemberInfo>> GetMembersAsync(int agentId, short custDbGroupId);
 
@@ -71,8 +71,19 @@ public class TransactionService(IDynamicRepository dynamicRepository, ICommonSer
         return transaction;
     }
 
-    public async Task<ResultModel> RevertDepositTransactionToPending(RevertDepositTransactionToPendingCommand command)
+    public async Task<ResultModel> RevertDepositTransactionToPending(RevertTransaction model)
     {
+        var command = new RevertDepositTransactionToPendingCommand
+        {
+            TransId = model.TransId,
+            Remark = model.Remark,
+            AgentId = model.UserId,
+            UserId = model.UserId,
+            SubAccId = model.SubAccId,
+            Ip = model.IP,
+            SiteDbGroupId = model.SiteDBGroupId,
+            CustDbGroupId = model.CustDBGroupId,
+        };
         var logs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command);
         OnAfterUpdateTransaction(command.CashAccumCreditTbl, command.SiteDbGroupId, command.CustDbGroupId, logs.ToList());
 
@@ -83,7 +94,7 @@ public class TransactionService(IDynamicRepository dynamicRepository, ICommonSer
         };
     }
 
-    public async Task<ResultModel> RevertWithdrawalTransactionToPending(RevertWithdrawalTransaction model)
+    public async Task<ResultModel> RevertWithdrawalTransactionToPending(RevertTransaction model)
     {
         var memberSettings = await GetMemberSettingDepositAsync(model.CustId, model.CustDBGroupId);
         var command = new RevertWithdrawalTransactionToPendingCommand
