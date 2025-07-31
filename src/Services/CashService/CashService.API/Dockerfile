@@ -3,7 +3,6 @@ WORKDIR /build
 
 # Create a dedicated layer for NuGet packages with improved caching
 COPY "src/NuGet.config" "src/NuGet.config"
-COPY "src/Modules/AlphaPlus.Shared/AlphaPlus.Shared.csproj" "src/Modules/AlphaPlus.Shared/AlphaPlus.Shared.csproj"
 COPY "src/Services/CashService/CashService.API/CashService.API.csproj" "src/Services/CashService/CashService.API/CashService.API.csproj"
 RUN --mount=type=cache,target=/root/.nuget/packages \
   dotnet restore "src/Services/CashService/CashService.API/CashService.API.csproj" -v d
