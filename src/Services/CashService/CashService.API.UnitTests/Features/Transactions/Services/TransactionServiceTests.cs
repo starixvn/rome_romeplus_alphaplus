@@ -139,6 +139,7 @@ public class TransactionServiceTests
     public async Task RevertWithdrawalTransactionToPending_ShouldReturnResultModel()
     {
         // Arrange
+        var model = new RevertWithdrawalTransaction() { TransId = 1 };
         var command = new RevertWithdrawalTransactionToPendingCommand { TransId = 1, ErrCode = 0, ErrMsg = "Success" };
         mockDynamicRepository
            .Setup(repo => repo.ExecuteAsync(command, It.IsAny<string>(), It.IsAny<CancellationToken>()))
@@ -150,7 +151,7 @@ public class TransactionServiceTests
            });
 
         // Act
-        var result = await transactionService.RevertWithdrawalTransactionToPending(command);
+        var result = await transactionService.RevertWithdrawalTransactionToPending(model);
 
         // Assert
         Assert.NotNull(result);

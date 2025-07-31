@@ -72,17 +72,18 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Transactions.Endpoints
         public async Task RevertWithdrawalTransactionToPending_ShouldReturnOkResultWithResultModel()
         {
             // Arrange
+            var model = new RevertWithdrawalTransaction { TransId = 1 };
             var command = new RevertWithdrawalTransactionToPendingCommand { TransId = 1 };
             var expectedResultModel = new ResultModel { Code = 0, Message = "Success" };
-            mockTransactionService.Setup(s => s.RevertWithdrawalTransactionToPending(command)).ReturnsAsync(expectedResultModel);
+            mockTransactionService.Setup(s => s.RevertWithdrawalTransactionToPending(model)).ReturnsAsync(expectedResultModel);
 
             // Act
-            var result = await AlphaPlus.CashService.API.Features.Transactions.Endpoints.TransactionsEndpoints.RevertWithdrawalTransactionToPendingHandler(mockTransactionService.Object, command);
+            var result = await API.Features.Transactions.Endpoints.TransactionsEndpoints.RevertWithdrawalTransactionToPendingHandler(mockTransactionService.Object, model);
 
             // Assert
             var okResult = Assert.IsType<Microsoft.AspNetCore.Http.HttpResults.Ok<ResultModel>>(result);
             Assert.Equal(expectedResultModel, okResult.Value);
-            mockTransactionService.Verify(s => s.RevertWithdrawalTransactionToPending(command), Times.Once);
+            mockTransactionService.Verify(s => s.RevertWithdrawalTransactionToPending(model), Times.Once);
         }
 
         [Fact]
@@ -194,7 +195,7 @@ namespace AlphaPlus.CashService.API.Features.Transactions.Endpoints
             return Results.Ok(result);
         }
 
-        public static async Task<IResult> RevertWithdrawalTransactionToPendingHandler(ITransactionService service, RevertWithdrawalTransactionToPendingCommand command)
+        public static async Task<IResult> RevertWithdrawalTransactionToPendingHandler(ITransactionService service, RevertWithdrawalTransaction command)
         {
             var result = await service.RevertWithdrawalTransactionToPending(command);
             return Results.Ok(result);
