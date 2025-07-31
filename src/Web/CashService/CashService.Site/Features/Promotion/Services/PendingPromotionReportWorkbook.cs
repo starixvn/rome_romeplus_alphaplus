@@ -58,7 +58,7 @@ public class PendingPromotionReportWorkbook(IWebHostEnvironment webHostEnvironme
         row.SetCellValue(colIndex++, CashServicesResx.Title);
         row.SetCellValue(colIndex++, CashServicesResx.PromotionType);
         row.SetCellValue(colIndex++, AlphaPlus.Shared.AppResources.Report.Resources.Amount);
-        row.SetCellValue(colIndex, AlphaPlus.Shared.AppResources.Report.Resources.DateRange);
+        row.SetCellValue(colIndex, CashServicesResx.RebatePeriod);
     }
 
     private static string GetTitle(GetPendingPromotionViewModel param)

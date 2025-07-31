@@ -3,6 +3,8 @@ namespace AlphaPlus.CashService.API.Features.Transactions.Services;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AlphaPlus.CashService.API.Features.PendingDeposit.Criteria;
+using AlphaPlus.CashService.API.Features.PendingDeposit.Models;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Services;
 using Criteria;
@@ -19,11 +21,13 @@ public interface ITransactionService
 
     Task<ResultModel> RevertDepositTransactionToPending(RevertDepositTransactionToPendingCommand command);
 
-    Task<ResultModel> RevertWithdrawalTransactionToPending(RevertWithdrawalTransactionToPendingCommand command);
+    Task<ResultModel> RevertWithdrawalTransactionToPending(RevertWithdrawalTransaction model);
 
     Task<IEnumerable<MemberInfo>> GetMembersAsync(int agentId, short custDbGroupId);
 
     void OnAfterUpdateTransaction(string cashAccumCreditTbl, short siteDbGroupId, short custDbGroupId, List<WriteLogDBCommandModel> logs);
+
+    Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int custId, int custDbGroupId);
 }
 
 public class TransactionService(IDynamicRepository dynamicRepository, ICommonService commonService, ILogger logger)
@@ -38,6 +42,21 @@ public class TransactionService(IDynamicRepository dynamicRepository, ICommonSer
             Items = rawData.ToList(),
             TotalCount = criteria.TotalRecords,
         };
+    }
+
+    public async Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int custId, int custDbGroupId)
+    {
+        var memberSetting = new MemberSettingDeposit();
+        var criteria = new GetMemberSettingDepositCriteria
+        {
+            CustId = custId,
+            CustDbGroupId = custDbGroupId
+        };
+        await dynamicRepository.GetAsync<MemberSettingDeposit>(criteria);
+        memberSetting.AgentGivenCredit = criteria.AgentGivenCredit;
+        memberSetting.CreditMembers_GivenCredit = criteria.CreditMembers_GivenCredit;
+
+        return memberSetting;
     }
 
     public async Task<TransactionModel> GetTransactionByIdAsync(long transactionId, int custId, short siteDbGroupId)
@@ -64,8 +83,22 @@ public class TransactionService(IDynamicRepository dynamicRepository, ICommonSer
         };
     }
 
-    public async Task<ResultModel> RevertWithdrawalTransactionToPending(RevertWithdrawalTransactionToPendingCommand command)
+    public async Task<ResultModel> RevertWithdrawalTransactionToPending(RevertWithdrawalTransaction model)
     {
+        var memberSettings = await GetMemberSettingDepositAsync(model.CustId, model.CustDBGroupId);
+        var command = new RevertWithdrawalTransactionToPendingCommand
+        {
+            TransId = model.TransId,
+            AgentId = model.UserId,
+            Remark = model.Remark,
+            UserId = model.UserId,
+            SubAccId = model.SubAccId,
+            Ip = model.IP,
+            SiteDbGroupId = model.SiteDBGroupId,
+            CustDbGroupId = model.CustDBGroupId,
+            AgentGivenCredit = memberSettings.AgentGivenCredit,
+            CreditMembersGivenCredit = memberSettings.CreditMembers_GivenCredit
+        };
         var logs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command);
         OnAfterUpdateTransaction(command.CashAccumCreditTbl, command.SiteDbGroupId, command.CustDbGroupId, logs.ToList());
         return new ResultModel

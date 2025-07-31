@@ -52,6 +52,7 @@ public static class ErrorCodeHandler
         {
             405 => CashServicesResx.InvalidParameters,
             406 => CashServicesResx.MemberCashBalanceIsInsufficient,
+            407 => CashServicesResx.TheAmountExceedsTheAllowedMinimumOrMaximumValue,
             409 => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain,
             _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain
         };

@@ -139,7 +139,7 @@ const DataGrid: React.FC<DataGridProps> = ({
               <th scope="col" className="min-w-[80px]">
                 {t('table.amount')}
               </th>
-              <th scope="col">{t('table.dateRange')}</th>
+              <th scope="col">{t('table.rebatePeriod')}</th>
               {isCashServiceEnabled && (
                 <th scope="col" className="w-[60px]">
                   {t('table.actions')}
@@ -177,7 +177,11 @@ const DataGrid: React.FC<DataGridProps> = ({
                     <div>{item.firstName}</div>
                     <div>{item.lastName}</div>
                   </td>
-                  <td className="text-center"><div className='w-[100%] max-w-[400px] min-w-[300px] max-[768px]:max-w-[200px] max-[768px]:min-w-[150px]'>{item.title}</div></td>
+                  <td className="text-center">
+                    <div className="w-[100%] max-w-[400px] min-w-[300px] max-[768px]:max-w-[200px] max-[768px]:min-w-[150px]">
+                      {item.title}
+                    </div>
+                  </td>
                   <td className="text-center">{item.promotionTypeName}</td>
                   <td className="text-right">
                     <div className="flex w-full justify-end relative">

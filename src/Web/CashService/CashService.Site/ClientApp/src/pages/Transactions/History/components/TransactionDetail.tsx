@@ -88,7 +88,8 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
       const response = await transactionAPI.revertTransaction(
         transactionId,
         remarks,
-        transactionType === TransactionType.Deposit
+        transactionType === TransactionType.Deposit,
+        custId
       );
       if (response.isSuccessful) {
         setRevertAlert({

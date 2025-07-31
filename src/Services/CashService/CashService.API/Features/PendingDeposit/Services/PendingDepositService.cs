@@ -11,8 +11,6 @@ public interface IPendingDepositService
 {
     Task<decimal> GetLimitAmtDepositAsync(int agentId, int custId, int custDbGroupId);
 
-    Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int custId, int custDbGroupId);
-
     Task<MemberSettingDeposit> GetMemberSettingDepositWhenProcessTransactionAsync(int custId, int agentId,
         int custDbGroupId);
 
@@ -65,24 +63,9 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
         return memberSetting;
     }
 
-    public async Task<MemberSettingDeposit> GetMemberSettingDepositAsync(int custId, int custDbGroupId)
-    {
-        var memberSetting = new MemberSettingDeposit();
-        var criteria = new GetMemberSettingDepositCriteria
-        {
-            CustId = custId,
-            CustDbGroupId = custDbGroupId
-        };
-        await dynamicRepository.GetAsync<MemberSettingDeposit>(criteria);
-        memberSetting.AgentGivenCredit = criteria.AgentGivenCredit;
-        memberSetting.CreditMembers_GivenCredit = criteria.CreditMembers_GivenCredit;
-
-        return memberSetting;
-    }
-
     public async Task<ResultModel> AddManualDepositAsync(CreateManualDepositModel param)
     {
-        var memberSettings = await GetMemberSettingDepositAsync(param.CustId, param.CustDbGroupId);
+        var memberSettings = await transactionService.GetMemberSettingDepositAsync(param.CustId, param.CustDbGroupId);
         var command = new CreateManualDepositCommand
         {
             CustId = param.CustId,

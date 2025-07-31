@@ -72,7 +72,8 @@ export const transactionAPI = {
   revertTransaction: async (
     transactionId: string,
     remarks: string,
-    isDeposit: boolean
+    isDeposit: boolean,
+    custId: number | null
   ): Promise<ResultModel> => {
     const url = isDeposit
       ? 'RevertDepositTransactionToPending'
@@ -80,6 +81,7 @@ export const transactionAPI = {
     try {
       const response = await api.post<ResultModel>(url, {
         transId: transactionId,
+        custId: custId,
         remark: remarks,
       });
       return response.data;

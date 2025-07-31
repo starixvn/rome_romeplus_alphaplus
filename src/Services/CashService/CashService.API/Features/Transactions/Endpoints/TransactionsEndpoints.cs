@@ -1,5 +1,6 @@
 ﻿namespace AlphaPlus.CashService.API.Features.Transactions.Endpoints;
 
+using AlphaPlus.CashService.API.Features.Transactions.Models;
 using Criteria;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
@@ -68,9 +69,9 @@ public static class TransactionsEndpoints
             Description = "Revert transaction to pending"
         });
 
-        group.MapPost("/revert-pending-withdrawal", async (ITransactionService service, [FromBody] RevertWithdrawalTransactionToPendingCommand command) =>
+        group.MapPost("/revert-pending-withdrawal", async (ITransactionService service, [FromBody] RevertWithdrawalTransaction model) =>
         {
-            var result = await service.RevertWithdrawalTransactionToPending(command);
+            var result = await service.RevertWithdrawalTransactionToPending(model);
             return Results.Ok(result);
         })
         .WithName("RevertWithdrawalTransactionToPending")

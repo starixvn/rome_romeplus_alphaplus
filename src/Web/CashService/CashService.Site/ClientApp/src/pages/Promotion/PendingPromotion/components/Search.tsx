@@ -44,7 +44,7 @@ const Search: React.FC<SearchProps> = ({
       t('table.title'),
       t('table.promotionType'),
       t('table.amount'),
-      t('table.dateRange'),
+      t('table.rebatePeriod'),
     ];
 
     const rows = items.map((item, index) => {

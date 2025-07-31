@@ -179,7 +179,6 @@ public class PromotionService(IDynamicRepository repository,
             {
                 WriteLog(logUpdateStatus.ToList(), editPromotionMdoel.SiteDBGroupId);
             }
-
         }
 
         return result;
@@ -250,6 +249,7 @@ public class PromotionService(IDynamicRepository repository,
             UplineId = request.UserId,
             Amount = request.Amount,
             Remark = request.Remark,
+            SubAccId = request.SubAccId,
             AgentGivenCredit = memberSettings.AgentGivenCredit,
             CreditMembers_GivenCredit = memberSettings.CreditMembers_GivenCredit,
             CustDbGroupId = request.CustDBGroupId,

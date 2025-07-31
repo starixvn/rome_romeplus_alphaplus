@@ -8,9 +8,15 @@ public class RevertWithdrawalTransactionToPendingCommand : INonQueryCommand
     public long TransId { get; set; }
     public string Remark { get; set; }
     public int UserId { get; set; }
+    public int AgentId { get; set; }
     public int SubAccId { get; set; }
     public string Ip { get; set; }
     public short SiteDbGroupId { get; set; }
+    public decimal AgentGivenCredit { get; set; }
+
+    [SpParam(SqlParamName = "CreditMembers_GivenCredit")]
+    public decimal CreditMembersGivenCredit { get; set; }
+
     public string CashAccumCreditTbl { get; set; }
 
     [SpParam(Ignored = true)]

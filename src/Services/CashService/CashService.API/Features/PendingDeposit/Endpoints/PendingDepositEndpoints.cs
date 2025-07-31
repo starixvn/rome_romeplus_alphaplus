@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints;
 
+using Transactions.Services;
+
 public static class PendingDepositEndpoints
 {
     public static void MapPendingDepositEndpoints(this WebApplication app)
@@ -29,7 +31,7 @@ public static class PendingDepositEndpoints
 
         group.MapGet("/member-setting", async ([FromQuery] int custId,
             [FromQuery] int custDbGroupId
-            , IPendingDepositService service) =>
+            , ITransactionService service) =>
         {
             var memberSettingDeposit = await service.GetMemberSettingDepositAsync(custId, custDbGroupId);
             return Results.Ok(memberSettingDeposit);
