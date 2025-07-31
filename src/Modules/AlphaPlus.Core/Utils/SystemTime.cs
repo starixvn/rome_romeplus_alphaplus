@@ -7,12 +7,12 @@ public static class SystemTime
     public static DateTime Today => Now.Date;
 
     [ThreadStatic]
-    private static DateTime now = DateTime.MinValue;
+    private static DateTime now;
     public static DateTime Now
     {
         get
         {
-            if (now == DateTime.MinValue)
+            if (now == default)
             {
                 now = DateTime.Now;
             }
