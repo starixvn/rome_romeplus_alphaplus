@@ -142,6 +142,7 @@ public class TransactionsController(
         }
 
         request.UplineId = agentId;
+        request.SubAccId = userSession.SubAccId;
         request.Ip = userSession.UserLoginIp;
         request.SiteDbGroupId = siteDbGroupId;
         request.CustDbGroupId = custDbGroupId;
@@ -175,6 +176,7 @@ public class TransactionsController(
         }
 
         request.UplineId = agentId;
+        request.SubAccId = userSession.SubAccId;
         request.Ip = userSession.UserLoginIp;
         request.SiteDbGroupId = siteDbGroupId;
         request.CustDbGroupId = custDbGroupId;

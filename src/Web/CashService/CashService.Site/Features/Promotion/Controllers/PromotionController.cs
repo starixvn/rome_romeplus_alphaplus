@@ -155,12 +155,6 @@ public class PromotionController(
             return Unauthorized();
         }
 
-        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
-        if (isCashServiceEnabled == 0)
-        {
-            return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
-        }
-
         request.SetUserSession(userSession);
         request.ProductSettings = JsonConvert.DeserializeObject<List<PromotionProductSetting>>(request.ProductSettingsJson);
 
@@ -189,12 +183,6 @@ public class PromotionController(
             return Unauthorized();
         }
 
-        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
-        if (isCashServiceEnabled == 0)
-        {
-            return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
-        }
-
         request.SetUserSession(userSession);
         Console.WriteLine(JsonConvert.SerializeObject(request));
         if (request.IsValid())
@@ -220,12 +208,6 @@ public class PromotionController(
         if (userSession.IsInternal)
         {
             return Unauthorized();
-        }
-
-        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
-        if (isCashServiceEnabled == 0)
-        {
-            return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
         }
 
         var url = $"/api/promotions/delete/{promotionId}";
