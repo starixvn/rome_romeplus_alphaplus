@@ -1,7 +1,7 @@
 namespace AlphaPlus.CashService.Site.Features.Promotion.Controllers;
 
-using AlphaPlus.CashService.Site.Features.Promotion.Requests;
 using AlphaPlus.CashService.Site.Features.Shared.Requests;
+using AlphaPlus.CashService.Site.Features.Shared.Resources;
 using AlphaPlus.CashService.Site.Helpers;
 using AlphaPlus.Shared.AppResources.CashServices;
 using Core.Configurations;
@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 using Models;
 using Models.Products;
 using Newtonsoft.Json;
+using Requests;
 using Services;
 using Shared;
 using Shared.Contants;
@@ -36,9 +37,17 @@ public class PromotionController(
 {
     private readonly string _apiBaseUrl = configuration["CashService:APIUrl"];
 
-    public IActionResult Index() => View();
+    public async Task<IActionResult> Index()
+    {
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        return View(new SiteBaseViewModel { IsCashServiceEnabled = isCashServiceEnabled });
+    }
 
-    public IActionResult Pending() => View();
+    public async Task<IActionResult> Pending()
+    {
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        return View(new SiteBaseViewModel { IsCashServiceEnabled = isCashServiceEnabled });
+    }
 
     public IActionResult Report()
     {
@@ -141,6 +150,17 @@ public class PromotionController(
     [HttpPost]
     public async Task<IActionResult> AddPromotion([FromForm] AddPromotionRequest request)
     {
+        if (userSession.IsInternal)
+        {
+            return Unauthorized();
+        }
+
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        if (isCashServiceEnabled == 0)
+        {
+            return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
+        }
+
         request.SetUserSession(userSession);
         request.ProductSettings = JsonConvert.DeserializeObject<List<PromotionProductSetting>>(request.ProductSettingsJson);
 
@@ -153,17 +173,28 @@ public class PromotionController(
                 content.Banner = null;
             }
 
-             var url = $"/api/promotions";        
+            var url = $"/api/promotions";
             var result = await httpClientHelper.PostAsync<object, object>(url, request);
             return Json(result);
         }
-        
+
         return Json(new { Code = "01", Message = "Invalid request" });
     }
 
     [HttpPut]
     public async Task<IActionResult> EditPromotion(int promotionId, [FromForm] EditPromotionRequest request)
     {
+        if (userSession.IsInternal)
+        {
+            return Unauthorized();
+        }
+
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        if (isCashServiceEnabled == 0)
+        {
+            return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
+        }
+
         request.SetUserSession(userSession);
         Console.WriteLine(JsonConvert.SerializeObject(request));
         if (request.IsValid())
@@ -186,6 +217,17 @@ public class PromotionController(
     [HttpDelete]
     public async Task<IActionResult> DeletePromotion(int promotionId)
     {
+        if (userSession.IsInternal)
+        {
+            return Unauthorized();
+        }
+
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        if (isCashServiceEnabled == 0)
+        {
+            return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
+        }
+
         var url = $"/api/promotions/delete/{promotionId}";
 
         var request = new DeletePromotionRequest { PromotionId = promotionId };
@@ -222,6 +264,17 @@ public class PromotionController(
     [HttpPost]
     public async Task<IActionResult> AddBonus([FromBody] AddBonusRequest request)
     {
+        if (userSession.IsInternal)
+        {
+            return Unauthorized();
+        }
+
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        if (isCashServiceEnabled == 0)
+        {
+            return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
+        }
+
         request.SetUserSession(userSession);
         var url = $"/api/promotions/addBonus";
         var result = await httpClientHelper.PostAsync<AddBonusRequest, ResultModel>(url, request);
@@ -235,6 +288,17 @@ public class PromotionController(
     [HttpPost]
     public async Task<IActionResult> ApprovePromotionTransaction([FromBody] ProcessPromotionTransactionRequest request)
     {
+        if (userSession.IsInternal)
+        {
+            return Unauthorized();
+        }
+
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        if (isCashServiceEnabled == 0)
+        {
+            return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
+        }
+
         request.SetUserSession(userSession);
         request.StatusId = (int)TransactionStatus.Completed;
         var result = await UpdatePromoteTransactionStatus(request);
@@ -244,6 +308,17 @@ public class PromotionController(
     [HttpPost]
     public async Task<IActionResult> RejectPromotionTransaction([FromBody] ProcessPromotionTransactionRequest request)
     {
+        if (userSession.IsInternal)
+        {
+            return Unauthorized();
+        }
+
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        if (isCashServiceEnabled == 0)
+        {
+            return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
+        }
+
         request.SetUserSession(userSession);
         request.StatusId = (int)TransactionStatus.Rejected;
         var result = await UpdatePromoteTransactionStatus(request);

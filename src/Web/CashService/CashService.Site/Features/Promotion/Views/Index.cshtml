@@ -10,6 +10,7 @@
 }
 <div id="root"></div>
 <input type="hidden" name="__RequestVerificationToken" value="@ViewData["RequestVerificationToken"]" />
+<input type="hidden" id="IsCashServiceEnabled" value="@Model.IsCashServiceEnabled" />
 <environment names="Development">
     <script type="module" src="http://localhost:5173/src/pages/Promotion/ManagePromotion/index.tsx"></script>
 </environment>

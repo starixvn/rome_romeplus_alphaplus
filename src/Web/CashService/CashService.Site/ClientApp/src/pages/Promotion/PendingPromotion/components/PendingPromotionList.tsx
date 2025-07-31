@@ -143,7 +143,7 @@ const useDisplayedItems = (
   };
 };
 
-const PendingPromotionList: React.FC<PendingPromotionListProps> = () => {
+const PendingPromotionList: React.FC<PendingPromotionListProps> = ({ isCashServiceEnabled }) => {
   const { t } = useTranslation('promotion');
   const { t: tGlobal } = useTranslation('global');
   const { loading, error, apiData, fetchPendingPromotions, selectedItems, setSelectedItems } =
@@ -359,6 +359,7 @@ const PendingPromotionList: React.FC<PendingPromotionListProps> = () => {
             onApprove={() => setShowConfirm('approve')}
             onDownload={onDownload}
             isProcessing={isProcessing}
+            isCashServiceEnabled={isCashServiceEnabled}
           />
         </div>
 
@@ -375,6 +376,7 @@ const PendingPromotionList: React.FC<PendingPromotionListProps> = () => {
               toDate: apiParams.dateRange[1],
             });
           }}
+          isCashServiceEnabled={isCashServiceEnabled}
         />
 
         {!loading && tempTotalCount > 0 && (

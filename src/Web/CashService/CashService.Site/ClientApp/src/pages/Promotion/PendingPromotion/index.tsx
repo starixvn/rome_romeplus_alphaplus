@@ -37,7 +37,10 @@ const PendingPromotion: React.FC = () => {
         position="top-center"
       />
       {showAddBonus ? (
-        <AddBonusForm onClose={() => setShowAddBonus(false)} />
+        <AddBonusForm
+          onClose={() => setShowAddBonus(false)}
+          isCashServiceEnabled={isCashServiceEnabled}
+        />
       ) : (
         <div className="flex h-full flex-col">
           <TitleComponent text={t('pendingPromotion')} type="main" />
@@ -48,7 +51,7 @@ const PendingPromotion: React.FC = () => {
               className="min-w-[183px] [&>*]:min-w-[183px] [&>*]:inline-block"
             />
           </div>
-          {showAddBonus && <AddBonusForm onClose={() => setShowAddBonus(false)} />}
+
           <PendingPromotionList isCashServiceEnabled={isCashServiceEnabled} />
         </div>
       )}

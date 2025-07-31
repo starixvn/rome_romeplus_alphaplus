@@ -15,7 +15,7 @@ public struct PageAccessType
     public const string CashService = "[M]";
     public const string CashPromotion = "[N]";
 
-    private static Hashtable accessTypes = new Hashtable
+    private static readonly Hashtable accessTypes = new()
     {
         [CreateAccount] = false,
         [UpdateAccount] = false,
@@ -27,19 +27,9 @@ public struct PageAccessType
         [ViewBetLists] = false
     };
 
-
-    public static Hashtable AccessTypes
-    {
-        get
-        {
-            return accessTypes;
-        }
-    }
+    public static Hashtable AccessTypes => accessTypes;
 
     public static string[] CashServiceAccessTypes => [CashService, CashPromotion];
 
-    public static bool IsValidType(string type)
-    {
-        return accessTypes.ContainsKey(type);
-    }
+    public static bool IsValidType(string type) => accessTypes.ContainsKey(type);
 }
