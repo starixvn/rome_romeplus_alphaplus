@@ -59,7 +59,11 @@ public class ExceptionMiddleware
         if (context.Request.Headers.XRequestedWith == "XMLHttpRequest")
         {
             context.Response.ContentType = "application/json";
-            await context.Response.WriteAsync(JsonConvert.SerializeObject(new { Code = 500, Message = "Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [500]!" }));
+            await context.Response.WriteAsync(JsonConvert.SerializeObject(new
+            {
+                Code = 500,
+                Message = "Sorry, there was an unexpected issue on the server. Please seek help from our customer support. [500]!"
+            }));
         }
         else
         {

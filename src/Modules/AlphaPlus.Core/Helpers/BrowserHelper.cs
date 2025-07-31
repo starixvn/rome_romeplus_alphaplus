@@ -44,7 +44,7 @@ public class BrowserHelper(IDeviceHelper deviceHelper) : IBrowserHelper
         }
 
         var userAgent = deviceHelper.GetClientInfo().UA;
-        var browserName = userAgent.Family.ToLower();
+        var browserName = userAgent.Family.ToLowerInvariant();
         var majorVersion = int.Parse(userAgent.Major);
 
         if (browserName.Equals("ie", StringComparison.OrdinalIgnoreCase) && majorVersion <= 9)
