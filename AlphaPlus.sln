@@ -170,6 +170,7 @@ EndProject
 EndProject
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.SmartPunter.UnitTests", "src\Modules\AlphaPlus.SmartPunter.UnitTests\AlphaPlus.SmartPunter.UnitTests.csproj", "{D47DED8E-332C-49BF-9307-016A6A0091C1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Site.UnitTests", "src\Web\Auth\Auth.Site.UnitTests\Auth.Site.UnitTests.csproj", "{D92EEB28-67D0-4EA8-8046-11DC27CEACFE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.IPInfo.UnitTests", "src\Modules\AlphaPlus.IPInfo.UnitTests\AlphaPlus.IPInfo.UnitTests.csproj", "{7F117A97-1847-42ED-9218-2192F2E5070B}"
 EndProject
