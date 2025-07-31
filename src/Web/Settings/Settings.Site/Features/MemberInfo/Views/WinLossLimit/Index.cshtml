@@ -135,7 +135,10 @@
     @Html.Hidden("AccountType", Model.AccountType)
     @Html.Hidden("ResetCurrentWinAmountConfirmMessage", Resources.ResetCurrentWinAmountConfirmMessage)
     @Html.Hidden("ResetCurrentWinAmountErrorMessage", AlphaPlus.Shared.AppResources.Main.Resources.InternalServerError)
-</form>
+</form> 
+<div class="note">
+    <span class="star">*</span>@Resources.ResetCurrentWinAmountNote
+</div>
 <div class="wrapper-table-scrollable">
     <table id="tbl-report" class="tb tb-bordered w-full tablesorter tb-hover tb-freeze-header" data-has-data="@Model.WinLossLimitPage.WinLossLimitDetail.Any()">
         <thead>

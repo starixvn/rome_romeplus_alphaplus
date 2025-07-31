@@ -4416,5 +4416,21 @@ namespace AlphaPlus.Shared.AppResources.Settings.MemberInfo
                 return ResourceManager.GetString("ResetCurrentWinAmountSuccess", resourceCulture);
             }
         }
+
+        public static string ResetCurrentWinAmountNote
+        {
+            get
+            {
+                return ResourceManager.GetString("ResetCurrentWinAmountNote", resourceCulture);
+            }
+        }
+
+        public static string ResetAccumulatedWinAmountNote
+        {
+            get
+            {
+                return ResourceManager.GetString("ResetAccumulatedWinAmountNote", resourceCulture);
+            }
+        }
     }
 }

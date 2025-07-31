@@ -1301,7 +1301,7 @@
     <value>目前贏數額</value>
   </data>
   <data name="ResetCurrentWinAmount" xml:space="preserve">
-    <value>重置當前贏取金額</value>
+    <value>點擊重置累積贏額</value>
   </data>
   <data name="ResetCurrentWinAmountConfirmMessage" xml:space="preserve">
     <value>您確定要為會員 {0} 重置當前贏額嗎？</value>
@@ -1309,4 +1309,10 @@
   <data name="ResetCurrentWinAmountSuccess" xml:space="preserve">
     <value>成功重置當前贏額</value>
   </data>
+  <data name="ResetCurrentWinAmountNote" xml:space="preserve">
+    <value>Reset Current win Amount &lt;span class="ic-refresh reset-win-amount"&gt;&lt;/span&gt; is only available for Cash member, who has not set Daily reset</value>
+  </data>   
+  <data name="ResetAccumulatedWinAmountNote" xml:space="preserve">
+     <value>Reset accumulated win &lt;span class="ic-refresh reset-win-amount"&gt;&lt;/span&gt; is only available for Cash member, who has not set Daily reset</value>
+  </data>   
 </root>
