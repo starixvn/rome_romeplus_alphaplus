@@ -6,7 +6,7 @@ namespace AlphaPlus.Features.Messages.API.Criteria.Message
 {
     public class GetMessagesHistoryCriteria : CriteriaBase
     {
-        private static readonly Dictionary<int, string> SettingKeys = new Dictionary<int, string>
+        private static readonly Dictionary<int, string> SettingKeys = new()
         {
             [MessageType.Personal] = "Age_Msg_GetPrivateMessage",
             [MessageType.Normal] = "Age_Msg_GetPublicMessage",

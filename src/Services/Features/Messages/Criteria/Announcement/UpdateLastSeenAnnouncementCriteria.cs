@@ -15,7 +15,7 @@ namespace AlphaPlus.Features.Messages.API.Criteria.Announcement
 
         public int CustId { get; }
 
-        public string MessageType { get; set; } = string.Empty;
+        public string MessageType { get; set; }
 
         public int ErrCode { get; set; }
 

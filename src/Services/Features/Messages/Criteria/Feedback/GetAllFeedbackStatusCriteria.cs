@@ -6,7 +6,7 @@ public class GetAllFeedbackStatusCriteria : CriteriaBase
 {
     public string SettingName { get; } = "ReviewStatus";
 
-    public int ParentId { get; } = 0;
+    public int ParentId { get; }
 
     public byte UserRole { get; } = 2;
 
