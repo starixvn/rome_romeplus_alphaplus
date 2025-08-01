@@ -132,19 +132,22 @@ public class AuthSiteTests
     }
 
     [Theory]
-    [InlineData(1, "User")]
-    [InlineData(2, "Admin")]
-    [InlineData(3, "SuperAdmin")]
+    [InlineData(1, "Member")]
+    [InlineData(2, "Agent")]
+    [InlineData(3, "Master")]
+    [InlineData(4, "Super")]
     public void RoleId_ShouldHaveDifferentValues(int roleId, string expectedRole)
     {
         // Arrange
         var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
-            RoleId = (byte)roleId
+            RoleId = (byte)roleId,
+            UserName = expectedRole
         };
 
         // Act & Assert
         signInResult.RoleId.Should().Be((byte)roleId);
+        signInResult.UserName.Should().Be(expectedRole);
     }
 
     [Fact]

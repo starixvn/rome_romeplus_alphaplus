@@ -298,7 +298,7 @@ public class DomainsHelperTests
     }
 
     [Fact]
-    public void DomainMappings_ShouldHandleConcurrentAccess()
+    public async Task DomainMappings_ShouldHandleConcurrentAccess()
     {
         // Act
         var tasks = new List<Task<DomainMapping[]>>();
@@ -308,7 +308,7 @@ public class DomainsHelperTests
         }
 
         // Wait for all tasks to complete
-        Task.WaitAll(tasks.ToArray());
+        await Task.WhenAll(tasks);
 
         // Assert
         var results = tasks.Select(t => t.Result).ToList();
