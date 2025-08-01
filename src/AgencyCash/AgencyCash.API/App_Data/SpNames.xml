@@ -28,7 +28,7 @@
         <Setting Key="SiteDB3_API_CashDeposit_Payslip_Ins" SpName="API_CashDeposit_Payslip_Ins" DbName="DBSITE03.bodb02.asv_CashService" />
     </Function>
     <Function Name="Payments: Validate and Write Logs">
-        <Setting Key="API_CashService_CustPaymentValidate" SpName="API_CashService_CustPaymentValidate_uat2" DbName="DBCUST.CustDB.asv_CashService" />
+        <Setting Key="API_CashService_CustPaymentValidate" SpName="API_CashService_CustPaymentValidate" DbName="DBCUST.CustDB.asv_CashService" />
         <Setting Key="DBLOG_WriteLog_CashService_UserLog_RunSP" SpName="WriteLog_CashService_UserLog_RunSP" DbName="DBLOG.bodb_CustomerLog.asv_CashService" />
         <Setting Key="WriteLog_CashService_UserLog_RunSP" SpName="WriteLog_CashService_UserLog_RunSP" DbName="DBCUST.bodb_CustomerLog.asv_CashService" />
         <Setting Key="DBLOG_WriteLog_CashService_UserLog_Transfer" SpName="WriteLog_CashService_UserLog_Transfer" DbName="DBLOG.bodb_CustomerLog.asv_CashService" />

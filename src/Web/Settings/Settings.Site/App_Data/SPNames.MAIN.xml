@@ -2,13 +2,13 @@
 <Functions>
     <Function Name="Member Win Loss Limit">
         <Setting Key="Age_CustomerSelWinlimit_Outstanding" SpName="Age_CustomerSelWinlimit_Outstanding" DbName="DBBOF.bodb02.wsv_alp" Plain="0" />
-        <Setting Key="Age_CustomerSelPotentialWinlimit" SpName="Age_CustomerSelPotentialWinlimit_UAT2" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+        <Setting Key="Age_CustomerSelPotentialWinlimit" SpName="Age_CustomerSelPotentialWinlimit" DbName="DBCust.CustDB.wsv_alp" Plain="0">
             <Mapping DataField="ServiceType" ObjectProperty="AccountType" />
         </Setting>
         <Setting Key="SiteDB_Age_CustomerSelPotentialWinlimitAmount" SpName="Age_CustomerSelPotentialWinlimitAmount" DbName="SiteDB.bodb02.wsv_alp" Plain="0" />
-        <Setting Key="Age_BalanceGameReset_CashMember" SpName="Age_BalanceGameReset_CashMember_UAT2" DbName="DBSIC.bodb02.wsv_alp" />   
-        <Setting Key="SiteDB_0_Acc_CustWinLimitBetReset_CashMember" SpName="Acc_CustWinLimitBetReset_CashMember_UAT2" DbName="DBSIC.bodb02.wsv_alp" />   
-        <Setting Key="SiteDB_3_Acc_CustWinLimitBetReset_CashMember" SpName="Acc_CustWinLimitBetReset_CashMember_UAT2" DbName="DBSIC.bodb02.wsv_alp" />   
+        <Setting Key="Age_BalanceGameReset_CashMember" SpName="Age_BalanceGameReset_CashMember" DbName="DBSIC.bodb02.wsv_alp" />
+        <Setting Key="SiteDB_0_Acc_CustWinLimitBetReset_CashMember" SpName="Acc_CustWinLimitBetReset_CashMember" DbName="DBSIC.bodb02.wsv_alp" />
+        <Setting Key="SiteDB_3_Acc_CustWinLimitBetReset_CashMember" SpName="Acc_CustWinLimitBetReset_CashMember" DbName="DBSIC.bodb02.wsv_alp" />
     </Function>
     <Function Name="Account Info">
         <Setting Key="Acc_OutstandingMemberSel" SpName="Acc_OutstandingMemberSel" DbName="DBBOF.bodb02.wsv_alp" Plain="0" />
@@ -144,7 +144,7 @@
         <Setting Key="Age_CustomerSelAgentList" SpName="Age_CustomerSelAgentList" DbName="DBCust.CustDB.wsv_alp">
             <Mapping DataField="username" ObjectProperty="CustName" />
         </Setting>
-        <Setting Key="Age_CustomerSelCustWinlimit" SpName="Age_CustomerSelCustWinlimit_UAT2" DbName="DBCust.CustDB.wsv_alp">
+        <Setting Key="Age_CustomerSelCustWinlimit" SpName="Age_CustomerSelCustWinlimit" DbName="DBCust.CustDB.wsv_alp">
             <Mapping DataField="ServiceType" ObjectProperty="AccountType" />
         </Setting>
         <Setting Key="Age_CustomerSelByPlayerId" SpName="Age_CustomerSelByPlayerId" DbName="DBCust.CustDB.wsv_alp" />
@@ -331,7 +331,7 @@
         <Setting Key="Age_CustomerSelUserInfo" SpName="Age_CustomerSelUserInfo" DbName="DBCust.CustDB.wsv_alp" />
     </Function>
     <Function Name="Member Commission">
-        <Setting Key="Age_CustomerSelCommByProductID_MAg" SpName="Age_CustomerSelCommByProductID_MAg_UAT2" DbName="DBCust.CustDB.wsv_alp" />
+        <Setting Key="Age_CustomerSelCommByProductID_MAg" SpName="Age_CustomerSelCommByProductID_MAg" DbName="DBCust.CustDB.wsv_alp" />
         <Setting Key="Age_CustomerSelCommByProductID_Ag" SpName="Age_CustomerSelCommByProductID_Ag" DbName="DBCust.CustDB.wsv_alp" />
     </Function>
     <Function Name="IP">
@@ -392,9 +392,9 @@
         <Setting Key="Age_UserLog_CreditSelTotalRecords" SpName="Age_UserLog_CreditSelTotalRecords" DbName="DBLOG.bodb_CustomerLog.wsv_alp" />
         <Setting Key="Acc_UserLog_LoginSelTotalRecords" SpName="Acc_UserLog_LoginSelTotalRecords" DbName="DBLOG.bodb_CustomerLog.wsv_alp" />
 
-        <Setting Key="Acc_CashService_UserLog_RunSPSel" SpName="Acc_CashService_UserLog_RunSPSel_uat2" DbName="DBLOG.bodb_CustomerLog.wsv_CashService">
+        <Setting Key="Acc_CashService_UserLog_RunSPSel" SpName="Acc_CashService_UserLog_RunSPSel" DbName="DBLOG.bodb_CustomerLog.wsv_CashService">
             <Mapping DataField="LogID" ObjectProperty="LogId" />
-            <Mapping DataField="UserID" ObjectProperty="UserId" /> 
+            <Mapping DataField="UserID" ObjectProperty="UserId" />
             <Mapping DataField="Username" ObjectProperty="Username" />
             <Mapping DataField="TrackingValueOld" ObjectProperty="TrackingValueOld" />
             <Mapping DataField="TrackingValue" ObjectProperty="TrackingValue" />
@@ -407,9 +407,9 @@
             <Mapping DataField="CustName" ObjectProperty="CustName" />
             <Mapping DataField="ActionName" ObjectProperty="ActionName" />
         </Setting>
-        <Setting Key="Acc_CashService_UserLog_RunSPSelTotalRecords" SpName="Acc_CashService_UserLog_RunSPSelTotalRecords_uat2" DbName="DBLOG.bodb_CustomerLog.wsv_CashService" />
+        <Setting Key="Acc_CashService_UserLog_RunSPSelTotalRecords" SpName="Acc_CashService_UserLog_RunSPSelTotalRecords" DbName="DBLOG.bodb_CustomerLog.wsv_CashService" />
 
-        <Setting Key="Acc_UserLog_LogActionTypeSel" SpName="Acc_UserLog_LogActionTypeSel_uat2" DbName="DBLOG.bodb_CustomerLog.wsv_alp" Plain="0">
+        <Setting Key="Acc_UserLog_LogActionTypeSel" SpName="Acc_UserLog_LogActionTypeSel" DbName="DBLOG.bodb_CustomerLog.wsv_alp" Plain="0">
             <Mapping DataField="ActionTypeID" ObjectProperty="Id" />
             <Mapping DataField="ActionTypeNameEN" ObjectProperty="EnglishName" />
             <Mapping DataField="ActionTypeNameCH" ObjectProperty="ChineseTraditionalName" />
@@ -488,7 +488,7 @@
         <Setting Key="SiteDB_Age_Transfer_CashBalance_DirectMember_Sel" SpName="Age_Transfer_CashBalance_DirectMember_Sel" DbName="DBTXN.bodb02.wsv_alp" />
         <Setting Key="SiteDB_Age_Transfer_CashBalance_DirectMember_Ins" SpName="Age_Transfer_CashBalance_DirectMember_Ins" DbName="SiteDB.bodb02.wsv_alp" />
         <Setting Key="SiteDB_CustWinLimitBet_Reset" SpName="Acc_CustWinLimitBet_Reset" DbName="SiteDB.bodb02.wsv_alp" />
-       
+
         <Setting Key="SiteDB_Age_CustomerResetCurrentWinlimitAmount" SpName="SiteDB_Age_CustomerResetCurrentWinlimitAmount" DbName="SiteDB.bodb02.wsv_alp" />
     </Function>
     <Function Name="Base Functions">
