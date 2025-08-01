@@ -482,12 +482,6 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/assets/bundles/whitelabel.css",
-    "inputFiles": [
-      "assets/styles/Home/whitelabel.css"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/assets/bundles/tour/common-tour.css",
     "inputFiles": [
       "assets/styles/tour/common-tour.css"
