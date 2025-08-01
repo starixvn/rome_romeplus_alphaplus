@@ -1,5 +1,6 @@
 namespace AlphaPlus.CashService.Site.Features.Promotion.Controllers;
 
+using System.Collections.Immutable;
 using AlphaPlus.CashService.Site.Features.Shared.Requests;
 using AlphaPlus.CashService.Site.Features.Shared.Resources;
 using AlphaPlus.CashService.Site.Helpers;
@@ -117,7 +118,7 @@ public class PromotionController(
         return Json(result);
     }
 
-    public async Task<Dictionary<string, string>> GetLanguages(CancellationToken cancellationToken)
+    public async Task<ImmutableDictionary<string, string>> GetLanguages(CancellationToken cancellationToken)
     {
         var fullLanguages = AppSettings.IsSiteLabel789y ? LanguageConstant.CodeNames : LanguageConstant.CodeKeysWithoutCN3;
 
@@ -162,7 +163,7 @@ public class PromotionController(
             var files = promotionService.ProcessPromotionRequest(request);
             var url = $"/api/promotions";
             var result = await httpClientHelper.PostAsync<object, ResultModel>(url, request);
-            if(result.IsSuccessful)
+            if (result.IsSuccessful)
             {
                 promotionService.ProcessImageUploads(files);
             }
@@ -182,7 +183,7 @@ public class PromotionController(
         }
 
         request.SetUserSession(userSession);
-        
+
         if (request.IsValid())
         {
             var files = promotionService.ProcessPromotionRequest(request);
@@ -192,7 +193,7 @@ public class PromotionController(
             {
                 promotionService.ProcessImageUploads(files);
             }
-            
+
             return Json(result);
         }
 
