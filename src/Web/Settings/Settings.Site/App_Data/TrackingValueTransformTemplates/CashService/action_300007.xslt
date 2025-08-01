@@ -30,6 +30,8 @@
             <td class="colW2">
               <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
             </td>
+            <td class="colW1"></td>
+            <td class="colW2"></td>
           </tr>
         </table>
       </xsl:when>
