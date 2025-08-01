@@ -25,7 +25,8 @@ class PotentialWinLimit {
 
     $username: JQuery;
     $tableReport: JQuery;
-    $iconExcel: JQuery;
+    $iconExcel: JQuery; 
+    $resultMsg: JQuery;
 
     constructor(
         $: JQueryStatic,
@@ -82,6 +83,8 @@ class PotentialWinLimit {
         this.$username = this.$('#txt-username');
         this.$tableReport = this.$('#tbl-report');
         this.$iconExcel = this.$('#icon-excel');
+
+        this.$resultMsg = this.$('#result-msg');
     };
 
     bindEvents = () => {
@@ -173,17 +176,30 @@ class PotentialWinLimit {
                     custId: custId,
                     username: username
                 },
-                success: (response: any) => {
-                    window.top.bootboxAlert(response.Message || errorMessage);
+                success: (response: any) => {   
+                    this.$resultMsg.html(response.Message || errorMessage);
+                    this.$resultMsg.removeClass('msg-success msg-error msg-warning');
+
                     if (response && response.IsSuccessful) {
+                        this.$resultMsg.addClass('msg-success');
                         setTimeout(() => {
                             // Refresh the page to show updated data
+                            this.$resultMsg.addClass('hide');
                             this.submitForm();
                         }, 3000);
+                    } else {
+                        this.$resultMsg.addClass('msg-error');
                     }
+
+                    this.$resultMsg.removeClass('hide');
+                    window.scrollTo(0, 0);
                 },
                 error: (xhr: any, status: any, error: any) => {
-                    window.top.bootboxAlert(error || errorMessage);
+                    this.$resultMsg.html(error || errorMessage);
+                    this.$resultMsg.removeClass('msg-success msg-error msg-warning');
+                    this.$resultMsg.addClass('msg-error');
+                    this.$resultMsg.removeClass('hide');
+                    window.scrollTo(0, 0);
                 },
                 complete: () => {
                     this.$.unblockUI();

@@ -140,7 +140,8 @@
 @if(Model.IsOfferedCashService && Model.ViewerLevel.IsAgentLevel()) {
     <div class="note">
         <span class="star">*</span>@Html.Raw(Resources.ResetCurrentWinAmountNote)
-    </div>
+    </div>    
+    <div id="result-msg" class="msg hide"></div>
 }
 <div class="wrapper-table-scrollable">
     <table id="tbl-report" class="tb tb-bordered w-full tablesorter tb-hover tb-freeze-header" data-has-data="@Model.WinLossLimitPage.WinLossLimitDetail.Any()">
