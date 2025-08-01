@@ -1,13 +1,13 @@
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.Transfer.Requests.Reward;
 using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.Reward;
+using AlphaPlus.Settings.Site.Features.UserNameSuggestion;
+using AlphaPlus.Settings.Transfer.API.Models;
 using AlphaPlus.Settings.Transfer.API.Models.Reward;
 using AlphaPlus.Settings.Transfer.API.Params.Reward;
 using AlphaPlus.Settings.Transfer.API.Services;
 using MediatR;
-using AlphaPlus.Core.Extensions;
-using AlphaPlus.Settings.Site.Features.UserNameSuggestion;
-using AlphaPlus.Settings.Transfer.API.Models;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers;
 public class RewardHandler(
@@ -62,7 +62,7 @@ public class RewardHandler(
             {
                 var custInfo = await customerService.GetCustInfo(username, viewerId);
 
-                if (custInfo != null && actorLevel.IsDirectUplineOf(custInfo.RoleId) || IsDirectMember(actorLevel, custInfo))
+                if (custInfo != null && (actorLevel.IsDirectUplineOf(custInfo.RoleId) || IsDirectMember(actorLevel, custInfo)))
                 {
                     await usernameSuggestionService.UpdateUserSearch(viewerId, custInfo.Username, custInfo.FirstName, custInfo.LastName, custInfo.Username2);
                 }
