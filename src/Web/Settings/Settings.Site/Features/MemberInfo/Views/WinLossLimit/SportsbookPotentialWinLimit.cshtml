@@ -64,7 +64,7 @@
             <div class="note">
                 <span class="star">*</span>@Resources.PotentialWinLimitNote2
             </div>
-            @if(Model.ViewerLevel.IsAgentLevel()) {
+            @if(Model.IsOfferedCashService && Model.ViewerLevel.IsAgentLevel()) {
                 <div class="note has-icon">
                     <span class="star">*</span>@Html.Raw(Resources.ResetAccumulatedWinAmountNote)
                 </div>

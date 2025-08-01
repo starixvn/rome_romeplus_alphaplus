@@ -137,7 +137,7 @@
     @Html.Hidden("ResetCurrentWinAmountErrorMessage", AlphaPlus.Shared.AppResources.Main.Resources.InternalServerError)
 </form> 
 
-@if(Model.ViewerLevel.IsAgentLevel()) {
+@if(Model.IsOfferedCashService && Model.ViewerLevel.IsAgentLevel()) {
     <div class="note">
         <span class="star">*</span>@Html.Raw(Resources.ResetCurrentWinAmountNote)
     </div>
