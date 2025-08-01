@@ -613,4 +613,16 @@
   <data name="MasterAgent" xml:space="preserve">
     <value>Master Agent</value>
   </data>
+  <data name="ErrorMessage_50039" xml:space="preserve">
+    <value>This member is not a cash member.</value>
+  </data>
+  <data name="ErrorMessage_50042" xml:space="preserve">
+    <value>This member has an auto-reset potential winning limit.</value>
+  </data>
+  <data name="ErrorMessage_50041" xml:space="preserve">
+    <value>This member has an auto-reset win/loss limit for this sport type and bet type.</value>
+  </data>
+  <data name="ErrorMessage_50040" xml:space="preserve">
+    <value>This member is not a cash member.</value>
+  </data>
 </root>

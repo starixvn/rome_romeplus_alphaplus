@@ -613,4 +613,16 @@
   <data name="MasterAgent" xml:space="preserve">
     <value>รายชื่อตัวแทนหลัก</value>
   </data>
+  <data name="ErrorMessage_50039" xml:space="preserve">
+    <value>สมาชิกนี้ไม่ใช่สมาชิกสด</value>
+  </data>
+  <data name="ErrorMessage_50042" xml:space="preserve">
+    <value>สมาชิกนี้มีการตั้งค่าการรีเซ็ตการชนะ/แพ้ที่อัตโนมัติ</value>
+  </data>
+  <data name="ErrorMessage_50041" xml:space="preserve">
+    <value>สมาชิกนี้มีการตั้งค่าการรีเซ็ตการชนะ/แพ้ที่อัตโนมัติสำหรับกีฬานี้และประเภทการเดิมพันนี้</value>
+  </data>
+  <data name="ErrorMessage_50040" xml:space="preserve">
+    <value>สมาชิกนี้ไม่ใช่สมาชิกสด</value>
+  </data>
 </root>

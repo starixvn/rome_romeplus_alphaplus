@@ -432,4 +432,16 @@
   <data name="lblNew" xml:space="preserve">
     <value>新しい</value>
   </data>
+  <data name="ErrorMessage_50039" xml:space="preserve">
+    <value>このメンバーはキャッシュメンバーではありません。</value>
+  </data>
+  <data name="ErrorMessage_50042" xml:space="preserve">
+    <value>このメンバーは自動リセット可能な潜在的な勝利金額の制限が設定されています。</value>
+  </data>
+  <data name="ErrorMessage_50041" xml:space="preserve">
+    <value>このメンバーはこのスポーツタイプとベットタイプの自動リセット可能な勝敗金額の制限が設定されています。</value>
+  </data>
+  <data name="ErrorMessage_50040" xml:space="preserve">
+    <value>このメンバーはキャッシュメンバーではありません。</value>
+  </data>
 </root>

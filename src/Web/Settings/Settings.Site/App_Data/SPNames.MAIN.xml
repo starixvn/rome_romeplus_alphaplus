@@ -6,6 +6,8 @@
             <Mapping DataField="ServiceType" ObjectProperty="AccountType" />
         </Setting>
         <Setting Key="SiteDB_Age_CustomerSelPotentialWinlimitAmount" SpName="Age_CustomerSelPotentialWinlimitAmount" DbName="SiteDB.bodb02.wsv_alp" Plain="0" />
+        <Setting Key="Age_BalanceGameReset_CashMember_Check" SpName="Age_BalanceGameReset_CashMember_Check_UAT2" DbName="DBCust.CustDB.wsv_alp" />
+        <Setting Key="Acc_CustWinLimitBetReset_CashMember_Check" SpName="Acc_CustWinLimitBetReset_CashMember_Check_UAT2" DbName="DBCust.CustDB.wsv_alp" />
         <Setting Key="Age_BalanceGameReset_CashMember" SpName="Age_BalanceGameReset_CashMember_UAT2" DbName="DBSIC.bodb02.wsv_alp" />
         <Setting Key="SiteDB_0_Acc_CustWinLimitBetReset_CashMember" SpName="Acc_CustWinLimitBetReset_CashMember_UAT2" DbName="DBSIC.bodb02.wsv_alp" />
         <Setting Key="SiteDB_3_Acc_CustWinLimitBetReset_CashMember" SpName="Acc_CustWinLimitBetReset_CashMember_UAT2" DbName="DBSIC.bodb02.wsv_alp" />
@@ -548,7 +550,7 @@
         <Setting Key="SiteDB_Acc_RewardPayment_Confirm" SpName="Acc_RewardPayment_Confirm" DbName="SiteDB.bodb02.wsv_alp" />
     </Function>
     <Function Name="Win Loss Limit">
-        <Setting Key="SiteDB_Age_CustomerSelWinlimitInfo" SpName="Age_CustomerSelWinlimitInfo" DbName="SiteDB.CustDB.wsv_alp" />
+        <Setting Key="SiteDB_Age_CustomerSelWinlimitInfo" SpName="Age_CustomerSelWinlimitInfo_UAT2" DbName="SiteDB.CustDB.wsv_alp" />
     </Function>
     <Function Name="Check Belonging">
         <Setting Key="Age_ReCheckin" SpName="Age_ReCheckin" DbName="DBONUSER.ON_USER.wsv_alp" Plain="0" />

@@ -605,4 +605,16 @@
   <data name="MasterAgent" xml:space="preserve">
     <value>Master</value>
   </data>
+  <data name="ErrorMessage_50039" xml:space="preserve">
+    <value>Thành viên này không phải là thành viên tiền mặt.</value>
+  </data>
+  <data name="ErrorMessage_50042" xml:space="preserve">
+    <value>Thành viên này có giới hạn thắng/thua tự động được đặt.</value>
+  </data>
+  <data name="ErrorMessage_50041" xml:space="preserve">
+    <value>Thành viên này có giới hạn thắng/thua tự động được đặt cho loại cược này và loại cược này.</value>
+  </data>
+  <data name="ErrorMessage_50040" xml:space="preserve">
+    <value>Thành viên này không phải là thành viên tiền mặt.</value>
+  </data>
 </root>

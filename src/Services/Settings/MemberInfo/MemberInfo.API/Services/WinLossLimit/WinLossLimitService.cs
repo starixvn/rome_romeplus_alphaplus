@@ -1,7 +1,9 @@
-﻿using AlphaPlus.Core.Models;
+﻿using System.Globalization;
+using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit;
 using AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit;
 using AlphaPlus.Settings.MemberInfo.Domain.Params;
+using AlphaPlus.Shared.AppResources.Betlist.Builders;
 using Fanex.Data.Repository;
 
 namespace AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit;
@@ -124,6 +126,16 @@ public class WinLossLimitServiceImpl(IDynamicRepository repository, CacheRefServ
 
     public async Task<Result> ResetCurrentWinAmount(ResetCurrentWinAmountParam param)
     {
+        var checkResetCurrentWinAmountCriteria = new CheckResetCurrentWinAmountCriteria(param);
+        await repository.ExecuteAsync(checkResetCurrentWinAmountCriteria);
+        if (checkResetCurrentWinAmountCriteria.ErrCode != 0)
+        {
+            return new Result { 
+                Code = checkResetCurrentWinAmountCriteria.ErrCode, 
+                Message = AlphaPlus.Shared.AppResources.Common.CommonResx.ResourceManager.GetString("ErrorMessage_" + checkResetCurrentWinAmountCriteria.ErrCode, CultureInfo.CurrentCulture)
+            };
+        }
+
         var criteria = new ResetCurrentWinAmountCriteria(param);
 
         await repository.ExecuteAsync(criteria);

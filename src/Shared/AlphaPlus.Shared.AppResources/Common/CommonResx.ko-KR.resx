@@ -492,4 +492,16 @@
   <data name="MasterAgent" xml:space="preserve">
     <value>마스터 에이전트</value>
   </data>
+  <data name="ErrorMessage_50039" xml:space="preserve">
+    <value>이 회원은 현금 회원이 아닙니다.</value>
+  </data>
+  <data name="ErrorMessage_50042" xml:space="preserve">
+    <value>이 회원은 자동 리셋 가능한 잠재적 승리 금액 제한이 설정되어 있습니다.</value>
+  </data>
+  <data name="ErrorMessage_50041" xml:space="preserve">
+    <value>이 회원은 이 스포츠 유형과 베팅 유형에 대한 자동 리셋 가능한 승/패 금액 제한이 설정되어 있습니다.</value>
+  </data>
+  <data name="ErrorMessage_50040" xml:space="preserve">
+    <value>이 회원은 현금 회원이 아닙니다.</value>
+  </data>
 </root>
