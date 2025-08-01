@@ -106,7 +106,7 @@ public class PromotionService(IDynamicRepository repository,
 
     public async Task<ResultModel> AddPromotionAsync(PromotionRequest request)
     {
-        var addPromotionCriteria = new AddPromotionCriteria
+        var criteria = new AddPromotionCriteria
         {
             PromotionType = request.PromotionType,
             FromDate = request.FromDate,
@@ -124,10 +124,10 @@ public class PromotionService(IDynamicRepository repository,
             Enabled = request.Enabled,
         };
 
-        var logAddPromotion = await repository.FetchAsync<WriteLogDBCommandModel>(addPromotionCriteria);
+        var logAddPromotion = await repository.FetchAsync<WriteLogDBCommandModel>(criteria);
 
-        var result = new ResultModel(addPromotionCriteria.ErrCode, addPromotionCriteria.ErrMsg);
-        if (addPromotionCriteria.ErrCode == 0 && logAddPromotion is not null && logAddPromotion.Any())
+        var result = new ResultModel(criteria.ErrCode, criteria.ErrMsg);
+        if (criteria.ErrCode == 0 && logAddPromotion is not null && logAddPromotion.Any())
         {
             WriteLog([.. logAddPromotion], request.SiteDBGroupId);
         }

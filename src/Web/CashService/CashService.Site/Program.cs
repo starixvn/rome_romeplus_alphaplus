@@ -92,6 +92,7 @@ builder.Services.AddTransient<ITransactionHistoryWorkbook, TransactionHistoryWor
 builder.Services.AddTransient<IPendingPromotionReportWorkbook, PendingPromotionReportWorkbook>();
 builder.Services.AddScoped<IPromotionReportWorkbook, PromotionReportWorkbook>();
 builder.Services.AddScoped<IPromotionDetailsReportWorkbook, PromotionDetailsReportWorkbook>();
+builder.Services.AddScoped<IPromotionService, PromotionService>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

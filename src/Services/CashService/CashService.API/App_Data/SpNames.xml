@@ -145,6 +145,6 @@
     </Function>
 
     <Function Name="Notifications">
-        <Setting Key="Age_CashTransaction_PendingCount" SpName="Age_CashTransaction_PendingCount" DbName="DBAGE.bodb02.wsv_CashService" />
+        <Setting Key="Age_CashTransaction_PendingCount" SpName="Age_CashTransaction_PendingCount_UAT2" DbName="DBAGE.bodb02.wsv_CashService" />
     </Function>
 </Functions>

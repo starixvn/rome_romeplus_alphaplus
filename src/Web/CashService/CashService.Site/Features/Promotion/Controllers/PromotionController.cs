@@ -31,6 +31,7 @@ public class PromotionController(
     IAntiforgery antiforgery,
     HttpClient httpClient,
     ICustomerService customerService,
+    IPromotionService promotionService,
     IPromotionReportWorkbook promotionReportWorkbook,
     IPendingPromotionReportWorkbook pendingPromotionReportWorkbook,
     IPromotionDetailsReportWorkbook promotionDetailsReportWorkbook) : SiteBaseController(userSession, antiforgery, httpClient, customerService)
@@ -156,19 +157,16 @@ public class PromotionController(
         }
 
         request.SetUserSession(userSession);
-        request.ProductSettings = JsonConvert.DeserializeObject<List<PromotionProductSetting>>(request.ProductSettingsJson);
-
         if (request.IsValid())
         {
-            foreach (var content in request.Contents)
+            var files = promotionService.ProcessPromotionRequest(request);
+            var url = $"/api/promotions";
+            var result = await httpClientHelper.PostAsync<object, ResultModel>(url, request);
+            if(result.IsSuccessful)
             {
-                var fileName = await ImageUploadHelper.ProcessUploadedImages(content.Banner, content.Banner.FileName);
-                content.BannerName = fileName;
-                content.Banner = null;
+                promotionService.ProcessImageUploads(files);
             }
 
-            var url = $"/api/promotions";
-            var result = await httpClientHelper.PostAsync<object, object>(url, request);
             return Json(result);
         }
 
@@ -184,18 +182,17 @@ public class PromotionController(
         }
 
         request.SetUserSession(userSession);
-        Console.WriteLine(JsonConvert.SerializeObject(request));
+        
         if (request.IsValid())
         {
-            foreach (var content in request.Contents)
-            {
-                var fileName = await ImageUploadHelper.ProcessUploadedImages(content.Banner, content.Banner != null ? content.Banner.FileName : content.BannerName);
-                content.BannerName = fileName;
-                content.Banner = null;
-            }
-
+            var files = promotionService.ProcessPromotionRequest(request);
             var url = $"/api/promotions/{promotionId}";
-            var result = await httpClientHelper.PutAsync<EditPromotionRequest, object>(url, request);
+            var result = await httpClientHelper.PutAsync<EditPromotionRequest, ResultModel>(url, request);
+            if (result.IsSuccessful)
+            {
+                promotionService.ProcessImageUploads(files);
+            }
+            
             return Json(result);
         }
 

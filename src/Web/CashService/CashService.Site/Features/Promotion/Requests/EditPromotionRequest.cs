@@ -4,6 +4,7 @@ namespace AlphaPlus.CashService.Site.Features.Promotion.Requests;
 
 public class EditPromotionRequest : BaseActionRequest
 {
+    public DateTime FromDate { get; set; }
     public int PromotionId { get; init; }
     public bool Enabled { get; init; }
     public bool? OriginalEnabled { get; init; }

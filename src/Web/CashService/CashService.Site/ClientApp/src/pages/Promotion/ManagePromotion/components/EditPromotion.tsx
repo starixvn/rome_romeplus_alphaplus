@@ -212,6 +212,7 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
       formData.append('PromotionId', promotionId.toString());
       formData.append('Enabled', isActive.toString());
       formData.append('OriginalEnabled', originalStatus.toString());
+      formData.append('FromDate', promotion?.fromDate?.toLocaleString('en-US') || '');
       Object.entries(promotionInfo).forEach(([lang, info], index) => {
         formData.append(`Contents[${index}].Language`, lang);
         formData.append(`Contents[${index}].Title`, info.title || '');
@@ -226,13 +227,7 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
       Object.entries(originalPromotionInfo).forEach(([lang, info], index) => {
         formData.append(`OriginalContents[${index}].Language`, lang);
         formData.append(`OriginalContents[${index}].Title`, info.title || '');
-        formData.append(`OriginalContents[${index}].Content`, info.content || '');
-
-        if (info.banner instanceof File) {
-          formData.append(`OriginalContents[${index}].Banner`, info.banner);
-        } else if (info.banner) {
-          formData.append(`OriginalContents[${index}].BannerName`, info.banner as string);
-        }
+        formData.append(`OriginalContents[${index}].Content`, info.content || '');        
       });
 
       const result = await promotionService.editPromotionWithFormData(promotionId, formData);
