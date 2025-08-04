@@ -146,7 +146,7 @@
     "RemotingRefUrl": "http://shared_fanex_remotingref_UAT:5000/",
     "Fanex.Customer": {
         "ServiceUri": "http://customer-api.st-kluat.gamora.prod/v3/api/",
-        "CdnUri": "//cdn-customer.starixuat.com/v3/",
+        "CdnUri": "//customer-cdn.kl.starixuat.com/v3/",
         "SystemId": 2
     },
     "SystemId": 2,
