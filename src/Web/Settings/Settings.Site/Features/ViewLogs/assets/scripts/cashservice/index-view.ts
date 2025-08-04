@@ -154,7 +154,7 @@ var cashserviceView = {
             FromDate: cashserviceView.elelments.ddlMonth.monPickr("getFromDate", alphaViewLogs.format.shortDateWithSlash),
             ToDate: cashserviceView.elelments.ddlMonth.monPickr("getToDate", alphaViewLogs.format.shortDateWithSlash),
             ActionTypeId: cashserviceView.elelments.ddlLogActionType.val(),
-            IsShowOldValue: cashserviceView.elelments.chkOldValues.prop("checked") ? 1 : 0
+            IsShowOldValue: cashserviceView.elelments.chkOldValues.prop("checked")
         };
     },
     renderPager: function (options: any) {
