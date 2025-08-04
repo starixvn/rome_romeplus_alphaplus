@@ -32,7 +32,7 @@ public class TransactionHistoryWorkbook(IWebHostEnvironment webHostEnvironment) 
         .Map(G, item => item.Status)
         .Map(H, item => item.TransactionType)
         .Map(I, item => item.TransId)
-        .Map(J, item => item.CreatedTime.ToLongDateTime24HWithSlash());
+        .Map(J, item => item.CreatedTime.ToLongDateTimeWithSlash());
 
     public ExcelFileViewModel BuildExcelFile(ExportExcelParams param, IEnumerable<Transaction> reportData)
     {
