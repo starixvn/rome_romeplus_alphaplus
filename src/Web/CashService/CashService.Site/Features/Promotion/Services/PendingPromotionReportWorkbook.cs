@@ -28,7 +28,8 @@ public class PendingPromotionReportWorkbook(IWebHostEnvironment webHostEnvironme
             .Map(D, item => item.Title)
             .Map(E, item => item.PromotionTypeName)
             .Map(F, item => item.Amount)
-            .Map(G, item => $"{item.FromDate.ToShortDateWithSlash()}-{item.ToDate.ToShortDateWithSlash()}");
+            .Map(G, item => $"{item.FromDate.ToShortDateWithSlash()}-{item.ToDate.ToShortDateWithSlash()}")
+            .Map(H, item => item.TransId);
 
     public ExcelFileViewModel BuildExcelFile(GetPendingPromotionViewModel request, IEnumerable<PromotionTransaction> records)
     {
@@ -58,7 +59,8 @@ public class PendingPromotionReportWorkbook(IWebHostEnvironment webHostEnvironme
         row.SetCellValue(colIndex++, CashServicesResx.Title);
         row.SetCellValue(colIndex++, CashServicesResx.PromotionType);
         row.SetCellValue(colIndex++, AlphaPlus.Shared.AppResources.Report.Resources.Amount);
-        row.SetCellValue(colIndex, CashServicesResx.RebatePeriod);
+        row.SetCellValue(colIndex++, CashServicesResx.RebatePeriod);
+        row.SetCellValue(colIndex, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.RefNo);
     }
 
     private static string GetTitle(GetPendingPromotionViewModel param)

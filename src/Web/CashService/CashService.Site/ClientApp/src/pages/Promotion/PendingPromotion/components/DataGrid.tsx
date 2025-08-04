@@ -127,11 +127,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                 <br />
                 {t('table.nickname')}
               </th>
-              <th scope="col">
-                {t('table.firstName')}
-                <br />
-                {t('table.lastName')}
-              </th>
+              <th scope="col">{t('table.firstLastName')}</th>
               <th scope="col" className="w-[200px]">
                 {t('table.title')}
               </th>
@@ -140,6 +136,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                 {t('table.amount')}
               </th>
               <th scope="col">{t('table.rebatePeriod')}</th>
+              <th scope="col">{t('table.refNo')}</th>
               {isCashServiceEnabled && (
                 <th scope="col" className="w-[60px]">
                   {t('table.actions')}
@@ -169,20 +166,20 @@ const DataGrid: React.FC<DataGridProps> = ({
                       disabled={!isCashServiceEnabled}
                     />
                   </td>
-                  <td className="w-[150px] min-w-[150px]">
+                  <td className="w-[150px] min-w-[150px] text-left">
                     <div>{item.username}</div>
                     <div>{item.nickname}</div>
                   </td>
-                  <td>
+                  <td className="text-left">
                     <div>{item.firstName}</div>
                     <div>{item.lastName}</div>
                   </td>
-                  <td className="text-center">
+                  <td className="text-left">
                     <div className="w-[100%] max-w-[400px] min-w-[300px] max-[768px]:max-w-[200px] max-[768px]:min-w-[150px]">
                       {item.title}
                     </div>
                   </td>
-                  <td className="text-center">{item.promotionTypeName}</td>
+                  <td className="text-left">{item.promotionTypeName}</td>
                   <td className="text-right">
                     <div className="flex w-full justify-end relative">
                       {displayAmount(item.amount)}
@@ -193,6 +190,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                       {formatDate(item.fromDate)} - {formatDate(item.toDate)}
                     </div>
                   </td>
+                  <td className="text-left">{item.transId}</td>
                   {isCashServiceEnabled && (
                     <td className="text-center">
                       <div

@@ -96,8 +96,7 @@
     "name": "Name",
     "title": "Title",
     "amount": "Amount",
-    "lastName": "Last Name",
-    "firstName": "First Name",
+    "firstLastName": "First & Last Name",
     "actions": "Actions",
     "loading": "Loading...",
     "confirmApproveTitle": "Confirm Approve",
@@ -106,7 +105,12 @@
     "confirmRejectMessage": "Are you sure you want to reject the selected promotion?",
     "rebatePeriod": "Rebate Period",
     "approveSuccess": "Promotion approved successfully",
-    "rejectSuccess": "Promotion rejected successfully"
+    "rejectSuccess": "Promotion rejected successfully",
+    "refNo": "Ref No",
+    "rejectErrorAll": "Promotion rejected failed for the following Ref No(s):",
+    "rejectSuccessAll": "All promotions rejected successfully.",
+    "approveErrorAll": "Promotion approved failed for the following Ref No(s):",
+    "approveSuccessAll": "All promotions approved successfully."
   },
   "promotionType_1": "Turnover Rebate",
   "search": {

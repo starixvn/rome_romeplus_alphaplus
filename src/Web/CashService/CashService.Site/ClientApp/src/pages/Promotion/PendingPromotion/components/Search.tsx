@@ -45,6 +45,7 @@ const Search: React.FC<SearchProps> = ({
       t('table.promotionType'),
       t('table.amount'),
       t('table.rebatePeriod'),
+      t('table.refNo'),
     ];
 
     const rows = items.map((item, index) => {
@@ -56,6 +57,7 @@ const Search: React.FC<SearchProps> = ({
         item.promotionTypeName,
         `${displayAmount(item.amount)}`,
         `${formatDateTime(item.fromDate)} - ${formatDateTime(item.toDate)}`,
+        item.transId,
       ];
       return rowData.join('\t');
     });

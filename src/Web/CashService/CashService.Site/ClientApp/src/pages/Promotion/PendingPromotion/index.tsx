@@ -9,15 +9,21 @@ import '../../../styles/global.scss';
 import { useTranslation } from 'react-i18next';
 import AddBonusForm from './components/AddBonusForm';
 import { ButtonFullComponent } from '../../../components/Buttons';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { MessageComponent } from '../../../components/Message';
+import { ResultType } from '../../../components/Message/types';
 
 const PendingPromotion: React.FC = () => {
   useCookieLanguage(i18n);
   const { t } = useTranslation('promotion');
   const [showAddBonus, setShowAddBonus] = useState(false);
   const [isCashServiceEnabled, setIsCashServiceEnabled] = useState(false);
-
+  const [resultMessage, setResultMessage] = useState<{
+    type: ResultType;
+    message: string;
+  }>({
+    type: 'success',
+    message: '',
+  });
   React.useEffect(() => {
     const isCashServiceEnabled = document
       .getElementById('IsCashServiceEnabled')
@@ -27,15 +33,6 @@ const PendingPromotion: React.FC = () => {
 
   return (
     <>
-      <ToastContainer
-        aria-label="toast-container"
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop
-        pauseOnFocusLoss
-        pauseOnHover
-        position="top-center"
-      />
       {showAddBonus ? (
         <AddBonusForm
           onClose={() => setShowAddBonus(false)}
@@ -44,6 +41,9 @@ const PendingPromotion: React.FC = () => {
       ) : (
         <div className="flex h-full flex-col">
           <TitleComponent text={t('pendingPromotion')} type="main" />
+          <div className="flex flex-col gap-2 mb-2">
+            <MessageComponent message={resultMessage.message} type={resultMessage.type} />
+          </div>
           <div className="mb-[8px]">
             <ButtonFullComponent
               text={t('addBonus')}
@@ -52,7 +52,10 @@ const PendingPromotion: React.FC = () => {
             />
           </div>
 
-          <PendingPromotionList isCashServiceEnabled={isCashServiceEnabled} />
+          <PendingPromotionList
+            isCashServiceEnabled={isCashServiceEnabled}
+            setResultMessage={setResultMessage}
+          />
         </div>
       )}
     </>
