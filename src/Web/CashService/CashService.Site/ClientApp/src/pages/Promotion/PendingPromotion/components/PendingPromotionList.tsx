@@ -237,7 +237,7 @@ const PendingPromotionList: React.FC<PendingPromotionListProps> = ({
               });
               resolve(true);
             },
-            errors.length === 0 ? 3000 : 10000
+            errors.length === 0 ? 3000 : 5000
           );
         });
       } catch (error) {
