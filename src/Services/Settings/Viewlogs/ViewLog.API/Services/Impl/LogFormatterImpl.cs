@@ -578,7 +578,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
 
         public string FormatBankAccountNumber(string bankAccountNumber)
         {
-            return bankAccountNumber.Replace("NoMatchingBankAccount", GetLogResource("NoMatchingBankAccount"));
+            return bankAccountNumber.Replace("NoMatchingBankAccount", GetLogResource("NoMatchingBankAccount"), StringComparison.OrdinalIgnoreCase);
         }
     }
 }
