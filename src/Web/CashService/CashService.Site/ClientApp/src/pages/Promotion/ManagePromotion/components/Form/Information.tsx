@@ -5,6 +5,8 @@ import CustomDropdown from '../../../../../components/CustomDropdownComponent';
 import DateRangePickerComponent from '../../../../../components/DateRangePickerComponent';
 import { TitleComponent } from '../../../../../components/Title';
 import TreeSelect, { TreeNodeOption } from '../../../../../components/TreeSelect/TreeSelect';
+import Tippy from '@tippyjs/react';
+import { IconInfo } from '../../../../../components/Icons';
 
 interface InformationProps {
   isActive: boolean;
@@ -46,19 +48,26 @@ const Information: React.FC<InformationProps> = ({
     >
       <EnableButtonComponent isActive={isActive} onClick={() => setIsActive(true)} />
       <DisableButtonComponent isActive={!isActive} onClick={() => setIsActive(false)} />
-    </div>   
-    <TitleComponent text={t('addPromotionForm.promotionSettings.title')} showTippy={true} classNameTippy={"max-w-[640px]!"} type='main' >
-      <div>{t('addPromotionForm.promotionSettings.description1')}</div>
-      <div>{t('addPromotionForm.promotionSettings.description2')}</div>
-      <div><b>{t('addPromotionForm.promotionSettings.description3')}</b></div>
-      <div>•  {t('addPromotionForm.promotionSettings.description4')}</div>
-      <div>•  {t('addPromotionForm.promotionSettings.description5')}</div>
-      <div>•  {t('addPromotionForm.promotionSettings.description6')}</div>
-      <div><b>{t('addPromotionForm.promotionSettings.description7')}</b></div>
-      <div>•  {t('addPromotionForm.promotionSettings.description8')}</div>
-      <div>•  {t('addPromotionForm.promotionSettings.description9')}</div>
-      <div>•  {t('addPromotionForm.promotionSettings.description10')}</div>
-    </TitleComponent>     
+    </div>
+    <div className='flex items-center pb-[5px] border-b border-[var(--border-control)] mb-[10px]'>
+      <div className='inline-block mr-[10px]'>
+        <TitleComponent text={t('addPromotionForm.promotionSettings.title')}   type='medium' ></TitleComponent>  
+      </div>
+      <Tippy className='max-w-[640px]!' content={<><div>{t('addPromotionForm.promotionSettings.description1')}</div>
+        <div>{t('addPromotionForm.promotionSettings.description2')}</div>
+        <div><b>{t('addPromotionForm.promotionSettings.description3')}</b></div>
+        <div>•  {t('addPromotionForm.promotionSettings.description4')}</div>
+        <div>•  {t('addPromotionForm.promotionSettings.description5')}</div>
+        <div>•  {t('addPromotionForm.promotionSettings.description6')}</div>
+        <div><b>{t('addPromotionForm.promotionSettings.description7')}</b></div>
+        <div>•  {t('addPromotionForm.promotionSettings.description8')}</div>
+        <div>•  {t('addPromotionForm.promotionSettings.description9')}</div>
+        <div>•  {t('addPromotionForm.promotionSettings.description10')}</div></>} theme="light" arrow={true}>
+        <span>
+          <IconInfo className="cursor-pointer  " />
+        </span>
+      </Tippy> 
+    </div>
     <div className="flex flex-wrap w-full">
       <div className="w-[190px] mr-[12px] mb-[12px]">
         <div className="flex items-center">

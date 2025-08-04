@@ -276,12 +276,14 @@ const validateForm = () => {
             PROMOTION_TYPES={PROMOTION_TYPES}
           />
         </div>
-        <ProductSettings
-          productCategories={productSettings}
-          handleProductFieldChange={handleProductFieldChange}
-          selectedProductCategories={selectedProductCategories}
-          readOnlyMode={false}
-        />
+        <div className='mb-[10px]'>
+          <ProductSettings
+            productCategories={productSettings}
+            handleProductFieldChange={handleProductFieldChange}
+            selectedProductCategories={selectedProductCategories}
+            readOnlyMode={false}
+          />
+        </div>
 
         <PromotionInfo
           languages={languages}

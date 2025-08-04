@@ -7,6 +7,7 @@
     "managePromotion": "Manage Promotion"
   },
   "addPromotionForm": {
+    "promotionContent": "Promotional content",
     "requiredProductCategory": "Please select at least one Product",
     "requiredTitle": "Title (English) is required",
     "requiredContent": "Content (English) is required",

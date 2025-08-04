@@ -21,87 +21,94 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
   return (
   <>
     {productCategories.map((product) => (
-      <div
-        key={product.productCategoryId}
-        className="flex flex-wrap w-full">
-        <div className="w-[190px] mr-[12px] mb-[12px]">
-          <TitleComponent text={`${product.productCategoryName} ${t('addPromotionForm.percentage')}`} required type='label'/>
-          <div className="flex items-center relative">
+      <div className='w-[620px]'>
+        <div className='border-b border-[var(--border-control)] mb-[5px]'>
+          <div className='inline-block mr-[10px] [&>*]:pt-[1px]! [&>*]:pb-[3px]!'>
+            <TitleComponent text={`${product.productCategoryName}`} type='normal' ></TitleComponent>  
+          </div>         
+        </div>
+        <div
+          key={product.productCategoryId}
+          className="flex flex-wrap w-full">
+          <div className="w-[190px] mr-[10px] mb-[10px]">
+            <TitleComponent text={`${product.productCategoryName} ${t('addPromotionForm.percentage')}`} required type='label'/>
+            <div className="flex items-center relative">
+              <input
+                type="number"
+                min="1"
+                step="0.01"
+                className={`control-field pr-[41px]! ${readOnlyMode || !selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
+                value={product.percentage}
+                disabled={readOnlyMode || !selectedProductCategories.includes(product.productCategoryId)}
+                onChange={(e) =>
+                  handleProductFieldChange(
+                    product.productCategoryId,
+                    'percentage',
+                    Number(e.target.value)
+                  )
+                }
+              />
+              <span className={`absolute right-0 top-0 h-full w-[32px] leading-[28px] text-center border-l-[1px] border-[var(--border-control)] ${!selectedProductCategories.includes(product.productCategoryId) ? 'opacity-50' : ''}`}>
+                %
+              </span>
+            </div>
+          </div>
+
+          <div className="w-[190px] mr-[12px] mb-[12px]">
+            <TitleComponent text={t('addPromotionForm.minTurnover')} required={true} type='label'/>
             <input
               type="number"
               min="1"
-              step="0.01"
-              className={`control-field pr-[41px]! ${readOnlyMode || !selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
-              value={product.percentage}
+              className={`control-field ${readOnlyMode || !selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
+              value={product.minTurnover}
               disabled={readOnlyMode || !selectedProductCategories.includes(product.productCategoryId)}
               onChange={(e) =>
                 handleProductFieldChange(
                   product.productCategoryId,
-                  'percentage',
+                  'minTurnover',
                   Number(e.target.value)
                 )
               }
             />
-            <span className={`absolute right-0 top-0 h-full w-[32px] leading-[28px] text-center border-l-[1px] border-[var(--border-control)] ${!selectedProductCategories.includes(product.productCategoryId) ? 'opacity-50' : ''}`}>
-              %
-            </span>
           </div>
-        </div>
 
-        <div className="w-[190px] mr-[12px] mb-[12px]">
-          <TitleComponent text={t('addPromotionForm.minTurnover')} required={true} type='label'/>
-          <input
-            type="number"
-            min="1"
-            className={`control-field ${readOnlyMode || !selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
-            value={product.minTurnover}
-            disabled={readOnlyMode || !selectedProductCategories.includes(product.productCategoryId)}
-            onChange={(e) =>
-              handleProductFieldChange(
-                product.productCategoryId,
-                'minTurnover',
-                Number(e.target.value)
-              )
-            }
-          />
-        </div>
-
-        <div className="w-[190px] mr-[12px] mb-[12px]">
-          <div className="flex justify-between items-center">
-            <TitleComponent text={t('addPromotionForm.maxPayout')} required={true} type='label'/>
-            <div className="flex items-center text-[12px]">
-              <input
-                type="checkbox"
-                className={`mr-[5px] ${readOnlyMode || !selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
-                checked={product.unlimited}
-                disabled={readOnlyMode || !selectedProductCategories.includes(product.productCategoryId)}
-                onChange={(e) =>
-                  handleProductFieldChange(product.productCategoryId, 'unlimited', e.target.checked)
-                }
-                id={`${product.productCategoryId}-unlimited`}
-              />
-              <label
-                htmlFor={`${product.productCategoryId}-unlimited`}
-                className="text-[var(--text-link-color)]"
-              >
-                Unlimited
-              </label>
+          <div className="w-[190px] mr-[12px] mb-[12px]">
+            <div className="flex justify-between items-center">
+              <TitleComponent text={t('addPromotionForm.maxPayout')} required={true} type='label'/>
+              <div className="flex items-center text-[12px]">
+                <input
+                  type="checkbox"
+                  className={`mr-[5px] ${readOnlyMode || !selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
+                  checked={product.unlimited}
+                  disabled={readOnlyMode || !selectedProductCategories.includes(product.productCategoryId)}
+                  onChange={(e) =>
+                    handleProductFieldChange(product.productCategoryId, 'unlimited', e.target.checked)
+                  }
+                  id={`${product.productCategoryId}-unlimited`}
+                />
+                <label
+                  htmlFor={`${product.productCategoryId}-unlimited`}
+                  className="text-[var(--text-link-color)]"
+                >
+                  Unlimited
+                </label>
+              </div>
             </div>
+            <input
+              type="text"
+              min="0"
+              className={`control-field ${product.unlimited ? 'opacity-50' : ''} ${readOnlyMode || !selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
+              value={product.maxPayout}
+              disabled={readOnlyMode || !selectedProductCategories.includes(product.productCategoryId) || product.unlimited}
+              onChange={(e) =>
+                handleProductFieldChange(
+                  product.productCategoryId,
+                  'maxPayout',
+                  Number(e.target.value)
+                )
+              }
+            />
           </div>
-          <input
-            type="text"
-            min="0"
-            className={`control-field ${product.unlimited ? 'opacity-50' : ''} ${readOnlyMode || !selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
-            value={product.maxPayout}
-            disabled={readOnlyMode || !selectedProductCategories.includes(product.productCategoryId) || product.unlimited}
-            onChange={(e) =>
-              handleProductFieldChange(
-                product.productCategoryId,
-                'maxPayout',
-                Number(e.target.value)
-              )
-            }
-          />
         </div>
       </div>
     ))}
