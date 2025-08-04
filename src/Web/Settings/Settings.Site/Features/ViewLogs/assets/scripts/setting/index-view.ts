@@ -153,7 +153,8 @@ var settingView = {
             Username: settingView.elelments.txtUsername.val(),
             FromDate: settingView.elelments.ddlMonth.monPickr("getFromDate", alphaViewLogs.format.shortDateWithSlash),
             ToDate: settingView.elelments.ddlMonth.monPickr("getToDate", alphaViewLogs.format.shortDateWithSlash),
-            ActionTypeId: settingView.elelments.ddlLogActionType.val()
+            ActionTypeId: settingView.elelments.ddlLogActionType.val(),
+            IsShowOldValue: settingView.elelments.chkOldValues.prop("checked") ? 1 : 0
         };
     },
     renderPager: function (options: any) {

@@ -153,7 +153,8 @@ var cashserviceView = {
             Username: cashserviceView.elelments.txtUsername.val(),
             FromDate: cashserviceView.elelments.ddlMonth.monPickr("getFromDate", alphaViewLogs.format.shortDateWithSlash),
             ToDate: cashserviceView.elelments.ddlMonth.monPickr("getToDate", alphaViewLogs.format.shortDateWithSlash),
-            ActionTypeId: cashserviceView.elelments.ddlLogActionType.val()
+            ActionTypeId: cashserviceView.elelments.ddlLogActionType.val(),
+            IsShowOldValue: cashserviceView.elelments.chkOldValues.prop("checked") ? 1 : 0
         };
     },
     renderPager: function (options: any) {
