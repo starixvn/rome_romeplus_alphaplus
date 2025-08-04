@@ -270,4 +270,25 @@
   <data name="RebatePeriod" xml:space="preserve">
     <value>Rebate Period</value>
   </data>
+  <data name="FreeTrial" xml:space="preserve">
+    <value>14-days &lt;b&gt;FREE&lt;/b&gt; trial</value>
+  </data>
+  <data name="StartTodayAndEnjoy" xml:space="preserve">
+    <value>Start today and enjoy instant savings of &lt;b&gt;THB 2,800&lt;/b&gt;</value>
+  </data>
+  <data name="NoPlatformFee" xml:space="preserve">
+    <value>&lt;strong&gt;No platform fee&lt;/strong&gt; &lt;span class="benefit-note"&gt;- save THB 200/day during the trial.&lt;/span&gt;</value>
+  </data>
+  <data name="TransactionFee" xml:space="preserve">
+    <value>&lt;strong&gt; Just 0.15 per transaction&lt;/strong&gt; via your linked bank account.</value>
+  </data>
+  <data name="CancelAnytime" xml:space="preserve">
+    <value>Get results. Stay if you love it. Cancel anytime.</value>
+  </data>
+  <data name="CashFlowToTheNextLevel" xml:space="preserve">
+    <value>Don't miss out – Activate now and take your cash flow to the next level.</value>
+  </data>
+  <data name="SuperchargeYourCashFlow" xml:space="preserve">
+    <value>Supercharge Your Cash Flow?</value>
+  </data>
 </root>

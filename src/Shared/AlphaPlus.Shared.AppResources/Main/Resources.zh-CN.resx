@@ -877,4 +877,10 @@
   <data name="CashServiceSetupChecklist_Row2" xml:space="preserve">
     <value>转到 &lt;a class="lnk-manage-payments" target="main" href="{0}"&gt;管理付款&lt;/a&gt; 以设置您的 &lt;strong&gt;支付网关&lt;/strong&gt; 或 &lt;strong&gt;银行账户&lt;/strong&gt;</value>
   </data>
+  <data name="DeactivateCashService" xml:space="preserve">
+    <value>您确定要停用现金服务吗？</value>
+  </data>
+  <data name="DeactivateCashServiceNote" xml:space="preserve">
+    <value>您账户的现金服务将于明日关闭，相关费用也将同步停止计收。</value>
+  </data>
 </root>

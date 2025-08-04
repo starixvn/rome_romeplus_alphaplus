@@ -261,4 +261,25 @@
   <data name="RebatePeriod" xml:space="preserve">
     <value />
   </data>
+  <data name="FreeTrial" xml:space="preserve">
+    <value>&lt;b&gt;免費&lt;/b&gt;試用14天</value>
+  </data>
+  <data name="NoPlatformFee" xml:space="preserve">
+    <value>&lt;strong&gt;無平臺費用&lt;/strong&gt; &lt;span class="benefit-note"&gt;- 試用期間每天可節省 200 泰銖。&lt;/span&gt;</value>
+  </data>
+  <data name="TransactionFee" xml:space="preserve">
+    <value>&lt;strong&gt;通過您綁定的銀行賬戶，每筆交易僅需 0.15。&lt;/strong&gt;</value>
+  </data>
+  <data name="CancelAnytime" xml:space="preserve">
+    <value>看到成果。滿意就繼續，隨時可以取消。</value>
+  </data>
+  <data name="CashFlowToTheNextLevel" xml:space="preserve">
+    <value>不用錯過！立即開通，讓您的現金流轉更高效。</value>
+  </data>
+  <data name="SuperchargeYourCashFlow" xml:space="preserve">
+    <value>增強您的現金流？</value>
+  </data>
+  <data name="StartTodayAndEnjoy" xml:space="preserve">
+    <value>立即開始享受高達 &lt;b&gt;2,800 泰銖&lt;/b&gt;的優惠！</value>
+  </data>
 </root>

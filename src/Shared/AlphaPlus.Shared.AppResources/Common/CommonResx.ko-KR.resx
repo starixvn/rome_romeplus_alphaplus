@@ -504,4 +504,7 @@
   <data name="ErrorMessage_50040" xml:space="preserve">
     <value>이 회원은 현금 회원이 아닙니다.</value>
   </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>확인</value>
+  </data>
 </root>

@@ -261,4 +261,22 @@
   <data name="RebatePeriod" xml:space="preserve">
     <value />
   </data>
+  <data name="FreeTrial" xml:space="preserve">
+    <value>Dùng thử &lt;b&gt;miễn phí&lt;/b&gt; 14 ngày</value>
+  </data>
+  <data name="StartTodayAndEnjoy" xml:space="preserve">
+    <value>Bắt đầu hôm nay và tận hưởng tiết kiệm ngay lập tức &lt;b&gt;THB 2,800&lt;/b&gt;</value>
+  </data>
+  <data name="NoPlatformFee" xml:space="preserve">
+    <value>&lt;strong&gt;Không có phí nền tảng&lt;/strong&gt; &lt;span class="benefit-note"&gt;- tiết kiệm THB 200/ngày trong thời gian dùng thử.&lt;/span&gt;</value>
+  </data>
+  <data name="TransactionFee" xml:space="preserve">
+    <value>&lt;strong&gt;Chỉ 0.15 mỗi giao dịch&lt;/strong&gt; thông qua tài khoản ngân hàng đã liên kết.</value>
+  </data>
+  <data name="CancelAnytime" xml:space="preserve">
+    <value>Xem kết quả. Nếu hài lòng thì tiếp tục sử dụng. Hủy bỏ bất cứ lúc nào.</value>
+  </data>
+  <data name="CashFlowToTheNextLevel" xml:space="preserve">
+    <value>Đừng bỏ lỡ – Kích hoạt ngay và đưa dòng tiền của bạn lên tầm cao mới.</value>
+  </data>
 </root>

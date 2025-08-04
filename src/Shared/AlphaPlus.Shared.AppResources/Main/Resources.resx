@@ -967,4 +967,10 @@ Note: Please change your &lt;b&gt;password&lt;/b&gt; the first time you click 'A
   <data name="EnjoyCashServiceFree" xml:space="preserve">
     <value>Enjoy Cash Service FREE for 14 days!</value>
   </data>
+  <data name="DeactivateCashService" xml:space="preserve">
+    <value>Are you sure you want to deactivate Cash Service?</value>
+  </data>
+  <data name="DeactivateCashServiceNote" xml:space="preserve">
+    <value>Cash Service will be turned off for your account, and charges will stop as of tomorrow</value>
+  </data>
 </root>

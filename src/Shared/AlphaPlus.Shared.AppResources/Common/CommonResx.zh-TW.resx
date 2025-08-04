@@ -629,4 +629,7 @@
   <data name="ErrorMessage_50040" xml:space="preserve">
     <value>此會員不是現金會員。</value>
   </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>確認</value>
+  </data>
 </root>

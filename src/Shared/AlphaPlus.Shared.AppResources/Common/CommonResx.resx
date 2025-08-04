@@ -625,4 +625,7 @@
   <data name="ErrorMessage_50040" xml:space="preserve">
     <value>This member is not a cash member.</value>
   </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
 </root>

@@ -617,4 +617,7 @@
   <data name="ErrorMessage_50040" xml:space="preserve">
     <value>Thành viên này không phải là thành viên tiền mặt.</value>
   </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Xác nhận</value>
+  </data>
 </root>

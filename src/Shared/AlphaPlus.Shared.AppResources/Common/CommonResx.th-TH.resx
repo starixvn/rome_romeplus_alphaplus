@@ -625,4 +625,7 @@
   <data name="ErrorMessage_50040" xml:space="preserve">
     <value>สมาชิกนี้ไม่ใช่สมาชิกสด</value>
   </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>ยืนยัน</value>
+  </data>
 </root>

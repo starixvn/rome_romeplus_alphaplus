@@ -957,4 +957,10 @@
   <data name="CashServiceSetupChecklist_Row2" xml:space="preserve">
     <value>&lt;a class="lnk-manage-payments" target="main" href="{0}"&gt;결제 관리&lt;/a&gt;로 이동하여 &lt;strong&gt;결제 게이트웨이&lt;/strong&gt; 또는 &lt;strong&gt;은행 계좌&lt;/strong&gt;을 설정하세요</value>
   </data>
+  <data name="DeactivateCashService" xml:space="preserve">
+    <value>캐시 서비스를 비활성화하시겠습니까?</value>
+  </data>
+  <data name="DeactivateCashServiceNote" xml:space="preserve">
+    <value>캐시 서비스가 귀하의 계정에서 중단되며, 내일부터 요금이 중단됩니다.</value>
+  </data>
 </root>

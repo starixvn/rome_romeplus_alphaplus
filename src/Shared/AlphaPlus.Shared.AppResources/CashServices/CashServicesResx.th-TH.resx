@@ -261,4 +261,25 @@
   <data name="RebatePeriod" xml:space="preserve">
     <value />
   </data>
+  <data name="FreeTrial" xml:space="preserve">
+    <value>ทดลองใช้งาน&lt;b&gt;ฟรี&lt;/b&gt; 14 วัน</value>
+  </data>
+  <data name="StartTodayAndEnjoy" xml:space="preserve">
+    <value>เริ่มต้นวันนี้และประหยัดทันที &lt;b&gt;2,800 บาท&lt;/b&gt;</value>
+  </data>
+  <data name="NoPlatformFee" xml:space="preserve">
+    <value>&lt;strong&gt;ไม่มีค่าธรรมเนียมแพลตฟอร์ม&lt;/strong&gt; &lt;span class="benefit-note"&gt;– ประหยัดวันละ 200 บาทในช่วงทดลองใช้งาน&lt;/span&gt;</value>
+  </data>
+  <data name="TransactionFee" xml:space="preserve">
+    <value>&lt;strong&gt;เพียง 0.15 บาทต่อรายการ&lt;/strong&gt; เมื่อทำธุรกรรมผ่านบัญชีธนาคารที่เชื่อมต่อไว้</value>
+  </data>
+  <data name="CancelAnytime" xml:space="preserve">
+    <value>เห็นผลลัพธ์ได้จริง หากพึงพอใจก็ใช้งานต่อได้ และสามารถยกเลิกได้ทุกเมื่อ</value>
+  </data>
+  <data name="CashFlowToTheNextLevel" xml:space="preserve">
+    <value>อย่าพลาด – เปิดใช้งานทันทีเพื่อยกระดับการบริหารเงินสดของคุณ</value>
+  </data>
+  <data name="SuperchargeYourCashFlow" xml:space="preserve">
+    <value>เพิ่มประสิทธิภาพการหมุนเวียนเงินของคุณให้สูงสุด?</value>
+  </data>
 </root>

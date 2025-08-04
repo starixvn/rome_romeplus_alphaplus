@@ -261,4 +261,25 @@
   <data name="RebatePeriod" xml:space="preserve">
     <value />
   </data>
+  <data name="FreeTrial" xml:space="preserve">
+    <value>14日間の&lt;b&gt;無料&lt;/b&gt;トライアル</value>
+  </data>
+  <data name="StartTodayAndEnjoy" xml:space="preserve">
+    <value>今日始めて&lt;b&gt;THB 2,800&lt;/b&gt;の即座の節約をお楽しみください</value>
+  </data>
+  <data name="NoPlatformFee" xml:space="preserve">
+    <value>&lt;strong&gt;プラットフォーム手数料なし&lt;/strong&gt; &lt;span class="benefit-note"&gt;- トライアル期間中、1日あたりTHB 200節約.&lt;/span&gt;</value>
+  </data>
+  <data name="TransactionFee" xml:space="preserve">
+    <value>&lt;strong&gt;取引あたりわずか0.15&lt;/strong&gt; リンクされた銀行口座を通じて.</value>
+  </data>
+  <data name="CancelAnytime" xml:space="preserve">
+    <value>結果を確認。気に入ったら続けて、いつでもキャンセル可能。</value>
+  </data>
+  <data name="CashFlowToTheNextLevel" xml:space="preserve">
+    <value>見逃さないで – 今すぐアクティベートして、キャッシュフローを次のレベルに引き上げましょう。</value>
+  </data>
+  <data name="SuperchargeYourCashFlow" xml:space="preserve">
+    <value>キャッシュフローを大幅に強化しますか？</value>
+  </data>
 </root>

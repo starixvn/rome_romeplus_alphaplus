@@ -880,4 +880,10 @@
   <data name="CashServiceSetupChecklist_Row2" xml:space="preserve">
     <value>轉到 &lt;a class="lnk-manage-payments" target="main" href="{0}"&gt;管理付款&lt;/a&gt; 以設置您的 &lt;strong&gt;支付網關&lt;/strong&gt; 或 &lt;strong&gt;銀行賬戶&lt;/strong&gt;</value>
   </data>
+  <data name="DeactivateCashService" xml:space="preserve">
+    <value>您確定要停用現金服務嗎？</value>
+  </data>
+  <data name="DeactivateCashServiceNote" xml:space="preserve">
+    <value>您賬戶的現金服務將於明日關閉，相關費用也將同步停止計收。</value>
+  </data>
 </root>

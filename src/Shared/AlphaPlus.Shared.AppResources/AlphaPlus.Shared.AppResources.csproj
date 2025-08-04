@@ -24,6 +24,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CashServicesResx.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Update="Main\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Settings\ViewLog\TrackingValueResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TrackingValueResources.Designer.cs</LastGenOutput>

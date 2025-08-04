@@ -916,4 +916,10 @@
   <data name="CashServiceSetupChecklist_Row6" xml:space="preserve">
     <value>&lt;div class="chk-line-id"&gt;&lt;/div&gt;กรอก &lt;strong&gt;LINE ID&lt;/strong&gt; ของคุณและแชร์ลิงก์ของคุณ</value>
   </data>
+  <data name="DeactivateCashService" xml:space="preserve">
+    <value>คุณแน่ใจหรือไม่ว่าต้องการปิดใช้งานบริการเงินสด?</value>
+  </data>
+  <data name="DeactivateCashServiceNote" xml:space="preserve">
+    <value>บริการเงินสดจะถูกปิดใช้งานในบัญชีของคุณ และการเรียกเก็บค่าบริการจะสิ้นสุดตั้งแต่วันพรุ่งนี้เป็นต้นไป</value>
+  </data>
 </root>

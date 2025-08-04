@@ -873,4 +873,10 @@
   <data name="CashServiceSetupChecklist_Row2" xml:space="preserve">
     <value>&lt;a class="lnk-manage-payments" target="main" href="{0}"&gt;支払い管理&lt;/a&gt;に移動して、&lt;strong&gt;支払いゲートウェイ&lt;/strong&gt;または&lt;strong&gt;銀行口座&lt;/strong&gt;を設定してください</value>
   </data>
+  <data name="DeactivateCashService" xml:space="preserve">
+    <value>キャッシュサービスを無効にしてもよろしいですか？</value>
+  </data>
+  <data name="DeactivateCashServiceNote" xml:space="preserve">
+    <value>キャッシュサービスはあなたのアカウントで停止され、明日から料金が停止されます。</value>
+  </data>
 </root>
