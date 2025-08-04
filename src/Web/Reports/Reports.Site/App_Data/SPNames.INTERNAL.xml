@@ -191,7 +191,7 @@
     <Function Name="Consolidation">
         <Setting Key="Age_Rpt_ConsolidatedGroupSelCurrency" SpName="Age_Rpt_ConsolidatedGroupSelCurrency" DbName="DBAGE.bodb02.wsv_alpv" />
         <Setting Key="Age_Rpt_ConsolidatedGroupProductSel" SpName="Age_Rpt_ConsolidatedGroupProductSel" DbName="DBAGE.bodb02.wsv_alpv" />
-        <Setting Key="	Age_Rpt_ConsolidatedGroupProductSel_Extra" SpName="	Age_Rpt_ConsolidatedGroupProductSel_Extra" DbName="DBAGE.bodb02.wsv_alpv" />
+        <Setting Key="Age_Rpt_ConsolidatedGroupProductSel_Extra" SpName="Age_Rpt_ConsolidatedGroupProductSel_Extra" DbName="DBAGE.bodb02.wsv_alpv" />
         <Setting Key="Age_Rpt_ConsolidatedGroup" SpName="Age_Rpt_ConsolidatedGroup" DbName="DBAGE.bodb02.wsv_alpv">
             <Mapping DataField="breakdown" ObjectProperty="breakdown" />
             <Mapping DataField="roleid" ObjectProperty="custLevel" />
