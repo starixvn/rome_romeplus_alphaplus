@@ -187,6 +187,14 @@ public class SearchAccountService(
 
     public async Task<Result> UpdateGivenCredit(GivenCreditCommand param)
     {
+        decimal? accumCreditAllCashMember = null;
+        if (param.SearchAccountRoleId == UserLevel.Member.Value || param.SearchAccountRoleId == UserLevel.Agent.Value)
+        {
+            var accumCreditCommand = new GetAccumCreditCommand(param.SearchAccountId);
+            await dynamicRepository.ExecuteAsync(accumCreditCommand);
+            accumCreditAllCashMember = accumCreditCommand.AccumCreditReturn;
+        }
+
         UpdateSMAGivenCreditCommand command;
         if (param.SearchAccountRoleId == UserLevel.Member.Value)
         {
@@ -200,7 +208,21 @@ public class SearchAccountService(
                 param.SubAccountId,
                 param.LangKey,
                 param.IP,
+                accumCreditAllCashMember.Value,
                 totalAmtCommand.TotalAmt);
+            await dynamicRepository.ExecuteAsync(command);
+        }
+        else if (param.SearchAccountRoleId == UserLevel.Agent.Value)
+        {
+            command = new UpdateAgentGivenCreditCommand(
+                param.SearchAccountId,
+                param.SearchAccountRoleId,
+                param.CreditAmount,
+                param.ViewerId,
+                param.SubAccountId,
+                param.LangKey,
+                param.IP,
+                accumCreditAllCashMember.Value);
             await dynamicRepository.ExecuteAsync(command);
         }
         else

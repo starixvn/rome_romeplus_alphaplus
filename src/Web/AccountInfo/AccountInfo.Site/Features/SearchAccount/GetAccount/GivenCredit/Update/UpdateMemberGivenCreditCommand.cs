@@ -1,6 +1,6 @@
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.Update
 {
-    public class UpdateMemberGivenCreditCommand : UpdateSMAGivenCreditCommand
+    public class UpdateMemberGivenCreditCommand : UpdateAgentGivenCreditCommand
     {
         public UpdateMemberGivenCreditCommand(
             int searchAccountId,
@@ -10,6 +10,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCred
             int subAccountId,
             string language,
             string ip,
+            decimal accumCreditAllCashMember,
             decimal totalAmt) : base(
                 searchAccountId,
                 searchAccountRoleId,
@@ -17,7 +18,8 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCred
                 actorId,
                 subAccountId,
                 language,
-                ip)
+                ip,
+                accumCreditAllCashMember)
         {
             TotalAmt = totalAmt;
         }
