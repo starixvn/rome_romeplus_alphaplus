@@ -1,13 +1,15 @@
-using AlphaPlus.CashService.Site.Features.Promotion.Helpers;
-using AlphaPlus.CashService.Site.Features.Promotion.Requests;
-using Newtonsoft.Json;
-
 namespace AlphaPlus.CashService.Site.Features.Promotion.Services;
+
+using Helpers;
+using Newtonsoft.Json;
+using Requests;
 
 public interface IPromotionService
 {
     Dictionary<string, IFormFile> ProcessPromotionRequest(AddPromotionRequest request);
+
     Dictionary<string, IFormFile> ProcessPromotionRequest(EditPromotionRequest request);
+
     void ProcessImageUploads(Dictionary<string, IFormFile> files);
 }
 
@@ -15,16 +17,13 @@ public class PromotionService : IPromotionService
 {
     public Dictionary<string, IFormFile> ProcessPromotionRequest(EditPromotionRequest request)
     {
-        var files = new Dictionary<string, IFormFile>();        
-        foreach (var content in request.Contents)
+        var files = new Dictionary<string, IFormFile>();
+        foreach (var content in request.Contents.Where(content => content.Banner != null))
         {
-            if (content.Banner != null)
-            {
-                content.BannerName = FormatBannerName(request.UserId, request.FromDate, content.Language, Path.GetExtension(content.Banner.FileName));
-                files.Add(content.BannerName, content.Banner);
+            content.BannerName = FormatBannerName(request.UserId, request.FromDate, content.Language, Path.GetExtension(content.Banner.FileName));
+            files.Add(content.BannerName, content.Banner);
 
-                content.Banner = null;
-            }
+            content.Banner = null;
         }
 
         return files;
@@ -39,15 +38,12 @@ public class PromotionService : IPromotionService
             request.ProductSettingsJson = null;
         }
 
-        foreach (var content in request.Contents)
+        foreach (var content in request.Contents.Where(content => content.Banner != null))
         {
-            if (content.Banner != null)
-            {
-                content.BannerName = FormatBannerName(request.UserId, request.FromDate, content.Language, Path.GetExtension(content.Banner.FileName));
-                files.Add(content.BannerName, content.Banner);
+            content.BannerName = FormatBannerName(request.UserId, request.FromDate, content.Language, Path.GetExtension(content.Banner.FileName));
+            files.Add(content.BannerName, content.Banner);
 
-                content.Banner = null;
-            }
+            content.Banner = null;
         }
 
         return files;
@@ -70,14 +66,11 @@ public class PromotionService : IPromotionService
             }
             catch (Exception ex)
             {
-                // Log error but don't throw to avoid affecting the main response
-                Console.WriteLine($"Background image processing failed: {ex.Message}");
+                Console.WriteLine($@"Background image processing failed: {ex.Message}");
             }
         });
     }
 
     private static string FormatBannerName(int userId, DateTime fromDate, string language, string fileExtension)
-    {
-        return $"{userId}_{fromDate:yyyyMMdd}_{language}{fileExtension}";
-    }
+        => $"{userId}_{fromDate:yyyyMMdd}_{language}{fileExtension}";
 }

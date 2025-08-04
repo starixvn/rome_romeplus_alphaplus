@@ -159,8 +159,7 @@ public class PromotionController(
         if (request.IsValid())
         {
             var files = promotionService.ProcessPromotionRequest(request);
-            var url = $"/api/promotions";
-            var result = await httpClientHelper.PostAsync<object, ResultModel>(url, request);
+            var result = await httpClientHelper.PostAsync<object, ResultModel>("/api/promotions", request);
             if (result.IsSuccessful)
             {
                 promotionService.ProcessImageUploads(files);
@@ -169,7 +168,7 @@ public class PromotionController(
             return Json(result);
         }
 
-        return Json(new { Code = "01", Message = "Invalid request" });
+        return Json(new ResultModel { Code = 1, Message = "Invalid request" });
     }
 
     [HttpPut]
@@ -195,7 +194,7 @@ public class PromotionController(
             return Json(result);
         }
 
-        return Json(new { Code = "01", Message = "Invalid request" });
+        return Json(new ResultModel { Code = 1, Message = "Invalid request" });
     }
 
     [HttpDelete]

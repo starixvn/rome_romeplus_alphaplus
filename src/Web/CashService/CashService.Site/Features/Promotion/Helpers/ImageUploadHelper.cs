@@ -2,8 +2,8 @@ namespace AlphaPlus.CashService.Site.Features.Promotion.Helpers;
 
 public static class ImageUploadHelper
 {
-    private static readonly string[] AllowedExtensions = { ".jpg", ".jpeg", ".png", ".gif", ".webp" };
-    private const int MaxFileSizeInMB = 5;
+    private static readonly string[] AllowedExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+    private const int MaxFileSize = 20; //MB
     private const string UploadFolder = "wwwroot/PromotionImages";
 
     public static async Task<string> ProcessUploadedImages(IFormFile image, string fileName)
@@ -21,11 +21,11 @@ public static class ImageUploadHelper
                 try
                 {
                     Directory.CreateDirectory(uploadPath);
-                    Console.WriteLine($"Created directory: {uploadPath}");
+                    Console.WriteLine($@"Created directory: {uploadPath}");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Failed to create directory {uploadPath}: {ex.Message}");
+                    Console.WriteLine($@"Failed to create directory {uploadPath}: {ex.Message}");
                     throw new InvalidOperationException($"Cannot create upload directory {uploadPath}: {ex.Message}");
                 }
             }
@@ -46,14 +46,14 @@ public static class ImageUploadHelper
                 var extension = Path.GetExtension(fileName);
                 var nameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
                 var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-                var randomString = Path.GetRandomFileName().Replace(".", "").Substring(0, 6);
+                var randomString = Path.GetRandomFileName().Replace(".", "")[..6];
 
                 finalFileName = $"{nameWithoutExtension}_{timestamp}_{randomString}{extension}";
                 filePath = Path.Combine(uploadPath, finalFileName);
             }
 
             // Save file
-            using (var stream = new FileStream(filePath, FileMode.Create))
+            await using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 await image.CopyToAsync(stream);
             }
@@ -66,7 +66,7 @@ public static class ImageUploadHelper
         catch (Exception ex)
         {
             // Log the error and return empty dictionary
-            Console.WriteLine($"Error processing uploaded image: {ex.Message}");
+            Console.WriteLine($@"Error processing uploaded image: {ex.Message}");
             return null;
         }
     }
@@ -89,11 +89,11 @@ public static class ImageUploadHelper
                 try
                 {
                     Directory.CreateDirectory(uploadPath);
-                    Console.WriteLine($"Created directory: {uploadPath}");
+                    Console.WriteLine($@"Created directory: {uploadPath}");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Failed to create directory {uploadPath}: {ex.Message}");
+                    Console.WriteLine($@"Failed to create directory {uploadPath}: {ex.Message}");
                     throw new InvalidOperationException($"Cannot create upload directory {uploadPath}: {ex.Message}");
                 }
             }
@@ -102,25 +102,25 @@ public static class ImageUploadHelper
             var testFile = Path.Combine(uploadPath, "test.txt");
             try
             {
-                File.WriteAllText(testFile, "test");
+                await File.WriteAllTextAsync(testFile, "test");
                 File.Delete(testFile);
-                Console.WriteLine($"Directory {uploadPath} is writable");
+                Console.WriteLine($@"Directory {uploadPath} is writable");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Directory {uploadPath} is not writable: {ex.Message}");
-                Console.WriteLine($"Current user: {Environment.UserName}");
-                Console.WriteLine($"Current directory: {Directory.GetCurrentDirectory()}");
+                Console.WriteLine($@"Directory {uploadPath} is not writable: {ex.Message}");
+                Console.WriteLine($@"Current user: {Environment.UserName}");
+                Console.WriteLine($@"Current directory: {Directory.GetCurrentDirectory()}");
 
                 // Try to get directory permissions info
                 try
                 {
                     var dirInfo = new DirectoryInfo(uploadPath);
-                    Console.WriteLine($"Directory attributes: {dirInfo.Attributes}");
+                    Console.WriteLine($@"Directory attributes: {dirInfo.Attributes}");
                 }
                 catch (Exception permEx)
                 {
-                    Console.WriteLine($"Cannot get directory info: {permEx.Message}");
+                    Console.WriteLine($@"Cannot get directory info: {permEx.Message}");
                 }
 
                 throw new InvalidOperationException($"Directory {uploadPath} is not writable: {ex.Message}");
@@ -142,7 +142,7 @@ public static class ImageUploadHelper
                 var filePath = Path.Combine(uploadPath, fileName);
 
                 // Save file
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                await using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await image.CopyToAsync(stream);
                 }
@@ -157,7 +157,7 @@ public static class ImageUploadHelper
         catch (Exception ex)
         {
             // Log the error and return empty dictionary
-            Console.WriteLine($"Error processing uploaded images: {ex.Message}");
+            Console.WriteLine($@"Error processing uploaded images: {ex.Message}");
             return processedImages;
         }
     }
@@ -165,7 +165,7 @@ public static class ImageUploadHelper
     private static bool IsValidImageFile(IFormFile file)
     {
         // Check file size
-        if (file.Length > MaxFileSizeInMB * 1024 * 1024)
+        if (file.Length > MaxFileSize * 1024 * 1024)
             return false;
 
         // Check file extension
@@ -184,7 +184,7 @@ public static class ImageUploadHelper
     {
         var extension = Path.GetExtension(originalFileName);
         var timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
-        var randomString = Path.GetRandomFileName().Replace(".", "").Substring(0, 6);
+        var randomString = Path.GetRandomFileName().Replace(".", "")[..6];
 
         return $"promotion_{timestamp}_{randomString}{extension}";
     }
