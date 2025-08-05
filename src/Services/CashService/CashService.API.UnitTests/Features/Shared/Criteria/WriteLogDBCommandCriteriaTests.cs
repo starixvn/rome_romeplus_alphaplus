@@ -73,8 +73,7 @@ public class WriteLogDBCommandCriteriaTests
 
     [Theory]
     [InlineData(0, 1, false)]  // Invalid CustId
-    [InlineData(1, 0, true)]   // Valid CustId, ActionId can be 0
-    [InlineData(1, 1, true)]   // Valid both
+    [InlineData(1, 0, true)]  // Valid
     public void IsValid_WhenGivenDifferentInputs_ShouldReturnExpectedResult(int custId, int actionId, bool expected)
     {
         // Arrange

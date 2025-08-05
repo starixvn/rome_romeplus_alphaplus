@@ -29,8 +29,7 @@ public interface IPendingWithdrawalService
 public class PendingWithdrawalService(
     IDynamicRepository dynamicRepository,
     ITransactionService transactionService,
-    IPaymentGatewayService paymentGateway,
-    ICommonService commonService) : IPendingWithdrawalService
+    IPaymentGatewayService paymentGateway) : IPendingWithdrawalService
 {
     public async Task<decimal> GetCashBalanceAsync(int custId, int siteDbGroupId)
     {
