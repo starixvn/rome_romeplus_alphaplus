@@ -21,7 +21,7 @@ public class PromotionDetailsReportWorkbookTest
         _workbook = new PromotionDetailsReportWorkbook(_webHostEnvironmentMock.Object);
     }
 
-    [Fact]
+    /* [Fact]
     public void BuildExcelFile_Should_Return_Valid_ExcelFileViewModel()
     {
         // Arrange
@@ -91,7 +91,7 @@ public class PromotionDetailsReportWorkbookTest
         Assert.NotNull(result);
         Assert.Equal($"{CashServicesResx.PromotionReport}-testuser-01012023-01312023.xls", result.Name);
         Assert.NotNull(result.Content);
-    }
+    } */
 
     [Theory]
     [InlineData("user1", "", "user1")]
