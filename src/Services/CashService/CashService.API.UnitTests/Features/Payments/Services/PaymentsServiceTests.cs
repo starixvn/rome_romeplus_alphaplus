@@ -4,7 +4,7 @@ using AlphaPlus.CashService.API.Features.Payments.Requests;
 using AlphaPlus.CashService.API.Features.Payments.Services;
 using AlphaPlus.CashService.API.Features.Shared.Criteria;
 using AlphaPlus.CashService.API.Features.Shared.Models;
-using AlphaPlus.CashService.API.Features.Shared.Models.PaymentGateway;
+using AlphaPlus.CashService.API.Features.Shared.Requests;
 using AlphaPlus.CashService.API.Features.Shared.Requests.PaymentGateway;
 using AlphaPlus.CashService.API.Features.Shared.Services;
 using Fanex.Data.Repository;
@@ -20,7 +20,7 @@ public class PaymentsServiceTests
     private readonly Mock<ICacheRefService> _mockCacheRefService;
     private readonly Mock<ICommonService> _mockCommonService;
     private readonly Mock<IPaymentGatewayService> _mockPaymentGatewayService;
-    private readonly PaymentsService _paymentsService;  
+    private readonly PaymentsService _paymentsService;
 
     public PaymentsServiceTests()
     {
@@ -344,7 +344,7 @@ public class PaymentsServiceTests
             AppSecret = "secret"
         };
 
-        _mockPaymentGatewayService.Setup(p => p.TestConnection(It.IsAny<TestConnectionRequest>(), It.IsAny<UpdatePaymentMethodRequest>()))
+        _mockPaymentGatewayService.Setup(p => p.TestConnection(It.IsAny<TestConnectionRequest>(), It.IsAny<BaseActionRequest>()))
             .ReturnsAsync(new PaymentResponse { Code = 0, Message = "Success" });
 
         _mockCommonService.Setup(c => c.RunDBCommand(request, It.IsAny<BaseDBCommand>()))

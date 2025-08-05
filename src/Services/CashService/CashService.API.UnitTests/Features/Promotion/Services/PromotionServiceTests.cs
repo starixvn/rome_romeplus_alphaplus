@@ -1,8 +1,8 @@
+using AlphaPlus.CashService.API.Features.PendingDeposit.Services;
 using AlphaPlus.CashService.API.Features.Promotion.Criteria;
 using AlphaPlus.CashService.API.Features.Promotion.Models;
 using AlphaPlus.CashService.API.Features.Promotion.Requests;
 using AlphaPlus.CashService.API.Features.Promotion.Services;
-using AlphaPlus.CashService.API.Features.PendingDeposit.Services;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Services;
 using AlphaPlus.CashService.API.Features.Transactions.Services;
@@ -91,6 +91,10 @@ public class PromotionServiceTests
 
         mockRepository
             .Setup(repo => repo.FetchAsync<PromotionTransaction>(It.IsAny<GetPromotionTransactionCriteria>(), string.Empty, default))
+            .Callback((ICriteria criteria, string s, CancellationToken ct) =>
+            {
+                ((GetPromotionTransactionCriteria)criteria).TotalRecords = 1;
+            })
             .ReturnsAsync(transactions);
 
         // Act
