@@ -1,0 +1,8 @@
+﻿@using Alpha.Handbook.Demo.ViewModels
+@model BriefProfileViewModel
+
+<div class="user">
+    <div class="avatar">
+        <img src='@(Model.IsDefaultAvatar ? Url.Content("~/assets/bundles/handbook/images/icon_user_default.png") : Model.EmbedImage)' />
+    </div>
+</div>

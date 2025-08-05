@@ -1,0 +1,324 @@
+@charset "UTF-8";
+.div-greeting {
+  font-weight: bold;
+}
+
+.feedback-box, .feedback-result {
+  padding-top: 10px;
+  margin: 0;
+  top: 12px;
+}
+
+.feedback-msg {
+  margin: 4px 0 8px 0;
+  width: 100%;
+  resize: vertical;
+  background: #1C1C1C;
+  border: 1px solid #2C2C2C;
+  padding: 7px 11px;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 20px;
+  -moz-appearance: none;
+       appearance: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+
+.rate-boxes {
+  padding: 0;
+  margin: 8px 0 20px 0;
+  display: flex;
+  justify-content: space-between;
+}
+.rate-boxes .rate-box {
+  width: 80px;
+  background-color: #323232;
+  display: inline-block;
+  padding: 7px 0;
+  text-align: center;
+  border: 1px solid #474747;
+  cursor: pointer;
+}
+.rate-boxes .rate-box.active .rate-1 {
+  background: url("images/angry-active.svg") no-repeat;
+}
+.rate-boxes .rate-box.active .rate-2 {
+  background: url("images/sad-active.svg") no-repeat;
+}
+.rate-boxes .rate-box.active .rate-3 {
+  background: url("images/normal-active.svg") no-repeat;
+}
+.rate-boxes .rate-box.active .rate-4 {
+  background: url("images/good-active.svg") no-repeat;
+}
+.rate-boxes .rate-box.active .rate-5 {
+  background: url("images/amazing-active.svg") no-repeat;
+}
+.rate-boxes .rate {
+  height: 48px;
+  width: 40px;
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+}
+.rate-boxes .rate-1 {
+  background: url("images/angry.svg") no-repeat;
+}
+.rate-boxes .rate-1:hover, .rate-boxes .rate-1.active {
+  background: url("images/angry-active.svg") no-repeat;
+}
+.rate-boxes .rate-2 {
+  background: url("images/sad.svg") no-repeat;
+}
+.rate-boxes .rate-2:hover, .rate-boxes .rate-2.active {
+  background: url("images/sad-active.svg") no-repeat;
+}
+.rate-boxes .rate-3 {
+  background: url("images/normal.svg") no-repeat;
+}
+.rate-boxes .rate-3:hover, .rate-boxes .rate-3.active {
+  background: url("images/normal-active.svg") no-repeat;
+}
+.rate-boxes .rate-4 {
+  background: url("images/good.svg") no-repeat;
+}
+.rate-boxes .rate-4:hover, .rate-boxes .rate-4.active {
+  background: url("images/good-active.svg") no-repeat;
+}
+.rate-boxes .rate-5 {
+  background: url("images/amazing.svg") no-repeat;
+}
+.rate-boxes .rate-5:hover, .rate-boxes .rate-5.active {
+  background: url("images/amazing-active.svg") no-repeat;
+}
+.rate-boxes .txt-rate {
+  text-align: center;
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.btn-box {
+  display: flex;
+  justify-content: flex-end;
+}
+.btn-box button {
+  line-height: 28px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 0 0 20px;
+}
+
+.area-rate-star {
+  margin-top: 16px;
+  margin-bottom: 7px;
+}
+
+.row-rate-star {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #2b2b2b;
+  margin-bottom: 5px;
+  padding: 4px 12px;
+  border: 1px solid transparent;
+}
+.row-rate-star:hover {
+  cursor: pointer;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
+  border: 1px solid #474747;
+}
+.row-rate-star .title-rate {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.rate-star {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+.rate-star > input {
+  position: absolute;
+  top: -9999px;
+}
+.rate-star > label {
+  width: 25px;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #C9D4E2;
+  margin: 0;
+  box-sizing: content-box;
+  padding: 0 0 0 5px;
+  font-size: 23px;
+  line-height: 1;
+}
+.rate-star > label:before {
+  content: "★";
+  margin-right: 40px;
+}
+
+.rate-star > input:checked ~ label {
+  color: #EFB00E;
+}
+
+.rate-star:not(:checked) > label:hover,
+.rate-star:not(:checked) > label:hover ~ label {
+  color: #EFB00E;
+}
+
+.rate-star > input:checked + label:hover,
+.rate-star > input:checked + label:hover ~ label,
+.rate-star > input:checked ~ label:hover,
+.rate-star > input:checked ~ label:hover ~ label,
+.rate-star > label:hover ~ input:checked ~ label {
+  color: #EFB00E;
+}
+
+body.transparent {
+  background: transparent;
+  padding: 1px;
+}
+
+.center-survey {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  height: 100%;
+}
+
+.survey-box {
+  background: #191919;
+  font-size: 14px;
+  line-height: 1.57142;
+  color: #f1f1f1;
+  max-width: 500px;
+  width: 100%;
+  margin: 30px auto 0;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.survey-box b {
+  font-family: "Roboto Bold";
+}
+.survey-box .title {
+  color: #118AF2;
+  font-size: 36px;
+  font-weight: bold;
+  font-family: "Roboto Bold";
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  background-image: url(images/survey-dark.png);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: 100% auto;
+  height: 200px;
+  line-height: 41px;
+  padding: 0 32px;
+}
+.survey-box .title span {
+  display: block;
+  font-size: 42px;
+}
+.survey-box .survey-body {
+  padding: 20px 12px 20px;
+}
+.survey-box p {
+  margin: 0;
+}
+.survey-box .list-box {
+  background: #333E4B;
+  padding: 12px 12px 12px 40px;
+  margin: 12px 0;
+  border-radius: 3px;
+}
+.survey-box .list-box ul {
+  margin: 0;
+}
+.survey-box .list-box li {
+  list-style: disc;
+}
+.survey-box .list-box li::marker {
+  color: #118AF2;
+}
+.survey-box .list-box li + li {
+  margin-top: 10px;
+}
+.survey-box .list-box span {
+  color: #118AF2;
+  font-weight: bold;
+  font-family: "Roboto Bold";
+}
+.survey-box .list-box .underline {
+  text-decoration: underline;
+}
+.survey-box .btn-box-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.survey-box .btn-notuseful, .survey-box .btn-useful, .survey-box .btn-close {
+  font-size: 13px;
+  line-height: 28px;
+  height: 28px;
+  padding: 0 15px;
+  font-weight: bold;
+  border-radius: 3px;
+  margin: 0 10px;
+}
+.survey-box .btn-notuseful:hover, .survey-box .btn-useful:hover, .survey-box .btn-close:hover {
+  opacity: 0.85;
+}
+.survey-box .btn-notuseful {
+  color: #276EAC;
+  border: 1px solid #36587D;
+  background: #191919;
+}
+.survey-box .btn-useful, .survey-box .btn-close {
+  color: #EDEDED;
+  border: 1px solid #36587D;
+  background: #36587D;
+}
+
+.survey-result.msg {
+  max-width: 300px;
+  padding: 30px 20px;
+  text-align: center;
+  margin: 20% auto 0;
+  font-size: 16px;
+}
+.survey-result.msg:before {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 40px;
+  position: relative;
+  top: auto;
+  left: auto;
+  line-height: normal;
+}
+
+.survey-result.msg {
+  max-width: 300px;
+  padding: 30px 20px;
+  text-align: center;
+  margin: 20% auto 0;
+  font-size: 16px;
+}
+.survey-result.msg:before {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 40px;
+  position: relative;
+  top: auto;
+  left: auto;
+  line-height: normal;
+}

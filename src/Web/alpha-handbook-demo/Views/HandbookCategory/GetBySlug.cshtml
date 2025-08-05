@@ -1,0 +1,52 @@
+﻿@using Alpha.Handbook.Demo.ViewModels
+@using Alpha.Handbook.Demo.Models
+@using Alpha.Handbook.Demo.Helpers
+@using Alpha.Handbook.Demo.Resources
+@model CategoryViewModel
+
+@{
+    Layout = null;
+    var category = Model.Category ?? new CategoryModel();
+    var relativePath = "../";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Resources.AngencyHandbook</title>
+    <link rel="stylesheet" href="~/assets/bundles/handbook/common.css" />   
+    <link rel="stylesheet" href="~/assets/bundles/handbook/articles/get-by-slug.css" />   
+</head>
+<body>
+    <div class="container">
+        <div class="left-container"></div> <!-- keep this this to prevent break layout -->
+        <div class="center-container">
+            <div class="block-item">
+                @foreach (var c in category.Categories)
+                {
+
+                    <a href="@c.GetUrl(relativePath)" class="item-folder">
+                        <span class="icon-folder-open"></span>
+                        <span class="title-cat">@c.Name</span>
+                    </a>
+                }
+            </div>
+            <div class="block-item">
+                @foreach (var a in category.Articles)
+                {
+                    <a href="@a.GetUrl(relativePath)" target="@a.GetTargetFrame()" class="item-article-short">
+                        <span class="icon-article"></span>
+                        <span class="info">
+                            <span class="title">@a.Title</span>
+                            <span class="time">@Resources.PublishedOn @a.PublishedAtStr</span>
+                        </span>
+                    </a>
+                }
+            </div>
+        </div>
+        <div class="right-container"></div>
+    </div>
+
+</body>
+</html>
