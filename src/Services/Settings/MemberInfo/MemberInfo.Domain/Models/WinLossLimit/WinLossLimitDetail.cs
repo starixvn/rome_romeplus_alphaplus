@@ -51,9 +51,7 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit
         {
             get
             {
-                var isUnlimited = MaxWinLimit == 0 && (!MaxLossLimit.HasValue || MaxLossLimit.Value == 0);
-
-                return isUnlimited ? (decimal?)null : CreditBalance - DebitBalance;
+                return CreditBalance - DebitBalance;
             }
         }
 

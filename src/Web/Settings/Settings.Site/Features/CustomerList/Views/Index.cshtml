@@ -106,6 +106,7 @@
                 <label>
                     @CashServicesResx.AccountType
                 </label>
+                <span class="icon icon-information-outline" title="@CashServicesResx.MemberListNoteEditMultipleNotAvailable"></span>
                 <select id="serviceType" name="serviceType">
                     <option value="2">@Resources.All</option>
                     <option value="0">@Resources.Credit</option>
@@ -136,13 +137,6 @@
             <input type="submit" value="@Resources.Submit" class="btn-submit" />
         </div>
     </div>
-    @if (Model.SearchAccountLevel.IsAgentLevel()
-        && AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(UserSession.Current.Site))
-    {
-        <div class="note">
-            <span class="star"></span>@CashServicesResx.MemberListNoteEditMultipleNotAvailable
-        </div>
-    }
     <table id="tbl-customer-list" class="hidden tblRpt tblRpt-bordered tblRpt-hover display nowrap">
         <thead>
             <tr>
