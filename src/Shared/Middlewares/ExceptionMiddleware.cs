@@ -1,5 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Net;
 
+[SuppressMessage("SonarQube", "S3903:Types should be defined in named namespaces", Justification = "This is a static class that contains extension methods for IEnumerable<T>.")]
 public class ExceptionMiddleware
 {
     private readonly RequestDelegate _next;
