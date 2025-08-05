@@ -6,7 +6,6 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Products.Models;
 using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-using AlphaPlus.Settings.Site.Features.Customer.Models;
 using AlphaPlus.Settings.Site.Features.Customer.Requests;
 using AlphaPlus.Settings.Site.Features.Customer.ViewModels;
 using AlphaPlus.Settings.Site.Features.ProductStatus;
@@ -558,9 +557,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 return UnAuthorized();
             }
 
-            var url = $"{configuration["CashService:APIUrl"]}/common/country-codes/{userSession.Site}";
-            var countryCodes = await httpClient.GetFromJsonAsync<string[]>(url, cancellationToken);
-            return Json(countryCodes);
+            var result = await customerService.GetCountryCodes(userSession.Site);
+            return Content(result);
         }
 
         public async Task<IActionResult> GetBanks(CancellationToken cancellationToken)
@@ -635,7 +633,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 MemberBankAccountNumber = request.MemberBankAccountNumber,
                 AgentBankId = request.AgentBankId,
                 AgentBankAccountNumber = request.AgentBankAccountNumber,
-                SubAccID = request.SubAccId,
+                SubAccId = request.SubAccId,
                 IP = request.IP,
                 Language = request.Language,
             };
@@ -661,7 +659,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 MemberBankAccountNumber = request.MemberBankAccountNumber,
                 AgentBankId = request.AgentBankId,
                 AgentBankAccountNumber = request.AgentBankAccountNumber,
-                SubAccID = request.SubAccId,
+                SubAccId = request.SubAccId,
                 IP = request.IP,
                 Language = request.Language,
             };
@@ -682,7 +680,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 ActorId = request.ViewerId,
                 CustId = request.CustId,
                 MemberBankAccountId = request.MemberBankAccountId,
-                SubAccID = request.SubAccId,
+                SubAccId = request.SubAccId,
                 IP = request.IP,
                 Language = request.Language,
             };

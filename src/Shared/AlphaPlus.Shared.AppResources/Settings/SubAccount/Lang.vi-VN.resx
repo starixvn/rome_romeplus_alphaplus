@@ -255,4 +255,7 @@ Lưu ý : Mật khẩu có phân biệt chữ hoa và chữ thường.</value>
   <data name="SecurityCode" xml:space="preserve">
     <value>Mã bảo mật</value>
   </data>
+  <data name="CashService" xml:space="preserve">
+    <value>Dịch vụ tiền mặt</value>
+  </data>
 </root>

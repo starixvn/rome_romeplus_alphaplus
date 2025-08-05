@@ -91,12 +91,12 @@
   "status": {
     "waiting": "等待中",
     "cancelled": "已取消",
-    "pending": "處理中",
+    "pending": "待處理",
     "expired": "已過期",
     "completed": "已完成",
     "rejected": "已拒絕",
     "providerRejected": "提供商已拒絕",
-    "approved": "已批准"
+    "approved": "已批準"
   },
   "dateRangePicker": {
     "today": "今天",
@@ -109,7 +109,7 @@
     "selected": "已選擇",
     "noRangeSelected": "未選擇範圍"
   },
-  "cashServiceDisabled": "現金服務已禁用",
+  "cashServiceDisabled": "現金服務已被禁用",
   "info": "資訊",
   "removeSuccess": "刪除成功",
   "removeError": "刪除失敗",
@@ -125,5 +125,5 @@
   "updatedBy": "更新者",
   "pleaseReferTo": "請參考",
   "checklist": "檢查清單",
-  "error-0": "支付提供商目前不可用。請稍後再試。"
+  "error-200": "支付提供商目前不可用。請稍後再試。"
 }

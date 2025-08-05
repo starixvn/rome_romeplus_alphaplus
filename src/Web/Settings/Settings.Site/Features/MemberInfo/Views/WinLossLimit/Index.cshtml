@@ -135,7 +135,14 @@
     @Html.Hidden("AccountType", Model.AccountType)
     @Html.Hidden("ResetCurrentWinAmountConfirmMessage", Resources.ResetCurrentWinAmountConfirmMessage)
     @Html.Hidden("ResetCurrentWinAmountErrorMessage", AlphaPlus.Shared.AppResources.Main.Resources.InternalServerError)
-</form>
+</form> 
+
+@if(Model.IsOfferedCashService && Model.ViewerLevel.IsAgentLevel()) {
+    <div class="note">
+        <span class="star">*</span>@Html.Raw(Resources.ResetCurrentWinAmountNote)
+    </div>    
+    <div id="result-msg" class="msg hide"></div>
+}
 <div class="wrapper-table-scrollable">
     <table id="tbl-report" class="tb tb-bordered w-full tablesorter tb-hover tb-freeze-header" data-has-data="@Model.WinLossLimitPage.WinLossLimitDetail.Any()">
         <thead>
@@ -173,8 +180,13 @@
                         <td class="text-center">@index</td>
                         <td class="text-left">@WinLossLimitViewModel.GetStatusText(winLossLimitDetail.Status)</td>
                         <td class="text-left" title="@winLossLimitDetail.Username">
-                            @winLossLimitDetail.Username
-                            @(winLossLimitDetail.IsCashMember ? Html.Raw("<span class='icon-cashservice icon-cashservice-common'></span>"): string.Empty)
+                            <div class="row-icon-inline">
+                                <span class="text">
+                                    @winLossLimitDetail.Username
+                                </span>                                
+                                @(winLossLimitDetail.IsCashMember ? Html.Raw("<span class='ic-cashservice'></span>"): string.Empty)
+                          
+                            </div>
                         </td>
                         <td class="text-left" title="@winLossLimitDetail.Firstname">
                             <div class="col-first-name">
@@ -196,7 +208,8 @@
                         <td class="text-center">
                             <div class="col-reset">
                                 @WinLossLimitViewModel.GetCurrentWinAnmout(winLossLimitDetail.CurrentWinAnmout)
-                                @if (winLossLimitDetail.IsCashMember
+                                @if (winLossLimitDetail.IsCashMember 
+                                    && Model.ViewerLevel.IsAgentLevel()
                                     && !winLossLimitDetail.IsAutoReset 
                                     && winLossLimitDetail.CurrentWinAnmout > 0 
                                     && winLossLimitDetail.MaxWinLimit > 0)   
@@ -212,16 +225,18 @@
                         {
                             <td class="text-center">@WinLossLimitViewModel.GetRemainingTransferInAmount(winLossLimitDetail.ReaminingTransferInAmount, winLossLimitDetail.MaxLossLimit)</td>
                         }
-                        <td class="text-center">@Model.GetMaxWinLimit(winLossLimitDetail.MaxWinLimit)</td>
+                        <td class="text-center">
+                            @(winLossLimitDetail.IsCashMember ? Model.GetMaxWinLimitCashMember(winLossLimitDetail.MaxWinLimit) : Model.GetMaxWinLimit(winLossLimitDetail.MaxWinLimit))
+                        </td>
                         <td class="text-center @((winLossLimitDetail.Credit == 0 && winLossLimitDetail.CurrentWinAnmout > 0 || winLossLimitDetail.WinPercent >= 100 || winLossLimitDetail.WinPercent == -2) && !Model.IsBBin ? "negative-value" : "")">
-                            @Model.GetWinPercent(winLossLimitDetail.WinPercent, winLossLimitDetail.CurrentWinAnmout, winLossLimitDetail.Credit, winLossLimitDetail.MaxWinLimit)
+                            @(winLossLimitDetail.IsCashMember ? Model.GetWinPercentCashMember(winLossLimitDetail.WinPercentCashMember, winLossLimitDetail.MaxWinLimit) : Model.GetWinPercent(winLossLimitDetail.WinPercent, winLossLimitDetail.CurrentWinAnmout, winLossLimitDetail.Credit, winLossLimitDetail.MaxWinLimit))
                         </td>
 
                         <td class="text-center">
-                            @(winLossLimitDetail.IsCashMember ? "-" : WinLossLimitViewModel.GetMaxLossLimit(winLossLimitDetail.MaxLossLimit))
+                            @(winLossLimitDetail.IsCashMember ? "N/A" : WinLossLimitViewModel.GetMaxLossLimit(winLossLimitDetail.MaxLossLimit))
                         </td>
                         <td class="text-center @(!winLossLimitDetail.IsCashMember && winLossLimitDetail.LossPercent >= 100 ? "negative-value" : "")">
-                            @(winLossLimitDetail.IsCashMember ? "-" : WinLossLimitViewModel.GetLossPercent(winLossLimitDetail.MaxLossLimit, winLossLimitDetail.LossPercent))
+                            @(winLossLimitDetail.IsCashMember ? "N/A" : WinLossLimitViewModel.GetLossPercent(winLossLimitDetail.MaxLossLimit, winLossLimitDetail.LossPercent))
                         </td>
                     </tr>
                     index++;

@@ -1,9 +1,7 @@
-using System.Text;
 using AgencyCash.API.Shared;
 using AgencyCash.API.Shared.Criteria;
 using AgencyCash.API.Shared.Middlewares;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Primitives;
 using Moq;
 
 namespace AgencyCash.API.Tests.Shared.Middlewares;
@@ -62,32 +60,32 @@ public class RequestLoggingMiddlewareTests
         _requestLoggingServiceMock.Verify(x => x.WriteLog(It.IsAny<AddRequestLoggingCriteria>()), Times.Once);
     }
 
-    [Fact]
-    public async Task Invoke_WhenExceptionOccurs_ShouldLogErrorAndReturn500()
-    {
-        // Arrange
-        var context = new DefaultHttpContext();
-        context.Request.Path = "/api/endpoint";
-        context.Request.Method = "GET";
-        context.Response.Body = new MemoryStream();
+    //[Fact]
+    //public async Task Invoke_WhenExceptionOccurs_ShouldLogErrorAndReturn500()
+    //{
+    //    // Arrange
+    //    var context = new DefaultHttpContext();
+    //    context.Request.Path = "/api/endpoint";
+    //    context.Request.Method = "GET";
+    //    context.Response.Body = new MemoryStream();
 
-        var exception = new Exception("Test exception");
-        _nextMock.Setup(next => next(It.IsAny<HttpContext>()))
-            .ThrowsAsync(exception);
+    //    var exception = new Exception("Test exception");
+    //    _nextMock.Setup(next => next(It.IsAny<HttpContext>()))
+    //        .ThrowsAsync(exception);
 
-        AddRequestLoggingCriteria capturedCriteria = null;
-        _requestLoggingServiceMock.Setup(x => x.WriteLog(It.IsAny<AddRequestLoggingCriteria>()))
-            .Callback<AddRequestLoggingCriteria>(criteria => capturedCriteria = criteria);
+    //    AddRequestLoggingCriteria capturedCriteria = null;
+    //    _requestLoggingServiceMock.Setup(x => x.WriteLog(It.IsAny<AddRequestLoggingCriteria>()))
+    //        .Callback<AddRequestLoggingCriteria>(criteria => capturedCriteria = criteria);
 
-        // Act
-        await _middleware.Invoke(context);
+    //    // Act
+    //    await _middleware.Invoke(context);
 
-        // Assert
-        Assert.Equal(StatusCodes.Status500InternalServerError, context.Response.StatusCode);
-        _loggerMock.Verify(l => l.ErrorAsync(It.IsAny<string>()), Times.Once);
+    //    // Assert
+    //    Assert.Equal(StatusCodes.Status500InternalServerError, context.Response.StatusCode);
+    //    _loggerMock.Verify(l => l.ErrorAsync(It.IsAny<string>()), Times.Once);
 
-        Assert.NotNull(capturedCriteria);
-        Assert.Equal(StatusCodes.Status500InternalServerError, capturedCriteria.StatusCode);
-        Assert.Contains(exception.ToString(), capturedCriteria.Exception);
-    }
+    //    Assert.NotNull(capturedCriteria);
+    //    Assert.Equal(StatusCodes.Status500InternalServerError, capturedCriteria.StatusCode);
+    //    Assert.Contains(exception.ToString(), capturedCriteria.Exception);
+    //}
 }

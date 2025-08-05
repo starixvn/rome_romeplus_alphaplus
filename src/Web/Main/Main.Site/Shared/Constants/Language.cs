@@ -1,4 +1,6 @@
-﻿namespace AlphaPlus.Main.Site.Shared.Constants
+﻿using System.Collections.Immutable;
+
+namespace AlphaPlus.Main.Site.Shared.Constants
 {
     public static class Language
     {
@@ -15,7 +17,7 @@
 
         public const string Default = English;
 
-        public static readonly Dictionary<string, string> CodeKeys = new Dictionary<string, string>
+        public static readonly ImmutableDictionary<string, string> CodeKeys = new Dictionary<string, string>
         {
             [English] = "E",
             [ChineseTraditional] = "CT",
@@ -24,9 +26,9 @@
             [Thai] = "TH",
             [Korean] = "KO",
             [Vietnamese] = "VI"
-        };
+        }.ToImmutableDictionary();
 
-        public static readonly Dictionary<string, string> CodeNames = new Dictionary<string, string>
+        public static readonly ImmutableDictionary<string, string> CodeNames = new Dictionary<string, string>
         {
             [English] = "English",
             [ChineseTraditional] = "繁體中文",
@@ -35,24 +37,24 @@
             [Thai] = "ภาษาไทย",
             [Korean] = "한국어",
             [Vietnamese] = "Tiếng Việt"
-        };
+        }.ToImmutableDictionary();
 
-        public static readonly Dictionary<string, string> TelegramChatBotCodeNames = new Dictionary<string, string>
+        public static readonly ImmutableDictionary<string, string> TelegramChatBotCodeNames = new Dictionary<string, string>
         {
             [English] = "English",
             [NewChineseTraditional] = "繁體中文",
             [NewChineseSimplified] = "简体中文",
             [Thai] = "ภาษาไทย",
             [Vietnamese] = "Tiếng Việt"
-        };
+        }.ToImmutableDictionary();
 
-        public static readonly Dictionary<string, string> TelegramChatBotCodeNamesWithoutVietNamese = TelegramChatBotCodeNames
+        public static readonly ImmutableDictionary<string, string> TelegramChatBotCodeNamesWithoutVietNamese = TelegramChatBotCodeNames
             .Where(langauge => langauge.Key != Vietnamese)
-            .ToDictionary(language => language.Key, language => language.Value);
+            .ToImmutableDictionary(language => language.Key, language => language.Value);
 
-        public static readonly Dictionary<string, string> CodeNamesWithoutVietNamese = CodeNames
+        public static readonly ImmutableDictionary<string, string> CodeNamesWithoutVietNamese = CodeNames
             .Where(langauge => langauge.Key != Vietnamese)
-            .ToDictionary(language => language.Key, language => language.Value);
+            .ToImmutableDictionary(language => language.Key, language => language.Value);
 
         public static string MapNewChineseLanguageCode(string languageCode)
         {

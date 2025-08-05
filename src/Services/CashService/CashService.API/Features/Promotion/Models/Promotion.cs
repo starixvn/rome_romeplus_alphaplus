@@ -1,4 +1,6 @@
-﻿namespace AlphaPlus.CashService.API.Features.Promotion.Models
+﻿using AlphaPlus.Shared.AppResources.CashServices;
+
+namespace AlphaPlus.CashService.API.Features.Promotion.Models
 {
     public class Promotion : BasePromotion
     {
@@ -7,7 +9,7 @@
 
         public string PromotionTypeName => PromotionTypeId switch
         {
-            1 => "Rebate on Turnover",
+            1 => CashServicesResx.PromotionType_RebateOnTurnover,
             _ => "Unknown"
         };
         public DateTime FromDate { get; set; }

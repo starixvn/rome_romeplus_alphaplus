@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { TitleComponent } from '../../../../components/Title';
@@ -6,39 +6,66 @@ import { ButtonComponent } from '../../../../components/Buttons';
 import { displayAmount } from '../../../../utils/commonFunctions';
 import { AmountInput } from '../../../../components/AmountInput';
 import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
+import { MessageComponent, ResultMessageProps } from '../../../../components/Message';
+import { PromotionTransaction } from '../../../../services/interfaces/Promotion';
+import { promotionService } from '../../../../services/promotionAPI';
+import pendingDepositAPI from '../../../../services/pendingDepositAPI';
 
 interface EditPendingPromotionProps {
   isOpen: boolean;
   onClose: () => void;
-  transId: number;
-  currentAmount: number;
-  onApprove: (transId: number, amount: number) => void;
-  onReject: (transId: number) => void;
+  item: PromotionTransaction | null;
 }
 
-const EditPendingPromotion: React.FC<EditPendingPromotionProps> = ({
-  isOpen,
-  onClose,
-  transId,
-  currentAmount,
-  onApprove,
-  onReject,
-}) => {
+const EditPendingPromotion: React.FC<EditPendingPromotionProps> = ({ isOpen, onClose, item }) => {
   const { t } = useTranslation('promotion');
-  const [bonusAmount, setBonusAmount] = useState(currentAmount);
+  const [bonusAmount, setBonusAmount] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [agentAvailableCredit, setAgentAvailableCredit] = useState(0);
+  const [resultMessage, setResultMessage] = useState<ResultMessageProps>({
+    type: 'success',
+    message: '',
+  });
 
   useEffect(() => {
-    if (isOpen) {
-      setBonusAmount(currentAmount);
-    }
-  }, [isOpen, currentAmount]);
+    setBonusAmount(item?.amount || 0);
+    const fetchAgentAvailableCredit = async () => {
+      const agentAvailableCredit = await pendingDepositAPI.getLimitAmtDeposit(Number(item?.custId));
+      setAgentAvailableCredit(agentAvailableCredit);
+    };
+    fetchAgentAvailableCredit();
+  }, [item]);
 
   const handleApprove = async () => {
+    if (bonusAmount <= 0 || bonusAmount > agentAvailableCredit) {
+      setResultMessage({
+        type: 'error',
+        message: t('editModal.bonusAmountMustBeGreaterThan0AndLessThanAgentAvailableCredit'),
+      });
+      return;
+    }
     setIsSubmitting(true);
     try {
-      await onApprove(transId, bonusAmount);
-      onClose();
+      var result = await promotionService.approvePromotionTransaction(
+        item!.custId,
+        item!.transId,
+        bonusAmount
+      );
+      if (result.isSuccessful) {
+        setResultMessage({
+          type: 'success',
+          message: t('editModal.approvedSuccess'),
+        });
+        setTimeout(() => {
+          onClose();
+        }, 3000);
+      } else {
+        setResultMessage({
+          type: 'error',
+          message: result.message,
+        });
+        setIsSubmitting(false);
+      }
     } catch (error) {
       console.error('Error approving promotion:', error);
     } finally {
@@ -49,8 +76,26 @@ const EditPendingPromotion: React.FC<EditPendingPromotionProps> = ({
   const handleReject = async () => {
     setIsSubmitting(true);
     try {
-      await onReject(transId);
-      onClose();
+      var result = await promotionService.rejectPromotionTransaction(
+        item!.custId,
+        item!.transId,
+        bonusAmount
+      );
+      if (result.isSuccessful) {
+        setResultMessage({
+          type: 'success',
+          message: t('editModal.rejectedSuccess'),
+        });
+        setTimeout(() => {
+          onClose();
+        }, 3000);
+      } else {
+        setResultMessage({
+          type: 'error',
+          message: result.message,
+        });
+        setIsSubmitting(false);
+      }
     } catch (error) {
       console.error('Error rejecting promotion:', error);
     } finally {
@@ -61,28 +106,31 @@ const EditPendingPromotion: React.FC<EditPendingPromotionProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="bg-[#00000080] fixed inset-0 flex items-center justify-center z-[100]">
-      <div className="p-[12px] pt-[0] bg-[var(--modal-background)] border-[1px] border-[var(--modal-border-color)] shadow-[var(--modal-box-shadow)] max-w-[400px] w-full mx-4 rounded-[3px] dark:bg-[#121212]">
-        <div className="relative mb-[10px] text-center border-b-[1px] border-[var(--border-color)] py-[11px]">
-          <TitleComponent text={`${t('editModal.title')} ${transId}`} />
-          <ButtonIconComponent style='Close' onClick={onClose} />
+    <div className="bg-[#00000080] fixed inset-0 flex items-center justify-center z-50">
+      <div className="p-[12px] pt-[0] bg-[var(--modal-background)] border-[1px] shadow-[var(--modal-box-shadow)] max-[768px]:max-w-[95%] max-h-[90%] overflow-auto rounded-[4px] w-[25vw]">
+        <div className="relative mb-[10px] border-b-[1px] border-[var(--border-color)] py-[11px]">
+          <TitleComponent type="medium" text={`${t('editModal.title')} (${item?.transId})`} />
+          <ButtonIconComponent style="Close" onClick={onClose} />
         </div>
-
+        <MessageComponent
+          type={resultMessage.type}
+          message={resultMessage.message}
+          className="mb-[16px] max-[768px]:mb-[0]"
+        />
         <div className="mb-[20px]">
           <p className="text-[var(--text-color)] text-center mb-[16px]">{t('editModal.message')}</p>
 
           <div className="mb-[16px]">
-            <label className="block text-[var(--text-color)] text-sm font-medium mb-[8px]">
-              {t('editModal.bonusAmount')}
-            </label>
+            <TitleComponent type="label" text={`${t('editModal.bonusAmount')}`} required={true} />
             <AmountInput
               id="bonusAmount"
               value={bonusAmount}
               onChange={(e) => setBonusAmount(e)}
               className="control-field"
             />
-            <p className="text-[var(--text-secondary)] text-sm mt-[4px]">
-              {t('editModal.suggested')}: {displayAmount(currentAmount)}
+            <p className="text-[12px] my-[4px]">
+              {t('editModal.agentAvailableCredit')}:
+              <span className="text-[var(--text-link-color)] font-bold">{` ${displayAmount(agentAvailableCredit)}`}</span>
             </p>
           </div>
         </div>
@@ -91,7 +139,7 @@ const EditPendingPromotion: React.FC<EditPendingPromotionProps> = ({
           <ButtonComponent
             onClick={handleReject}
             text={t('editModal.reject')}
-            variant="cancel"
+            variant="reject"
             disabled={isSubmitting}
             className="min-w-[80px]"
           />

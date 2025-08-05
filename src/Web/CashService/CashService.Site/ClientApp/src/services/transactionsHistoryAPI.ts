@@ -54,7 +54,7 @@ export const transactionAPI = {
     }
   },
 
-  getTransactionDetail: async (transactionId: number, custId: number): Promise<any> => {
+  getTransactionDetail: async (transactionId: string, custId: number): Promise<any> => {
     try {
       const response = await api.get<TransactionItem>(
         `Detail?transactionId=${transactionId}&custId=${custId}`
@@ -70,9 +70,10 @@ export const transactionAPI = {
   },
 
   revertTransaction: async (
-    transactionId: number,
+    transactionId: string,
     remarks: string,
-    isDeposit: boolean
+    isDeposit: boolean,
+    custId: number | null
   ): Promise<ResultModel> => {
     const url = isDeposit
       ? 'RevertDepositTransactionToPending'
@@ -80,6 +81,7 @@ export const transactionAPI = {
     try {
       const response = await api.post<ResultModel>(url, {
         transId: transactionId,
+        custId: custId,
         remark: remarks,
       });
       return response.data;

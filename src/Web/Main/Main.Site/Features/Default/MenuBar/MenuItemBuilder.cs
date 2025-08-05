@@ -48,6 +48,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
             menuItem.IsNew = node.IsNew;
             menuItem.IsOld = node.IsOld;
             menuItem.IsHiddenInMobile = node.IsHiddenInMobile;
+            menuItem.HasBadge = node.HasBadge;
             menuItem.ByPassAuthorization = node.ByPassAuthorization;
             menuItem.ByPassProtectedMode = node.ByPassProtectedMode;
             menuItem.ByPassProtectedModeInternal = node.ByPassProtectedModeInternal;

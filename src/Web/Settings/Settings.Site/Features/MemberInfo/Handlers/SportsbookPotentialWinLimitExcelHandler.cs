@@ -28,6 +28,8 @@ public class SportsbookPotentialWinLimitExcelHandler(
             request.PageSize,
             request.PageIndex,
             request.AGIP,
+            request.BetType,
+            request.SportType,
             request.AccountType);
         var potentialWinLimitPage = await potentialWinLimitService.GetPotentialWinLimitPage(param, true);
 

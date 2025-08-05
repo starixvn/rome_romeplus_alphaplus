@@ -537,6 +537,11 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
             return string.Join("-", dates.Select(d => dateNames[int.Parse(d.ToString()) - 1]));
         }
 
+        public string GetBankName(string code)
+        {
+            return TrackingValueResources.ResourceManager.GetString("BankName_" + code) ?? string.Empty;
+        }
+
         private static string ReplaceValues(
             string oldValue,
             string newValue,
@@ -569,6 +574,11 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
 
             result = result.Replace($"({oldValue})", $"({formatDiffFunc(oldValue)})");
             return result;
+        }
+
+        public string FormatBankAccountNumber(string bankAccountNumber)
+        {
+            return bankAccountNumber.Replace("NoMatchingBankAccount", GetLogResource("NoMatchingBankAccount"), StringComparison.OrdinalIgnoreCase);
         }
     }
 }

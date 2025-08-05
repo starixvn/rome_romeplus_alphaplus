@@ -8,6 +8,7 @@ interface UsernameSuggestionOption {
     directDownlines?: boolean;
     isAccInfo?: boolean;
     onBlur?: Function;
+    excludeCashMember?: boolean;
 }
 
 class UsernameSuggestionComponent {
@@ -66,6 +67,10 @@ class UsernameSuggestionComponent {
 
         if (!options.isAccInfo) {
             queryString.push(`isaccinfo=${options.isAccInfo}`);
+        }
+
+        if (options.excludeCashMember) {
+            queryString.push(`excludecashmember=${options.excludeCashMember}`);
         }
 
         return queryString.length === 0 ? '' : queryString.join('&');

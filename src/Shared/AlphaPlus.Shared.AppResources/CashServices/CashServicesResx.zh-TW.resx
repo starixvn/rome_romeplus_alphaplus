@@ -205,46 +205,43 @@
     <value>交易歷史</value>
   </data>
   <data name="PromotionReport" xml:space="preserve">
-    <value />
+    <value>優惠報告</value>
   </data>
   <data name="PromotionType" xml:space="preserve">
-    <value />
-  </data>
-  <data name="DateRange" xml:space="preserve">
-    <value />
+    <value>優惠類型</value>
   </data>
   <data name="TotalRequest" xml:space="preserve">
-    <value />
+    <value>總申請次數</value>
   </data>
   <data name="TotalRequestApproved" xml:space="preserve">
-    <value />
+    <value>已批準申請總數</value>
   </data>
   <data name="TotalBonusGiven" xml:space="preserve">
-    <value />
+    <value>已發放獎金總額</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value />
   </data>
   <data name="PromotionTitle" xml:space="preserve">
-    <value />
+    <value>優惠標題</value>
   </data>
   <data name="TotalRequestRejected" xml:space="preserve">
-    <value />
+    <value>已拒絕申請總數</value>
   </data>
   <data name="BonusAmount" xml:space="preserve">
-    <value />
+    <value>獎金金額</value>
   </data>
   <data name="LastUpdated" xml:space="preserve">
-    <value />
+    <value>最後更新</value>
   </data>
   <data name="Approved" xml:space="preserve">
-    <value />
+    <value>已批準</value>
   </data>
   <data name="AccountType" xml:space="preserve">
-    <value />
+    <value>賬戶類型</value>
   </data>
   <data name="MemberListNoteEditMultipleNotAvailable" xml:space="preserve">
-    <value />
+    <value>如果帳戶類型為“全部”，則無法編輯多個客戶。</value>
   </data>
   <data name="ProviderRejectErrorMessage" xml:space="preserve">
     <value>您的提款申請已被支付服務商拒絕。</value>
@@ -253,12 +250,36 @@
     <value>支付服務商目前無法使用，請稍後再試。</value>
   </data>
   <data name="PromotionType_1" xml:space="preserve">
-    <value />
+    <value>Turnover Rebate</value>
   </data>
   <data name="UpdatedBy" xml:space="preserve">
     <value />
   </data>
   <data name="Period" xml:space="preserve">
     <value />
+  </data>
+  <data name="RebatePeriod" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FreeTrial" xml:space="preserve">
+    <value>&lt;b&gt;免費&lt;/b&gt;試用14天</value>
+  </data>
+  <data name="NoPlatformFee" xml:space="preserve">
+    <value>&lt;strong&gt;無平臺費用&lt;/strong&gt; &lt;span class="benefit-note"&gt;- 試用期間每天可節省 200 泰銖。&lt;/span&gt;</value>
+  </data>
+  <data name="TransactionFee" xml:space="preserve">
+    <value>&lt;strong&gt;通過您綁定的銀行賬戶，每筆交易僅需 0.15。&lt;/strong&gt;</value>
+  </data>
+  <data name="CancelAnytime" xml:space="preserve">
+    <value>看到成果。滿意就繼續，隨時可以取消。</value>
+  </data>
+  <data name="CashFlowToTheNextLevel" xml:space="preserve">
+    <value>不用錯過！立即開通，讓您的現金流轉更高效。</value>
+  </data>
+  <data name="SuperchargeYourCashFlow" xml:space="preserve">
+    <value>增強您的現金流？</value>
+  </data>
+  <data name="StartTodayAndEnjoy" xml:space="preserve">
+    <value>立即開始享受高達 &lt;b&gt;2,800 泰銖&lt;/b&gt;的優惠！</value>
   </data>
 </root>

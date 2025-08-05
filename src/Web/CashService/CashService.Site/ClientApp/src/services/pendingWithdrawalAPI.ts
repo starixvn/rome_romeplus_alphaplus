@@ -99,7 +99,7 @@ export const approveWithdrawal = async ({
   image,
   isRemovePayslip,
 }: {
-  transId: number;
+  transId: string;
   custId: number;
   paymentFrom: string;
   providerId: number;
@@ -140,7 +140,7 @@ export const rejectWithdrawal = async ({
   image,
   isRemovePayslip,
 }: {
-  transId: number;
+  transId: string;
   custId: number;
   paymentFrom: string;
   providerId: number;

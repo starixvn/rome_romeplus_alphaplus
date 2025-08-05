@@ -19,17 +19,20 @@ public interface ITransactionHistoryWorkbook
 public class TransactionHistoryWorkbook(IWebHostEnvironment webHostEnvironment) : ReportNpoiWorkbook<Transaction>(webHostEnvironment),
     ITransactionHistoryWorkbook
 {
-    private readonly Mapper<Transaction> rowMapper
-        = new Mapper<Transaction>()
-        .Map(A, item => item.Username + WriteNickname(item.Nickname))
-        .Map(B, item => $"{item.FirstName} {item.LastName}")
-        .Map(C, item => item.Amount)
-        .Map(D, item => GetAccountNumberPart(item.PaymentFrom))
-        .Map(E, item => GetAccountNumberPart(item.PaymentTo))
-        .Map(F, item => item.Status)
-        .Map(G, item => item.TransactionType)
-        .Map(H, item => item.TransId)
-        .Map(I, item => item.CreatedTime.ToLongDateTime24HWithSlash());
+    private int number = 1;
+
+    private Mapper<Transaction> RowMapper()
+        => new Mapper<Transaction>()
+        .Map(A, _ => number++)
+        .Map(B, item => item.Username + WriteNickname(item.Nickname))
+        .Map(C, item => $"{item.FirstName} {item.LastName}")
+        .Map(D, item => item.Amount)
+        .Map(E, item => GetAccountNumberPart(item.PaymentFrom))
+        .Map(F, item => GetAccountNumberPart(item.PaymentTo))
+        .Map(G, item => item.Status)
+        .Map(H, item => item.TransactionType)
+        .Map(I, item => item.TransId)
+        .Map(J, item => item.CreatedTime.ToLongDateTime24HWithSlash());
 
     public ExcelFileViewModel BuildExcelFile(ExportExcelParams param, IEnumerable<Transaction> reportData)
     {
@@ -41,11 +44,11 @@ public class TransactionHistoryWorkbook(IWebHostEnvironment webHostEnvironment) 
                     bodyEndIndex: 4))
             .Title(GetTitle(param))
             .Header(Resources.ResourceManager.GetString)
-            .Body(reportData, rowMapper)
+            .Body(reportData, RowMapper())
             .Sheet(Resources.DefaultSheetName)
             .ExportToBytes();
 
-        return new ExcelFileViewModel($"TransactionHistory-{param.FromDate.Value.ToShortDateWithSlash()}-{param.ToDate.Value.ToShortDateWithSlash()}", fileContent);
+        return new ExcelFileViewModel($"{CashServicesResx.TransactionHistory}-{param.Username}-{param.FromDate.Value.ToShortDateWithSlash()}-{param.ToDate.Value.ToShortDateWithSlash()}", fileContent);
     }
 
     private static string GetTitle(ExportExcelParams param)
@@ -62,9 +65,9 @@ public class TransactionHistoryWorkbook(IWebHostEnvironment webHostEnvironment) 
 
         return parts switch
         {
-        [var accountNumber] => accountNumber,
+            [var accountNumber] => accountNumber,
 
-        [_, var accountNumber] => accountNumber,
+            [_, var accountNumber] => accountNumber,
 
             _ => string.Empty
         };
@@ -75,6 +78,7 @@ public class TransactionHistoryWorkbook(IWebHostEnvironment webHostEnvironment) 
         var row = sheet.GetRow(TemplateInfo.HeaderStartIndex);
         int colIndex = row.FirstCellIndex;
 
+        row.SetCellValue(colIndex++, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.number);
         row.SetCellValue(colIndex++, $"{Resources.Username}\n{CommonResx.Nickname}");
         row.SetCellValue(colIndex++, CashServicesResx.FirstAndLastName);
         row.SetCellValue(colIndex++, Resources.Amount);

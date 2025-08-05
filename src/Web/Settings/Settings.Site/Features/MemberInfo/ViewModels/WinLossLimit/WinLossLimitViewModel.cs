@@ -31,7 +31,7 @@ public class WinLossLimitViewModel
         WinLossLimitPage winLossLimitPage,
         WinLossLimitParam param)
     {
-        IsOfferedCashService = false; //isOfferedCashService;
+        IsOfferedCashService = isOfferedCashService;
 
         ViewerLevel = message.ActorLevel;
         UserSelectedId = $"{param.ProductId}-{param.SportType}";
@@ -110,8 +110,33 @@ public class WinLossLimitViewModel
     public string GetMaxWinLimit(decimal maxWinLimit)
         => FormatMaxWinLimit(maxWinLimit);
 
+    public string GetMaxWinLimitCashMember(decimal maxWinLimit)
+    {
+        if (maxWinLimit == MaxWinLimitToShowNotAvailable)
+        {
+            return "N/A";
+        }
+
+        return maxWinLimit == 0 ? Lang.Unlimited : $"{maxWinLimit.ToString("#,##0.00")}";
+    }
+
     public string GetWinPercent(decimal? winPercent, decimal? currentWinLimit, decimal credit, decimal maxWinLimit)
         => FormatWinPercent(credit, currentWinLimit, winPercent, maxWinLimit);
+
+    public string GetWinPercentCashMember(decimal? winPercent, decimal maxWinLimit) 
+    {
+        if (maxWinLimit == MaxWinLimitToShowNotAvailable)
+        {
+            return "N/A";
+        }
+
+        if (!winPercent.HasValue)
+        {
+            return Lang.Unlimited;
+        }
+
+        return winPercent > 0 ? $"{winPercent.Value.ToString("#,##0.##")}%" : "0%";
+    }
 
     public static string GetLossPercent(decimal? maxLossLimit, decimal? lossPercent)
         => FormatLossPercent(maxLossLimit, lossPercent);
@@ -126,6 +151,16 @@ public class WinLossLimitViewModel
         => FormatRemainingTransferInAmmount(maxLossLimit, remainingTransferInAmount);
 
     private static string FormatMaxWinLimit(decimal maxWinLimit)
+    {
+        if (maxWinLimit == MaxWinLimitToShowNotAvailable)
+        {
+            return "N/A";
+        }
+
+        return maxWinLimit == 0 ? Lang.Unlimited : $"{maxWinLimit.ToString("#,##0")}X";
+    }
+
+    private static string FormatMaxWinLimit(decimal maxWinLimit, bool isCashMember)
     {
         if (maxWinLimit == MaxWinLimitToShowNotAvailable)
         {

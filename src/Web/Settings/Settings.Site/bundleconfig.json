@@ -580,6 +580,16 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/Features/ViewLogs/assets/bundles/cashservice.js",
+    "inputFiles": [
+      "Features/ViewLogs/assets/scripts/old-main.js",
+      "Features/ViewLogs/assets/scripts/core.js",
+      "Features/ViewLogs/assets/scripts/tab/index.js",
+      "Features/ViewLogs/assets/scripts/cashservice/index-view.js",
+      "Features/ViewLogs/assets/scripts/cashservice/index-controller.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/Features/ViewLogs/assets/bundles/default-dark.css",
     "inputFiles": [
       "Features/ViewLogs/assets/styles/viewlog-dark.css"

@@ -3450,4 +3450,13 @@
   <data name="isactive" xml:space="preserve">
     <value />
   </data>
+  <data name="AgentBankAccount" xml:space="preserve">
+    <value>代理的銀行賬戶</value>
+  </data>
+  <data name="winAmount" xml:space="preserve">
+    <value>贏額</value>
+  </data>
+  <data name="NoMatchingBankAccount" xml:space="preserve">
+    <value>沒有匹配的銀行賬戶</value>
+  </data>
 </root>

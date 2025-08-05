@@ -1,7 +1,6 @@
 using AgencyCash.API.RegisterCashMember;
 using AgencyCash.API.RegisterCashMember.Criteria;
 using AgencyCash.API.RegisterCashMember.Requests;
-using AgencyCash.API.RegisterCashMember.Responses;
 using Fanex.Data.Repository;
 using Moq;
 

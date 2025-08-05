@@ -126,5 +126,7 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels
         public string Username { get; set; }
 
         public int FirstRowNumber => PageIndex * PageSize;
+
+        public bool IsOfferedCashService { get; set; }
     }
 }

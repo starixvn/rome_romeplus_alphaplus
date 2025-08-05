@@ -1,17 +1,18 @@
-﻿import React, { useEffect, useState } from 'react';
+﻿import Tippy from '@tippyjs/react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
 import NoRecordFound from '../../../../components/NoRecordFoundComponent';
 import { StatusComponent } from '../../../../components/Status';
 import { useCookieLanguage } from '../../../../hooks/useCookieLanguage';
 import i18n from '../../../../i18n/i18n-promotion';
 import {
-    Product,
-    ProductSetting,
-    PromotionDetail,
+  Product,
+  ProductSetting,
+  PromotionDetail,
 } from '../../../../services/interfaces/Promotion';
 import { formatDate } from '../../../../utils/commonFunctions';
-import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
  
 
 interface TableProps {
@@ -38,7 +39,29 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
     if (!products || products.length === 0) return '';
     const names = products.slice(0, maxDisplay).map((p) => p.productName);
     const remain = products.length - maxDisplay;
-    return remain > 0 ? `${names.join('/ ')} + ${remain} more` : names.join('/ ');
+    const remainNames = products.slice(maxDisplay).map((p) => p.productName);
+
+    if (remain > 0) {
+      const tooltipContent = (        
+        <div className="space-y-1">
+          {remainNames.map((name, index) => (
+            <div key={index} className="text-sm">
+              {name}
+            </div>
+          ))}
+        </div>
+      );
+      
+      return (
+        <Tippy content={tooltipContent} placement="top" theme="light" arrow={true}>
+          <span className="cursor-help">
+            {names.join('/ ')} + {remain} more
+          </span>
+        </Tippy>
+      );
+    }
+    
+    return names.join('/ ');
   };
 
   const displayGridProducts = (promotions: PromotionDetail[]): ProductSetting[] => {
@@ -90,12 +113,12 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
         </th>
         <th
           rowSpan={2}
-          className="w-[110px] bg-[var(--table-header-background)] text-center"
+          className="bg-[var(--table-header-background)] text-center"
           scope="col"
         >
           <span className="relative z-3">{t('table.promotionTitle')}</span>
         </th>
-        <th rowSpan={2} scope="col" className="text-center bg-[var(--table-header-background)]">
+        <th rowSpan={2} scope="col" className="w-[120px] text-center bg-[var(--table-header-background)]">
           {t('table.promotionType')}
         </th>
         <th colSpan={gridProducts.length} className="text-center" scope="col">
@@ -106,14 +129,14 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
         <th
           rowSpan={2}
           scope="col"
-          className="w-[110px] bg-[var(--table-header-background)] text-center"
+          className="bg-[var(--table-header-background)] text-center"
         >
           {t('table.products')}
         </th>
         <th
           rowSpan={2}
           scope="col"
-          className="w-[110px] bg-[var(--table-header-background)] text-center"
+          className="bg-[var(--table-header-background)] text-center"
         >
           {t('table.period')}
         </th>
@@ -127,7 +150,7 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
       </tr>
       <tr>
         {gridProducts.map((product) => (
-          <th key={product.productCategoryId} scope="col" className="text-center">
+          <th key={product.productCategoryId} scope="col" className="text-center w-[90px]">
             {product.productCategoryName}
           </th>
         ))}
@@ -143,15 +166,15 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
           <ButtonIconComponent style='Delete' onClick={() => onDelete?.(item)} />
         </div>
       </td>
-      <td className=" text-left">{item.promotionTitle}</td>
+      <td className=" text-left"><div className='w-[100%] max-w-[300px] min-w-[200px] max-[768px]:max-w-[200px] max-[768px]:min-w-[150px]'><span className="overflow-hidden text-ellipsis break-words line-clamp-[49] w-[100%]">{item.promotionTitle}</span></div></td>
       <td className=" text-center">{item.promotionTypeName}</td>
       {gridProducts.map((product) =>
         displayPercentageMaxPayout(item.productSettings, product.productCategoryId)
       )}
-      <td className="w-[110px] ">
+      <td>
         {displayProducts(item.productSettings.flatMap((p) => p.products))}
       </td>
-      <td className="w-[110px] ">{`${formatDate(item.fromDate?.toString() || '')} - ${formatDate(item.toDate?.toString() || '')}`}</td>
+      <td>{`${formatDate(item.fromDate?.toString() || '')} - ${formatDate(item.toDate?.toString() || '')}`}</td>
       <td className="w-[110px] ">        
           <StatusComponent type={item.enabled ? 'completed' : 'disabled'} text={item.enabled ? tGlobal('enable') : tGlobal('disable')} />
       </td>
@@ -159,8 +182,8 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
   );
 
   const displayPercentageMaxPayout = (productSettings: ProductSetting[], productId: number) => {
-    const product = productSettings.find((p) => p.productCategoryId === productId);
-    if (!product)
+    let product = productSettings.find((p) => p.productCategoryId === productId);
+    if (!product || product.products.length === 0)
       return (
         <td key={productId} className="text-right">
           -
@@ -169,7 +192,7 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
       );
 
     let displayMaxPayout: number | string = product.maxPayout;
-    if (product.unlimited) displayMaxPayout = 'Unlimited';
+    if (displayMaxPayout==0) displayMaxPayout = 'Unlimited';
     return (
       <td key={product.productCategoryId} className="text-right">
         {product.percentage + '%'}
@@ -200,7 +223,7 @@ const Table: React.FC<TableProps> = ({ items, isLoading, onEdit, onDelete }) => 
   return (
     <>
       <div className="table-fixed-header table-fixed-body bg-[#ffffff] max-h-[calc(100vh-140px)] overflow-y-auto">
-        <table className="min-w-[1300px] w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
+        <table className="min-w-[1300px] w-full border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px] text-[#333333] shadow-[0_1px_5px_#0003,0_2px_2px_#00000024,0_3px_1px_-2px_#0000001f]">
           {buildHeader()}
           {buildBody()}
         </table>

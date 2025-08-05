@@ -6,7 +6,6 @@ using AlphaPlus.CashService.Site.Features.Payments.ViewModels;
 using AlphaPlus.CashService.Site.Features.Shared.Models;
 using AlphaPlus.Core.Models;
 using Fanex.Customer.Client.Services;
-using Fanex.Logging;
 using FluentAssertions;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Http;
@@ -271,7 +270,7 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             };
             var expectedResponse = new { Success = true };
             _customerServiceMock.Setup(x => x.GetCashServiceStatus(123)).ReturnsAsync(1);
-            
+
             // Setup HTTP client to return validation failure for TW API but success for main API
             _httpMessageHandlerMock
                 .Protected()
@@ -360,7 +359,7 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             };
             var expectedResponse = new { Success = true };
             _customerServiceMock.Setup(x => x.GetCashServiceStatus(123)).ReturnsAsync(1);
-            
+
             // Setup HTTP client to throw exception for TW API but success for main API
             _httpMessageHandlerMock
                 .Protected()
@@ -769,7 +768,7 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
                 ItExpr.IsAny<CancellationToken>()
             );
         }
-        
+
         [Fact]
         public async Task UpdatePaymentMethod_WhenCashServiceDisabled_ReturnsUnauthorized()
         {
@@ -831,7 +830,7 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             };
             var expectedResponse = new { Success = true };
             _customerServiceMock.Setup(x => x.GetCashServiceStatus(123)).ReturnsAsync(1);
-            
+
             // Setup HTTP client to return validation failure for TW API but success for main API
             _httpMessageHandlerMock
                 .Protected()
@@ -877,7 +876,7 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             };
             var expectedResponse = new { Success = true };
             _customerServiceMock.Setup(x => x.GetCashServiceStatus(123)).ReturnsAsync(1);
-            
+
             // Setup HTTP client to throw exception for TW API but success for main API
             _httpMessageHandlerMock
                 .Protected()

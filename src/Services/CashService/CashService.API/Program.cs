@@ -10,7 +10,6 @@ builder.Services
     .AddCashServiceLogging()
     .AddDependencies(configuration)
     .AddHttpClientService(configuration)
-    .AddConfiguration(configuration)
     .AddControllers();
 
 var app = builder.Build();

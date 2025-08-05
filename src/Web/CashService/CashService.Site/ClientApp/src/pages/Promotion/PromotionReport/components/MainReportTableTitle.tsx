@@ -37,10 +37,10 @@ export default function ReportTitle({
           arrow={true}
           hideOnClick={false}
         >
-          <ButtonIconComponent style='Excel' onClick={onExportExcel} />
+          <span><ButtonIconComponent style='Excel' onClick={onExportExcel} /></span>
         </Tippy>
         <Tippy content={textCopy} placement="top" theme="light" arrow={true} hideOnClick={false}>
-          <ButtonIconComponent style='Copy' onClick={handleCopy} />
+          <span><ButtonIconComponent style='Copy' onClick={handleCopy} /></span>
         </Tippy>
         <div className="flex ml-[4px]">
           <div className="w-[250px] ml-auto relative">

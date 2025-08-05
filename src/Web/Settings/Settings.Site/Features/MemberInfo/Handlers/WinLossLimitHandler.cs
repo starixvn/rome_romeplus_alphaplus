@@ -62,14 +62,20 @@ public class WinLossLimitHandler(IAccountService accountService, WinLossLimitSer
 
     public async Task<Result> Handle(ResetCurrentWinAmountCommand request, CancellationToken cancellation)
     {
-        var result = await winLossLimitService.ResetCurrentWinAmount(new ResetCurrentWinAmountParam(
+        var param = new ResetCurrentWinAmountParam(
             request.CustId,
-            request.Username,
             request.ProductId,
             request.SportType,
             request.BetType,
-            request.Language,
-            request.SettingStatus));
+            request.SubAccId,
+            request.SubAccName,
+            request.UserId,
+            request.IP,
+            request.SettingStatus,
+            request.Username,
+            request.Language);
+
+        var result = await winLossLimitService.ResetCurrentWinAmount(param); 
 
         if (result.IsSuccessful)
         {

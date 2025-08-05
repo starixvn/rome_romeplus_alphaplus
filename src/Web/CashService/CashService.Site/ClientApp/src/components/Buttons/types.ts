@@ -33,6 +33,10 @@ export interface ButtonComponentProps {
  * Extends ButtonComponentProps but removes text and variant since icon buttons don't use them
  */
 export interface ButtonIconComponentProps extends Omit<ButtonComponentProps, 'text' | 'variant'> {
+  /** Icon style variant */
+  style?: 'Close' | 'Edit' | 'Delete' | 'Excel' | 'Copy' | 'Back';
+  /** Custom icon component */
+  icon?: React.ReactNode;
   /** Optional tooltip text */
   tooltip?: string;
 }
@@ -68,16 +72,3 @@ export type ButtonVariant = 'apply' | 'cancel' | 'full' | 'outline' | 'reject';
  * Button type for form submission
  */
 export type ButtonType = 'button' | 'submit' | 'reset';
-
-/**
- * Common button sizes
- */
-export type ButtonSize = 'small' | 'medium' | 'large';
-
-/**
- * Extended button props with size
- */
-export interface ButtonWithSizeProps extends ButtonComponentProps {
-  /** Button size */
-  size?: ButtonSize;
-}

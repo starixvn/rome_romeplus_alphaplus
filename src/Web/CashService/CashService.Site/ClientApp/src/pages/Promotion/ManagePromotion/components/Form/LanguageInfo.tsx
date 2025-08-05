@@ -1,13 +1,14 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { ButtonTabComponent } from '../../../../../components/Buttons/ButtonTabComponent';
 import { TitleComponent } from '../../../../../components/Title';
-import UploadImage from '../../../../Transactions/Components/UploadImage';
-import { useTranslation } from 'react-i18next';
+import UploadImage from '../../../Components/UploadImage';
+import CkEditorWrapper from '../../../../../components/CkEditorWrapper/CkEditorWrapper';
 
 export interface PromotionLangFields {
   title: string;
   banner: File | string | null;
-  prevBanner: string | null;
+  bannerName: string | null;
   content: string;
 }
 
@@ -20,6 +21,15 @@ export interface PromotionInfoProps {
   activeLang: string;
   setActiveLang: (lang: string) => void;
 }
+
+const getImageUrl = (banner: File | string | null): string | null => {
+  if (banner instanceof File) {
+    // If banner is a File object, create object URL
+    return URL.createObjectURL(banner);
+  }
+  // If banner is not a File object, return null (no image to display)
+  return null;
+};
 
 export const LanguageTabs: React.FC<{
   languages: { key: string; label: string }[];
@@ -49,37 +59,62 @@ export const TitleField: React.FC<{
 }> = ({ value, onChange, lang, isDefault }) => {
   const { t } = useTranslation('promotion');
   return (
-  <div className="mb-4">
-    <TitleComponent text={t('addPromotionForm.title')} required={isDefault} type='label'/>
-    <input
-      className="control-field w-full"
-      key={`title-${lang}`}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      placeholder=""
-    />
-  </div>
+    <div className="mb-4">
+      <TitleComponent text={t('addPromotionForm.title')} required={isDefault} type="label" />
+      <input
+        className="control-field w-full"
+        key={`title-${lang}`}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder=""
+      />
+    </div>
   );
 };
 
 export const BannerField: React.FC<{
-  prevBanner: string | null;
+  banner: File | string | null;
+  bannerName: string | null;
   setBanner: (f: File | string | null) => void;
+  setBannerName?: (name: string | null) => void;
   lang: string;
   isDefault: boolean;
-}> = ({ prevBanner, setBanner, lang, isDefault }) => {
+}> = ({ banner, setBanner, setBannerName, lang, isDefault }) => {
   const { t } = useTranslation('promotion');
+
+  const handleSetImage = (file: File | null) => {
+    setBanner(file);
+    // Update bannerName when a new file is uploaded
+    if (file && setBannerName) {
+      // Set to null because backend will generate new filename
+      setBannerName(null);
+    } else if (!file && setBannerName) {
+      setBannerName(null);
+    }
+  };
+
+  const fullBannerUrl = getImageUrl(banner);
+
+  // Cleanup object URL when component unmounts or banner changes
+  React.useEffect(() => {
+    return () => {
+      if (banner instanceof File && fullBannerUrl && fullBannerUrl.startsWith('blob:')) {
+        URL.revokeObjectURL(fullBannerUrl);
+      }
+    };
+  }, [banner, fullBannerUrl]);
+
   return (
-  <div className="mb-4">
-    <TitleComponent text={t('addPromotionForm.banner')} required={isDefault} type='label'/>
-    <UploadImage
-      key={`banner-${lang}`}
-      setImage={setBanner}
-      prevImage={prevBanner}
-      maxSize={500}
-      customClassName="w-full h-[300px]"
-    />
-  </div>
+    <div className="mb-4">
+      <TitleComponent text={t('addPromotionForm.banner')} required={isDefault} type="label" />
+      <UploadImage
+        key={`banner-${lang}`}
+        setImage={handleSetImage}
+        prevImage={fullBannerUrl}
+        maxSize={500}
+        customClassName="w-full h-[300px]"
+      />
+    </div>
   );
 };
 
@@ -91,18 +126,10 @@ export const ContentField: React.FC<{
 }> = ({ value, onChange, lang, isDefault }) => {
   const { t } = useTranslation('promotion');
   return (
-  <div className="mb-4">
-    <TitleComponent text={t('addPromotionForm.content')} required={isDefault} type='label'/>
-    <div className="border border-[var(--border-control)] rounded">
-      <textarea
-        key={`content-${lang}`}
-        className="w-full min-h-[120px] p-2 resize-y border-0 focus:ring-0 focus:outline-none block"
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        placeholder=""
-      />
+    <div className="mb-4">
+      <TitleComponent text={t('addPromotionForm.content')} required={isDefault} type="label" />
+      <CkEditorWrapper key={`content-${lang}`} data={value} onChange={onChange} isPaddingContent />
     </div>
-  </div>
   );
 };
 
@@ -113,14 +140,12 @@ const PromotionInfo: React.FC<PromotionInfoProps> = ({
   activeLang,
   setActiveLang,
 }) => {
-  
   const langFields = value[activeLang] || {
     title: '',
     banner: null,
-    prevBanner: null,
+    bannerName: null,
     content: '',
   };
-  
   return (
     <div className="max-w-3xl">
       <LanguageTabs languages={languages} activeLang={activeLang} setActiveLang={setActiveLang} />
@@ -131,14 +156,18 @@ const PromotionInfo: React.FC<PromotionInfoProps> = ({
         isDefault={languages.find((lang) => lang.key === activeLang)?.isDefault || false}
       />
       <BannerField
-        prevBanner={langFields.prevBanner}
+        banner={langFields.banner}
+        bannerName={langFields.bannerName}
         setBanner={(f) => setValue(activeLang, 'banner', f)}
+        setBannerName={(name) => setValue(activeLang, 'bannerName', name)}
         lang={activeLang}
         isDefault={languages.find((lang) => lang.key === activeLang)?.isDefault || false}
       />
       <ContentField
         value={langFields.content}
-        onChange={(v) => setValue(activeLang, 'content', v)}
+        onChange={(v) => {
+          setValue(activeLang, 'content', v);
+        }}
         lang={activeLang}
         isDefault={languages.find((lang) => lang.key === activeLang)?.isDefault || false}
       />

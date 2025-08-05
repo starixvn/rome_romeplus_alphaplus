@@ -250,7 +250,7 @@
     <value>提交</value>
   </data>
   <data name="Credit" xml:space="preserve">
-    <value>信用額度</value>
+    <value>信用</value>
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>名</value>
@@ -1295,18 +1295,24 @@
     <value>體育博彩潛在贏額上限</value>
   </data>
   <data name="AccountType" xml:space="preserve">
-    <value>帳戶類型</value>
+    <value>賬戶類型</value>
   </data>
   <data name="CurrentWinAmount" xml:space="preserve">
     <value>目前贏數額</value>
   </data>
   <data name="ResetCurrentWinAmount" xml:space="preserve">
-    <value>重置當前贏額</value>
+    <value>點擊重置累積贏額</value>
   </data>
   <data name="ResetCurrentWinAmountConfirmMessage" xml:space="preserve">
-    <value>您確定要重置會員 "{0}" 的當前贏額嗎？</value>
+    <value>您確定要為會員 {0} 重置當前贏額嗎？</value>
   </data>
   <data name="ResetCurrentWinAmountSuccess" xml:space="preserve">
-    <value>重置當前贏額成功</value>
+    <value>成功重置當前贏額</value>
+  </data>
+  <data name="ResetCurrentWinAmountNote" xml:space="preserve">
+    <value>Reset Current win Amount is only available for Cash member, who has not set Daily reset</value>
+  </data>
+  <data name="ResetAccumulatedWinAmountNote" xml:space="preserve">
+     <value>Reset Accumulated win is only available for Cash member, who has not set Daily reset</value>
   </data>
 </root>

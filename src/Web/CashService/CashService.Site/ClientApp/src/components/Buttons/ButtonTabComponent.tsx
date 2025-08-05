@@ -12,10 +12,8 @@ const BaseTabButton = React.forwardRef<HTMLButtonElement, ButtonComponentProps &
   ...props
 }, ref) => {
   const baseClasses = 'font-semibold px-[20px] pt-[10px] pb-[13px] cursor-pointer relative after:content-[\'\'] after:absolute after:bottom-0 after:left-0 after:h-[3px] after:bg-[var(--tab-component-border-color)]';
-  
   const activeClasses = 'text-[var(--tab-component-color-active)] after:w-full';
-  const inactiveClasses = 'text-[var(--tab-component-color)] after:w-0 after:transition-all after:duration-500 after:ease-in-out after:opacity-0 hover:after:opacity-100 hover:after:w-full hover:text-[var(--tab-component-color-active)]';
-  
+  const inactiveClasses = 'text-[var(--tab-component-color)] after:w-0 after:transition-all after:duration-500 after:ease-in-out after:opacity-0 hover:after:opacity-100 hover:after:w-full hover:text-[var(--tab-component-color-active)]';  
   const classes = `${baseClasses} ${isActive ? activeClasses : inactiveClasses} ${className}`;
   
   return (
@@ -24,6 +22,9 @@ const BaseTabButton = React.forwardRef<HTMLButtonElement, ButtonComponentProps &
       type={type}
       className={classes}
       onClick={onClick}
+      role="tab"
+      aria-selected={isActive}
+      tabIndex={isActive ? 0 : -1}
       {...props}
     >
       {text}
@@ -55,20 +56,13 @@ export const ButtonTabComponent = React.forwardRef<HTMLButtonElement, ButtonComp
   type,
   ...props
 }, ref) => {
-  return isActive ? (    
-    <ButtonTabActiveComponent 
+  return (
+    <BaseTabButton 
       ref={ref}
       text={text} 
       onClick={onClick} 
       type={type} 
-      {...props}
-    />
-  ) : (
-    <ButtonTabInactiveComponent 
-      ref={ref}
-      text={text} 
-      onClick={onClick} 
-      type={type} 
+      isActive={isActive || false}
       {...props}
     />
   );

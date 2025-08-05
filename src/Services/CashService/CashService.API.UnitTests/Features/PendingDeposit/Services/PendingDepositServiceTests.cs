@@ -91,40 +91,6 @@ public class PendingDepositServiceTests
     }
 
     [Fact]
-    public async Task GetMemberSettingDepositAsync_ShouldReturnMemberSetting()
-    {
-        // Arrange
-        var custId = 1;
-        var custDbGroupId = 2;
-        var expectedAgentCredit = 200m;
-        var expectedMemberCredit = 100m;
-
-        mockDynamicRepository
-            .Setup(repo => repo.GetAsync<MemberSettingDeposit>(It.IsAny<GetMemberSettingDepositCriteria>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))
-            .Callback((ICriteria criteria, string s, CancellationToken ct) =>
-            {
-                var c = (GetMemberSettingDepositCriteria)criteria;
-                c.AgentGivenCredit = expectedAgentCredit;
-                c.CreditMembers_GivenCredit = expectedMemberCredit;
-            })
-            .ReturnsAsync(new MemberSettingDeposit());
-
-        // Act
-        var result = await pendingDepositService.GetMemberSettingDepositAsync(custId, custDbGroupId);
-
-        // Assert
-        Assert.NotNull(result);
-        Assert.Equal(expectedAgentCredit, result.AgentGivenCredit);
-        Assert.Equal(expectedMemberCredit, result.CreditMembers_GivenCredit);
-        mockDynamicRepository.Verify(repo => repo.GetAsync<MemberSettingDeposit>(
-            It.Is<GetMemberSettingDepositCriteria>(c =>
-                c.CustId == custId &&
-                c.CustDbGroupId == custDbGroupId),
-            It.IsAny<string>(),
-            It.IsAny<CancellationToken>()), Times.Once);
-    }
-
-    [Fact]
     public async Task AddManualDepositAsync_ShouldReturnResultModelAndCallTransactionService()
     {
         // Arrange

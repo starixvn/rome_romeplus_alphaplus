@@ -72,7 +72,7 @@ public class TransactionsController(
             CustId = agentId,
             Account = param.Account
         };
-
+        param.Username = userSession.UserName;
         var response = await httpClientHelper.GetAsync<TransactionResponse>("/transactions/history", ObjectConverter.ToDictionary(filter));
         var excelFileViewModel = transactionHistoryWorkbook.BuildExcelFile(param, response.Items);
         return File(excelFileViewModel.Content, excelFileViewModel.ContentType, excelFileViewModel.Name);
@@ -142,7 +142,8 @@ public class TransactionsController(
         }
 
         request.UplineId = agentId;
-        request.Ip = GetClientIp();
+        request.SubAccId = userSession.SubAccId;
+        request.Ip = userSession.UserLoginIp;
         request.SiteDbGroupId = siteDbGroupId;
         request.CustDbGroupId = custDbGroupId;
         request.PaySlip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
@@ -173,8 +174,10 @@ public class TransactionsController(
         {
             return Json(result);
         }
+
         request.UplineId = agentId;
-        request.Ip = GetClientIp();
+        request.SubAccId = userSession.SubAccId;
+        request.Ip = userSession.UserLoginIp;
         request.SiteDbGroupId = siteDbGroupId;
         request.CustDbGroupId = custDbGroupId;
         request.PaySlip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
@@ -228,20 +231,6 @@ public class TransactionsController(
         return file.Length <= maxFileSize;
     }
 
-    private string GetClientIp()
-    {
-        var context = httpContextAccessor.HttpContext;
-
-        var ip = context?.Request?.Headers["X-Forwarded-For"].FirstOrDefault();
-
-        if (string.IsNullOrEmpty(ip))
-        {
-            ip = context?.Connection?.RemoteIpAddress?.ToString();
-        }
-
-        return ip ?? "Unknown";
-    }
-
     public async Task<IActionResult> GetBankWithdrawalAccounts()
     {
         var url = "/withdrawal/bank-withdrawal-accounts";
@@ -290,11 +279,7 @@ public class TransactionsController(
         {
             return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
         }
-
-        request.SiteDbGroupId = siteDbGroupId;
-        request.CustDbGroupId = custDbGroupId;
-        request.UserId = userId;
-        request.Ip = GetClientIp();
+        request.SetUserSession(userSession);
         var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending-deposit", request);
         if (result.Code != 0)
         {
@@ -318,9 +303,7 @@ public class TransactionsController(
             return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
         }
 
-        request.SiteDbGroupId = siteDbGroupId;
-        request.UserId = userId;
-        request.Ip = GetClientIp();
+        request.SetUserSession(userSession);
         var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending-withdrawal", request);
         if (result.Code != 0)
         {

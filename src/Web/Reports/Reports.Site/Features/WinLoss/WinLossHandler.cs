@@ -9,9 +9,7 @@ using AlphaPlus.Reports.Features.WinLoss;
 using AlphaPlus.Reports.Site.Features.CashBillingService;
 using AlphaPlus.Reports.Site.Features.CashBillingService.Requests;
 using AlphaPlus.Reports.Site.Features.Shared;
-using AlphaPlus.Reports.Site.Features.Shared.Helpers;
 using AlphaPlus.Reports.Site.Features.Shared.Requests;
-using AlphaPlus.Shared.AppResources.Report;
 using MediatR;
 using Microsoft.Extensions.Options;
 
@@ -101,7 +99,7 @@ public class WinLossHandler(
 
         var cashServiceSites = Core.Configurations.AppSettings.CashServiceOfferedSites.JoinWithComma();
         var productExtras = await cashFeeService.GetExtraProduct(message.CustId, cashServiceSites, message.MinDate, message.Language);
-       
+
         return products.Concat(productExtras);
     }
 

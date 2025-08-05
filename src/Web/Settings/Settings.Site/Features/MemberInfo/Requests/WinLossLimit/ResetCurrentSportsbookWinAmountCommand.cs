@@ -11,15 +11,36 @@ public class ResetCurrentSportsbookWinAmountCommand : IRequest<Result>
 
     public ResetCurrentSportsbookWinAmountCommand(IUser viewer)
     {
-        Language = viewer.Language;
+        SiteDB = (short)viewer.SiteDBGroupId;
+        SubAccId = viewer.SubAccId;
+        SubAccName = viewer.SubAccName;
+        UserId = viewer.Id;
+        IP = viewer.IP;
         SettingStatus = AppSettings.SettingStatus;
+        Language = viewer.Language;
     }
 
-    public int CustId { get; set; }
-    public string Username { get; set; }
+    public short SiteDB { get; set; }
+
+    public int CustId { get; set; } 
+
     public int ProductId { get; set; }
+
     public int SportType { get; set; }
+
     public int BetType { get; set; }
-    public string Language { get; set; }
+
+    public int SubAccId { get; set; }
+
+    public string SubAccName { get; set; }
+
+    public int UserId { get; set; }
+
+    public string IP { get; set; }
+
     public int SettingStatus { get; set; }
+
+    public string Username { get; set; }
+
+    public string Language { get; set; }
 } 

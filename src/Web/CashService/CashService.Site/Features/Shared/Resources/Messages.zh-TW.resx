@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CashServiceIsDisabled" xml:space="preserve">
-    <value>您沒有權限訪問，因為現金服務已禁用。請啟用現金服務以繼續。</value>
+    <value>沒有權限。請啟用現金服務以繼續操作。</value>
   </data>
 </root>

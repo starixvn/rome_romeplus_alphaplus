@@ -37,11 +37,11 @@ const DataGrid: React.FC<DataGridProps> = ({
 }) => {
   const { t } = useTranslation('transactionHistory');
   const { t: tGlobal } = useTranslation('global');
-  const [selectedTransactionId, setSelectedTransactionId] = useState<number | null>(null);
+  const [selectedTransactionId, setSelectedTransactionId] = useState<string | null>(null);
   const [selectedCustId, setSelectedCustId] = useState<number | null>(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
 
-  const handleViewTransaction = (transactionId: number, custId: number) => {
+  const handleViewTransaction = (transactionId: string, custId: number) => {
     setSelectedTransactionId(transactionId);
     setSelectedCustId(custId);
     setIsDetailModalOpen(true);
@@ -106,12 +106,12 @@ const DataGrid: React.FC<DataGridProps> = ({
                   <td className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-background)] z-10">
                     {index + 1 + (pageIndex - 1) * pageSize}
                   </td>
-                  <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
+                  <td className="text-left w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
                     <div>{item.username}</div>
                     <div>{item.nickname}</div>
                   </td>
                   {shouldShowColumn('name') && (
-                    <td>
+                    <td className="text-left">
                       <div>{item.firstName}</div>
                       <div>{item.lastName}</div>
                     </td>
@@ -141,7 +141,6 @@ const DataGrid: React.FC<DataGridProps> = ({
                     </td>
                   )}
                   {shouldShowColumn('status') && (
-                    
                     <td className="text-center">{mappingStatus(item.statusId, item.status)}</td>
                   )}
                   {shouldShowColumn('type') && (

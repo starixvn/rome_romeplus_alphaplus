@@ -1,10 +1,10 @@
 {
-    "promotionReport": "促銷報告",
+    "promotionReport": "優惠報告",
     "table": {
         "no": "序號",
         "action": "操作",
-        "promotionTitle": "促銷標題",
-        "promotionType": "促銷類型",
+        "promotionTitle": "優惠標題",
+        "promotionType": "優惠類型",
         "percentage": "百分比 (%)",
         "maxPayout": "最大派彩",
         "sports": "體育",
@@ -19,10 +19,11 @@
         "products": "產品",
         "noRecords": "未找到記錄",
         "bonusAmount": "獎金金額",
-        "totalRequest": "總請求",
-        "totalApproved": "總批准",
-        "totalRejected": "總拒絕",
-        "totalBonusGiven": "總獎金發放"
+        "totalRequest": "總申請次數",
+        "totalApproved": "已批準申請總數",
+        "totalRejected": "已拒絕申請總數",
+        "totalBonusGiven": "已發放獎金總額",
+        "rebatePeriod": "Rebate Period"
     },
     "search": {
         "placeholder": "按標題或類型搜索..."

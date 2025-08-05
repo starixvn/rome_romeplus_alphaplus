@@ -5,13 +5,14 @@ using MediatR;
 using AlphaPlus.Settings.Site.Features.ViewLogs.Requests.Login;
 using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels;
 using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels.Login;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
 {
     public class LoginHandler : BaseHandler, IRequestHandler<IndexQuery, IndexViewModel>
     {
-        public LoginHandler([FromKeyedServices("loginLogSvc")] LogService logService, LogFormatter logFormatter, IDateTime dateTimeWrapper) :
-            base(logService, logFormatter, dateTimeWrapper)
+        public LoginHandler([FromKeyedServices("loginLogSvc")] LogService logService, LogFormatter logFormatter, IDateTime dateTimeWrapper, IUserSession userSession) :
+                base(logService, logFormatter, dateTimeWrapper, userSession)
         {
         }
 
@@ -30,7 +31,7 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
             viewModel.Username = message.IsAgentViewing && message.PreviousUsername.Equals(message.Username)
                 ? string.Empty
                 : message.Username;
-
+            viewModel.IsOfferedCashService = AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(_userSession.Site);
             return viewModel;
         }
 

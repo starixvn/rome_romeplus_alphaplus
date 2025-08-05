@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace AlphaPlus.CashService.Site.Features.Shared.Filters
 {
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class SiteAuthorizationFilterAttribute : TypeFilterAttribute
     {
         public SiteAuthorizationFilterAttribute(string pageAccessType) : base(typeof(SiteAuthorizationFilter))

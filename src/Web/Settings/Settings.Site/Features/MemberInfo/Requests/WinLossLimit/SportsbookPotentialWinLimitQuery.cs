@@ -21,7 +21,7 @@ public class SportsbookPotentialWinLimitQuery : MemberInfoBaseQuery, IRequest<Sp
 
     public byte ProblemAccount { get; set; }
 
-    public int AccountType { get; set; }
+    public int AccountType { get; set; }      
 
     public int PageSize { get; set; } = 100;
 

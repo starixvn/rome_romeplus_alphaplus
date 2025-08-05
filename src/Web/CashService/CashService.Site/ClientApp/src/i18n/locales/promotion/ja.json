@@ -22,7 +22,8 @@
         "totalRequest": "総リクエスト",
         "totalApproved": "総承認",
         "totalRejected": "総拒否",
-        "totalBonusGiven": "総ボーナス付与"
+        "totalBonusGiven": "総ボーナス付与",
+        "rebatePeriod": "Rebate Period"
     },
     "promotionType_1": "売上リベート",
     "search": {

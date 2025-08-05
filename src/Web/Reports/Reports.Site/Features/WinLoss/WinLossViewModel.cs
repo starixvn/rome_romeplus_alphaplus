@@ -6,7 +6,6 @@ using AlphaPlus.Reports.Features.WinLoss;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels;
 using AlphaPlus.Reports.Site.Features.Shared.ViewModels.Components;
 using AlphaPlus.Shared.AppResources.Report;
-using EasyNetQ;
 
 namespace AlphaPlus.Reports.Site.Features.WinLoss;
 

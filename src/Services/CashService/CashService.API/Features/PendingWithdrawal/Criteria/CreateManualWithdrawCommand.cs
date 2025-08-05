@@ -24,7 +24,6 @@ public class CreateManualWithdrawCommand : CriteriaBase
     public int ProviderId { get; set; }
     public int PaymentMethodId { get; set; }
     public int SiteDbGroupId { get; set; }
-
     public long TransId { get; set; }
     public string CashAccumCreditTbl { get; set; }
     public int ErrCode { get; set; }

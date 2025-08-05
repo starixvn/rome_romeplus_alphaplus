@@ -14,6 +14,8 @@ interface DataGridProps {
   pageSize: number;
   isLoading: boolean;
   onSelectionChange?: (selectedItems: PromotionTransaction[]) => void;
+  refreshGrid?: () => void;
+  isCashServiceEnabled: boolean;
 }
 
 const DataGrid: React.FC<DataGridProps> = ({
@@ -22,18 +24,18 @@ const DataGrid: React.FC<DataGridProps> = ({
   pageSize,
   isLoading,
   onSelectionChange,
+  refreshGrid,
+  isCashServiceEnabled,
 }) => {
   const { t } = useTranslation('promotion');
   const [selectedItems, setSelectedItems] = useState<PromotionTransaction[]>([]);
   const [selectAll, setSelectAll] = useState(false);
   const [editModal, setEditModal] = useState<{
     isOpen: boolean;
-    transId: number;
-    currentAmount: number;
+    item: PromotionTransaction | null;
   }>({
     isOpen: false,
-    transId: 0,
-    currentAmount: 0,
+    item: null,
   });
 
   useEffect(() => {
@@ -58,10 +60,14 @@ const DataGrid: React.FC<DataGridProps> = ({
 
   const handleSelectItem = (item: PromotionTransaction, checked: boolean) => {
     const newSelectedItems = [...selectedItems];
+
     if (checked) {
       newSelectedItems.push(item);
     } else {
-      newSelectedItems.splice(newSelectedItems.indexOf(item), 1);
+      newSelectedItems.splice(
+        newSelectedItems.findIndex((i) => i.transId === item.transId && i.custId === item.custId),
+        1
+      );
     }
     setSelectedItems(newSelectedItems);
     if (checked && newSelectedItems.length === items.length) {
@@ -71,30 +77,19 @@ const DataGrid: React.FC<DataGridProps> = ({
     }
   };
 
-  const onEditSinglePromotion = (transId: number, amount: number) => {
+  const onEditSinglePromotion = (item: PromotionTransaction) => {
     setEditModal({
       isOpen: true,
-      transId,
-      currentAmount: amount,
+      item: item,
     });
   };
 
   const handleCloseEditModal = () => {
     setEditModal({
       isOpen: false,
-      transId: 0,
-      currentAmount: 0,
+      item: null,
     });
-  };
-
-  const handleApprovePromotion = async (transId: number, amount: number) => {
-    console.log('Approving promotion:', transId, 'with amount:', amount);
-    // TODO: Implement API call to approve promotion
-  };
-
-  const handleRejectPromotion = async (transId: number) => {
-    console.log('Rejecting promotion:', transId);
-    // TODO: Implement API call to reject promotion
+    refreshGrid?.();
   };
 
   if (isLoading) {
@@ -108,7 +103,7 @@ const DataGrid: React.FC<DataGridProps> = ({
   return (
     <>
       <div className="table-fixed-header table-fixed-body min-h-0">
-        <table className="w-full whitespace-nowrap border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px]">
+        <table className="w-full border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px]">
           <thead className="z-11!">
             <tr>
               <th
@@ -122,7 +117,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                   type="checkbox"
                   className="w-[16px] h-[16px] cursor-pointer"
                   name="selectAll"
-                  disabled={items.length === 0}
+                  disabled={items.length === 0 || !isCashServiceEnabled}
                   checked={selectAll}
                   onChange={(e) => handleSelectAll(e.target.checked)}
                 />
@@ -132,11 +127,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                 <br />
                 {t('table.nickname')}
               </th>
-              <th scope="col">
-                {t('table.firstName')}
-                <br />
-                {t('table.lastName')}
-              </th>
+              <th scope="col">{t('table.firstLastName')}</th>
               <th scope="col" className="w-[200px]">
                 {t('table.title')}
               </th>
@@ -144,16 +135,19 @@ const DataGrid: React.FC<DataGridProps> = ({
               <th scope="col" className="min-w-[80px]">
                 {t('table.amount')}
               </th>
-              <th scope="col">{t('table.dateRange')}</th>
-              <th scope="col" className="w-[60px]">
-                {t('table.actions')}
-              </th>
+              <th scope="col">{t('table.rebatePeriod')}</th>
+              <th scope="col">{t('table.refNo')}</th>
+              {isCashServiceEnabled && (
+                <th scope="col" className="w-[60px]">
+                  {t('table.actions')}
+                </th>
+              )}
             </tr>
           </thead>
           <tbody className="font-[500]">
             {items && items.length > 0 ? (
               items.map((item, index) => (
-                <tr key={item.transId}>
+                <tr key={index}>
                   <td className="w-[32px] min-w-[32px]">
                     {index + 1 + (pageIndex - 1) * pageSize}
                   </td>
@@ -161,22 +155,31 @@ const DataGrid: React.FC<DataGridProps> = ({
                     <input
                       type="checkbox"
                       className="w-[16px] h-[16px] cursor-pointer"
-                      checked={selectedItems.some(
-                        (selectedItem) => selectedItem.transId === item.transId
-                      )}
+                      checked={
+                        selectedItems.findIndex(
+                          (selectedItem) =>
+                            selectedItem.transId === item.transId &&
+                            selectedItem.custId === item.custId
+                        ) !== -1
+                      }
                       onChange={(e) => handleSelectItem(item, e.target.checked)}
+                      disabled={!isCashServiceEnabled}
                     />
                   </td>
-                  <td className="w-[150px] min-w-[150px]">
+                  <td className="w-[150px] min-w-[150px] text-left">
                     <div>{item.username}</div>
                     <div>{item.nickname}</div>
                   </td>
-                  <td>
+                  <td className="text-left">
                     <div>{item.firstName}</div>
                     <div>{item.lastName}</div>
                   </td>
-                  <td className="text-center">{item.title}</td>
-                  <td className="text-center">{item.promotionTypeName}</td>
+                  <td className="text-left">
+                    <div className="w-[100%] max-w-[400px] min-w-[300px] max-[768px]:max-w-[200px] max-[768px]:min-w-[150px]">
+                      {item.title}
+                    </div>
+                  </td>
+                  <td className="text-left">{item.promotionTypeName}</td>
                   <td className="text-right">
                     <div className="flex w-full justify-end relative">
                       {displayAmount(item.amount)}
@@ -187,18 +190,21 @@ const DataGrid: React.FC<DataGridProps> = ({
                       {formatDate(item.fromDate)} - {formatDate(item.toDate)}
                     </div>
                   </td>
-                  <td className="text-center">
-                    <div
-                      className="flex justify-center items-center cursor-pointer"
-                      onClick={() => onEditSinglePromotion(item.transId, item.amount)}
-                    >
-                      <IconPen className="w-[20px] h-[20px] fill-[#333333] dark:fill-[#ededed]" />
-                    </div>
-                  </td>
+                  <td className="text-left">{item.transId}</td>
+                  {isCashServiceEnabled && (
+                    <td className="text-center">
+                      <div
+                        className="flex justify-center items-center cursor-pointer"
+                        onClick={() => onEditSinglePromotion(item)}
+                      >
+                        <IconPen className="w-[20px] h-[20px] fill-[#333333] dark:fill-[#ededed]" />
+                      </div>
+                    </td>
+                  )}
                 </tr>
               ))
             ) : (
-              <NoRecordFound colSpan={9} />
+              <NoRecordFound colSpan={isCashServiceEnabled ? 9 : 8} />
             )}
           </tbody>
         </table>
@@ -207,10 +213,7 @@ const DataGrid: React.FC<DataGridProps> = ({
       <EditPendingPromotion
         isOpen={editModal.isOpen}
         onClose={handleCloseEditModal}
-        transId={editModal.transId}
-        currentAmount={editModal.currentAmount}
-        onApprove={handleApprovePromotion}
-        onReject={handleRejectPromotion}
+        item={editModal.item}
       />
     </>
   );

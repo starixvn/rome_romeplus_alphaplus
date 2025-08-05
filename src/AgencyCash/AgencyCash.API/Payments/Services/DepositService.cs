@@ -1,3 +1,4 @@
+using AgencyCash.API.Notifications.Services;
 using AgencyCash.API.Payments.Constants;
 using AgencyCash.API.Payments.Criteria;
 using AgencyCash.API.Payments.Criteria.Deposit;
@@ -26,8 +27,11 @@ public interface IDepositService
 public class DepositService(
     IDynamicRepository repository,
     ISiteDBService siteDBService,
-    Fanex.Logging.ILogger logger) : PaymentService(repository, siteDBService, logger), IDepositService
+    Fanex.Logging.ILogger logger,
+    INotificationsService notificationsService) : PaymentService(repository, siteDBService, logger), IDepositService
 {
+    private readonly INotificationsService notificationsService = notificationsService;
+
     public async Task<DepositLimit> GetLimit(GetDepositLimitRequest request)
     {
         var siteDBConfig = await siteDBService.GetSiteDBConfig(request.AgentId);
@@ -62,7 +66,7 @@ public class DepositService(
 
         if (!validateResult.IsSuccess)
         {
-            return validateResult;
+            return new PaymentResult(validateResult.Code, validateResult.Message);
         }
 
         const byte BankAccount = 2;
@@ -90,7 +94,17 @@ public class DepositService(
             ip: request.IP,
             remark: request.Remark);
 
-        return await AddTransactionAndWriteLogs(criteria, siteDBConfig.CustDBGroupId);
+        var result = await AddTransactionAndWriteLogs(criteria, siteDBConfig.CustDBGroupId);
+
+        if (result.IsSuccess)
+        {
+            _ = Task.Run(() => NotifyPendingDeposit(
+                request.AgentId,
+                request.CustId,
+                [request.Amount.ToString("N2"), validateResult.MemberNickname]));
+        }
+
+        return result;
     }
 
     public async Task<PaymentResult> Auto(AutoDepositRequest request)
@@ -110,7 +124,7 @@ public class DepositService(
 
         if (!validateResult.IsSuccess)
         {
-            return validateResult;
+            return new PaymentResult(validateResult.Code, validateResult.Message);
         }
 
         var limitCriteria = new GetDepositLimitCriteria(
@@ -232,5 +246,17 @@ public class DepositService(
         await Task.WhenAll(tasks);
 
         return new Result(criteria.ErrCode, criteria.ErrMsg);
+    }
+
+    public async Task NotifyPendingDeposit(int agentId, int custId, object[] messageParams)
+    {
+        try
+        {
+            await notificationsService.NotifyPendingDeposit(agentId, custId, messageParams);
+        }
+        catch (Exception ex)
+        {
+            await logger.ErrorAsync($"{nameof(NotifyPendingDeposit)} failed. Agent: {agentId}, CustId: {custId}", ex);
+        }
     }
 }

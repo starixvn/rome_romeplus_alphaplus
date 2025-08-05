@@ -853,4 +853,37 @@
   <data name="HighlightPopupNewFeatureIntro6" xml:space="preserve">
     <value>想看看它如何運作？</value>
   </data>
+  <data name="Checklist" xml:space="preserve">
+    <value>檢查清單</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row8" xml:space="preserve">
+    <value>需要幫助？請閱讀我們的指南。</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row7" xml:space="preserve">
+    <value>確保您的 &lt;strong&gt;可用信用&lt;/strong&gt; 足以進行存款和提款</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row6" xml:space="preserve">
+    <value>&lt;div class="chk-line-id"&gt;&lt;/div&gt;填寫您的 &lt;strong&gt;LINE ID&lt;/strong&gt; 並分享您的鏈接</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row5" xml:space="preserve">
+    <value>轉到 &lt;a class="lnk-member-site-management" target="main" href="{0}"&gt;會員網站管理&lt;/a&gt;</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row4" xml:space="preserve">
+    <value>&lt;div class="chk-withdrawal-methods"&gt;&lt;/div&gt;設置並 &lt;strong&gt;啟用&lt;/strong&gt; 您的提款方法</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row3" xml:space="preserve">
+    <value>&lt;div class="chk-deposit-methods"&gt;&lt;/div&gt;設置並 &lt;strong&gt;啟用&lt;/strong&gt; 您的存款方法</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row1" xml:space="preserve">
+    <value>與您的會員分享您的獨特註冊鏈接的步驟。</value>
+  </data>
+  <data name="CashServiceSetupChecklist_Row2" xml:space="preserve">
+    <value>轉到 &lt;a class="lnk-manage-payments" target="main" href="{0}"&gt;管理付款&lt;/a&gt; 以設置您的 &lt;strong&gt;支付網關&lt;/strong&gt; 或 &lt;strong&gt;銀行賬戶&lt;/strong&gt;</value>
+  </data>
+  <data name="DeactivateCashService" xml:space="preserve">
+    <value>您確定要停用現金服務嗎？</value>
+  </data>
+  <data name="DeactivateCashServiceNote" xml:space="preserve">
+    <value>您賬戶的現金服務將於明日關閉，相關費用也將同步停止計收。</value>
+  </data>
 </root>

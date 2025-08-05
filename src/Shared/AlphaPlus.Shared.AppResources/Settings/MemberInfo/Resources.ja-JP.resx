@@ -632,12 +632,18 @@
     <value>Current Win Amount</value>
   </data>
   <data name="ResetCurrentWinAmount" xml:space="preserve">
-    <value>現在の勝利額をリセット</value>
+    <value>クリックして累積勝敗をリセット</value>
   </data>
   <data name="ResetCurrentWinAmountConfirmMessage" xml:space="preserve">
-    <value>メンバー "{0}" の現在の勝利額をリセットしてもよろしいですか？</value>
+    <value>メンバー {0} の現在の勝利額をリセットしてもよろしいですか？</value>
   </data>
   <data name="ResetCurrentWinAmountSuccess" xml:space="preserve">
     <value>現在の勝利額をリセットしました。</value>
+  </data>
+  <data name="ResetCurrentWinAmountNote" xml:space="preserve">
+    <value>Reset Current win Amount is only available for Cash member, who has not set Daily reset</value>
+  </data>
+  <data name="ResetAccumulatedWinAmountNote" xml:space="preserve">
+     <value>Reset Accumulated win is only available for Cash member, who has not set Daily reset</value>
   </data>
 </root>

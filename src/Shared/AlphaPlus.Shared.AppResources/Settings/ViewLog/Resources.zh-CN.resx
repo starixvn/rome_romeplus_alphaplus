@@ -324,4 +324,7 @@
   <data name="ViewLogCredit" xml:space="preserve">
     <value>察看信用额度日志</value>
   </data>
+  <data name="CashService" xml:space="preserve">
+    <value>现金服务</value>
+  </data>
 </root>

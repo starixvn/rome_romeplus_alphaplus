@@ -1,5 +1,4 @@
-﻿using AlphaPlus.Core.Helpers;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 
 namespace AlphaPlus.NetThrottling.Resolvers
 {

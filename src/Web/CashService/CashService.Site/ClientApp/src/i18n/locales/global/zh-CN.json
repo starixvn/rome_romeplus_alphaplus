@@ -91,7 +91,7 @@
   "status": {
     "waiting": "等待中",
     "cancelled": "已取消",
-    "pending": "处理中",
+    "pending": "待处理",
     "expired": "已过期",
     "completed": "已完成",
     "rejected": "已拒绝",
@@ -109,7 +109,7 @@
     "selected": "已选择",
     "noRangeSelected": "未选择范围"
   },
-  "cashServiceDisabled": "现金服务已禁用",
+  "cashServiceDisabled": "现金服务已被禁用",
   "info": "信息",
   "removeSuccess": "删除成功",
   "removeError": "删除失败",
@@ -125,5 +125,5 @@
   "updatedBy": "更新者",
   "pleaseReferTo": "请参考",
   "checklist": "检查清单",
-  "error-0": "支付提供商目前不可用。请稍后再试。"
+  "error-200": "支付提供商目前不可用。请稍后再试。"
 }

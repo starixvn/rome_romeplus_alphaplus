@@ -1708,4 +1708,13 @@
   <data name="isactive" xml:space="preserve">
     <value />
   </data>
+  <data name="AgentBankAccount" xml:space="preserve">
+    <value>에이전트 은행 계좌</value>
+  </data>
+  <data name="winAmount" xml:space="preserve">
+    <value>당첨금액</value>
+  </data>
+  <data name="NoMatchingBankAccount" xml:space="preserve">
+    <value>일치하는 은행 계좌가 없습니다</value>
+  </data>
 </root>

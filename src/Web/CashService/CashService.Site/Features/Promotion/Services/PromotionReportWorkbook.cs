@@ -49,17 +49,10 @@ public class PromotionReportWorkbook(IWebHostEnvironment webHostEnvironment) :
         => new Mapper<PromotionReport>()
         .Map(A, p => number++)
         .Map(B, p => p.PromotionTitle)
-        .Map(C, p => PromotionTypeName(p.PromotionType))
+        .Map(C, p => p.PromotionTypeName)
         .Map(D, p => $"{p.FromDate.ToShortDateWithSlash()} - {p.ToDate.ToShortDateWithSlash()}")
         .Map(E, p => p.TotalRequest)
         .Map(F, p => $"{p.TotalApproved:N0}{Environment.NewLine}{p.TotalRejected:N0}")
         .Map(G, p => p.TotalAmount)
         .Map(H, p => p.Enabled ? Resources.Enabled : Resources.Disabled);
-
-    private static string PromotionTypeName(byte promotionType)
-        => promotionType switch
-        {
-            1 => CashServicesResx.PromotionType_1,
-            _ => string.Empty
-        };
 }

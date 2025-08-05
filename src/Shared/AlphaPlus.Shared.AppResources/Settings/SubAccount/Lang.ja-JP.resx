@@ -228,4 +228,7 @@ Notes: your password is cAsE sEnSiTiVe</value>
   <data name="lblPasswordDAccountName" xml:space="preserve">
     <value>パスワードにはユーザー名またはニックネームを含めてはいけません。</value>
   </data>
+  <data name="CashService" xml:space="preserve">
+    <value>キャッシュサービス</value>
+  </data>
 </root>

@@ -94,7 +94,8 @@
             selectorId: 'Username',
             url: $('#hidden-usernameSuggestionUrl').val(),
             directDownlines: true,
-            isAccInfo: false
+            isAccInfo: false,
+            excludeCashMember: true
         });
         this.statusDropdownComponent.render({ dropdownId: 'Status', buttonWidth: 130 });
         this.autoTransferDropdownComponent.render({ dropdownId: 'AutoTransfer', buttonWidth: 110 });

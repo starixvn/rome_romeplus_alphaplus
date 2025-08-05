@@ -37,6 +37,8 @@ public class ValidatePaymentCriteria(
 
     public string ErrExtraInfo { get; set; }
 
+    public string Username2 { get; set; } = string.Empty;
+
     public override string GetSettingKey()
         => SPNameHelper.CustDBPrefix("API_CashService_CustPaymentValidate", custDBGroupId);
 

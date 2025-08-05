@@ -23,7 +23,7 @@ public class GetPromotionReportRequest : BaseActionRequest
     {
         base.SetUserSession(userSession);
         SetLimitedDateToShowInfo(userSession);
-        Username = userSession.IsSubAcc ? userSession.SubUserName : userSession.UserName;
+        Username = userSession.UserName;
     }
 
     public string ToQueryString()

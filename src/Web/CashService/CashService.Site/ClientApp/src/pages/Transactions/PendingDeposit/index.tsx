@@ -106,7 +106,9 @@ const PendingDeposit: React.FC = () => {
   const [isCashServiceEnabled, setIsCashServiceEnabled] = useState(false);
 
   useEffect(() => {
-    const isCashServiceEnabled = document.getElementById('IsCashServiceEnabled')?.getAttribute('value');
+    const isCashServiceEnabled = document
+      .getElementById('IsCashServiceEnabled')
+      ?.getAttribute('value');
     setIsCashServiceEnabled(isCashServiceEnabled === '1');
   }, []);
 
@@ -117,11 +119,9 @@ const PendingDeposit: React.FC = () => {
 
   const handleAddManualDeposit = () => setShowManualAddDepositForm(true);
 
-  const handleCloseManualDepositForm = (isSuccess: boolean) => {
+  const handleCloseManualDepositForm = () => {
     setShowManualAddDepositForm(false);
-    if (isSuccess) {
-      fetchDeposits();
-    }
+    fetchDeposits();
   };
 
   const filteredDeposits = useMemo(() => {
@@ -152,12 +152,12 @@ const PendingDeposit: React.FC = () => {
       {showManualAddDepositForm ? (
         <ManualAddDepositForm
           cashAgentOptions={cashAgentOptions}
-          onClose={() => handleCloseManualDepositForm(false)}
+          onClose={handleCloseManualDepositForm}
           isCashServiceEnabled={isCashServiceEnabled}
         />
       ) : (
         <div className="flex h-full flex-col">
-          <TitleComponent type='main' text={t('pendingDeposit')} />
+          <TitleComponent type="main" text={t('pendingDeposit')} />
           <div className="mb-[8px]">
             <ButtonComponent
               variant="full"
@@ -181,7 +181,11 @@ const PendingDeposit: React.FC = () => {
               <LoadingFullComponent />
             </div>
           ) : (
-            <DataGrid deposits={filteredDeposits} reloadGrid={fetchDeposits} isCashServiceEnabled={isCashServiceEnabled} />
+            <DataGrid
+              deposits={filteredDeposits}
+              reloadGrid={fetchDeposits}
+              isCashServiceEnabled={isCashServiceEnabled}
+            />
           )}
         </div>
       )}

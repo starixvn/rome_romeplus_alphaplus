@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace AlphaPlus.Core.Authorization;
 
-internal static class HttpClientExtensions
+public static class HttpClientExtensions
 {
     public static async Task<T> GetAsJsonAsync<T>(this HttpClient httpClient, string requestUri)
     {

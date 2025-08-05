@@ -1,17 +1,18 @@
 namespace AlphaPlus.CashService.Site.Features.Promotion.Controllers;
 
+using System.Collections.Immutable;
 using AlphaPlus.CashService.Site.Features.Shared.Requests;
+using AlphaPlus.CashService.Site.Features.Shared.Resources;
+using AlphaPlus.CashService.Site.Helpers;
 using AlphaPlus.Shared.AppResources.CashServices;
 using Core.Configurations;
 using Core.Models;
 using Enum;
 using Fanex.Customer.Client.Services;
-using Helpers;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Models.Products;
-using Newtonsoft.Json;
 using Requests;
 using Services;
 using Shared;
@@ -29,14 +30,24 @@ public class PromotionController(
     IAntiforgery antiforgery,
     HttpClient httpClient,
     ICustomerService customerService,
+    IPromotionService promotionService,
     IPromotionReportWorkbook promotionReportWorkbook,
+    IPendingPromotionReportWorkbook pendingPromotionReportWorkbook,
     IPromotionDetailsReportWorkbook promotionDetailsReportWorkbook) : SiteBaseController(userSession, antiforgery, httpClient, customerService)
 {
     private readonly string _apiBaseUrl = configuration["CashService:APIUrl"];
 
-    public IActionResult Index() => View();
+    public async Task<IActionResult> Index()
+    {
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        return View(new SiteBaseViewModel { IsCashServiceEnabled = isCashServiceEnabled });
+    }
 
-    public IActionResult Pending() => View();
+    public async Task<IActionResult> Pending()
+    {
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        return View(new SiteBaseViewModel { IsCashServiceEnabled = isCashServiceEnabled });
+    }
 
     public IActionResult Report()
     {
@@ -105,7 +116,7 @@ public class PromotionController(
         return Json(result);
     }
 
-    public async Task<Dictionary<string, string>> GetLanguages(CancellationToken cancellationToken)
+    public async Task<ImmutableDictionary<string, string>> GetLanguages(CancellationToken cancellationToken)
     {
         var fullLanguages = AppSettings.IsSiteLabel789y ? LanguageConstant.CodeNames : LanguageConstant.CodeKeysWithoutCN3;
 
@@ -137,15 +148,24 @@ public class PromotionController(
     }
 
     [HttpPost]
-    public async Task<IActionResult> AddPromotion([FromBody] AddPromotionRequest request)
+    public async Task<IActionResult> AddPromotion([FromForm] AddPromotionRequest request)
     {
-        request
-            .SetUserSession(userSession);
+        if (userSession.IsInternal)
+        {
+            return Unauthorized();
+        }
+
+        request.SetUserSession(userSession);
         if (request.IsValid())
         {
+            var files = promotionService.ProcessPromotionRequest(request);
             var url = $"/api/promotions";
+            var result = await httpClientHelper.PostAsync<object, ResultModel>(url, request);
+            if (result.IsSuccessful)
+            {
+                promotionService.ProcessImageUploads(files);
+            }
 
-            var result = await httpClientHelper.PostAsync<AddPromotionRequest, object>(url, request);
             return Json(result);
         }
 
@@ -153,15 +173,25 @@ public class PromotionController(
     }
 
     [HttpPut]
-    public async Task<IActionResult> EditPromotion(int promotionId, [FromBody] EditPromotionRequest request)
+    public async Task<IActionResult> EditPromotion(int promotionId, [FromForm] EditPromotionRequest request)
     {
+        if (userSession.IsInternal)
+        {
+            return Unauthorized();
+        }
+
         request.SetUserSession(userSession);
-        Console.WriteLine(JsonConvert.SerializeObject(request));
+
         if (request.IsValid())
         {
-            Console.WriteLine("Valid!");
+            var files = promotionService.ProcessPromotionRequest(request);
             var url = $"/api/promotions/{promotionId}";
-            var result = await httpClientHelper.PutAsync<EditPromotionRequest, object>(url, request);
+            var result = await httpClientHelper.PutAsync<EditPromotionRequest, ResultModel>(url, request);
+            if (result.IsSuccessful)
+            {
+                promotionService.ProcessImageUploads(files);
+            }
+
             return Json(result);
         }
 
@@ -171,6 +201,11 @@ public class PromotionController(
     [HttpDelete]
     public async Task<IActionResult> DeletePromotion(int promotionId)
     {
+        if (userSession.IsInternal)
+        {
+            return Unauthorized();
+        }
+
         var url = $"/api/promotions/delete/{promotionId}";
 
         var request = new DeletePromotionRequest { PromotionId = promotionId };
@@ -190,12 +225,34 @@ public class PromotionController(
         return Json(result);
     }
 
+    public async Task<IActionResult> ExportExcel(GetPendingPromotionViewModel request)
+    {
+        request.StatusId = 2;
+        request.CustId = userSession.CustId;
+        request.SiteDbGroupId = userSession.SiteDBGroupId;
+        request.Username = userSession.UserName;
+        var result = await httpClientHelper.GetAsync<PromotionTransactionResponse>("/promotions/transactions", ObjectConverter.ToDictionary(request));
+        var excelFileViewModel = pendingPromotionReportWorkbook.BuildExcelFile(request, result.PromotionTransactions);
+        return File(excelFileViewModel.Content, excelFileViewModel.ContentType, excelFileViewModel.Name);
+    }
+
     public IActionResult GetPromotionTypeOptions()
         => Json(EnumHelper.GetEnumOptions<PromotionType>(CashServicesResx.ResourceManager));
 
     [HttpPost]
     public async Task<IActionResult> AddBonus([FromBody] AddBonusRequest request)
     {
+        if (userSession.IsInternal)
+        {
+            return Unauthorized();
+        }
+
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        if (isCashServiceEnabled == 0)
+        {
+            return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
+        }
+
         request.SetUserSession(userSession);
         var url = $"/api/promotions/addBonus";
         var result = await httpClientHelper.PostAsync<AddBonusRequest, ResultModel>(url, request);
@@ -207,8 +264,19 @@ public class PromotionController(
     }
 
     [HttpPost]
-    public async Task<IActionResult> ApprovePromotionTransaction([FromBody] ApprovePromotionTransactionRequest request)
+    public async Task<IActionResult> ApprovePromotionTransaction([FromBody] ProcessPromotionTransactionRequest request)
     {
+        if (userSession.IsInternal)
+        {
+            return Unauthorized();
+        }
+
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        if (isCashServiceEnabled == 0)
+        {
+            return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
+        }
+
         request.SetUserSession(userSession);
         request.StatusId = (int)TransactionStatus.Completed;
         var result = await UpdatePromoteTransactionStatus(request);
@@ -216,8 +284,19 @@ public class PromotionController(
     }
 
     [HttpPost]
-    public async Task<IActionResult> RejectPromotionTransaction([FromBody] ApprovePromotionTransactionRequest request)
+    public async Task<IActionResult> RejectPromotionTransaction([FromBody] ProcessPromotionTransactionRequest request)
     {
+        if (userSession.IsInternal)
+        {
+            return Unauthorized();
+        }
+
+        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
+        if (isCashServiceEnabled == 0)
+        {
+            return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
+        }
+
         request.SetUserSession(userSession);
         request.StatusId = (int)TransactionStatus.Rejected;
         var result = await UpdatePromoteTransactionStatus(request);
@@ -225,9 +304,9 @@ public class PromotionController(
     }
 
     private async Task<ResultModel> UpdatePromoteTransactionStatus(
-        [FromBody] ApprovePromotionTransactionRequest request)
+        [FromBody] ProcessPromotionTransactionRequest request)
     {
-        var result = await httpClientHelper.PostAsync<ApprovePromotionTransactionRequest, ResultModel>("/api/promotions/updateTransactionStatus", request);
+        var result = await httpClientHelper.PostAsync<ProcessPromotionTransactionRequest, ResultModel>("/api/promotions/updateTransactionStatus", request);
         if (result.Code != 0)
         {
             result.Message = ErrorCodeHandler.MappingAddManualWithdrawalErrCode(result.Code);

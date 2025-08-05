@@ -1,15 +1,15 @@
+import { DropdownOption } from '../components/CustomDropdownComponent';
 import { api, axiosInstance, createHeaderXMLHttp } from './axios';
 import {
-  EditPromotionRequest,
-  ProductDropdown,
-  PromotionDetail,
-  PromotionParams,
-  PromotionRequest,
-  PromotionTransactionRequest,
-  PromotionTransactionResponse,
+    EditPromotionRequest,
+    ProductDropdown,
+    PromotionDetail,
+    PromotionParams,
+    PromotionRequest,
+    PromotionTransactionRequest,
+    PromotionTransactionResponse,
 } from './interfaces/Promotion';
 import { ResultModel } from './interfaces/ResultModel';
-import { DropdownOption } from '../components/CustomDropdownComponent';
 
 export const promotionService = {
   getLanguages: async (): Promise<Record<string, string>> => {
@@ -84,6 +84,20 @@ export const promotionService = {
       throw error;
     }
   },
+  addPromotionWithFormData: async (formData: FormData): Promise<ResultModel> => {
+    try {
+      const response = await axiosInstance.post<ResultModel>(`AddPromotion`, formData, {
+        headers: {
+          ...createHeaderXMLHttp(),
+          // Don't set Content-Type for FormData, browser will set it automatically with boundary
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error adding promotion with FormData:', error);
+      throw error;
+    }
+  },
   addBonus: async (bonusRequest: any): Promise<ResultModel> => {
     try {
       const response = await axiosInstance.post<ResultModel>(`AddBonus`, bonusRequest, {
@@ -115,7 +129,28 @@ export const promotionService = {
       );
       return response.data;
     } catch (error) {
-      console.error('Error adding promotion:', error);
+      console.error('Error editing promotion:', error);
+      throw error;
+    }
+  },
+  editPromotionWithFormData: async (
+    promotionId: number,
+    formData: FormData
+  ): Promise<ResultModel> => {
+    try {
+      const response = await axiosInstance.put<ResultModel>(
+        `EditPromotion/${promotionId}`,
+        formData,
+        {
+          headers: {
+            ...createHeaderXMLHttp(),
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error('Error editing promotion with FormData:', error);
       throw error;
     }
   },
@@ -138,12 +173,12 @@ export const promotionService = {
 
   approvePromotionTransaction: async (
     custId: number,
-    transId: number,
+    transId: string,
     amount: number
   ): Promise<ResultModel> => {
     const response = await axiosInstance.post<ResultModel>(`ApprovePromotionTransaction`, {
-      customerId: custId,
-      promotionTransactionId: transId,
+      custId: custId,
+      transId: transId,
       amount: amount,
       headers: {
         ...createHeaderXMLHttp(),
@@ -155,14 +190,14 @@ export const promotionService = {
 
   rejectPromotionTransaction: async (
     custId: number,
-    transId: number,
+    transId: string,
     amount: number
   ): Promise<ResultModel> => {
     const response = await axiosInstance.post<ResultModel>(
       `RejectPromotionTransaction`,
       {
-        customerId: custId,
-        promotionTransactionId: transId,
+        custId: custId,
+        transId: transId,
         amount: amount,
       },
       {
@@ -173,6 +208,37 @@ export const promotionService = {
       }
     );
     return response.data;
+  },
+  exportExcelPendingPromotion: async (request: PromotionTransactionRequest): Promise<void> => {
+    try {
+      const queryParams = new URLSearchParams({
+        promotionTypeId: request.promotionTypeId != 0 ? request.promotionTypeId.toString() : '',
+        fromDate: request.fromDate,
+        toDate: request.toDate,
+      });
+      await axiosInstance
+        .get(`ExportExcel?${queryParams.toString()}`, {
+          responseType: 'blob',
+        })
+        .then((response) => {
+          const fileName = response.headers['content-disposition']
+            .split('filename=')[1]
+            .split(';')[0]
+            .replace(/"/g, '');
+
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', fileName);
+          document.body.appendChild(link);
+          link.click();
+          link.parentNode?.removeChild(link);
+          window.URL.revokeObjectURL(url);
+        });
+    } catch (error) {
+      console.error('Error exporting excel:', error);
+      throw error;
+    }
   },
 
   getMainReport: async (filterParams: {

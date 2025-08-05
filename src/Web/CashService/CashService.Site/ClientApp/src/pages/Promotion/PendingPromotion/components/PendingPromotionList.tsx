@@ -11,9 +11,12 @@ import { PAGE_SIZE_OPTIONS } from '../../../../constants/paymentConstants';
 import { convertToGMT4 } from '../../../../utils/commonFunctions';
 import Pagination from '../../../Transactions/Components/Pagination';
 import { useTranslation } from 'react-i18next';
+import ConfirmPopup from '../../../../components/ConfirmPopup';
+import { ResultType } from '../../../../components/Message/types';
 
 interface PendingPromotionListProps {
   isCashServiceEnabled: boolean;
+  setResultMessage: (message: { type: ResultType; message: string }) => void;
 }
 
 const usePendingPromotionData = () => {
@@ -60,16 +63,16 @@ const useApiParams = () => {
     const todayInGMT4 = convertToGMT4(today);
     todayInGMT4.setHours(23, 59, 59, 0);
 
-    const sevenDaysAgo = new Date();
-    const sevenDaysAgoInGMT4 = convertToGMT4(sevenDaysAgo);
-    sevenDaysAgoInGMT4.setDate(sevenDaysAgoInGMT4.getDate() - 6);
-    sevenDaysAgoInGMT4.setHours(0, 0, 0, 0);
+    const monthAgo = new Date();
+    const monthAgoInGMT4 = convertToGMT4(monthAgo);
+    monthAgoInGMT4.setDate(monthAgoInGMT4.getDate() - 29);
+    monthAgoInGMT4.setHours(0, 0, 0, 0);
 
     return {
-      dateRange: [
-        sevenDaysAgoInGMT4.toLocaleString('en-US'),
-        todayInGMT4.toLocaleString('en-US'),
-      ] as [string, string],
+      dateRange: [monthAgoInGMT4.toLocaleString('en-US'), todayInGMT4.toLocaleString('en-US')] as [
+        string,
+        string,
+      ],
       promotionTypeId: 0,
       pageIndex: 1,
       pageSize: PAGE_SIZE_OPTIONS[2],
@@ -141,13 +144,19 @@ const useDisplayedItems = (
   };
 };
 
-const PendingPromotionList: React.FC<PendingPromotionListProps> = () => {
+const PendingPromotionList: React.FC<PendingPromotionListProps> = ({
+  isCashServiceEnabled,
+  setResultMessage,
+}) => {
   const { t } = useTranslation('promotion');
+  const { t: tGlobal } = useTranslation('global');
   const { loading, error, apiData, fetchPendingPromotions, selectedItems, setSelectedItems } =
     usePendingPromotionData();
   const { apiParams, updateApiParams } = useApiParams();
   const { localSearchText, handleLocalSearchChange } = useFilters();
   const { displayedItems, tempTotalCount } = useDisplayedItems(apiData, apiParams, localSearchText);
+  const [showConfirm, setShowConfirm] = useState<string | null>(null);
+  const [isProcessing, setIsProcessing] = useState(false);
 
   const handleDateRangeChange = useCallback(
     (dates: [string, string]) => {
@@ -184,21 +193,95 @@ const PendingPromotionList: React.FC<PendingPromotionListProps> = () => {
     [setSelectedItems]
   );
 
-  const onDownload = useCallback(() => {
-    console.log('Download functionality to be implemented');
-  }, []);
+  const handlePromotionAction = useCallback(
+    async (
+      action: 'approve' | 'reject',
+      apiCall: (custId: number, transId: string, amount: number) => Promise<any>
+    ) => {
+      setIsProcessing(true);
+      setShowConfirm(null);
 
-  const onReject = useCallback(() => {
-    selectedItems.forEach((item) => {
-      promotionService.rejectPromotionTransaction(item.custId, item.transId, item.amount);
-    });
-  }, []);
+      try {
+        let errors: string[] = [];
+        await Promise.all(
+          selectedItems.map(async (item) => {
+            const response = await apiCall(item.custId, item.transId, item.amount);
 
-  const onApprove = useCallback(() => {
-    selectedItems.forEach((item) => {
-      promotionService.approvePromotionTransaction(item.custId, item.transId, item.amount);
-    });
-  }, []);
+            if (!response.isSuccessful) {
+              errors.push(item.transId);
+            }
+          })
+        );
+
+        await new Promise((resolve) => {
+          const errorMessage =
+            errors.length > 0
+              ? t(`table.${action}ErrorAll`) + ' ' + errors.join(', ')
+              : t(`table.${action}SuccessAll`);
+
+          setResultMessage({
+            type: errors.length > 0 ? 'error' : 'success',
+            message: errorMessage,
+          });
+
+          setTimeout(
+            async () => {
+              await fetchPendingPromotions({
+                promotionTypeId: apiParams.promotionTypeId,
+                fromDate: apiParams.dateRange[0],
+                toDate: apiParams.dateRange[1],
+              });
+              setResultMessage({
+                type: 'error',
+                message: '',
+              });
+              resolve(true);
+            },
+            errors.length === 0 ? 3000 : 5000
+          );
+        });
+      } catch (error) {
+        console.error(`Error in on${action.charAt(0).toUpperCase() + action.slice(1)}:`, error);
+        if (action === 'approve') {
+          setResultMessage({
+            type: 'error',
+            message: t('table.approveError'),
+          });
+        }
+      } finally {
+        setIsProcessing(false);
+      }
+    },
+    [
+      selectedItems,
+      apiParams.promotionTypeId,
+      apiParams.dateRange,
+      fetchPendingPromotions,
+      t,
+      setResultMessage,
+    ]
+  );
+
+  const onReject = useCallback(async () => {
+    await handlePromotionAction('reject', promotionService.rejectPromotionTransaction);
+  }, [handlePromotionAction]);
+
+  const onApprove = useCallback(async () => {
+    await handlePromotionAction('approve', promotionService.approvePromotionTransaction);
+  }, [handlePromotionAction]);
+
+  const onDownload = useCallback(async () => {
+    try {
+      await promotionService.exportExcelPendingPromotion({
+        promotionTypeId: apiParams.promotionTypeId,
+        fromDate: apiParams.dateRange[0],
+        toDate: apiParams.dateRange[1],
+      });
+    } catch (error) {
+      console.error('Error exporting excel:', error);
+      throw error;
+    }
+  }, [apiParams]);
 
   useEffect(() => {
     const paramsForFilterChange: PromotionTransactionRequest = {
@@ -215,55 +298,93 @@ const PendingPromotionList: React.FC<PendingPromotionListProps> = () => {
   }, [localSearchText, updateApiParams]);
 
   return (
-    <div className="pending-promotion-list-container">
-      {error && (
-        <div
-          className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
-          role="alert"
-        >
-          <strong className="font-bold">Error!</strong>
-          <span className="block sm:inline"> {error}</span>
-        </div>
-      )}
-      <Filters
-        dateRange={apiParams.dateRange}
-        promotionTypeId={apiParams.promotionTypeId}
-        onDateRangeChange={handleDateRangeChange}
-        onPromotionTypeChange={handlePromotionTypeChange}
-      />
-      <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px]">
-        <Search
-          value={localSearchText}
-          onChange={handleLocalSearchChange}
-          placeholder={t('filter.searchPlaceholder')}
-          items={displayedItems}
-          selectedItems={selectedItems}
-          onReject={onReject}
-          onApprove={onApprove}
-          onDownload={onDownload}
+    <>
+      {showConfirm === 'approve' && (
+        <ConfirmPopup
+          title={t('table.confirmApproveTitle')}
+          message={t('table.confirmApproveMessage')}
+          onCancel={() => setShowConfirm(null)}
+          onConfirm={() => {
+            setShowConfirm(null);
+            onApprove();
+          }}
+          cancelText={tGlobal('cancel')}
+          confirmText={tGlobal('confirm')}
         />
-      </div>
-
-      <DataGrid
-        items={displayedItems}
-        pageIndex={apiParams.pageIndex}
-        pageSize={apiParams.pageSize}
-        isLoading={loading}
-        onSelectionChange={handleSelectionChange}
-      />
-
-      {!loading && tempTotalCount > 0 && (
-        <div className="mt-[-1px]">
-          <Pagination
-            currentPage={apiParams.pageIndex}
-            totalItems={tempTotalCount}
-            pageSize={apiParams.pageSize}
-            onPageChange={handlePageChange}
-            onPageSizeChange={handlePageSizeChange}
+      )}
+      {showConfirm === 'reject' && (
+        <ConfirmPopup
+          title={t('table.confirmRejectTitle')}
+          message={t('table.confirmRejectMessage')}
+          onCancel={() => setShowConfirm(null)}
+          onConfirm={() => {
+            setShowConfirm(null);
+            onReject();
+          }}
+          cancelText={tGlobal('cancel')}
+          confirmText={tGlobal('confirm')}
+        />
+      )}
+      <div className="pending-promotion-list-container">
+        {error && (
+          <div
+            className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
+            role="alert"
+          >
+            <strong className="font-bold">Error!</strong>
+            <span className="block sm:inline"> {error}</span>
+          </div>
+        )}
+        <Filters
+          dateRange={apiParams.dateRange}
+          promotionTypeId={apiParams.promotionTypeId}
+          onDateRangeChange={handleDateRangeChange}
+          onPromotionTypeChange={handlePromotionTypeChange}
+        />
+        <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px]">
+          <Search
+            value={localSearchText}
+            onChange={handleLocalSearchChange}
+            placeholder={t('filter.searchPlaceholder')}
+            items={displayedItems}
+            selectedItems={selectedItems}
+            onReject={() => setShowConfirm('reject')}
+            onApprove={() => setShowConfirm('approve')}
+            onDownload={onDownload}
+            isProcessing={isProcessing}
+            isCashServiceEnabled={isCashServiceEnabled}
           />
         </div>
-      )}
-    </div>
+
+        <DataGrid
+          items={displayedItems}
+          pageIndex={apiParams.pageIndex}
+          pageSize={apiParams.pageSize}
+          isLoading={loading}
+          onSelectionChange={handleSelectionChange}
+          refreshGrid={() => {
+            fetchPendingPromotions({
+              promotionTypeId: apiParams.promotionTypeId,
+              fromDate: apiParams.dateRange[0],
+              toDate: apiParams.dateRange[1],
+            });
+          }}
+          isCashServiceEnabled={isCashServiceEnabled}
+        />
+
+        {!loading && tempTotalCount > 0 && (
+          <div className="mt-[-1px]">
+            <Pagination
+              currentPage={apiParams.pageIndex}
+              totalItems={tempTotalCount}
+              pageSize={apiParams.pageSize}
+              onPageChange={handlePageChange}
+              onPageSizeChange={handlePageSizeChange}
+            />
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 

@@ -37,7 +37,8 @@
     "lastName": "성",
     "firstName": "이름",
     "actions": "작업",
-    "loading": "로딩 중..."
+    "loading": "로딩 중...",
+    "rebatePeriod": "Rebate Period"
   },
   "promotionType_1": "매출 리베이트",
   "search": {

@@ -126,5 +126,5 @@
   "pleaseReferTo": "Please refer to",
   "checklist": "Checklist",
 
-  "error-0": "Payment provider is currently unavailable. Please try again later."
+  "error-200": "Payment provider is currently unavailable. Please try again later."
 }

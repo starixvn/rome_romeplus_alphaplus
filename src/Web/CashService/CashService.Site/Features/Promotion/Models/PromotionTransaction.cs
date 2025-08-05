@@ -1,14 +1,14 @@
 ﻿namespace AlphaPlus.CashService.Site.Features.Promotion.Models;
 
+using AlphaPlus.CashService.Site.Helpers;
 using AlphaPlus.Shared.AppResources.CashServices;
 using Enum;
-using Helpers;
 using Transactions.Enum;
 
 public class PromotionTransaction
 {
     public int PromotionId { get; set; }
-    public long TransId { get; set; }
+    public string TransId { get; set; }
     public int CustId { get; set; }
     public string Username { get; set; }
     public string Nickname { get; set; }

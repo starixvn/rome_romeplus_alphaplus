@@ -41,6 +41,7 @@ var menuBar = {
     resources: {
         novaCasinoBriefIntroduction: ''
     },
+    pendingCountTimerId: null,
 
     urls: {
         accountInfo: alpha.urls.accountInfoRootPath + 'SearchAccount',
@@ -146,6 +147,8 @@ var menuBar = {
             } else {
                 menuBar.toggleMainMenu($this);
             }
+
+            menuBar.checkAndStartPendingCountTimer($this.parent().attr('id'), isActive);
         });
 
         menuBar.domElements.subMenuItems.click(function () {
@@ -508,20 +511,20 @@ var menuBar = {
                     carouselBanner.remove();
                 }
 
-                $(".img-banner").click(function (e) {
-                    var href = $(this).attr("data-target-url");
-                    var target = $(this).attr("data-target");
+                $('.img-banner').click(function (e) {
+                    var href = $(this).attr('data-target-url');
+                    var target = $(this).attr('data-target');
                     if (target) {
-                        $("#" + target).attr("src", href);
+                        $('#' + target).attr('src', href);
                     }
                 });
 
-                $(".log-banner").click(() => {
+                $('.log-banner').click(() => {
                     $.ajax({
-                        type: "POST",
-                        url: alpha.urls.mainRootPath + "WhiteLabel/BannerLog?username=" + $("#Username").val(),
+                        type: 'POST',
+                        url: alpha.urls.mainRootPath + 'WhiteLabel/BannerLog?username=' + $('#Username').val(),
                         data: {},
-                        success: function () { }
+                        success: function () {}
                     });
                 });
             });
@@ -543,6 +546,44 @@ var menuBar = {
         const riskManagementMenu = $('#menu-RISKMANAGEMENT');
         riskManagementMenu.find('.parent-menu').trigger('click');
         riskManagementMenu.find('#sub-menu-MYWATCHLIST').addClass('active');
+    },
+
+    checkAndStartPendingCountTimer: function (menuId: string, isActive: boolean) {
+        if (menuBar.pendingCountTimerId) {
+            clearTimeout(menuBar.pendingCountTimerId);
+            menuBar.pendingCountTimerId = null;
+        }
+
+        if ((menuId === 'menu-CASHSERVICE' || menuId === 'menu-PROMOTION') && !isActive) {
+            menuBar.updatePendingCountInterval(menuId === 'menu-CASHSERVICE' ? 1 : 2);
+        }
+    },
+
+    updatePendingCountInterval: function (type: number) {
+        $.get(alpha.urls.cashServiceRootPath + `Notifications/GetPendingCount?type=${type}`)
+            .done(function (data) {
+                if (type === 1) {
+                    $('#badge-number-PENDINGDEPOSIT').text(menuBar.formatPendingCount(data.pendingDeposit));
+                    $('#badge-number-PENDINGWITHDRAWAL').text(menuBar.formatPendingCount(data.pendingWithdrawal));
+                } else if (type === 2) {
+                    $('#badge-number-PENDINGPROMOTION').text(menuBar.formatPendingCount(data.pendingPromotion));
+                }
+            })
+            .always(function () {
+                menuBar.pendingCountTimerId = setTimeout(() => menuBar.updatePendingCountInterval(type), 1000 * 30);
+            });
+    },
+
+    formatPendingCount: function (count) {
+        if (!count) {
+            return '';
+        }
+
+        if (count > 99) {
+            return '99+';
+        }
+
+        return count.toString();
     }
 };
 

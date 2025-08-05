@@ -135,5 +135,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
         public bool IsHiddenInMobile { get; set; }
 
         private bool IsVisibleForMobileOrDesktop() => IsMobileView && !IsHiddenInMobile || !IsMobileView;
+
+        public bool HasBadge { get; set; }
     }
 }

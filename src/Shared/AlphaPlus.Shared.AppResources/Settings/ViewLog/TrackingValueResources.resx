@@ -3614,4 +3614,91 @@
     <value>TMBThanachart Bank</value>
     <comment>TTB</comment>
   </data>
+  <data name="AgentBankAccount" xml:space="preserve">
+    <value>Agent's Bank Account</value>
+  </data>
+  <data name="BankName_KKR" xml:space="preserve">
+    <value>Kasikornbank (K-Bank)</value>
+  </data>
+  <data name="BankName_UOB" xml:space="preserve">
+    <value>United Overseas Bank (UOB ibanking)</value>
+  </data>
+  <data name="BankName_TMB" xml:space="preserve">
+    <value>TMBThanachart Bank (TMB Internet Banking)</value>
+  </data>
+  <data name="BankName_SCB" xml:space="preserve">
+    <value>Siam Commercial Bank (SCB Easy Net)</value>
+  </data>
+  <data name="BankName_KTB" xml:space="preserve">
+    <value>Krung Thai Bank (KTB netbank)</value>
+  </data>
+  <data name="BankName_KNK" xml:space="preserve">
+    <value>Kiatnakin Bank</value>
+  </data>
+  <data name="BankName_GSB" xml:space="preserve">
+    <value>Gov. Savings Bank (GSB Internet Banking)</value>
+  </data>
+  <data name="BankName_CIMBT" xml:space="preserve">
+    <value>CIMB Thai (CIMB Clicks)</value>
+  </data>
+  <data name="BankName_BOA" xml:space="preserve">
+    <value>Bank of Ayudhya - Krungsri Bank</value>
+  </data>
+  <data name="BankName_BBL" xml:space="preserve">
+    <value>Bangkok Bank (Bualuang iBanking)</value>
+  </data>
+  <data name="BankName_TBank" xml:space="preserve">
+    <value>Thanachart Bank (TBank)</value>
+  </data>
+  <data name="BankName_BAAC" xml:space="preserve">
+    <value>BANK FOR AGRICULTURE AND AGRICULTURAL COOPERATIVES</value>
+  </data>
+  <data name="BankName_BNP" xml:space="preserve">
+    <value>BNP Paribas</value>
+  </data>
+  <data name="BankName_BOC" xml:space="preserve">
+    <value>Bank Of China</value>
+  </data>
+  <data name="BankName_CITI" xml:space="preserve">
+    <value>Citibank</value>
+  </data>
+  <data name="BankName_DBK" xml:space="preserve">
+    <value>Deutsche Bank</value>
+  </data>
+  <data name="BankName_GHB" xml:space="preserve">
+    <value>Government Housing Bank</value>
+  </data>
+  <data name="BankName_HSBC" xml:space="preserve">
+    <value>Hong Kong and Shanghai Banking Corporation</value>
+  </data>
+  <data name="BankName_IBT" xml:space="preserve">
+    <value>ISLAMIC BANK OF THAILAND</value>
+  </data>
+  <data name="BankName_LHB" xml:space="preserve">
+    <value>Land and Houses Bank</value>
+  </data>
+  <data name="BankName_MICB" xml:space="preserve">
+    <value>MEGA INTERNATIONAL COMMERCIAL BANK</value>
+  </data>
+  <data name="BankName_SCBT" xml:space="preserve">
+    <value>Standard Chartered Bank Thai</value>
+  </data>
+  <data name="BankName_SMBC" xml:space="preserve">
+    <value>Bank Sumitomo</value>
+  </data>
+  <data name="BankName_TCRB" xml:space="preserve">
+    <value>THE THAI CREDIT RETAIL BANK</value>
+  </data>
+  <data name="BankName_TISCO" xml:space="preserve">
+    <value>Tisco Bank</value>
+  </data>
+  <data name="BankName_TTB" xml:space="preserve">
+    <value>TMBThanachart Bank</value>
+  </data>
+  <data name="winAmount" xml:space="preserve">
+    <value>Win Amount</value>
+  </data>
+  <data name="NoMatchingBankAccount" xml:space="preserve">
+    <value>No Matching Bank Account</value>
+  </data>
 </root>

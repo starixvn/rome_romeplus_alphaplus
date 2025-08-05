@@ -1,8 +1,8 @@
 ﻿using AlphaPlus.Settings.MemberInfo.API.Criteria.CreditBalance;
-using Fanex.Data.Repository;
-using AlphaPlus.Utilities.IP;
 using AlphaPlus.Settings.MemberInfo.Domain.Models.CreditBalance;
 using AlphaPlus.Settings.MemberInfo.Domain.Params;
+using AlphaPlus.Utilities.IP;
+using Fanex.Data.Repository;
 
 namespace AlphaPlus.Settings.MemberInfo.API.Services.CreditBalance;
 
@@ -57,8 +57,7 @@ public class CreditBalanceServiceImpl(IDynamicRepository dynamicRepository, IPSe
 
     public async Task<PagedCreditBalance> GetCreditBalancesAsync(CreditBalanceParam param)
     {
-        GetPagedCreditBalanceCriteria criteria = null;
-
+        GetPagedCreditBalanceCriteria criteria;
         if (param.CustLevel.IsSuperLevel())
         {
             criteria = GetSuperCreditBalanceCriteria(param);
@@ -77,11 +76,10 @@ public class CreditBalanceServiceImpl(IDynamicRepository dynamicRepository, IPSe
                 param.PageIndex,
                 param.PageSize,
                 0,
-                Enumerable.Empty<CreditBalanceItem>());
+                []);
         }
 
-        var creditBalances = await repository.FetchAsync<CreditBalanceItem>(criteria);
-        //var creditBalances = await repository.FetchAsync<CreditBalanceItem>(criteria, param.AGIP);
+        var creditBalances = await repository.FetchAsync<CreditBalanceItem>(criteria, param.AGIP);
 
         return new PagedCreditBalance(
             criteria.PageIndex,

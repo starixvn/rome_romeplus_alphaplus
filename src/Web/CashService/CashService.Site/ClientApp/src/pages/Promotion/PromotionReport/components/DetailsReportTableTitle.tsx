@@ -48,19 +48,21 @@ export default function DetailsReportTableTitle({
 
   return (
     <div className="search-section flex items-center w-full justify-between border border-[var(--table-border-color)] border-b-0 p-[6px]">
-      <div className="font-semibold mt-[1px]">
-        <ul>
+      <div className="font-semibold mt-[1px] flex-1">
+        <ul className='flex items-center pr-[20px]'>
           <li className='uppercase relative inline-block after:content-["❯"] after:px-[8px] after:text-[#333]  dark:after:text-[#fff]'>
             <a
               href="#"
-              className="text-[#045ace] dark:text-[#41a4ff] cursor-pointer"
+              className="text-[#045ace] dark:text-[#41a4ff] cursor-pointer whitespace-nowrap"
               onClick={onClickBreadcrumb}
             >
               {t('promotion:promotionReport')}
             </a>
           </li>
           <li className="text-[#9d1c1c] dark:text-[#fff] uppercase relative inline-block">
-            <span>{promotionTitle}</span>
+            <div className="max-w-[100%] inline-block align-middle break-words wrap-anywhere">
+              <span className="">{promotionTitle}</span>
+            </div>
           </li>
         </ul>
       </div>

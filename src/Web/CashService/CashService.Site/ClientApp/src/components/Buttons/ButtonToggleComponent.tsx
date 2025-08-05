@@ -3,18 +3,19 @@ import { useTranslation } from 'react-i18next';
 import { ButtonComponentProps } from './types';
 import './ButtonComponents.scss';
 
-interface ToggleButtonProps extends ButtonComponentProps {
+interface ToggleButtonProps extends Omit<ButtonComponentProps, 'text'> {
   text: string;
-  isLeftSide?: boolean;
+  position?: 'left' | 'right';
+  isActive?: boolean;
 }
 
 // Base toggle button component
 const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(({ 
-  isActive, 
+  isActive = false, 
   onClick, 
   type = 'button', 
   text, 
-  isLeftSide = false,
+  position = 'left',
   className = '',
   disabled = false,
   ...props
@@ -24,9 +25,9 @@ const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(({
   const inactiveClasses = 'bg-[var(--button-switch-toggle-background)] text-[var(--button-switch-toggle-color)]';
   const disabledClasses = disabled ? 'cursor-not-allowed opacity-80' : 'cursor-pointer';
   
-  const borderClasses = isLeftSide 
-    ? 'rounded-tl-[4px] rounded-bl-[4px]' 
-    : 'rounded-tr-[4px] rounded-br-[4px]';
+  const borderClasses = position === 'left'
+    ? 'rounded-l-[4px]' 
+    : 'rounded-r-[4px]';
   
   const buttonClasses = `${baseClasses} ${borderClasses} ${isActive ? activeClasses : inactiveClasses} ${disabledClasses} ${className}`;
 
@@ -51,7 +52,7 @@ ToggleButton.displayName = 'ToggleButton';
 export const EnableButtonComponent = React.forwardRef<HTMLButtonElement, ButtonComponentProps>((props, ref) => {
   const { t: tGlobal } = useTranslation('global');
   const text = props.text || tGlobal('enable');
-  return <ToggleButton {...props} ref={ref} text={text} isLeftSide={true} />;
+  return <ToggleButton {...props} ref={ref} text={text} position="left" />;
 });
 
 EnableButtonComponent.displayName = 'EnableButtonComponent';
@@ -60,7 +61,7 @@ EnableButtonComponent.displayName = 'EnableButtonComponent';
 export const DisableButtonComponent = React.forwardRef<HTMLButtonElement, ButtonComponentProps>((props, ref) => {
   const { t: tGlobal } = useTranslation('global');
   const text = props.text || tGlobal('disable');
-  return <ToggleButton {...props} ref={ref} text={text} isLeftSide={false} />;
+  return <ToggleButton {...props} ref={ref} text={text} position="right" />;
 });
 
 DisableButtonComponent.displayName = 'DisableButtonComponent';

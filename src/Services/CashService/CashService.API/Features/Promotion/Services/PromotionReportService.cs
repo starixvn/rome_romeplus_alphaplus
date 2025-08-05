@@ -14,8 +14,6 @@ public interface IPromotionReportService
 
 public class PromotionReportService(IDynamicRepository repository) : IPromotionReportService
 {
-    private const byte ApprovedStatusId = 4;
-    private const byte RejectedStatusId = 5;
     private readonly IDynamicRepository repository = repository;
 
     public Task<IEnumerable<PromotionReport>> GetMainReport(GetPromotionReportRequest request)
@@ -39,26 +37,8 @@ public class PromotionReportService(IDynamicRepository repository) : IPromotionR
             request.ToDate,
             request.Status);
 
-        var promotionDetails = await repository.FetchAsync<PromotionDetails>(criteria);
-        var totalBonus = 0m;
-        var totalApproved = 0;
-        var totalRejected = 0;
+        var (promotionDetails, summary) = await repository.FetchMultipleAsync<PromotionDetails, PromotionDetailsSummary>(criteria);
 
-        foreach (var item in promotionDetails)
-        {
-            if (item.StatusId == ApprovedStatusId)
-            {
-                totalApproved++;
-                totalBonus += item.Amount;
-            }
-            else if (item.StatusId == RejectedStatusId)
-            {
-                totalRejected++;
-            }
-        }
-
-        return new PromotionDetailsReport(
-            new PromotionDetailsSummary(totalBonus, totalApproved, totalRejected),
-            promotionDetails);
+        return new PromotionDetailsReport(summary.FirstOrDefault(), promotionDetails);
     }
 }

@@ -585,7 +585,7 @@ function PaymentProviderSettings() {
                     <th>{tPaymentProviderSettings('maximum')}</th>
                     <th>
                       <div className="flex items-center justify-center">
-                        {tGlobal('enable')}/{tGlobal('disable')}
+                        <span className="mr-[4px]">{tGlobal('enable')}/{tGlobal('disable')}</span>
                         <Tippy
                           content={
                             <div>

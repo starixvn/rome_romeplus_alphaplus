@@ -235,6 +235,25 @@ html * {
                 }
             }
 
+            &.icon-promotion,&.icon-cashservice {
+                &:after{
+                    content: '';
+                    position: absolute;
+                    top: 2px;
+                    left: 2px;                   
+                    width: 20px;
+                    height: 20px;   
+                    border-radius: 50%;     
+                    @include animation(cd-pulse 2s infinite );
+                    animation-delay: 0.1s;
+                }
+            }
+            &.icon-promotion {
+                &:after{
+                    animation-delay: 0.2s;
+                }
+            }
+
             @include keyframes(bounce) {
                 50% {
                     @include transform(translateY(-5px));
@@ -391,6 +410,24 @@ html * {
 
     .sub-menu .sub-menu-item {
         padding: 9px 15px 9px 44px;
+        &.has-badge{
+            display: flex;
+            align-items: center;
+          
+            .badge-number{
+                background-color: #da1526;
+                color: #fff;
+                padding: 0px 4px;
+                border-radius: 3px;
+                font-size: 12px;
+                font-weight: 600;
+                margin-left: 10px;
+                min-width: 18px;
+                display: inline-block;
+                text-align: center;
+                line-height: 18px;
+            }
+        }
 
         a {
             color: #575757;
@@ -1298,6 +1335,9 @@ html * {
             .text-checklist{
                 width: 70px;
             }
+        }
+        .icon-cashservice{
+            color: #ff0; 
         }
        
         .text-checklist{

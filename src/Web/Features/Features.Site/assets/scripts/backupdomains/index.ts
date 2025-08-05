@@ -1,4 +1,4 @@
-﻿declare var Clipboard: any;
+﻿declare const Clipboard: any;
 
 "use strict";
 

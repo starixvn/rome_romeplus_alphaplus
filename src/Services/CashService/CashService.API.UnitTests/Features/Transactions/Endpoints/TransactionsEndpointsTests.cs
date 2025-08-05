@@ -1,6 +1,7 @@
 using AlphaPlus.CashService.API.Features.Shared.DTOs;
 using AlphaPlus.CashService.API.Features.Shared.Models; // For ResultModel
 using AlphaPlus.CashService.API.Features.Transactions.Criteria;
+using AlphaPlus.CashService.API.Features.Transactions.Endpoints;
 using AlphaPlus.CashService.API.Features.Transactions.Models;
 using AlphaPlus.CashService.API.Features.Transactions.Services;
 using Microsoft.AspNetCore.Http;
@@ -23,7 +24,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Transactions.Endpoints
             mockTransactionService.Setup(s => s.GetTransactionsAsync(It.IsAny<GetAllTransactionsWithPagingCriteria>())).ReturnsAsync(expectedResponse);
 
             // Act
-            var result = await AlphaPlus.CashService.API.Features.Transactions.Endpoints.TransactionsEndpoints.GetTransactionHistoryHandler(
+            var result = await TransactionsEndpoints.GetTransactionHistoryHandler(
                 null, null, criteria.CustId, 0, 0, 0, "account", mockTransactionService.Object);
 
             // Assert
@@ -43,7 +44,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Transactions.Endpoints
             mockTransactionService.Setup(s => s.GetTransactionByIdAsync(transactionId, custId, siteDbGroupId)).ReturnsAsync(expectedDetail);
 
             // Act
-            var result = await AlphaPlus.CashService.API.Features.Transactions.Endpoints.TransactionsEndpoints.GetTransactionDetailHandler(transactionId, custId, siteDbGroupId, mockTransactionService.Object);
+            var result = await TransactionsEndpoints.GetTransactionDetailHandler(transactionId, custId, siteDbGroupId, mockTransactionService.Object);
 
             // Assert
             var okResult = Assert.IsType<Microsoft.AspNetCore.Http.HttpResults.Ok<TransactionModel>>(result);
@@ -55,34 +56,34 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Transactions.Endpoints
         public async Task RevertDepositTransactionToPending_ShouldReturnOkResultWithResultModel()
         {
             // Arrange
-            var command = new RevertDepositTransactionToPendingCommand { TransId = 1 };
+            var model = new RevertTransaction { TransId = 1 };
             var expectedResultModel = new ResultModel { Code = 0, Message = "Success" };
-            mockTransactionService.Setup(s => s.RevertDepositTransactionToPending(command)).ReturnsAsync(expectedResultModel);
+            mockTransactionService.Setup(s => s.RevertDepositTransactionToPending(model)).ReturnsAsync(expectedResultModel);
 
             // Act
-            var result = await AlphaPlus.CashService.API.Features.Transactions.Endpoints.TransactionsEndpoints.RevertDepositTransactionToPendingHandler(mockTransactionService.Object, command);
+            var result = await TransactionsEndpoints.RevertDepositTransactionToPendingHandler(mockTransactionService.Object, model);
 
             // Assert
             var okResult = Assert.IsType<Microsoft.AspNetCore.Http.HttpResults.Ok<ResultModel>>(result);
             Assert.Equal(expectedResultModel, okResult.Value);
-            mockTransactionService.Verify(s => s.RevertDepositTransactionToPending(command), Times.Once);
+            mockTransactionService.Verify(s => s.RevertDepositTransactionToPending(model), Times.Once);
         }
 
         [Fact]
         public async Task RevertWithdrawalTransactionToPending_ShouldReturnOkResultWithResultModel()
         {
             // Arrange
-            var command = new RevertWithdrawalTransactionToPendingCommand { TransId = 1 };
+            var model = new RevertTransaction { TransId = 1 };
             var expectedResultModel = new ResultModel { Code = 0, Message = "Success" };
-            mockTransactionService.Setup(s => s.RevertWithdrawalTransactionToPending(command)).ReturnsAsync(expectedResultModel);
+            mockTransactionService.Setup(s => s.RevertWithdrawalTransactionToPending(model)).ReturnsAsync(expectedResultModel);
 
             // Act
-            var result = await AlphaPlus.CashService.API.Features.Transactions.Endpoints.TransactionsEndpoints.RevertWithdrawalTransactionToPendingHandler(mockTransactionService.Object, command);
+            var result = await TransactionsEndpoints.RevertWithdrawalTransactionToPendingHandler(mockTransactionService.Object, model);
 
             // Assert
             var okResult = Assert.IsType<Microsoft.AspNetCore.Http.HttpResults.Ok<ResultModel>>(result);
             Assert.Equal(expectedResultModel, okResult.Value);
-            mockTransactionService.Verify(s => s.RevertWithdrawalTransactionToPending(command), Times.Once);
+            mockTransactionService.Verify(s => s.RevertWithdrawalTransactionToPending(model), Times.Once);
         }
 
         [Fact]
@@ -95,7 +96,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Transactions.Endpoints
             mockTransactionService.Setup(s => s.GetMembersAsync(agentId, custDbGroupId)).ReturnsAsync(expectedMembers);
 
             // Act
-            var result = await AlphaPlus.CashService.API.Features.Transactions.Endpoints.TransactionsEndpoints.GetMembersAsyncHandler(agentId, custDbGroupId, mockTransactionService.Object);
+            var result = await TransactionsEndpoints.GetMembersAsyncHandler(agentId, custDbGroupId, mockTransactionService.Object);
 
             // Assert
             var okResult = Assert.IsType<Microsoft.AspNetCore.Http.HttpResults.Ok<IEnumerable<MemberInfo>>>(result);
@@ -114,7 +115,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Transactions.Endpoints
             mockBankService.Setup(s => s.GetCashAgentBankInfoAsync(agentId, transactionType, custDbGroupId)).ReturnsAsync(expectedBankList);
 
             // Act
-            var result = await AlphaPlus.CashService.API.Features.Transactions.Endpoints.TransactionsEndpoints.GetCashAgentBankListHandler(agentId, transactionType, custDbGroupId, mockBankService.Object);
+            var result = await TransactionsEndpoints.GetCashAgentBankListHandler(agentId, transactionType, custDbGroupId, mockBankService.Object);
 
             // Assert
             var okResult = Assert.IsType<Microsoft.AspNetCore.Http.HttpResults.Ok<IEnumerable<BankInfo>>>(result);
@@ -132,7 +133,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Transactions.Endpoints
             mockBankService.Setup(s => s.GetMemberBankInfoAsync(custId, custDbGroupId)).ReturnsAsync(expectedBankList);
 
             // Act
-            var result = await AlphaPlus.CashService.API.Features.Transactions.Endpoints.TransactionsEndpoints.GetCashMemberBankListHandler(custId, custDbGroupId, mockBankService.Object);
+            var result = await TransactionsEndpoints.GetCashMemberBankListHandler(custId, custDbGroupId, mockBankService.Object);
 
             // Assert
             var okResult = Assert.IsType<Microsoft.AspNetCore.Http.HttpResults.Ok<IEnumerable<BankInfo>>>(result);
@@ -151,7 +152,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Transactions.Endpoints
             mockBankService.Setup(s => s.GetCashAgentProviderAsync(agentId, transactionType, custDbGroupId)).ReturnsAsync(expectedProviders);
 
             // Act
-            var result = await AlphaPlus.CashService.API.Features.Transactions.Endpoints.TransactionsEndpoints.GetCashAgentProviderAsyncHandler(agentId, transactionType, custDbGroupId, mockBankService.Object);
+            var result = await TransactionsEndpoints.GetCashAgentProviderAsyncHandler(agentId, transactionType, custDbGroupId, mockBankService.Object);
 
             // Assert
             var okResult = Assert.IsType<Microsoft.AspNetCore.Http.HttpResults.Ok<IEnumerable<PaymentProvider>>>(result);
@@ -188,13 +189,13 @@ namespace AlphaPlus.CashService.API.Features.Transactions.Endpoints
             return Results.Ok(transactionDetail);
         }
 
-        public static async Task<IResult> RevertDepositTransactionToPendingHandler(ITransactionService service, RevertDepositTransactionToPendingCommand command)
+        public static async Task<IResult> RevertDepositTransactionToPendingHandler(ITransactionService service, RevertTransaction command)
         {
             var result = await service.RevertDepositTransactionToPending(command);
             return Results.Ok(result);
         }
 
-        public static async Task<IResult> RevertWithdrawalTransactionToPendingHandler(ITransactionService service, RevertWithdrawalTransactionToPendingCommand command)
+        public static async Task<IResult> RevertWithdrawalTransactionToPendingHandler(ITransactionService service, RevertTransaction command)
         {
             var result = await service.RevertWithdrawalTransactionToPending(command);
             return Results.Ok(result);

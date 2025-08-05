@@ -94,6 +94,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Models
 
         public string AGIP => userSession.AGIP;
 
+        public int SiteDBGroupId => userSession.SiteDBGroupId;
         public int CustDBGroupId => userSession.CustDBGroupId;
     }
 }

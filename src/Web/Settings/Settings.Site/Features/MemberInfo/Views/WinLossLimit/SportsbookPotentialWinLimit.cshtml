@@ -14,6 +14,9 @@
     Layout = "~/Features/MemberInfo/Views/WinLossLimit/_Layout.cshtml";
     ViewBag.Title = "Sportsbook Potential Win Limit";
 }
+@section Styles {
+    @StaticResources.RenderStyles("~/Features/MemberInfo/assets/bundles-v2/win-loss-limit")
+}
 <form id="potential-win-limit-form" class="form-inline demo-form-inline filter" role="form">
     <div class="form-group status-box">
         <label>@Resources.Status</label>
@@ -61,6 +64,12 @@
             <div class="note">
                 <span class="star">*</span>@Resources.PotentialWinLimitNote2
             </div>
+            @if(Model.IsOfferedCashService && Model.ViewerLevel.IsAgentLevel()) {
+                <div class="note has-icon">
+                    <span class="star">*</span>@Html.Raw(Resources.ResetAccumulatedWinAmountNote)
+                </div>
+                <div id="result-msg" class="msg hide"></div>
+            }
         </div>
         <div class="list-icon">
             <ul>
@@ -115,8 +124,12 @@
                         <tr>
                             <td class="text-center">@index</td>
                             <td class="text-left" title="@winLossLimitDetail.Username">
-                                @winLossLimitDetail.Username
-                                @(winLossLimitDetail.IsCashMember ? Html.Raw("<span class='icon-cashservice icon-cashservice-common'></span>"): string.Empty)
+                                <div class="row-icon-inline">
+                                    <span class="text">
+                                        @winLossLimitDetail.Username
+                                    </span>
+                                    @(winLossLimitDetail.IsCashMember ? Html.Raw("<span class='ic-cashservice'></span>"): string.Empty)
+                                </div>
                             </td>
                             <td class="text-center">
                                 @SportsbookPotentialWinLimitViewModel.GetStatusText(winLossLimitDetail.Status)</td>
@@ -125,8 +138,10 @@
                             <td class="text-center">@(winLossLimitDetail.IsAutoReset ? Resources.Yes : Resources.No2)</td>
                             <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.AccumToWin)</td>
                             <td class="text-right">
+                                <div class="col-reset">
                                 @HtmlHelpers.FormatNumber(winLossLimitDetail.AccumWinLoss)
                                 @if (winLossLimitDetail.IsCashMember 
+                                    && Model.ViewerLevel.IsAgentLevel()
                                     && !winLossLimitDetail.IsAutoReset
                                     && winLossLimitDetail.AccumWinLoss > 0)   
                                 {
@@ -135,6 +150,7 @@
                                         data-username="@winLossLimitDetail.Username"
                                         title="@Resources.ResetCurrentWinAmount"></span>
                                 }
+                                </div>
                             </td>
                             <td class="text-right">
                                 @HtmlHelpers.FormatNumber(winLossLimitDetail.PotentialWin)

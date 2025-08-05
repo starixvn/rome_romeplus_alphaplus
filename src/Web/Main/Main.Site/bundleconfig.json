@@ -349,13 +349,6 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/assets/bundles/dashboard/whitelabel.js",
-    "inputFiles": [
-      "assets/scripts/core.js",
-      "assets/scripts/dashboard/whitelabel.js"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/assets/bundles/default-index-dark.css",
     "inputFiles": [
       "assets/styles/Home/page-dark.css",
@@ -479,12 +472,6 @@
     "outputFileName": "wwwroot/assets/bundles/ip-info/ip-info-dark.css",
     "inputFiles": [
       "assets/styles/ip-info/ip-info-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/assets/bundles/whitelabel.css",
-    "inputFiles": [
-      "assets/styles/Home/whitelabel.css"
     ]
   },
   {

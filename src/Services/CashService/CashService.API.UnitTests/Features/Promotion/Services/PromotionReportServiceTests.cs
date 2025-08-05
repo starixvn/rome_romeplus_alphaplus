@@ -8,130 +8,120 @@ using Xunit;
 
 namespace AlphaPlus.CashService.API.UnitTests.Features.Promotion.Services;
 
-public class PromotionReportServiceTest
+public class PromotionReportServiceTests
 {
     private readonly Mock<IDynamicRepository> repositoryMock;
-    private readonly PromotionReportService service;
+    private readonly IPromotionReportService service;
 
-    public PromotionReportServiceTest()
+    public PromotionReportServiceTests()
     {
         repositoryMock = new Mock<IDynamicRepository>();
         service = new PromotionReportService(repositoryMock.Object);
     }
 
     [Fact]
-    public async Task GetMainReport_ShouldCreateCorrectCriteriaAndReturnRepositoryResult()
+    public async Task GetMainReport_ShouldCreateCorrectCriteria_AndReturnRepositoryResult()
     {
         // Arrange
         var request = new GetPromotionReportRequest
         {
             CustId = 123,
-            FromDate = new DateTime(2023, 1, 1),
-            ToDate = new DateTime(2023, 12, 31),
-            PromotionType = 2,
-            Status = true
+            FromDate = DateTime.Parse("2023-01-01"),
+            ToDate = DateTime.Parse("2023-01-31"),
+            PromotionType = 1,
+            Status = null
         };
 
         var expectedReports = new List<PromotionReport>
-        {
-            new() { PromotionId = 1, PromotionTitle = "Promotion 1" },
-            new() { PromotionId = 2, PromotionTitle = "Promotion 2" }
-        };
-
-        repositoryMock.Setup(r => r.FetchAsync<PromotionReport>(It.IsAny<ICriteria>(), string.Empty, default))
-            .ReturnsAsync(expectedReports)
-            .Callback<ICriteria, string, CancellationToken>((criteria, s, t) =>
             {
-                var c = criteria as GetPromotionReportCriteria;
-                Assert.Equal(request.CustId, c.CustId);
-                Assert.Equal(request.FromDate, c.FromDate);
-                Assert.Equal(request.ToDate, c.ToDate);
-                Assert.Equal(request.PromotionType, c.PromotionType);
-                Assert.Equal(request.Status, c.StatusId);
-            });
+                new PromotionReport(),
+                new PromotionReport()
+            };
+
+        GetPromotionReportCriteria capturedCriteria = null;
+        repositoryMock.Setup(r => r.FetchAsync<PromotionReport>(It.IsAny<ICriteria>(), string.Empty, default))
+            .Callback<ICriteria, string, CancellationToken>((c, s, t) => capturedCriteria = (GetPromotionReportCriteria)c)
+            .ReturnsAsync(expectedReports);
 
         // Act
         var result = await service.GetMainReport(request);
 
         // Assert
-        Assert.Same(expectedReports, result);
-        repositoryMock.Verify(r => r.FetchAsync<PromotionReport>(It.IsAny<GetPromotionReportCriteria>(), string.Empty, default), Times.Once);
+        Assert.Equal(expectedReports, result);
+        Assert.NotNull(capturedCriteria);
+        Assert.Equal(request.CustId, capturedCriteria.CustId);
+        Assert.Equal(request.FromDate, capturedCriteria.FromDate);
+        Assert.Equal(request.ToDate, capturedCriteria.ToDate);
+        Assert.Equal(request.PromotionType, capturedCriteria.PromotionType);
+        Assert.Equal(request.Status, capturedCriteria.StatusId);
     }
 
     [Fact]
-    public async Task GetDetailsReport_ShouldCreateCorrectCriteriaAndReturnFormattedReport()
+    public async Task GetDetailsReport_ShouldCreateCorrectCriteria_AndReturnPromotionDetailsReport()
     {
         // Arrange
         int promotionId = 42;
         var request = new GetPromotionDetailsReportRequest
         {
             CustId = 123,
-            FromDate = new DateTime(2023, 1, 1),
-            ToDate = new DateTime(2023, 12, 31),
-            Status = 1
+            FromDate = DateTime.Parse("2023-01-01"),
+            ToDate = DateTime.Parse("2023-01-31"),
+            Status = 2
         };
 
-        var promotionDetails = new List<PromotionDetails>
-        {
-            new() { StatusId = 4, Amount = 100 },  // Approved
-            new() { StatusId = 4, Amount = 150 },  // Approved
-            new() { StatusId = 5, Amount = 50 },   // Rejected
-            new() { StatusId = 1, Amount = 75 }    // Other status
-        };
-
-        repositoryMock.Setup(r => r.FetchAsync<PromotionDetails>(It.IsAny<ICriteria>(), string.Empty, default))
-            .ReturnsAsync(promotionDetails)
-            .Callback<ICriteria, string, CancellationToken>((criteria, s, t) =>
+        var details = new List<PromotionDetails>
             {
-                var c = criteria as GetPromotionDetailsReportCriteria;
-                Assert.Equal(request.CustId, c.CustId);
-                Assert.Equal(promotionId, c.PromotionId);
-                Assert.Equal(request.FromDate, c.FromDate);
-                Assert.Equal(request.ToDate, c.ToDate);
-                Assert.Equal(request.Status, c.StatusId);
-            });
+                new PromotionDetails(),
+                new PromotionDetails()
+            };
+
+        var summary = new List<PromotionDetailsSummary>
+            {
+                new PromotionDetailsSummary()
+            };
+
+        GetPromotionDetailsReportCriteria capturedCriteria = null;
+        repositoryMock.Setup(r => r.FetchMultipleAsync<PromotionDetails, PromotionDetailsSummary>(It.IsAny<ICriteria>(), string.Empty, default))
+            .Callback<ICriteria, string, CancellationToken>((c, s, t) =>
+            {
+                capturedCriteria = (GetPromotionDetailsReportCriteria)c;
+            })
+            .ReturnsAsync((details, summary));
 
         // Act
         var result = await service.GetDetailsReport(promotionId, request);
 
         // Assert
         Assert.NotNull(result);
-        Assert.NotNull(result.Summary);
-        Assert.NotNull(result.PromotionDetails);
-        Assert.Equal(250m, result.Summary.TotalBonus);
-        Assert.Equal(2, result.Summary.TotalApproved);
-        Assert.Equal(1, result.Summary.TotalRejected);
-        Assert.Same(promotionDetails, result.PromotionDetails);
-        repositoryMock.Verify(r => r.FetchAsync<PromotionDetails>(It.IsAny<GetPromotionDetailsReportCriteria>(), string.Empty, default), Times.Once);
+        Assert.Equal(summary.FirstOrDefault(), result.Summary);
+        Assert.Equal(details, result.PromotionDetails);
+        Assert.NotNull(capturedCriteria);
+        Assert.Equal(request.CustId, capturedCriteria.CustId);
+        Assert.Equal(promotionId, capturedCriteria.PromotionId);
+        Assert.Equal(request.FromDate, capturedCriteria.FromDate);
+        Assert.Equal(request.ToDate, capturedCriteria.ToDate);
+        Assert.Equal(request.Status, capturedCriteria.StatusId);
     }
 
     [Fact]
-    public async Task GetDetailsReport_ShouldReturnZeroSummaryValues_WhenNoDetailsFound()
+    public async Task GetDetailsReport_WithEmptySummaryResult_ShouldReturnReportWithNullSummary()
     {
         // Arrange
         int promotionId = 42;
-        var request = new GetPromotionDetailsReportRequest
-        {
-            CustId = 123,
-            FromDate = new DateTime(2023, 1, 1),
-            ToDate = new DateTime(2023, 12, 31),
-            Status = 1
-        };
+        var request = new GetPromotionDetailsReportRequest { CustId = 123 };
 
-        var emptyDetails = new List<PromotionDetails>();
+        var details = new List<PromotionDetails> { new PromotionDetails() };
+        var summary = new List<PromotionDetailsSummary>();
 
-        repositoryMock.Setup(r => r.FetchAsync<PromotionDetails>(It.IsAny<GetPromotionDetailsReportCriteria>(), string.Empty, default))
-            .ReturnsAsync(emptyDetails);
+        repositoryMock.Setup(r => r.FetchMultipleAsync<PromotionDetails, PromotionDetailsSummary>(It.IsAny<ICriteria>(), string.Empty, default))
+            .ReturnsAsync((details, summary));
 
         // Act
         var result = await service.GetDetailsReport(promotionId, request);
 
         // Assert
         Assert.NotNull(result);
-        Assert.NotNull(result.Summary);
-        Assert.Equal(0m, result.Summary.TotalBonus);
-        Assert.Equal(0, result.Summary.TotalApproved);
-        Assert.Equal(0, result.Summary.TotalRejected);
-        Assert.Same(emptyDetails, result.PromotionDetails);
+        Assert.Null(result.Summary);
+        Assert.Equal(details, result.PromotionDetails);
     }
 }

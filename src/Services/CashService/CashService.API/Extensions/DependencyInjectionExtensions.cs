@@ -1,10 +1,9 @@
 namespace AlphaPlus.CashService.API.Extensions;
 
-using System.Net;
+using AlphaPlus.CashService.API.Features.Notifications.Services;
 using AlphaPlus.CashService.API.Features.PendingWithdrawal.Services;
-using AlphaPlus.CashService.API.Features.Shared.Constants;
-using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Helpers;
+using AlphaPlus.CashService.API.Features.Shared.Models;
 using Fanex.Data.Repository;
 using Fanex.Data.SqlServer;
 using Fanex.RemotingRef;
@@ -36,6 +35,7 @@ public static class DependencyInjectionExtensions
         services.AddScoped<IBankService, BankService>();
         services.AddScoped<IPaymentGatewayService, PaymentGatewayService>();
         services.AddScoped<IPromotionReportService, PromotionReportService>();
+        services.AddScoped<INotificationsService, NotificationsService>();
 
         return services;
     }
@@ -50,23 +50,10 @@ public static class DependencyInjectionExtensions
         services.AddSingleton<ICacheRefService, CacheRefService>();
     }
 
-    public static IServiceCollection AddConfiguration(this IServiceCollection services, IConfiguration configuration)
-    {
-        services.AddSingleton(configuration.GetSection("ProxySettings").Get<ProxySettings>());
-
-        return services;
-    }
-
     public static IServiceCollection AddHttpClientService(this IServiceCollection services, IConfiguration configuration)
     {
-        var proxySettings = configuration.GetSection("ProxySettings").Get<ProxySettings>();
-        services.AddHttpClient(HttpClientName.ProxyHttpClient).ConfigurePrimaryHttpMessageHandler(() => new SocketsHttpHandler
-        {
-            UseProxy = proxySettings.IsUseProxy,
-            Proxy = new WebProxy(proxySettings.ProxyAddress, proxySettings.BypassOnLocal)
-        });
-
-        services.AddSingleton(sp => configuration.GetSection("PaymentGatewayApiConfig").Get<PaymentGatewayApiConfig>());
+        services.AddHttpClient();
+        services.AddSingleton(configuration.GetSection("PaymentGatewayApiConfig").Get<PaymentGatewayApiConfig>());
         services.AddScoped<HttpClientHelper>();
 
         return services;

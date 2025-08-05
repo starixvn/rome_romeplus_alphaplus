@@ -5,9 +5,7 @@ using AlphaPlus.CashService.Site.Features.Transactions.Enum;
 using AlphaPlus.Shared.AppResources.CashServices;
 using Microsoft.AspNetCore.Hosting;
 using Moq;
-using ONEbook.SpreadSheets;
 using Xunit;
-using AlphaPlus.Shared.AppResources.Report;
 
 namespace AlphaPlus.CashService.Site.UnitTests.Features.Promotion.Services;
 
@@ -39,7 +37,7 @@ public class PromotionDetailsReportWorkbookTest
         (
             new PromotionDetailsSummary
             {
-                TotalBonus = 1000,
+                TotalAmount = 1000,
                 TotalApproved = 10,
                 TotalRejected = 2
             },

@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import {
-
-  ButtonApplyComponent,
-  ButtonCancelComponent,
-} from '../../../../components/Buttons';
-import {
-  TitleComponent,
-} from '../../../../components/Title';
+import { ButtonApplyComponent, ButtonCancelComponent } from '../../../../components/Buttons';
+import { TitleComponent } from '../../../../components/Title';
 import { AmountInput } from '../../../../components/AmountInput';
 import DropdownComponent, { DropdownOption } from '../../../../components/CustomDropdownComponent';
 import { MessageComponent } from '../../../../components/Message';
@@ -20,10 +14,12 @@ import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconCo
 
 interface AddBonusFormProps {
   onClose?: () => void;
+  isCashServiceEnabled: boolean;
 }
 
-const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose }) => {
+const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose, isCashServiceEnabled }) => {
   const { t } = useTranslation('promotion');
+  const { t: tGlobal } = useTranslation('global');
   const [member, setMember] = useState<string>('');
   const [amount, setAmount] = useState<string>('');
   const [remark, setRemark] = useState('');
@@ -121,27 +117,33 @@ const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose }) => {
   return (
     <div className="">
       <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-        <ButtonIconComponent style='Back' onClick={onClose || (() => {})} />
-        <TitleComponent text={`${t('addBonus')}`} type='main'/>
+        <ButtonIconComponent style="Back" onClick={onClose || (() => {})} />
+        <TitleComponent text={`${t('addBonus')}`} type="main" />
       </div>
       <div
-        id="manual-withdrawal-form"
+        id="add-bonus-form"
         className="max-w-[1100px] w-full max-[768px]:w-full pb-[16px] pt-[10px]"
       >
-        {resultMessage.type && (
-          <MessageComponent
-            type={resultMessage.type}
-            message={resultMessage.message}
-            className="mb-[16px] max-[768px]:mb-[0]"
-          />
-        )}
+        <div className="flex-1 max-w-[700px] max-[768px]:mb-[16px] mr-[30px] max-[768px]:mr-[0]">
+          {resultMessage.type && (
+            <MessageComponent
+              type={resultMessage.type}
+              message={resultMessage.message}
+              className="mb-[16px] max-[768px]:mb-[0]"
+            />
+          )}
+        </div>
         <div className="flex justify-between max-[768px]:flex-col mb-[16px]">
           <div className="flex-1 max-w-[700px] max-[768px]:mb-[16px] mr-[30px] max-[768px]:mr-[0]">
-            <TitleComponent text={`${t('addBonusForm.accountInformation')}`} type='medium'/>
+            <TitleComponent text={`${t('addBonusForm.accountInformation')}`} type="medium" />
             <div className="flex flex-wrap">
               <div className="flex flex-nowrap gap-[16px] mb-[4px] justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
-                  <TitleComponent text={`${t('addBonusForm.memberLoginName')}`} required type='label'/>
+                  <TitleComponent
+                    text={`${t('addBonusForm.memberLoginName')}`}
+                    required
+                    type="label"
+                  />
 
                   <div className="relative z-[9999]">
                     <DropdownComponent
@@ -149,12 +151,12 @@ const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose }) => {
                       onSelect={handleMemberLoginChange}
                       initialValue={member}
                       searchable={true}
-                      placeholder={t('manualDepositForm.selectMember')}
+                      placeholder={t('addBonusForm.selectMember')}
                     />
                   </div>
                 </div>
                 <div className="min-w-[230px] pt-[4px] w-[48%] mb-[8px]">
-                  <TitleComponent text={`${t('addBonusForm.bonusAmount')}`} required type='label'/>
+                  <TitleComponent text={`${t('addBonusForm.bonusAmount')}`} required type="label" />
                   <AmountInput
                     id="bonusAmount"
                     value={Number(amount)}
@@ -168,7 +170,11 @@ const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose }) => {
                 </div>
               </div>
               <div className="w-full">
-                <TitleComponent text={`${t('addBonusForm.remarks')}`} required={false} type='label'/>
+                <TitleComponent
+                  text={`${t('addBonusForm.remarks')}`}
+                  required={false}
+                  type="label"
+                />
                 <textarea
                   id="remarks"
                   value={remark}
@@ -184,13 +190,14 @@ const AddBonusForm: React.FC<AddBonusFormProps> = ({ onClose }) => {
         <div className="flex gap-[16px]">
           <ButtonCancelComponent
             onClick={onClose}
-            disabled={isSubmitting}
+            disabled={isSubmitting || !isCashServiceEnabled}
             text={t('addBonusForm.cancel')}
           />
           <ButtonApplyComponent
-            disabled={isSubmitting}
+            disabled={isSubmitting || !isCashServiceEnabled}
             text={t('addBonusForm.approve')}
             onClick={handleSubmit}
+            title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
           />
         </div>
       </div>

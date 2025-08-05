@@ -1,24 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import {
-  ButtonComponent,
-} from '../../../../components/Buttons/index';
+import { useTranslation } from 'react-i18next';
+import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
+import { ButtonComponent } from '../../../../components/Buttons/index';
 import { MessageComponent } from '../../../../components/Message';
 import { TitleComponent } from '../../../../components/Title';
 import { TreeNodeOption } from '../../../../components/TreeSelect/TreeSelect';
 import { PROMOTION_TYPES } from '../../../../constants/promotionConstants';
 import {
-  EditPromotionRequest,
   Language,
   ProductDropdown,
   ProductSetting,
-  PromotionDetail
+  PromotionDetail,
 } from '../../../../services/interfaces/Promotion';
 import { promotionService } from '../../../../services/promotionAPI';
 import Information from './Form/Information';
 import PromotionInfo, { PromotionLangFields } from './Form/LanguageInfo';
 import ProductSettings from './Form/ProductSettings';
-import { useTranslation } from 'react-i18next';
-import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
 
 interface EditPromotionProps {
   onClose: () => void;
@@ -32,11 +29,41 @@ function convertProductToTreeNodeOption(products: ProductDropdown[]): TreeNodeOp
     children:
       product.products && product.products.length > 0
         ? product.products.map((p) => ({
-          label: p.productName,
-          value: p.productId,
-        }))
+            label: p.productName,
+            value: p.productId,
+          }))
         : [],
   }));
+}
+
+// Function to get banner URL from banner name
+function getBannerUrl(bannerName: string): string {
+  const baseUrl =
+    window.location.origin + window.location.pathname.split('/').slice(0, -2).join('/');
+  return `${baseUrl}/PromotionImages/${bannerName}`;
+}
+
+// Function to load image from URL and create File object
+async function loadImageAsFile(imageUrl: string, fileName: string): Promise<File | null> {
+  try {
+    const response = await fetch(imageUrl, {
+      mode: 'cors',
+      credentials: 'same-origin',
+    });
+    if (!response.ok) {
+      console.warn(
+        `Failed to load image from ${imageUrl}: ${response.status} ${response.statusText}`
+      );
+      return null;
+    }
+
+    const blob = await response.blob();
+    const file = new File([blob], fileName, { type: blob.type || 'image/jpeg' });
+    return file;
+  } catch (error) {
+    console.error('Error loading image as file:', error);
+    return null;
+  }
 }
 
 const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) => {
@@ -49,9 +76,11 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
   const [originalStatus, setOriginalStatus] = useState<boolean>(true);
   const [promotion, setPromotion] = useState<PromotionDetail | null>(null);
   const [productOptions, setProductOptions] = useState<ProductDropdown[]>([]);
-  const [activeLang, setActiveLang] = useState("en");
+  const [activeLang, setActiveLang] = useState('en');
   const [promotionInfo, setPromotionInfo] = useState<Record<string, PromotionLangFields>>({});
-  const [originalPromotionInfo, setOriginalPromotionInfo] = useState<Record<string, PromotionLangFields>>({});
+  const [originalPromotionInfo, setOriginalPromotionInfo] = useState<
+    Record<string, PromotionLangFields>
+  >({});
   const [languages, setLanguages] = useState<Language[]>([]);
 
   useEffect(() => {
@@ -83,20 +112,34 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
           setOriginalStatus(promotion.enabled);
 
           if (promotion.languageSettings) {
-
             const infoMap: Record<string, PromotionLangFields> = {};
-            promotion.languageSettings.forEach((info) => {
+
+            // Load images and create File objects for each language
+            for (const info of promotion.languageSettings) {
+              let bannerFile: File | string | null = null;
+
+              if (info.bannerName) {
+                // Load the image as a File object
+                const imageUrl = getBannerUrl(info.bannerName);
+
+                bannerFile = await loadImageAsFile(imageUrl, info.bannerName);
+
+                // If loading failed, keep as null - will be handled by UI
+                if (!bannerFile) {
+                  console.warn(`Failed to load image for ${info.bannerName}`);
+                  bannerFile = null;
+                }
+              }
+
               infoMap[info.language] = {
                 title: info.title || '',
-                banner: info.banner,
-                prevBanner: info.banner,
+                banner: bannerFile,
+                bannerName: info.bannerName || '',
                 content: info.content || '',
               };
-            });
-
+            }
             setPromotionInfo(infoMap);
             setOriginalPromotionInfo({ ...infoMap });
-
           }
         } catch (err: any) {
           setError('Failed to load promotion data');
@@ -107,9 +150,7 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
       };
       loadPromotionData();
     });
-
   }, [promotionId]);
-
 
   const handlePromotionInfoChange = (
     lang: string,
@@ -123,33 +164,32 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
     const errors = [
       {
         condition: !hasChanges(),
-        message: tGlobal('thereNoChangeToUpdate')
+        message: tGlobal('thereNoChangeToUpdate'),
       },
       {
         condition: !promotionInfo.en,
-        message: t('addPromotionForm.requiredTitle')
+        message: t('addPromotionForm.requiredTitle'),
       },
       {
         condition: promotionInfo.en && !promotionInfo.en.title,
-        message: t('addPromotionForm.requiredTitle')
+        message: t('addPromotionForm.requiredTitle'),
       },
-      //{
-      //condition: promotionInfo.en && !promotionInfo.en.banner,
-      //message: 'Banner is required'
-      //},
+      {
+        condition: promotionInfo.en && !promotionInfo.en.banner,
+        message: t('addPromotionForm.requiredBanner'),
+      },
       {
         condition: promotionInfo.en && !promotionInfo.en.content,
-        message: t('addPromotionForm.requiredContent')
-      }
+        message: t('addPromotionForm.requiredContent'),
+      },
     ];
-    debugger;
-    const failedValidation = errors.find(check => check.condition);
+    const failedValidation = errors.find((check) => check.condition);
     if (failedValidation) {
       setError(failedValidation.message);
       return false;
     }
     return true;
-  }
+  };
 
   const hasChanges = () => {
     const statusChanged = originalStatus !== isActive;
@@ -157,8 +197,8 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
     const contentChanged = JSON.stringify(promotionInfo) !== JSON.stringify(originalPromotionInfo);
 
     return statusChanged || contentChanged;
-  }
-  const handleSubmit = (e: React.FormEvent) => {
+  };
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -166,25 +206,32 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
     }
     setError(null);
     setLoading(true);
-    const promotionData: EditPromotionRequest = {
-      promotionId: promotionId,
-      enabled: isActive,
-      originalEnabled: originalStatus,
-      contents: Object.entries(promotionInfo).map(([lang, info]) => ({
-        language: lang,
-        title: info.title,
-        banner: "Razor harcode",//info.banner as string | null,
-        content: info.content,
-      })),
-      originalContents: Object.entries(originalPromotionInfo).map(([lang, info]) => ({
-        language: lang,
-        title: info.title,
-        banner: "Razor harcode",//info.banner as string | null,
-        content: info.content,
-      })),
-    };
 
-    promotionService.editPromotion(promotionId, promotionData).then((result) => {
+    try {
+      const formData = new FormData();
+      formData.append('PromotionId', promotionId.toString());
+      formData.append('Enabled', isActive.toString());
+      formData.append('OriginalEnabled', originalStatus.toString());
+      formData.append('FromDate', promotion?.fromDate?.toLocaleString('en-US') || '');
+      Object.entries(promotionInfo).forEach(([lang, info], index) => {
+        formData.append(`Contents[${index}].Language`, lang);
+        formData.append(`Contents[${index}].Title`, info.title || '');
+        formData.append(`Contents[${index}].Content`, info.content || '');
+        if (info.banner instanceof File) {
+          formData.append(`Contents[${index}].Banner`, info.banner);
+        } else if (info.banner) {
+          formData.append(`Contents[${index}].BannerName`, info.banner as string);
+        }
+      });
+
+      Object.entries(originalPromotionInfo).forEach(([lang, info], index) => {
+        formData.append(`OriginalContents[${index}].Language`, lang);
+        formData.append(`OriginalContents[${index}].Title`, info.title || '');
+        formData.append(`OriginalContents[${index}].Content`, info.content || '');        
+      });
+
+      const result = await promotionService.editPromotionWithFormData(promotionId, formData);
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
       if (result.isSuccessful) {
         setSuccessMessage(t('editPromotionForm.promotionUpdatedSuccessfully'));
@@ -194,9 +241,12 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
       } else {
         setError(result.message);
       }
-    }).finally(() => {
+    } catch (error) {
+      console.error('Error editing promotion:', error);
+      setError('An error occurred while updating the promotion');
+    } finally {
       setLoading(false);
-    });
+    }
   };
 
   if (loading && !promotionInfo) {
@@ -210,36 +260,61 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
   return (
     <>
       <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-        <ButtonIconComponent style='Back' onClick={onClose} />
-        <TitleComponent text={t('editPromotionForm.editPromotion')} type='main'/>
+        <ButtonIconComponent style="Back" onClick={onClose} />
+        <TitleComponent text={t('editPromotionForm.editPromotion')} type="main" />
       </div>
 
       <form onSubmit={handleSubmit} className="pb-[16px]">
         <div className="modal-body">
-          <MessageComponent className="mb-[16px] max-[768px]:mb-[0]" message={error} type='error' />
-          <MessageComponent className="mb-[16px] max-[768px]:mb-[0]" message={successMessage} type='success'/>
+          <MessageComponent className="mb-[16px] max-[768px]:mb-[0]" message={error} type="error" />
+          <MessageComponent
+            className="mb-[16px] max-[768px]:mb-[0]"
+            message={successMessage}
+            type="success"
+          />
 
           <Information
             readOnlyMode={true}
             isActive={isActive}
-            setIsActive={(value: boolean) => { setIsActive(value); }}
+            setIsActive={(value: boolean) => {
+              setIsActive(value);
+            }}
             promotionType={promotion?.promotionTypeId || 0}
-            setPromotionType={() => { void (0); }}
-            period={promotion?.fromDate && promotion?.toDate ? [new Date(promotion.fromDate), new Date(promotion.toDate)] : [null, null]}
-            setPeriod={() => { void (0); }}
+            setPromotionType={() => {
+              void 0;
+            }}
+            period={
+              promotion?.fromDate && promotion?.toDate
+                ? [new Date(promotion.fromDate), new Date(promotion.toDate)]
+                : [null, null]
+            }
+            setPeriod={() => {
+              void 0;
+            }}
             productOptions={convertProductToTreeNodeOption(productOptions)}
-            selectedProductIds={promotion?.productSettings?.map((p: ProductSetting) => p.productCategoryId) || []}
-            handleProductChange={() => { void (0) }}
+            selectedProductIds={
+              promotion?.productSettings?.flatMap((p: ProductSetting) =>
+                p.products && p.products.length > 0
+                  ? p.products.map((product) => product.productId)
+                  : []
+              ) || []
+            }
+            handleProductChange={() => {
+              void 0;
+            }}
             PROMOTION_TYPES={PROMOTION_TYPES}
           />
         </div>
         <ProductSettings
           productCategories={promotion?.productSettings || []}
-          selectedProductCategories={promotion?.productSettings.map((p: ProductSetting) => p.productCategoryId) || []}
-          handleProductFieldChange={() => { void (0) }}
+          selectedProductCategories={
+            promotion?.productSettings.map((p: ProductSetting) => p.productCategoryId) || []
+          }
+          handleProductFieldChange={() => {
+            void 0;
+          }}
           readOnlyMode={true}
         />
-
         <PromotionInfo
           languages={languages}
           value={promotionInfo}
@@ -252,7 +327,12 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
 
         <div className="flex justify-start py-[8px] mt-[8px] gap-[8px]">
           <ButtonComponent variant="cancel" text={tGlobal('cancel')} onClick={onClose} />
-          <ButtonComponent variant="apply" text={tGlobal('update')} type="submit" disabled={loading} />
+          <ButtonComponent
+            variant="apply"
+            text={tGlobal('update')}
+            type="submit"
+            disabled={loading}
+          />
         </div>
       </form>
     </>

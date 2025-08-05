@@ -103,11 +103,11 @@ const DataGrid: React.FC<DataGridProps> = ({ withdrawals, reloadGrid }) => {
                   <td className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-background)] z-10">
                     {index + 1 + (currentPage - 1) * pageSize}
                   </td>
-                  <td className="w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
+                  <td className="text-left w-[150px] min-w-[150px] sticky left-[32px] bg-[var(--table-background)] z-10 shadow-[3px_0_4px_0_rgba(99,84,84,0.3)]">
                     <div>{withdrawal.username}</div>
                     <div>{withdrawal.nickname}</div>
                   </td>
-                  <td>
+                  <td className="text-left">
                     <div>{withdrawal.firstName}</div>
                     <div>{withdrawal.lastName}</div>
                   </td>

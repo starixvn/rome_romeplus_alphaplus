@@ -79,5 +79,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services
         string FormatWinLossLimit(decimal value);
 
         string FormatAutoTransferSchedule(string schedulesDiff);
+
+        string GetBankName(string code);
     }
 }

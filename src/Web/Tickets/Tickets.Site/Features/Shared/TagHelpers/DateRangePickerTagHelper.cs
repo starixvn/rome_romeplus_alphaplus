@@ -3,6 +3,8 @@ using AlphaPlus.Shared.AppResources.Betlist.Services;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Components;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 
+namespace AlphaPlus.Tickets.Site.Features.Shared.TagHelpers;
+
 [HtmlTargetElement("daterange-picker")]
 public class DateRangePickerTagHelper : TagHelper
 {

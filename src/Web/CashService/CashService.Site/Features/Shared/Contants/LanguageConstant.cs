@@ -1,4 +1,6 @@
-﻿namespace AlphaPlus.CashService.Site.Features.Shared.Contants
+﻿using System.Collections.Immutable;
+
+namespace AlphaPlus.CashService.Site.Features.Shared.Contants
 {
     public static class LanguageConstant
     {
@@ -12,7 +14,7 @@
 
         public const string Default = English;
 
-        public static readonly Dictionary<string, string> CodeNames = new Dictionary<string, string>
+        public static readonly ImmutableDictionary<string, string> CodeNames = new Dictionary<string, string>
         {
             [English] = "English",
             [ChineseTraditional] = "繁體中文",
@@ -21,10 +23,10 @@
             [Thai] = "ภาษาไทย",
             [Korean] = "한국어",
             [Vietnamese] = "Tiếng Việt"
-        };
-        
-        public static readonly Dictionary<string, string> CodeKeysWithoutCN3 = CodeNames
+        }.ToImmutableDictionary();
+
+        public static readonly ImmutableDictionary<string, string> CodeKeysWithoutCN3 = CodeNames
             .Where(langauge => langauge.Key != Vietnamese)
-            .ToDictionary(language => language.Key, language => language.Value);
+            .ToImmutableDictionary(language => language.Key, language => language.Value);
     }
 }

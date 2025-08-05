@@ -2,8 +2,9 @@ import React, { ForwardedRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import NoRecordFound from '../../../../components/NoRecordFoundComponent';
 import { StatusComponent } from '../../../../components/Status';
-import { formatNumber } from '../../../../utils/numberFormatting';
+import { formatNumber, formatDecimal } from '../../../../utils/numberFormatting';
 import { formatDate, formatDateTime } from '../../../../utils/commonFunctions';
+import { PROMOTION_BONUS_STATUS_OPTIONS } from '../../../../constants/promotionConstants';
 
 interface DetailsReportTableProps {
   data: any[];
@@ -11,15 +12,15 @@ interface DetailsReportTableProps {
 
 function DetailsReportStatusRow({ status }: { status: number }) {
   const { t } = useTranslation('global');
-  if (status === 4) {
-    return <StatusComponent type='completed' text={t('global:status.approved')} />;
+  if (status === PROMOTION_BONUS_STATUS_OPTIONS.approved) {
+    return <StatusComponent type="completed" text={t('global:status.approved')} />;
   }
 
-  if (status === 5) {
-    return <StatusComponent type='disabled' text={t('global:status.rejected')} />;
+  if (status === PROMOTION_BONUS_STATUS_OPTIONS.rejected) {
+    return <StatusComponent type="disabled" text={t('global:status.rejected')} />;
   }
 
-  return <StatusComponent type='processing' text={t('global:status.pending')} />;
+  return <StatusComponent type="processing" text={t('global:status.pending')} />;
 }
 
 function DetailsReportRow({ idx, data }: { idx: number; data: any }) {
@@ -37,7 +38,7 @@ function DetailsReportRow({ idx, data }: { idx: number; data: any }) {
         <div>{data.lastName}</div>
       </td>
       <td>{`${formatDate(data.fromDate)} - ${formatDate(data.toDate)}`}</td>
-      <td className="text-right">{formatNumber(data.amount)}</td>
+      <td className="text-right">{formatDecimal(data.amount)}</td>
       <td className="text-left">{data.subAccName ? data.subAccName : data.operatedBy}</td>
       <td>{formatDateTime(data.operatedTime)}</td>
       <td>
@@ -67,7 +68,7 @@ const DetailsReportTable = React.forwardRef<HTMLTableElement, DetailsReportTable
                 <div>{t('global:nickname')}</div>
               </th>
               <th>{t('global:firstAndLastName')}</th>
-              <th>{t('promotion:table.period')}</th>
+              <th>{t('promotion:table.rebatePeriod')}</th>
               <th>{t('promotion:table.bonusAmount')}</th>
               <th>{t('global:updatedBy')}</th>
               <th>{t('global:lastUpdated')}</th>
@@ -79,7 +80,7 @@ const DetailsReportTable = React.forwardRef<HTMLTableElement, DetailsReportTable
               <NoRecordFound colSpan={8} />
             ) : (
               data.map((item, idx) => (
-                <DetailsReportRow key={item.username} idx={idx} data={item} />
+                <DetailsReportRow key={`${item.username}_${idx}`} idx={idx} data={item} />
               ))
             )}
           </tbody>

@@ -1,3 +1,4 @@
+using AgencyCash.API.Notifications.Services;
 using AgencyCash.API.Payments.Criteria;
 using AgencyCash.API.Payments.Criteria.Withdrawal;
 using AgencyCash.API.Payments.Models;
@@ -16,6 +17,7 @@ public class WithdrawalServiceTests
     private readonly Mock<IDynamicRepository> _mockRepository;
     private readonly Mock<ISiteDBService> _mockSiteDBService;
     private readonly Mock<Fanex.Logging.ILogger> _mockLogger;
+    private readonly Mock<INotificationsService> _notificationsServiceMock;
     private readonly WithdrawalService _service;
     private readonly SiteDBConfig _siteDBConfig;
 
@@ -24,7 +26,8 @@ public class WithdrawalServiceTests
         _mockRepository = new Mock<IDynamicRepository>();
         _mockSiteDBService = new Mock<ISiteDBService>();
         _mockLogger = new Mock<Fanex.Logging.ILogger>();
-        _service = new WithdrawalService(_mockRepository.Object, _mockSiteDBService.Object, _mockLogger.Object);
+        _notificationsServiceMock = new Mock<INotificationsService>();
+        _service = new WithdrawalService(_mockRepository.Object, _mockSiteDBService.Object, _mockLogger.Object, _notificationsServiceMock.Object);
 
         _siteDBConfig = new SiteDBConfig
         {

@@ -1,6 +1,6 @@
 import React from 'react';
-import { TitleComponent } from '../../../../../components/Title';
 import { useTranslation } from 'react-i18next';
+import { TitleComponent } from '../../../../../components/Title';
 import { ProductSetting } from '../../../../../services/interfaces/Promotion';
 
 
@@ -29,7 +29,7 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
           <div className="flex items-center relative">
             <input
               type="number"
-              min="0"
+              min="1"
               step="0.01"
               className={`control-field pr-[41px]! ${readOnlyMode || !selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
               value={product.percentage}
@@ -52,7 +52,7 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
           <TitleComponent text={t('addPromotionForm.minTurnover')} required={true} type='label'/>
           <input
             type="number"
-            min="0"
+            min="1"
             className={`control-field ${readOnlyMode || !selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
             value={product.minTurnover}
             disabled={readOnlyMode || !selectedProductCategories.includes(product.productCategoryId)}

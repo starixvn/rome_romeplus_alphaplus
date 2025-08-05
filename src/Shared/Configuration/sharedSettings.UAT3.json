@@ -53,6 +53,11 @@
       "ProviderName": "System.Data.SqlClient"
     },
     {
+        "Name": "DBLOG.bodb_CustomerLog.wsv_CashService",
+        "ConnectionString": "packet size=4096; Data Source=db055.gamora.prod;Initial Catalog=bodb_CustomerLog;integrated security=false; trustservercertificate=true; user id=wsv_CashService; password=efxbd+jiTDMF8k3e2JParyFP6kORa5C/mRZp3G6L7fEgvsRBmbOG2A==",
+        "ProviderName": "System.Data.SqlClient"
+    },
+    {
       "Name": "DBONUSER.ON_USER.wsv_alp",
       "ConnectionString": "packet size=4096; Data Source=db05.gamora.prod;Initial Catalog=on_user;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
       "ProviderName": "System.Data.SqlClient"
@@ -121,6 +126,11 @@
       "Name": "DBCRM.bodb_CRM.wsv_alp",
       "ConnectionString": "packet size=4096; Data Source=db052.gamora.prod;Initial Catalog=bodb_CRM;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
       "ProviderName": "System.Data.SqlClient"
+    },
+    {
+      "Name": "DBSIC.bodb02.wsv_alp",
+      "ConnectionString": "packet size=4096; Data Source=dbsite03.gamora.prod;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+      "ProviderName": "System.Data.SqlClient"
     }
   ],
   "StoredProcedurePath": "~/App_Data/SPNames.MAIN.xml",
@@ -135,8 +145,8 @@
   "RedisConfiguration": "vn-alpha-state383.tcp-kluat.gamora.prod:16383,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged,connectTimeout=6300",
   "RemotingRefUrl": "http://shared_fanex_remotingref_UAT:5000/",
   "Fanex.Customer": {
-    "ServiceUri": "http://customer-api.st-kluat.gamora.prod/main/api/",
-    "CdnUri": "//cdn-customer.starixuat.com/v2/",
+    "ServiceUri": "http://customer-api.st-kluat.gamora.prod/v3/api/",
+    "CdnUri": "//cdn-customer.starixuat.com/v3/",
     "SystemId": 2
   },
   "SystemId": 2,

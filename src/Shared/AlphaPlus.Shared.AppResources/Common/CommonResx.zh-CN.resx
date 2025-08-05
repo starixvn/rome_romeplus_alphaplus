@@ -613,4 +613,19 @@
   <data name="MasterAgent" xml:space="preserve">
     <value>总代理</value>
   </data>
+  <data name="ErrorMessage_50039" xml:space="preserve">
+    <value>此会员不是现金会员。</value>
+  </data>
+  <data name="ErrorMessage_50042" xml:space="preserve">
+    <value>此会员有自动重置的潜在赢取金额限制。</value>
+  </data>
+  <data name="ErrorMessage_50041" xml:space="preserve">
+    <value>此会员有自动重置的赢取/输赢金额限制。</value>
+  </data>
+  <data name="ErrorMessage_50040" xml:space="preserve">
+    <value>此会员不是现金会员。</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
 </root>

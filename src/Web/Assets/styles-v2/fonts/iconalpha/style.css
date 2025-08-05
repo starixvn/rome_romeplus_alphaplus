@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icon-alpha-v2';
-  src:  url('fonts/icon-alpha-v2.eot?ilzwa');
-  src:  url('fonts/icon-alpha-v2.eot?ilzwa#iefix') format('embedded-opentype'),
-    url('fonts/icon-alpha-v2.ttf?ilzwa') format('truetype'),
-    url('fonts/icon-alpha-v2.woff?ilzwa') format('woff'),
-    url('fonts/icon-alpha-v2.svg?ilzwa#icon-alpha-v2') format('svg');
+  src:  url('fonts/icon-alpha-v2.eot?sqz4hn');
+  src:  url('fonts/icon-alpha-v2.eot?sqz4hn#iefix') format('embedded-opentype'),
+    url('fonts/icon-alpha-v2.ttf?sqz4hn') format('truetype'),
+    url('fonts/icon-alpha-v2.woff?sqz4hn') format('woff'),
+    url('fonts/icon-alpha-v2.svg?sqz4hn#icon-alpha-v2') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ic-cashservice:before {
+  content: "\e91f";
+}
 .ic-refresh:before {
   content: "\e91e";
 }

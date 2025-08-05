@@ -205,46 +205,43 @@
     <value>ประวัติธุรกรรม</value>
   </data>
   <data name="PromotionReport" xml:space="preserve">
-    <value />
+    <value>รายงานโปรโมชัน</value>
   </data>
   <data name="PromotionType" xml:space="preserve">
     <value />
   </data>
-  <data name="DateRange" xml:space="preserve">
-    <value />
-  </data>
   <data name="TotalRequest" xml:space="preserve">
-    <value />
+    <value>จำนวนคำขอทั้งหมด</value>
   </data>
   <data name="TotalRequestApproved" xml:space="preserve">
-    <value />
+    <value>จำนวนคำขอที่ได้รับอนุมัติทั้งหมด</value>
   </data>
   <data name="TotalBonusGiven" xml:space="preserve">
-    <value />
+    <value>โบนัสที่มอบให้ทั้งหมด</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value />
   </data>
   <data name="PromotionTitle" xml:space="preserve">
-    <value />
+    <value>ชื่อโปรโมชัน</value>
   </data>
   <data name="TotalRequestRejected" xml:space="preserve">
-    <value />
+    <value>จำนวนคำขอที่ถูกปฏิเสธทั้งหมด</value>
   </data>
   <data name="BonusAmount" xml:space="preserve">
-    <value />
+    <value>จำนวนโบนัส</value>
   </data>
   <data name="LastUpdated" xml:space="preserve">
-    <value />
+    <value>อัปเดตล่าสุด</value>
   </data>
   <data name="Approved" xml:space="preserve">
-    <value />
+    <value>อนุมัติแล้ว</value>
   </data>
   <data name="AccountType" xml:space="preserve">
-    <value />
+    <value>ประเภทบัญชี</value>
   </data>
   <data name="MemberListNoteEditMultipleNotAvailable" xml:space="preserve">
-    <value />
+    <value>ไม่สามารถแก้ไขข้อมูลลูกค้าหลายรายได้ หากเลือกประเภทบัญชีเป็น "ทั้งหมด"</value>
   </data>
   <data name="ProviderRejectErrorMessage" xml:space="preserve">
     <value>คำขอถอนเงินของคุณถูกปฏิเสธโดยผู้ให้บริการ</value>
@@ -253,12 +250,36 @@
     <value>ผู้ให้บริการชำระเงินไม่พร้อมใช้งานในขณะนี้ กรุณาลองใหม่อีกครั้งภายหลัง</value>
   </data>
   <data name="PromotionType_1" xml:space="preserve">
-    <value />
+    <value>Turnover Rebate</value>
   </data>
   <data name="UpdatedBy" xml:space="preserve">
     <value />
   </data>
   <data name="Period" xml:space="preserve">
     <value />
+  </data>
+  <data name="RebatePeriod" xml:space="preserve">
+    <value />
+  </data>
+  <data name="FreeTrial" xml:space="preserve">
+    <value>ทดลองใช้งาน&lt;b&gt;ฟรี&lt;/b&gt; 14 วัน</value>
+  </data>
+  <data name="StartTodayAndEnjoy" xml:space="preserve">
+    <value>เริ่มต้นวันนี้และประหยัดทันที &lt;b&gt;2,800 บาท&lt;/b&gt;</value>
+  </data>
+  <data name="NoPlatformFee" xml:space="preserve">
+    <value>&lt;strong&gt;ไม่มีค่าธรรมเนียมแพลตฟอร์ม&lt;/strong&gt; &lt;span class="benefit-note"&gt;– ประหยัดวันละ 200 บาทในช่วงทดลองใช้งาน&lt;/span&gt;</value>
+  </data>
+  <data name="TransactionFee" xml:space="preserve">
+    <value>&lt;strong&gt;เพียง 0.15 บาทต่อรายการ&lt;/strong&gt; เมื่อทำธุรกรรมผ่านบัญชีธนาคารที่เชื่อมต่อไว้</value>
+  </data>
+  <data name="CancelAnytime" xml:space="preserve">
+    <value>เห็นผลลัพธ์ได้จริง หากพึงพอใจก็ใช้งานต่อได้ และสามารถยกเลิกได้ทุกเมื่อ</value>
+  </data>
+  <data name="CashFlowToTheNextLevel" xml:space="preserve">
+    <value>อย่าพลาด – เปิดใช้งานทันทีเพื่อยกระดับการบริหารเงินสดของคุณ</value>
+  </data>
+  <data name="SuperchargeYourCashFlow" xml:space="preserve">
+    <value>เพิ่มประสิทธิภาพการหมุนเวียนเงินของคุณให้สูงสุด?</value>
   </data>
 </root>

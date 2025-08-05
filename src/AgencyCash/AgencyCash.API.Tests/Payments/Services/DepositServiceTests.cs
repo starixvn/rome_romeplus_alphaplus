@@ -1,3 +1,4 @@
+using AgencyCash.API.Notifications.Services;
 using AgencyCash.API.Payments.Criteria;
 using AgencyCash.API.Payments.Criteria.Deposit;
 using AgencyCash.API.Payments.Models;
@@ -16,6 +17,7 @@ public class DepositServiceTests
     private readonly Mock<IDynamicRepository> _mockRepository;
     private readonly Mock<ISiteDBService> _mockSiteDBService;
     private readonly Mock<Fanex.Logging.ILogger> _mockLogger;
+    private readonly Mock<INotificationsService> _notificationsServiceMock;
     private readonly IDepositService _depositService;
 
     public DepositServiceTests()
@@ -23,7 +25,8 @@ public class DepositServiceTests
         _mockRepository = new Mock<IDynamicRepository>();
         _mockSiteDBService = new Mock<ISiteDBService>();
         _mockLogger = new Mock<Fanex.Logging.ILogger>();
-        _depositService = new DepositService(_mockRepository.Object, _mockSiteDBService.Object, _mockLogger.Object);
+        _notificationsServiceMock = new Mock<INotificationsService>();
+        _depositService = new DepositService(_mockRepository.Object, _mockSiteDBService.Object, _mockLogger.Object, _notificationsServiceMock.Object);
     }
 
     [Fact]

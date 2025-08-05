@@ -108,7 +108,7 @@ public class SearchAccountService(
             return GetMemberBalanceInfoModel(criteria, agIP);
         }
 
-        return null;
+        return Task.FromResult<IBalanceInfoModel>(null);
     }
 
     internal async Task<IBalanceInfoModel> GetMasterBalanceInfoModel(SelectBalanceInfoCriteria criteria)
@@ -425,7 +425,7 @@ public class SearchAccountService(
         return criteria.IsAutoJobRunning;
     }
 
-    private bool IsAutoTransferAffect(string currency)
+    private static bool IsAutoTransferAffect(string currency)
     {
         var s = Core.Configurations.ConfigurationManager.GetValue<string>("OfferAutoTransfer.Currencies");
         if (string.IsNullOrWhiteSpace(s))

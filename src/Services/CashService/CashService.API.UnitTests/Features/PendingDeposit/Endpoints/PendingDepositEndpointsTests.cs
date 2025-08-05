@@ -9,10 +9,12 @@ using Xunit;
 namespace AlphaPlus.CashService.API.UnitTests.Features.PendingDeposit.Endpoints
 {
     using AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints;
+    using API.Features.Transactions.Services;
 
     public class PendingDepositEndpointsTests
     {
         private readonly Mock<IPendingDepositService> mockPendingDepositService = new();
+        private readonly Mock<ITransactionService> mockTransactionService = new();
 
         [Fact]
         public async Task GetLimitAmtDepositAsync_ShouldReturnOkResultWithCreditAmount()
@@ -40,15 +42,15 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.PendingDeposit.Endpoints
             var custId = 1;
             var custDbGroupId = 2;
             var expectedSetting = new MemberSettingDeposit { AgentGivenCredit = 100 };
-            mockPendingDepositService.Setup(s => s.GetMemberSettingDepositAsync(custId, custDbGroupId)).ReturnsAsync(expectedSetting);
+            mockTransactionService.Setup(s => s.GetMemberSettingDepositAsync(custId, custDbGroupId)).ReturnsAsync(expectedSetting);
 
             // Act
-            var result = await PendingDepositEndpoints.GetMemberSettingDepositAsyncHandler(custId, custDbGroupId, mockPendingDepositService.Object);
+            var result = await PendingDepositEndpoints.GetMemberSettingDepositAsyncHandler(custId, custDbGroupId, mockTransactionService.Object);
 
             // Assert
             var okResult = Assert.IsType<Microsoft.AspNetCore.Http.HttpResults.Ok<MemberSettingDeposit>>(result);
             Assert.Equal(expectedSetting, okResult.Value);
-            mockPendingDepositService.Verify(s => s.GetMemberSettingDepositAsync(custId, custDbGroupId), Times.Once);
+            mockTransactionService.Verify(s => s.GetMemberSettingDepositAsync(custId, custDbGroupId), Times.Once);
         }
 
         [Fact]
@@ -108,6 +110,8 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.PendingDeposit.Endpoints
 
 namespace AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints
 {
+    using Transactions.Services;
+
     public static class PendingDepositEndpoints
     {
         public static async Task<IResult> GetLimitAmtDepositAsyncHandler(int agentId, int custId, int custDbGroupId, IPendingDepositService service)
@@ -116,7 +120,7 @@ namespace AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints
             return Results.Ok(creditAmt);
         }
 
-        public static async Task<IResult> GetMemberSettingDepositAsyncHandler(int custId, int custDbGroupId, IPendingDepositService service)
+        public static async Task<IResult> GetMemberSettingDepositAsyncHandler(int custId, int custDbGroupId, ITransactionService service)
         {
             var memberSettingDeposit = await service.GetMemberSettingDepositAsync(custId, custDbGroupId);
             return Results.Ok(memberSettingDeposit);

@@ -18,7 +18,7 @@ public class SportsbookPotentialWinLimitViewModel
         PotentialWinLimitPage potentialWinLimitPage,
         PotentialWinLimitParam param)
     {
-        IsOfferedCashService = false; //isOfferedCashService;
+        IsOfferedCashService = isOfferedCashService;
 
         ViewerLevel = message.ActorLevel;
         ProblemAccount = param.ProblemAccount;

@@ -89,8 +89,10 @@ builder.Services.AddAntiforgery(options =>
 });
 
 builder.Services.AddTransient<ITransactionHistoryWorkbook, TransactionHistoryWorkbook>();
+builder.Services.AddTransient<IPendingPromotionReportWorkbook, PendingPromotionReportWorkbook>();
 builder.Services.AddScoped<IPromotionReportWorkbook, PromotionReportWorkbook>();
 builder.Services.AddScoped<IPromotionDetailsReportWorkbook, PromotionDetailsReportWorkbook>();
+builder.Services.AddScoped<IPromotionService, PromotionService>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

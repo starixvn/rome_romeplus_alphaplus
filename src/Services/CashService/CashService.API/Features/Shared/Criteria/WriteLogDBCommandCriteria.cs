@@ -5,37 +5,29 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Features.Shared.Criteria;
 
-public class WriteLogDBCommandCriteria : NonQueryCommand
+public class WriteLogDBCommandCriteria(
+    int custDbGroupId,
+    BaseActionRequest request,
+    WriteLogDBCommandModel writeLogDbCommandModel)
+    : NonQueryCommand
 {
-    public WriteLogDBCommandCriteria(int custDbGroupId, BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)
-    {
-        CustDbGroupId = custDbGroupId;
-        CustId = request.ActorId;
-        UserId = request.UserId;
-        CustDbGroupId = request.CustDBGroupId;
-
-        ActionId = writeLogDBCommandModel.ActionId;
-        TrackingValue = writeLogDBCommandModel.TrackingValue;
-        TrackingValue2 = writeLogDBCommandModel.TrackingValue2;
-        TrackingValueMask = writeLogDBCommandModel.TrackingValueMask;
-        TrackingValueMask2 = writeLogDBCommandModel.TrackingValueMask2;
-        Duration = writeLogDBCommandModel.Duration;
-    }
-
     [SpParam(Ignored = true)]
-    public int CustDbGroupId { get; }
+    public int CustDbGroupId { get; } = custDbGroupId;
 
-    public int CustId { get; }
-    public int UserId { get; }
-    public int ActionId { get; }
-    public string TrackingValue { get; }
-    public string TrackingValue2 { get; }
-    public string TrackingValueMask { get; set; }
-    public string TrackingValueMask2 { get; set; }
-    public string Duration { get; }
+    public int CustId { get; } = request.ActorId;
+    public int UserId { get; } = request.UserId;
+
+    [SpParam(AllowNull = true)]
+    public int? ActionId { get; } = writeLogDbCommandModel.ActionId;
+
+    public string TrackingValue { get; } = writeLogDbCommandModel.TrackingValue;
+    public string TrackingValue2 { get; } = writeLogDbCommandModel.TrackingValue2;
+    public string TrackingValueMask { get; set; } = writeLogDbCommandModel.TrackingValueMask;
+    public string TrackingValueMask2 { get; set; } = writeLogDbCommandModel.TrackingValueMask2;
+    public string Duration { get; } = writeLogDbCommandModel.Duration;
 
     public override string GetSettingKey()
         => CustDbGroupId < 0 ? "WriteLog_CashService_UserLog_RunSP" : $"CustDb_{CustDbGroupId}_WriteLog_CashService_UserLog_RunSP";
 
-    public override bool IsValid() => CustId > 0 && ActionId > 0;
+    public override bool IsValid() => CustId > 0;
 }

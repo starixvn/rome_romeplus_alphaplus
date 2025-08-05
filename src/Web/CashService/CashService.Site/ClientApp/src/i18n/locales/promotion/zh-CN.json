@@ -1,10 +1,10 @@
 {
-    "promotionReport": "促销报告",
+    "promotionReport": "优惠报告",
     "table": {
         "no": "序号",
         "action": "操作",
-        "promotionTitle": "促销标题",
-        "promotionType": "促销类型",
+        "promotionTitle": "优惠标题",
+        "promotionType": "优惠类型",
         "percentage": "百分比 (%)",
         "maxPayout": "最大派彩",
         "sports": "体育",
@@ -19,10 +19,11 @@
         "products": "产品",
         "noRecords": "未找到记录",
         "bonusAmount": "奖金金额",
-        "totalRequest": "总请求",
-        "totalApproved": "总批准",
-        "totalRejected": "总拒绝",
-        "totalBonusGiven": "总奖金发放"
+        "totalRequest": "总申请次数",
+        "totalApproved": "已批准申请总数",
+        "totalRejected": "已拒绝申请总数",
+        "totalBonusGiven": "已发放奖金总额",
+        "rebatePeriod": "Rebate Period"
     },
     "search": {
         "placeholder": "按标题或类型搜索..."

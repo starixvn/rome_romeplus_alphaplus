@@ -115,11 +115,20 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date Range.
+        ///   Looks up a localized string similar to Get results. Stay if you love it. Cancel anytime..
         /// </summary>
-        public static string DateRange {
+        public static string CancelAnytime {
             get {
-                return ResourceManager.GetString("DateRange", resourceCulture);
+                return ResourceManager.GetString("CancelAnytime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Don&apos;t miss out – Activate now and take your cash flow to the next level..
+        /// </summary>
+        public static string CashFlowToTheNextLevel {
+            get {
+                return ResourceManager.GetString("CashFlowToTheNextLevel", resourceCulture);
             }
         }
         
@@ -147,6 +156,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         public static string FirstAndLastName {
             get {
                 return ResourceManager.GetString("FirstAndLastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 14-days &lt;b&gt;FREE&lt;/b&gt; trial.
+        /// </summary>
+        public static string FreeTrial {
+            get {
+                return ResourceManager.GetString("FreeTrial", resourceCulture);
             }
         }
         
@@ -223,11 +241,29 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt;No platform fee&lt;/strong&gt; &lt;span class=&quot;benefit-note&quot;&gt;- save THB 200/day during the trial.&lt;/span&gt;.
+        /// </summary>
+        public static string NoPlatformFee {
+            get {
+                return ResourceManager.GetString("NoPlatformFee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Payment provider is currently unavailable. Please try again later..
         /// </summary>
         public static string PaymentProviderUnavailable {
             get {
                 return ResourceManager.GetString("PaymentProviderUnavailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pending Promotion.
+        /// </summary>
+        public static string PendingPromotion {
+            get {
+                return ResourceManager.GetString("PendingPromotion", resourceCulture);
             }
         }
         
@@ -277,7 +313,7 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rebate on Turnover.
+        ///   Looks up a localized string similar to Turnover Rebate.
         /// </summary>
         public static string PromotionType_RebateOnTurnover {
             get {
@@ -295,11 +331,38 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rebate Period.
+        /// </summary>
+        public static string RebatePeriod {
+            get {
+                return ResourceManager.GetString("RebatePeriod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start today and enjoy instant savings of &lt;b&gt;THB 2,800&lt;/b&gt;.
+        /// </summary>
+        public static string StartTodayAndEnjoy {
+            get {
+                return ResourceManager.GetString("StartTodayAndEnjoy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>
         public static string Status {
             get {
                 return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supercharge Your Cash Flow?.
+        /// </summary>
+        public static string SuperchargeYourCashFlow {
+            get {
+                return ResourceManager.GetString("SuperchargeYourCashFlow", resourceCulture);
             }
         }
         
@@ -327,6 +390,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         public static string TheTransactionInsertedFailedPleaseTryAgain {
             get {
                 return ResourceManager.GetString("TheTransactionInsertedFailedPleaseTryAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
             }
         }
         
@@ -372,6 +444,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         public static string TotalRequestRejected {
             get {
                 return ResourceManager.GetString("TotalRequestRejected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt; Just 0.15 per transaction&lt;/strong&gt; via your linked bank account..
+        /// </summary>
+        public static string TransactionFee {
+            get {
+                return ResourceManager.GetString("TransactionFee", resourceCulture);
             }
         }
         

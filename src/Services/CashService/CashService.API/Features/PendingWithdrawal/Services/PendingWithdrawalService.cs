@@ -2,14 +2,13 @@ namespace AlphaPlus.CashService.API.Features.PendingWithdrawal.Services;
 
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Models.PaymentGateway;
-using AlphaPlus.CashService.API.Features.Shared.Requests.PaymentGateway;
 using AlphaPlus.CashService.API.Features.Shared.Services;
 using AlphaPlus.CashService.API.Features.Transactions.Models;
 using AlphaPlus.CashService.API.Features.Transactions.Services;
 using Criteria;
 using Fanex.Data.Repository;
 using Models;
-using Shared.Requests;
+using Shared.Requests.PaymentGateway;
 using Transactions.Enum;
 
 public interface IPendingWithdrawalService
@@ -115,6 +114,29 @@ public class PendingWithdrawalService(
 
         transactionService.OnAfterUpdateTransaction(command.CashAccumCreditTbl, param.SiteDbGroupId, param.CustDbGroupId, responseLogs.ToList());
 
+        if (command.ErrCode == 0 && command.ProviderId > 0)
+        {
+            result = await ApproveByPaymentGateway(command, param);
+        }
+
+        return result;
+    }
+
+    private async Task<ResultModel> ApproveByPaymentGateway(CreateManualWithdrawCommand command, AddManualWithdrawalModel param)
+    {
+        var processTransaction = new ProcessWithdrawalTransaction
+        {
+            TransId = command.TransId,
+            CustId = command.CustId,
+            ProviderId = command.ProviderId,
+            PaymentFrom = command.PaymentFrom,
+            PaymentMethodId = command.PaymentMethodId,
+            ActorId = command.UplineId,
+            SubAccId = command.SubAccId,
+            SiteDBGroupId = (short)command.SiteDbGroupId,
+            CustDBGroupId = param.CustDbGroupId
+        };
+        var result = await ApproveByPaymentGatewayAsync(processTransaction);
         return result;
     }
 
@@ -147,7 +169,7 @@ public class PendingWithdrawalService(
             }
         };
 
-        var response = await paymentGateway.WithdrawalViaPaymentGateway(model, (short)command.CustDBGroupId);
+        var response = await paymentGateway.WithdrawalViaPaymentGateway(model, command.CustDBGroupId);
         if (response.IsSuccessful)
         {
             result.Code = response.Code;
@@ -203,21 +225,7 @@ public class PendingWithdrawalService(
         var responseLogs = (await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command)).ToArray();
         if (responseLogs.Any())
         {
-            foreach (var writeLogDbCommandModel in responseLogs)
-            {
-                await WriteLogRunSp(writeLogDbCommandModel, param.SiteDBGroupId);
-            }
+            transactionService.OnAfterUpdateTransaction(string.Empty, param.SiteDBGroupId, param.CustDBGroupId, responseLogs.ToList());
         }
-    }
-
-    private async Task WriteLogRunSp(WriteLogDBCommandModel log, short siteDbGroupId)
-    {
-        var request = new BaseActionRequest
-        {
-            ActorId = log.CustId,
-            CustDBGroupId = siteDbGroupId,
-            UserId = log.UserId,
-        };
-        await commonService.WriteLogDBCommand(request, log);
     }
 }

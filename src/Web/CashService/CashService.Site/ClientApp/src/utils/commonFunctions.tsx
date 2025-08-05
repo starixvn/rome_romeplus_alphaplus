@@ -15,6 +15,7 @@ export const displayAmount = (amount: number): string => {
 export const TransactionType = {
   Deposit: 1,
   Withdrawal: 2,
+  Promotion: 11,
 };
 
 export const renderBankOptionValue = (bankCode: string, bankAccount: string) => {
@@ -48,21 +49,21 @@ export const renderBankAccount = (bankAccount: string, tGlobal?: any) => {
 export const mappingStatus = (status: number, textContent?: string) => {
   switch (status) {
     case 0:
-      return <StatusComponent type='processing' text={textContent} />;
+      return <StatusComponent type="processing" text={textContent} />;
     case 1:
-      return <StatusComponent type='failed' text={textContent} />;
+      return <StatusComponent type="failed" text={textContent} />;
     case 2:
-      return <StatusComponent type='maintenance' text={textContent} />;
+      return <StatusComponent type="maintenance" text={textContent} />;
     case 3:
-      return <StatusComponent type='failed' text={textContent} />;
+      return <StatusComponent type="failed" text={textContent} />;
     case 4:
-      return <StatusComponent type='completed' text={textContent} />;
+      return <StatusComponent type="completed" text={textContent} />;
     case 5:
-      return <StatusComponent type='disabled' text={textContent} />;
+      return <StatusComponent type="disabled" text={textContent} />;
     case 6:
-      return <StatusComponent type='disabled' text={textContent} />;
+      return <StatusComponent type="disabled" text={textContent} />;
     default:
-      return <StatusComponent type='failed' text='-' />;
+      return <StatusComponent type="failed" text="-" />;
   }
 };
 

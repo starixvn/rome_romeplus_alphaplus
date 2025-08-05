@@ -9,13 +9,21 @@ import '../../../styles/global.scss';
 import { useTranslation } from 'react-i18next';
 import AddBonusForm from './components/AddBonusForm';
 import { ButtonFullComponent } from '../../../components/Buttons';
+import { MessageComponent } from '../../../components/Message';
+import { ResultType } from '../../../components/Message/types';
 
 const PendingPromotion: React.FC = () => {
   useCookieLanguage(i18n);
   const { t } = useTranslation('promotion');
   const [showAddBonus, setShowAddBonus] = useState(false);
   const [isCashServiceEnabled, setIsCashServiceEnabled] = useState(false);
-
+  const [resultMessage, setResultMessage] = useState<{
+    type: ResultType;
+    message: string;
+  }>({
+    type: 'success',
+    message: '',
+  });
   React.useEffect(() => {
     const isCashServiceEnabled = document
       .getElementById('IsCashServiceEnabled')
@@ -26,10 +34,16 @@ const PendingPromotion: React.FC = () => {
   return (
     <>
       {showAddBonus ? (
-        <AddBonusForm onClose={() => setShowAddBonus(false)} />
+        <AddBonusForm
+          onClose={() => setShowAddBonus(false)}
+          isCashServiceEnabled={isCashServiceEnabled}
+        />
       ) : (
         <div className="flex h-full flex-col">
-          <TitleComponent text={t('pendingPromotion')} type='main'/> 
+          <TitleComponent text={t('pendingPromotion')} type="main" />
+          <div className="flex flex-col gap-2 mb-2">
+            <MessageComponent message={resultMessage.message} type={resultMessage.type} />
+          </div>
           <div className="mb-[8px]">
             <ButtonFullComponent
               text={t('addBonus')}
@@ -37,8 +51,11 @@ const PendingPromotion: React.FC = () => {
               className="min-w-[183px] [&>*]:min-w-[183px] [&>*]:inline-block"
             />
           </div>
-          {showAddBonus && <AddBonusForm onClose={() => setShowAddBonus(false)} />}
-          <PendingPromotionList isCashServiceEnabled={isCashServiceEnabled} />
+
+          <PendingPromotionList
+            isCashServiceEnabled={isCashServiceEnabled}
+            setResultMessage={setResultMessage}
+          />
         </div>
       )}
     </>

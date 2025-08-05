@@ -171,7 +171,7 @@ class CreditBalance {
         const getSuggestions: any = (query: string, process: any) => {
             return this.$.get(
                 autoSuggestionUrl,
-                { custid: custId, DirectDownlines: true, Query: query, isAccInfo: false },
+                { custid: custId, DirectDownlines: true, Query: query, isAccInfo: false, excludeCashMember: true },
                 (data: any) => {
                     const suggestions: any = data;
                     return !suggestions || !suggestions.length ? process(['Not found']) : process(suggestions);

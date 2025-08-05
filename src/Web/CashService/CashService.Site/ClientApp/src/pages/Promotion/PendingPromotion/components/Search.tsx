@@ -17,6 +17,8 @@ interface SearchProps {
   onDownload: () => void;
   onReject: () => void;
   onApprove: () => void;
+  isProcessing: boolean;
+  isCashServiceEnabled: boolean;
 }
 
 const Search: React.FC<SearchProps> = ({
@@ -27,20 +29,23 @@ const Search: React.FC<SearchProps> = ({
   onDownload,
   onReject,
   onApprove,
+  isProcessing,
+  isCashServiceEnabled,
 }) => {
   const { t } = useTranslation('promotion');
+  const { t: tGlobal } = useTranslation('global');
   const [textCopy, setTextCopy] = useState(t('messages.copy'));
 
   const handleCopy = () => {
     const headers = [
       t('table.no'),
       `${t('table.username')} & ${t('table.nickname')}`,
-      t('table.name'),
+      `${t('table.firstName')} & ${t('table.lastName')}`,
       t('table.title'),
       t('table.promotionType'),
       t('table.amount'),
-      t('table.status'),
-      t('table.dateRange'),
+      t('table.rebatePeriod'),
+      t('table.refNo'),
     ];
 
     const rows = items.map((item, index) => {
@@ -50,9 +55,9 @@ const Search: React.FC<SearchProps> = ({
         `${item.firstName} ${item.lastName}`,
         item.title,
         item.promotionTypeName,
-        `${displayAmount(item.amount)} ${item.currency}`,
-        item.status,
+        `${displayAmount(item.amount)}`,
         `${formatDateTime(item.fromDate)} - ${formatDateTime(item.toDate)}`,
+        item.transId,
       ];
       return rowData.join('\t');
     });
@@ -78,28 +83,50 @@ const Search: React.FC<SearchProps> = ({
         <ButtonComponent
           variant="apply"
           onClick={onApprove}
-          disabled={selectedItems.length === 0}
+          disabled={selectedItems.length === 0 || isProcessing || !isCashServiceEnabled}
           text={t('search.approve') + ' (' + selectedItems.length + ')'}
+          title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
         />
         <ButtonComponent
           variant="reject"
           onClick={onReject}
-          disabled={selectedItems.length === 0}
+          disabled={selectedItems.length === 0 || isProcessing || !isCashServiceEnabled}
           text={t('search.reject') + ' (' + selectedItems.length + ')'}
+          title={isCashServiceEnabled ? '' : tGlobal('cashServiceDisabled')}
         />
       </div>
       <div className="flex items-center">
         <Tippy
-          content={t('messages.exportToExcel')}
+          content={
+            isCashServiceEnabled ? t('messages.exportToExcel') : tGlobal('cashServiceDisabled')
+          }
           placement="top"
           theme="light"
           arrow={true}
           hideOnClick={false}
         >
-          <ButtonIconComponent style='Excel' onClick={handleDownload} />
+          <span>
+            <ButtonIconComponent
+              style="Excel"
+              onClick={handleDownload}
+              disabled={!isCashServiceEnabled}
+            />
+          </span>
         </Tippy>
-        <Tippy content={textCopy} placement="top" theme="light" arrow={true} hideOnClick={false}>
-          <ButtonIconComponent style='Copy' onClick={handleCopy} />
+        <Tippy
+          content={isCashServiceEnabled ? textCopy : tGlobal('cashServiceDisabled')}
+          placement="top"
+          theme="light"
+          arrow={true}
+          hideOnClick={false}
+        >
+          <span>
+            <ButtonIconComponent
+              style="Copy"
+              onClick={handleCopy}
+              disabled={!isCashServiceEnabled}
+            />
+          </span>
         </Tippy>
 
         <div className="flex ml-[4px]">

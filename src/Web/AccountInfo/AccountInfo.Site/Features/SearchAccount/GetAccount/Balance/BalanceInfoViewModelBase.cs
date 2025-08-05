@@ -26,6 +26,8 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
             this.isAllDayBalanceInfo = isAllDayBalanceInfo;
         }
 
+        public bool IsCashMember => account.IsCashMember;
+
         public abstract decimal TotalBalance { get; }
 
         public abstract decimal YesterdayBalance { get; }
@@ -44,7 +46,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
 
         public abstract string RewardCurrency { get; }
 
-        internal virtual bool ShowTransferLink => !isAllDayBalanceInfo && message.AllowTransfer;
+        internal virtual bool ShowTransferLink => !isAllDayBalanceInfo && message.AllowTransfer && !IsCashMember;
 
         public bool ShowOutstandingLink => message.CanViewReports && Outstanding > 0;
 

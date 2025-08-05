@@ -10,7 +10,7 @@
   enabled: boolean;
 }
 
-export interface EditPromotionRequest {  
+export interface EditPromotionRequest {
   promotionId: number;
   enabled: boolean;
   originalEnabled?: boolean;
@@ -20,6 +20,7 @@ export interface EditPromotionRequest {
 
 export interface PromotionRequest {
   promotionType: number;
+  statusId?: number;
   fromDate: Date | null;
   toDate: Date | null;
   enabled: boolean;
@@ -35,7 +36,7 @@ export interface PromotionTransactionRequest {
 
 export interface PromotionTransaction {
   promotionId: number;
-  transId: number;
+  transId: string;
   custId: number;
   username: string;
   nickname: string;
@@ -65,7 +66,7 @@ export interface Language {
 export interface LanguageInfo {
   language: string;
   title: string;
-  banner: string | null;
+  bannerName: string | null;
   content: string;
 }
 
@@ -92,4 +93,5 @@ export interface ProductSetting extends ProductDropdown {
   maxPayout: number;
   unlimited: boolean;
   productIds: number[];
+  productList?: string;
 }

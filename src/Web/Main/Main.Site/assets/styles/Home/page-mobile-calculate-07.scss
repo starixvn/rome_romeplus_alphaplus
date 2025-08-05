@@ -306,6 +306,14 @@ body {
             height: calculateScale(18px);
             background-size: cover !important;
         }
+        &.icon-promotion,&.icon-cashservice {
+            &:after{              
+                top: calculateScale(3px);
+                left: calculateScale(3px);                   
+                width: calculateScale(18px);
+                height: calculateScale(18px);                
+            }
+        }
     }
 
     .sub-menu {
@@ -315,6 +323,13 @@ body {
     .sub-menu .sub-menu-item {
         padding: calculateScale(8px) calculateScale(20px) calculateScale(8px) calculateScale(40px);
         margin-bottom: calculateScale(2px);
+        &.has-badge{
+            .badge-number{
+                font-size: calculateScale(12px);
+                min-width: calculateScale(16px);
+                padding: calculateScale(2px) calculateScale(2px);
+            }
+        }
     }
 
     .menu-item .beta-version {

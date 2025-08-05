@@ -1,3 +1,4 @@
+using System.Globalization;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit;
@@ -62,11 +63,16 @@ public class PotentialWinLimitService(IDynamicRepository repository) : IPotentia
 
     public async Task<Result> ResetCurrentSportsbookWinAmount(ResetCurrentSportsbookWinAmountParam param)
     {
-        var criteria = new ResetCurrentSportsbookWinAmountCriteria(
-            param.CustId,
-            param.SportType,
-            param.BetType,
-            param.SettingStatus);
+        var checkResetCurrentSportsbookWinAmountCriteria = new CheckResetCurrentSportsbookWinAmountCriteria(param);
+        await repository.ExecuteAsync(checkResetCurrentSportsbookWinAmountCriteria);
+        if (checkResetCurrentSportsbookWinAmountCriteria.ErrCode != 0)
+        {
+            return new Result { 
+                Code = checkResetCurrentSportsbookWinAmountCriteria.ErrCode, 
+                Message = AlphaPlus.Shared.AppResources.Common.CommonResx.ResourceManager.GetString("ErrorMessage_" + checkResetCurrentSportsbookWinAmountCriteria.ErrCode, CultureInfo.CurrentCulture)
+            };
+        }
+        var criteria = new ResetCurrentSportsbookWinAmountCriteria(param);
 
         await repository.ExecuteAsync(criteria);
 

@@ -23,7 +23,7 @@ public interface IPromotionService
 
     Task<ResultModel> EditPromotionAsync(EditPromotionRequest request);
 
-    Task<ResultModel> DeletePromotion(int promotionId, BaseActionRequest request);
+    Task<ResultModel> DeletePromotionAsync(int promotionId, BaseActionRequest request);
 
     Task<ResultModel> AddBonusAsync(AddBonusRequest request);
 
@@ -106,7 +106,7 @@ public class PromotionService(IDynamicRepository repository,
 
     public async Task<ResultModel> AddPromotionAsync(PromotionRequest request)
     {
-        var addPromotionCriteria = new AddPromotionCriteria
+        var criteria = new AddPromotionCriteria
         {
             PromotionType = request.PromotionType,
             FromDate = request.FromDate,
@@ -124,10 +124,10 @@ public class PromotionService(IDynamicRepository repository,
             Enabled = request.Enabled,
         };
 
-        var logAddPromotion = await repository.FetchAsync<WriteLogDBCommandModel>(addPromotionCriteria);
+        var logAddPromotion = await repository.FetchAsync<WriteLogDBCommandModel>(criteria);
 
-        var result = new ResultModel(addPromotionCriteria.ErrCode, addPromotionCriteria.ErrMsg);
-        if (addPromotionCriteria.ErrCode == 0 && logAddPromotion is not null && logAddPromotion.Any())
+        var result = new ResultModel(criteria.ErrCode, criteria.ErrMsg);
+        if (criteria.ErrCode == 0 && logAddPromotion is not null && logAddPromotion.Any())
         {
             WriteLog([.. logAddPromotion], request.SiteDBGroupId);
         }
@@ -174,20 +174,29 @@ public class PromotionService(IDynamicRepository repository,
             };
 
             var logUpdateStatus = await repository.FetchAsync<WriteLogDBCommandModel>(updateStatusCriteria);
-            if (!HasContentChanged(editPromotionMdoel.Contents, editPromotionMdoel.OriginalContents))
+            result = new ResultModel(updateStatusCriteria.ErrCode, updateStatusCriteria.ErrMsg);
+            if (updateStatusCriteria.ErrCode == 0 && logUpdateStatus is not null && logUpdateStatus.Any())
             {
-                result = new ResultModel(updateStatusCriteria.ErrCode, updateStatusCriteria.ErrMsg);
-                if (updateStatusCriteria.ErrCode == 0 && logUpdateStatus is not null && logUpdateStatus.Any())
-                {
-                    WriteLog(logUpdateStatus.ToList(), editPromotionMdoel.SiteDBGroupId);
-                }
+                WriteLog(logUpdateStatus.ToList(), editPromotionMdoel.SiteDBGroupId);
             }
         }
 
         return result;
     }
 
-    public async Task<ResultModel> DeletePromotion(int promotionId, BaseActionRequest request)
+    public async Task<ResultModel> DeletePromotionAsync(int promotionId, BaseActionRequest request)
+    {
+        var commandResult = await RejectPendingPromotionTransactionAsync(promotionId, request);
+
+        if (commandResult.IsSuccessful)
+        {
+            commandResult = await DeletePromotion(promotionId, request);
+        }
+
+        return commandResult;
+    }
+
+    private async Task<ResultModel> DeletePromotion(int promotionId, BaseActionRequest request)
     {
         var command = new DeletePromotionCriteria
         {
@@ -209,6 +218,28 @@ public class PromotionService(IDynamicRepository repository,
         return new ResultModel(command.ErrCode, command.ErrMsg);
     }
 
+    private async Task<ResultModel> RejectPendingPromotionTransactionAsync(int promotionId, BaseActionRequest request)
+    {
+        var criteria = new RejectAllPendingPromotionCriteria
+        {
+            PromotionId = promotionId,
+            AgentId = request.ActorId,
+            SubAccId = request.SubAccId,
+            IP = request.IP,
+            SiteDbGroupId = request.SiteDBGroupId
+        };
+        var logs = await repository.FetchAsync<WriteLogDBCommandModel>(criteria);
+        if (criteria.ErrCode == 0 && logs is not null && logs.Any())
+        {
+            WriteLog(logs.ToList(), request.SiteDBGroupId);
+        }
+        var result = new ResultModel(criteria.ErrCode, criteria.ErrMsg)
+        {
+            ErrExtraInfo = criteria.ErrExtraInfo
+        };
+        return result;
+    }
+
     public async Task<ResultModel> AddBonusAsync(AddBonusRequest request)
     {
         var memberSettings = await depositService.GetMemberSettingDepositWhenProcessTransactionAsync(request.CustId, request.UserId, request.CustDBGroupId);
@@ -218,6 +249,7 @@ public class PromotionService(IDynamicRepository repository,
             UplineId = request.UserId,
             Amount = request.Amount,
             Remark = request.Remark,
+            SubAccId = request.SubAccId,
             AgentGivenCredit = memberSettings.AgentGivenCredit,
             CreditMembers_GivenCredit = memberSettings.CreditMembers_GivenCredit,
             CustDbGroupId = request.CustDBGroupId,
@@ -236,6 +268,7 @@ public class PromotionService(IDynamicRepository repository,
 
         var criteria = new UpdatePromoteTransactionCriteria
         {
+            TransId = request.TransId,
             CustId = request.CustId,
             AgentId = request.UserId,
             SubAccId = request.SubAccId,
