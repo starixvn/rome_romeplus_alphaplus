@@ -257,26 +257,24 @@ const validateForm = () => {
         <TitleComponent text={t('managePromotion.addPromotion')} type='main'/>
       </div>
 
-      <div className="pb-[16px]">
-        <div className="modal-body">
-          <MessageComponent className="mb-[16px] max-[768px]:mb-[0]" message={error} type='error' />
-          <MessageComponent className="mb-[16px] max-[768px]:mb-[0]" message={successMessage} type='success'/>
-
-          <Information
-            readOnlyMode={false}
-            isActive={isActive}
-            setIsActive={setIsActive}
-            promotionType={promotionType}
-            setPromotionType={setPromotionType}
-            period={period}
-            setPeriod={setPeriod}
-            productOptions={convertProductToTreeNodeOption(productOptions)}
-            selectedProductIds={selectedProductIds}
-            handleProductChange={handleProductChange}
-            PROMOTION_TYPES={PROMOTION_TYPES}
-          />
-        </div>
-        <div className='mb-[10px]'>
+      <div className="pb-[16px]">       
+        <MessageComponent className="mb-[16px] max-[768px]:mb-[0]" message={error} type='error' />
+        <MessageComponent className="mb-[16px] max-[768px]:mb-[0]" message={successMessage} type='success'/>
+        <Information
+          readOnlyMode={false}
+          isActive={isActive}
+          setIsActive={setIsActive}
+          promotionType={promotionType}
+          setPromotionType={setPromotionType}
+          period={period}
+          setPeriod={setPeriod}
+          productOptions={convertProductToTreeNodeOption(productOptions)}
+          selectedProductIds={selectedProductIds}
+          handleProductChange={handleProductChange}
+          PROMOTION_TYPES={PROMOTION_TYPES}
+        />
+       
+        <div className='mb-[20px]'>
           <ProductSettings
             productCategories={productSettings}
             handleProductFieldChange={handleProductFieldChange}

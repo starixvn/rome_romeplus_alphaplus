@@ -102,7 +102,7 @@ const DataGrid: React.FC<DataGridProps> = ({
 
   return (
     <>
-      <div className="table-fixed-header table-fixed-body min-h-0">
+      <div className="table">
         <table className="w-full border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px]">
           <thead className="z-11!">
             <tr>

@@ -126,7 +126,7 @@ export const ContentField: React.FC<{
 }> = ({ value, onChange, lang, isDefault }) => {
   const { t } = useTranslation('promotion');
   return (
-    <div className="mb-4">
+    <div>
       <TitleComponent text={t('addPromotionForm.content')} required={isDefault} type="label" />
       <CkEditorWrapper key={`content-${lang}`} data={value} onChange={onChange} isPaddingContent />
     </div>
@@ -148,7 +148,7 @@ const PromotionInfo: React.FC<PromotionInfoProps> = ({
   };
   const { t } = useTranslation('promotion');
   return (
-    <div className="max-w-3xl ">
+    <div className="max-w-[620px] ">
       <div className='flex items-center pb-[5px] border-b border-[var(--border-control)] mb-[5px]'>
         <div className='inline-block mr-[10px]'>
           <TitleComponent text={t('addPromotionForm.promotionContent')}   type='medium' ></TitleComponent>  
