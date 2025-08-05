@@ -1,6 +1,6 @@
 using System.Text.Json;
-using Microsoft.AspNetCore.Diagnostics;
 using AlphaPlus.CashService.API.Features.Shared.Helpers;
+using Microsoft.AspNetCore.Diagnostics;
 
 namespace AlphaPlus.CashService.API.Extensions;
 
@@ -11,9 +11,10 @@ public static class ErrorHandlingMiddleware
         var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
         var exception = exceptionHandlerPathFeature?.Error;
 
-        if(exception != null) {
+        if (exception != null)
+        {
             var logger = app.Services.GetService<Fanex.Logging.ILogger>();
-            logger.Error(await ExceptionHelper.BuildError(context.Request, exception), exception);
+            await logger.ErrorAsync(await ExceptionHelper.BuildError(context.Request, exception), exception);
         }
 
         var result = JsonSerializer.Serialize(new
@@ -26,4 +27,4 @@ public static class ErrorHandlingMiddleware
         context.Response.StatusCode = StatusCodes.Status500InternalServerError;
         await context.Response.WriteAsync(result);
     }
-} 
+}

@@ -23,12 +23,13 @@ export interface PromotionInfoProps {
 }
 
 const getImageUrl = (banner: File | string | null): string | null => {
+  console.log('banner', banner);
   if (banner instanceof File) {
     // If banner is a File object, create object URL
     return URL.createObjectURL(banner);
   }
   // If banner is not a File object, return null (no image to display)
-  return null;
+  return banner;
 };
 
 export const LanguageTabs: React.FC<{
@@ -94,7 +95,6 @@ export const BannerField: React.FC<{
   };
 
   const fullBannerUrl = getImageUrl(banner);
-
   // Cleanup object URL when component unmounts or banner changes
   React.useEffect(() => {
     return () => {
@@ -111,7 +111,7 @@ export const BannerField: React.FC<{
         key={`banner-${lang}`}
         setImage={handleSetImage}
         prevImage={fullBannerUrl}
-        maxSize={500}
+        maxSize={20}
         customClassName="w-full h-[300px]"
       />
     </div>
@@ -149,10 +149,13 @@ const PromotionInfo: React.FC<PromotionInfoProps> = ({
   const { t } = useTranslation('promotion');
   return (
     <div className="max-w-[620px] ">
-      <div className='flex items-center pb-[5px] border-b border-[var(--border-control)] mb-[5px]'>
-        <div className='inline-block mr-[10px]'>
-          <TitleComponent text={t('addPromotionForm.promotionContent')}   type='medium' ></TitleComponent>  
-        </div>         
+      <div className="flex items-center pb-[5px] border-b border-[var(--border-control)] mb-[5px]">
+        <div className="inline-block mr-[10px]">
+          <TitleComponent
+            text={t('addPromotionForm.promotionContent')}
+            type="medium"
+          ></TitleComponent>
+        </div>
       </div>
       <LanguageTabs languages={languages} activeLang={activeLang} setActiveLang={setActiveLang} />
       <TitleField

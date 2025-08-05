@@ -14,6 +14,7 @@ using AlphaPlus.SecurityCode.Filters;
 using Fanex.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpOverrides;
 using Serilog;
 
@@ -43,6 +44,12 @@ builder.Services
     .AddSharedSession(configuration)
     .AddSecurityCodeServices(configuration)
     .AddDependencyInjection(configuration)
+    .AddLogging(logging =>
+    {
+        logging.ClearProviders();
+        logging.AddConsole();
+        logging.AddDebug();
+    })
     .AddMediatR(cfg =>
     {
         cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
@@ -93,6 +100,10 @@ builder.Services.AddTransient<IPendingPromotionReportWorkbook, PendingPromotionR
 builder.Services.AddScoped<IPromotionReportWorkbook, PromotionReportWorkbook>();
 builder.Services.AddScoped<IPromotionDetailsReportWorkbook, PromotionDetailsReportWorkbook>();
 builder.Services.AddScoped<IPromotionService, PromotionService>();
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 125_829_120; // 500MB
+});
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.
@@ -120,6 +131,11 @@ app.Use(async (context, next) =>
 {
     context.Request.EnableBuffering();
     context.Request.PathBase = pathBase;
+    var maxRequestBodySizeFeature = context.Features.Get<IHttpMaxRequestBodySizeFeature>();
+    if (maxRequestBodySizeFeature != null)
+    {
+        maxRequestBodySizeFeature.MaxRequestBodySize = 125_829_120; // 120MB
+    }
 
     if (context.Request.Cookies.ContainsKey(".AspNetCore.Session"))
     {

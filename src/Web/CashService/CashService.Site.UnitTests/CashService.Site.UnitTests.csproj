@@ -31,4 +31,8 @@
     <ProjectReference Include="..\CashService.Site\CashService.Site.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Promotion\Controllers\" />
+  </ItemGroup>
+
 </Project> 

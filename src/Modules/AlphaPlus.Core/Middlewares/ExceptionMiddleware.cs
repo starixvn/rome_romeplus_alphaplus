@@ -8,21 +8,14 @@ using Newtonsoft.Json;
 
 namespace AlphaPlus.Core.Middlewares;
 
-public class ExceptionMiddleware
+public class ExceptionMiddleware(RequestDelegate next, ILogger logger, IUserSession userSession)
 {
-    private readonly RequestDelegate _next;
-    private readonly ILogger _logger;
-    private readonly IUserSession _userSession;
-
-    public ExceptionMiddleware(RequestDelegate next, ILogger logger, IUserSession userSession)
-        => (_next, _logger, _userSession) = (next, logger, userSession);
-
     public async Task InvokeAsync(HttpContext httpContext)
     {
         try
         {
             httpContext.Request.EnableBuffering();
-            await _next(httpContext);
+            await next(httpContext);
         }
         catch (Exception ex)
         {
@@ -42,18 +35,18 @@ public class ExceptionMiddleware
 
         context.Items["customData"] = new
         {
-            _userSession.CustId,
-            _userSession.UserName,
-            _userSession.RoleId,
-            _userSession.SubAccId,
-            _userSession.SubUserName,
-            _userSession.AdminId,
-            _userSession.AdminName
+            userSession.CustId,
+            userSession.UserName,
+            userSession.RoleId,
+            userSession.SubAccId,
+            userSession.SubUserName,
+            userSession.AdminId,
+            userSession.AdminName
         };
 
         if (!exception.Message.Contains("Vendor Api Error, Unspecified Error", StringComparison.OrdinalIgnoreCase))
         {
-            await _logger.ErrorAsync(await ExceptionHelper.BuildError(context.Request, exception));
+            await logger.ErrorAsync(await ExceptionHelper.BuildError(context.Request, exception));
         }
 
         if (context.Request.Headers.XRequestedWith == "XMLHttpRequest")

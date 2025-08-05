@@ -30,11 +30,11 @@ export const renderBankAccount = (bankAccount: string, tGlobal?: any) => {
   if (!accountNumber && !bankCode) return <div className="inline">-</div>;
   return (
     <>
-      <Tippy content={bankCode ? <p>{tGlobal(bankCode)}</p> : <p>{accountNumber}</p>}>
+      <Tippy content={bankCode ? <p>{tGlobal(bankCode.toUpperCase())}</p> : <p>{accountNumber}</p>}>
         <div className="inline-flex items-center max-w-[200px]">
           {bankCode && (
             <img
-              src={`../assets/bank/${bankCode}.png`}
+              src={`../assets/bank/${bankCode.toUpperCase()}.png`}
               alt={bankCode}
               className="w-[16px] h-[16px] mr-[8px] inline-block"
             />

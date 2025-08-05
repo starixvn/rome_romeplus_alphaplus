@@ -179,6 +179,13 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
         message: t('addPromotionForm.requiredBanner'),
       },
       {
+        condition:
+          promotionInfo.en &&
+          promotionInfo.en.banner &&
+          (promotionInfo.en.banner as File).size > 20 * 1024 * 1024,
+        message: t('addPromotionForm.bannerSizeLimit'),
+      },
+      {
         condition: promotionInfo.en && !promotionInfo.en.content,
         message: t('addPromotionForm.requiredContent'),
       },
@@ -227,7 +234,7 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
       Object.entries(originalPromotionInfo).forEach(([lang, info], index) => {
         formData.append(`OriginalContents[${index}].Language`, lang);
         formData.append(`OriginalContents[${index}].Title`, info.title || '');
-        formData.append(`OriginalContents[${index}].Content`, info.content || '');        
+        formData.append(`OriginalContents[${index}].Content`, info.content || '');
       });
 
       const result = await promotionService.editPromotionWithFormData(promotionId, formData);
