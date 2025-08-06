@@ -52,11 +52,11 @@
 
         public static readonly Dictionary<string, string> TelegramChatBotCodeNames = _telegramChatBotCodeNames;
 
-        public static readonly Dictionary<string, string> TelegramChatBotCodeNamesWithoutVietNamese = TelegramChatBotCodeNames
+        public static readonly Dictionary<string, string> TelegramChatBotCodeNamesWithoutVietNamese = _telegramChatBotCodeNames
             .Where(langauge => langauge.Key != Vietnamese)
             .ToDictionary(language => language.Key, language => language.Value);
 
-        public static readonly Dictionary<string, string> CodeNamesWithoutVietNamese = CodeNames
+        public static readonly Dictionary<string, string> CodeNamesWithoutVietNamese = _codeNames
             .Where(langauge => langauge.Key != Vietnamese)
             .ToDictionary(language => language.Key, language => language.Value);
 

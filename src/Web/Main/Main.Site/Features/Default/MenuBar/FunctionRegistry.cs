@@ -11,8 +11,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
     public static class FunctionRegistry
     {
         private static readonly ITransferService transferService = new TransferService(new DynamicRepository());
-
-        public static readonly Dictionary<string, Func<MenuStatus>> MenuItemTypeStatusRules = new()
+        private static readonly Dictionary<string, Func<MenuStatus>> _menuItemTypeStatusRules = new()
         {
             [string.Empty] = null,
             ["CashServiceMenuItem"] = () => new MenuStatus(Core.Configurations.AppSettings.IsOfferedCashService(Current.Site) && (!Current.IsSubAcc || Current.SubPageAccess.GetPermission(PageAccessType.CashService))),
@@ -58,8 +57,10 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
                      && !Current.IsInternal
                      && !Current.IsIndirectLoggedIn;
                 }),
-            ["ViewLogCashServiceMenuItem"] = () => new MenuStatus(Current.IsAgent && AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(Current.Site)),
+            ["ViewLogCashServiceMenuItem"] = () => new MenuStatus(Current.IsAgent && Core.Configurations.AppSettings.IsOfferedCashService(Current.Site)),
         };
+
+        public static readonly Dictionary<string, Func<MenuStatus>> MenuItemTypeStatusRules = _menuItemTypeStatusRules;
 
         private static bool CreateDirectMemberMenuItemVisible
             => (!Current.IsSubAcc || Current.SubPageAccess.GetPermission(PageAccessType.CreateAccount)) && (Current.IsSuper || Current.IsMaster);
