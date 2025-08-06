@@ -2,14 +2,9 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Utilities.IP.Criteria;
 
-public class GetIPInformationCriteria : CriteriaBase
+public class GetIPInformationCriteria(string ip) : CriteriaBase
 {
-    public GetIPInformationCriteria(string ip)
-    {
-        Ip = ip;
-    }
-
-    public string Ip { get; }
+    public string Ip { get; } = ip;
 
     public override string GetSettingKey() => "Acc_GetIPInfo_Full";
 
