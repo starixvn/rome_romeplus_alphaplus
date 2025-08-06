@@ -108,9 +108,9 @@
                 </label>
                 <span class="icon icon-information-outline" title="@CashServicesResx.MemberListNoteEditMultipleNotAvailable"></span>
                 <select id="serviceType" name="serviceType">
-                    <option value="2">@Resources.All</option>
-                    <option value="0">@Resources.Credit</option>
-                    <option value="1">@Resources.Cash</option>
+                    <option value="2" selected="@(Model.ServiceType == ServiceTypeConstants.All)">@Resources.All</option>
+                    <option value="0" selected="@(Model.ServiceType == ServiceTypeConstants.Credit)">@Resources.Credit</option>
+                    <option value="1" selected="@(Model.ServiceType == ServiceTypeConstants.Cash)">@Resources.Cash</option>
                 </select>
             </div>
         }
