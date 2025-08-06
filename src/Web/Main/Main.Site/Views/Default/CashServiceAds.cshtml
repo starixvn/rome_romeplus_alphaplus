@@ -2,7 +2,7 @@
 @using AlphaPlus.Core.Helpers
 @model CashServiceInfoViewModel
 
-@{
+@* @{
     var cdnUri = Model.CDNUri;
 }
 
@@ -735,15 +735,15 @@
         }
     });
 
-</script>
-@* <!DOCTYPE html>
+</script> *@
+<!DOCTYPE html>
 <html>
 
 <head>
     <title>CashServiceAds Page</title>
     <environment names="Production">
-        <link rel="stylesheet" href="@(Model.CDNUri)cash-member/edit-info/index.css?version=30/7/2025" />
-        <script type="module" src="@(Model.CDNUri)cash-member/edit-info/index.js?version=30/7/2025"></script>
+        <link rel="stylesheet" href="@(Model.CDNUri)advertisement/index.css?version=6/8/2025" />
+        <script type="module" src="@(Model.CDNUri)advertisement/index.js?version=6/8/2025"></script>
     </environment>
 </head>
 
@@ -755,7 +755,11 @@
             new {
                 applicationPath = "/",
                 advName = "CashServiceAds",
-                isCanUpdateCashServiceStatus = @Model.IsCanUpdateCashServiceStatus
+                isCanUpdateCashServiceStatus = @Model.IsCanUpdateCashServiceStatus,
+                isCanEditCashService = @Model.IsCanEditCashService,
+                isOfferedCashService = @Model.IsOfferedCashService,
+                isCashServiceEnabled = @Model.IsCashServiceEnabled,
+                nickName = @Model.NickName
             }
         ));
         const cdnUri = "@Html.Raw(Model.CDNUri)";
@@ -779,4 +783,4 @@
     @Html.AntiForgeryToken()
 </body>
 
-</html> *@
+</html>
