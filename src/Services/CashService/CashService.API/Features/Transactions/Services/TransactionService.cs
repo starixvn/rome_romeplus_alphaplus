@@ -19,7 +19,7 @@ public interface ITransactionService
 
     Task<TransactionModel> GetTransactionByIdAsync(long transactionId, int custId, short siteDbGroupId);
 
-    Task<ResultModel> RevertDepositTransactionToPending(RevertTransaction command);
+    Task<ResultModel> RevertDepositTransactionToPending(RevertTransaction model);
 
     Task<ResultModel> RevertWithdrawalTransactionToPending(RevertTransaction model);
 

@@ -17,7 +17,7 @@ public interface ICommonService
 
     Task<SetupCheckListModel> GetSetupCheckList(int custId);
 
-    Task WriteLogRequestResponse(AddRequestLogCommand requestLog, short custDbGroupId);
+    Task WriteLogRequestResponse(AddRequestLogCommand command, short custDbGroupId);
 }
 
 public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger logger) : ICommonService
@@ -65,27 +65,27 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
         return result;
     }
 
-    public async Task WriteLogRequestResponse(AddRequestLogCommand criteria, short custDbGroupId)
+    public async Task WriteLogRequestResponse(AddRequestLogCommand command, short custDbGroupId)
     {
-        var isSuccess = await ExecuteNonQuery(criteria);
+        var isSuccess = await ExecuteNonQuery(command);
 
         if (!isSuccess)
         {
-            criteria.CustDBGroupId = custDbGroupId;
-            await ExecuteNonQuery(criteria);
+            command.CustDBGroupId = custDbGroupId;
+            await ExecuteNonQuery(command);
         }
     }
 
-    private async Task<bool> ExecuteNonQuery(INonQueryCommand criteria)
+    private async Task<bool> ExecuteNonQuery(AddRequestLogCommand command)
     {
         try
         {
-            await repository.ExecuteAsync(criteria);
+            await repository.ExecuteAsync(command);
             return true;
         }
         catch (Exception ex)
         {
-            await logger.ErrorAsync($"{nameof(WriteLogRequestResponse)} failed. Key: {criteria.GetSettingKey()}, Criteria: {JsonConvert.SerializeObject(criteria)}", ex);
+            await logger.ErrorAsync($"{nameof(WriteLogRequestResponse)} failed. Key: {command.GetSettingKey()}, Criteria: {JsonConvert.SerializeObject(command)}", ex);
             return false;
         }
     }

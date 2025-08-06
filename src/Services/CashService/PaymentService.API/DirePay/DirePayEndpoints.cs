@@ -1,6 +1,6 @@
-using AlphaPlus.PaymentService.API.Shared;
-using AlphaPlus.PaymentService.API.Payments.Services;
 using AlphaPlus.PaymentService.API.Payments.Requests;
+using AlphaPlus.PaymentService.API.Payments.Services;
+using AlphaPlus.PaymentService.API.Shared;
 namespace AlphaPlus.PaymentService.API.DirePay;
 
 public static class DirePayEndpoints
@@ -10,9 +10,8 @@ public static class DirePayEndpoints
         var group = app.MapGroup("/api/payments/direpay").WithTags("DirePay");
         group.MapPost("/deposit", ManualDeposit);
         group.MapPost("/deposit-callback", ManualDeposit);
-        //.Produces<IEnumerable<int>>();
 
-        group.MapPost("/payout", async ([FromKeyedServices("DirePay")] IPaymentWithProviderService paymentWithProviderService, CreateManualWithdrawalRequest request) => 
+        group.MapPost("/payout", async ([FromKeyedServices("DirePay")] IPaymentWithProviderService paymentWithProviderService, CreateManualWithdrawalRequest request) =>
         {
             var result = await paymentWithProviderService.ProcessPayout(request);
             return Results.Ok(result);

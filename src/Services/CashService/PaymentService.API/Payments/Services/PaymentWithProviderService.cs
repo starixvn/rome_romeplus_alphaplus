@@ -9,19 +9,12 @@ public interface IPaymentWithProviderService
     Task<Result> ProcessPayout(CreateManualWithdrawalRequest request);
 }
 
-public class PaymentWithProviderService : IPaymentWithProviderService
+public class PaymentWithProviderService(
+    IPaymentProviderService paymentProvider,
+    PaymentProviderConfig paymentProviderConfig) : IPaymentWithProviderService
 {
-    private readonly IPaymentProviderService _paymentProvider;
-    private readonly PaymentProviderConfig _paymentProviderConfig;
-
-    public PaymentWithProviderService(
-        Fanex.Logging.ILogger logger,
-        IPaymentProviderService paymentProvider,
-        PaymentProviderConfig paymentProviderConfig)
-    {
-        _paymentProvider = paymentProvider;
-        _paymentProviderConfig = paymentProviderConfig;
-    }
+    private readonly IPaymentProviderService _paymentProvider = paymentProvider;
+    private readonly PaymentProviderConfig _paymentProviderConfig = paymentProviderConfig;
 
     public async Task<Result> ProcessPayout(CreateManualWithdrawalRequest request)
     {
@@ -32,7 +25,8 @@ public class PaymentWithProviderService : IPaymentWithProviderService
             return new Result(606, "Invalid payment provider");
         }
 
-        var providerResult = await provider.ProcessPayout(new PayoutRequest{
+        var providerResult = await provider.ProcessPayout(new PayoutRequest
+        {
             MerchantNo = request.MerchantNo,
             OrderNo = request.PaymentTo,
             Amount = (int)request.Amount,
@@ -47,9 +41,9 @@ public class PaymentWithProviderService : IPaymentWithProviderService
             ReverseUrl = request.PaymentTo,
             Extra = request.PaymentTo,
             Time = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(),
-            },
+        },
             _paymentProviderConfig);
 
         return providerResult;
     }
-} 
+}
