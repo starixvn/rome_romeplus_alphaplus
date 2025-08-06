@@ -1,8 +1,8 @@
+namespace AlphaPlus.CashService.Site.Features.Promotion.Requests;
+
 using System.Data.SqlTypes;
 using AlphaPlus.CashService.Site.Features.Shared.Requests;
 using Newtonsoft.Json;
-
-namespace AlphaPlus.CashService.Site.Features.Promotion.Requests;
 
 public class AddPromotionRequest : BaseActionRequest
 {
@@ -17,10 +17,36 @@ public class AddPromotionRequest : BaseActionRequest
 
     public List<PromotionProductSetting> ProductSettings { get; set; }
 
-
-    public bool IsValid()
+    public bool IsValid(out string errMsg)
     {
-        return SqlDateTime.MinValue.Value < FromDate && FromDate <= ToDate;
+        errMsg = string.Empty;
+        if (SqlDateTime.MinValue.Value < FromDate && FromDate <= ToDate)
+        {
+            errMsg = "Promotion period is valid.";
+            return false;
+        }
+
+        if (Contents == null || !Contents.Any())
+        {
+            errMsg = "At least one content is required.";
+            return false;
+        }
+
+        var enContent = Contents.FirstOrDefault(c => c.Language.Equals("en", StringComparison.CurrentCultureIgnoreCase));
+        if (enContent is null || string.IsNullOrEmpty(enContent.Title) || string.IsNullOrEmpty(enContent.Content) || enContent.Banner is null || enContent.Banner.Length == 0)
+        {
+            errMsg = "English content is required.";
+            return false;
+        }
+        const int bannerSizeLimit = 20 * 1024 * 1024;
+
+        if (Contents.Any(content => content.Banner.Length > bannerSizeLimit))
+        {
+            errMsg = "Banner size maximum is 20MB";
+            return false;
+        }
+
+        return true;
     }
 }
 
@@ -43,7 +69,6 @@ public class PromotionProductSetting
     public bool Unlimited { get; set; }
 
     public List<int> ProductIds { get; set; }
-
 }
 
 public class PromotionLanguageSetting

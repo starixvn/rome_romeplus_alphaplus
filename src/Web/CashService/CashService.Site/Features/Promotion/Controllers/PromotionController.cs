@@ -150,25 +150,32 @@ public class PromotionController(
     [HttpPost]
     public async Task<IActionResult> AddPromotion([FromForm] AddPromotionRequest request)
     {
+        var errMsg = CashServicesResx.InvalidParameters;
+        var result = new ResultModel { Code = 1, Message = errMsg };
+
         if (userSession.IsInternal)
         {
             return Unauthorized();
         }
 
         request.SetUserSession(userSession);
-        if (request.IsValid())
+        if (request.IsValid(out errMsg))
         {
             var files = promotionService.ProcessPromotionRequest(request);
-            var result = await httpClientHelper.PostAsync<object, ResultModel>("/api/promotions", request);
+            result = await promotionService.ProcessBannerUploadedAsync(files);
             if (result.IsSuccessful)
             {
-                promotionService.ProcessImageUploads(files);
+                result = await httpClientHelper.PostAsync<object, ResultModel>("/api/promotions", request);
+            }
+            else
+            {
+                promotionService.RemoveFailedImageAsync(files.Select(i => i.Key).ToArray());
             }
 
             return Json(result);
         }
 
-        return Json(new ResultModel { Code = 1, Message = "Invalid request" });
+        return Json(result);
     }
 
     [HttpPut]
@@ -181,20 +188,15 @@ public class PromotionController(
 
         request.SetUserSession(userSession);
 
-        if (request.IsValid())
+        var files = promotionService.ProcessPromotionRequest(request);
+        var url = $"/api/promotions/{promotionId}";
+        var result = await httpClientHelper.PutAsync<EditPromotionRequest, ResultModel>(url, request);
+        if (result.IsSuccessful)
         {
-            var files = promotionService.ProcessPromotionRequest(request);
-            var url = $"/api/promotions/{promotionId}";
-            var result = await httpClientHelper.PutAsync<EditPromotionRequest, ResultModel>(url, request);
-            if (result.IsSuccessful)
-            {
-                promotionService.ProcessImageUploads(files);
-            }
-
-            return Json(result);
+            await promotionService.ProcessBannerUploadedAsync(files);
         }
 
-        return Json(new ResultModel { Code = 1, Message = "Invalid request" });
+        return Json(result);
     }
 
     [HttpDelete]
