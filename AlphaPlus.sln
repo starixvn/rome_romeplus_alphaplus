@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.Products", "src\M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.RequestInfo", "src\Modules\AlphaPlus.RequestInfo\AlphaPlus.RequestInfo.csproj", "{0CF41E01-BF4D-4BBD-847B-17F0018808BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.RequestInfo.UnitTests", "src\Modules\AlphaPlus.RequestInfo.UnitTests\AlphaPlus.RequestInfo.UnitTests.csproj", "{B1C2D3E4-F5G6-7890-HIJK-LM1234567890}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.SecurityCode", "src\Modules\AlphaPlus.SecurityCode\AlphaPlus.SecurityCode.csproj", "{1067B04D-88F2-4972-980C-5913C063CB0A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.SmartPunter", "src\Modules\AlphaPlus.SmartPunter\AlphaPlus.SmartPunter.csproj", "{FA368E44-BD10-4EB1-B805-3BDD60267F9D}"
