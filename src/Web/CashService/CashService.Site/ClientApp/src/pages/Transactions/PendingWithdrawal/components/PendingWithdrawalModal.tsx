@@ -19,7 +19,7 @@ import { TransactionItem } from '../../../../services/interfaces/Transactions/Tr
 import { approveWithdrawal, rejectWithdrawal } from '../../../../services/pendingWithdrawalAPI.ts';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI.ts';
 import { TransactionTypes } from '../../../../constants/sharedConstants.ts';
-import UploadImage from '../../Components/UploadImage';
+import UploadImage from '../../../../components/UploadImage/UploadImage.tsx';
 import { LoadingFullComponent } from '../../../../components/LoadingComponent';
 import ConfirmPopup from '../../../../components/ConfirmPopup';
 import { ResultModel } from '../../../../services/interfaces/ResultModel.ts';

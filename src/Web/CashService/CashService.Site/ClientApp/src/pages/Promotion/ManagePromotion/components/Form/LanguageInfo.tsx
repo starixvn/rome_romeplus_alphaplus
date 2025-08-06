@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ButtonTabComponent } from '../../../../../components/Buttons/ButtonTabComponent';
 import { TitleComponent } from '../../../../../components/Title';
-import UploadImage from '../../../Components/UploadImage';
+import UploadImage from '../../../../../components/UploadImage/UploadImage';
 import CkEditorWrapper from '../../../../../components/CkEditorWrapper/CkEditorWrapper';
 
 export interface PromotionLangFields {
@@ -23,12 +23,9 @@ export interface PromotionInfoProps {
 }
 
 const getImageUrl = (banner: File | string | null): string | null => {
-  console.log('banner', banner);
   if (banner instanceof File) {
-    // If banner is a File object, create object URL
     return URL.createObjectURL(banner);
   }
-  // If banner is not a File object, return null (no image to display)
   return banner;
 };
 
@@ -85,9 +82,7 @@ export const BannerField: React.FC<{
 
   const handleSetImage = (file: File | null) => {
     setBanner(file);
-    // Update bannerName when a new file is uploaded
     if (file && setBannerName) {
-      // Set to null because backend will generate new filename
       setBannerName(null);
     } else if (!file && setBannerName) {
       setBannerName(null);
@@ -95,7 +90,7 @@ export const BannerField: React.FC<{
   };
 
   const fullBannerUrl = getImageUrl(banner);
-  // Cleanup object URL when component unmounts or banner changes
+
   React.useEffect(() => {
     return () => {
       if (banner instanceof File && fullBannerUrl && fullBannerUrl.startsWith('blob:')) {

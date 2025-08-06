@@ -1,5 +1,6 @@
 namespace AlphaPlus.CashService.Site.Features.Promotion.Services;
 
+using Fanex.Logging;
 using Helpers;
 using Newtonsoft.Json;
 using Requests;
@@ -13,7 +14,7 @@ public interface IPromotionService
     void ProcessImageUploads(Dictionary<string, IFormFile> files);
 }
 
-public class PromotionService : IPromotionService
+public class PromotionService(ILogger logger) : IPromotionService
 {
     public Dictionary<string, IFormFile> ProcessPromotionRequest(EditPromotionRequest request)
     {
@@ -66,11 +67,11 @@ public class PromotionService : IPromotionService
             }
             catch (Exception ex)
             {
-                Console.WriteLine($@"Background image processing failed: {ex.Message}");
+                await logger.ErrorAsync(ex.Message, ex);
             }
         });
     }
 
     private static string FormatBannerName(int userId, DateTime fromDate, string language, string fileExtension)
-        => $"{userId}_{fromDate:yyyyMMdd}_{language}{fileExtension}";
+        => $"{userId}_{fromDate:yyyyMMddHHmmsss}_{language}{fileExtension}";
 }

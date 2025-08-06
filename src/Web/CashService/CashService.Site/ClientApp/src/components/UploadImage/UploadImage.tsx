@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IconImage } from '../../../components/Icons';
+import { IconImage } from '../Icons';
 
 interface UploadImageProps {
   setImage: (image: File | null) => void;
