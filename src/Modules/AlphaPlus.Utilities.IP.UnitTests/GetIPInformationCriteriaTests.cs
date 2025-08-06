@@ -34,7 +34,7 @@ namespace AlphaPlus.Utilities.IP.UnitTests
         public void Constructor_WithNullIP_SetsIpProperty()
         {
             // Arrange
-            string? expectedIp = null;
+            string expectedIp = null;
 
             // Act
             var criteria = new GetIPInformationCriteria(expectedIp!);
