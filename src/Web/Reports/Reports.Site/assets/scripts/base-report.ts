@@ -30,6 +30,7 @@ class BaseReport {
         this.$reportForm.submit((event) => this.onSubmitReport(event));
 
         isSetStickyTableHeaders && this.$tableReport.stickyTableHeaders();
+        this.initCompactFeedback();
     }
 
     private initBaseReportLegend() {
@@ -155,5 +156,28 @@ class BaseReport {
     private addParamDrilldownable(hiddenFieldId: string, value: string) {
         const $hiddenField = this.$reportForm.find(`#${hiddenFieldId}`);
         $hiddenField.length && $hiddenField.val(value);
+    }
+
+    private initCompactFeedback() {
+        const compactFeeback = new CompactFeebackView();
+        compactFeeback.initCompactFeedback(true, false, this.getCurrentFormData());
+    }
+
+    protected getCurrentFormData(sortInfo = undefined) {
+        const formData: any = {};
+        const formDataArray = this.$reportForm.serializeArray();
+        $.each(formDataArray, function () {
+            formData[this.name] = this.value || '';
+        });
+
+        const isFilterVisible = !this.$reportForm.hasClass('hide') && !alphaReports.screenSmallThan768();
+        formData.IsFilterVisible = isFilterVisible;
+
+        const hasStackIcon = this.$pageTitle.find('#icon-stack-column').length > 0;
+        if (hasStackIcon) {
+            formData.IsStackMode = this.isStackMode();
+        }
+
+        return $.extend(formData, sortInfo || this.getSortInfo());
     }
 }

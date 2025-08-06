@@ -15,8 +15,8 @@
 
     void RenderProgressiveContribution(ProgressiveContributionEntity data)
     {
-        <td class="col-turnover">@data.Turnover.FormatNumber()</td>
-        <td class="col-contribution">@data.Contribution.FormatNumber4()</td>
+                <td class="col-turnover">@data.Turnover.FormatNumber()</td>
+                <td class="col-contribution">@data.Contribution.FormatNumber4()</td>
         if (Model.PageHeader.IsStackMode)
         {
             if (isSuperLevel)
@@ -48,32 +48,32 @@
             RenderContributionNumberCell("agent", data.ContributionAgent);
         }
 
-        <td class="col-company">@data.CompanyContribution.FormatNumber4()</td>
+                <td class="col-company">@data.CompanyContribution.FormatNumber4()</td>
     }
     void RenderContributionNumberCell(string level, decimal value)
     {
-        <td class="hidden-stack-mode col-@level-contribution-share">
+                <td class="hidden-stack-mode col-@level-contribution-share">
             @value.FormatNumber4()
-        </td>
+                </td>
     }
     void RenderStackContributionNumberCell(string level, params decimal[] cellValues)
     {
-        <td class="visible-stack-mode combinedcell col-@level-contribution-share-combined">
-            <ul>
+                <td class="visible-stack-mode combinedcell col-@level-contribution-share-combined">
+                    <ul>
                 @foreach (var cellValue in cellValues)
                 {
-                    <li>@cellValue.FormatNumber4()</li>
+                                <li>@cellValue.FormatNumber4()</li>
                 }
-            </ul>
-        </td>
+                    </ul>
+                </td>
     }
 }
-@section Styles {    
+@section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/progressivecontribution")
-    <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
 }
 @section Scripts {
-    <script src="~/bundles/progressivecontribution/progressivecontribution.js" asp-append-version="true"></script>
+        <script src="~/bundles/progressivecontribution/progressivecontribution.js" asp-append-version="true"></script>
 }
 @model ProgressiveContributionViewModel
 <report-title model="Model.PageHeader" />
@@ -82,14 +82,14 @@
     <product-multiselection model="Model.ProductViewModel" />
     @if (Model.IsHistoricReport)
     {
-        <month-picker model="Model.MonthPicker" />
-        <div class="form-group form-group-short">
-            <input type="submit" value="@Resources.Submit" class="btn-submit" />
-        </div>
+            <month-picker model="Model.MonthPicker" />
+            <div class="form-group form-group-short">
+                <input type="submit" value="@Resources.Submit" class="btn-submit" />
+            </div>
     }
     else
     {
-        <daterange-picker model="Model.DateRangePicker" />
+            <daterange-picker model="Model.DateRangePicker" />
     }
     <div class="form-group form-group-short hide">
         <span id="icon-information" class="ic-information"></span>
@@ -98,6 +98,12 @@
         <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="Excel"
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
+    @if (Model.ReportData.Any())
+    {
+            <div class="form-group">
+                <compact-feedback fid="24" />
+            </div>
+    }
     <div class="note">
         <span class="star">*</span>@Model.ViewDataInstructionMessage
         <a href="javascript:;" id="historic-report"
@@ -119,67 +125,67 @@
                 @Resources.ContributionShare</th>
             @if (isMasterOrSuperLevel)
             {
-                <th rowspan="2" class="visible-stack-mode col-combine">
+                    <th rowspan="2" class="visible-stack-mode col-combine">
                     @Resources.ContributionShare
-                    <br />
+                        <br />
                     @if (isMasterLevel)
                     {
-                        <span>(@Resources.Master/@Resources.Agent)</span>
+                                <span>(@Resources.Master/@Resources.Agent)</span>
                     }
                     else
                     {
-                        <span>(@Resources.Super/@Resources.Master/@Resources.Agent)</span>
+                                <span>(@Resources.Super/@Resources.Master/@Resources.Agent)</span>
                     }
-                </th>
+                    </th>
             }
             <th rowspan="2">@Resources.Company</th>
         </tr>
         <tr class="thead-row2">
             @if (isSuperLevel)
             {
-                <th class="hidden-stack-mode">@Resources.Super</th>
+                    <th class="hidden-stack-mode">@Resources.Super</th>
             }
             @if (isMasterOrSuperLevel)
             {
-                <th class="hidden-stack-mode">@Resources.Master</th>
+                    <th class="hidden-stack-mode">@Resources.Master</th>
             }
             <th class="hidden-stack-mode">@Resources.Agent</th>
         </tr>
     </thead>
     @if (Model.ReportData.Any())
     {
-        <tbody>
+            <tbody>
             @foreach (var data in Model.ReportData)
             {
-                <tr class="product-row bold" data-product-id="@data.ProductId">
-                    <td class="text-left col-username">@data.ProductName</td>
+                        <tr class="product-row bold" data-product-id="@data.ProductId">
+                            <td class="text-left col-username">@data.ProductName</td>
                     @{
                         RenderProgressiveContribution(data.Total);
                     }
-                </tr>
+                        </tr>
                 foreach (var item in data.ProgressiveContributions)
                 {
-                    <tr class="bet-type-row">
-                        <td class="text-left col-username">@item.BetTypeName</td>
+                                <tr class="bet-type-row">
+                                    <td class="text-left col-username">@item.BetTypeName</td>
                         @{
                             RenderProgressiveContribution(item);
                         }
-                    </tr>
+                                </tr>
                 }
             }
-        </tbody>
-        <tfoot>
-            <tr class="tbl-footer">
-                <td class="text-left col-username">@Resources.Total</td>
+            </tbody>
+            <tfoot>
+                <tr class="tbl-footer">
+                    <td class="text-left col-username">@Resources.Total</td>
                 @{
                     RenderProgressiveContribution(Model.Total);
                 }
-            </tr>
-        </tfoot>
+                </tr>
+            </tfoot>
     }
     else
     {
-        <no-information colspan="Model.ReportColumnsCount" />
+            <no-information colspan="Model.ReportColumnsCount" />
     }
 </table>
 <a class="hide" id="LoadLegendURL" asp-action="Legend"></a>

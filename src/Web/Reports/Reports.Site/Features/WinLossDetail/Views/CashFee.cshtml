@@ -22,7 +22,6 @@
 			username: '@Model.Username',
 			visibleColumns: '@Model.VisibleColumns',
 			userSelectedResourceIds: '@Model.UserSelectedResourceIds'
-
 		}
 	</script>
 	@StaticResources.AssetScripts.RenderCommon("/bundles/site-reports/winlossdetail")
@@ -66,6 +65,7 @@
 			</div>
 			<div class="list-icon">
 				<ul>
+					<li><compact-feedback fid="32" bootstrap-tooltip="true" /></li>
 					<li>
 						<span id="icon-copy" class="ic-copy" data-toggle="tooltip" data-placement="top"
 							title="@Resources.Copy"></span>

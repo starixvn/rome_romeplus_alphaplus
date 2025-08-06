@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="announcement" xml:space="preserve">
+    <value>Thông báo</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>Đóng</value>
+  </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>Thông tin chưa được cập nhật</value>
   </data>
@@ -138,8 +144,8 @@
   <data name="NewBetTypeEffectDate1" xml:space="preserve">
     <value>Các loại cược mới của Bóng Đá sẽ có hiệu lực từ {0}:</value>
   </data>
-  <data name="announcement" xml:space="preserve">
-    <value>Thông báo</value>
+  <data name="viewAnnouncement" xml:space="preserve">
+    <value>Xem thông báo</value>
   </data>
   <data name="normalAnnouncement" xml:space="preserve">
     <value>Thông báo chung</value>
@@ -159,29 +165,20 @@
   <data name="submit" xml:space="preserve">
     <value>Xác nhận</value>
   </data>
+  <data name="message" xml:space="preserve">
+    <value>Nội dung</value>
+  </data>
   <data name="highlights" xml:space="preserve">
     <value>HIGHLIGHTS</value>
   </data>
   <data name="more" xml:space="preserve">
     <value>Thêm</value>
   </data>
-  <data name="New" xml:space="preserve">
-    <value>Mới</value>
-  </data>
   <data name="SystemUpdate" xml:space="preserve">
     <value>Cập nhật</value>
   </data>
-  <data name="systemAnnouncement" xml:space="preserve">
-    <value>Thông báo hệ thống</value>
-  </data>
-  <data name="close" xml:space="preserve">
-    <value>Đóng</value>
-  </data>
-  <data name="message" xml:space="preserve">
-    <value>Nội dung</value>
-  </data>
-  <data name="viewAnnouncement" xml:space="preserve">
-    <value>Xem thông báo</value>
+  <data name="normal" xml:space="preserve">
+    <value>Chung</value>
   </data>
   <data name="Personal" xml:space="preserve">
     <value>Cá nhân</value>
@@ -189,14 +186,32 @@
   <data name="Special" xml:space="preserve">
     <value>Đặc biệt</value>
   </data>
+  <data name="New" xml:space="preserve">
+    <value>Mới</value>
+  </data>
+  <data name="systemAnnouncement" xml:space="preserve">
+    <value>Thông báo hệ thống</value>
+  </data>
   <data name="system" xml:space="preserve">
     <value>Hệ thống</value>
   </data>
   <data name="TelegramChatbot" xml:space="preserve">
     <value>Hướng dẫn sử dụng Telegram Chatbot</value>
   </data>
-  <data name="NotAuthorized" xml:space="preserve">
-    <value>Bạn không được cho phép sử dụng chức năng này.</value>
+  <data name="Feedback" xml:space="preserve">
+    <value>Góp ý</value>
+  </data>
+  <data name="Feedback_Greeting" xml:space="preserve">
+    <value>Chúng tôi rất cần những ý kiến từ bạn</value>
+  </data>
+  <data name="Feedback_Message" xml:space="preserve">
+    <value>Theo bạn tính năng nào cần thay đổi? Tính năng nào chúng tôi chưa có?</value>
+  </data>
+  <data name="Feedback_MessageLimit" xml:space="preserve">
+    <value>Bạn đã đạt đến giới hạn 4,000 ký tự.</value>
+  </data>
+  <data name="Feedback_Rate" xml:space="preserve">
+    <value>Đánh giá trải nghiệm của bạn</value>
   </data>
   <data name="Terrible" xml:space="preserve">
     <value>Thất vọng</value>
@@ -213,77 +228,56 @@
   <data name="Amazing" xml:space="preserve">
     <value>Tuyệt vời</value>
   </data>
-  <data name="Feedback" xml:space="preserve">
-    <value>Góp ý</value>
-  </data>
-  <data name="Feedback_Greeting" xml:space="preserve">
-    <value>Chúng tôi rất cần những ý kiến từ bạn</value>
-  </data>
-  <data name="Feedback_Message" xml:space="preserve">
-    <value>Theo bạn tính năng nào cần thay đổi? Tính năng nào chúng tôi chưa có?</value>
-  </data>
-  <data name="Feedback_MessageLimit" xml:space="preserve">
-    <value>Bạn đã đạt đến giới hạn 4,000 ký tự.</value>
-  </data>
-  <data name="Feedback_NoInput" xml:space="preserve">
-    <value>Xin chia sẻ cảm nhận và đánh giá mức độ hài lòng của bạn dành cho chúng tôi</value>
-  </data>
-  <data name="Feedback_Rate" xml:space="preserve">
-    <value>Đánh giá trải nghiệm của bạn</value>
+  <data name="Later" xml:space="preserve">
+    <value>Để sau</value>
   </data>
   <data name="Feedback_Success" xml:space="preserve">
     <value>Cảm ơn những nhận xét quý giá của bạn.</value>
   </data>
-  <data name="Later" xml:space="preserve">
-    <value>Để sau</value>
+  <data name="Feedback_NoInput" xml:space="preserve">
+    <value>Xin chia sẻ cảm nhận và đánh giá mức độ hài lòng của bạn dành cho chúng tôi</value>
   </data>
-  <data name="No" xml:space="preserve">
-    <value>Số</value>
+  <data name="Feedback_NoInputError" xml:space="preserve">
+    <value>Xin chia sẻ cảm nhận của bạn dành cho chúng tôi</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>Bạn không được cho phép sử dụng chức năng này.</value>
   </data>
   <data name="BackupDomains" xml:space="preserve">
     <value>Tên Miền Dự Phòng</value>
   </data>
-  <data name="CopyDomain" xml:space="preserve">
-    <value>Sao chép</value>
-  </data>
   <data name="Domain" xml:space="preserve">
     <value>Tên Miền</value>
   </data>
-  <data name="Down" xml:space="preserve">
-    <value>Tạm dừng</value>
-  </data>
-  <data name="InUse" xml:space="preserve">
-    <value>Đang dùng</value>
-  </data>
-  <data name="normal2" xml:space="preserve">
-    <value>Bình thường</value>
-  </data>
-  <data name="normal" xml:space="preserve">
-    <value>Chung</value>
-  </data>
-  <data name="VeryGood" xml:space="preserve">
-    <value>Rất nhanh</value>
+  <data name="CopyDomain" xml:space="preserve">
+    <value>Sao chép</value>
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>Làm mới</value>
   </data>
-  <data name="Status" xml:space="preserve">
-    <value>Trạng Thái</value>
+  <data name="Down" xml:space="preserve">
+    <value>Tạm dừng</value>
+  </data>
+  <data name="VeryGood" xml:space="preserve">
+    <value>Rất nhanh</value>
   </data>
   <data name="Copied" xml:space="preserve">
     <value>Đã sao chép</value>
   </data>
-  <data name="No_Duplicate[1]" xml:space="preserve">
+  <data name="InUse" xml:space="preserve">
+    <value>Đang dùng</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Trạng Thái</value>
+  </data>
+  <data name="No" xml:space="preserve">
     <value>Số</value>
   </data>
   <data name="Loading" xml:space="preserve">
     <value>Đang tải </value>
   </data>
-  <data name="No_Duplicate[1]_Duplicate[1]" xml:space="preserve">
-    <value>Số</value>
-  </data>
-  <data name="Loading_Duplicate[1]" xml:space="preserve">
-    <value>Đang tải </value>
+  <data name="normal2" xml:space="preserve">
+    <value>Bình thường</value>
   </data>
   <data name="Fast" xml:space="preserve">
     <value>Nhanh</value>
@@ -312,18 +306,18 @@
   <data name="Others" xml:space="preserve">
     <value>Khác</value>
   </data>
-  <data name="GuideNote" xml:space="preserve">
-    <value>Theo mặc định, thông báo sẽ được hiển thị từ lần xem cuối đến hôm nay.
-Thông Báo Chung và Tin Nhắn Cá Nhân sẽ được lưu đến 3 tháng.</value>
-  </data>
-  <data name="Pager_DisplayItems" xml:space="preserve">
-    <value>Hiển thị {from} đến {to} trên {total} thông báo</value>
-  </data>
   <data name="Page" xml:space="preserve">
     <value>Trang</value>
   </data>
   <data name="of" xml:space="preserve">
     <value>trên</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>Hiển thị {from} đến {to} trên {total} thông báo</value>
+  </data>
+  <data name="GuideNote" xml:space="preserve">
+    <value>Theo mặc định, thông báo sẽ được hiển thị từ lần xem cuối đến hôm nay.
+Thông Báo Chung và Tin Nhắn Cá Nhân sẽ được lưu đến 3 tháng.</value>
   </data>
   <data name="FeedbackOnFunctionTitle" xml:space="preserve">
     <value>Giúp chúng tôi cải thiện {0}</value>
@@ -363,5 +357,14 @@ Thông Báo Chung và Tin Nhắn Cá Nhân sẽ được lưu đến 3 tháng.</
   </data>
   <data name="FeedbackSurveyTitle" xml:space="preserve">
     <value>Hãy giúp chúng tôi &lt;span&gt;cải thiện!&lt;/span&gt;</value>
+  </data>
+  <data name="Loading_Duplicate[1]" xml:space="preserve">
+    <value>Đang tải </value>
+  </data>
+  <data name="No_Duplicate[1]" xml:space="preserve">
+    <value>Số</value>
+  </data>
+  <data name="No_Duplicate[1]_Duplicate[1]" xml:space="preserve">
+    <value>Số</value>
   </data>
 </root>

@@ -2028,7 +2028,8 @@
         "outputFileName": "bundles-v2/site-reports/outstanding.css",
         "inputFiles": [
             "styles-v2/components/multiselect.css",
-            "styles-v2/components/tables.css"
+            "styles-v2/components/tables.css",
+            "styles-v2/components/tooltip.css"
         ]
     },
     {
@@ -2037,7 +2038,8 @@
             "styles-v2/components/multiselect.css",
             "styles-v2/components/tables.css",
             "styles-v2/components/daterange-dropdown.css",
-            "styles-v2/components/bootstrap-daterangepicker.css"
+            "styles-v2/components/bootstrap-daterangepicker.css",
+            "styles-v2/components/tooltip.css"
         ]
     },
     {
@@ -2069,7 +2071,8 @@
         "inputFiles": [
             "styles-v2/components/monthpicker.css",
             "styles-v2/components/multiselect.css",
-            "styles-v2/components/tables.css"
+            "styles-v2/components/tables.css",
+            "styles-v2/components/tooltip.css"
         ]
     },
     {
@@ -2098,7 +2101,8 @@
             "styles-v2/components/daterange-dropdown.css",
             "styles-v2/components/multiselect.css",
             "styles-v2/components/bootstrap-daterangepicker.css",
-            "styles-v2/components/tables.css"
+            "styles-v2/components/tables.css",
+            "styles-v2/components/tooltip.css"
         ]
     },
     {
@@ -2107,7 +2111,8 @@
             "styles-v2/components/daterange-dropdown.css",
             "styles-v2/components/multiselect.css",
             "styles-v2/components/bootstrap-daterangepicker.css",
-            "styles-v2/components/tables.css"
+            "styles-v2/components/tables.css",
+            "styles-v2/components/tooltip.css"
         ]
     },
     {
@@ -2117,7 +2122,8 @@
             "styles-v2/components/daterange-dropdown.css",
             "styles-v2/components/bootstrap-daterangepicker.css",
             "styles-v2/components/tables.css",
-            "styles-v2/components/pager.css"
+            "styles-v2/components/pager.css",
+            "styles-v2/components/tooltip.css"
         ]
     },
     {
@@ -2138,7 +2144,8 @@
             "styles-v2/components/multiselect.css",
             "styles-v2/components/bootstrap-daterangepicker.css",
             "styles-v2/components/tables.css",
-            "styles-v2/components/pager.css"
+            "styles-v2/components/pager.css",
+            "styles-v2/components/tooltip.css"
         ]
     },
     {
@@ -2151,7 +2158,8 @@
             "styles-v2/components/tables.css",
             "styles-v2/components/pager.css",
             "styles-v2/vendors/tipsy.css",
-            "styles-v2/components/tipsy-modify.css"
+            "styles-v2/components/tipsy-modify.css",
+            "styles-v2/components/tooltip.css"
         ]
     },
     {
@@ -2161,7 +2169,8 @@
             "styles-v2/components/tables.css",
             "styles-v2/components/daterange-dropdown.css",
             "styles-v2/components/monthpicker.css",
-            "styles-v2/components/bootstrap-daterangepicker.css"
+            "styles-v2/components/bootstrap-daterangepicker.css",
+            "styles-v2/components/tooltip.css"
         ]
     },
     {

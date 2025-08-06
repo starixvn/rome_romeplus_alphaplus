@@ -11,13 +11,13 @@
     Layout = "_Layout";
     ViewData["Title"] = Model.PageHeader.Title;
 }
-@section Styles {    
+@section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/winlossanalysischart")
-    <link rel="stylesheet" href="~/bundles-v2/winlossanalysischart.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/bundles-v2/winlossanalysischart.css" asp-append-version="true" />
 }
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles/site-reports/winloss-analysis-chart")
-    <script src="~/bundles/winlossanalysischart/winlossanalysischart.js" asp-append-version="true"></script>
+        <script src="~/bundles/winlossanalysischart/winlossanalysischart.js" asp-append-version="true"></script>
 }
 @model WinLossAnalysisChartViewModel
 <report-title model="Model.PageHeader" />
@@ -34,6 +34,12 @@
     <div class="form-group hide">
         <span id="icon-information" class="ic-information"></span>
     </div>
+    @if (Model.ReportData.Any())
+    {
+            <div class="form-group">
+                <compact-feedback fid="18" />
+            </div>
+    }
     <div class="note">
         <span class="star">*</span>@Model.ViewDataInstructionMessage
     </div>
@@ -59,16 +65,16 @@
                     {
                         foreach (var data in Model.ReportData)
                         {
-                            <tr>
-                                <td>@Model.ToShortMonthNameAndYear(data.WinLossDate)</td>
-                                <td>@data.WinLoss.FormatNumber()</td>
-                                <td>@data.Turnover.FormatNumber()</td>
-                            </tr>
+                                    <tr>
+                                        <td>@Model.ToShortMonthNameAndYear(data.WinLossDate)</td>
+                                        <td>@data.WinLoss.FormatNumber()</td>
+                                        <td>@data.Turnover.FormatNumber()</td>
+                                    </tr>
                         }
                     }
                     else
                     {
-                        <no-information colspan="3" />
+                            <no-information colspan="3" />
                     }
                 </tbody>
             </table>

@@ -27,6 +27,12 @@
         <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="ConsolidationDetailExcel"
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
+    @if (Model.ReportData.HasData)
+    {
+        <div class="form-group">
+            <compact-feedback fid="27" />
+        </div>
+    }
     <input type="hidden" asp-for="CustId" />
     <input type="hidden" asp-for="CustName" />
     <input type="hidden" id="CustLevelId" name="CustLevelId" value="@Model.CustLevel.Value.ToString()" />

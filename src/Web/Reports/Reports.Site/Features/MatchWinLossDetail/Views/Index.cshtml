@@ -95,6 +95,12 @@
         <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="Excel"
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
+    @if (Model.ReportData.HasData)
+    {
+        <div class="form-group form-group-like">
+            <compact-feedback fid="16" />
+        </div>
+    }
     <div class="note">
         <span class="star">*</span>@Model.ViewDataInstructionMessage
     </div>

@@ -179,7 +179,7 @@
         }
     }
 }
-@section Styles {    
+@section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/bonusdetail")
     <link rel="stylesheet" href="~/bundles-v2/bonusdetail.css" asp-append-version="true" />
 }
@@ -187,7 +187,7 @@
     <script src="~/bundles/bonusdetail/bonusdetail.js" asp-append-version="true"></script>
 }
 @model BonusDetailViewModel
-<report-title model="Model.PageHeader" />
+<report-title model="Model.PageHeader" fid="28" />
 <form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
     id="report-form">
     <div class="form-group">

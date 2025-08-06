@@ -55,7 +55,8 @@ public class FeedbackServiceImpl : FeedbackService
             param.Rate,
             param.FunctionId,
             param.XMLFeedback,
-            await GetFeedbackNewStatusId()));
+            await GetFeedbackNewStatusId(),
+            param.ExtraInfo));
 
     private Task<int> GetFeedbackNewStatusId()
         => cacheService.GetOrCreateAsync(

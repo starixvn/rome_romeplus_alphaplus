@@ -65,6 +65,12 @@
         <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="Excel"
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
+    @if (Model.ReportData.HasData)
+    {
+        <div class="form-group">
+            <compact-feedback fid="30" />
+        </div>
+    }
     <div class="note">
         <span class="star">*</span>@Resources.IPMatchingNote
     </div>

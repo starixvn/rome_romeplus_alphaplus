@@ -13,6 +13,11 @@
       <DependentUpon>CashServicesResx.resx</DependentUpon>
       <Generator>PublicResXFileCodeGenerator</Generator>
     </Compile>
+    <Compile Update="Common\CommonResx.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CommonResx.resx</DependentUpon>
+    </Compile>
     <Compile Update="Settings\ViewLog\TrackingValueResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -23,6 +28,10 @@
     <EmbeddedResource Update="CashServices\CashServicesResx.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CashServicesResx.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Common\CommonResx.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CommonResx.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Main\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

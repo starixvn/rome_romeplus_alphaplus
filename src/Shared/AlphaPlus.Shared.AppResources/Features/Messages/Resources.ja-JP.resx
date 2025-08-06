@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="announcement" xml:space="preserve">
+    <value>通知</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>閉じる</value>
+  </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>情報がありません</value>
   </data>
@@ -135,8 +141,17 @@
   <data name="Notice_3" xml:space="preserve">
     <value>あなたの上層ラインが、下層ライン向けにFishing Worldを有効にしました。設定ページにアクセスして、自分の保有ポジション設定を構成してください。</value>
   </data>
-  <data name="announcement" xml:space="preserve">
-    <value>通知</value>
+  <data name="viewAnnouncement" xml:space="preserve">
+    <value>告知を見る</value>
+  </data>
+  <data name="normalAnnouncement" xml:space="preserve">
+    <value>特別告知</value>
+  </data>
+  <data name="specialAnnouncement" xml:space="preserve">
+    <value>通常告知</value>
+  </data>
+  <data name="personalMessage" xml:space="preserve">
+    <value>個人メッセージ</value>
   </data>
   <data name="from" xml:space="preserve">
     <value>から</value>
@@ -156,65 +171,14 @@
   <data name="SystemUpdate" xml:space="preserve">
     <value>System Update</value>
   </data>
-  <data name="Loading" xml:space="preserve">
-    <value>ロード中</value>
-  </data>
-  <data name="Page" xml:space="preserve">
-    <value>ページ</value>
-  </data>
-  <data name="of" xml:space="preserve">
-    <value>の</value>
-  </data>
-  <data name="NotAuthorized" xml:space="preserve">
-    <value>この機能を使用する権限がありません。</value>
-  </data>
-  <data name="Others" xml:space="preserve">
-    <value>他の</value>
-  </data>
-  <data name="Pager_DisplayItems" xml:space="preserve">
-    <value>全 {total} 件中、{from} 件目から {to} 件目を表示</value>
-  </data>
-  <data name="Status" xml:space="preserve">
-    <value>状態</value>
-  </data>
-  <data name="CopyDomain" xml:space="preserve">
-    <value>複写</value>
-  </data>
-  <data name="Copied" xml:space="preserve">
-    <value>複写した</value>
-  </data>
-  <data name="close" xml:space="preserve">
-    <value>閉じる</value>
-  </data>
-  <data name="Feedback" xml:space="preserve">
-    <value>フィードバック</value>
-  </data>
-  <data name="FeedbackTitle" xml:space="preserve">
-    <value>改善にご協力ください！</value>
-  </data>
-  <data name="FeedbackOnFunctionTitle" xml:space="preserve">
-    <value>{0} の改善にご協力ください。</value>
-  </data>
-  <data name="Feedback_Duplicate[1]" xml:space="preserve">
-    <value>フィードバック</value>
-  </data>
-  <data name="New" xml:space="preserve">
-    <value>新しい</value>
-  </data>
   <data name="normal" xml:space="preserve">
     <value>普通</value>
-  </data>
-  <data name="normalAnnouncement" xml:space="preserve">
-    <value>特別告知</value>
-  </data>
-  <data name="personalMessage" xml:space="preserve">
-    <value>個人メッセージ</value>
   </data>
   <data name="Special" xml:space="preserve">
     <value>特別</value>
   </data>
-  <data name="specialAnnouncement" xml:space="preserve">
-    <value>通常告知</value>
+  <data name="New" xml:space="preserve">
+    <value>新しい</value>
   </data>
   <data name="systemAnnouncement" xml:space="preserve">
     <value>システムからのお知らせ</value>
@@ -222,7 +186,43 @@
   <data name="system" xml:space="preserve">
     <value>システム</value>
   </data>
-  <data name="viewAnnouncement" xml:space="preserve">
-    <value>告知を見る</value>
+  <data name="Feedback" xml:space="preserve">
+    <value>フィードバック</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>この機能を使用する権限がありません。</value>
+  </data>
+  <data name="CopyDomain" xml:space="preserve">
+    <value>複写</value>
+  </data>
+  <data name="Copied" xml:space="preserve">
+    <value>複写した</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状態</value>
+  </data>
+  <data name="Loading" xml:space="preserve">
+    <value>ロード中</value>
+  </data>
+  <data name="FeedbackTitle" xml:space="preserve">
+    <value>改善にご協力ください！</value>
+  </data>
+  <data name="Others" xml:space="preserve">
+    <value>他の</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>ページ</value>
+  </data>
+  <data name="of" xml:space="preserve">
+    <value>の</value>
+  </data>
+  <data name="Pager_DisplayItems" xml:space="preserve">
+    <value>全 {total} 件中、{from} 件目から {to} 件目を表示</value>
+  </data>
+  <data name="FeedbackOnFunctionTitle" xml:space="preserve">
+    <value>{0} の改善にご協力ください。</value>
+  </data>
+  <data name="Feedback_Duplicate[1]" xml:space="preserve">
+    <value>フィードバック</value>
   </data>
 </root>

@@ -18,6 +18,8 @@ interface Window {
     $: JQueryStatic;
     indexManager: any;
     alpha: any;
+    popupManager: any;
+    afterDislikeSubmitCallback: () => void;
 }
 
 declare var TipsyHelper;

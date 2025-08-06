@@ -162,6 +162,9 @@
   <data name="ConfirmAllowOutrightViewModelInCaseEnabledMessage" xml:space="preserve">
     <value>Are you sure you want to allow outright betting for this customer?</value>
   </data>
+  <data name="ConfirmAllowOutrightViewModelText" xml:space="preserve">
+    <value>Outright</value>
+  </data>
   <data name="ConfirmClosedViewModelInCaseChangeClosedStatusMessage" xml:space="preserve">
     <value>Are you sure you want to change Closed status for this customer?</value>
   </data>
@@ -170,6 +173,9 @@
   </data>
   <data name="ConfirmClosedViewModelInCaseOpenedMemberMessage" xml:space="preserve">
     <value>Are you sure you want to open this account?</value>
+  </data>
+  <data name="ConfirmClosedViewModelText" xml:space="preserve">
+    <value>閉鎖</value>
   </data>
   <data name="ConfirmDoubleCommViewModelInCaseDisabledMasterOrAgentMessage" xml:space="preserve">
     <value>Are you sure you want to disallow Double Commission feature for Sportsbook's Losing tickets on this customer? Warning, all members under this agent will be disallowed as well!</value>
@@ -183,6 +189,9 @@
   <data name="ConfirmDoubleCommViewModelInCaseEnableMasterOrAgentMessage" xml:space="preserve">
     <value>Are you sure you want to allow Double Commission feature for Sportsbook's Losing tickets on this customer?</value>
   </data>
+  <data name="ConfirmDoubleCommViewModelText" xml:space="preserve">
+    <value>Double Comm</value>
+  </data>
   <data name="ConfirmSuspendedViewModelInCaseSuspendedMasterOrAgentMessage" xml:space="preserve">
     <value>Are you sure you want to change Suspend status for this customer? \n Warning, all members under this agent can't place bet!</value>
   </data>
@@ -195,6 +204,9 @@
   <data name="ConfirmSuspendedViewModelInCaseUnsuspendedMemberMessage" xml:space="preserve">
     <value>Are you sure you want to change Suspend status for this customer?</value>
   </data>
+  <data name="ConfirmSuspendedViewModelText" xml:space="preserve">
+    <value>サスペンド済み</value>
+  </data>
   <data name="CreatedDate" xml:space="preserve">
     <value>作成日</value>
   </data>
@@ -203,6 +215,9 @@
   </data>
   <data name="DownlineList" xml:space="preserve">
     <value>Downline List</value>
+  </data>
+  <data name="EditInfoViewModelText" xml:space="preserve">
+    <value>Info</value>
   </data>
   <data name="Fax" xml:space="preserve">
     <value>ファックス</value>
@@ -264,11 +279,17 @@
   <data name="Outstanding" xml:space="preserve">
     <value>未払い</value>
   </data>
-  <data name="Phone" xml:space="preserve">
-    <value>電話番号</value>
+  <data name="ResetPasswordViewModelText" xml:space="preserve">
+    <value>Reset Password</value>
+  </data>
+  <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
+    <value>セキュリティコードをリセット</value>
   </data>
   <data name="Setting" xml:space="preserve">
     <value>設定</value>
+  </data>
+  <data name="SportsbookMinPTViewModelText" xml:space="preserve">
+    <value>SB's Min PT</value>
   </data>
   <data name="Statement" xml:space="preserve">
     <value>ステートメント</value>
@@ -297,6 +318,9 @@
   <data name="TotalMemberActiveClosed" xml:space="preserve">
     <value>有効/閉鎖の合計メンバー</value>
   </data>
+  <data name="TransferViewModelText" xml:space="preserve">
+    <value>送金</value>
+  </data>
   <data name="UsedCredit" xml:space="preserve">
     <value>使用貸付金額</value>
   </data>
@@ -309,21 +333,6 @@
   <data name="YesterdayCash" xml:space="preserve">
     <value>昨日までの口座残高</value>
   </data>
-  <data name="ConfirmAllowOutrightViewModelText" xml:space="preserve">
-    <value>Outright</value>
-  </data>
-  <data name="ConfirmClosedViewModelText" xml:space="preserve">
-    <value>閉鎖</value>
-  </data>
-  <data name="ConfirmDoubleCommViewModelText" xml:space="preserve">
-    <value>Double Comm</value>
-  </data>
-  <data name="ConfirmSuspendedViewModelText" xml:space="preserve">
-    <value>サスペンド済み</value>
-  </data>
-  <data name="EditInfoViewModelText" xml:space="preserve">
-    <value>Info</value>
-  </data>
   <data name="NoInfo" xml:space="preserve">
     <value>情報がありません</value>
   </data>
@@ -333,20 +342,8 @@
   <data name="RemoveOtpViewModelText" xml:space="preserve">
     <value>Remove OTP</value>
   </data>
-  <data name="ResetPasswordViewModelText" xml:space="preserve">
-    <value>Reset Password</value>
-  </data>
-  <data name="ResetSecurityCodeViewModelText" xml:space="preserve">
-    <value>セキュリティコードをリセット</value>
-  </data>
   <data name="ShowContactInfo" xml:space="preserve">
     <value>Contact Info</value>
-  </data>
-  <data name="SportsbookMinPTViewModelText" xml:space="preserve">
-    <value>SB's Min PT</value>
-  </data>
-  <data name="TransferViewModelText" xml:space="preserve">
-    <value>送金</value>
   </data>
   <data name="UpdateSuccessfully" xml:space="preserve">
     <value>正常に更新されました。</value>
@@ -377,6 +374,9 @@
   </data>
   <data name="ThisAccountWasSuspended" xml:space="preserve">
     <value>This account was suspended.</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>電話番号</value>
   </data>
   <data name="And" xml:space="preserve">
     <value>and</value>
@@ -423,11 +423,11 @@
   <data name="ClosedByArchive" xml:space="preserve">
     <value>This account was closed by inactivity.</value>
   </data>
-  <data name="ShowLess" xml:space="preserve">
-    <value>Show Less</value>
-  </data>
   <data name="ShowMore" xml:space="preserve">
     <value>Show More</value>
+  </data>
+  <data name="ShowLess" xml:space="preserve">
+    <value>Show Less</value>
   </data>
   <data name="lblNew" xml:space="preserve">
     <value>新しい</value>
@@ -443,5 +443,11 @@
   </data>
   <data name="ErrorMessage_50040" xml:space="preserve">
     <value>このメンバーはキャッシュメンバーではありません。</value>
+  </data>
+  <data name="LikeTooltip" xml:space="preserve">
+    <value>Satisfied with this feature</value>
+  </data>
+  <data name="DislikeTooltip" xml:space="preserve">
+    <value>Need improvement</value>
   </data>
 </root>

@@ -55,6 +55,7 @@ class WinLossDetailView extends BaseReportNew {
         this.globalFormData = currentFromData;
         this.$tblReportContainer = $('#tbl-report-container');
         this.$tblReport = this.$tblReportContainer.find('#tbl-report');
+        this.compactFeeback.initCompactFeedback(true, true, currentFromData);
 
         this.dateRangeComponent.render({ maxDays: 92, onClosed: () => this.getWinLossDetail() });
         this.productComponent.render(productList, productDetailList, () => this.getWinLossDetail());
@@ -216,6 +217,7 @@ class WinLossDetailView extends BaseReportNew {
         $.get(`${url}?${queryString}`, (html) => {
             this.$tblReportContainer.html(html);
             this.$tblReport = this.$tblReportContainer.find('#tbl-report');
+            this.compactFeeback.initCompactFeedback(true, true, queryStringObject);
             this.getDataSuccess();
             this.changeReportTitleAndLevelTypeFilter(currentCustLevelId);
             this.globalFormData = queryStringObject;

@@ -15,42 +15,42 @@
 
     void RenderWinLossDetailByPT(SuperWinLossDetailByPTModel winLossDetailByPT)
     {
-        <tr class="pt-row" data-pt-value="@winLossDetailByPT.SuperPT" data-is-hide="false">
-            <td class="text-left col-username bold active" data-sortedvalue="@winLossDetailByPT.SuperPT">
-                <div class="text-icon-left">
-                    <span class="ic-arrow-down"></span>
+                <tr class="pt-row" data-pt-value="@winLossDetailByPT.SuperPT" data-is-hide="false">
+                    <td class="text-left col-username bold active" data-sortedvalue="@winLossDetailByPT.SuperPT">
+                        <div class="text-icon-left">
+                            <span class="ic-arrow-down"></span>
                     @winLossDetailByPT.SuperPTPercentage
-                </div>
-            </td>
+                        </div>
+                    </td>
             @{
                 RenderWinLossDetail(winLossDetailByPT.Total);
             }
-        </tr>
+                </tr>
     }
 
     void RenderWinLossDetailByProduct(SuperWinLossDetailByPTEntity winLossDetail, bool isTotalRow)
     {
         var rowClass = isTotalRow ? "tbl-footer" : "pt-product-row";
-        <tr class="@rowClass" data-pt-value="@winLossDetail.SuperPT">
-            <td class="text-left col-username" @(isTotalRow ? string.Empty : "data-sortedvalue=" + winLossDetail.ProductId)>
+                <tr class="@rowClass" data-pt-value="@winLossDetail.SuperPT">
+                    <td class="text-left col-username" @(isTotalRow ? string.Empty : "data-sortedvalue=" + winLossDetail.ProductId)>
                 @(isTotalRow ? Resources.Total : winLossDetail.ProductName)</td>
             @{
                 RenderWinLossDetail(winLossDetail);
             }
-        </tr>
+                </tr>
     }
 
     void RenderWinLossDetail(SuperWinLossDetailByPTEntity winLossDetail)
     {
         if (Model.PageHeader.IsStackMode)
         {
-            <td class="visible-stack-mode combinedcell col-turnover-combined">
-                <ul>
-                    <li>@winLossDetail.Turnover.FormatNumber()</li>
-                    <li>@winLossDetail.NetTurnover.FormatNumber()</li>
-                    <li>@winLossDetail.GrossComm.FormatNumber()</li>
-                </ul>
-            </td>
+                        <td class="visible-stack-mode combinedcell col-turnover-combined">
+                            <ul>
+                                <li>@winLossDetail.Turnover.FormatNumber()</li>
+                                <li>@winLossDetail.NetTurnover.FormatNumber()</li>
+                                <li>@winLossDetail.GrossComm.FormatNumber()</li>
+                            </ul>
+                        </td>
             RenderStackNetWinLoss("member", winLossDetail.MemberWinLoss, winLossDetail.MemberComm, winLossDetail.MemberTotal);
             RenderStackNetWinLoss("agent", winLossDetail.AgWinLoss, winLossDetail.AgComm, winLossDetail.AgTotal);
             RenderStackNetWinLoss("master", winLossDetail.MAgWinLoss, winLossDetail.MAgComm, winLossDetail.MAgTotal);
@@ -58,53 +58,53 @@
         }
         else
         {
-            <td class="hidden-stack-mode col-turnover">
+                        <td class="hidden-stack-mode col-turnover">
                 @winLossDetail.Turnover.FormatNumber()
-            </td>
-            <td class="hidden-stack-mode col-net-turnover">
+                        </td>
+                        <td class="hidden-stack-mode col-net-turnover">
                 @winLossDetail.NetTurnover.FormatNumber()
-            </td>
-            <td class="hidden-stack-mode col-gross-com">
+                        </td>
+                        <td class="hidden-stack-mode col-gross-com">
                 @winLossDetail.GrossComm.FormatNumber()
-            </td>
+                        </td>
             RenderNetWinLoss("member", winLossDetail.MemberWinLoss, winLossDetail.MemberComm, winLossDetail.MemberTotal);
             RenderNetWinLoss("agent", winLossDetail.AgWinLoss, winLossDetail.AgComm, winLossDetail.AgTotal);
             RenderNetWinLoss("master", winLossDetail.MAgWinLoss, winLossDetail.MAgComm, winLossDetail.MAgTotal);
             RenderNetWinLoss("super", winLossDetail.SAgWinLoss, winLossDetail.SAgComm, winLossDetail.SAgTotal);
         }
-        <td class="text-right col-company">@winLossDetail.Company.FormatNumber()</td>
+                <td class="text-right col-company">@winLossDetail.Company.FormatNumber()</td>
     }
 
     void RenderStackNetWinLoss(string levelName, decimal winLoss, decimal comm, decimal total)
     {
-        <td class="visible-stack-mode combinedcell col-@levelName-winloss-combined">
-            <ul>
-                <li>@winLoss.FormatNumber()</li>
-                <li>@comm.FormatNumber()</li>
-                <li>@total.FormatNumber()</li>
-            </ul>
-        </td>
+                <td class="visible-stack-mode combinedcell col-@levelName-winloss-combined">
+                    <ul>
+                        <li>@winLoss.FormatNumber()</li>
+                        <li>@comm.FormatNumber()</li>
+                        <li>@total.FormatNumber()</li>
+                    </ul>
+                </td>
     }
 
     void RenderNetWinLoss(string levelName, decimal winLoss, decimal comm, decimal total)
     {
-        <td class="hidden-stack-mode col-@levelName-winloss">
+                <td class="hidden-stack-mode col-@levelName-winloss">
             @winLoss.FormatNumber()
-        </td>
-        <td class="hidden-stack-mode">
+                </td>
+                <td class="hidden-stack-mode">
             @comm.FormatNumber()
-        </td>
-        <td class="hidden-stack-mode bold col-cust-total">
+                </td>
+                <td class="hidden-stack-mode bold col-cust-total">
             @total.FormatNumber()
-        </td>
+                </td>
     }
 }
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/superwinlossdetailbypt")
-    <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
 }
 @section Scripts {
-    <script src="~/bundles/superwinlossdetailbypt/superwinlossdetailbypt.js" asp-append-version="true"></script>
+        <script src="~/bundles/superwinlossdetailbypt/superwinlossdetailbypt.js" asp-append-version="true"></script>
 }
 @model SuperWinLossDetailByPTViewModel
 <report-title model="Model.PageHeader" />
@@ -119,6 +119,12 @@
         <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="Excel"
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
+    @if (reportDataCount > 0)
+    {
+            <div class="form-group">
+                <compact-feedback fid="20" />
+            </div>
+    }
     <div class="note">
         <span class="star">*</span>@Model.ViewDataInstructionMessage
         <a href="javascript:;" id="view-product-pt-list">@Resources.ViewProductPTList</a>
@@ -184,21 +190,21 @@
     </thead>
     @if (reportDataCount > 0)
     {
-        <tbody>
+            <tbody>
             @foreach (var winLossDetailByPT in Model.ReportData)
             {
                 RenderBodyRows(winLossDetailByPT);
             }
-        </tbody>
-        <tfoot>
+            </tbody>
+            <tfoot>
             @{
                 RenderWinLossDetailByProduct(Model.Total, true);
             }
-        </tfoot>
+            </tfoot>
     }
     else
     {
-        <no-information colspan="18" />
+            <no-information colspan="18" />
     }
 </table>
 <partial name="ViewProductPTList" model="Model.SuperPTProductViewModels" />

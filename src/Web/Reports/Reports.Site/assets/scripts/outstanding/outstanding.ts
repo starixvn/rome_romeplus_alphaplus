@@ -179,7 +179,7 @@
         this.$dataTable.fixedHeader.adjust();
 
         //const scrollTo = $('.fixedHeader-floating thead').length > 0 ? $(document).height() : 0;
-        const scrollTo = window.scrollY;  
+        const scrollTo = window.scrollY;
         $(window).scrollTop(scrollTo);
     };
 
@@ -209,6 +209,13 @@
             descendingSort: this.isDescendingSort() ? 1 : 0
         });
     }
+
+    getCurrentFormData = () => {
+        return super.getCurrentFormData({
+            SortPropertyName: this.getColumnSortName(),
+            DescendingSort: this.isDescendingSort() ? 1 : 0
+        });
+    };
 }
 
 $(function () {

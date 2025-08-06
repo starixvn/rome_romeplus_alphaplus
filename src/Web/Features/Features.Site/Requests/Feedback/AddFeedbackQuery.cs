@@ -25,6 +25,8 @@ namespace AlphaPlus.Features.Site.Messages.Requests.Feedback
 
         public IEnumerable<FeedbackAreaQuery> Areas { get; set; }
 
+        public string ExtraInfo { get; set; }
+
         public int CustId { get; }
 
         public int SubAccId { get; }

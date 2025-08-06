@@ -92,6 +92,12 @@
                 <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="MoveStatementHistoryExcel"
                     asp-all-route-data="Model.GetExcelParams()"></a>
             </div>
+            @if (Model.ReportData != null && Model.ReportData.Any())
+            {
+                <div class="form-group">
+                    <compact-feedback fid="26" />
+                </div>
+            }
             <div class="note-box">
                 <p class="note"><span class="star">*</span>@Model.ViewDataInstructionMessage</p>
                 <p class="note" style="margin-left: 14px;">@Resources.MoveStatementHistoryNote</p>

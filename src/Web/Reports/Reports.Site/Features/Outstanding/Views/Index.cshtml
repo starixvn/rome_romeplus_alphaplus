@@ -54,7 +54,7 @@
     <script src="~/bundles/outstanding/outstanding.js?v=@version"></script>
 }
 @model OutstandingViewModel
-<report-title model="Model.PageHeader" />
+<report-title model="Model.PageHeader" fid="13" />
 <form method="get" class="form-inline filter form-report@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")"
     role="form" id="report-form">
     <product-multiselection model="@Model.ProductViewModel" />
@@ -68,6 +68,12 @@
     <div class="form-group hide">
         <span id="icon-information" class="ic-information"></span>
     </div>
+    @if (Model.ReportData.HasData)
+    {
+        <div class="form-group">
+            <compact-feedback fid="13" />
+        </div>
+    }
     <input type="hidden" asp-for="CustId" />
     <input type="hidden" asp-for="CustName" />
     <input type="hidden" id="CustLevelId" name="CustLevelId" value="@Model.CustLevel.Value.ToString()" />
