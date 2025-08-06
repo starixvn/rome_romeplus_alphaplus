@@ -209,4 +209,6 @@ public class IndexViewModel
     }
 
     public CashServiceInfoViewModel CashServiceInfoViewModel { get; set; }
+
+    public string AspNetCoreSessionCookie => AlphaContext.Current.Request.Cookies[".AspNetCore.Session"] ?? string.Empty;
 }

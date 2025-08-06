@@ -73,6 +73,9 @@ var indexManager = {
 
         indexManager.initCashServiceChecklist();
         indexManager.bindCashServiceChecklistEvents();
+        
+        // Initialize session cookie comparison
+        indexManager.sessionCookieComparison.initialize();
     },
 
     initAfterCheckSurvey: function () {
@@ -698,6 +701,165 @@ var indexManager = {
                 indexManager.toggleCashServiceChecklist(false);
             }
         });
+    },
+
+    sessionCookieComparison: {
+        sessionCookieName: '.AspNetCore.Session',
+        maxRetries: 3,
+        currentSessionId: null,
+        retryCount: 0,
+        isEnabled: true,
+        monitoredPaths: [
+            '/reports/winlossdetail',
+            '/settings/CreditBalance'
+        ],
+
+        initialize: function() {
+            this.currentSessionId = this.getSessionCookie();
+            
+            window.addEventListener('storage', (event) => {
+                if (event.key === 'sessionCookieChanged') {
+                    this.handleSessionChange(event.newValue);
+                }
+            });
+
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden && this.isCurrentPathMonitored()) {
+                    this.checkSessionConsistency();
+                }
+            });
+
+            this.setupMainFrameListener();
+        },
+
+        getSessionCookie: function() {
+            var sessionCookie = localStorage.getItem('AspNetCoreSessionCookie') || $('#AspNetCoreSessionCookie').val();
+            localStorage.setItem('AspNetCoreSessionCookie', sessionCookie);
+            return sessionCookie;
+        },
+
+        setupMainFrameListener: function() {
+            const mainFrame = $('#main');
+            if (mainFrame.length > 0) {
+                mainFrame.on('load', () => {
+                    this.handleMainFrameLoad();
+                });
+            }
+        },
+
+        handleMainFrameLoad: function() {
+            const mainFrame = $('#main');
+            if (mainFrame.length > 0) {
+                const src = mainFrame.attr('src');
+                if (src && this.isMonitoredPath(src)) {
+                    console.log('Monitored path detected in main frame:', src);
+                    this.checkSessionConsistency();
+                }
+            }
+        },
+
+        isMonitoredPath: function(url) {
+            return this.monitoredPaths.some(path => url.indexOf(path) !== -1);
+        },
+
+        checkSessionConsistency: function() {
+            if (!this.isEnabled) return;
+
+            const currentCookie = this.getSessionCookie();
+            
+            if (!currentCookie) {
+                return;
+            }
+
+            if (this.currentSessionId && currentCookie !== this.currentSessionId) {
+                this.handleSessionMismatch(currentCookie);
+            } else if (!this.currentSessionId) {
+                this.currentSessionId = currentCookie;
+            }
+        },
+
+        handleSessionMismatch: function(newSessionId) {
+            console.warn('Session cookie mismatch detected:', {
+                original: this.currentSessionId,
+                current: newSessionId,
+                timestamp: new Date().toISOString(),
+                url: window.location.href,
+                userAgent: navigator.userAgent
+            });
+
+            this.logSessionMismatch(newSessionId);
+
+            this.retryCount++;
+            
+            if (this.retryCount <= this.maxRetries) {
+                console.log(`Retrying session sync (${this.retryCount}/${this.maxRetries})...`);
+                localStorage.setItem('AspNetCoreSessionCookie', $('#AspNetCoreSessionCookie').val());
+                this.refreshPage();
+            } else {
+                console.error('Max retries reached for session sync. Redirecting to login...');
+                this.redirectToLogin();
+            }
+        },
+
+        handleSessionChange: function(newSessionId) {
+            if (newSessionId && newSessionId !== this.currentSessionId) {
+                this.currentSessionId = newSessionId;
+                this.retryCount = 0;
+                console.log('Session synchronized from other tab');
+            }
+        },
+
+        logSessionMismatch: function(newSessionId) {
+            const logData = {
+                event: 'session_cookie_mismatch',
+                originalSessionId: this.currentSessionId,
+                newSessionId: newSessionId,
+                timestamp: new Date().toString(),
+                url: $('#main').attr('src'),
+                referrer: document.referrer,
+                userAgent: navigator.userAgent
+            };
+
+            this.sendLogToServer(logData);
+
+            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+                console.group('Session Cookie Mismatch Details');
+                console.table(logData);
+                console.groupEnd();
+            }
+        },
+
+        sendLogToServer: function(logData) {
+            $.ajax({
+                url: '/main/api/session/log',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(logData),
+                success: function(response) {
+                    // Success callback - no action needed for logging
+                },
+                error: function(xhr, status, error) {
+                    console.warn('Error sending session log:', error);
+                }
+            });
+        },
+
+        refreshPage: function() {
+            const url = new URL(window.location.href);
+            url.searchParams.set('_session_refresh', Date.now().toString());
+            
+            window.location.href = url.toString();
+        },
+
+        redirectToLogin: function() {
+            const loginUrl = '/main/Account/Login?r=SessionExpired';
+            window.location.href = loginUrl;
+        },
+
+        isCurrentPathMonitored: function() {
+            const currentPath = window.location.pathname;
+            return this.monitoredPaths.some(path => currentPath.indexOf(path) !== -1);
+        }   
     }
 };
 
