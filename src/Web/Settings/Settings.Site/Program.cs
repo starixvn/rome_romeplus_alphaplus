@@ -1,3 +1,4 @@
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 using AlphaPlus.NetThrottling;
@@ -48,6 +49,7 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 app.UseSession();
+app.UseSessionCookieComparison();
 app.UseNetThrottling();
 app.UseMiddleware<RequestCultureMiddleware>();
 if (app.Environment.IsDevelopment())

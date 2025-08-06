@@ -83,6 +83,7 @@ app
     .UseDefaultFiles()
     .UseStaticFiles()
     .UseSession()
+    .UseSessionCookieComparison()
     .UseAuthentication()
     .UseAuthorization()
     .UseNetThrottling()

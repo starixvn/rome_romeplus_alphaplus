@@ -34,6 +34,8 @@ public static class ServiceCollectionExtensions
         services.AddTransient<IRequestContext, RequestContext>();
         services.TryAddSingleton<INicknameChecker, NicknameChecker>();
         services.AddTransient<IAuthorizationService, AuthorizationService>();
+        services.AddSingleton<ISessionCookieComparisonService, SessionCookieComparisonService>();
+        services.Configure<SessionCookieComparisonOptions>(configuration.GetSection(SessionCookieComparisonOptions.SectionName));
         services.AddONEbookUM(configuration);
         services.AddControllersWithViews(options => options.Filters.Add<CheckUMFilterAttribute>());
 
