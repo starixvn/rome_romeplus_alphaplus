@@ -2,6 +2,7 @@ using AlphaPlus.CashService.API.Features.Shared.Criteria;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Requests;
 using Fanex.Data.Repository;
+using AlphaPlus.CashService.API.Features.Shared.Constants;
 
 namespace AlphaPlus.CashService.API.Features.Shared.Services;
 
@@ -33,7 +34,9 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
     {
         var writeLLogDBCommandModels = await repository.FetchAsync<WriteLogDBCommandModel>(baseDBCommand);
 
-        if (baseDBCommand.ErrCode != 0)
+        var isSuccess = ErrorCodeConstants.IsSuccess(baseDBCommand.ErrCode) || ErrorCodeConstants.IsWarning(baseDBCommand.ErrCode);
+
+        if (!isSuccess)
         {
             return new ResultModel(baseDBCommand.ErrCode, baseDBCommand.ErrMsg);
         }
@@ -120,4 +123,5 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
             await logger.ErrorAsync(e.Message, e);
         }
     }
+
 }

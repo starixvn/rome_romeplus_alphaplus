@@ -30,13 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Features\Shared\Constants\**" />
-    <Content Remove="Features\Shared\Constants\**" />
-    <EmbeddedResource Remove="Features\Shared\Constants\**" />
-    <None Remove="Features\Shared\Constants\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\AlphaPlus.Shared.AppResources\AlphaPlus.Shared.AppResources.csproj" />
   </ItemGroup>
 
