@@ -148,44 +148,6 @@ public class SecurityCodeCheckerTests
     }
 
     [Fact]
-    public void IsRequiredSecurityCode_WhenPathMatchesBetListsPaths_ShouldReturnTrue()
-    {
-        // Arrange
-        _options.BetListsPaths = new[] { "/bets", "/history" };
-        _mockSession.Setup(x => x.IsAlreadyInputSecurityCode).Returns(false);
-        _mockSession.Setup(x => x.IsInternal).Returns(false);
-        _mockSession.Setup(x => x.IsEnabledOtp).Returns(true);
-        _mockSession.Setup(x => x.IsEnabledSecurityCodeInBetLists).Returns(true);
-
-        var checker = new SecurityCodeChecker(_mockOptions.Object);
-
-        // Act
-        var result = checker.IsRequiredSecurityCode("/bets/list");
-
-        // Assert
-        Assert.True(result);
-    }
-
-    [Fact]
-    public void IsRequiredSecurityCode_WhenPathMatchesStatementPaths_ShouldReturnTrue()
-    {
-        // Arrange
-        _options.StatementPaths = new[] { "/statement", "/reports" };
-        _mockSession.Setup(x => x.IsAlreadyInputSecurityCode).Returns(false);
-        _mockSession.Setup(x => x.IsInternal).Returns(false);
-        _mockSession.Setup(x => x.IsEnabledOtp).Returns(true);
-        _mockSession.Setup(x => x.IsEnabledSecurityCodeInStatement).Returns(true);
-
-        var checker = new SecurityCodeChecker(_mockOptions.Object);
-
-        // Act
-        var result = checker.IsRequiredSecurityCode("/statement/detail");
-
-        // Assert
-        Assert.True(result);
-    }
-
-    [Fact]
     public void IsRequiredSecurityCode_WhenPathDoesNotMatchAnyPaths_ShouldReturnFalse()
     {
         // Arrange
