@@ -1,6 +1,5 @@
 using AlphaPlus.IPInfo.DataAccess;
 using AlphaPlus.IPInfo.Models;
-using Moq;
 
 namespace AlphaPlus.IPInfo.UnitTests.DataAccess;
 

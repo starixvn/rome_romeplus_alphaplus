@@ -1,5 +1,3 @@
-using AlphaPlus.Products.ViewModels;
-
 namespace AlphaPlus.Products.UnitTests.ViewModels
 {
     public class ViewModelTests

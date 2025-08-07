@@ -1,5 +1,3 @@
-using Microsoft.Extensions.Configuration;
-
 namespace Alpha.Handbook.Demo.Configurations;
 
 public static class ConfigurationManager

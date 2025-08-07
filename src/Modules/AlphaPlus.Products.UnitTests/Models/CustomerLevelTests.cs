@@ -1,6 +1,3 @@
-using AlphaPlus.Products.Models;
-using AlphaPlus.Products.Shared;
-
 namespace AlphaPlus.Products.UnitTests.Models
 {
     public class CustomerLevelTests

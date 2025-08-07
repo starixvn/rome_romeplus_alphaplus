@@ -1,9 +1,6 @@
 using System.Threading.Tasks;
-using AlphaPlus.RequestInfo.Models;
 using AlphaPlus.Utilities.IP;
 using Microsoft.AspNetCore.Http;
-using Moq;
-using UAParser;
 
 namespace AlphaPlus.RequestInfo.UnitTests;
 

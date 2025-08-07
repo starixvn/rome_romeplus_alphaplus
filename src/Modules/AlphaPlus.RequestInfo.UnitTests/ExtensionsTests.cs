@@ -1,7 +1,6 @@
 using AlphaPlus.Utilities.IP;
 using Fanex.Data.Repository;
 using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace AlphaPlus.RequestInfo.UnitTests;

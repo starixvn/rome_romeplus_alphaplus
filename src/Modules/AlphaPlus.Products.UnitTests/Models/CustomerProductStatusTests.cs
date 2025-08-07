@@ -1,5 +1,3 @@
-using AlphaPlus.Products.Models;
-
 namespace AlphaPlus.Products.UnitTests.Models
 {
     public class CustomerProductStatusTests

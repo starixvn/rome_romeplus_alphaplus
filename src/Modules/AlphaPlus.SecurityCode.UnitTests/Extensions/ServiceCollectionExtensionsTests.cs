@@ -1,8 +1,3 @@
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Moq;
-using Xunit;
-
 namespace AlphaPlus.SecurityCode.UnitTests.Extensions;
 
 public class ServiceCollectionExtensionsTests

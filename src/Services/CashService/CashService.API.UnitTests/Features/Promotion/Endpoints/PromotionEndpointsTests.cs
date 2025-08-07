@@ -3,7 +3,6 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Promotion.Endpoints;
 using AlphaPlus.CashService.API.Features.Promotion.Models;
 using AlphaPlus.CashService.API.Features.Promotion.Requests;
 using AlphaPlus.CashService.API.Features.Promotion.Services;
-using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Requests;
 using Moq;
 using Xunit;

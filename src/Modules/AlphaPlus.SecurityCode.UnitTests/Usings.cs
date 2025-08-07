@@ -1,14 +1,11 @@
 global using System;
 global using System.Collections.Generic;
 global using System.Linq;
-global using System.Threading.Tasks;
 global using AlphaPlus.SecurityCode.Configurations;
 global using AlphaPlus.SecurityCode.Extensions;
 global using AlphaPlus.SecurityCode.Filters;
 global using AlphaPlus.SecurityCode.Services;
 global using AlphaPlus.SecurityCode.Web;
-global using AutoFixture;
-global using Microsoft.AspNetCore.Mvc.Filters;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Options;

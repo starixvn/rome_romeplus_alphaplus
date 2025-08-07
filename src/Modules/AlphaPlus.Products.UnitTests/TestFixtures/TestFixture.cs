@@ -1,7 +1,3 @@
-using AlphaPlus.Products.Configurations;
-using AlphaPlus.Products.Models;
-using Microsoft.Extensions.Configuration;
-
 namespace AlphaPlus.Products.UnitTests.TestFixtures
 {
     public class TestFixture

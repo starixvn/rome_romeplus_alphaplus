@@ -1,5 +1,3 @@
-using AlphaPlus.Products;
-
 namespace AlphaPlus.Products.UnitTests
 {
     public class ProductConstantsTests

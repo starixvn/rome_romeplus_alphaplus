@@ -3,7 +3,6 @@ using AlphaPlus.SmartPunter.DataAccesses;
 using AlphaPlus.SmartPunter.Models;
 using AlphaPlus.SmartPunter.Services;
 using AutoFixture;
-using Moq;
 
 namespace AlphaPlus.SmartPunter.UnitTests.Services
 {

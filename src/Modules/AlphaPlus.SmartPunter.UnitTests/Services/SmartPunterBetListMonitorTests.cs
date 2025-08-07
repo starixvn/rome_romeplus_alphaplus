@@ -4,7 +4,6 @@ using AlphaPlus.SmartPunter.Services;
 using AlphaPlus.Utilities.IP;
 using AutoFixture;
 using Fanex.BetList.Core.Entities;
-using Moq;
 
 namespace AlphaPlus.SmartPunter.UnitTests.Services
 {

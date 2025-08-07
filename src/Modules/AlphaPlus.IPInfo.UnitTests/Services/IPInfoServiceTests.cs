@@ -3,7 +3,6 @@ using AlphaPlus.IPInfo.Models;
 using AlphaPlus.IPInfo.Services;
 using AutoFixture;
 using Fanex.Caching;
-using Moq;
 
 namespace AlphaPlus.IPInfo.UnitTests.Services;
 

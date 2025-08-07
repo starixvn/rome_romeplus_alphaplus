@@ -3,8 +3,6 @@ using AlphaPlus.PartialUM.DataAccess;
 using AlphaPlus.PartialUM.Exceptions;
 using AlphaPlus.PartialUM.Models;
 using AlphaPlus.PartialUM.Services;
-using Microsoft.Extensions.Caching.Memory;
-using Microsoft.Extensions.Options;
 
 namespace AlphaPlus.PartialUM.UnitTests.Services;
 

@@ -1,5 +1,3 @@
-using Xunit;
-
 namespace AlphaPlus.SecurityCode.UnitTests.Web;
 
 public class SecurityCodeSessionTests

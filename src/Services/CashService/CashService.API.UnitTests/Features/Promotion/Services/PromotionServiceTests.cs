@@ -3,7 +3,6 @@ using AlphaPlus.CashService.API.Features.Promotion.Criteria;
 using AlphaPlus.CashService.API.Features.Promotion.Models;
 using AlphaPlus.CashService.API.Features.Promotion.Requests;
 using AlphaPlus.CashService.API.Features.Promotion.Services;
-using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Services;
 using AlphaPlus.CashService.API.Features.Transactions.Services;
 using Fanex.Data.Repository;

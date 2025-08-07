@@ -1,5 +1,3 @@
-using AlphaPlus.Products.Configurations;
-
 namespace AlphaPlus.Products.UnitTests.Configurations
 {
     public class ProductConfigurationTests
