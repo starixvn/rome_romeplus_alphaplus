@@ -1,3 +1,6 @@
+using AlphaPlus.Core.Helpers;
+using Microsoft.AspNetCore.Http;
+
 namespace AlphaPlus.SecurityCode.UnitTests.Services;
 
 public class SecurityCodeCheckerTests
@@ -5,6 +8,9 @@ public class SecurityCodeCheckerTests
     private readonly Mock<IOptions<SecurityCodeOptions>> _mockOptions;
     private readonly SecurityCodeOptions _options;
     private readonly Mock<ISecurityCodeSession> _mockSession;
+    private readonly Mock<IHttpContextAccessor> _mockHttpContextAccessor;
+    private readonly Mock<HttpContext> _mockHttpContext;
+    private readonly Mock<ISession> _mockSession2;
 
     public SecurityCodeCheckerTests()
     {
@@ -14,6 +20,16 @@ public class SecurityCodeCheckerTests
 
         _mockSession = new Mock<ISecurityCodeSession>();
         SecurityCodeSessionManager.SecurityCodeSession = _mockSession.Object;
+
+        // Setup AlphaContext for UserSession to work
+        _mockHttpContextAccessor = new Mock<IHttpContextAccessor>();
+        _mockHttpContext = new Mock<HttpContext>();
+        _mockSession2 = new Mock<ISession>();
+        
+        _mockHttpContext.Setup(x => x.Session).Returns(_mockSession2.Object);
+        _mockHttpContextAccessor.Setup(x => x.HttpContext).Returns(_mockHttpContext.Object);
+        
+        AlphaContext.Configure(_mockHttpContextAccessor.Object);
     }
 
     [Fact]
