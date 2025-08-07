@@ -22,7 +22,7 @@ namespace AlphaPlus.Products.Models
         ICustomer Upline { get; }
         string Username { get; }
         int AgentId { get; }
-        
+
         bool IsCashMember { get; }
 
         bool CanSeeProduct(int productId);
@@ -80,7 +80,7 @@ namespace AlphaPlus.Products.Models
             AgentId = agentId;
             IsCashMember = isCashMember;
         }
-        
+
 
         public int Id { get; }
 
@@ -97,7 +97,7 @@ namespace AlphaPlus.Products.Models
         public bool IsMainAccount => !IsSubAccount;
 
         public int AgentId { get; }
-        
+
         public bool IsCashMember { get; set; }
 
         public bool CanSeeProduct(int productId)
@@ -108,7 +108,7 @@ namespace AlphaPlus.Products.Models
         }
 
         public CustomerProductStatus ProductStatusOf(int productId)
-            => customerProductStatus.First(ps => ps.ProductId == productId);
+            => customerProductStatus.FirstOrDefault(ps => ps.ProductId == productId);
 
         public ICustomer Upline { get; }
 
