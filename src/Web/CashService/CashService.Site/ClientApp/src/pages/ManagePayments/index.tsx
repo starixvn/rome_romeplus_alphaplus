@@ -10,7 +10,7 @@ import '../../styles/global.scss';
 
 function ManagePayments() {
   useCookieLanguage(i18n);
-  const [activeTab, setActiveTab] = React.useState('paymentGateway');
+  const [activeTab, setActiveTab] = React.useState('bankAccount');
   const [isCashServiceEnabled, setIsCashServiceEnabled] = React.useState<boolean>(false);
 
   React.useEffect(() => {
