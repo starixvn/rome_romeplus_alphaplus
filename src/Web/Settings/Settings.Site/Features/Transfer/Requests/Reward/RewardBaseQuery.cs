@@ -9,7 +9,7 @@ public class RewardBaseQuery : TransferBaseQuery
     {
         SubAccId = viewer.SubAccId;
         LimitedDateToShowInfo = viewer.LimitedDateToShowInfo;
-        MinDate = SystemTime.Today.AddMonths(-6).FirstDayOfMonth().GetGreaterDate(LimitedDateToShowInfo);
+        MinDate = SystemTime.Today.AddMonths(-9).FirstDayOfMonth().GetGreaterDate(LimitedDateToShowInfo);
         Language = viewer.Language;
     }
 
