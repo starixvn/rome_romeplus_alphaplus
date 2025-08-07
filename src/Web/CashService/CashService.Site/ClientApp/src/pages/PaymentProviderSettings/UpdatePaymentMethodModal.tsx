@@ -148,7 +148,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
           )
       );
       
-      var ms = addPaymentMethodInfo.paymentMethods.filter((p: any) => p.id !== 0 && p.status === paymentMethodStatusConstant.fail);
+      var ms = addPaymentMethodInfo.paymentMethods.filter((p: any) => p.id !== 0);
       setFormState({ ...formState, 'selectedPaymentMethod': ms.length > 0 ? ms[0].id.toString() : '0' });
     };
 
@@ -274,7 +274,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                   >
                     <option value="">{tGlobal('select')}</option>
                     {paymentMethods
-                      .filter((p) => p.id !== 0 && p.status === paymentMethodStatusConstant.fail)
+                      .filter((p) => p.id !== 0)
                       .map((method) => (
                         <option key={method.id} value={method.id} selected={method.id === existingPaymentMethod.method}
                         data-state={formState.selectedPaymentMethod}>
@@ -313,7 +313,6 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
             <div>
               <hr className="mt-[16px] mb-[16px] border-[#0000001F]" />
               <TitleComponent type='normal' text={tPaymentProviderSettings('addPaymentMethodStep3')} />
-              <MessageComponent message={tGlobal('somethingWentWrong')} type='validate' />
               <div className="flex flex-wrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="w-[48%]">
                   <TitleComponent type='label' text={`${tPaymentProviderSettings('apiKey')}`} required={true} />

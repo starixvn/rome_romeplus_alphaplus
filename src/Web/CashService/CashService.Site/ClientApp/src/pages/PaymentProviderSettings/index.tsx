@@ -10,7 +10,7 @@ import Tippy from '@tippyjs/react';
 import {
     ButtonComponent, DisableButtonComponent, EnableButtonComponent
 } from '../../components/Buttons/index';
-import { IconArrowDown, IconInfo, IconReload } from '../../components/Icons';
+import { IconArrowDown, IconInfo, IconPen, IconReload } from '../../components/Icons';
 import { LoadingFullComponent } from '../../components/LoadingComponent';
 import { MessageComponent } from '../../components/Message';
 import { StatusComponent } from '../../components/Status';
@@ -32,6 +32,7 @@ import AddPaymentMethodModal from './AddPaymentMethodModal';
 import BanksPopupModal from './BanksPopupModal';
 import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import UpdatePaymentMethodModal from './UpdatePaymentMethodModal';
+import RetryPaymentMethodModal from './RetryPaymentMethodModal';
 import NoRecordFound from '../../components/NoRecordFoundComponent';
 import { ButtonIconComponent } from '../../components/Buttons/ButtonIconComponent';
 
@@ -59,6 +60,7 @@ function PaymentProviderSettings() {
   const [showAddPaymentMethod, setShowAddPaymentMethod] = React.useState(false);
   const [showBanksPopup, setShowBanksPopup] = React.useState(false);
   const [showUpdatePaymentMethod, setShowUpdatePaymentMethod] = React.useState(false);
+  const [showRetryPaymentMethod, setShowRetryPaymentMethod] = React.useState(false);
   const [selectedSetting, setSelectedSetting] = React.useState<any>(null);
   const [providerSettings, setProviderSettings] = React.useState<any[]>([]);
   const [originalSettings, setOriginalSettings] = React.useState<any[]>([]);
@@ -383,6 +385,16 @@ function PaymentProviderSettings() {
   // Handler for retrying setup
   const onRetrySetup = async (index: number) => {
     setSelectedSetting(providerSettings[index]);
+    setShowRetryPaymentMethod(true);
+  };
+
+  const onCloseRetryPaymentMethod = () => {
+    setShowRetryPaymentMethod(false);
+    setSelectedSetting(null);
+  };
+
+  const onEditSetup = async (index: number) => {
+    setSelectedSetting(providerSettings[index]);
     setShowUpdatePaymentMethod(true);
   };
 
@@ -633,6 +645,23 @@ function PaymentProviderSettings() {
                               </Tippy>
                             </>
                           )}
+                          {setting.status === paymentMethodStatusConstant.completed && (
+                            <>
+                              <Tippy
+                                content={<div>{tGlobal('edit')}</div>}
+                                placement="top"
+                                theme="light"
+                                arrow={true}
+                              >
+                                <span
+                                  className="cursor-pointer absolute right-[0px] top-[2px]"
+                                  onClick={() => onEditSetup(index)}
+                                >
+                                  <IconPen className="fill-[var(--icon-color)] cursor-pointer" />
+                                </span>
+                              </Tippy>
+                            </>
+                          )}
                         </div>
                       </td>
                       <td className="font-semibold">
@@ -780,6 +809,18 @@ function PaymentProviderSettings() {
       )}
 
       {/* Update Payment Method Modal */}
+      {showRetryPaymentMethod && selectedSetting && (
+        <RetryPaymentMethodModal
+          providerId={window.providerSettingsViewModel.Provider.Id}
+          onClose={onCloseRetryPaymentMethod}
+          onSuccess={reloadPage}
+          orgTelegramAssistantUrl={
+            window.providerSettingsViewModel.AddPaymentMethodViewModel.ChannelContact.Tele
+          }
+          existingPaymentMethod={selectedSetting} 
+          isCashServiceEnabled={isCashServiceEnabled}
+        />
+      )}
       {showUpdatePaymentMethod && selectedSetting && (
         <UpdatePaymentMethodModal
           providerId={window.providerSettingsViewModel.Provider.Id}
