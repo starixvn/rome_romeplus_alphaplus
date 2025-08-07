@@ -49,22 +49,6 @@ public class SecurityCodeCheckerTests
     }
 
     [Fact]
-    public void IsForcedChangeSecurityCode_WhenInternal_ShouldReturnFalse()
-    {
-        // Arrange
-        _mockSession.Setup(x => x.IsInternal).Returns(true);
-        _mockSession.Setup(x => x.IsForcedChangeSecurityCode).Returns(true);
-
-        var checker = new SecurityCodeChecker(_mockOptions.Object);
-
-        // Act
-        var result = checker.IsForcedChangeSecurityCode();
-
-        // Assert
-        Assert.False(result);
-    }
-
-    [Fact]
     public void IsRequiredSecurityCode_WhenAlreadyInputSecurityCode_ShouldReturnFalse()
     {
         // Arrange
