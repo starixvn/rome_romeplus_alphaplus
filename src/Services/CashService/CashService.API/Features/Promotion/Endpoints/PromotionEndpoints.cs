@@ -115,5 +115,9 @@ public static class PromotionEndpoints
         group.MapGet("/reports/{id}", async (int id, [AsParameters] GetPromotionDetailsReportRequest request, IPromotionReportService service) =>
             Results.Ok(await service.GetDetailsReport(id, request))
         ).WithName("PromotionDetailsReport");
+
+        group.MapGet("/reports/ManualBonus", async ([AsParameters] GetManualBonusRequest request, IPromotionReportService service) =>
+            Results.Ok(await service.GetManualBonus(request))
+        ).WithName("ManualBonusReport");
     }
 }

@@ -8,11 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AlphaPlus.Shared.AppResources.CashServices
-{
+namespace AlphaPlus.Shared.AppResources.CashServices {
     using System;
-
-
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,698 +22,608 @@ namespace AlphaPlus.Shared.AppResources.CashServices
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class CashServicesResx
-    {
-
+    public class CashServicesResx {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal CashServicesResx()
-        {
+        internal CashServicesResx() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if (object.ReferenceEquals(resourceMan, null))
-                {
+        public static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("AlphaPlus.Shared.AppResources.CashServices.CashServicesResx", typeof(CashServicesResx).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        public static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The account was closed..
         /// </summary>
-        public static string AccountClosed
-        {
-            get
-            {
+        public static string AccountClosed {
+            get {
                 return ResourceManager.GetString("AccountClosed", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to The account was disabled..
         /// </summary>
-        public static string AccountDisabled
-        {
-            get
-            {
+        public static string AccountDisabled {
+            get {
                 return ResourceManager.GetString("AccountDisabled", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Account Type.
         /// </summary>
-        public static string AccountType
-        {
-            get
-            {
+        public static string AccountType {
+            get {
                 return ResourceManager.GetString("AccountType", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to An error occurred while processing withdrawal request..
         /// </summary>
-        public static string AnErrorOccurredWhileProcessingWithdrawalRequest
-        {
-            get
-            {
+        public static string AnErrorOccurredWhileProcessingWithdrawalRequest {
+            get {
                 return ResourceManager.GetString("AnErrorOccurredWhileProcessingWithdrawalRequest", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Approved.
         /// </summary>
-        public static string Approved
-        {
-            get
-            {
+        public static string Approved {
+            get {
                 return ResourceManager.GetString("Approved", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Bonus Amount.
         /// </summary>
-        public static string BonusAmount
-        {
-            get
-            {
+        public static string BonusAmount {
+            get {
                 return ResourceManager.GetString("BonusAmount", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Get results. Stay if you love it. Cancel anytime..
         /// </summary>
-        public static string CancelAnytime
-        {
-            get
-            {
+        public static string CancelAnytime {
+            get {
                 return ResourceManager.GetString("CancelAnytime", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Don&apos;t miss out – Activate now and take your cash flow to the next level..
         /// </summary>
-        public static string CashFlowToTheNextLevel
-        {
-            get
-            {
+        public static string CashFlowToTheNextLevel {
+            get {
                 return ResourceManager.GetString("CashFlowToTheNextLevel", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created By.
+        /// </summary>
+        public static string CreatedBy {
+            get {
+                return ResourceManager.GetString("CreatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created Time.
+        /// </summary>
+        public static string CreatedTime {
+            get {
+                return ResourceManager.GetString("CreatedTime", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Exceeds the daily withdrawal limit..
         /// </summary>
-        public static string ExceedsTheDailyWithdrawalLimit
-        {
-            get
-            {
+        public static string ExceedsTheDailyWithdrawalLimit {
+            get {
                 return ResourceManager.GetString("ExceedsTheDailyWithdrawalLimit", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to File upload must be less than 1MB.
         /// </summary>
-        public static string FileUploadMustBeLessThan1MB
-        {
-            get
-            {
+        public static string FileUploadMustBeLessThan1MB {
+            get {
                 return ResourceManager.GetString("FileUploadMustBeLessThan1MB", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to First &amp; Last Name.
         /// </summary>
-        public static string FirstAndLastName
-        {
-            get
-            {
+        public static string FirstAndLastName {
+            get {
                 return ResourceManager.GetString("FirstAndLastName", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to 14-days &lt;b&gt;FREE&lt;/b&gt; trial.
         /// </summary>
-        public static string FreeTrial
-        {
-            get
-            {
+        public static string FreeTrial {
+            get {
                 return ResourceManager.GetString("FreeTrial", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to From is required..
         /// </summary>
-        public static string FromIsRequired
-        {
-            get
-            {
+        public static string FromIsRequired {
+            get {
                 return ResourceManager.GetString("FromIsRequired", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Internal Server Error.
         /// </summary>
-        public static string InternalServerError
-        {
-            get
-            {
+        public static string InternalServerError {
+            get {
                 return ResourceManager.GetString("InternalServerError", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Invalid parameters..
         /// </summary>
-        public static string InvalidParameters
-        {
-            get
-            {
+        public static string InvalidParameters {
+            get {
                 return ResourceManager.GetString("InvalidParameters", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Last Updated.
         /// </summary>
-        public static string LastUpdated
-        {
-            get
-            {
+        public static string LastUpdated {
+            get {
                 return ResourceManager.GetString("LastUpdated", resourceCulture);
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual Bonus.
+        /// </summary>
+        public static string ManualBonus {
+            get {
+                return ResourceManager.GetString("ManualBonus", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to Member’s cash balance is insufficient..
         /// </summary>
-        public static string MemberCashBalanceIsInsufficient
-        {
-            get
-            {
+        public static string MemberCashBalanceIsInsufficient {
+            get {
                 return ResourceManager.GetString("MemberCashBalanceIsInsufficient", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Editing multiple customers isn&apos;t available if Account Type is &apos;All&apos;..
         /// </summary>
-        public static string MemberListNoteEditMultipleNotAvailable
-        {
-            get
-            {
+        public static string MemberListNoteEditMultipleNotAvailable {
+            get {
                 return ResourceManager.GetString("MemberListNoteEditMultipleNotAvailable", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Member Username is required..
         /// </summary>
-        public static string MemberUsernameIsRequired
-        {
-            get
-            {
+        public static string MemberUsernameIsRequired {
+            get {
                 return ResourceManager.GetString("MemberUsernameIsRequired", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Model validation failed..
         /// </summary>
-        public static string ModelValidationFailed
-        {
-            get
-            {
+        public static string ModelValidationFailed {
+            get {
                 return ResourceManager.GetString("ModelValidationFailed", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to &lt;strong&gt;No platform fee&lt;/strong&gt; &lt;span class=&quot;benefit-note&quot;&gt;- save THB 200/day during the trial.&lt;/span&gt;.
         /// </summary>
-        public static string NoPlatformFee
-        {
-            get
-            {
+        public static string NoPlatformFee {
+            get {
                 return ResourceManager.GetString("NoPlatformFee", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Payment provider is currently unavailable. Please try again later..
         /// </summary>
-        public static string PaymentProviderUnavailable
-        {
-            get
-            {
+        public static string PaymentProviderUnavailable {
+            get {
                 return ResourceManager.GetString("PaymentProviderUnavailable", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Pending Promotion.
         /// </summary>
-        public static string PendingPromotion
-        {
-            get
-            {
+        public static string PendingPromotion {
+            get {
                 return ResourceManager.GetString("PendingPromotion", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Period.
         /// </summary>
-        public static string Period
-        {
-            get
-            {
+        public static string Period {
+            get {
                 return ResourceManager.GetString("Period", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Promotion Report.
         /// </summary>
-        public static string PromotionReport
-        {
-            get
-            {
+        public static string PromotionReport {
+            get {
                 return ResourceManager.GetString("PromotionReport", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Promotion Title.
         /// </summary>
-        public static string PromotionTitle
-        {
-            get
-            {
+        public static string PromotionTitle {
+            get {
                 return ResourceManager.GetString("PromotionTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Promotion Type.
         /// </summary>
-        public static string PromotionType
-        {
-            get
-            {
+        public static string PromotionType {
+            get {
                 return ResourceManager.GetString("PromotionType", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Turnover Rebate.
         /// </summary>
-        public static string PromotionType_1
-        {
-            get
-            {
+        public static string PromotionType_1 {
+            get {
                 return ResourceManager.GetString("PromotionType_1", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Turnover Rebate.
         /// </summary>
-        public static string PromotionType_RebateOnTurnover
-        {
-            get
-            {
+        public static string PromotionType_RebateOnTurnover {
+            get {
                 return ResourceManager.GetString("PromotionType_RebateOnTurnover", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Your withdrawal request has been rejected by provider.
         /// </summary>
-        public static string ProviderRejectErrorMessage
-        {
-            get
-            {
+        public static string ProviderRejectErrorMessage {
+            get {
                 return ResourceManager.GetString("ProviderRejectErrorMessage", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Rebate Period.
         /// </summary>
-        public static string RebatePeriod
-        {
-            get
-            {
+        public static string RebatePeriod {
+            get {
                 return ResourceManager.GetString("RebatePeriod", resourceCulture);
             }
         }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Start today and enjoy instant savings of &lt;b&gt;THB 2,800&lt;/b&gt;.
-        /// </summary>
-        public static string StartTodayAndEnjoy
-        {
-            get
-            {
-                return ResourceManager.GetString("StartTodayAndEnjoy", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Status.
-        /// </summary>
-        public static string Status
-        {
-            get
-            {
-                return ResourceManager.GetString("Status", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Supercharge Your Cash Flow?.
-        /// </summary>
-        public static string SuperchargeYourCashFlow
-        {
-            get
-            {
-                return ResourceManager.GetString("SuperchargeYourCashFlow", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to The account was suspended..
-        /// </summary>
-        public static string TheAccountWasSuspended
-        {
-            get
-            {
-                return ResourceManager.GetString("TheAccountWasSuspended", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to The amount exceeds the allowed minimum or maximum value..
-        /// </summary>
-        public static string TheAmountExceedsTheAllowedMinimumOrMaximumValue
-        {
-            get
-            {
-                return ResourceManager.GetString("TheAmountExceedsTheAllowedMinimumOrMaximumValue", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to The transaction inserted failed. Please try again..
-        /// </summary>
-        public static string TheTransactionInsertedFailedPleaseTryAgain
-        {
-            get
-            {
-                return ResourceManager.GetString("TheTransactionInsertedFailedPleaseTryAgain", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Title.
-        /// </summary>
-        public static string Title
-        {
-            get
-            {
-                return ResourceManager.GetString("Title", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to To is required..
-        /// </summary>
-        public static string ToIsRequired
-        {
-            get
-            {
-                return ResourceManager.GetString("ToIsRequired", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Total Bonus Given .
-        /// </summary>
-        public static string TotalBonusGiven
-        {
-            get
-            {
-                return ResourceManager.GetString("TotalBonusGiven", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Total Request.
-        /// </summary>
-        public static string TotalRequest
-        {
-            get
-            {
-                return ResourceManager.GetString("TotalRequest", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Total Request Approved.
-        /// </summary>
-        public static string TotalRequestApproved
-        {
-            get
-            {
-                return ResourceManager.GetString("TotalRequestApproved", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Total Request Rejected.
-        /// </summary>
-        public static string TotalRequestRejected
-        {
-            get
-            {
-                return ResourceManager.GetString("TotalRequestRejected", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;strong&gt; Just 0.15 per transaction&lt;/strong&gt; via your linked bank account..
-        /// </summary>
-        public static string TransactionFee
-        {
-            get
-            {
-                return ResourceManager.GetString("TransactionFee", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Transaction History.
-        /// </summary>
-        public static string TransactionHistory
-        {
-            get
-            {
-                return ResourceManager.GetString("TransactionHistory", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Completed.
-        /// </summary>
-        public static string TransactionStatus_Completed
-        {
-            get
-            {
-                return ResourceManager.GetString("TransactionStatus_Completed", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Expired.
-        /// </summary>
-        public static string TransactionStatus_Expired
-        {
-            get
-            {
-                return ResourceManager.GetString("TransactionStatus_Expired", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Pending.
-        /// </summary>
-        public static string TransactionStatus_Pending
-        {
-            get
-            {
-                return ResourceManager.GetString("TransactionStatus_Pending", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Provider Rejected.
-        /// </summary>
-        public static string TransactionStatus_ProviderRejected
-        {
-            get
-            {
-                return ResourceManager.GetString("TransactionStatus_ProviderRejected", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Rejected.
-        /// </summary>
-        public static string TransactionStatus_Rejected
-        {
-            get
-            {
-                return ResourceManager.GetString("TransactionStatus_Rejected", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Transaction Type.
-        /// </summary>
-        public static string TransactionType
-        {
-            get
-            {
-                return ResourceManager.GetString("TransactionType", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Auto Deposit.
-        /// </summary>
-        public static string TransactionType_AutoDeposit
-        {
-            get
-            {
-                return ResourceManager.GetString("TransactionType_AutoDeposit", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Auto Withdrawal.
-        /// </summary>
-        public static string TransactionType_AutoWithdrawal
-        {
-            get
-            {
-                return ResourceManager.GetString("TransactionType_AutoWithdrawal", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Manual Deposit.
-        /// </summary>
-        public static string TransactionType_ManualDeposit
-        {
-            get
-            {
-                return ResourceManager.GetString("TransactionType_ManualDeposit", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Manual Withdrawal.
-        /// </summary>
-        public static string TransactionType_ManualWithdrawal
-        {
-            get
-            {
-                return ResourceManager.GetString("TransactionType_ManualWithdrawal", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to System Adjust.
-        /// </summary>
-        public static string TransactionType_SystemAdjust
-        {
-            get
-            {
-                return ResourceManager.GetString("TransactionType_SystemAdjust", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Unable to process deposits..
-        /// </summary>
-        public static string UnableToProcessDeposits
-        {
-            get
-            {
-                return ResourceManager.GetString("UnableToProcessDeposits", resourceCulture);
-            }
-        }
-
-        /// <summary>
-        ///   Looks up a localized string similar to Updated By.
-        /// </summary>
-        public static string UpdatedBy
-        {
-            get
-            {
-                return ResourceManager.GetString("UpdatedBy", resourceCulture);
-            }
-        }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Ref No.
         /// </summary>
-        public static string RefNo
-        {
-            get
-            {
+        public static string RefNo {
+            get {
                 return ResourceManager.GetString("RefNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remark.
+        /// </summary>
+        public static string Remark {
+            get {
+                return ResourceManager.GetString("Remark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start today and enjoy instant savings of &lt;b&gt;THB 2,800&lt;/b&gt;.
+        /// </summary>
+        public static string StartTodayAndEnjoy {
+            get {
+                return ResourceManager.GetString("StartTodayAndEnjoy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supercharge Your Cash Flow?.
+        /// </summary>
+        public static string SuperchargeYourCashFlow {
+            get {
+                return ResourceManager.GetString("SuperchargeYourCashFlow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The account was suspended..
+        /// </summary>
+        public static string TheAccountWasSuspended {
+            get {
+                return ResourceManager.GetString("TheAccountWasSuspended", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The amount exceeds the allowed minimum or maximum value..
+        /// </summary>
+        public static string TheAmountExceedsTheAllowedMinimumOrMaximumValue {
+            get {
+                return ResourceManager.GetString("TheAmountExceedsTheAllowedMinimumOrMaximumValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The transaction inserted failed. Please try again..
+        /// </summary>
+        public static string TheTransactionInsertedFailedPleaseTryAgain {
+            get {
+                return ResourceManager.GetString("TheTransactionInsertedFailedPleaseTryAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To is required..
+        /// </summary>
+        public static string ToIsRequired {
+            get {
+                return ResourceManager.GetString("ToIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Bonus Given .
+        /// </summary>
+        public static string TotalBonusGiven {
+            get {
+                return ResourceManager.GetString("TotalBonusGiven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Request.
+        /// </summary>
+        public static string TotalRequest {
+            get {
+                return ResourceManager.GetString("TotalRequest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Request Approved.
+        /// </summary>
+        public static string TotalRequestApproved {
+            get {
+                return ResourceManager.GetString("TotalRequestApproved", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Request Rejected.
+        /// </summary>
+        public static string TotalRequestRejected {
+            get {
+                return ResourceManager.GetString("TotalRequestRejected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;strong&gt; Just 0.15 per transaction&lt;/strong&gt; via your linked bank account..
+        /// </summary>
+        public static string TransactionFee {
+            get {
+                return ResourceManager.GetString("TransactionFee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction History.
+        /// </summary>
+        public static string TransactionHistory {
+            get {
+                return ResourceManager.GetString("TransactionHistory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completed.
+        /// </summary>
+        public static string TransactionStatus_Completed {
+            get {
+                return ResourceManager.GetString("TransactionStatus_Completed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expired.
+        /// </summary>
+        public static string TransactionStatus_Expired {
+            get {
+                return ResourceManager.GetString("TransactionStatus_Expired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pending.
+        /// </summary>
+        public static string TransactionStatus_Pending {
+            get {
+                return ResourceManager.GetString("TransactionStatus_Pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provider Rejected.
+        /// </summary>
+        public static string TransactionStatus_ProviderRejected {
+            get {
+                return ResourceManager.GetString("TransactionStatus_ProviderRejected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rejected.
+        /// </summary>
+        public static string TransactionStatus_Rejected {
+            get {
+                return ResourceManager.GetString("TransactionStatus_Rejected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction Type.
+        /// </summary>
+        public static string TransactionType {
+            get {
+                return ResourceManager.GetString("TransactionType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Deposit.
+        /// </summary>
+        public static string TransactionType_AutoDeposit {
+            get {
+                return ResourceManager.GetString("TransactionType_AutoDeposit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Withdrawal.
+        /// </summary>
+        public static string TransactionType_AutoWithdrawal {
+            get {
+                return ResourceManager.GetString("TransactionType_AutoWithdrawal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual Deposit.
+        /// </summary>
+        public static string TransactionType_ManualDeposit {
+            get {
+                return ResourceManager.GetString("TransactionType_ManualDeposit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual Withdrawal.
+        /// </summary>
+        public static string TransactionType_ManualWithdrawal {
+            get {
+                return ResourceManager.GetString("TransactionType_ManualWithdrawal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System Adjust.
+        /// </summary>
+        public static string TransactionType_SystemAdjust {
+            get {
+                return ResourceManager.GetString("TransactionType_SystemAdjust", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to process deposits..
+        /// </summary>
+        public static string UnableToProcessDeposits {
+            get {
+                return ResourceManager.GetString("UnableToProcessDeposits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated By.
+        /// </summary>
+        public static string UpdatedBy {
+            get {
+                return ResourceManager.GetString("UpdatedBy", resourceCulture);
             }
         }
     }

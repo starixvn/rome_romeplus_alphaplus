@@ -33,7 +33,8 @@ public class PromotionController(
     IPromotionService promotionService,
     IPromotionReportWorkbook promotionReportWorkbook,
     IPendingPromotionReportWorkbook pendingPromotionReportWorkbook,
-    IPromotionDetailsReportWorkbook promotionDetailsReportWorkbook) : SiteBaseController(userSession, antiforgery, httpClient, customerService)
+    IPromotionDetailsReportWorkbook promotionDetailsReportWorkbook,
+    IManualBonusReportWorkbook manualBonusReportWorkbook) : SiteBaseController(userSession, antiforgery, httpClient, customerService)
 {
     private readonly string _apiBaseUrl = configuration["CashService:APIUrl"];
 
@@ -313,5 +314,29 @@ public class PromotionController(
             result.Message = ErrorCodeHandler.MappingAddManualWithdrawalErrCode(result.Code);
         }
         return result;
+    }
+
+    public async Task<IActionResult> GetManualBonusReport(GetManualBonusRequest request)
+        => Json(await GetManualBonus(request));
+
+    public async Task<IActionResult> ExportManualBonusReport(GetManualBonusRequest request)
+    {
+        var reportData = await GetManualBonus(request);
+        var excelFileViewModel = manualBonusReportWorkbook.BuildExcelFile(request, reportData);
+
+        return File(excelFileViewModel.Content, excelFileViewModel.ContentType, excelFileViewModel.Name);
+    }
+
+    private Task<ManualBonus[]> GetManualBonus(GetManualBonusRequest request)
+    {
+        request.SetUserSession(userSession);
+        if (!request.IsValid())
+        {
+            return Task.FromResult(Array.Empty<ManualBonus>());
+        }
+
+        var url = $"{_apiBaseUrl}/promotions/reports/ManualBonus{request.ToQueryString()}";
+
+        return _httpClient.GetFromJsonAsync<ManualBonus[]>(url);
     }
 }
