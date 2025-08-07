@@ -81,5 +81,11 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services
         string FormatAutoTransferSchedule(string schedulesDiff);
 
         string GetBankName(string code);
+
+        string GetTransactionTypeName(string transactionType);
+
+        string GetPaymentMethodName(int paymentMethod);
+
+        string GetPaymentMethodStatusName(int paymentMethodStatus);
     }
 }

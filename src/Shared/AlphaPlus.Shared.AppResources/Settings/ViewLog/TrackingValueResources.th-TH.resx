@@ -3597,4 +3597,13 @@
   <data name="Transaction_2" xml:space="preserve">
     <value>ถอน</value>
   </data>
+  <data name="PaymentMethodStatus_2" xml:space="preserve">
+    <value>เสร็จสมบูรณ์</value>
+  </data>
+  <data name="PaymentMethodStatus_3" xml:space="preserve">
+    <value>ล้มเหลว</value>
+  </data>
+  <data name="PaymentMethodStatus" xml:space="preserve">
+    <value>สถานะ</value>
+  </data>
 </root>

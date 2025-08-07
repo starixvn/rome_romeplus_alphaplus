@@ -3504,4 +3504,13 @@
   <data name="Transaction_2" xml:space="preserve">
     <value>提款</value>
   </data>
+  <data name="PaymentMethodStatus_2" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="PaymentMethodStatus_3" xml:space="preserve">
+    <value>失敗</value>
+  </data>
+  <data name="PaymentMethodStatus" xml:space="preserve">
+    <value>狀態</value>
+  </data>
 </root>

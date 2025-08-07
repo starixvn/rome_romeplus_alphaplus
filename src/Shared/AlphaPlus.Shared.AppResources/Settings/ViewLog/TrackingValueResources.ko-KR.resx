@@ -1762,4 +1762,13 @@
   <data name="Transaction_2" xml:space="preserve">
     <value>출금</value>
   </data>
+  <data name="PaymentMethodStatus_2" xml:space="preserve">
+    <value>완료</value>
+  </data>
+  <data name="PaymentMethodStatus_3" xml:space="preserve">
+    <value>실패</value>
+  </data>
+  <data name="PaymentMethodStatus" xml:space="preserve">
+    <value>상태</value>
+  </data>
 </root>

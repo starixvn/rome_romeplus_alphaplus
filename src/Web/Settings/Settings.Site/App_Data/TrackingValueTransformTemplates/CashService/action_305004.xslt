@@ -3,7 +3,7 @@
   <xsl:param name="IsInternal" select="0"></xsl:param>
   <xsl:output method="html" indent="no" />
 
-  <xsl:template match="age_cashservice_paymentmethod_config-upd">
+  <xsl:template match="age_cashservice_paymentmethod_config">
     <xsl:choose>
       <xsl:when test="@custid">
         <table class="tblDesc">
@@ -22,6 +22,10 @@
             </td>
           </tr>
           <tr>
+            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('PaymentMethodStatus')" /></td>
+            <td class="colW2">
+              <xsl:value-of select="xslLogFormat:GetPaymentMethodStatusName(@paymentmethodstatus)" />
+            </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SubAccName')" /></td>
             <td class="colW2">
               <xsl:value-of select="@subaccname" />
@@ -30,8 +34,6 @@
             <td class="colW2">
               <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
             </td>
-            <td class="colW1"></td>
-            <td class="colW2"></td>
           </tr>
         </table>
       </xsl:when>

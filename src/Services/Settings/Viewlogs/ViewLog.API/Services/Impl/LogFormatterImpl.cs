@@ -590,5 +590,10 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
         {
             return remotingRef.GetPaymentMethodName(paymentMethod);
         }
+
+        public string GetPaymentMethodStatusName(int paymentMethodStatus)
+        {
+            return GetLogResource("PaymentMethodStatus_" + paymentMethodStatus);
+        }
     }
 }

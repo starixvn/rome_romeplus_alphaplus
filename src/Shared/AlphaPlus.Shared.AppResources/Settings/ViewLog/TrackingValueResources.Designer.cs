@@ -8332,6 +8332,33 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string PaymentMethodStatus {
+            get {
+                return ResourceManager.GetString("PaymentMethodStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completed.
+        /// </summary>
+        public static string PaymentMethodStatus_2 {
+            get {
+                return ResourceManager.GetString("PaymentMethodStatus_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fail.
+        /// </summary>
+        public static string PaymentMethodStatus_3 {
+            get {
+                return ResourceManager.GetString("PaymentMethodStatus_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Period.
         /// </summary>
         public static string period {

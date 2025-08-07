@@ -3746,4 +3746,13 @@
   <data name="Transaction_2" xml:space="preserve">
     <value>Withdrawal</value>
   </data>
+  <data name="PaymentMethodStatus_2" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="PaymentMethodStatus_3" xml:space="preserve">
+    <value>Fail</value>
+  </data>
+  <data name="PaymentMethodStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
 </root>

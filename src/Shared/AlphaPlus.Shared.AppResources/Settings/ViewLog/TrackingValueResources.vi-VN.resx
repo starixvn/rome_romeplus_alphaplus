@@ -3246,4 +3246,13 @@
   <data name="Transaction_2" xml:space="preserve">
     <value>Rút tiền</value>
   </data>
+  <data name="PaymentMethodStatus_2" xml:space="preserve">
+    <value>Hoàn thành</value>
+  </data>
+  <data name="PaymentMethodStatus_3" xml:space="preserve">
+    <value>Thất bại</value>
+  </data>
+  <data name="PaymentMethodStatus" xml:space="preserve">
+    <value>Trạng thái</value>
+  </data>
 </root>
