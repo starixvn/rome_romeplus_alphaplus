@@ -134,24 +134,5 @@ namespace AlphaPlus.Utilities.IP.UnitTests
             var result = await ipService.GetCountryCode("1.2.3.4");
             Assert.Equal("Vietnam", result);
         }
-
-        private void SetupVNIPCache(List<Ipv4Range> ipv4Ranges, List<Ipv6Range> ipv6Ranges, ulong? ipv6Number = null)
-        {
-            var cacheEntryMock = new Mock<ICacheEntry>();
-            memoryCacheMock.Setup(m => m.GetOrCreate(It.IsAny<object>(), It.IsAny<Func<ICacheEntry, object>>()))
-                .Returns((object key, Func<ICacheEntry, object> factory) =>
-                {
-                    factory(cacheEntryMock.Object);
-                    return (ipv4Ranges, ipv6Ranges);
-                });
-            if (ipv6Ranges.Any() && ipv6Number.HasValue)
-            {
-                foreach (var range in ipv6Ranges)
-                {
-                    range.GetType().GetProperty("From")?.SetValue(range, ipv6Number.Value.ToString());
-                    range.GetType().GetProperty("To")?.SetValue(range, (ipv6Number.Value + 10).ToString());
-                }
-            }
-        }
     }
 }

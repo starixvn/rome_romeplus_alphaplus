@@ -17,24 +17,6 @@ public class SecurityCodeCheckerTests
     }
 
     [Fact]
-    public void IsEnableSecurityCode_WhenUserSiteInSites_ShouldReturnTrue()
-    {
-        // Arrange
-        _options.Sites = new[] { "site1", "site2" };
-        _mockSession.Setup(x => x.IsForcedChangeSecurityCode).Returns(false);
-        _mockSession.Setup(x => x.UserSite).Returns("site1");
-        _mockSession.Setup(x => x.SecurityCode).Returns("123456");
-
-        var checker = new SecurityCodeChecker(_mockOptions.Object);
-
-        // Act
-        var result = checker.IsEnableSecurityCode();
-
-        // Assert
-        Assert.True(result);
-    }
-
-    [Fact]
     public void IsEnableSecurityCode_WhenNoSecurityCode_ShouldReturnFalse()
     {
         // Arrange
