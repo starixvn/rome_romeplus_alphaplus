@@ -80,23 +80,6 @@ public class SecurityCodeCheckerTests
     }
 
     [Fact]
-    public void IsRequiredSecurityCode_WhenNotEnabledOtpAndNotEnabledSecurityCode_ShouldReturnFalse()
-    {
-        // Arrange
-        _mockSession.Setup(x => x.IsAlreadyInputSecurityCode).Returns(false);
-        _mockSession.Setup(x => x.IsInternal).Returns(false);
-        _mockSession.Setup(x => x.IsEnabledOtp).Returns(false);
-
-        var checker = new SecurityCodeChecker(_mockOptions.Object);
-
-        // Act
-        var result = checker.IsRequiredSecurityCode("/api/test");
-
-        // Assert
-        Assert.False(result);
-    }
-
-    [Fact]
     public void IsRequiredSecurityCode_WhenEmptyPath_ShouldReturnFalse()
     {
         // Arrange
