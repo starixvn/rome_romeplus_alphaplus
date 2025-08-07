@@ -1,5 +1,5 @@
-using AlphaPlus.Core.Utils;
 using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Utils;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.Reward;
 
@@ -9,7 +9,7 @@ public class RewardBaseQuery : TransferBaseQuery
     {
         SubAccId = viewer.SubAccId;
         LimitedDateToShowInfo = viewer.LimitedDateToShowInfo;
-        MinDate = SystemTime.Today.AddMonths(-3).FirstDayOfMonth().GetGreaterDate(LimitedDateToShowInfo);
+        MinDate = SystemTime.Today.AddMonths(-9).FirstDayOfMonth().GetGreaterDate(LimitedDateToShowInfo);
         Language = viewer.Language;
     }
 
