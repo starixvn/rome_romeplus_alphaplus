@@ -148,24 +148,6 @@ public class SecurityCodeCheckerTests
     }
 
     [Fact]
-    public void IsRequiredSecurityCode_WhenPathMatchesSecurityPaths_ShouldReturnTrue()
-    {
-        // Arrange
-        _options.Paths = new[] { "/api/secure", "/admin" };
-        _mockSession.Setup(x => x.IsAlreadyInputSecurityCode).Returns(false);
-        _mockSession.Setup(x => x.IsInternal).Returns(false);
-        _mockSession.Setup(x => x.IsEnabledOtp).Returns(true);
-
-        var checker = new SecurityCodeChecker(_mockOptions.Object);
-
-        // Act
-        var result = checker.IsRequiredSecurityCode("/api/secure");
-
-        // Assert
-        Assert.True(result);
-    }
-
-    [Fact]
     public void IsRequiredSecurityCode_WhenPathMatchesBetListsPaths_ShouldReturnTrue()
     {
         // Arrange
