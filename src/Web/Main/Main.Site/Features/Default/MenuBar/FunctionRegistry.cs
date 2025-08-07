@@ -57,7 +57,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
                      && !Current.IsInternal
                      && !Current.IsIndirectLoggedIn;
                 }),
-            ["ViewLogCashServiceMenuItem"] = () => new MenuStatus(Current.IsAgent && Core.Configurations.AppSettings.IsOfferedCashService(Current.Site)),
+            ["ViewLogCashServiceMenuItem"] = () => new MenuStatus(HasViewLogCashServicePermission()),
         };
 
         public static readonly Dictionary<string, Func<MenuStatus>> MenuItemTypeStatusRules = _menuItemTypeStatusRules;
@@ -153,6 +153,12 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
             var allowSites = AlphaPlus.Core.Configurations.ConfigurationManager.GetValue<string>("TransferToDownlineHistory:OfferSites")
                 .Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries);
             return allowSites.Contains("*") || allowSites.Contains(site, StringComparer.OrdinalIgnoreCase);
+        }
+
+        private static bool HasViewLogCashServicePermission() {
+            return Current.IsAgent 
+                && Core.Configurations.AppSettings.IsOfferedCashService(Current.Site) 
+                && (!Current.IsSubAcc || Current.SubPageAccess.GetPermission(PageAccessType.ViewLog));
         }
     }
 }
