@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AlphaPlus.Utilities.IP.Criteria;
 using AlphaPlus.Utilities.IP.Model;
 using AlphaPlus.Utilities.IP.Models;
 using AutoFixture;
 using Fanex.Data.Repository;
 using Microsoft.Extensions.Caching.Memory;
+using Moq;
+using Xunit;
 
 namespace AlphaPlus.Utilities.IP.UnitTests
 {
@@ -31,6 +34,49 @@ namespace AlphaPlus.Utilities.IP.UnitTests
             Assert.False(ipService.IsVNIP(""));
         }
 
+        [Fact]
+        public void FormatIP_ReturnsInvalidFormat_WhenIPIsNull()
+        {
+            // Act
+            var result = ipService.FormatIP(null, true);
+
+            // Assert
+            Assert.Null(result.IP);
+            Assert.False(result.AllowOpenInfoPopup);
+        }
+
+        [Fact]
+        public void FormatIP_ReturnsInvalidFormat_WhenIPIsEmpty()
+        {
+            // Act
+            var result = ipService.FormatIP("", true);
+
+            // Assert
+            Assert.Equal("", result.IP);
+            Assert.False(result.AllowOpenInfoPopup);
+        }
+
+        [Fact]
+        public void FormatIP_ReturnsInvalidFormat_WhenIPIsInvalid()
+        {
+            // Act
+            var result = ipService.FormatIP("invalid-ip", true);
+
+            // Assert
+            Assert.Equal("invalid-ip", result.IP);
+            Assert.False(result.AllowOpenInfoPopup);
+        }
+
+        [Fact]
+        public void FormatIP_ReturnsInvalidFormat_WhenIPDoesNotMatchRegex()
+        {
+            // Act
+            var result = ipService.FormatIP("256.256.256.256", true);
+
+            // Assert
+            Assert.Equal("256.256.256.256", result.IP);
+            Assert.False(result.AllowOpenInfoPopup);
+        }
 
         [Fact]
         public async Task GetIPInformation_ReturnsModel()
@@ -41,6 +87,24 @@ namespace AlphaPlus.Utilities.IP.UnitTests
             dynamicRepositoryMock.Setup(x => x.GetAsync<IPInformationModel>(It.IsAny<ICriteria>(), It.IsAny<string>())).ReturnsAsync(model);
             var result = await ipService.GetIPInformation(ip);
             Assert.Equal(model.CountryLong, result.CountryLong);
+        }
+
+        [Fact]
+        public async Task GetIPInformation_CallsRepositoryWithCorrectCriteria()
+        {
+            // Arrange
+            var ip = "1.2.3.4";
+            var fixture = new Fixture();
+            var model = fixture.Create<IPInformationModel>();
+            dynamicRepositoryMock.Setup(x => x.GetAsync<IPInformationModel>(It.IsAny<ICriteria>(), It.IsAny<string>())).ReturnsAsync(model);
+
+            // Act
+            await ipService.GetIPInformation(ip);
+
+            // Assert
+            dynamicRepositoryMock.Verify(x => x.GetAsync<IPInformationModel>(
+                It.Is<ICriteria>(c => c is GetIPInformationCriteria && ((GetIPInformationCriteria)c).Ip == ip),
+                It.IsAny<string>()), Times.Once);
         }
 
         [Fact]
@@ -75,7 +139,11 @@ namespace AlphaPlus.Utilities.IP.UnitTests
         {
             var cacheEntryMock = new Mock<ICacheEntry>();
             memoryCacheMock.Setup(m => m.GetOrCreate(It.IsAny<object>(), It.IsAny<Func<ICacheEntry, object>>()))
-                .Returns((object key, Func<ICacheEntry, object> factory) => factory(cacheEntryMock.Object));
+                .Returns((object key, Func<ICacheEntry, object> factory) =>
+                {
+                    factory(cacheEntryMock.Object);
+                    return (ipv4Ranges, ipv6Ranges);
+                });
             if (ipv6Ranges.Any() && ipv6Number.HasValue)
             {
                 foreach (var range in ipv6Ranges)
@@ -84,9 +152,6 @@ namespace AlphaPlus.Utilities.IP.UnitTests
                     range.GetType().GetProperty("To")?.SetValue(range, (ipv6Number.Value + 10).ToString());
                 }
             }
-            dynamicRepositoryMock
-                .Setup(x => x.FetchMultiple<Ipv4Range, Ipv6Range>(It.IsAny<ICriteria>(), It.IsAny<string>()))
-                .Returns((ipv4Ranges, ipv6Ranges));
         }
     }
 }
