@@ -3731,4 +3731,19 @@
   <data name="Announcement" xml:space="preserve">
     <value>Announcement</value>
   </data>
+  <data name="Provider" xml:space="preserve">
+    <value>Provider</value>
+  </data>
+  <data name="TransactionType" xml:space="preserve">
+    <value>Transaction Type</value>
+  </data>
+  <data name="PaymentMethod" xml:space="preserve">
+    <value>Payment Method</value>
+  </data>
+  <data name="Transaction_1" xml:space="preserve">
+    <value>Deposit</value>
+  </data>
+  <data name="Transaction_2" xml:space="preserve">
+    <value>Withdrawal</value>
+  </data>
 </root>

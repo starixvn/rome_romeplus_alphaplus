@@ -8323,6 +8323,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Payment Method.
+        /// </summary>
+        public static string PaymentMethod {
+            get {
+                return ResourceManager.GetString("PaymentMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Period.
         /// </summary>
         public static string period {
@@ -8472,6 +8481,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         public static string product {
             get {
                 return ResourceManager.GetString("product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provider.
+        /// </summary>
+        public static string Provider {
+            get {
+                return ResourceManager.GetString("Provider", resourceCulture);
             }
         }
         
@@ -9192,6 +9210,33 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         public static string toTrans {
             get {
                 return ResourceManager.GetString("toTrans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deposit.
+        /// </summary>
+        public static string Transaction_1 {
+            get {
+                return ResourceManager.GetString("Transaction_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Withdrawal.
+        /// </summary>
+        public static string Transaction_2 {
+            get {
+                return ResourceManager.GetString("Transaction_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaction Type.
+        /// </summary>
+        public static string TransactionType {
+            get {
+                return ResourceManager.GetString("TransactionType", resourceCulture);
             }
         }
         

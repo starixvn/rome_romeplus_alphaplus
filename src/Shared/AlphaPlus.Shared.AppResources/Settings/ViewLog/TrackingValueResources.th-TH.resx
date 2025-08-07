@@ -3582,4 +3582,19 @@
   <data name="Announcement" xml:space="preserve">
     <value>ประกาศ</value>
   </data>
+  <data name="Provider" xml:space="preserve">
+    <value>ผู้ให้บริการ</value>
+  </data>
+  <data name="TransactionType" xml:space="preserve">
+    <value>ประเภทธุรกรรม</value>
+  </data>
+  <data name="PaymentMethod" xml:space="preserve">
+    <value>วิธีการชำระเงิน</value>
+  </data>
+  <data name="Transaction_1" xml:space="preserve">
+    <value>ฝาก</value>
+  </data>
+  <data name="Transaction_2" xml:space="preserve">
+    <value>ถอน</value>
+  </data>
 </root>

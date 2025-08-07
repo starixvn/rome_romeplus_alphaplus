@@ -580,5 +580,15 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
         {
             return bankAccountNumber.Replace("NoMatchingBankAccount", GetLogResource("NoMatchingBankAccount"), StringComparison.OrdinalIgnoreCase);
         }
+
+        public string GetTransactionTypeName(string transactionType)
+        {
+            return GetLogResource("Transaction_" + transactionType);
+        }
+
+        public string GetPaymentMethodName(int paymentMethod)
+        {
+            return remotingRef.GetPaymentMethodName(paymentMethod);
+        }
     }
 }

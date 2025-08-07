@@ -174,7 +174,15 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
                 string.Empty);
         }
 
+        public string GetPaymentMethodName(int methodId) {
+            return remotingRefService.GetResourceDataByRefIdAndResourceId(
+                "CashPaymentMethod",
+                methodId.ToString(),
+                LanguageCode,
+                string.Empty);
+        }
+
         private static string LanguageCode
-        => Thread.CurrentThread.CurrentCulture.Name;
+            => Thread.CurrentThread.CurrentCulture.Name;
     }
 }

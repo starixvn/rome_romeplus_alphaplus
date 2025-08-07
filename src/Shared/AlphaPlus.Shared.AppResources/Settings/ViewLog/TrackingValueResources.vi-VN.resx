@@ -3231,4 +3231,19 @@
   <data name="Announcement" xml:space="preserve">
     <value>Thông báo</value>
   </data>
+  <data name="Provider" xml:space="preserve">
+    <value>Nhà cung cấp</value>
+  </data>
+  <data name="TransactionType" xml:space="preserve">
+    <value>Loại giao dịch</value>
+  </data>
+  <data name="PaymentMethod" xml:space="preserve">
+    <value>Phương thức thanh toán</value>
+  </data>
+  <data name="Transaction_1" xml:space="preserve">
+    <value>Nạp tiền</value>
+  </data>
+  <data name="Transaction_2" xml:space="preserve">
+    <value>Rút tiền</value>
+  </data>
 </root>

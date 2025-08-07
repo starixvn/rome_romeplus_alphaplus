@@ -14,5 +14,5 @@ public class InsertPaymentMethodRequest : BaseActionRequest
 
     public override bool IsValid() => base.IsValid() && ProviderId > 0;
 
-    public string GetAPIConfigJson() => $"{{\"APIMethodKey\":\"{APIMethodKey}\",\"MerchantID\":\"{MerchantID}\",\"AppSecret\":\"{AppSecret}\"}}";
+    public string GetAPIConfigJson() => $"{{\"secretKey\":\"{APIMethodKey}\",\"merchantNo\":\"{MerchantID}\",\"appSecret\":\"{AppSecret}\"}}";
 } 

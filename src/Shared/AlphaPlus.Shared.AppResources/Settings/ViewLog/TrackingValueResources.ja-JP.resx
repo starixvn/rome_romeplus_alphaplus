@@ -2772,4 +2772,19 @@
   <data name="Announcement" xml:space="preserve">
     <value>通知</value>
   </data>
+  <data name="Provider" xml:space="preserve">
+    <value>プロバイダー</value>
+  </data>
+  <data name="TransactionType" xml:space="preserve">
+    <value>取引タイプ</value>
+  </data>
+  <data name="PaymentMethod" xml:space="preserve">
+    <value>支払い方法</value>
+  </data>
+  <data name="Transaction_1" xml:space="preserve">
+    <value>入金</value>
+  </data>
+  <data name="Transaction_2" xml:space="preserve">
+    <value>出金</value>
+  </data>
 </root>

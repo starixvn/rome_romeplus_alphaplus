@@ -1747,4 +1747,19 @@
   <data name="Announcement" xml:space="preserve">
     <value>공지사항</value>
   </data>
+  <data name="Provider" xml:space="preserve">
+    <value>제공업체</value>
+  </data>
+  <data name="TransactionType" xml:space="preserve">
+    <value>거래 유형</value>
+  </data>
+  <data name="PaymentMethod" xml:space="preserve">
+    <value>결제 방법</value>
+  </data>
+  <data name="Transaction_1" xml:space="preserve">
+    <value>입금</value>
+  </data>
+  <data name="Transaction_2" xml:space="preserve">
+    <value>출금</value>
+  </data>
 </root>

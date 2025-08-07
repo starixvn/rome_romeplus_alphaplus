@@ -3489,4 +3489,19 @@
   <data name="Announcement" xml:space="preserve">
     <value>通告</value>
   </data>
+  <data name="Provider" xml:space="preserve">
+    <value>提供商</value>
+  </data>
+  <data name="TransactionType" xml:space="preserve">
+    <value>交易类型</value>
+  </data>
+  <data name="PaymentMethod" xml:space="preserve">
+    <value>支付方式</value>
+  </data>
+  <data name="Transaction_1" xml:space="preserve">
+    <value>存款</value>
+  </data>
+  <data name="Transaction_2" xml:space="preserve">
+    <value>提款</value>
+  </data>
 </root>
