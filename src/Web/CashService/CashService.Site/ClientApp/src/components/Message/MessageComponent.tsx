@@ -50,7 +50,7 @@ export const MessageComponent: React.FC<ResultMessageProps> = ({
     <div className={`${className} max-[768px]:py-[12px]`} role="alert">
       <div className={`${styles.container} ${styles.containerIcon || ''}`}>
         {styles.iconComponent}
-        <div>{message}</div>
+        <div dangerouslySetInnerHTML={{ __html: message }} />
       </div>
     </div>
   );
