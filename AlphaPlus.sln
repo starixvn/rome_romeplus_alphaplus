@@ -167,7 +167,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountInfo.Site.UnitTests"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.Utilities.IP.UnitTests", "src\Modules\AlphaPlus.Utilities.IP.UnitTests\AlphaPlus.Utilities.IP.UnitTests.csproj", "{6E3E55F2-5AAB-4053-8F44-54530382AACB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{D93A4E35-2705-E8AD-048A-F59C2D109D18}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Site", "src\Web\Auth\Auth.Site\Auth.Site.csproj", "{CB93AD2F-4DA0-4E45-BC46-5F927A4D9141}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.SmartPunter.UnitTests", "src\Modules\AlphaPlus.SmartPunter.UnitTests\AlphaPlus.SmartPunter.UnitTests.csproj", "{D47DED8E-332C-49BF-9307-016A6A0091C1}"
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Site.UnitTests", "src\Web\Auth\Auth.Site.UnitTests\Auth.Site.UnitTests.csproj", "{D92EEB28-67D0-4EA8-8046-11DC27CEACFE}"

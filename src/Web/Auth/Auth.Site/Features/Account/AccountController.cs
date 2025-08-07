@@ -67,7 +67,7 @@ public class AccountController(
         SSOParam param;
         try
         {
-            param = JsonSerializer.Deserialize<SSOParam>(aesService.Decrypt(parameter, SecretKey))!;
+            param = JsonSerializer.Deserialize<SSOParam>(aesService.Decrypt(parameter, SecretKey));
         }
         catch
         {
@@ -267,7 +267,7 @@ public class AccountController(
         return await Logout2();
     }
 
-    [AllowProtectedMode]
+    [Authorize, AllowProtectedMode]
     public async Task<IActionResult> KickOut(string reason)
     {
         var message = MapKickOutReasonToUserMessage(reason);
