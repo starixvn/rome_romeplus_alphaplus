@@ -11,4 +11,5 @@ export const PROMOTION_BONUS_STATUS_OPTIONS = {
   approved: 4,
   pending: 2,
   rejected: 5,
+  expired: 3,
 };

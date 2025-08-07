@@ -23,4 +23,8 @@ public class PromotionDetails
     public string SubAccName { get; init; }
 
     public byte StatusId { get; init; }
+
+    public long TransId { get; init; }
+
+    public string RefNo => TransId.ToString();
 }

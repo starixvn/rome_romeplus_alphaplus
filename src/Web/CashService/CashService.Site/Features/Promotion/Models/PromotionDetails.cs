@@ -23,4 +23,6 @@ public class PromotionDetails
     public string SubAccName { get; init; }
 
     public byte StatusId { get; init; }
+
+    public string RefNo { get; init; }
 }

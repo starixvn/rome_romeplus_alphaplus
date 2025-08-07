@@ -20,6 +20,10 @@ function DetailsReportStatusRow({ status }: { status: number }) {
     return <StatusComponent type="disabled" text={t('global:status.rejected')} />;
   }
 
+  if (status === PROMOTION_BONUS_STATUS_OPTIONS.expired) {
+    return <StatusComponent type="failed" text={t('global:status.expired')} />;
+  }
+
   return <StatusComponent type="processing" text={t('global:status.pending')} />;
 }
 
@@ -39,6 +43,7 @@ function DetailsReportRow({ idx, data }: { idx: number; data: any }) {
       </td>
       <td>{`${formatDate(data.fromDate)} - ${formatDate(data.toDate)}`}</td>
       <td className="text-right">{formatDecimal(data.amount)}</td>
+      <td>{data.refNo}</td>
       <td className="text-left">{data.subAccName ? data.subAccName : data.operatedBy}</td>
       <td>{formatDateTime(data.operatedTime)}</td>
       <td>
@@ -70,6 +75,7 @@ const DetailsReportTable = React.forwardRef<HTMLTableElement, DetailsReportTable
               <th>{t('global:firstAndLastName')}</th>
               <th>{t('promotion:table.rebatePeriod')}</th>
               <th>{t('promotion:table.bonusAmount')}</th>
+              <th>{t('promotion:table.refNo')}</th>
               <th>{t('global:updatedBy')}</th>
               <th>{t('global:lastUpdated')}</th>
               <th className="w-[140px] min-w-[140px]">{t('global:statusText')}</th>
@@ -77,7 +83,7 @@ const DetailsReportTable = React.forwardRef<HTMLTableElement, DetailsReportTable
           </thead>
           <tbody className="font-[500]">
             {data.length === 0 ? (
-              <NoRecordFound colSpan={8} />
+              <NoRecordFound colSpan={9} />
             ) : (
               data.map((item, idx) => (
                 <DetailsReportRow key={`${item.username}_${idx}`} idx={idx} data={item} />
