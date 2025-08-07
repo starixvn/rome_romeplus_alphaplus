@@ -53,9 +53,9 @@
       "ProviderName": "System.Data.SqlClient"
     },
     {
-        "Name": "DBLOG.bodb_CustomerLog.wsv_CashService",
-        "ConnectionString": "packet size=4096; Data Source=db055.gamora.prod;Initial Catalog=bodb_CustomerLog;integrated security=false; trustservercertificate=true; user id=wsv_CashService; password=efxbd+jiTDMF8k3e2JParyFP6kORa5C/mRZp3G6L7fEgvsRBmbOG2A==",
-        "ProviderName": "System.Data.SqlClient"
+      "Name": "DBLOG.bodb_CustomerLog.wsv_CashService",
+      "ConnectionString": "packet size=4096; Data Source=db055.gamora.prod;Initial Catalog=bodb_CustomerLog;integrated security=false; trustservercertificate=true; user id=wsv_CashService; password=efxbd+jiTDMF8k3e2JParyFP6kORa5C/mRZp3G6L7fEgvsRBmbOG2A==",
+      "ProviderName": "System.Data.SqlClient"
     },
     {
       "Name": "DBONUSER.ON_USER.wsv_alp",
@@ -146,7 +146,7 @@
   "RemotingRefUrl": "http://shared_fanex_remotingref_UAT:5000/",
   "Fanex.Customer": {
     "ServiceUri": "http://customer-api.st-kluat.gamora.prod/v3/api/",
-    "CdnUri": "//cdn-customer.starixuat.com/v3/",
+    "CdnUri": "//customer-cdn.kl.starixuat.com/v3/",
     "SystemId": 2
   },
   "SystemId": 2,
