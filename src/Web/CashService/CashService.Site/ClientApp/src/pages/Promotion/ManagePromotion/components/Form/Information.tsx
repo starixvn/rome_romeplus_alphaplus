@@ -68,6 +68,7 @@ const Information: React.FC<InformationProps> = ({
         </span>
       </Tippy> 
     </div>
+    <p className='mb-[10px]'>{t('addPromotionForm.promotionConfigureCalculated')}</p>
     <div className="flex flex-wrap w-full">
       <div className="w-[190px] mr-[12px] mb-[12px]">
         <div className="flex items-center">

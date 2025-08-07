@@ -161,6 +161,14 @@ html * {
         &#menu-CHATBOT .txt-item {
             color: #0776c1;
         }
+        &#menu-CASHSERVICE, &#menu-PROMOTION{
+            a:hover{
+                .icon {
+                    background: transparent;
+                    box-shadow: none;
+                }
+            }
+        }
 
         .icon {
             line-height: 24px;
@@ -201,15 +209,7 @@ html * {
                     top: 0;
                     left: 0;
                     background-color: transparent;
-                }
-
-                &:after {
-                    @include animation(cd-pulse 2s infinite);
-                }
-
-                &:before {
-                    @include animation(cd-pulse 2s infinite 4s);
-                }
+                } 
             }
 
             &.icon-chatbot {
@@ -236,6 +236,9 @@ html * {
             }
 
             &.icon-promotion,&.icon-cashservice {
+                background: none;
+                font-size: 24px;
+                color: #F7931A;
                 &:after{
                     content: '';
                     position: absolute;
