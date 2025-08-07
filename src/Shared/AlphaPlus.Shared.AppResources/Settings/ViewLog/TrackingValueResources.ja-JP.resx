@@ -2742,4 +2742,34 @@
   <data name="NoMatchingBankAccount" xml:space="preserve">
     <value>一致する銀行口座がありません</value>
   </data>
+  <data name="DailyWithdrawalCount" xml:space="preserve">
+    <value>1日の出金回数</value>
+  </data>
+  <data name="MinPerDeposit" xml:space="preserve">
+    <value>最低入金額</value>
+  </data>
+  <data name="MaxPerDeposit" xml:space="preserve">
+    <value>最高入金額</value>
+  </data>
+  <data name="MinPerWithdrawal" xml:space="preserve">
+    <value>最低出金額</value>
+  </data>
+  <data name="MaxPerWithdrawal" xml:space="preserve">
+    <value>最高出金額</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>開始時間</value>
+  </data>
+  <data name="TrialEndTime" xml:space="preserve">
+    <value>試用終了時間</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>連絡先</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>携帯電話</value>
+  </data>
+  <data name="Announcement" xml:space="preserve">
+    <value>通知</value>
+  </data>
 </root>

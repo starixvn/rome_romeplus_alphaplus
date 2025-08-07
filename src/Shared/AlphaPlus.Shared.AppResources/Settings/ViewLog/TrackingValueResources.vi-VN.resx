@@ -3201,4 +3201,34 @@
   <data name="NoMatchingBankAccount" xml:space="preserve">
     <value>Không có tài khoản ngân hàng tương ứng</value>
   </data>
+  <data name="DailyWithdrawalCount" xml:space="preserve">
+    <value>Số lần rút tiền hàng ngày</value>
+  </data>
+  <data name="MinPerDeposit" xml:space="preserve">
+    <value>Số tiền nhỏ nhất cho mỗi giao dịch gửi</value>
+  </data>
+  <data name="MaxPerDeposit" xml:space="preserve">
+    <value>Số tiền lớn nhất cho mỗi giao dịch gửi</value>
+  </data>
+  <data name="MinPerWithdrawal" xml:space="preserve">
+    <value>Số tiền nhỏ nhất cho mỗi giao dịch rút</value>
+  </data>
+  <data name="MaxPerWithdrawal" xml:space="preserve">
+    <value>Số tiền lớn nhất cho mỗi giao dịch rút</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>Thời gian bắt đầu</value>
+  </data>
+  <data name="TrialEndTime" xml:space="preserve">
+    <value>Thời gian kết thúc thử nghiệm</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Liên hệ</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>Di động</value>
+  </data>
+  <data name="Announcement" xml:space="preserve">
+    <value>Thông báo</value>
+  </data>
 </root>

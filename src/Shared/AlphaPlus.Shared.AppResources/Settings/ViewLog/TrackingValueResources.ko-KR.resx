@@ -1717,4 +1717,34 @@
   <data name="NoMatchingBankAccount" xml:space="preserve">
     <value>일치하는 은행 계좌가 없습니다</value>
   </data>
+  <data name="DailyWithdrawalCount" xml:space="preserve">
+    <value>일일 출금 횟수</value>
+  </data>
+  <data name="MinPerDeposit" xml:space="preserve">
+    <value>최소 입금액</value>
+  </data>
+  <data name="MaxPerDeposit" xml:space="preserve">
+    <value>최대 입금액</value>
+  </data>
+  <data name="MinPerWithdrawal" xml:space="preserve">
+    <value>최소 출금액</value>
+  </data>
+  <data name="MaxPerWithdrawal" xml:space="preserve">
+    <value>최대 출금액</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>시작 시간</value>
+  </data>
+  <data name="TrialEndTime" xml:space="preserve">
+    <value>시도 종료 시간</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>연락처</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>휴대폰</value>
+  </data>
+  <data name="Announcement" xml:space="preserve">
+    <value>공지사항</value>
+  </data>
 </root>

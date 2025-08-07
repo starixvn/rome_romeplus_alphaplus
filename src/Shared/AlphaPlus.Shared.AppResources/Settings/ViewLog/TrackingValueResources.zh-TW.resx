@@ -3459,4 +3459,34 @@
   <data name="NoMatchingBankAccount" xml:space="preserve">
     <value>沒有匹配的銀行賬戶</value>
   </data>
+  <data name="DailyWithdrawalCount" xml:space="preserve">
+    <value>每日提款次數</value>
+  </data>
+  <data name="MinPerDeposit" xml:space="preserve">
+    <value>最低入金額</value>
+  </data>
+  <data name="MaxPerDeposit" xml:space="preserve">
+    <value>最高入金額</value>
+  </data>
+  <data name="MinPerWithdrawal" xml:space="preserve">
+    <value>最低出金額</value>
+  </data>
+  <data name="MaxPerWithdrawal" xml:space="preserve">
+    <value>最高出金額</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>開始時間</value>
+  </data>
+  <data name="TrialEndTime" xml:space="preserve">
+    <value>試用結束時間</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>聯繫人</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>手機</value>
+  </data>
+  <data name="Announcement" xml:space="preserve">
+    <value>通告</value>
+  </data>
 </root>

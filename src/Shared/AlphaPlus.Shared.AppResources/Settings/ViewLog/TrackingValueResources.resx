@@ -3701,4 +3701,34 @@
   <data name="NoMatchingBankAccount" xml:space="preserve">
     <value>No Matching Bank Account</value>
   </data>
+  <data name="DailyWithdrawalCount" xml:space="preserve">
+    <value>Daily withdrawal count</value>
+  </data>
+  <data name="MinPerDeposit" xml:space="preserve">
+    <value>Min Per Deposit</value>
+  </data>
+  <data name="MaxPerDeposit" xml:space="preserve">
+    <value>Max Per Deposit</value>
+  </data>
+  <data name="MinPerWithdrawal" xml:space="preserve">
+    <value>Min Per Withdrawal</value>
+  </data>
+  <data name="MaxPerWithdrawal" xml:space="preserve">
+    <value>Max Per Withdrawal</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>Start Time</value>
+  </data>
+  <data name="TrialEndTime" xml:space="preserve">
+    <value>Trial End Time</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="Announcement" xml:space="preserve">
+    <value>Announcement</value>
+  </data>
 </root>
