@@ -2796,4 +2796,40 @@
   <data name="PaymentMethodStatus" xml:space="preserve">
     <value>状態</value>
   </data>
+  <data name="enabled" xml:space="preserve">
+    <value>有効</value>
+  </data>
+  <data name="AccountHolderName" xml:space="preserve">
+    <value>口座名義人</value>
+  </data>
+  <data name="BankAccountNumber" xml:space="preserve">
+    <value>銀行口座番号</value>
+  </data>
+  <data name="AccountNickname" xml:space="preserve">
+    <value>口座のニックネーム</value>
+  </data>
+  <data name="DepositMatchingMode" xml:space="preserve">
+    <value>入金マッチングモード</value>
+  </data>
+  <data name="PromptPay" xml:space="preserve">
+    <value>PromptPay</value>
+  </data>
+  <data name="TransactionType_1" xml:space="preserve">
+    <value>手動入金</value>
+  </data>
+  <data name="TransactionType_2" xml:space="preserve">
+    <value>自動入金</value>
+  </data>
+  <data name="TransactionType_3" xml:space="preserve">
+    <value>手動出金</value>
+  </data>
+  <data name="TransactionType_4" xml:space="preserve">
+    <value>自動出金</value>
+  </data>
+  <data name="DepositMatchingMode_1" xml:space="preserve">
+    <value>小数点</value>
+  </data>
+  <data name="DepositMatchingMode_2" xml:space="preserve">
+    <value>銀行マッチング</value>
+  </data>
 </root>

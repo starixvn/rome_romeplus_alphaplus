@@ -3255,4 +3255,40 @@
   <data name="PaymentMethodStatus" xml:space="preserve">
     <value>Trạng thái</value>
   </data>
+  <data name="enabled" xml:space="preserve">
+    <value>Đã bật</value>
+  </data>
+  <data name="AccountHolderName" xml:space="preserve">
+    <value>Tên chủ tài khoản</value>
+  </data>
+  <data name="BankAccountNumber" xml:space="preserve">
+    <value>Số tài khoản ngân hàng</value>
+  </data>
+  <data name="AccountNickname" xml:space="preserve">
+    <value>Biệt danh tài khoản</value>
+  </data>
+  <data name="DepositMatchingMode" xml:space="preserve">
+    <value>Chế độ khớp nạp tiền</value>
+  </data>
+  <data name="PromptPay" xml:space="preserve">
+    <value>PromptPay</value>
+  </data>
+  <data name="TransactionType_1" xml:space="preserve">
+    <value>Nạp tiền thủ công</value>
+  </data>
+  <data name="TransactionType_2" xml:space="preserve">
+    <value>Nạp tiền tự động</value>
+  </data>
+  <data name="TransactionType_3" xml:space="preserve">
+    <value>Rút tiền thủ công</value>
+  </data>
+  <data name="TransactionType_4" xml:space="preserve">
+    <value>Rút tiền tự động</value>
+  </data>
+  <data name="DepositMatchingMode_1" xml:space="preserve">
+    <value>Thập phân</value>
+  </data>
+  <data name="DepositMatchingMode_2" xml:space="preserve">
+    <value>Khớp ngân hàng</value>
+  </data>
 </root>

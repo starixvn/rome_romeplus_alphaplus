@@ -32,10 +32,6 @@
             <td class="colW2"></td>
           </tr>
           <tr>
-            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('DailyWithdrawalCount')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@dailywithdrawalcount" />
-            </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SubAccName')" /></td>
             <td class="colW2">
               <xsl:value-of select="@subaccname" />
@@ -44,6 +40,8 @@
             <td class="colW2">
               <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
             </td>
+            <td class="colW1"></td>
+            <td class="colW2"></td>
           </tr>
         </table>
       </xsl:when>

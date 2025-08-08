@@ -3606,4 +3606,40 @@
   <data name="PaymentMethodStatus" xml:space="preserve">
     <value>สถานะ</value>
   </data>
+  <data name="enabled" xml:space="preserve">
+    <value>เปิดการใช้งาน</value>
+  </data>
+  <data name="AccountHolderName" xml:space="preserve">
+    <value>ชื่อเจ้าของบัญชี</value>
+  </data>
+  <data name="BankAccountNumber" xml:space="preserve">
+    <value>หมายเลขบัญชีธนาคาร</value>
+  </data>
+  <data name="AccountNickname" xml:space="preserve">
+    <value>ชื่อเล่นบัญชี</value>
+  </data>
+  <data name="DepositMatchingMode" xml:space="preserve">
+    <value>โหมดการจับคู่การฝาก</value>
+  </data>
+  <data name="PromptPay" xml:space="preserve">
+    <value>PromptPay</value>
+  </data>
+  <data name="TransactionType_1" xml:space="preserve">
+    <value>ฝากด้วยตนเอง</value>
+  </data>
+  <data name="TransactionType_2" xml:space="preserve">
+    <value>ฝากอัตโนมัติ</value>
+  </data>
+  <data name="TransactionType_3" xml:space="preserve">
+    <value>ถอนด้วยตนเอง</value>
+  </data>
+  <data name="TransactionType_4" xml:space="preserve">
+    <value>ถอนอัตโนมัติ</value>
+  </data>
+  <data name="DepositMatchingMode_1" xml:space="preserve">
+    <value>ทศนิยม</value>
+  </data>
+  <data name="DepositMatchingMode_2" xml:space="preserve">
+    <value>การจับคู่ธนาคาร</value>
+  </data>
 </root>

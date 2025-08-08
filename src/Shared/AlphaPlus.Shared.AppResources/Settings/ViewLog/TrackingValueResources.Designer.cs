@@ -1609,6 +1609,24 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account holder name.
+        /// </summary>
+        public static string AccountHolderName {
+            get {
+                return ResourceManager.GetString("AccountHolderName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account nickname.
+        /// </summary>
+        public static string AccountNickname {
+            get {
+                return ResourceManager.GetString("AccountNickname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Remark.
         /// </summary>
         public static string AccountRemark {
@@ -2280,6 +2298,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         public static string Bank_9 {
             get {
                 return ResourceManager.GetString("Bank_9", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank account number.
+        /// </summary>
+        public static string BankAccountNumber {
+            get {
+                return ResourceManager.GetString("BankAccountNumber", resourceCulture);
             }
         }
         
@@ -2986,6 +3013,33 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deposit matching mode.
+        /// </summary>
+        public static string DepositMatchingMode {
+            get {
+                return ResourceManager.GetString("DepositMatchingMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Decimal.
+        /// </summary>
+        public static string DepositMatchingMode_1 {
+            get {
+                return ResourceManager.GetString("DepositMatchingMode_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bank Matching.
+        /// </summary>
+        public static string DepositMatchingMode_2 {
+            get {
+                return ResourceManager.GetString("DepositMatchingMode_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deposit User ID.
         /// </summary>
         public static string DepositUserID {
@@ -3279,6 +3333,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         public static string en_US {
             get {
                 return ResourceManager.GetString("en-US", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled.
+        /// </summary>
+        public static string enabled {
+            get {
+                return ResourceManager.GetString("enabled", resourceCulture);
             }
         }
         
@@ -8512,6 +8575,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PromptPay.
+        /// </summary>
+        public static string PromptPay {
+            get {
+                return ResourceManager.GetString("PromptPay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Provider.
         /// </summary>
         public static string Provider {
@@ -9264,6 +9336,42 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         public static string TransactionType {
             get {
                 return ResourceManager.GetString("TransactionType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual Deposit.
+        /// </summary>
+        public static string TransactionType_1 {
+            get {
+                return ResourceManager.GetString("TransactionType_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Deposit.
+        /// </summary>
+        public static string TransactionType_2 {
+            get {
+                return ResourceManager.GetString("TransactionType_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual Withdrawal.
+        /// </summary>
+        public static string TransactionType_3 {
+            get {
+                return ResourceManager.GetString("TransactionType_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Withdrawal.
+        /// </summary>
+        public static string TransactionType_4 {
+            get {
+                return ResourceManager.GetString("TransactionType_4", resourceCulture);
             }
         }
         

@@ -8,12 +8,18 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
 {
-    public class TransformServiceImpl(LogFormatter logFormatter, IMemoryCache cacheService) : TransformService
+    public class TransformServiceImpl(IMemoryCache cacheService) : TransformService
     {
         private const string TransformObjectCacheKey = "AlphaPlus.Settings.ViewLogs.API.TransformObject_{0}";
 
-        private readonly LogFormatter logFormatter = logFormatter;
         private readonly IMemoryCache cacheService = cacheService;
+
+        private BaseLogFormatter logFormatter;
+
+        public void Init(BaseLogFormatter logFormatter)
+        {
+            this.logFormatter = logFormatter;
+        }
 
         public string TransformTrackingValue(
             string trackingValue,
@@ -40,7 +46,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
 
             var xsltArguments = new XsltArgumentList();
             xsltArguments.AddExtensionObject("urn:LogFormat", logFormatter);
-
+            
             // Transform xml must be lower case
             using MemoryStream stream = new MemoryStream(ASCIIEncoding.UTF8.GetBytes(trackingValue.ToLowerInvariant()));
             var document = new XPathDocument(stream);

@@ -3,7 +3,7 @@
   <xsl:param name="IsInternal" select="0"></xsl:param>
   <xsl:output method="html" indent="no" />
 
-  <xsl:template match="age_cashservice_generalsetting-upd">
+  <xsl:template match="age_cashservice_generalsetting_upd">
     <xsl:choose>
       <xsl:when test="@custid">
         <table class="tblDesc">

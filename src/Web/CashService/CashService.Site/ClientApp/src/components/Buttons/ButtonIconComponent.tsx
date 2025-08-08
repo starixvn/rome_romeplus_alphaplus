@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { IconBack, IconClose, IconCopy, IconDelete, IconExcel, IconPen } from '../Icons';
+import { IconBack, IconClose, IconCopy, IconDelete, IconExcel, IconEye, IconPen } from '../Icons';
 import { useTranslation } from 'react-i18next';
 
 interface ButtonIconStyles {
@@ -12,7 +12,7 @@ export const ButtonIconComponent: React.FC<{
     onClick: () => void;
     disabled?: boolean;
     type?: 'button' | 'submit' | 'reset';
-    style?: 'Close' | 'Edit' | 'Delete' | 'Excel' | 'Copy' | 'Back';
+    style?: 'Close' | 'Edit' | 'Delete' | 'Excel' | 'Copy' | 'Back' | 'Eye';
     icon?: React.ReactNode;
     className?: string;
     
@@ -50,6 +50,11 @@ export const ButtonIconComponent: React.FC<{
               container: 'min-w-[90px] text-[var(--button-back-text)] hover:text-[var(--button-back-text-hover)] border-[1px] border-[var(--button-back-border)] rounded-[20px] mr-[16px] bg-[var(--button-back-background)] hover:bg-[var(--button-back-background-hover)] hover:border-[transparent] group mb-[8px] inline-flex items-center py-[4px] pl-[8px] pr-[16px]',
               iconComponent: <IconBack className='w-[18px] h-[18px] fill-[var(--button-back-text)] mr-[8px] group-hover:fill-[var(--button-back-text-hover)]' />,
               text: tGlobal('back')
+            };
+          case 'Eye': 
+            return {
+              container: 'hover:bg-[var(--button-icon-hover)] mx-[4px] py-[4px] px-[4px] rounded-[3px] ',
+              iconComponent: <IconEye />
             };
           default:
             return {

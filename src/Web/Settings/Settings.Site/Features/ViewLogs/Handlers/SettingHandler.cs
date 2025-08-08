@@ -33,6 +33,7 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
              base(logService, logFormatter, dateTimeWrapper, userSession)
         {
             this.trackingValueFormatter = trackingValueFormatter;
+            transformService.Init(logFormatter);
             this.transformService = transformService;
             this.logger = logger;
         }

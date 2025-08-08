@@ -3513,4 +3513,40 @@
   <data name="PaymentMethodStatus" xml:space="preserve">
     <value>狀態</value>
   </data>
+  <data name="enabled" xml:space="preserve">
+    <value>已開啟</value>
+  </data>
+  <data name="AccountHolderName" xml:space="preserve">
+    <value>賬戶持有人姓名</value>
+  </data>
+  <data name="BankAccountNumber" xml:space="preserve">
+    <value>銀行賬號</value>
+  </data>
+  <data name="AccountNickname" xml:space="preserve">
+    <value>賬戶暱稱</value>
+  </data>
+  <data name="DepositMatchingMode" xml:space="preserve">
+    <value>存款匹配模式</value>
+  </data>
+  <data name="PromptPay" xml:space="preserve">
+    <value>PromptPay</value>
+  </data>
+  <data name="DepositMatchingMode_1" xml:space="preserve">
+    <value>小數</value>
+  </data>
+  <data name="DepositMatchingMode_2" xml:space="preserve">
+    <value>銀行匹配</value>
+  </data>
+  <data name="TransactionType_1" xml:space="preserve">
+    <value>手動存款</value>
+  </data>
+  <data name="TransactionType_2" xml:space="preserve">
+    <value>自動存款</value>
+  </data>
+  <data name="TransactionType_3" xml:space="preserve">
+    <value>手動提款</value>
+  </data>
+  <data name="TransactionType_4" xml:space="preserve">
+    <value>自動提款</value>
+  </data>
 </root>

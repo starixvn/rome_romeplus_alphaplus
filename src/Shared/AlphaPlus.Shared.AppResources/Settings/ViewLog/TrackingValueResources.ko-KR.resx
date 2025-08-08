@@ -1771,4 +1771,40 @@
   <data name="PaymentMethodStatus" xml:space="preserve">
     <value>상태</value>
   </data>
+  <data name="enabled" xml:space="preserve">
+    <value>활성화됨</value>
+  </data>
+  <data name="AccountHolderName" xml:space="preserve">
+    <value>예금주 이름</value>
+  </data>
+  <data name="BankAccountNumber" xml:space="preserve">
+    <value>은행 계좌 번호</value>
+  </data>
+  <data name="AccountNickname" xml:space="preserve">
+    <value>계좌 별칭</value>
+  </data>
+  <data name="DepositMatchingMode" xml:space="preserve">
+    <value>입금 매칭 모드</value>
+  </data>
+  <data name="PromptPay" xml:space="preserve">
+    <value>PromptPay</value>
+  </data>
+  <data name="TransactionType_1" xml:space="preserve">
+    <value>수동 입금</value>
+  </data>
+  <data name="TransactionType_2" xml:space="preserve">
+    <value>자동 입금</value>
+  </data>
+  <data name="TransactionType_3" xml:space="preserve">
+    <value>수동 출금</value>
+  </data>
+  <data name="TransactionType_4" xml:space="preserve">
+    <value>자동 출금</value>
+  </data>
+  <data name="DepositMatchingMode_1" xml:space="preserve">
+    <value>소수점</value>
+  </data>
+  <data name="DepositMatchingMode_2" xml:space="preserve">
+    <value>은행 매칭</value>
+  </data>
 </root>

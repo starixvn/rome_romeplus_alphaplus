@@ -53,7 +53,7 @@ const RetryPaymentMethodModal: React.FC<RetryPaymentMethodModalProps> = ({
   const [resultType, setResultType] = React.useState<ResultType | undefined>(undefined);
   const [resultMessage, setResultMessage] = React.useState<string>('');
   const [isBlockAction, setIsBlockAction] = React.useState<boolean>(false);
-
+  const [isShowAppSecret, setIsShowAppSecret] = React.useState<boolean>(false);
   // Combined form state
   const [formState, setFormState] = React.useState<PaymentMethodFormState>({
     selectedPaymentMethod: existingPaymentMethod.method.toString(),
@@ -349,12 +349,13 @@ const RetryPaymentMethodModal: React.FC<RetryPaymentMethodModalProps> = ({
                 <div className="w-[48%]">
                   <TitleComponent type='label' text={`${tPaymentProviderSettings('appSecret')}`} required={true} />
                   <input
-                    type="password"
+                    type={isShowAppSecret ? 'text' : 'password'}
                     className={`control-field ${fieldErrors.appSecret ? 'error' : ''}`}
                     id="appSecret"
                     value={formState.appSecret}
                     onChange={(e) => { onInputChange('appSecret', e.target.value); }}
                   />
+                  <ButtonIconComponent style='Eye' onClick={() => { setIsShowAppSecret(!isShowAppSecret); }} />
                   <MessageComponent message={fieldErrors.appSecret} type='validate' />
                 </div>
               </div>
