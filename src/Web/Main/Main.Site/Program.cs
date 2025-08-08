@@ -65,7 +65,7 @@ app.MapHealthChecks("/health", new HealthCheckOptions
     ResponseWriter = (context, report) =>
     {
         context.Response.ContentType = "text/plain";
-        var environment = string.IsNullOrWhiteSpace(configuration.GetValue<string>("Environment")) ? string.Empty : $"Environment: {configuration.GetValue<string>("Environment")}";
+        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
         return context.Response.WriteAsync($"Healthy{Environment.NewLine}{environment}");
     },
     ResultStatusCodes =

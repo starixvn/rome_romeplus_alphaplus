@@ -75,6 +75,8 @@ public static class Extensions
     public static AuthenticationBuilder AddSharedCookie(this AuthenticationBuilder builder)
     => builder.AddCookie(options =>
     {
+        var isDev = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
+        var scheme = isDev ? "http" : "https";
         options.ExpireTimeSpan = TimeSpan.FromMinutes(20);
         options.SlidingExpiration = true;
         options.AccessDeniedPath = "/Forbidden/";
@@ -83,7 +85,7 @@ public static class Extensions
         {
             OnRedirectToLogin = ctx =>
             {
-                ctx.Response.Redirect($"{ctx.Request.Scheme}://{ctx.Request.Host.Value}/main/Account/Login?r=SessionExpired");
+                ctx.Response.Redirect($"{scheme}://{ctx.Request.Host.Value}/main/Account/Login?r=SessionExpired");
                 return Task.CompletedTask;
             }
         };
