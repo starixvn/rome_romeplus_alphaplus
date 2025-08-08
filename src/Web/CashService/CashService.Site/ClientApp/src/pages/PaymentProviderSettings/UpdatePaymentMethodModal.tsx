@@ -155,7 +155,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
       var apiConfigObject = selectedMethod ? JSON.parse(selectedMethod.apiConfig || '{}') : null;
       setFormState({ 
         ...formState, 
-        'selectedPaymentMethod': ms.length > 0 ? ms[0].id.toString() : '0',
+        'selectedPaymentMethod': selectedMethod?.id.toString() || '0',
         'apiKey': apiConfigObject?.secretKey || '',
         'merchantID': apiConfigObject?.merchantNo || '',
         'appSecret': apiConfigObject?.appSecret || '',
@@ -196,8 +196,8 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
       id: existingPaymentMethod.id,
       name: selectedMethod?.name || '',
       providerId,
-      method: parseInt(formState.selectedPaymentMethod),
-      transactionType: parseInt(formState.selectedTransactionType),
+      method: existingPaymentMethod.method,
+      transactionType: existingPaymentMethod.transactionType,
       status: existingPaymentMethod.status,
       custId: existingPaymentMethod.custId || 0,
       apiMethodKey: formState.apiKey,
@@ -287,7 +287,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                       .filter((p) => p.id !== 0)
                       .map((method) => (
                         <option key={method.id} value={method.id} selected={method.id === existingPaymentMethod.method}
-                        data-state={formState.selectedPaymentMethod}>
+                          data-state={formState.selectedPaymentMethod}>
                           {method.name}                          
                         </option>
                       ))}

@@ -153,7 +153,7 @@ const RetryPaymentMethodModal: React.FC<RetryPaymentMethodModalProps> = ({
       var apiConfigObject = selectedMethod ? JSON.parse(selectedMethod.apiConfig || '{}') : null;
       setFormState({ 
         ...formState,
-        'selectedPaymentMethod': ms.length > 0 ? ms[0].id.toString() : '0',
+        'selectedPaymentMethod': selectedMethod?.id.toString() || '0',
         'apiKey': apiConfigObject?.secretKey || '',
         'merchantID': apiConfigObject?.merchantNo || '',
         'appSecret': apiConfigObject?.appSecret || '',
@@ -195,8 +195,8 @@ const RetryPaymentMethodModal: React.FC<RetryPaymentMethodModalProps> = ({
       id: existingPaymentMethod.id,
       name: selectedMethod?.name || '',
       providerId,
-      method: parseInt(formState.selectedPaymentMethod),
-      transactionType: parseInt(formState.selectedTransactionType),
+      method: existingPaymentMethod.method,
+      transactionType: existingPaymentMethod.transactionType,
       status: existingPaymentMethod.status,
       custId: existingPaymentMethod.custId || 0,
       apiMethodKey: formState.apiKey,
