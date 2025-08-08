@@ -49,7 +49,7 @@ const Information: React.FC<InformationProps> = ({
       <EnableButtonComponent isActive={isActive} onClick={() => setIsActive(true)} />
       <DisableButtonComponent isActive={!isActive} onClick={() => setIsActive(false)} />
     </div>
-    <div className='flex items-center pb-[5px] border-b border-[var(--border-control)] mb-[10px]'>
+    <div className='flex flex-wrap items-center pb-[5px] border-b border-[var(--border-control)] mb-[10px]'>
       <div className='inline-block mr-[10px]'>
         <TitleComponent text={t('addPromotionForm.promotionSettings.title')}   type='medium' ></TitleComponent>  
       </div>
@@ -67,8 +67,9 @@ const Information: React.FC<InformationProps> = ({
           <IconInfo className="cursor-pointer  " />
         </span>
       </Tippy> 
+      <p className='w-full mt-[5px]'>{t('addPromotionForm.promotionConfigureCalculated')}</p>
     </div>
-    <p className='mb-[10px]'>{t('addPromotionForm.promotionConfigureCalculated')}</p>
+    
     <div className="flex flex-wrap w-full">
       <div className="w-[190px] mr-[12px] mb-[12px]">
         <div className="flex items-center">

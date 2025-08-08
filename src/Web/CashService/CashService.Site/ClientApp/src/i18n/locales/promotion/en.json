@@ -15,7 +15,7 @@
     "promotionSavedSuccessfully": "Promotion saved successfully",
     "currentPromotion": "Current Promotion",
     "onlyOnePromotionCanBeActiveAtATime": "Only one promotion can be active at a time.",
-    "promotionConfigureCalculated": "Promotion Configured and Calculated on a weekly basis.",
+    "promotionConfigureCalculated": "Promotion is configured and calculated on a weekly basis.",
     "promotionSettings": {
       "title": "Promotion Settings",
       "description1": "During the promotion period, bonus amounts will be calculated every Tuesday based on qualified net turnover from the previous week (Monday to Sunday).",

@@ -12,7 +12,7 @@ export default function PromotionReportTab({
 
   return (
     <ul className="flex mt-[-12px] border-b border-[var(--border-color)] mb-[15px]">
-      <li>
+      <li className='mr-[5px]'>
         <ButtonTabComponent
           text={t('promotionReport')}
           onClick={() => onTabChange(0)}

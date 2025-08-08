@@ -236,7 +236,8 @@ html * {
             }
 
             &.icon-promotion,&.icon-cashservice {
-                background: none;
+                background: none!important;
+                box-shadow: none!important;
                 font-size: 24px;
                 color: #F7931A;
                 &:after{
@@ -266,16 +267,16 @@ html * {
             @include keyframes(cd-pulse) {
                 0% {
                     @include transform(scale(1));
-                    @include box-shadow-multiple(inset 0 0 1px 4px rgba(154, 223, 254, 0.8));
+                    @include box-shadow-multiple(inset 0 0 1px 4px rgba(247, 147, 26, 0.3));
                 }
 
                 50% {
-                    @include box-shadow-multiple(inset 0 0 1px 4px rgba(154, 223, 254, 0.8));
+                    @include box-shadow-multiple(inset 0 0 1px 4px rgba(247, 147, 26, 0.3));
                 }
 
                 100% {
-                    @include transform(scale(3));
-                    @include box-shadow-multiple(inset 0 0 1px 4px rgba(154, 223, 254, 0));
+                    @include transform(scale(2.3));
+                    @include box-shadow-multiple(inset 0 0 1px 4px rgba(247, 147, 26, 0));
                 }
             }
         }
