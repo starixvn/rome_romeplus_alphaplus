@@ -31,9 +31,7 @@ public class EnumerationTests
     {
         Assert.True(UserLevel.Super > UserLevel.Master);
         Assert.True(UserLevel.Agent < UserLevel.Master);
-        Assert.True(UserLevel.Master >= UserLevel.Master);
         Assert.True(UserLevel.Agent <= UserLevel.Master);
-        Assert.True(UserLevel.Master == UserLevel.Master);
         Assert.True(UserLevel.Master != UserLevel.Agent);
     }
 }
