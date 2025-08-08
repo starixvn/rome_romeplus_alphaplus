@@ -81,7 +81,7 @@ public static class ServiceCollectionExtensions
             {
                 OnRedirectToLogin = ctx =>
                 {
-                    ctx.Response.Redirect($"{scheme}://{ctx.Request.Host.Value}/main/Account/Login?r=SessionExpired");
+                    ctx.Response.Redirect($"{scheme}://{ctx.Request.Host.Value}/auth/Account/Login?r=SessionExpired");
                     return Task.CompletedTask;
                 }
             };
