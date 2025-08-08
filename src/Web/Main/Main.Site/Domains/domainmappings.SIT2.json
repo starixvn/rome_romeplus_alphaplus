@@ -22,11 +22,11 @@
         },
         {
             "Before": "alp3.playonesit.com",
-            "After": "http://mbp3.playonesit.com/main"
+            "After": "https://mbp3.playonesit.com/main"
         },
         {
             "Before": "alp4.playonesit.com",
-            "After": "http://mbp4.playonesit.com/main"
+            "After": "https://mbp4.playonesit.com/main"
         }
     ]
 }

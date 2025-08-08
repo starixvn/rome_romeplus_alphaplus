@@ -50,11 +50,11 @@
     },
     {
       "Before": "alp9.starixuat.com",
-      "After": "http://mbp9.starixuat.com/main"
+      "After": "https://mbp9.starixuat.com/main"
     },
     {
       "Before": "alp10.starixuat.com",
-      "After": "http://mbp10.starixuat.com/main"
+      "After": "https://mbp10.starixuat.com/main"
     }
   ]
 }
