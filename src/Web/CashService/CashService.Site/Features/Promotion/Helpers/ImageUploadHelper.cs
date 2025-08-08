@@ -40,10 +40,9 @@ public static class ImageUploadHelper
     {
         if (fileNames == null || fileNames.Length == 0)
             return;
-        var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), directory);
         foreach (var fileName in fileNames)
         {
-            var filePath = Path.Combine(uploadPath, fileName);
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), directory, fileName);
             if (!string.IsNullOrWhiteSpace(fileName) && File.Exists(filePath))
             {
                 File.Delete(filePath);

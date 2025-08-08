@@ -61,7 +61,8 @@
     "confirmRevert": "Hoàn trả giao dịch",
     "confirmRevertMessage": "Bạn có chắc chắn muốn hoàn trả giao dịch #{{transactionId}} về trạng thái chờ không?",
     "revertSuccess": "Giao dịch đã được hoàn trả thành công",
-    "revertError": "Không thể hoàn trả giao dịch"
+    "revertError": "Không thể hoàn trả giao dịch",
+    "processedBy": "Người xử lý"
   },
 
   "status": {

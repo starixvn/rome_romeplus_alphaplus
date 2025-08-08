@@ -8,6 +8,7 @@ interface UploadImageProps {
   disabled?: boolean;
   customClassName?: string;
   maxSize?: number;
+  removeImage?: () => void;
 }
 
 const ACCEPTED_FILE_TYPES = '.jpeg,.jpg,.png';
@@ -18,6 +19,7 @@ const UploadImage: React.FC<UploadImageProps> = ({
   disabled = false,
   customClassName,
   maxSize = 1,
+  removeImage,
 }) => {
   const { t: tGlobal } = useTranslation('global');
 
@@ -78,12 +80,14 @@ const UploadImage: React.FC<UploadImageProps> = ({
     }
     setImageUrl(null);
     setImage(null);
-
+    if (removeImage) {
+      removeImage();
+    }
     const fileInput = document.getElementById('image-upload') as HTMLInputElement;
     if (fileInput) {
       fileInput.value = '';
     }
-  }, [imageUrl, setImage]);
+  }, [imageUrl, setImage, removeImage]);
 
   useEffect(() => {
     return () => {

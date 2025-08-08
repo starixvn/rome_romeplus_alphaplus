@@ -61,7 +61,8 @@
     "confirmRevert": "ย้อนกลับธุรกรรม",
     "confirmRevertMessage": "คุณแน่ใจหรือไม่ที่จะย้อนกลับธุรกรรม #{{transactionId}} เป็นสถานะรอดำเนินการ?",
     "revertSuccess": "ย้อนกลับธุรกรรมสำเร็จ",
-    "revertError": "ไม่สามารถย้อนกลับธุรกรรมได้"
+    "revertError": "ไม่สามารถย้อนกลับธุรกรรมได้",
+    "processedBy": "ผู้ดำเนินการ"
   },
 
   "status": {

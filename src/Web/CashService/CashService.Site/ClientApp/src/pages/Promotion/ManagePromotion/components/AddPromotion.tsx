@@ -94,7 +94,6 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
     const selectedCategories = highestParents.map((h) => h.value as number);
     setSelectedProductCategories(selectedCategories);
 
-    // Update productIds in productSettings for selected categories and set minimum values
     setProductSettings((prev) =>
       prev.map((setting) => {
         const categoryProducts = setting.products || [];

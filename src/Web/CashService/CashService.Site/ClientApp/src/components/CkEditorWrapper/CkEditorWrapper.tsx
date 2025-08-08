@@ -39,7 +39,6 @@ export const CkEditorWrapper: React.FC<CkEditorWrapperProps> = ({
         try {
           const editorData = editor?.editor?.getData();
           if (editorData) {
-            console.log('Click outside - editor data:', editorData);
             onChange(editorData);
           }
         } catch (error) {
@@ -149,7 +148,6 @@ export const CkEditorWrapper: React.FC<CkEditorWrapperProps> = ({
       try {
         const editorData = editor?.editor?.getData();
         if (editorData) {
-          console.log('Component unmount - editor data:', editorData);
           onChange(editorData);
         }
       } catch (error) {

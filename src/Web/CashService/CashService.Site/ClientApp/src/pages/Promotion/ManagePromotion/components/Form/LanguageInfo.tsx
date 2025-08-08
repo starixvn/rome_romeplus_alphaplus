@@ -4,6 +4,7 @@ import { ButtonTabComponent } from '../../../../../components/Buttons/ButtonTabC
 import { TitleComponent } from '../../../../../components/Title';
 import UploadImage from '../../../../../components/UploadImage/UploadImage';
 import CkEditorWrapper from '../../../../../components/CkEditorWrapper/CkEditorWrapper';
+const BANNER_LOCATION = `${window.location.origin + window.location.pathname.split('/').slice(0, -2).join('/')}/PromotionImages`;
 
 export interface PromotionLangFields {
   title: string;
@@ -22,21 +23,19 @@ export interface PromotionInfoProps {
   setActiveLang: (lang: string) => void;
 }
 
-const getImageUrl = (banner: File | string | null): string | null => {
-  if (banner instanceof File) {
-    return URL.createObjectURL(banner);
-  }
-  return banner;
-};
-
 export const LanguageTabs: React.FC<{
-  languages: { key: string; label: string }[];
+  languages: { key: string; label: string; isDefault: boolean }[];
   activeLang: string;
   setActiveLang: (lang: string) => void;
 }> = ({ languages, activeLang, setActiveLang }) => {
+  const sortedLanguages = languages.sort((a, b) => {
+    if (a.isDefault && !b.isDefault) return -1;
+    if (!a.isDefault && b.isDefault) return 1;
+    return 0;
+  });
   return (
     <div className="flex border-b border-[var(--border-color)] mb-[15px]">
-      {languages.map((lang) => (
+      {sortedLanguages.map((lang) => (
         <ButtonTabComponent
           key={lang.key}
           text={lang.label}
@@ -71,43 +70,32 @@ export const TitleField: React.FC<{
 };
 
 export const BannerField: React.FC<{
-  banner: File | string | null;
-  bannerName: string | null;
+  bannerName?: string | null;
   setBanner: (f: File | string | null) => void;
   setBannerName?: (name: string | null) => void;
   lang: string;
   isDefault: boolean;
-}> = ({ banner, setBanner, setBannerName, lang, isDefault }) => {
+}> = ({ bannerName, setBanner, setBannerName, lang, isDefault }) => {
   const { t } = useTranslation('promotion');
 
   const handleSetImage = (file: File | null) => {
     setBanner(file);
-    if (file && setBannerName) {
-      setBannerName(null);
-    } else if (!file && setBannerName) {
-      setBannerName(null);
-    }
   };
 
-  const fullBannerUrl = getImageUrl(banner);
-
-  React.useEffect(() => {
-    return () => {
-      if (banner instanceof File && fullBannerUrl && fullBannerUrl.startsWith('blob:')) {
-        URL.revokeObjectURL(fullBannerUrl);
-      }
-    };
-  }, [banner, fullBannerUrl]);
+  const handleRemoveImage = () => {
+    bannerName && setBannerName && setBannerName(null);
+  };
 
   return (
     <div className="mb-4">
       <TitleComponent text={t('addPromotionForm.banner')} required={isDefault} type="label" />
       <UploadImage
-        key={`banner-${lang}`}
+        key={`upload-image-${lang}`}
         setImage={handleSetImage}
-        prevImage={fullBannerUrl}
+        prevImage={bannerName ? `${BANNER_LOCATION}/${bannerName}` : ''}
         maxSize={20}
         customClassName="w-full h-[300px]"
+        removeImage={handleRemoveImage}
       />
     </div>
   );
@@ -160,10 +148,10 @@ const PromotionInfo: React.FC<PromotionInfoProps> = ({
         isDefault={languages.find((lang) => lang.key === activeLang)?.isDefault || false}
       />
       <BannerField
-        banner={langFields.banner}
-        bannerName={langFields.bannerName}
+        key={`banner-${activeLang}`}
         setBanner={(f) => setValue(activeLang, 'banner', f)}
         setBannerName={(name) => setValue(activeLang, 'bannerName', name)}
+        bannerName={langFields.bannerName}
         lang={activeLang}
         isDefault={languages.find((lang) => lang.key === activeLang)?.isDefault || false}
       />

@@ -61,7 +61,8 @@
     "confirmRevert": "還原交易",
     "confirmRevertMessage": "您確定要將交易 #{{transactionId}} 還原為待處理狀態嗎？",
     "revertSuccess": "交易已成功還原",
-    "revertError": "還原交易失敗"
+    "revertError": "還原交易失敗",
+    "processedBy": "處理人"
   },
 
   "status": {

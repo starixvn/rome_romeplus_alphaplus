@@ -291,8 +291,8 @@
   <data name="SuperchargeYourCashFlow" xml:space="preserve">
     <value>Supercharge Your Cash Flow?</value>
   </data>
-  <data name="RefNo" xml:space="preserve">
-    <value>Ref No</value>
+  <data name="TheAmountMustBeBetween0And1AsPerProviderLimits" xml:space="preserve">
+    <value>The amount must be between {0} and {1} as per provider limits</value>
   </data>
   <data name="ManualBonus" xml:space="preserve">
     <value>Manual Bonus</value>
@@ -305,5 +305,8 @@
   </data>
   <data name="Remark" xml:space="preserve">
     <value>Remark</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>Ref No</value>
   </data>
 </root>

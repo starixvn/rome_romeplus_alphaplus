@@ -26,7 +26,7 @@ public static class ErrorCodeHandler
             404 => CashServicesResx.TheAccountWasSuspended,
             405 => CashServicesResx.InvalidParameters,
             406 => CashServicesResx.MemberCashBalanceIsInsufficient,
-            407 => CashServicesResx.TheAmountExceedsTheAllowedMinimumOrMaximumValue,
+            407 => CashServicesResx.TheAmountMustBeBetween0And1AsPerProviderLimits,
             408 => CashServicesResx.ExceedsTheDailyWithdrawalLimit,
             409 => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain,
             410 => CashServicesResx.ProviderRejectErrorMessage,

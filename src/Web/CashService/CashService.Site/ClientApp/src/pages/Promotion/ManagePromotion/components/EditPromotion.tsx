@@ -36,36 +36,6 @@ function convertProductToTreeNodeOption(products: ProductDropdown[]): TreeNodeOp
   }));
 }
 
-// Function to get banner URL from banner name
-function getBannerUrl(bannerName: string): string {
-  const baseUrl =
-    window.location.origin + window.location.pathname.split('/').slice(0, -2).join('/');
-  return `${baseUrl}/PromotionImages/${bannerName}`;
-}
-
-// Function to load image from URL and create File object
-async function loadImageAsFile(imageUrl: string, fileName: string): Promise<File | null> {
-  try {
-    const response = await fetch(imageUrl, {
-      mode: 'cors',
-      credentials: 'same-origin',
-    });
-    if (!response.ok) {
-      console.warn(
-        `Failed to load image from ${imageUrl}: ${response.status} ${response.statusText}`
-      );
-      return null;
-    }
-
-    const blob = await response.blob();
-    const file = new File([blob], fileName, { type: blob.type || 'image/jpeg' });
-    return file;
-  } catch (error) {
-    console.error('Error loading image as file:', error);
-    return null;
-  }
-}
-
 const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) => {
   const { t: tGlobal } = useTranslation('global');
   const { t } = useTranslation('promotion');
@@ -114,28 +84,13 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
           if (promotion.languageSettings) {
             const infoMap: Record<string, PromotionLangFields> = {};
 
-            // Load images and create File objects for each language
             for (const info of promotion.languageSettings) {
-              let bannerFile: File | string | null = null;
-
-              if (info.bannerName) {
-                // Load the image as a File object
-                const imageUrl = getBannerUrl(info.bannerName);
-
-                bannerFile = await loadImageAsFile(imageUrl, info.bannerName);
-
-                // If loading failed, keep as null - will be handled by UI
-                if (!bannerFile) {
-                  console.warn(`Failed to load image for ${info.bannerName}`);
-                  bannerFile = null;
-                }
-              }
-
               infoMap[info.language] = {
+                banner: null,
                 title: info.title || '',
-                banner: bannerFile,
                 bannerName: info.bannerName || '',
                 content: info.content || '',
+                isRemovedBanner: false,
               };
             }
             setPromotionInfo(infoMap);
@@ -175,7 +130,7 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
         message: t('addPromotionForm.requiredTitle'),
       },
       {
-        condition: promotionInfo.en && !promotionInfo.en.banner,
+        condition: promotionInfo.en && !promotionInfo.en.bannerName && !promotionInfo.en.banner,
         message: t('addPromotionForm.requiredBanner'),
       },
       {
@@ -205,6 +160,7 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
 
     return statusChanged || contentChanged;
   };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateForm()) {
@@ -219,15 +175,13 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
       formData.append('PromotionId', promotionId.toString());
       formData.append('Enabled', isActive.toString());
       formData.append('OriginalEnabled', originalStatus.toString());
-      formData.append('FromDate', promotion?.fromDate?.toLocaleString('en-US') || '');
       Object.entries(promotionInfo).forEach(([lang, info], index) => {
         formData.append(`Contents[${index}].Language`, lang);
         formData.append(`Contents[${index}].Title`, info.title || '');
         formData.append(`Contents[${index}].Content`, info.content || '');
-        if (info.banner instanceof File) {
-          formData.append(`Contents[${index}].Banner`, info.banner);
-        } else if (info.banner) {
-          formData.append(`Contents[${index}].BannerName`, info.banner as string);
+        formData.append(`Contents[${index}].BannerName`, info.bannerName || '');
+        if (info.banner) {
+          formData.append(`Contents[${index}].Banner`, info.banner as File);
         }
       });
 
@@ -235,8 +189,8 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
         formData.append(`OriginalContents[${index}].Language`, lang);
         formData.append(`OriginalContents[${index}].Title`, info.title || '');
         formData.append(`OriginalContents[${index}].Content`, info.content || '');
+        formData.append(`OriginalContents[${index}].BannerName`, info.bannerName || '');
       });
-
       const result = await promotionService.editPromotionWithFormData(promotionId, formData);
 
       window.scrollTo({ top: 0, behavior: 'smooth' });

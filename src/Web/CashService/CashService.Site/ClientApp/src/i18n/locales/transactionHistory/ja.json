@@ -61,7 +61,8 @@
     "confirmRevert": "取引を戻す",
     "confirmRevertMessage": "取引 #{{transactionId}} を保留中に戻してもよろしいですか？",
     "revertSuccess": "取引を正常に戻しました",
-    "revertError": "取引の戻しに失敗しました"
+    "revertError": "取引の戻しに失敗しました",
+    "processedBy": "処理者"
   },
 
   "status": {

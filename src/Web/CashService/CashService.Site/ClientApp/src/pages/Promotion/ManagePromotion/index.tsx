@@ -59,7 +59,6 @@ const Promotion: React.FC = () => {
   }, [promotionType, status]);
 
   const handleEdit = (promotion: PromotionDetail) => {
-    console.log(promotion);
     setEditPromotionId(promotion.promotionId);
     setShowEditPromotion(true);
   };
@@ -83,8 +82,6 @@ const Promotion: React.FC = () => {
       console.error('Error deleting promotion:', err);
     }
   };
-
-
 
   return (
     <div className="pb-[12px] flex flex-col promotion-page">
@@ -114,7 +111,11 @@ const Promotion: React.FC = () => {
       )}
       {!showAddPromotion && !showEditPromotion ? (
         <>
-          <TitleComponent text={t('managePromotion.managePromotion')} showTippy={false} type='main'/>
+          <TitleComponent
+            text={t('managePromotion.managePromotion')}
+            showTippy={false}
+            type="main"
+          />
           <div className="mb-[8px]">
             <ButtonComponent
               variant="full"

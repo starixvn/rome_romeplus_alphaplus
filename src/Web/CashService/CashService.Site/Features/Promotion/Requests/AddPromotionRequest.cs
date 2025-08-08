@@ -1,15 +1,14 @@
 namespace AlphaPlus.CashService.Site.Features.Promotion.Requests;
 
-using System.Data.SqlTypes;
 using AlphaPlus.CashService.Site.Features.Shared.Requests;
 using Newtonsoft.Json;
 
 public class AddPromotionRequest : BaseActionRequest
 {
-    public DateTime FromDate { get; set; }
-    public DateTime ToDate { get; init; }
+    public DateTime? FromDate { get; set; }
+    public DateTime? ToDate { get; init; }
     public int PromotionType { get; init; }
-    public int StatusId { get; set; } = 1; // Default status
+    public int StatusId { get; set; } = 1;
     public bool Enabled { get; init; }
     public string ProductSettingsJson { get; set; }
 
@@ -20,7 +19,7 @@ public class AddPromotionRequest : BaseActionRequest
     public bool IsValid(out string errMsg)
     {
         errMsg = string.Empty;
-        if (SqlDateTime.MinValue.Value < FromDate && FromDate <= ToDate)
+        if (FromDate is null || ToDate is null || FromDate >= ToDate)
         {
             errMsg = "Promotion period is valid.";
             return false;
@@ -50,7 +49,6 @@ public class AddPromotionRequest : BaseActionRequest
     }
 }
 
-// Add these classes to match the API models
 public class PromotionProductSetting
 {
     [JsonProperty("ProductCategoryID")]

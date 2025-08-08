@@ -2,7 +2,6 @@ namespace AlphaPlus.CashService.Site.Features.Promotion.Controllers;
 
 using System.Collections.Immutable;
 using AlphaPlus.CashService.Site.Features.Shared.Requests;
-using AlphaPlus.CashService.Site.Features.Shared.Resources;
 using AlphaPlus.CashService.Site.Helpers;
 using AlphaPlus.Shared.AppResources.CashServices;
 using Core.Configurations;
@@ -16,9 +15,10 @@ using Models.Products;
 using Requests;
 using Services;
 using Shared;
-using Shared.Contants;
+using Shared.Constants;
 using Shared.Filters;
 using Shared.Models;
+using Shared.Resources;
 using Transactions.Enum;
 using ViewModels;
 
@@ -182,6 +182,9 @@ public class PromotionController(
     [HttpPut]
     public async Task<IActionResult> EditPromotion(int promotionId, [FromForm] EditPromotionRequest request)
     {
+        var errMsg = CashServicesResx.InvalidParameters;
+        var result = new ResultModel { Code = 1, Message = errMsg };
+
         if (userSession.IsInternal)
         {
             return Unauthorized();
@@ -189,16 +192,37 @@ public class PromotionController(
 
         request.SetUserSession(userSession);
 
-        var files = promotionService.ProcessPromotionRequest(request);
-        var url = $"/api/promotions/{promotionId}";
-        var result = await httpClientHelper.PutAsync<EditPromotionRequest, ResultModel>(url, request);
+        var updatedBannerName = GetUpdatedBannerNames(request);
+
+        var files = promotionService.ProcessEditPromotionRequest(request);
+        result = await promotionService.ProcessBannerUploadedAsync(files);
         if (result.IsSuccessful)
         {
-            await promotionService.ProcessBannerUploadedAsync(files);
+            var url = $"/api/promotions/{promotionId}";
+            result = await httpClientHelper.PutAsync<EditPromotionRequest, ResultModel>(url, request);
+            if (result.IsSuccessful)
+            {
+                promotionService.RemoveFailedImageAsync(updatedBannerName.ToArray());
+            }
         }
 
         return Json(result);
     }
+
+    private static List<string> GetUpdatedBannerNames(EditPromotionRequest request)
+     => request.Contents
+         .Select(content =>
+         {
+             var original = request.OriginalContents
+                 .FirstOrDefault(o => o.Language == content.Language);
+             if (original != null && !string.IsNullOrEmpty(original.BannerName) && content.Banner != null)
+             {
+                 return original.BannerName;
+             }
+             return null;
+         })
+         .Where(bannerName => !string.IsNullOrEmpty(bannerName))
+         .ToList();
 
     [HttpDelete]
     public async Task<IActionResult> DeletePromotion(int promotionId)

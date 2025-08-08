@@ -61,7 +61,8 @@
     "confirmRevert": "Revert Transaction",
     "confirmRevertMessage": "Are you sure you want to revert transaction #{{transactionId}} to pending status?",
     "revertSuccess": "Transaction has been reverted successfully",
-    "revertError": "Failed to revert transaction"
+    "revertError": "Failed to revert transaction",
+    "processedBy": "Processed By"
   },
 
   "status": {

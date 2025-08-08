@@ -430,6 +430,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The amount must be between {0} and {1} as per provider limits.
+        /// </summary>
+        public static string TheAmountMustBeBetween0And1AsPerProviderLimits {
+            get {
+                return ResourceManager.GetString("TheAmountMustBeBetween0And1AsPerProviderLimits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The transaction inserted failed. Please try again..
         /// </summary>
         public static string TheTransactionInsertedFailedPleaseTryAgain {

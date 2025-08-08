@@ -10,7 +10,7 @@ public interface IPromotionService
 {
     Dictionary<string, IFormFile> ProcessPromotionRequest(AddPromotionRequest request);
 
-    Dictionary<string, IFormFile> ProcessPromotionRequest(EditPromotionRequest request);
+    Dictionary<string, IFormFile> ProcessEditPromotionRequest(EditPromotionRequest request);
 
     Task<ResultModel> ProcessBannerUploadedAsync(Dictionary<string, IFormFile> files);
 
@@ -21,7 +21,7 @@ public class PromotionService(ILogger logger) : IPromotionService
 {
     private const string PromotionUploadFolder = "wwwroot/PromotionImages";
 
-    public Dictionary<string, IFormFile> ProcessPromotionRequest(EditPromotionRequest request)
+    public Dictionary<string, IFormFile> ProcessEditPromotionRequest(EditPromotionRequest request)
     {
         var files = ProcessUploadedFiles(request.UserId,
             request.Contents.Where(content => content.Banner != null).ToList());
@@ -48,15 +48,16 @@ public class PromotionService(ILogger logger) : IPromotionService
         ImageUploadHelper.CreateDirectoryIfNotExisted(PromotionUploadFolder);
 
         var uploadDirectory = Path.Combine(Directory.GetCurrentDirectory(), PromotionUploadFolder);
+        var listResults = new List<ResultModel>();
+        foreach (var file in files)
+        {
+            var result = await UploadBannerResultAsync(file.Value, file.Key, uploadDirectory);
+            listResults.Add(result);
+        }
 
-        var uploadTasks = files
-            .Where(f => f.Value != null)
-            .Select(f => UploadBannerResultAsync(f.Value, f.Key, uploadDirectory));
-
-        var listResults = await Task.WhenAll(uploadTasks);
         if (listResults.Any(r => r.Code != 0))
         {
-            ImageUploadHelper.DeleteImages(listResults.Select(i => i.Data?.ToString()).ToArray(), PromotionUploadFolder);
+            //ImageUploadHelper.DeleteImages(listResults.Select(i => i.Data?.ToString()).ToArray(), PromotionUploadFolder);
             return new ResultModel { Code = 1, Message = "Upload banner failed" };
         }
         return new ResultModel(0, string.Empty);
@@ -94,6 +95,7 @@ public class PromotionService(ILogger logger) : IPromotionService
         {
             var fileName = FormatBannerName(userId, file.Language, Path.GetExtension(file.Banner.FileName));
             fileDictionary.Add(fileName, file.Banner);
+            file.BannerName = fileName;
             file.Banner = null;
         }
 
