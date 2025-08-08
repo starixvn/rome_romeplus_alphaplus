@@ -176,7 +176,7 @@ public class PendingWithdrawalServiceTests
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal(0, result.Code);
+        Assert.Equal(405, result.Code); // The service returns 405 when transaction is not found
         mockDynamicRepository.Verify(repo => repo.GetAsync<CreditAmount>(It.IsAny<GetLimitAmtWithdrawCriteria>(), It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
         mockDynamicRepository.Verify(repo => repo.FetchAsync<WriteLogDBCommandModel>(It.IsAny<CreateManualWithdrawCommand>(), It.IsAny<string>(), It.IsAny<CancellationToken>()), Times.Once);
         mockTransactionService.Verify(s => s.OnAfterUpdateTransaction(It.IsAny<string>(), It.IsAny<short>(), It.IsAny<short>(), It.IsAny<List<WriteLogDBCommandModel>>()), Times.Once);

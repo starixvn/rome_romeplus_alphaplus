@@ -33,6 +33,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
         {
             // Arrange
             var request = CreateValidRequest();
+            request.PromptPay = true; // Enable PromptPay to test Mobile property
 
             // Act
             var criteria = new AddBankAccountCriteria(request);
@@ -86,8 +87,13 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
             request.AccountNumber = accountNumber;
             request.AccountNickname = accountNickname;
             request.PromptPay = promptPay;
-            request.CountryCode = "";
-            request.Mobile = "";
+            
+            // Only clear CountryCode and Mobile when PromptPay is true to test the validation
+            if (promptPay)
+            {
+                request.CountryCode = "";
+                request.Mobile = "";
+            }
 
             var criteria = new AddBankAccountCriteria(request);
 

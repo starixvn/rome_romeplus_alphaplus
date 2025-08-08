@@ -56,7 +56,8 @@ public class RequestLoggingMiddlewareTests
         // Act
         await _middleware.Invoke(context);
 
-        // Assert
+        // Assert - Wait a bit for the async Task.Run to complete
+        await Task.Delay(100);
         _requestLoggingServiceMock.Verify(x => x.WriteLog(It.IsAny<AddRequestLoggingCriteria>()), Times.Once);
     }
 

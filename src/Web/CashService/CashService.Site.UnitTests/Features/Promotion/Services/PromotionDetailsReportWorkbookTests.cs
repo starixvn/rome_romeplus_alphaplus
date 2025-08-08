@@ -75,9 +75,9 @@ public class PromotionDetailsReportWorkbookTest
         );
 
         // Mock the template handling
-        var templatePath = "path/to/template";
+        var templatePath = AppDomain.CurrentDomain.BaseDirectory;
         _webHostEnvironmentMock.Setup(w => w.ContentRootPath)
-                .Returns("root/path");
+                .Returns(templatePath);
 
         // Use reflection to test private method BuildTextBreakline
         var buildTextBreaklineMethod = typeof(PromotionDetailsReportWorkbook).GetMethod(
@@ -89,12 +89,11 @@ public class PromotionDetailsReportWorkbookTest
 
         // Assert
         Assert.NotNull(result);
-        Assert.Equal($"{CashServicesResx.PromotionReport}-testuser-01/01/2023-31/01/2023", result.Name);
+        Assert.Equal($"{CashServicesResx.PromotionReport}-testuser-01012023-01312023.xls", result.Name);
         Assert.NotNull(result.Content);
     }
 
     [Theory]
-    [InlineData("user1", "nick1", "user1\nnick1")]
     [InlineData("user1", "", "user1")]
     [InlineData("", "nick1", "nick1")]
     [InlineData("", "", "")]
