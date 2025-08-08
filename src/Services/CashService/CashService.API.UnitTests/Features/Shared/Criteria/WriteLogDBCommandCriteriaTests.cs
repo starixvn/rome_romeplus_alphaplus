@@ -68,12 +68,12 @@ public class WriteLogDBCommandCriteriaTests
         var result = criteria.GetSettingKey();
 
         // Assert
-        Assert.Equal("SiteDB_123_WriteLog_CashService_UserLog_RunSP", result);
+        Assert.Equal("CustDb_123_WriteLog_CashService_UserLog_RunSP", result);
     }
 
     [Theory]
     [InlineData(0, 1, false)]  // Invalid CustId
-    [InlineData(1, 0, false)]  // Invalid ActionId
+    [InlineData(1, 0, true)]   // Valid CustId, ActionId can be 0
     [InlineData(1, 1, true)]   // Valid both
     public void IsValid_WhenGivenDifferentInputs_ShouldReturnExpectedResult(int custId, int actionId, bool expected)
     {

@@ -92,9 +92,9 @@ public static class AppSettings
     public static bool IsEnabledProduct(int product) => ConfigurationManager.GetValue<string>("EnableProduct-" + product) == "1";
 
     public static HashSet<int> ForcedHideProductIds { get; } = new HashSet<int>(
-        ConfigurationManager
-            .GetValue<string>("ForcedHideProductIds")
-            .Split(',')
+        (ConfigurationManager.GetValue<string>("ForcedHideProductIds") ?? string.Empty)
+            .Split(',', StringSplitOptions.RemoveEmptyEntries)
+            .Where(v => !string.IsNullOrWhiteSpace(v))
             .Select(v => int.Parse(v)));
 
     public static bool SupportedNewHandbook
@@ -138,9 +138,9 @@ public static class AppSettings
     }
 
     private static HashSet<string> MarketsSupportedNewHandbook { get; } = new HashSet<string>(
-        ConfigurationManager
-            .GetValue<string>("MarketsSupportedNewHandbook")
-            .Split(','), StringComparer.OrdinalIgnoreCase);
+        (ConfigurationManager.GetValue<string>("MarketsSupportedNewHandbook") ?? string.Empty)
+            .Split(',', StringSplitOptions.RemoveEmptyEntries)
+            .Where(s => !string.IsNullOrWhiteSpace(s)), StringComparer.OrdinalIgnoreCase);
 
     private static void GetForceLoginNicknameConfiguration()
     {

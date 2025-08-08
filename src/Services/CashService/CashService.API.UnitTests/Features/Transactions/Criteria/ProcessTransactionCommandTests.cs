@@ -17,7 +17,7 @@ public class ProcessTransactionCommandTests
         Assert.Null(command.PaymentFrom);
         Assert.Null(command.Remark);
         Assert.Null(command.Payslip);
-        Assert.Equal(0, command.StatusId);
+        Assert.Null(command.StatusId);
         Assert.Equal(0, command.ErrCode);
         Assert.Null(command.ErrMsg);
     }

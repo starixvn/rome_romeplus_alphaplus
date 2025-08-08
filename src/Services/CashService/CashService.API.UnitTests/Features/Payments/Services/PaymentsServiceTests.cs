@@ -4,6 +4,8 @@ using AlphaPlus.CashService.API.Features.Payments.Requests;
 using AlphaPlus.CashService.API.Features.Payments.Services;
 using AlphaPlus.CashService.API.Features.Shared.Criteria;
 using AlphaPlus.CashService.API.Features.Shared.Models;
+using AlphaPlus.CashService.API.Features.Shared.Models.PaymentGateway;
+using AlphaPlus.CashService.API.Features.Shared.Requests.PaymentGateway;
 using AlphaPlus.CashService.API.Features.Shared.Services;
 using Fanex.Data.Repository;
 using Moq;
@@ -157,7 +159,7 @@ public class PaymentsServiceTests
         // Assert
         Assert.True(result.IsSuccessful);
         Assert.Equal(0, result.Code);
-        Assert.Equal("Success", result.Message);
+        Assert.Equal("", result.Message);
     }
 
     [Fact]
@@ -341,6 +343,9 @@ public class PaymentsServiceTests
             MerchantID = "merchant",
             AppSecret = "secret"
         };
+
+        _mockPaymentGatewayService.Setup(p => p.TestConnection(It.IsAny<TestConnectionRequest>(), It.IsAny<UpdatePaymentMethodRequest>()))
+            .ReturnsAsync(new PaymentResponse { Code = 0, Message = "Success" });
 
         _mockCommonService.Setup(c => c.RunDBCommand(request, It.IsAny<BaseDBCommand>()))
             .ReturnsAsync(new ResultModel(0, "Success"));

@@ -116,14 +116,13 @@ public class PendingDepositServiceTests
         var cashAccumTbl = "tbl_cash_accum";
 
         // Mock GetMemberSettingDepositAsync
-        mockDynamicRepository
-            .Setup(repo => repo.GetAsync<MemberSettingDeposit>(It.Is<GetMemberSettingDepositCriteria>(c => c.CustId == param.CustId && c.CustDbGroupId == param.CustDbGroupId), It.IsAny<string>(), It.IsAny<CancellationToken>()))
-            .Callback((ICriteria c, string s, CancellationToken ct) =>
-            {
-                ((GetMemberSettingDepositCriteria)c).AgentGivenCredit = memberAgentCredit;
-                ((GetMemberSettingDepositCriteria)c).CreditMembers_GivenCredit = memberCreditMemberCredit;
-            })
-            .ReturnsAsync(new MemberSettingDeposit());
+        mockTransactionService
+            .Setup(ts => ts.GetMemberSettingDepositAsync(param.CustId, param.CustDbGroupId))
+            .ReturnsAsync(new MemberSettingDeposit 
+            { 
+                AgentGivenCredit = memberAgentCredit, 
+                CreditMembers_GivenCredit = memberCreditMemberCredit 
+            });
 
         mockDynamicRepository
             .Setup(repo => repo.FetchAsync<WriteLogDBCommandModel>(It.IsAny<CreateManualDepositCommand>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))

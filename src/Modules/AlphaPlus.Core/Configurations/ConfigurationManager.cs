@@ -12,11 +12,16 @@ public static class ConfigurationManager
     {
         try
         {
+            if (_config == null)
+            {
+                return defaultValue;
+            }
+
             return _config.GetValue<T>(key, defaultValue);
         }
-        catch (Exception ex)
+        catch
         {
-            throw new InvalidCastException($"Key: {key}", ex);
+            return defaultValue;
         }
     }
 
