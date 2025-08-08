@@ -62,9 +62,19 @@ export const copyHtmlToClipboard = async (
 
 export const copyHtml = (table: HTMLTableElement | undefined | null) => {
   if (table) {
+    const assignTooltipToElementContent = (element: Element) => {
+      if (element.tagName === 'TD' && element.hasAttribute('data-tooltip')) {
+        const tooltipValue = element.getAttribute('data-tooltip');
+        element.innerHTML = tooltipValue || '';
+        element.removeAttribute('data-tooltip');
+      }
+    };
     const removeClassAttributes = (element: Element) => {
       element.removeAttribute('class');
-      Array.from(element.children).forEach((child) => removeClassAttributes(child));
+      Array.from(element.children).forEach((child) => {
+        removeClassAttributes(child);
+        assignTooltipToElementContent(child);
+      });
     };
     const clone = table.cloneNode(true) as HTMLTableElement;
     removeClassAttributes(clone);

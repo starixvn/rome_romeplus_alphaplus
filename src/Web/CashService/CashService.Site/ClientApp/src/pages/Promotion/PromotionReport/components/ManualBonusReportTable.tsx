@@ -1,5 +1,6 @@
 import React, { ForwardedRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import Tippy from '@tippyjs/react';
 import NoRecordFound from '../../../../components/NoRecordFoundComponent';
 import { StatusComponent } from '../../../../components/Status';
 import { formatNumber, formatDecimal } from '../../../../utils/numberFormatting';
@@ -17,6 +18,23 @@ function ManualBonusReportStatusRow({ status }: { status: number }) {
 }
 
 function ManualBonusReportRow({ idx, data }: { idx: number; data: any }) {
+  function remarkTooltip(remark: string) {
+    const maxLength = 20;
+    const length = remark ? remark.length : 0;
+
+    if (length <= maxLength) {
+      return <td className="text-left">{remark}</td>;
+    }
+
+    return (
+      <td className="text-left" data-tooltip={remark}>
+        <Tippy content={remark} theme="light" arrow={true} placement="bottom">
+          <span className="cursor-pointer">{remark.substring(0, maxLength)} ...</span>
+        </Tippy>
+      </td>
+    );
+  }
+
   return (
     <tr>
       <td className="w-[32px] min-w-[32px] sticky left-0 bg-[var(--table-background)] z-10">
@@ -37,7 +55,7 @@ function ManualBonusReportRow({ idx, data }: { idx: number; data: any }) {
       <td>
         <ManualBonusReportStatusRow status={data.statusId} />
       </td>
-      <td>{data.remark}</td>
+      {remarkTooltip(data.remark)}
     </tr>
   );
 }

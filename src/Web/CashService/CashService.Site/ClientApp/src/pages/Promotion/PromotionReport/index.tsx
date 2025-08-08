@@ -48,7 +48,7 @@ function calculatedDates() {
 
 function PromotionReport() {
   useCookieLanguage(i18n);
-  const [initialDates, _] = useState(() => calculatedDates());
+  const [initialDates, _] = useState(calculatedDates);
   const [activeTab, setActiveTab] = useState(0);
   const [promotion, setPromotion] = useState(null);
   const [mainReportFilterParams, setMainReportFilterParams] = useState({
@@ -59,6 +59,14 @@ function PromotionReport() {
 
   function handleTabChange(tab: number) {
     setActiveTab(tab);
+    if (tab === 0) {
+      setPromotion(null);
+      setMainReportFilterParams({
+        ...initialDates,
+        promotionType: '0',
+        status: '2',
+      });
+    }
   }
 
   function handleClickPromotionTitle(promotion: any, filterParams: any) {
