@@ -2,11 +2,11 @@
   "DomainMappings": [
     {
       "Before": "alp9.starixuat.com",
-      "After": "http://mbp9.starixuat.com/auth"
+      "After": "https://mbp9.starixuat.com/auth"
     },
     {
       "Before": "alp10.starixuat.com",
-      "After": "http://mbp10.starixuat.com/auth"
+      "After": "https://mbp10.starixuat.com/auth"
     }
   ]
 }

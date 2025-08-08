@@ -2,11 +2,11 @@
     "DomainMappings": [
         {
             "Before": "alp1.playonesit.com",
-            "After": "http://mbp1.playonesit.com/auth"
+            "After": "https://mbp1.playonesit.com/auth"
         },
         {
             "Before": "alp2.playonesit.com",
-            "After": "http://mbp2.playonesit.com/auth"
+            "After": "https://mbp2.playonesit.com/auth"
         }
     ]
 }

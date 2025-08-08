@@ -32,20 +32,26 @@ public class AccountController(
     private readonly Core.Configurations.AuthorizationOptions options = options.Value;
     private const string SecretKey = "!@#$";
 
-    private string DefaultAfterLoggedInUrl => $"{Request.Scheme}://{Request.Host}/main/Default/Redirect";
+    private string afterLoggedInUrl =>
+        Array.Find(DomainsHelper.DomainMappings, domain => domain.After.Contains(Request.Host.ToString(), StringComparison.OrdinalIgnoreCase))?.After;
+
+    private string DefaultAfterLoggedInUrl => !string.IsNullOrWhiteSpace(afterLoggedInUrl) ?
+        afterLoggedInUrl.Replace("/auth", "/main/Default/Redirect") : $"https://{Request.Host}/main/Default/Redirect";
 
     [AllowAnonymous, HttpGet, AllowProtectedMode]
     public IActionResult Login(string r = null)
     {
+        var isDev = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
+        var scheme = isDev ? "http" : "https";
         var domains = DomainsHelper.DomainMappings;
-        var loginUrl = domains.FirstOrDefault(domain => domain.After.Contains(Request.Headers["Host"].ToString(), StringComparison.OrdinalIgnoreCase));
+        var loginUrl = Array.Find(domains, domain => domain.After.Contains(Request.Headers["Host"].ToString(), StringComparison.OrdinalIgnoreCase) ) ?? new ();
         var loginResultMessage = $"{WebUtility.UrlEncode(string.Equals(r, "SessionExpired", StringComparison.OrdinalIgnoreCase) ?
             Resources.ResourceManager.GetString("SessionExpired", new CultureInfo(Request.Cookies["LANGUAGE"] ?? "en-US")) : r ?? string.Empty)}";
 
         loginResultMessage = string.IsNullOrWhiteSpace(loginResultMessage) ? string.Empty : $"?r={loginResultMessage}";
 
-        IActionResult result = userSession.IsIndirectLoggedIn || userSession.IsInternal || loginUrl == null || string.IsNullOrWhiteSpace(loginUrl.Before) ?
-            new EmptyResult() : Redirect($"{Request.Scheme}://{loginUrl.Before}{loginResultMessage}");
+        IActionResult result = userSession.IsIndirectLoggedIn || userSession.IsInternal || string.IsNullOrWhiteSpace(loginUrl.Before) ?
+            new EmptyResult() : Redirect($"{scheme}://{loginUrl.Before}{loginResultMessage}");
 
         return result;
     }

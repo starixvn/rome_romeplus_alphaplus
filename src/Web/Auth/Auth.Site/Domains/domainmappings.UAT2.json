@@ -2,35 +2,35 @@
   "DomainMappings": [
     {
       "Before": "alp5.starixuat.com",
-      "After": "http://mbp5.starixuat.com/auth"
+      "After": "https://mbp5.starixuat.com/auth"
     },
     {
       "Before": "alp6.starixuat.com",
-      "After": "http://mbp6.starixuat.com/auth"
+      "After": "https://mbp6.starixuat.com/auth"
     },
     {
       "Before": "alp7.starixuat.com",
-      "After": "http://mbp7.starixuat.com/auth"
+      "After": "https://mbp7.starixuat.com/auth"
     },
     {
       "Before": "alp8.starixuat.com",
-      "After": "http://mbp8.starixuat.com/auth"
+      "After": "https://mbp8.starixuat.com/auth"
     },
     {
       "Before": "alp17.starixuat.com",
-      "After": "http://mbp17.starixuat.com/auth"
+      "After": "https://mbp17.starixuat.com/auth"
     },
     {
       "Before": "alp18.starixuat.com",
-      "After": "http://mbp18.starixuat.com/auth"
+      "After": "https://mbp18.starixuat.com/auth"
     },
     {
       "Before": "alp19.starixuat.com",
-      "After": "http://mbp19.starixuat.com/auth"
+      "After": "https://mbp19.starixuat.com/auth"
     },
     {
       "Before": "alp20.starixuat.com",
-      "After": "http://mbp20.starixuat.com/auth"
+      "After": "https://mbp20.starixuat.com/auth"
     }
   ]
 }
