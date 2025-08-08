@@ -29,5 +29,6 @@
     "promotionType_1": "売上リベート",
     "search": {
         "placeholder": "タイトルまたはタイプで検索..."
-    }
+    },
+    "manualBonus": "Manual Bonus"
 }

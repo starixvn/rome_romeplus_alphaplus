@@ -29,5 +29,6 @@
     "search": {
         "placeholder": "按标题或类型搜索..."
     },
-    "promotionType_1": "营业额返利"
+    "promotionType_1": "营业额返利",
+    "manualBonus": "Manual Bonus"
 }

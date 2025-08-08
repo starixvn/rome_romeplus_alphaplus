@@ -86,7 +86,7 @@ const DetailsReportTable = React.forwardRef<HTMLTableElement, DetailsReportTable
               <NoRecordFound colSpan={9} />
             ) : (
               data.map((item, idx) => (
-                <DetailsReportRow key={`${item.username}_${idx}`} idx={idx} data={item} />
+                <DetailsReportRow key={`${item.refNo}_${idx}`} idx={idx} data={item} />
               ))
             )}
           </tbody>

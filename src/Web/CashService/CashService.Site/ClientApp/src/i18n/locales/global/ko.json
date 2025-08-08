@@ -125,5 +125,7 @@
   "updatedBy": "업데이트한 사람",
   "pleaseReferTo": "다음을 참조하세요",
   "checklist": "체크리스트",
-  "error-200": "결제 제공업체가 현재 사용할 수 없습니다. 나중에 다시 시도하세요."
+  "error-200": "결제 제공업체가 현재 사용할 수 없습니다. 나중에 다시 시도하세요.",
+  "createdBy": "Created By",
+  "createdTime": "Created Time"
 }

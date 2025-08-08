@@ -1,13 +1,13 @@
 import { DropdownOption } from '../components/CustomDropdownComponent';
 import { api, axiosInstance, createHeaderXMLHttp } from './axios';
 import {
-    EditPromotionRequest,
-    ProductDropdown,
-    PromotionDetail,
-    PromotionParams,
-    PromotionRequest,
-    PromotionTransactionRequest,
-    PromotionTransactionResponse,
+  EditPromotionRequest,
+  ProductDropdown,
+  PromotionDetail,
+  PromotionParams,
+  PromotionRequest,
+  PromotionTransactionRequest,
+  PromotionTransactionResponse,
 } from './interfaces/Promotion';
 import { ResultModel } from './interfaces/ResultModel';
 
@@ -267,6 +267,20 @@ export const promotionService = {
     const { data, error } = await api.get<object>(url);
     if (error) {
       console.error(`Error get promotion details report with url=${url}:`, error);
+      return {};
+    }
+
+    return data;
+  },
+
+  getManualBonusReport: async (filterParams: {
+    fromDate: string;
+    toDate: string;
+  }): Promise<any> => {
+    const url = `GetManualBonusReport?${new URLSearchParams(filterParams).toString()}`;
+    const { data, error } = await api.get<object>(url);
+    if (error) {
+      console.error(`Error get manual bonus report with url=${url}:`, error);
       return {};
     }
 

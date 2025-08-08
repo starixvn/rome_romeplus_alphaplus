@@ -62,5 +62,6 @@
     "copy": "복사",
     "copied": "복사됨!",
     "exportToExcel": "Excel로 내보내기"
-  }
+  },
+  "manualBonus": "Manual Bonus"
 }

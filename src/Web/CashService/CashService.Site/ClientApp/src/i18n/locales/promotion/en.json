@@ -139,5 +139,6 @@
     "copy": "Copy",
     "copied": "Copied!",
     "exportToExcel": "Export to Excel"
-  }
+  },
+  "manualBonus": "Manual Bonus"
 }

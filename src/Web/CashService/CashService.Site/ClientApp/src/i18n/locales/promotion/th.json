@@ -29,5 +29,6 @@
   "search": {
     "placeholder": "ค้นหาตามชื่อหรือประเภท..."
   },
-  "promotionType_1": "การคืนเงินจากยอดหมุนเวียน"
+  "promotionType_1": "การคืนเงินจากยอดหมุนเวียน",
+  "manualBonus": "Manual Bonus"
 }

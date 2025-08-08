@@ -1,13 +1,13 @@
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
 import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 import i18n from '../../../i18n/i18n-promotion';
 import { createRoot } from 'react-dom/client';
-import { TitleComponent } from '../../../components/Title';
+import PromotionReportTab from './components/PromotionReportTab';
 import MainReport from './components/MainReport';
 import DetailsReport from './components/DetailsReport';
+import ManualBonusReport from './components/ManualBonusReport';
 import { convertToGMT4 } from '../../../utils/commonFunctions';
 
 function calculatedDates() {
@@ -47,13 +47,19 @@ function calculatedDates() {
 }
 
 function PromotionReport() {
-  const { t } = useTranslation('promotion');
   useCookieLanguage(i18n);
-  const [promotion, setPromotion]: any = useState(null);
-  const [mainReportFilterParams, setMainReportFilterParams]: any = useState(() => {
-    const dates = calculatedDates();
-    return { ...dates, promotionType: '0', status: '2' };
+  const [initialDates, _] = useState(() => calculatedDates());
+  const [activeTab, setActiveTab] = useState(0);
+  const [promotion, setPromotion] = useState(null);
+  const [mainReportFilterParams, setMainReportFilterParams] = useState({
+    ...initialDates,
+    promotionType: '0',
+    status: '2',
   });
+
+  function handleTabChange(tab: number) {
+    setActiveTab(tab);
+  }
 
   function handleClickPromotionTitle(promotion: any, filterParams: any) {
     setMainReportFilterParams((prevFilter: any) => ({
@@ -65,21 +71,25 @@ function PromotionReport() {
 
   return (
     <>
-      <TitleComponent text={t('promotionReport')} type="main" />
-      {promotion === null ? (
-        <MainReport
-          onClickPromotionTitle={handleClickPromotionTitle}
-          initialFilterParams={mainReportFilterParams}
-        />
+      <PromotionReportTab activeTab={activeTab} onTabChange={handleTabChange} />
+      {activeTab === 0 ? (
+        promotion === null ? (
+          <MainReport
+            onClickPromotionTitle={handleClickPromotionTitle}
+            initialFilterParams={mainReportFilterParams}
+          />
+        ) : (
+          <DetailsReport
+            promotion={promotion}
+            onClickBreadcrumb={() => setPromotion(null)}
+            initialDateRange={{
+              minDate: mainReportFilterParams.minDate,
+              maxDate: mainReportFilterParams.maxDate,
+            }}
+          />
+        )
       ) : (
-        <DetailsReport
-          promotion={promotion}
-          onClickBreadcrumb={() => setPromotion(null)}
-          initialDateRange={{
-            minDate: mainReportFilterParams.minDate,
-            maxDate: mainReportFilterParams.maxDate,
-          }}
-        />
+        <ManualBonusReport {...initialDates} />
       )}
     </>
   );
