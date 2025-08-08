@@ -10,4 +10,5 @@ export interface PaymentMethod {
   apiMethodKey?: string;
   merchantID?: string;
   appSecret?: string;
+  apiConfig?: string;
 } 

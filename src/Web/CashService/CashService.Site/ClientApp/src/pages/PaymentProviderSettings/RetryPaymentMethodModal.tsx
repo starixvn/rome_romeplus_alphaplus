@@ -106,8 +106,8 @@ const RetryPaymentMethodModal: React.FC<RetryPaymentMethodModalProps> = ({
 
   const [paymentMethods, setPaymentMethods] = React.useState<PaymentMethod[]>([]);
   const [allMethodsInactive, setAllMethodsInactive] = React.useState<boolean>(false);
-  const [telegramAssistantUrl, setTelegramAssistantUrl] =
-    React.useState<string>(orgTelegramAssistantUrl);
+  const [telegramAssistantUrl, setTelegramAssistantUrl] = React.useState<string>(orgTelegramAssistantUrl);
+
   const [fieldErrors, setFieldErrors] = React.useState({
     selectedTransactionType: '',
     selectedPaymentMethod: '',
@@ -148,12 +148,21 @@ const RetryPaymentMethodModal: React.FC<RetryPaymentMethodModalProps> = ({
           )
       );
       
-      var ms = addPaymentMethodInfo.paymentMethods.filter((p: any) => p.id !== 0 && p.status === paymentMethodStatusConstant.fail);
-      setFormState({ ...formState, 'selectedPaymentMethod': ms.length > 0 ? ms[0].id.toString() : '0' });
+      var ms = addPaymentMethodInfo.paymentMethods.filter((p: any) => p.id !== 0);
+      const selectedMethod = ms.find((p: any) => p.id === parseInt(formState.selectedPaymentMethod)) || null;
+      var apiConfigObject = selectedMethod ? JSON.parse(selectedMethod.apiConfig || '{}') : null;
+      setFormState({ 
+        ...formState,
+        'selectedPaymentMethod': ms.length > 0 ? ms[0].id.toString() : '0',
+        'apiKey': apiConfigObject?.secretKey || '',
+        'merchantID': apiConfigObject?.merchantNo || '',
+        'appSecret': apiConfigObject?.appSecret || '',
+      });
     };
 
     loadPaymentMethods();
   }, [formState.selectedTransactionType]);
+
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -274,7 +283,7 @@ const RetryPaymentMethodModal: React.FC<RetryPaymentMethodModalProps> = ({
                   >
                     <option value="">{tGlobal('select')}</option>
                     {paymentMethods
-                      .filter((p) => p.id !== 0 && p.status === paymentMethodStatusConstant.fail)
+                      .filter((p) => p.id !== 0)
                       .map((method) => (
                         <option key={method.id} value={method.id} selected={method.id === existingPaymentMethod.method}
                         data-state={formState.selectedPaymentMethod}>

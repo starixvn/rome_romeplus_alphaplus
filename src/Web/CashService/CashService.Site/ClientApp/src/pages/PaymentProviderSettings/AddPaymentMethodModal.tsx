@@ -109,7 +109,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
       }
 
       const addPaymentMethodInfo = response.data || createDefaultAddPaymentMethodViewModel();
-      setPaymentMethods(addPaymentMethodInfo.paymentMethods);
+      setPaymentMethods(addPaymentMethodInfo.paymentMethods.filter((p: any) => p.id !== paymentMethodStatusConstant.completed));
       setTelegramAssistantUrl(addPaymentMethodInfo.channelContact.tele || '');
 
       const isAllMethodsInactive =

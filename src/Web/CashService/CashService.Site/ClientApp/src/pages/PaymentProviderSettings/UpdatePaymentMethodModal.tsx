@@ -149,7 +149,16 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
       );
       
       var ms = addPaymentMethodInfo.paymentMethods.filter((p: any) => p.id !== 0);
-      setFormState({ ...formState, 'selectedPaymentMethod': ms.length > 0 ? ms[0].id.toString() : '0' });
+
+      const selectedMethod = ms.find((p: any) => p.id === parseInt(formState.selectedPaymentMethod)) || null;
+      var apiConfigObject = selectedMethod ? JSON.parse(selectedMethod.apiConfig || '{}') : null;
+      setFormState({ 
+        ...formState, 
+        'selectedPaymentMethod': ms.length > 0 ? ms[0].id.toString() : '0',
+        'apiKey': apiConfigObject?.secretKey || '',
+        'merchantID': apiConfigObject?.merchantNo || '',
+        'appSecret': apiConfigObject?.appSecret || '',
+      });
     };
 
     loadPaymentMethods();
