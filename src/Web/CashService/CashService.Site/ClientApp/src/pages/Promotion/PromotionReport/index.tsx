@@ -1,9 +1,11 @@
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 import i18n from '../../../i18n/i18n-promotion';
 import { createRoot } from 'react-dom/client';
+import { TitleComponent } from '../../../components/Title';
 import PromotionReportTab from './components/PromotionReportTab';
 import MainReport from './components/MainReport';
 import DetailsReport from './components/DetailsReport';
@@ -47,6 +49,7 @@ function calculatedDates() {
 }
 
 function PromotionReport() {
+  const { t } = useTranslation('promotion');
   useCookieLanguage(i18n);
   const [initialDates, _] = useState(calculatedDates);
   const [activeTab, setActiveTab] = useState(0);
@@ -79,6 +82,7 @@ function PromotionReport() {
 
   return (
     <>
+      <TitleComponent text={t('promotionReport')} type="main" />
       <PromotionReportTab activeTab={activeTab} onTabChange={handleTabChange} />
       {activeTab === 0 ? (
         promotion === null ? (

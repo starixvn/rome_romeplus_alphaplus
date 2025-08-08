@@ -11,7 +11,7 @@ export default function PromotionReportTab({
   const { t } = useTranslation('promotion');
 
   return (
-    <ul className="flex border-b border-[var(--border-color)] mb-[12px]">
+    <ul className="flex mt-[-12px] border-b border-[var(--border-color)] mb-[15px]">
       <li>
         <ButtonTabComponent
           text={t('promotionReport')}
