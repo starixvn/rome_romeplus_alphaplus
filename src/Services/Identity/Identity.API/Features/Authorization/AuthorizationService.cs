@@ -17,7 +17,7 @@ public interface IAuthorizationService
     Task<BelongingInfo> CheckBelongingMultipleCustomers(int custId, int subAccId, string custIds);
 }
 
-internal class AuthorizationService(IDynamicRepository dynamicRepository) : IAuthorizationService
+public class AuthorizationService(IDynamicRepository dynamicRepository) : IAuthorizationService
 {
     private readonly IDynamicRepository dynamicRepository = dynamicRepository;
 
