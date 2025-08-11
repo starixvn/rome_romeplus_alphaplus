@@ -565,8 +565,8 @@ table:not(.no-hover){
 }
 
 
-.upcoming-bg{
-  background: url(../../cash-service/assets/images/Upcoming.png) no-repeat center center;
+.upcoming-bg {
+  background: url(../../cash-service/assets/images/Upcoming.png) no-repeat center center / cover;
 }
 .animate-rotate{
   animation: tiktak 2s steps(2, end) infinite;

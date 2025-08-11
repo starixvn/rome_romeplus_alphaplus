@@ -19,6 +19,7 @@ import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import DailyLimitPopupModal from './SetDailyLimitPopupModal';
 import NoRecordFound from '../../components/NoRecordFoundComponent';
 import { ButtonIconComponent } from '../../components/Buttons/ButtonIconComponent';
+import UpcomingComponent from '../../components/UpcomingComponent';
 
 interface PaymentGatewayComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
@@ -113,7 +114,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
       </ul>
      
       <div className="max-w-[1000px]">
-         
+         <UpcomingComponent hasTab={true} />
         {loading ? (<Loading />) : 
           error ? (<MessageComponent message={error} type='error' className='mb-[10px]' />) : (
           <>
