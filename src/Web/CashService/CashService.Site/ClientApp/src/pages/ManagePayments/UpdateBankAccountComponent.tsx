@@ -564,6 +564,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                     className="control-field"
                     value={formState.accountHolderName}
                     readOnly
+                    disabled={true}
                     maxLength={255}
                   />
                   <label className=" block mt-[4px] text-[#828282] text-[90%]">
@@ -578,6 +579,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
                     className="control-field"
                     value={formState.accountNumber}
                     readOnly
+                    disabled={true}
                     maxLength={100}
                   />
                   <label className="block mt-[4px] text-[#828282] text-[90%]">

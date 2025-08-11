@@ -11,6 +11,7 @@ export interface PromotionLangFields {
   banner: File | string | null;
   bannerName: string | null;
   content: string;
+  isRemovedBanner: boolean;
 }
 
 export interface PromotionInfoProps {

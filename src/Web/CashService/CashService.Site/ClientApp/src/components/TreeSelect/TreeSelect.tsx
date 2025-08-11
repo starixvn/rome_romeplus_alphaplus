@@ -245,6 +245,7 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
           type="checkbox"
           checked={allChecked}
           readOnly
+          disabled={true}
           style={{ marginRight: 6, marginLeft: 16, width: 13, height: 13 }}
         />
         <span>{t('selectAll')}</span>
@@ -299,6 +300,7 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
                     type="checkbox"
                     checked={checked}
                     readOnly
+                    disabled={true}
                     style={{ marginRight: 6, width: 13, height: 13 }}
                   />
                   <span>{node.label}</span>
