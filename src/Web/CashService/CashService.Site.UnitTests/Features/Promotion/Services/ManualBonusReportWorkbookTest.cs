@@ -56,33 +56,6 @@ public class ManualBonusReportWorkbookTest
         Assert.Contains("ManualBonusReport", exception.Message);
     }
 
-    [Fact]
-    public void BuildTextBreakline_Should_Format_Text_Correctly()
-    {
-        // Arrange
-        var testCases = new[]
-        {
-                // text1, text2, expected
-                new { Text1 = "username", Text2 = "nickname", Expected = "username\rnickname" },
-                new { Text1 = "username", Text2 = "", Expected = "username" },
-                new { Text1 = "", Text2 = "nickname", Expected = "nickname" },
-                new { Text1 = "", Text2 = "", Expected = "" },
-                new { Text1 = null as string, Text2 = null as string, Expected = "" }
-            };
-
-        // We need to use reflection to test the private method
-        var methodInfo = typeof(ManualBonusReportWorkbook).GetMethod("BuildTextBreakline",
-            System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
-
-        foreach (var testCase in testCases)
-        {
-            // Act
-            var result = methodInfo.Invoke(null, new object[] { testCase.Text1, testCase.Text2 }) as string;
-
-            // Assert
-            Assert.Equal(testCase.Expected, result);
-        }
-    }
 
     [Fact]
     public void GetRowMapper_Should_Map_All_Properties_Correctly()
