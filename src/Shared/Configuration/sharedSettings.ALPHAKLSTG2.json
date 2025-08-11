@@ -150,6 +150,7 @@
         "SystemId": 6
     },
     "SystemId": 2,
+    "IdentityUrl": "http://alphaplus_staging_api_identity_alphaklprod:5000/",
     "AssetAppPath": "/stcdn",
     "JsVersion": "20250620001",
     "AssetsApp:StaticResourcesVersion": "20250604002",
