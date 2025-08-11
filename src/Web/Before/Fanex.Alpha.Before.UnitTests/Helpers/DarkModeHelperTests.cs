@@ -1,4 +1,3 @@
-using Fanex.Alpha.Before;
 using Fanex.Alpha.Before.Helpers;
 using Fanex.Alpha.Before.UnitTests.TestDoubles;
 using Microsoft.AspNetCore.Http;

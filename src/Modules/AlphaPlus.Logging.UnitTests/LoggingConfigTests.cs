@@ -1,9 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
-using AlphaPlus.Logging;
 using Fanex.Logging;
 using Fanex.Logging.Extensions;
-using Fanex.Logging.RabbitMQ;
 using Fanex.Logging.Sentry;
 using Microsoft.Extensions.Configuration;
 using Xunit;

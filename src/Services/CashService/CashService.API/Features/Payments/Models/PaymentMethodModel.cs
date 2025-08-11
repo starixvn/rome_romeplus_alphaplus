@@ -1,5 +1,3 @@
-using AlphaPlus.CashService.API.Features.Shared.Models.PaymentGateway;
-
 namespace AlphaPlus.CashService.API.Features.Payments.Models
 {
     public class PaymentMethodModel
@@ -17,4 +15,4 @@ namespace AlphaPlus.CashService.API.Features.Payments.Models
         public string AppSecret { get; set; } = string.Empty;
         public string APIConfig { get; set; }
     }
-} 
+}

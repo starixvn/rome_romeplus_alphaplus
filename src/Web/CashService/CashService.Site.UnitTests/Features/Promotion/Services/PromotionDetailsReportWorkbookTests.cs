@@ -1,11 +1,6 @@
-using AlphaPlus.CashService.Site.Features.Promotion.Models;
-using AlphaPlus.CashService.Site.Features.Promotion.Requests;
 using AlphaPlus.CashService.Site.Features.Promotion.Services;
-using AlphaPlus.CashService.Site.Features.Transactions.Enum;
-using AlphaPlus.Shared.AppResources.CashServices;
 using Microsoft.AspNetCore.Hosting;
 using Moq;
-using ONEbook.SpreadSheets;
 using Xunit;
 
 namespace AlphaPlus.CashService.Site.UnitTests.Features.Promotion.Services;

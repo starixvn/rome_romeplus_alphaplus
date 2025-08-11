@@ -1,6 +1,5 @@
 using AlphaPlus.NetThrottling.Resolvers;
 using AutoFixture;
-using Microsoft.AspNetCore.Http;
 
 namespace AlphaPlus.NetThrottling.UnitTests.Resolvers
 {

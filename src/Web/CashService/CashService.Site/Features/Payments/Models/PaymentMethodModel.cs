@@ -1,5 +1,3 @@
-using AlphaPlus.CashService.Site.Features.Shared.Models;
-
 namespace AlphaPlus.CashService.Site.Features.Payments.Models
 {
     public class PaymentMethodModel

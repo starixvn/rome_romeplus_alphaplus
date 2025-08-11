@@ -1,16 +1,7 @@
-global using System.Net.Http;
-global using AlphaPlus.Identity.API;
 global using AlphaPlus.Identity.API.Constants;
 global using AlphaPlus.Identity.API.Features.Auth;
 global using AlphaPlus.Identity.API.Features.Auth.SiteDb;
-global using AlphaPlus.Identity.API.Features.Authorization;
-global using AlphaPlus.Identity.API.Utils;
 global using Fanex.Data.Repository;
 global using FluentAssertions;
-global using Microsoft.AspNetCore.Mvc.Testing;
-global using Microsoft.Extensions.Caching.Memory;
-global using Microsoft.Extensions.DependencyInjection;
-global using Microsoft.Extensions.Options;
 global using Moq;
 global using Xunit;
-global using Xunit.Abstractions;

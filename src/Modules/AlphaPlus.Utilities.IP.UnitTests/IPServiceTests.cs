@@ -1,14 +1,9 @@
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using AlphaPlus.Utilities.IP.Criteria;
-using AlphaPlus.Utilities.IP.Model;
 using AlphaPlus.Utilities.IP.Models;
 using AutoFixture;
 using Fanex.Data.Repository;
 using Microsoft.Extensions.Caching.Memory;
-using Moq;
-using Xunit;
 
 namespace AlphaPlus.Utilities.IP.UnitTests
 {
