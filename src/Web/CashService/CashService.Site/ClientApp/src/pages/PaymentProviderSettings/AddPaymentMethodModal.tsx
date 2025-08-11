@@ -303,6 +303,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
                 </div>
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <TitleComponent type='label' text={`${tPaymentProviderSettings('appSecret')}`} required={true} />
+                  <div className="relative">
                   <input
                     type={isShowAppSecret ? 'text' : 'password'}
                     className={`control-field ${fieldErrors.appSecret ? 'error' : ''}`}
@@ -312,7 +313,8 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
                     name="password "
                     autoComplete="new-password "
                   />
-                  <ButtonIconComponent style='Eye' onClick={() => { setIsShowAppSecret(!isShowAppSecret); }} />
+                  <ButtonIconComponent className='absolute right-[-3px] top-[0] hover:bg-transparent!' style='Eye' onClick={() => { setIsShowAppSecret(!isShowAppSecret); }} />                 
+                  </div>
                   <MessageComponent message={fieldErrors.appSecret} type='validate' />
                 </div>
               </div>

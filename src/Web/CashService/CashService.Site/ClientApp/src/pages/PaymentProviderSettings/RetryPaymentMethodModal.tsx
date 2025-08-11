@@ -348,6 +348,7 @@ const RetryPaymentMethodModal: React.FC<RetryPaymentMethodModalProps> = ({
                 </div>
                 <div className="w-[48%]">
                   <TitleComponent type='label' text={`${tPaymentProviderSettings('appSecret')}`} required={true} />
+                  <div className="relative">
                   <input
                     type={isShowAppSecret ? 'text' : 'password'}
                     className={`control-field ${fieldErrors.appSecret ? 'error' : ''}`}
@@ -355,7 +356,8 @@ const RetryPaymentMethodModal: React.FC<RetryPaymentMethodModalProps> = ({
                     value={formState.appSecret}
                     onChange={(e) => { onInputChange('appSecret', e.target.value); }}
                   />
-                  <ButtonIconComponent style='Eye' onClick={() => { setIsShowAppSecret(!isShowAppSecret); }} />
+                  <ButtonIconComponent className='absolute right-[-3px] top-[0] hover:bg-transparent!' style='Eye' onClick={() => { setIsShowAppSecret(!isShowAppSecret); }} />
+                  </div>
                   <MessageComponent message={fieldErrors.appSecret} type='validate' />
                 </div>
               </div>
