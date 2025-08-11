@@ -27,6 +27,7 @@ import UpdateBankAccountComponent from './UpdateBankAccountComponent';
 import { createErrorResultModel } from '../../services/interfaces/ResultModel';
 import NoRecordFound from '../../components/NoRecordFoundComponent';
 import { ButtonIconComponent } from '../../components/Buttons/ButtonIconComponent';
+import UpcomingComponent from '../../components/UpcomingComponent';
 
 interface BankAccountComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>; 
@@ -312,6 +313,7 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({ setActiveTa
       ) : (
         <>
           <div className="h-full flex flex-col">
+            <UpcomingComponent hasTab={true} />
             <TitleComponent type='main' text={tManagePayments('managePayments')} showTippy={true}>
               <div>
                 <div>• {tManagePayments('managePaymentsTip1')}</div>
