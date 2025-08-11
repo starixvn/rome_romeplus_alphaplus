@@ -17,7 +17,6 @@ using Shared.Resources;
 public class TransactionsController(
     HttpClientHelper httpClientHelper,
     IUserSession userSession,
-    IHttpContextAccessor httpContextAccessor,
     ITransactionHistoryWorkbook transactionHistoryWorkbook,
     IAntiforgery antiforgery,
     HttpClient httpClient,
@@ -28,7 +27,6 @@ public class TransactionsController(
     private readonly int agentId = userSession.CustId;
     private readonly int custDbGroupId = userSession.CustDBGroupId;
     private readonly int siteDbGroupId = userSession.SiteDBGroupId;
-    private readonly int userId = userSession.UserId;
 
     public IActionResult Index() => Ok("Transactions");
 
