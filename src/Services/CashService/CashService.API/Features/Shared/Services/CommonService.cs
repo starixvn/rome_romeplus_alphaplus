@@ -36,17 +36,15 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
 
         var isSuccess = ErrorCodeConstants.IsSuccess(baseDBCommand.ErrCode) || ErrorCodeConstants.IsWarning(baseDBCommand.ErrCode);
 
-        if (!isSuccess)
+        if (isSuccess)
         {
-            return new ResultModel(baseDBCommand.ErrCode, baseDBCommand.ErrMsg);
+            foreach (var writeLogDBCommandModel in writeLLogDBCommandModels)
+            {
+                await WriteLogDBCommand(request, writeLogDBCommandModel);
+            }
         }
 
-        foreach (var writeLogDBCommandModel in writeLLogDBCommandModels)
-        {
-            await WriteLogDBCommand(request, writeLogDBCommandModel);
-        }
-
-        return new ResultModel(0, string.Empty);
+        return new ResultModel(baseDBCommand.ErrCode, baseDBCommand.ErrMsg);
     }
 
     public async Task WriteLogDBCommand(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)
