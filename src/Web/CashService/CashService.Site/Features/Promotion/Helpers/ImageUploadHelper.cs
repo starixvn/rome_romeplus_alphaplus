@@ -23,7 +23,7 @@ public static class ImageUploadHelper
     public static async Task ProcessUploadedImage(IFormFile image, string fileName, string uploadPath)
     {
         if (image == null || image.Length == 0 || !IsValidImageFile(image))
-            throw new InvalidOperationException("Invalid image file");
+            throw new InvalidOperationException($"Invalid image file upload: File: {image?.FileName}, Size: {image?.Length}, ContentType: {image?.ContentType}");
 
         var filePath = Path.Combine(uploadPath, fileName);
 
@@ -33,20 +33,6 @@ public static class ImageUploadHelper
         if (OperatingSystem.IsLinux())
         {
             File.SetUnixFileMode(filePath, UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.GroupRead | UnixFileMode.OtherRead);
-        }
-    }
-
-    public static void DeleteImages(string[] fileNames, string directory)
-    {
-        if (fileNames == null || fileNames.Length == 0)
-            return;
-        foreach (var fileName in fileNames)
-        {
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), directory, fileName);
-            if (!string.IsNullOrWhiteSpace(fileName) && File.Exists(filePath))
-            {
-                File.Delete(filePath);
-            }
         }
     }
 

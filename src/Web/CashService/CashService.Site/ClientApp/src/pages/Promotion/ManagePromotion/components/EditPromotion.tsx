@@ -90,7 +90,6 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
                 title: info.title || '',
                 bannerName: info.bannerName || '',
                 content: info.content || '',
-                isRemovedBanner: false,
               };
             }
             setPromotionInfo(infoMap);

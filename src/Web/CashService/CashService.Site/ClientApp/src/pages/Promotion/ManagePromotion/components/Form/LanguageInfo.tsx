@@ -11,7 +11,6 @@ export interface PromotionLangFields {
   banner: File | string | null;
   bannerName: string | null;
   content: string;
-  isRemovedBanner: boolean;
 }
 
 export interface PromotionInfoProps {
@@ -74,9 +73,10 @@ export const BannerField: React.FC<{
   bannerName?: string | null;
   setBanner: (f: File | string | null) => void;
   setBannerName?: (name: string | null) => void;
+  banner?: File | string | null;
   lang: string;
   isDefault: boolean;
-}> = ({ bannerName, setBanner, setBannerName, lang, isDefault }) => {
+}> = ({ bannerName, setBanner, setBannerName, banner, lang, isDefault }) => {
   const { t } = useTranslation('promotion');
 
   const handleSetImage = (file: File | null) => {
@@ -94,6 +94,8 @@ export const BannerField: React.FC<{
         key={`upload-image-${lang}`}
         setImage={handleSetImage}
         prevImage={bannerName ? `${BANNER_LOCATION}/${bannerName}` : ''}
+        image={banner ?? null}
+        inputId={`image-upload-${lang}`}
         maxSize={20}
         customClassName="w-full h-[300px]"
         removeImage={handleRemoveImage}
@@ -153,6 +155,7 @@ const PromotionInfo: React.FC<PromotionInfoProps> = ({
         setBanner={(f) => setValue(activeLang, 'banner', f)}
         setBannerName={(name) => setValue(activeLang, 'bannerName', name)}
         bannerName={langFields.bannerName}
+        banner={langFields.banner}
         lang={activeLang}
         isDefault={languages.find((lang) => lang.key === activeLang)?.isDefault || false}
       />

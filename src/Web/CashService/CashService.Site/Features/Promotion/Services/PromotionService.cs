@@ -13,8 +13,6 @@ public interface IPromotionService
     Dictionary<string, IFormFile> ProcessEditPromotionRequest(EditPromotionRequest request);
 
     Task<ResultModel> ProcessBannerUploadedAsync(Dictionary<string, IFormFile> files);
-
-    void RemoveFailedImageAsync(string[] fileNames);
 }
 
 public class PromotionService(ILogger logger) : IPromotionService
@@ -57,15 +55,9 @@ public class PromotionService(ILogger logger) : IPromotionService
 
         if (listResults.Any(r => r.Code != 0))
         {
-            //ImageUploadHelper.DeleteImages(listResults.Select(i => i.Data?.ToString()).ToArray(), PromotionUploadFolder);
             return new ResultModel { Code = 1, Message = "Upload banner failed" };
         }
         return new ResultModel(0, string.Empty);
-    }
-
-    public void RemoveFailedImageAsync(string[] fileNames)
-    {
-        ImageUploadHelper.DeleteImages(fileNames, PromotionUploadFolder);
     }
 
     private async Task<ResultModel> UploadBannerResultAsync(IFormFile file, string fileName, string directory)

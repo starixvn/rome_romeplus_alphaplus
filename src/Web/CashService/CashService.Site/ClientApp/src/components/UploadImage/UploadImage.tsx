@@ -9,6 +9,8 @@ interface UploadImageProps {
   customClassName?: string;
   maxSize?: number;
   removeImage?: () => void;
+  image?: File | string | null;
+  inputId?: string;
 }
 
 const ACCEPTED_FILE_TYPES = '.jpeg,.jpg,.png';
@@ -20,27 +22,51 @@ const UploadImage: React.FC<UploadImageProps> = ({
   customClassName,
   maxSize = 1,
   removeImage,
+  image,
+  inputId,
 }) => {
   const { t: tGlobal } = useTranslation('global');
 
-  const [imageUrl, setImageUrl] = useState<string | null>(prevImage ?? null);
+  const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [isDragging, setIsDragging] = useState(false);
 
-  const convertToBase64 = useCallback((file: File): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = (error) => reject(error);
-    });
-  }, []);
+  useEffect(() => {
+    if (imageUrl && imageUrl.startsWith('blob:')) {
+      URL.revokeObjectURL(imageUrl);
+    }
+
+    if (image instanceof File) {
+      const nextUrl = URL.createObjectURL(image);
+      setImageUrl(nextUrl);
+      return () => {
+        URL.revokeObjectURL(nextUrl);
+      };
+    }
+
+    if (typeof image === 'string' && image) {
+      setImageUrl(image);
+      return;
+    }
+
+    if (prevImage) {
+      setImageUrl(prevImage);
+      return;
+    }
+
+    setImageUrl(null);
+  }, [image, prevImage]);
 
   const processFile = useCallback(
     async (file: File) => {
-      setImageUrl(URL.createObjectURL(file));
+      setImageUrl((prev) => {
+        if (prev && prev.startsWith('blob:')) {
+          URL.revokeObjectURL(prev);
+        }
+        return URL.createObjectURL(file);
+      });
       setImage(file);
     },
-    [convertToBase64, setImage]
+    [setImage]
   );
 
   const handleImageUpload = useCallback(
@@ -83,11 +109,12 @@ const UploadImage: React.FC<UploadImageProps> = ({
     if (removeImage) {
       removeImage();
     }
-    const fileInput = document.getElementById('image-upload') as HTMLInputElement;
+    const inputElementId = inputId || 'image-upload';
+    const fileInput = document.getElementById(inputElementId) as HTMLInputElement;
     if (fileInput) {
       fileInput.value = '';
     }
-  }, [imageUrl, setImage, removeImage]);
+  }, [imageUrl, setImage, removeImage, inputId]);
 
   useEffect(() => {
     return () => {
@@ -152,7 +179,7 @@ const UploadImage: React.FC<UploadImageProps> = ({
     >
       {imageUrl ? renderImagePreview() : renderUploadPlaceholder()}
       <input
-        id="image-upload"
+        id={inputId || 'image-upload'}
         type="file"
         accept={ACCEPTED_FILE_TYPES}
         onChange={handleImageUpload}
@@ -160,7 +187,7 @@ const UploadImage: React.FC<UploadImageProps> = ({
         disabled={disabled}
       />
       <label
-        htmlFor="image-upload"
+        htmlFor={inputId || 'image-upload'}
         className={`absolute inset-0 w-full h-full ${
           imageUrl ? 'opacity-0 z-0' : 'opacity-0 cursor-pointer z-10'
         }`}

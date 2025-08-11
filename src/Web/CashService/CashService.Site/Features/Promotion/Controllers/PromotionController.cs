@@ -168,10 +168,6 @@ public class PromotionController(
             {
                 result = await httpClientHelper.PostAsync<object, ResultModel>("/api/promotions", request);
             }
-            else
-            {
-                promotionService.RemoveFailedImageAsync(files.Select(i => i.Key).ToArray());
-            }
 
             return Json(result);
         }
@@ -192,37 +188,16 @@ public class PromotionController(
 
         request.SetUserSession(userSession);
 
-        var updatedBannerName = GetUpdatedBannerNames(request);
-
         var files = promotionService.ProcessEditPromotionRequest(request);
         result = await promotionService.ProcessBannerUploadedAsync(files);
         if (result.IsSuccessful)
         {
             var url = $"/api/promotions/{promotionId}";
             result = await httpClientHelper.PutAsync<EditPromotionRequest, ResultModel>(url, request);
-            if (result.IsSuccessful)
-            {
-                promotionService.RemoveFailedImageAsync(updatedBannerName.ToArray());
-            }
         }
 
         return Json(result);
     }
-
-    private static List<string> GetUpdatedBannerNames(EditPromotionRequest request)
-     => request.Contents
-         .Select(content =>
-         {
-             var original = request.OriginalContents
-                 .FirstOrDefault(o => o.Language == content.Language);
-             if (original != null && !string.IsNullOrEmpty(original.BannerName) && content.Banner != null)
-             {
-                 return original.BannerName;
-             }
-             return null;
-         })
-         .Where(bannerName => !string.IsNullOrEmpty(bannerName))
-         .ToList();
 
     [HttpDelete]
     public async Task<IActionResult> DeletePromotion(int promotionId)
