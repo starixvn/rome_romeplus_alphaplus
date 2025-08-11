@@ -14,17 +14,17 @@
             </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('TransactionType')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTransactionTypeName(@transactiontype)" />
+              <xsl:value-of select="xslLogFormat:GetTransactionTypeName_OldNewValue(@transactiontype)" />
             </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('PaymentMethod')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetPaymentMethodName(@paymentmethodid)" />
+              <xsl:value-of select="xslLogFormat:GetPaymentMethodName_OldNewValue(@paymentmethodid)" />
             </td>
           </tr>
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('PaymentMethodStatus')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetPaymentMethodStatusName(@paymentmethodstatus)" />
+              <xsl:value-of select="xslLogFormat:GetPaymentMethodStatusName_OldNewValue(@paymentmethodstatus)" />
             </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SubAccName')" /></td>
             <td class="colW2">

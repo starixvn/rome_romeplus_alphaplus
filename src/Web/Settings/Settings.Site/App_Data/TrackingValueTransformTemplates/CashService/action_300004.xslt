@@ -10,15 +10,15 @@
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('bank')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetBankName(@bankcode)" />
+              <xsl:value-of select="xslLogFormat:GetBankName_OldNewValue(@bankcode)" />
             </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('status')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetStatus(@bankaccountstatus)" />
+              <xsl:value-of select="xslLogFormat:GetStatus_OldNewValue(@bankaccountstatus)" />
             </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('TransactionType')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTransactionTypes(@transtypelist)" />
+              <xsl:value-of select="xslLogFormat:GetTransactionTypes_OldNewValue(@transtypelist)" />
             </td>
           </tr>
           <tr>
@@ -38,11 +38,11 @@
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('DepositMatchingMode')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetDepositMatchingMode(@depositmatchingmode)" />
+              <xsl:value-of select="xslLogFormat:GetDepositMatchingMode_OldNewValue(@depositmatchingmode)" />
             </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('PromptPay')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetStatus(@promptpayenabled)" />
+              <xsl:value-of select="xslLogFormat:GetStatus_OldNewValue(@promptpayenabled)" />
             </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Mobile')" /></td>
             <td class="colW2">

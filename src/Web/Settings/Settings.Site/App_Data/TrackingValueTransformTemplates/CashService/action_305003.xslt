@@ -10,14 +10,12 @@
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Provider')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetProviderName(@providerid)" />
+              <xsl:value-of select="xslLogFormat:GetProviderName_OldNewValue(@providerid)" />
             </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Status')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetStatus(@providerstatus)" />
+              <xsl:value-of select="xslLogFormat:GetStatus_OldNewValue(@providerstatus)" />
             </td>
-            <td class="colW1"></td>
-            <td class="colW2"></td>
           </tr>
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SubAccName')" /></td>
@@ -28,8 +26,6 @@
             <td class="colW2">
               <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
             </td>
-            <td class="colW1"></td>
-            <td class="colW2"></td>
           </tr>
         </table>
       </xsl:when>

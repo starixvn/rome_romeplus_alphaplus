@@ -3,14 +3,14 @@
   <xsl:param name="IsInternal" select="0"></xsl:param>
   <xsl:output method="html" indent="no" />
 
-  <xsl:template match="age_cashservice_paymentmethod_upd">
+  <xsl:template match="root">
     <xsl:choose>
       <xsl:when test="@custid">
         <table class="tblDesc">
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Provider')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetProviderName(@providerid)" />
+              <xsl:value-of select="xslLogFormat:GetProviderName_OldNewValue(@providerid)" />
             </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SubAccName')" /></td>
             <td class="colW2">
@@ -20,24 +20,26 @@
             <td class="colW2">
               <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
             </td>
+            <td class="colW1"></td>
+            <td class="colW2"></td>
+            <td class="colW1"></td>
+            <td class="colW2"></td>
           </tr>
 
           <xsl:for-each select="paymentmethod">
             <tr>
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('PaymentMethod')" /></td>
               <td class="colW2">
-                <xsl:value-of select="xslLogFormat:GetPaymentMethodName(@paymentmethodid)" />
+                <xsl:value-of select="xslLogFormat:GetPaymentMethodName_OldNewValue(@paymentmethodid)" />
               </td>
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('TransactionType')" /></td>
               <td class="colW2">
-                <xsl:value-of select="xslLogFormat:GetTransactionTypeName(@transactiontype)" />
+                <xsl:value-of select="xslLogFormat:GetTransactionTypeName_OldNewValue(@transactiontype)" />
               </td>
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Status')" /></td>
               <td class="colW2">
-                <xsl:value-of select="xslLogFormat:GetStatus(@paymentmethodenable)" />
+                <xsl:value-of select="xslLogFormat:GetStatus_OldNewValue(@paymentmethodenable)" />
               </td>
-            </tr>
-            <tr>
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Minimum')" /></td>
               <td class="colW2">
                 <xsl:value-of select="@minamount" />
@@ -46,8 +48,6 @@
               <td class="colW2">
                 <xsl:value-of select="@maxamount" />
               </td>
-              <td class="colW1"></td>
-              <td class="colW2"></td>
             </tr>
           </xsl:for-each>
         </table>

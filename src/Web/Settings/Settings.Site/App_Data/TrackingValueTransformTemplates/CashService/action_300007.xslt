@@ -10,7 +10,7 @@
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('bank')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetBankName(@memberbankcode)" />
+              <xsl:value-of select="xslLogFormat:GetBankName_OldNewValue(@memberbankcode)" />
             </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('accnumber')" /></td>
             <td class="colW2">
