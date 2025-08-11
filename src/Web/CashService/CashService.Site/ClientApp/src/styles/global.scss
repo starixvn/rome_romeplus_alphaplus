@@ -206,6 +206,10 @@ body{
 }
 #root {
   height: 100%;
+  > div{
+    position: relative;
+    min-height: 100%;
+  }
 }
 table:not(.no-hover){
   tbody tr{
@@ -390,8 +394,7 @@ table:not(.no-hover){
   &.error{
     border-color: var(--border-control-error);
   }
-  &.disabled{
-    
+  &.disabled, &[readonly]{    
     cursor: not-allowed;
     opacity: 0.5;
   }
