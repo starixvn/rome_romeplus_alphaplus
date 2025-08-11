@@ -45,7 +45,7 @@ namespace AlphaPlus.Main.Site.Features.Banner
 
             if (!AppSettings.IsMBCSite)
             {
-                yield return new ImageRedirectUrlViewModel(GetSabaSportMarketingAppImageSource(AppSettings.SiteLabel), "https://www.sabavn.com/", false, null);
+                yield return new ImageRedirectUrlViewModel(GetSabaSportMarketingAppImageSource(AppSettings.SiteLabel), "https://www.sabavn.net/", false, null);
             }
         }
 
@@ -84,7 +84,7 @@ namespace AlphaPlus.Main.Site.Features.Banner
                 "~/assets/images/MenuBarBanner/789y/{0}_s1msa_{1}.jpg",
                 Type == BannerType.Mobile ? "600x140" : "280x70",
                 Language);
-                
+
         private string MapSabaSportMarketingAppLanguage()
             => Language.Equals(Shared.Constants.Language.Vietnamese, StringComparison.OrdinalIgnoreCase)
             ? Shared.Constants.Language.Vietnamese
