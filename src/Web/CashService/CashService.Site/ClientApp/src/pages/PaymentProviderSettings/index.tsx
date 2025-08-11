@@ -234,7 +234,7 @@ function PaymentProviderSettings() {
   const hasChanged = (setting: any) => {
     const originalSetting = originalSettings.find(
       (s) =>
-        s.methodId === setting.methodId &&
+        s.method === setting.method &&
         s.status === setting.status &&
         s.transactionType === setting.transactionType
     );
@@ -243,8 +243,8 @@ function PaymentProviderSettings() {
 
     return (
       setting.isEnabled !== originalSetting.isEnabled ||
-      setting.minAmount !== originalSetting.minAmount ||
-      setting.maxAmount !== originalSetting.maxAmount
+      setting.minAmount != originalSetting.minAmount ||
+      setting.maxAmount != originalSetting.maxAmount
     );
   };
 
