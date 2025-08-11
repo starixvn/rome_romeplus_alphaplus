@@ -182,6 +182,15 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
                 string.Empty);
         }
 
+        public string GetProviderName(int providerId)
+        {
+            return remotingRefService.GetResourceDataByRefIdAndResourceId(
+                "CashPaymentProvider",
+                providerId.ToString(),
+                LanguageCode,
+                string.Empty);
+        }
+
         private static string LanguageCode
             => Thread.CurrentThread.CurrentCulture.Name;
     }

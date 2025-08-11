@@ -6,11 +6,6 @@
         {
         }
 
-        public string GetBankName(string code)
-        {
-            return GetLogResource("BankName_" + code);
-        }
-
         public string FormatBankAccountNumber(string bankAccountNumber)
         {
             return bankAccountNumber.Replace("NoMatchingBankAccount", GetLogResource("NoMatchingBankAccount"), StringComparison.OrdinalIgnoreCase);
@@ -45,6 +40,11 @@
         public string GetDepositMatchingMode(int depositMatchingMode)
         {
             return GetLogResource("DepositMatchingMode_" + depositMatchingMode);
+        }
+
+        public string GetProviderName(int providerId)
+        {
+            return remotingRef.GetProviderName(providerId);
         }
     }
 }

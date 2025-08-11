@@ -41,5 +41,10 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
         {
             return remotingRef.GetProductName(productId);
         }
+
+        public string GetBankName(string code)
+        {
+            return GetLogResource("BankName_" + code);
+        }
     }
 }

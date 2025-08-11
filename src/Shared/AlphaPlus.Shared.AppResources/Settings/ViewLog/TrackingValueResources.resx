@@ -3791,4 +3791,10 @@
   <data name="DepositMatchingMode_2" xml:space="preserve">
     <value>Bank Matching</value>
   </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>Minimum</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>Maximum</value>
+  </data>
 </root>

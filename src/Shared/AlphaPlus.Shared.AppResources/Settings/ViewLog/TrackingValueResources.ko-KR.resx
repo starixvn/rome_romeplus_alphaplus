@@ -1807,4 +1807,10 @@
   <data name="DepositMatchingMode_2" xml:space="preserve">
     <value>은행 매칭</value>
   </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>최소</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>최대</value>
+  </data>
 </root>

@@ -3549,4 +3549,10 @@
   <data name="TransactionType_4" xml:space="preserve">
     <value>自動提款</value>
   </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>最低</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>最高</value>
+  </data>
 </root>

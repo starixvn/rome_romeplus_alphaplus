@@ -6208,6 +6208,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maximum.
+        /// </summary>
+        public static string Maximum {
+            get {
+                return ResourceManager.GetString("Maximum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maximum Loss.
         /// </summary>
         public static string MaximumLoss {
@@ -6969,6 +6978,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         public static string MinBv99MP {
             get {
                 return ResourceManager.GetString("MinBv99MP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum.
+        /// </summary>
+        public static string Minimum {
+            get {
+                return ResourceManager.GetString("Minimum", resourceCulture);
             }
         }
         
