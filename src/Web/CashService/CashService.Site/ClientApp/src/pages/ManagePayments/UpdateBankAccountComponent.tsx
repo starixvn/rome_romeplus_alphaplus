@@ -339,6 +339,8 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
       setTimeout(() => {
         onSave();
       }, 3000);
+    } else if(result.code === 203) {
+      setError(tManagePayments('bankAccountNotFound'));
     } else {
       setError(result.message || tManagePayments('failedToUpdateBankAccount'));
     }

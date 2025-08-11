@@ -98,7 +98,9 @@
   "bankAccountDeletedSuccessfully": "ลบบัญชีธนาคารสำเร็จ",
   "bankAccountUpdatedSuccessfully": "อัปเดตบัญชีธนาคารสำเร็จ",
   "failedToUpdateBankAccount": "อัปเดตบัญชีธนาคารไม่สำเร็จ",
-  
+  "bankAccountAlreadyExist": "บัญชีธนาคารนี้มีอยู่แล้ว กรุณาป้อนหมายเลขบัญชีธนาคารอื่น",
+  "bankAccountNotFound": "ไม่พบบัญชีธนาคาร",
+
   "enableDisable": "เปิด/ปิดผู้ให้บริการ",
   "enableDisableTip1": "เปิดหรือปิดผู้ให้บริการสำหรับสมาชิกของคุณ",
   "enableDisableTip2": "เมื่อผู้ให้บริการอยู่ระหว่างการบำรุงรักษา:",
