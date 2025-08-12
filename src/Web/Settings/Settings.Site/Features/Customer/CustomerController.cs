@@ -269,7 +269,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> Update([FromBody] UpdateCustomerRequest request)
         {
-            await Fanex.Logging.LogService.InfoAsync(request.IsInternal.ToString());
+            await Fanex.Logging.LogService.InfoAsync(System.Text.Json.JsonSerializer.Serialize(request));
             if (request.IsInternal)
             {
                 return UnAuthorized();
