@@ -37,14 +37,21 @@ const Information: React.FC<InformationProps> = ({
   readOnlyMode,
 }) => {
   const { t } = useTranslation('promotion');
-  const todayInGMT4 = convertToGMT4(new Date());
-  const minDate = new Date(todayInGMT4);
-  minDate.setHours(0, 0, 0, 0);
+  const minDate = React.useMemo(() => {
+    const todayInGMT4 = convertToGMT4(new Date());
+    const d = new Date(todayInGMT4);
+    d.setHours(0, 0, 0, 0);
+    return d;
+  }, []);
 
-  const oneYearLaterInGMT4 = convertToGMT4(new Date());
-  oneYearLaterInGMT4.setFullYear(oneYearLaterInGMT4.getFullYear() + 1);
-  const maxDate = new Date(oneYearLaterInGMT4);
-  maxDate.setHours(0, 0, 0, 0);
+  const maxDate = React.useMemo(() => {
+    const oneYearLaterInGMT4 = convertToGMT4(new Date());
+    oneYearLaterInGMT4.setFullYear(oneYearLaterInGMT4.getFullYear() + 1);
+    const d = new Date(oneYearLaterInGMT4);
+    d.setHours(0, 0, 0, 0);
+    return d;
+  }, []);
+
   return (
     <>
       <TitleComponent text={t('addPromotionForm.currentPromotion')} type="medium" />
@@ -135,6 +142,7 @@ const Information: React.FC<InformationProps> = ({
             value={selectedProductIds}
             onChange={handleProductChange}
             isShowSelectAll={false}
+            isDisabled={readOnlyMode}
           />
         </div>
       </div>

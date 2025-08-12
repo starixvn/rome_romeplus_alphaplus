@@ -106,8 +106,6 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
         return {
           ...setting,
           productIds: selectedProductsInCategory,
-          // Set default values to 1 for selected categories if current value is 0
-          // Reset values to 0 for unselected categories
           percentage: isCategorySelected ? (setting.percentage === 0 ? 1 : setting.percentage) : 0,
           minTurnover: isCategorySelected
             ? setting.minTurnover === 0
@@ -128,14 +126,11 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
           if (field === 'unlimited') {
             const boolValue = value as boolean;
             if (boolValue === true) {
-              // When checking unlimited, set maxPayout to 0
               return { ...p, unlimited: boolValue, maxPayout: 0 };
             } else {
-              // When unchecking unlimited, set maxPayout to 1
               return { ...p, unlimited: boolValue, maxPayout: 1 };
             }
           } else {
-            // For numeric fields, prevent setting to 0 or negative values
             let adjustedValue = value;
             if (typeof value === 'number' && value <= 0) {
               adjustedValue = 1;
