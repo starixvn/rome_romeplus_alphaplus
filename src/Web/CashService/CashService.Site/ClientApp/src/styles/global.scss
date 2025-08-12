@@ -206,10 +206,6 @@ body{
 }
 #root {
   height: 100%;
-  > div{
-    position: relative;
-    min-height: 100%;
-  }
 }
 table:not(.no-hover){
   tbody tr{
