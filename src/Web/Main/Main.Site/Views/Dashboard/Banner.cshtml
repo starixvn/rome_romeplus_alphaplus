@@ -1,6 +1,7 @@
 @model AlphaPlus.Main.Site.Features.Dashboard.DashboardBannerViewModel
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,26 +9,358 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    <!-- Fancybox CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
     <style>
-        body { background: transparent; }
-        .icon-home { margin-right: 0; }
-        .icon-home:after { content: none; }
-        .text { padding: 10px 0; margin: 0; font-size: 15px; }
-        .banner { padding: 1px; }
-        .banner img { border-radius: 20px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5); max-width: 100% }
-        .sm { display: none }
+        body {
+            background: transparent;
+        }
+
+        .icon-home {
+            margin-right: 0;
+        }
+
+        .icon-home:after {
+            content: none;
+        }
+
+        .text {
+            padding: 10px 0;
+            margin: 0;
+            font-size: 15px;
+        }
+
+        .banner {
+            padding: 1px;
+            width: fit-content;
+        }
+
+        .banner img {
+            border-radius: 20px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+            max-width: 100%
+        }
+
+        .sm {
+            display: none
+        }
+
+        /* Video banner styles */
+        .video-banner {
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .video-banner:hover .play-icon {
+            transform: scale(1.1);
+            background-color: rgba(0, 123, 255, 0.9);
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+        }
+
+        .video-banner:hover img {
+            transform: scale(1.05);
+        }
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background-color: rgba(0, 123, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .play-icon:before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid white;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 4px;
+        }
+
+        .video-banner img {
+            border-radius: 20px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+            max-width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        /* Fallback video thumbnail styles */
+        .video-thumbnail-fallback {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            min-height: 200px;
+        }
+
+        /* Video loading and error states */
+        .video-loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 1000;
+        }
+
+        .video-loading .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        .video-loading p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .video-error {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        @@keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
     <style media="screen and (max-device-width: 768px)">
-        .text { font-size: 20px; }       
-        .sm { display: block; }
-        .pc { display: none; }
+        .text {
+            font-size: 20px;
+        }
+
+        .sm {
+            display: block;
+        }
+
+        .pc {
+            display: none;
+        }
+
+        .play-icon {
+            width: 60px;
+            height: 60px;
+        }
+
+        .play-icon:before {
+            border-left: 15px solid white;
+            border-top: 9px solid transparent;
+            border-bottom: 9px solid transparent;
+            margin-left: 3px;
+        }
     </style>
 </head>
+
 <body>
     <p class="text">@Html.Raw(string.Format(Resources.DashboardViewOverallInformation, "<span onclick=\"location.href=top.headerNav.urls.home;\" class=\"icon icon-home\"></span>"))</p>
+
     <div class="banner">
-        <img class="pc" src="~/assets/images/DashboardBanner/@Model.BannerName" alt="" />
-        <img class="sm" src="~/assets/images/DashboardBanner/@Model.BannerMobileName" alt="" />
+        <div id="bannerCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                @for (int i = 0; i < Model.Banners.Length; i++)
+                {
+                    var banner = Model.Banners[i];
+                    var className = "";
+                    <div class="item @(i == 0 ? "active" : string.Empty)">
+                        @if(banner.IsVideo)
+                        {
+                            <div class="video-banner" onclick="openVideoInFancybox('@Url.Content(banner.Url)')">
+                                <img src="@Url.Content(banner.ImageSource)" class="img-banner @className" 
+                                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjMzMzIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZmlsbD0iI2ZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPlZpZGVvPC90ZXh0Pjwvc3ZnPg=='" />
+                                <div class="play-icon"></div>
+                            </div>
+                        }
+                        else
+                        {
+                            if (string.IsNullOrWhiteSpace(banner.Url))
+                            {
+                                <img src="@Url.Content(banner.ImageSource)" class="img-banner @className" />
+                            }
+                            else
+                            {
+                                <img src="@Url.Content(banner.ImageSource)" class="img-banner @className"
+                                    data-target-url="@banner.Url" data-target="_blank" />
+                            }
+                        }
+                    </div>
+                }
+            </div>
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                @for (int i = 0; i < Model.Banners.Length; i++)
+                {
+                    <li data-target="#bannerCarousel" data-slide-to="@i" @(i == 0 ? "class=active" : string.Empty)></li>
+                }
+            </ol>
+        </div>
     </div>
+
+    <!-- Fancybox JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Initialize carousel with enhanced options
+            $('#bannerCarousel').carousel({
+                interval: 6000, // Auto-advance every 6 seconds
+                pause: 'hover', // Pause on hover
+                wrap: true,     // Loop continuously
+                keyboard: true  // Enable keyboard navigation
+            });
+
+            // Add touch/swipe support for mobile
+            $('#bannerCarousel').on('touchstart', function (e) {
+                var touch = e.originalEvent.touches[0];
+                $(this).data('touchStartX', touch.clientX);
+            });
+
+            $('#bannerCarousel').on('touchend', function (e) {
+                var touch = e.originalEvent.changedTouches[0];
+                var startX = $(this).data('touchStartX');
+                var endX = touch.clientX;
+                var diff = startX - endX;
+
+                if (Math.abs(diff) > 50) { // Minimum swipe distance
+                    if (diff > 0) {
+                        $(this).carousel('next');
+                    } else {
+                        $(this).carousel('prev');
+                    }
+                }
+            });
+
+            // Add smooth transitions
+            $('#bannerCarousel').on('slide.bs.carousel', function () {
+                $(this).find('.item').css('opacity', '0.8');
+            });
+
+            $('#bannerCarousel').on('slid.bs.carousel', function () {
+                $(this).find('.item.active').css('opacity', '1');
+            });
+
+            // Auto-hide loading indicator after 3 seconds
+            setTimeout(function () {
+                hideLoading();
+            }, 3000);
+        });
+
+        function hideLoading() {
+            $('#loadingIndicator').fadeOut(500);
+        }
+
+        function handleImageError(img) {
+            // Handle image loading errors gracefully
+            console.warn('Image failed to load:', img.src);
+            img.style.display = 'none';
+            hideLoading();
+        }
+
+        // Function to open video in Fancybox
+        function openVideoInFancybox(videoUrl) {
+            try {
+                // Check if video URL is valid
+                if (!videoUrl || videoUrl.trim() === '') {
+                    console.error('Invalid video URL');
+                    return;
+                }
+
+                // Show loading state
+                const loadingHtml = '<div class="video-loading"><div class="spinner"></div><p>Loading video...</p></div>';
+                
+                Fancybox.show([{
+                    src: videoUrl,
+                    type: 'video',
+                    title: 'Video',
+                    options: {
+                        autoplay: true,
+                        controls: true,
+                        loop: false,
+                        muted: false,
+                        volume: 0.8,
+                        ratio: 16/9,
+                        fit: 'contain',
+                        preload: 'metadata'
+                    }
+                }], {
+                    // Fancybox options
+                    dragToClose: true,
+                    closeButton: true,
+                    fullscreen: true,
+                    keyboard: true,
+                    toolbar: true,
+                    animationEffect: 'fade',
+                    transitionEffect: 'fade',
+                    on: {
+                        init: (fancybox) => {
+                            // Add custom loading indicator
+                            const container = fancybox.container;
+                            if (container) {
+                                container.insertAdjacentHTML('beforeend', loadingHtml);
+                            }
+                        },
+                        done: (fancybox, slide) => {
+                            // Remove loading indicator when video is ready
+                            const loadingElement = fancybox.container.querySelector('.video-loading');
+                            if (loadingElement) {
+                                loadingElement.remove();
+                            }
+                        },
+                        error: (fancybox, slide) => {
+                            // Handle video loading errors
+                            console.error('Error loading video:', slide.src);
+                            const container = fancybox.container;
+                            if (container) {
+                                container.innerHTML = '<div class="video-error"><p>Error loading video. Please try again.</p></div>';
+                            }
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error('Error opening video:', error);
+                // Fallback: open video in new tab
+                window.open(videoUrl, '_blank');
+            }
+        }
+
+        // Add keyboard navigation
+        $(document).keydown(function (e) {
+            if (e.keyCode === 37) { // Left arrow
+                $('#bannerCarousel').carousel('prev');
+            } else if (e.keyCode === 39) { // Right arrow
+                $('#bannerCarousel').carousel('next');
+            }
+        });
+    </script>
 </body>
+
 </html>

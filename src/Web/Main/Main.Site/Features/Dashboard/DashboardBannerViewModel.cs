@@ -4,7 +4,7 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
 {
     public class DashboardBannerViewModel
     {
-        public DashboardBannerViewModel(IUserSession userSession)
+        public DashboardBannerViewModel(IUserSession userSession, IConfiguration configuration)
         {
             IsShow = AppSettings.DashboardBannerOfferedSites.Contains("*")
                 || AppSettings.DashboardBannerOfferedSites.Contains(userSession.Site);
@@ -12,6 +12,9 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
             {
                 SetBannerUrls(userSession);
             }
+
+            var banners = configuration.GetSection("Banners").Get<List<Banner>>();
+            Banners = [.. banners];
         }
 
         public bool IsShow { get; private set; }
@@ -19,6 +22,8 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
         public string BannerName { get; private set; }
 
         public string BannerMobileName { get; private set; }
+
+        public Banner[] Banners { get; private set; }
 
         private void SetBannerUrls(IUserSession userSession)
         {

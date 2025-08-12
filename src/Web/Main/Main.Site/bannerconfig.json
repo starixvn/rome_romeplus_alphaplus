@@ -1,0 +1,24 @@
+{
+    "Banners": [
+        {
+            "ImageSource": "~/assets/images/DashboardBanner/i1/banner_en-US.jpg",
+            "Url": "https://youtu.be/ekr2nIex040?si=OejBfhSGBMWhdAZL",
+            "IsVideo": true
+        },
+        {
+            "ImageSource": "~/assets/images/DashboardBanner/i1/banner_th-TH.jpg",
+            "Url": "https://www.789y.com",
+            "IsVideo": false
+        },
+        {
+            "ImageSource": "~/assets/images/DashboardBanner/i1/banner_zh-CN.jpg",
+            "Url": "https://www.789y.com",
+            "IsVideo": false
+        },
+        {
+            "ImageSource": "~/assets/images/DashboardBanner/i1/banner_zh-TW.jpg",
+            "Url": "https://www.789y.com",
+            "IsVideo": false
+        }
+    ]
+}

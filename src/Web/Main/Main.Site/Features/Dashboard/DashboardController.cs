@@ -11,11 +11,13 @@ using Microsoft.Extensions.Options;
 namespace AlphaPlus.Main.Site.Features.Dashboard
 {
     public class DashboardController(
+        IConfiguration configuration,
         IMediator mediator,
         IUserSession userSession,
         IOptions<AuthorizationOptions> options)
         : BaseController
     {
+        private readonly IConfiguration configuration = configuration;
         private readonly IMediator mediator = mediator;
         private readonly IUserSession userSession = userSession;
         private readonly AuthorizationOptions options = options.Value;
@@ -29,7 +31,7 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
                 return View("~/Views/Dashboard/IndexProtectedMode.cshtml");
             }
 
-            var viewModel = new DashboardBannerViewModel(userSession);
+            var viewModel = new DashboardBannerViewModel(userSession, configuration);
 
             if (viewModel.IsShow)
             {
