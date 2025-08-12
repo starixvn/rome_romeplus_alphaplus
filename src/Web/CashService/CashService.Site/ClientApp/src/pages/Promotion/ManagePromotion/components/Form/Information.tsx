@@ -7,6 +7,7 @@ import { TitleComponent } from '../../../../../components/Title';
 import TreeSelect, { TreeNodeOption } from '../../../../../components/TreeSelect/TreeSelect';
 import Tippy from '@tippyjs/react';
 import { IconInfo } from '../../../../../components/Icons';
+import { convertToGMT4 } from '../../../../../utils/commonFunctions';
 
 interface InformationProps {
   isActive: boolean;
@@ -36,6 +37,14 @@ const Information: React.FC<InformationProps> = ({
   readOnlyMode,
 }) => {
   const { t } = useTranslation('promotion');
+  const todayInGMT4 = convertToGMT4(new Date());
+  const minDate = new Date(todayInGMT4);
+  minDate.setHours(0, 0, 0, 0);
+
+  const oneYearLaterInGMT4 = convertToGMT4(new Date());
+  oneYearLaterInGMT4.setFullYear(oneYearLaterInGMT4.getFullYear() + 1);
+  const maxDate = new Date(oneYearLaterInGMT4);
+  maxDate.setHours(0, 0, 0, 0);
   return (
     <>
       <TitleComponent text={t('addPromotionForm.currentPromotion')} type="medium" />
@@ -47,12 +56,9 @@ const Information: React.FC<InformationProps> = ({
         <EnableButtonComponent isActive={isActive} onClick={() => setIsActive(true)} />
         <DisableButtonComponent isActive={!isActive} onClick={() => setIsActive(false)} />
       </div>
-    <div className='flex flex-wrap items-center pb-[5px] border-b border-[var(--border-control)] mb-[10px]'>
+      <div className="flex flex-wrap items-center pb-[5px] border-b border-[var(--border-control)] mb-[10px]">
         <div className="inline-block mr-[10px]">
-          <TitleComponent
-            text={t('addPromotionForm.promotionSettings.title')}
-            type="medium"
-          ></TitleComponent>
+          <TitleComponent text={t('addPromotionForm.promotionSettings.title')} type="medium" />
         </div>
         <Tippy
           className="max-w-[640px]!"
@@ -81,9 +87,9 @@ const Information: React.FC<InformationProps> = ({
             <IconInfo className="cursor-pointer  " />
           </span>
         </Tippy>
-      <p className='w-full mt-[5px]'>{t('addPromotionForm.promotionConfigureCalculated')}</p>
+        <p className="w-full mt-[5px]">{t('addPromotionForm.promotionConfigureCalculated')}</p>
       </div>
-    
+
       <div className="flex flex-wrap w-full">
         <div className="w-[190px] mr-[12px] mb-[12px]">
           <div className="flex items-center">
@@ -109,8 +115,8 @@ const Information: React.FC<InformationProps> = ({
             value={period}
             onChange={(value) => setPeriod(value as [Date | null, Date | null])}
             hideQuickRanges={true}
-            minDate={new Date()}
-            maxDate={new Date(new Date().setFullYear(new Date().getFullYear() + 1))}
+            minDate={minDate}
+            maxDate={maxDate}
             readOnly={readOnlyMode}
           />
         </div>

@@ -22,13 +22,11 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
       {productCategories.map((product) => (
         <div
           key={product.productCategoryId}
-          className="w-[618px] border-[1px] border-[var(--border-control)] rounded-[4px] px-[10px] pt-[5px] bg-[#f8f8f8] dark:bg-[#2b2b2b] mb-[8px] ">
+          className="w-[618px] border-[1px] border-[var(--border-control)] rounded-[4px] px-[10px] pt-[5px] bg-[#f8f8f8] dark:bg-[#2b2b2b] mb-[8px] "
+        >
           <div className="[&>*]:pt-[1px]! [&>*]:pb-[3px]!">
-            <TitleComponent
-              text={`${product.productCategoryName}`}
-              type="normal"
-            ></TitleComponent>
-          </div>          
+            <TitleComponent text={`${product.productCategoryName}`} type="normal" />
+          </div>
           <div className="flex flex-wrap w-full">
             <div className="w-[190px] mr-[10px] mb-[10px]">
               <TitleComponent text={`${t('addPromotionForm.percentage')}`} required type="label" />

@@ -358,10 +358,15 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   return (
     <div className={`relative text-[13px] custom-datarangepicker ${className || ''}`} ref={ref}>
       <input
-        disabled={readOnly}
+        readOnly={readOnly}
         className="control-field"
         value={formatRange(value) || 'Select date range'}
-        onClick={() => setOpen((v) => !v)}
+        onChange={() => {}}
+        onClick={() => {
+          if (!readOnly) {
+            setOpen((v) => !v);
+          }
+        }}
       />
       <span className="pointer-events-none absolute right-[2px] top-[3px]">
         <CalendarIcon className="w-[22px] h-[22px] fill-[var(--datarangepicker-color-icon)]" />

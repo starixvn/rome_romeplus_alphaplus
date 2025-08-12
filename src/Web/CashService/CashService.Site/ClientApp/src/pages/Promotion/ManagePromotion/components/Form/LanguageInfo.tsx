@@ -137,10 +137,7 @@ const PromotionInfo: React.FC<PromotionInfoProps> = ({
     <div className="max-w-[620px] ">
       <div className="flex items-center pb-[5px] border-b border-[var(--border-control)] mb-[5px]">
         <div className="inline-block mr-[10px]">
-          <TitleComponent
-            text={t('addPromotionForm.promotionContent')}
-            type="medium"
-          ></TitleComponent>
+          <TitleComponent text={t('addPromotionForm.promotionContent')} type="medium" />
         </div>
       </div>
       <LanguageTabs languages={languages} activeLang={activeLang} setActiveLang={setActiveLang} />

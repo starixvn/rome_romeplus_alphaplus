@@ -12,6 +12,7 @@
     "requiredTitle": "Title (English) is required",
     "requiredContent": "Content (English) is required",
     "requiredBanner": "Banner (English) is required",
+    "bannerSizeLimit": "Banner size must be less than 20MB",
     "promotionSavedSuccessfully": "Promotion saved successfully",
     "currentPromotion": "Current Promotion",
     "onlyOnePromotionCanBeActiveAtATime": "Only one promotion can be active at a time.",

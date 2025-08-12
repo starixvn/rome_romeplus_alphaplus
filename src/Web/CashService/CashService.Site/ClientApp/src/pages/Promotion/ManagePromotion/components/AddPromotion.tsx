@@ -228,11 +228,6 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
         }
       });
 
-      console.log('FormData entries:');
-      for (let [key, value] of formData.entries()) {
-        console.log(`${key}:`, value);
-      }
-
       const result = await promotionService.addPromotionWithFormData(formData);
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
