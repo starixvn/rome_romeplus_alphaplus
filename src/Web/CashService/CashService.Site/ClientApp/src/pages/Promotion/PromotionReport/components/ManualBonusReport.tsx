@@ -80,7 +80,6 @@ export default function ManualBonusReport({
         <LoadingComponent />
       ) : filteredReportData === null ? null : (
         <>
-         
           <ManualBonusReportTableTitle
             tableRef={tableRef}
             search={search}

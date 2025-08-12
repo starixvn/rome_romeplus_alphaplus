@@ -11,7 +11,6 @@ import MainReport from './components/MainReport';
 import DetailsReport from './components/DetailsReport';
 import ManualBonusReport from './components/ManualBonusReport';
 import { convertToGMT4 } from '../../../utils/commonFunctions';
-import UpcomingComponent from '../../../components/UpcomingComponent';
 
 function calculatedDates() {
   // Get today in GMT-4
@@ -83,29 +82,28 @@ function PromotionReport() {
 
   return (
     <>
-    <div className='relative'>
-      <TitleComponent text={t('promotionReport')} type="main" />
-      <UpcomingComponent hasTab={true} />
-      <PromotionReportTab activeTab={activeTab} onTabChange={handleTabChange} />
-      {activeTab === 0 ? (
-        promotion === null ? (
-          <MainReport
-            onClickPromotionTitle={handleClickPromotionTitle}
-            initialFilterParams={mainReportFilterParams}
-          />
+      <div className="relative">
+        <TitleComponent text={t('promotionReport')} type="main" />
+        <PromotionReportTab activeTab={activeTab} onTabChange={handleTabChange} />
+        {activeTab === 0 ? (
+          promotion === null ? (
+            <MainReport
+              onClickPromotionTitle={handleClickPromotionTitle}
+              initialFilterParams={mainReportFilterParams}
+            />
+          ) : (
+            <DetailsReport
+              promotion={promotion}
+              onClickBreadcrumb={() => setPromotion(null)}
+              initialDateRange={{
+                minDate: mainReportFilterParams.minDate,
+                maxDate: mainReportFilterParams.maxDate,
+              }}
+            />
+          )
         ) : (
-          <DetailsReport
-            promotion={promotion}
-            onClickBreadcrumb={() => setPromotion(null)}
-            initialDateRange={{
-              minDate: mainReportFilterParams.minDate,
-              maxDate: mainReportFilterParams.maxDate,
-            }}
-          />
-        )
-      ) : (
-        <ManualBonusReport {...initialDates} />
-      )}
+          <ManualBonusReport {...initialDates} />
+        )}
       </div>
     </>
   );
