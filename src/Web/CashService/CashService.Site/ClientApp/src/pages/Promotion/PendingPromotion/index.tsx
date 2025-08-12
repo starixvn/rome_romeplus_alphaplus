@@ -11,7 +11,6 @@ import AddBonusForm from './components/AddBonusForm';
 import { ButtonFullComponent } from '../../../components/Buttons';
 import { MessageComponent } from '../../../components/Message';
 import { ResultType } from '../../../components/Message/types';
-import UpcomingComponent from '../../../components/UpcomingComponent';
 
 const PendingPromotion: React.FC = () => {
   useCookieLanguage(i18n);
@@ -41,7 +40,6 @@ const PendingPromotion: React.FC = () => {
         />
       ) : (
         <div className="flex h-full flex-col">
-          <UpcomingComponent />
           <TitleComponent text={t('pendingPromotion')} type="main" />
           <div className="flex flex-col gap-2 mb-2">
             <MessageComponent message={resultMessage.message} type={resultMessage.type} />
