@@ -3681,4 +3681,34 @@
   <data name="ProviderTransID" xml:space="preserve">
     <value>รหัสธุรกรรมผู้ให้บริการ</value>
   </data>
+  <data name="Type" xml:space="preserve">
+    <value>ประเภท</value>
+  </data>
+  <data name="PromotionType_1" xml:space="preserve">
+    <value>การคืนเงินจากยอดหมุนเวียน</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>รายละเอียด</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>สารบัญ</value>
+  </data>
+  <data name="ProductCategory" xml:space="preserve">
+    <value>หมวดหมู่ผลิตภัณฑ์</value>
+  </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>เปอร์เซ็นต์ (%)</value>
+  </data>
+  <data name="MinTO" xml:space="preserve">
+    <value>ยอดหมุนเวียนขั้นต่ำ</value>
+  </data>
+  <data name="MaxPayout" xml:space="preserve">
+    <value>การจ่ายเงินสูงสุด</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>โปรโมชั่น</value>
+  </data>
+  <data name="CreatedTime" xml:space="preserve">
+    <value>วันที่สร้างขึ้น</value>
+  </data>
 </root>

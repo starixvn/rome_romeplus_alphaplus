@@ -1846,4 +1846,34 @@
   <data name="ProviderTransID" xml:space="preserve">
     <value>제공자 거래 ID</value>
   </data>
+  <data name="Type" xml:space="preserve">
+    <value>유형</value>
+  </data>
+  <data name="PromotionType_1" xml:space="preserve">
+    <value>매출 리베이트</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>상세 정보</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>목차</value>
+  </data>
+  <data name="ProductCategory" xml:space="preserve">
+    <value>제품 카테고리</value>
+  </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>비율 (%)</value>
+  </data>
+  <data name="MinTO" xml:space="preserve">
+    <value>최소 턴오버</value>
+  </data>
+  <data name="MaxPayout" xml:space="preserve">
+    <value>최대 지급액</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>프로모션</value>
+  </data>
+  <data name="CreatedTime" xml:space="preserve">
+    <value>생성 시간</value>
+  </data>
 </root>

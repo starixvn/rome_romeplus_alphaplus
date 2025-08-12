@@ -2851,6 +2851,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Content.
+        /// </summary>
+        public static string Content {
+            get {
+                return ResourceManager.GetString("Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copied from username.
         /// </summary>
         public static string copiedFromUsername {
@@ -2883,6 +2892,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         public static string country {
             get {
                 return ResourceManager.GetString("country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created Time.
+        /// </summary>
+        public static string CreatedTime {
+            get {
+                return ResourceManager.GetString("CreatedTime", resourceCulture);
             }
         }
         
@@ -3081,6 +3099,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         public static string Detail {
             get {
                 return ResourceManager.GetString("Detail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        public static string Details {
+            get {
+                return ResourceManager.GetString("Details", resourceCulture);
             }
         }
         
@@ -6298,6 +6325,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Max Payout.
+        /// </summary>
+        public static string MaxPayout {
+            get {
+                return ResourceManager.GetString("MaxPayout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Max Payout Per Match.
         /// </summary>
         public static string MaxPayoutPerMatch {
@@ -7185,6 +7221,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         public static string MinPTAgent {
             get {
                 return ResourceManager.GetString("MinPTAgent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min Turnover.
+        /// </summary>
+        public static string MinTO {
+            get {
+                return ResourceManager.GetString("MinTO", resourceCulture);
             }
         }
         
@@ -8476,6 +8521,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Percentage.
+        /// </summary>
+        public static string Percentage {
+            get {
+                return ResourceManager.GetString("Percentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Period.
         /// </summary>
         public static string period {
@@ -8625,6 +8679,33 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         public static string product {
             get {
                 return ResourceManager.GetString("product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Category.
+        /// </summary>
+        public static string ProductCategory {
+            get {
+                return ResourceManager.GetString("ProductCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Promotion.
+        /// </summary>
+        public static string Promotion {
+            get {
+                return ResourceManager.GetString("Promotion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turnover Rebate.
+        /// </summary>
+        public static string PromotionType_1 {
+            get {
+                return ResourceManager.GetString("PromotionType_1", resourceCulture);
             }
         }
         
@@ -9340,6 +9421,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to To.
         /// </summary>
         public static string To {
@@ -9534,6 +9624,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         public static string TwelveHours {
             get {
                 return ResourceManager.GetString("TwelveHours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
             }
         }
         

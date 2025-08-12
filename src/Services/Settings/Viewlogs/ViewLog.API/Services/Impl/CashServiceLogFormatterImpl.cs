@@ -51,6 +51,11 @@
             return ReplaceOldNewValue(transactionStatus, GetTransactionStatus);
         }
 
+        public string GetPromotionTypeName_OldNewValue(string promotionType)
+        {
+            return ReplaceOldNewValue(promotionType, GetPromotionTypeName);
+        }
+
         private string GetTransactionTypeName(string type)
         {
             return GetLogResource("Transaction_" + type);
@@ -90,6 +95,11 @@
         private string GetTransactionStatus(string transactionStatus)
         {
             return GetLogResource("TransactionStatus_" + transactionStatus);
+        }
+
+        private string GetPromotionTypeName(string promotionType)
+        {
+            return GetLogResource("PromotionType_" + promotionType);
         }
     }
 }

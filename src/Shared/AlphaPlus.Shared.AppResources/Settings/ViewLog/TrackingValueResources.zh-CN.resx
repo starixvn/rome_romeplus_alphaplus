@@ -3588,4 +3588,34 @@
   <data name="ProviderTransID" xml:space="preserve">
     <value>提供商交易 ID</value>
   </data>
+  <data name="Type" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="PromotionType_1" xml:space="preserve">
+    <value>营业额返利</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>详情</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>内容</value>
+  </data>
+  <data name="ProductCategory" xml:space="preserve">
+    <value>产品类别</value>
+  </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>百分比 (%)</value>
+  </data>
+  <data name="MinTO" xml:space="preserve">
+    <value>最低投注额</value>
+  </data>
+  <data name="MaxPayout" xml:space="preserve">
+    <value>最大派彩</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>促销</value>
+  </data>
+  <data name="CreatedTime" xml:space="preserve">
+    <value>创建时间</value>
+  </data>
 </root>

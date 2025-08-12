@@ -3330,4 +3330,31 @@
   <data name="ProviderTransID" xml:space="preserve">
     <value>ID giao dịch của nhà cung cấp</value>
   </data>
+  <data name="Type" xml:space="preserve">
+    <value>Loại</value>
+  </data>
+  <data name="PromotionType_1" xml:space="preserve">
+    <value>Hoàn tiền từ doanh thu</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Chi tiết</value>
+  </data>
+  <data name="ProductCategory" xml:space="preserve">
+    <value>Danh mục sản phẩm</value>
+  </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>Phần trăm (%)</value>
+  </data>
+  <data name="MinTO" xml:space="preserve">
+    <value>Đặt cược tối thiểu</value>
+  </data>
+  <data name="MaxPayout" xml:space="preserve">
+    <value>Thanh toán tối đa</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>Khuyến Mãi</value>
+  </data>
+  <data name="CreatedTime" xml:space="preserve">
+    <value>Thời Gian Tạo</value>
+  </data>
 </root>

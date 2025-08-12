@@ -2871,4 +2871,25 @@
   <data name="ProviderTransID" xml:space="preserve">
     <value>プロバイダー取引ID</value>
   </data>
+  <data name="Type" xml:space="preserve">
+    <value>タイプ</value>
+  </data>
+  <data name="PromotionType_1" xml:space="preserve">
+    <value>売上リベート</value>
+  </data>
+  <data name="ProductCategory" xml:space="preserve">
+    <value>製品カテゴリ</value>
+  </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>パーセンテージ (%)</value>
+  </data>
+  <data name="MinTO" xml:space="preserve">
+    <value>最低トランザクション</value>
+  </data>
+  <data name="MaxPayout" xml:space="preserve">
+    <value>最大ペイアウト</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>プロモーション</value>
+  </data>
 </root>

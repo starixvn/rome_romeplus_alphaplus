@@ -19,5 +19,7 @@
         string GetProviderName_OldNewValue(string providerId);
 
         string GetTransactionStatus_OldNewValue(string transactionStatus);
+
+        string GetPromotionTypeName_OldNewValue(string promotionType);
     }
 }
