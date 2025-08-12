@@ -3297,4 +3297,37 @@
   <data name="Maximum" xml:space="preserve">
     <value>Tối đa</value>
   </data>
+  <data name="TransactionStatus_-1" xml:space="preserve">
+    <value>Tất cả</value>
+  </data>
+  <data name="TransactionStatus_4" xml:space="preserve">
+    <value>Hoàn thành</value>
+  </data>
+  <data name="TransactionStatus_5" xml:space="preserve">
+    <value>Từ chối</value>
+  </data>
+  <data name="TransactionStatus_6" xml:space="preserve">
+    <value>Nhà cung cấp từ chối</value>
+  </data>
+  <data name="TransactionStatus_3" xml:space="preserve">
+    <value>Hết hạn</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Số tiền</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>Số tham chiếu</value>
+  </data>
+  <data name="OperatedBy" xml:space="preserve">
+    <value>Người thực hiện</value>
+  </data>
+  <data name="AdjustCreditAmt" xml:space="preserve">
+    <value>Điều chỉnh số dư</value>
+  </data>
+  <data name="HasPaySlip" xml:space="preserve">
+    <value>Có phiếu thanh toán</value>
+  </data>
+  <data name="ProviderTransID" xml:space="preserve">
+    <value>ID giao dịch của nhà cung cấp</value>
+  </data>
 </root>

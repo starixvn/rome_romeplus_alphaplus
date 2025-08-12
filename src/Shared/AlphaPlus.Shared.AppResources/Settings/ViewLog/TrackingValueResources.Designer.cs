@@ -1690,6 +1690,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adjust Credit Amt.
+        /// </summary>
+        public static string AdjustCreditAmt {
+            get {
+                return ResourceManager.GetString("AdjustCreditAmt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Admin.
         /// </summary>
         public static string admin {
@@ -1839,6 +1848,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         public static string allowupdpt {
             get {
                 return ResourceManager.GetString("allowupdpt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount.
+        /// </summary>
+        public static string Amount {
+            get {
+                return ResourceManager.GetString("Amount", resourceCulture);
             }
         }
         
@@ -3567,6 +3585,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         public static string GroupID {
             get {
                 return ResourceManager.GetString("GroupID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Has Pay Slip.
+        /// </summary>
+        public static string HasPaySlip {
+            get {
+                return ResourceManager.GetString("HasPaySlip", resourceCulture);
             }
         }
         
@@ -8314,6 +8341,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Operated By.
+        /// </summary>
+        public static string OperatedBy {
+            get {
+                return ResourceManager.GetString("OperatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SA Tote Place Comm.
         /// </summary>
         public static string othercomm {
@@ -8611,6 +8647,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Provider Trans ID.
+        /// </summary>
+        public static string ProviderTransID {
+            get {
+                return ResourceManager.GetString("ProviderTransID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rate.
         /// </summary>
         public static string Rate {
@@ -8643,6 +8688,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         public static string refcode2 {
             get {
                 return ResourceManager.GetString("refcode2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ref No.
+        /// </summary>
+        public static string RefNo {
+            get {
+                return ResourceManager.GetString("RefNo", resourceCulture);
             }
         }
         
@@ -9345,6 +9399,51 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         public static string Transaction_2 {
             get {
                 return ResourceManager.GetString("Transaction_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string TransactionStatus__1 {
+            get {
+                return ResourceManager.GetString("TransactionStatus_-1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expired.
+        /// </summary>
+        public static string TransactionStatus_3 {
+            get {
+                return ResourceManager.GetString("TransactionStatus_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completed.
+        /// </summary>
+        public static string TransactionStatus_4 {
+            get {
+                return ResourceManager.GetString("TransactionStatus_4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rejected.
+        /// </summary>
+        public static string TransactionStatus_5 {
+            get {
+                return ResourceManager.GetString("TransactionStatus_5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Provider Rejected.
+        /// </summary>
+        public static string TransactionStatus_6 {
+            get {
+                return ResourceManager.GetString("TransactionStatus_6", resourceCulture);
             }
         }
         

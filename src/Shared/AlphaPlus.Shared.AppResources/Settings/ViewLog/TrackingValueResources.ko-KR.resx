@@ -1813,4 +1813,37 @@
   <data name="Maximum" xml:space="preserve">
     <value>최대</value>
   </data>
+  <data name="TransactionStatus_-1" xml:space="preserve">
+    <value>전체</value>
+  </data>
+  <data name="TransactionStatus_4" xml:space="preserve">
+    <value>완료</value>
+  </data>
+  <data name="TransactionStatus_5" xml:space="preserve">
+    <value>거부</value>
+  </data>
+  <data name="TransactionStatus_6" xml:space="preserve">
+    <value>공급자 거부</value>
+  </data>
+  <data name="TransactionStatus_3" xml:space="preserve">
+    <value>만료</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>참조번호</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>금액</value>
+  </data>
+  <data name="OperatedBy" xml:space="preserve">
+    <value>처리자</value>
+  </data>
+  <data name="AdjustCreditAmt" xml:space="preserve">
+    <value>조정 크레딧 금액</value>
+  </data>
+  <data name="HasPaySlip" xml:space="preserve">
+    <value>영수증 있음</value>
+  </data>
+  <data name="ProviderTransID" xml:space="preserve">
+    <value>제공자 거래 ID</value>
+  </data>
 </root>

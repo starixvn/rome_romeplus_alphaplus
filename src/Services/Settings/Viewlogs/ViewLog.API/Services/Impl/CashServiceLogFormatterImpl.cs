@@ -46,6 +46,11 @@
             return ReplaceOldNewValue(providerId, GetProviderName);
         }
 
+        public string GetTransactionStatus_OldNewValue(string transactionStatus)
+        {
+            return ReplaceOldNewValue(transactionStatus, GetTransactionStatus);
+        }
+
         private string GetTransactionTypeName(string type)
         {
             return GetLogResource("Transaction_" + type);
@@ -80,6 +85,11 @@
         private string GetProviderName(string providerId)
         {
             return remotingRef.GetProviderName(int.Parse(providerId));
+        }
+
+        private string GetTransactionStatus(string transactionStatus)
+        {
+            return GetLogResource("TransactionStatus_" + transactionStatus);
         }
     }
 }

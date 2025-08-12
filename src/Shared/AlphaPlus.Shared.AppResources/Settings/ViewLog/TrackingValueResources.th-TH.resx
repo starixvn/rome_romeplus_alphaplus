@@ -3648,4 +3648,37 @@
   <data name="Maximum" xml:space="preserve">
     <value>สูงสุด</value>
   </data>
+  <data name="TransactionStatus_-1" xml:space="preserve">
+    <value>ทั้งหมด</value>
+  </data>
+  <data name="TransactionStatus_4" xml:space="preserve">
+    <value>เสร็จสมบูรณ์</value>
+  </data>
+  <data name="TransactionStatus_5" xml:space="preserve">
+    <value>ปฏิเสธ</value>
+  </data>
+  <data name="TransactionStatus_6" xml:space="preserve">
+    <value>ผู้ให้บริการปฏิเสธ</value>
+  </data>
+  <data name="TransactionStatus_3" xml:space="preserve">
+    <value>หมดอายุ</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>จำนวนเงิน</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>หมายเลขอ้างอิง</value>
+  </data>
+  <data name="OperatedBy" xml:space="preserve">
+    <value>ผู้ดำเนินการ</value>
+  </data>
+  <data name="AdjustCreditAmt" xml:space="preserve">
+    <value>ปรับปรุงยอดเครดิต</value>
+  </data>
+  <data name="HasPaySlip" xml:space="preserve">
+    <value>มีใบสำคัญการชำระเงิน</value>
+  </data>
+  <data name="ProviderTransID" xml:space="preserve">
+    <value>รหัสธุรกรรมผู้ให้บริการ</value>
+  </data>
 </root>

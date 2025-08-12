@@ -3797,4 +3797,37 @@
   <data name="Maximum" xml:space="preserve">
     <value>Maximum</value>
   </data>
+  <data name="TransactionStatus_-1" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="TransactionStatus_3" xml:space="preserve">
+    <value>Expired</value>
+  </data>
+  <data name="TransactionStatus_4" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="TransactionStatus_5" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="TransactionStatus_6" xml:space="preserve">
+    <value>Provider Rejected</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>Ref No</value>
+  </data>
+  <data name="OperatedBy" xml:space="preserve">
+    <value>Operated By</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="AdjustCreditAmt" xml:space="preserve">
+    <value>Adjust Credit Amt</value>
+  </data>
+  <data name="HasPaySlip" xml:space="preserve">
+    <value>Has Pay Slip</value>
+  </data>
+  <data name="ProviderTransID" xml:space="preserve">
+    <value>Provider Trans ID</value>
+  </data>
 </root>

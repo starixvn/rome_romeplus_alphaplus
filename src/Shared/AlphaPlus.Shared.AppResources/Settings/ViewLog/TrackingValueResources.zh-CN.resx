@@ -3555,4 +3555,37 @@
   <data name="Maximum" xml:space="preserve">
     <value>最高</value>
   </data>
+  <data name="TransactionStatus_4" xml:space="preserve">
+    <value>已完成</value>
+  </data>
+  <data name="TransactionStatus_5" xml:space="preserve">
+    <value>已拒绝</value>
+  </data>
+  <data name="TransactionStatus_6" xml:space="preserve">
+    <value>提供商拒绝</value>
+  </data>
+  <data name="TransactionStatus_3" xml:space="preserve">
+    <value>已过期</value>
+  </data>
+  <data name="TransactionStatus_-1" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>金额</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>参考号</value>
+  </data>
+  <data name="OperatedBy" xml:space="preserve">
+    <value>操作员</value>
+  </data>
+  <data name="AdjustCreditAmt" xml:space="preserve">
+    <value>调整信用额度</value>
+  </data>
+  <data name="HasPaySlip" xml:space="preserve">
+    <value>有付款收据</value>
+  </data>
+  <data name="ProviderTransID" xml:space="preserve">
+    <value>提供商交易 ID</value>
+  </data>
 </root>

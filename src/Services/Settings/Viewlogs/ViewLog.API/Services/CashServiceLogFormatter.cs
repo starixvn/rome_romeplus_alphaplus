@@ -17,5 +17,7 @@
         string GetDepositMatchingMode_OldNewValue(string depositMatchingMode);
 
         string GetProviderName_OldNewValue(string providerId);
+
+        string GetTransactionStatus_OldNewValue(string transactionStatus);
     }
 }
