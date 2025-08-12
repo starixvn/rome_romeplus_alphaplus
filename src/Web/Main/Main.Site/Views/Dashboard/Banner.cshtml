@@ -154,6 +154,56 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        .buttons-control {
+            .carousel-control {
+                background-image: none;
+                text-shadow: none;
+                padding-top: 10px;
+                z-index: 2;
+                width: 50%;
+                transition: opacity 0.2s ease-in;
+
+                &:hover {
+                    .text {
+                        color: var(--text-carousel-control-hover);
+                    }
+                }
+
+                .glyphicon {
+                    position: absolute;
+                    top: 50%;
+                    font-size: 15px;
+                    line-height: 30px;
+                    border-radius: 50%;
+                    transition: all 0.4s ease;
+                    opacity: 0;
+
+                    &.glyphicon-chevron-right {
+                        right: 20px;
+                    }
+
+                    &.glyphicon-chevron-left {
+                        left: 20px;
+                    }
+                }
+
+                .text {
+                    position: absolute;
+                    bottom: 10px;
+                    color: var(--text-carousel-control);
+                    z-index: 2;
+
+                    &.prev {
+                        right: 2%;
+                    }
+
+                    &.next {
+                        left: 2%;
+                    }
+                }
+            }
+        }
     </style>
     <style media="screen and (max-device-width: 768px)">
         .text {
@@ -223,6 +273,21 @@
                     <li data-target="#bannerCarousel" data-slide-to="@i" @(i == 0 ? "class=active" : string.Empty)></li>
                 }
             </ol>
+            <!-- Controls -->
+            <div class="buttons-control">
+                <a class="left carousel-control" href="#bannerCarousel" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="text prev">
+                        <i class="icon-caret-left"></i>
+                    </span>
+                </a>
+                <a class="right carousel-control" href="#bannerCarousel" role="button" data-slide="next">
+                    <span class="text next">
+                        <i class="icon-caret-right"></i>
+                    </span>
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
         </div>
     </div>
 
