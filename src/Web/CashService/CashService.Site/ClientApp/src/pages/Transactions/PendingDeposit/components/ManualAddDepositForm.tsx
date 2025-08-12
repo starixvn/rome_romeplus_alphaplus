@@ -11,7 +11,7 @@ import { MessageComponent } from '../../../../components/Message';
 import AccountInformation from './AccountInformation';
 import { TitleComponent } from '../../../../components/Title';
 import { ButtonComponent } from '../../../../components/Buttons/index';
-import { renderBankOptionValue } from '../../../../utils/commonFunctions';
+import { displayAmount, renderBankOptionValue } from '../../../../utils/commonFunctions';
 import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
 
 interface ManualAddDepositFormProps {
@@ -155,7 +155,10 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
       {
         condition:
           formState.depositAmount <= 0 || formState.depositAmount > formState.agentAvailableCredit,
-        message: t('manualDepositForm.amountMustBeGreaterThan0AndLessThanMaxLimit'),
+        message: t('manualDepositForm.amountMustBeGreaterThan0AndLessThanMaxLimit').replace(
+          '{0}',
+          displayAmount(formState.agentAvailableCredit)
+        ),
       },
       {
         condition: formState.image && formState.image.size > 1024 * 1024,

@@ -8,6 +8,7 @@ using Core.Configurations;
 using Core.Models;
 using Enum;
 using Fanex.Customer.Client.Services;
+using Helpers;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 using Models;
@@ -164,8 +165,10 @@ public class PromotionController(
         {
             var files = promotionService.ProcessPromotionRequest(request);
             result = await promotionService.ProcessBannerUploadedAsync(files);
+
             if (result.IsSuccessful)
             {
+                CleanUpHtmlContent(request.Contents);
                 result = await httpClientHelper.PostAsync<object, ResultModel>("/api/promotions", request);
             }
 
@@ -178,9 +181,6 @@ public class PromotionController(
     [HttpPut]
     public async Task<IActionResult> EditPromotion(int promotionId, [FromForm] EditPromotionRequest request)
     {
-        var errMsg = CashServicesResx.InvalidParameters;
-        var result = new ResultModel { Code = 1, Message = errMsg };
-
         if (userSession.IsInternal)
         {
             return Unauthorized();
@@ -189,14 +189,25 @@ public class PromotionController(
         request.SetUserSession(userSession);
 
         var files = promotionService.ProcessEditPromotionRequest(request);
-        result = await promotionService.ProcessBannerUploadedAsync(files);
+        var result = await promotionService.ProcessBannerUploadedAsync(files);
         if (result.IsSuccessful)
         {
+            CleanUpHtmlContent(request.Contents);
+
             var url = $"/api/promotions/{promotionId}";
             result = await httpClientHelper.PutAsync<EditPromotionRequest, ResultModel>(url, request);
         }
 
         return Json(result);
+    }
+
+    private static void CleanUpHtmlContent(List<PromotionLanguageSetting> listLanguageSettings)
+    {
+        foreach (var lang in listLanguageSettings)
+        {
+            var cleanContent = InputCleaner.Clean(lang.Content);
+            lang.Content = cleanContent;
+        }
     }
 
     [HttpDelete]

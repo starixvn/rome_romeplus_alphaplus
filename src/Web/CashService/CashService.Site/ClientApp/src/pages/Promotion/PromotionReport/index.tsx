@@ -11,6 +11,7 @@ import MainReport from './components/MainReport';
 import DetailsReport from './components/DetailsReport';
 import ManualBonusReport from './components/ManualBonusReport';
 import { convertToGMT4 } from '../../../utils/commonFunctions';
+import UpcomingComponent from '../../../components/UpcomingComponent';
 
 function calculatedDates() {
   // Get today in GMT-4
@@ -60,6 +61,9 @@ function PromotionReport() {
     status: '2',
   });
 
+  const isShowCommingUpPrmotion =
+    document.getElementById('HideUpcomingPromotion')?.getAttribute('value') === 'false';
+
   function handleTabChange(tab: number) {
     setActiveTab(tab);
     if (tab === 0) {
@@ -84,6 +88,7 @@ function PromotionReport() {
     <>
       <div className="relative">
         <TitleComponent text={t('promotionReport')} type="main" />
+        {isShowCommingUpPrmotion && <UpcomingComponent />}
         <PromotionReportTab activeTab={activeTab} onTabChange={handleTabChange} />
         {activeTab === 0 ? (
           promotion === null ? (

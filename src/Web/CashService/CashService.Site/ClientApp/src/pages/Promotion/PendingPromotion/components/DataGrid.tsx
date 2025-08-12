@@ -204,7 +204,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                 </tr>
               ))
             ) : (
-              <NoRecordFound colSpan={isCashServiceEnabled ? 9 : 8} />
+              <NoRecordFound colSpan={isCashServiceEnabled ? 10 : 9} />
             )}
           </tbody>
         </table>

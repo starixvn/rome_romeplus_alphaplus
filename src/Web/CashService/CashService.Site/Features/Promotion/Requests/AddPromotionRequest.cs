@@ -21,7 +21,7 @@ public class AddPromotionRequest : BaseActionRequest
         errMsg = string.Empty;
         if (FromDate is null || ToDate is null || FromDate >= ToDate)
         {
-            errMsg = "Promotion period is valid.";
+            errMsg = "Promotion period is invalid.";
             return false;
         }
 

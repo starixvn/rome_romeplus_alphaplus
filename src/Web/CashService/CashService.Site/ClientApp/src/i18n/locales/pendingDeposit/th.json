@@ -82,7 +82,7 @@
     "approve": "อนุมัติ",
     "approving": "กำลังอนุมัติ...",
     "agentAvailableCredit": "เครดิตที่ใช้ได้ของตัวแทน",
-    "amountMustBeGreaterThan0AndLessThanMaxLimit": "จำนวนเงินต้องมากกว่า 0 และน้อยกว่าเครดิตที่ใช้ได้ของตัวแทน",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "จำนวนเงินต้องมากกว่า 0 และน้อยกว่า {0}",
     "imageSizeError": "ขนาดรูปภาพต้องน้อยกว่า 1MB",
     "memberLoginNameRequired": "ชื่อเข้าสู่ระบบสมาชิกเป็นสิ่งจำเป็น",
     "agentBankSelectionRequired": "จากเป็นสิ่งจำเป็น",

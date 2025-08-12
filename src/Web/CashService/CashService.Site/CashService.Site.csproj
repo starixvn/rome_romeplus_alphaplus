@@ -17,6 +17,7 @@
 
 
   <ItemGroup>
+    <PackageReference Include="HtmlSanitizer" Version="9.0.886" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.16" />
     <PackageReference Include="ONEbook.SpreadSheets.BetListNPOI" Version="2.0.0-netstandard01" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />

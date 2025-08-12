@@ -15,6 +15,7 @@ import AddPromotion from './components/AddPromotion';
 import EditPromotion from './components/EditPromotion';
 import Filter from './components/Filter';
 import PromotionList from './components/PromotionList';
+import UpcomingComponent from '../../../components/UpcomingComponent';
 
 const Promotion: React.FC = () => {
   const [promotionType, setPromotionType] = useState<number>(0);
@@ -32,6 +33,10 @@ const Promotion: React.FC = () => {
   const [deletePromotionId, setDeletePromotionId] = useState<number>(0);
   const { t } = useTranslation('promotion');
   const { t: tGlobal } = useTranslation('global');
+
+  const isShowCommingUpPrmotion =
+    document.getElementById('HideUpcomingPromotion')?.getAttribute('value') === 'false';
+
   const handleFilterChange = (type: number, status: number) => {
     setPromotionType(type);
     setStatus(status);
@@ -111,6 +116,7 @@ const Promotion: React.FC = () => {
       )}
       {!showAddPromotion && !showEditPromotion ? (
         <>
+          {isShowCommingUpPrmotion && <UpcomingComponent />}
           <TitleComponent
             text={t('managePromotion.managePromotion')}
             showTippy={false}

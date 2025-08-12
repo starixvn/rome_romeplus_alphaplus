@@ -11,6 +11,7 @@ import AddBonusForm from './components/AddBonusForm';
 import { ButtonFullComponent } from '../../../components/Buttons';
 import { MessageComponent } from '../../../components/Message';
 import { ResultType } from '../../../components/Message/types';
+import UpcomingComponent from '../../../components/UpcomingComponent';
 
 const PendingPromotion: React.FC = () => {
   useCookieLanguage(i18n);
@@ -24,13 +25,16 @@ const PendingPromotion: React.FC = () => {
     type: 'success',
     message: '',
   });
+
+  const isShowCommingUpPrmotion =
+    document.getElementById('HideUpcomingPromotion')?.getAttribute('value') === 'false';
+
   React.useEffect(() => {
     const isCashServiceEnabled = document
       .getElementById('IsCashServiceEnabled')
       ?.getAttribute('value');
     setIsCashServiceEnabled(isCashServiceEnabled === '1');
   }, []);
-
   return (
     <>
       {showAddBonus ? (
@@ -39,24 +43,28 @@ const PendingPromotion: React.FC = () => {
           isCashServiceEnabled={isCashServiceEnabled}
         />
       ) : (
-        <div className="flex h-full flex-col">
-          <TitleComponent text={t('pendingPromotion')} type="main" />
-          <div className="flex flex-col gap-2 mb-2">
-            <MessageComponent message={resultMessage.message} type={resultMessage.type} />
-          </div>
-          <div className="mb-[8px]">
-            <ButtonFullComponent
-              text={t('addBonus')}
-              onClick={() => setShowAddBonus(true)}
-              className="min-w-[183px] [&>*]:min-w-[183px] [&>*]:inline-block"
+        <>
+          <div className="flex h-full flex-col">
+            {isShowCommingUpPrmotion && <UpcomingComponent />}
+
+            <TitleComponent text={t('pendingPromotion')} type="main" />
+            <div className="flex flex-col gap-2 mb-2">
+              <MessageComponent message={resultMessage.message} type={resultMessage.type} />
+            </div>
+            <div className="mb-[8px]">
+              <ButtonFullComponent
+                text={t('addBonus')}
+                onClick={() => setShowAddBonus(true)}
+                className="min-w-[183px] [&>*]:min-w-[183px] [&>*]:inline-block"
+              />
+            </div>
+
+            <PendingPromotionList
+              isCashServiceEnabled={isCashServiceEnabled}
+              setResultMessage={setResultMessage}
             />
           </div>
-
-          <PendingPromotionList
-            isCashServiceEnabled={isCashServiceEnabled}
-            setResultMessage={setResultMessage}
-          />
-        </div>
+        </>
       )}
     </>
   );
