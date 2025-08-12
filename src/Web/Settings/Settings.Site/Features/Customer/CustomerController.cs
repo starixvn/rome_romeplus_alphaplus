@@ -398,9 +398,6 @@ namespace AlphaPlus.Settings.Site.Features.Customer
         public async Task<ActionResult> GetBetLimitInformation(SportBookInformationQuery request)
             => Content(await customerService.GetBetLimitInformation(request.Site, request.SiteLabel, request.Language));
 
-        public async Task<ActionResult> GetMaxPayoutSettingInformation(SportBookInformationQuery request)
-            => Content(await customerService.GetMaxPayoutSettingInformation(request.Site, request.SiteLabel, request.Language));
-
         public async Task<ActionResult> GetProductCategories(SportBookInformationQuery request)
             => Content(await customerService.GetProductCategories(request.CustId, request.Site, AppSettings.SiteLabel, request.CurrencyId, request.Language));
 

@@ -49,7 +49,6 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
         {
             name = "MaxPayout",
             id = "MaxPayoutSettingTab",
-            url = MicroSites.SettingUrl("~/Customer/GetMaxPayoutSettingInformation?site=" + Site + "&siteLabel=" + SiteLabel),
             isActive = TabIndex == 1,
         };
 
