@@ -190,7 +190,10 @@ public class SearchAccountService(
         decimal accumCreditAllCashMember = 0;
         if (param.SearchAccountRoleId == UserLevel.Member.Value || param.SearchAccountRoleId == UserLevel.Agent.Value)
         {
-            var accumCreditCommand = new GetAccumCreditCommand(param.SearchAccountId);
+            var agentId = param.SearchAccountRoleId == UserLevel.Agent.Value
+                ? param.SearchAccountId
+                : param.CustId;
+            var accumCreditCommand = new GetAccumCreditCommand(agentId);
             await dynamicRepository.ExecuteAsync(accumCreditCommand);
             accumCreditAllCashMember = accumCreditCommand.AccumCreditReturn;
         }
