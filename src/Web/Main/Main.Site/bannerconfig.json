@@ -2,20 +2,10 @@
     "Banners": {
         "i1": [
             {
-                "ImageSource_en-US": "~/assets/images/DashboardBanner/i7/viva/desktop/en-US.jpg",
+                "ImageSource_en-US": "~/assets/images/DashboardBanner/i7/viva/desktop/en-US.png",
                 "ImageMobileSource_en-US": "~/assets/images/DashboardBanner/i7/viva/mobile/en-US.jpg",
                 "Url": "~/assets/videos/TVC1-5.mp4",
                 "IsVideo": true
-            },
-            {
-                "ImageSource_en-US": "~/assets/images/DashboardBanner/i1/soccer_marble_spinner/desktop/en-US.jpg",
-                "ImageMobileSource_en-US": "~/assets/images/DashboardBanner/i1/soccer_marble_spinner/mobile/en-US.jpg",
-                "ImageSource_zh-CN": "~/assets/images/DashboardBanner/i1/soccer_marble_spinner/desktop/zh-CN.jpg",
-                "ImageMobileSource_zh-CN": "~/assets/images/DashboardBanner/i1/soccer_marble_spinner/mobile/zh-CN.jpg",
-                "ImageSource_zh-TW": "~/assets/images/DashboardBanner/i1/soccer_marble_spinner/desktop/zh-TW.jpg",
-                "ImageMobileSource_zh-TW": "~/assets/images/DashboardBanner/i1/soccer_marble_spinner/mobile/zh-TW.jpg",
-                "ImageSource_th-TH": "~/assets/images/DashboardBanner/i1/soccer_marble_spinner/desktop/th-TH.jpg",
-                "ImageMobileSource_th-TH": "~/assets/images/DashboardBanner/i1/soccer_marble_spinner/mobile/th-TH.jpg"
             },
             {
                 "ImageSource_en-US": "~/assets/images/DashboardBanner/i1/soccer_marble_spinner/desktop/en-US.jpg",
