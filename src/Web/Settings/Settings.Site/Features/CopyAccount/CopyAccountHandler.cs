@@ -120,7 +120,7 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount
             var result = await customerService.GetDownlineByUsername(message.ViewerId, message.SubAccId, message.CustName);
             if (result.CustId > 0 && Enumeration.FromValue<UserLevel>(result.RoleId).IsDirectDownlineOf(message.ViewerLevel))
             {
-                if (await customerService.GetCashServiceStatus(result.CustId) == ServiceType.Cash)
+                if (message.ViewerLevel == UserLevel.Agent && await customerService.GetCashServiceStatus(result.CustId) == ServiceType.Cash)
                 {
                     return Core.Models.Result.CreateErrorResult(Resources.UserNotExist);
                 }
