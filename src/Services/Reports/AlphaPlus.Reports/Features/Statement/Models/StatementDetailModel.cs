@@ -2,7 +2,7 @@ namespace AlphaPlus.Reports.Features.Statement;
 
 public class StatementDetailModel
 {
-    private readonly int[] _hideTransactionTypeBetTypes = new int[] { 31001, 31002, 31006 };
+    private readonly int[] _hideTransactionTypeBetTypes = [31001, 31002, 31006];
 
     public DateTime TransDate { get; init; }
 
