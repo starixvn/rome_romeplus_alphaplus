@@ -14,7 +14,7 @@
             </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('PaymentMethod')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetPaymentMethodName_OldNewValue(@paymenttype)" />
+              <xsl:value-of select="xslLogFormat:GetTrackingPaymentMethodName(@paymenttype)" />
             </td>
           </tr>
           <tr>

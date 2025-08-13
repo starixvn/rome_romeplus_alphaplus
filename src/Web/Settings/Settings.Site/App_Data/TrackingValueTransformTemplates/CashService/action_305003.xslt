@@ -10,11 +10,11 @@
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Provider')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetProviderName_OldNewValue(@providerid)" />
+              <xsl:value-of select="xslLogFormat:GetTrackingProviderName(@providerid)" />
             </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Status')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetStatus_OldNewValue(@providerstatus)" />
+              <xsl:value-of select="xslLogFormat:GetTrackingStatus(@providerstatus)" />
             </td>
           </tr>
           <tr>

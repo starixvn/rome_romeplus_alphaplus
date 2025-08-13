@@ -75,7 +75,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
             return remotingRef.GetProductName(productId);
         }
 
-        public string GetBankName_OldNewValue(string code)
+        public string GetTrackingBankName(string code)
         {
             return ReplaceOldNewValue(code, GetBankName);
         }

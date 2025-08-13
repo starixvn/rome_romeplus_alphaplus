@@ -10,15 +10,15 @@
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('TransactionType')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTransactionTypeName_OldNewValue(@transactiontypeid)" />
+              <xsl:value-of select="xslLogFormat:GetTrackingTransactionTypeName(@transactiontypeid)" />
             </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('PaymentMethod')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetPaymentMethodName_OldNewValue(@paymenttype)" />
+              <xsl:value-of select="xslLogFormat:GetTrackingPaymentMethodName(@paymenttype)" />
             </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Status')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTransactionStatus_OldNewValue(@statusid)" />
+              <xsl:value-of select="xslLogFormat:GetTrackingTransactionStatus(@statusid)" />
             </td>
           </tr>
           <tr>

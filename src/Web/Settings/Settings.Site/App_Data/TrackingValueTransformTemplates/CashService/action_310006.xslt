@@ -10,7 +10,7 @@
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('TransactionType')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTransactionTypeName_OldNewValue(@transactiontypeid)" />
+              <xsl:value-of select="xslLogFormat:GetTrackingTransactionTypeName(@transactiontypeid)" />
             </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('RefNo')" /></td>
             <td class="colW2">
@@ -32,7 +32,7 @@
             </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Status')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTransactionStatus_OldNewValue(@statusid)" />
+              <xsl:value-of select="xslLogFormat:GetTrackingTransactionStatus(@statusid)" />
             </td>
           </tr>
           <tr>

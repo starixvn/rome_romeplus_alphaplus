@@ -4,22 +4,22 @@
     {
         string FormatBankAccountNumber(string bankAccountNumber);
 
-        string GetTransactionTypeName_OldNewValue(string transactionType);
+        string GetTrackingTransactionTypeName(string transactionType);
 
-        string GetPaymentMethodName_OldNewValue(string paymentMethod);
+        string GetTrackingPaymentMethodName(string paymentMethod);
 
-        string GetPaymentMethodStatusName_OldNewValue(string paymentMethodStatus);
+        string GetTrackingPaymentMethodStatusName(string paymentMethodStatus);
 
-        string GetStatus_OldNewValue(string bankStatus);
+        string GetTrackingStatus(string bankStatus);
 
-        string GetTransactionTypes_OldNewValue(string transactionTypes);
+        string GetTrackingTransactionTypes(string transactionTypes);
 
-        string GetDepositMatchingMode_OldNewValue(string depositMatchingMode);
+        string GetTrackingDepositMatchingMode(string depositMatchingMode);
 
-        string GetProviderName_OldNewValue(string providerId);
+        string GetTrackingProviderName(string providerId);
 
-        string GetTransactionStatus_OldNewValue(string transactionStatus);
+        string GetTrackingTransactionStatus(string transactionStatus);
 
-        string GetPromotionTypeName_OldNewValue(string promotionType);
+        string GetTrackingPromotionTypeName(string promotionType);
     }
 }

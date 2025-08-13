@@ -11,47 +11,47 @@
             return bankAccountNumber.Replace("NoMatchingBankAccount", GetLogResource("NoMatchingBankAccount"), StringComparison.OrdinalIgnoreCase);
         }
 
-        public string GetTransactionTypeName_OldNewValue(string transactionType)
+        public string GetTrackingTransactionTypeName(string transactionType)
         {
             return ReplaceOldNewValue(transactionType, GetTransactionTypeName);
         }
  
-        public string GetPaymentMethodName_OldNewValue(string paymentMethod)
+        public string GetTrackingPaymentMethodName(string paymentMethod)
         {
             return ReplaceOldNewValue(paymentMethod, GetPaymentMethodName);
         }
 
-        public string GetPaymentMethodStatusName_OldNewValue(string paymentMethodStatus)
+        public string GetTrackingPaymentMethodStatusName(string paymentMethodStatus)
         {
             return ReplaceOldNewValue(paymentMethodStatus, GetPaymentMethodStatusName);
         }
 
-        public string GetStatus_OldNewValue(string bankStatus)
+        public string GetTrackingStatus(string bankStatus)
         {
             return ReplaceOldNewValue(bankStatus, GetStatus);
         }
 
-        public string GetTransactionTypes_OldNewValue(string transactionTypes)
+        public string GetTrackingTransactionTypes(string transactionTypes)
         {
             return ReplaceOldNewValue(transactionTypes, GetTransactionTypes);
         }
 
-        public string GetDepositMatchingMode_OldNewValue(string depositMatchingMode)
+        public string GetTrackingDepositMatchingMode(string depositMatchingMode)
         {
             return ReplaceOldNewValue(depositMatchingMode, GetDepositMatchingMode);
         }
 
-        public string GetProviderName_OldNewValue(string providerId)
+        public string GetTrackingProviderName(string providerId)
         {
             return ReplaceOldNewValue(providerId, GetProviderName);
         }
 
-        public string GetTransactionStatus_OldNewValue(string transactionStatus)
+        public string GetTrackingTransactionStatus(string transactionStatus)
         {
             return ReplaceOldNewValue(transactionStatus, GetTransactionStatus);
         }
 
-        public string GetPromotionTypeName_OldNewValue(string promotionType)
+        public string GetTrackingPromotionTypeName(string promotionType)
         {
             return ReplaceOldNewValue(promotionType, GetPromotionTypeName);
         }

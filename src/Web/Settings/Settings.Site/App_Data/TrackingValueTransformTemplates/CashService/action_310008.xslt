@@ -18,7 +18,7 @@
             </td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Status')" /></td>
             <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTransactionStatus_OldNewValue(@statusid)" />
+              <xsl:value-of select="xslLogFormat:GetTrackingTransactionStatus(@statusid)" />
             </td>
           </tr>
           <tr>
