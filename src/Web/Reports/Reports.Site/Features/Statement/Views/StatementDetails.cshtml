@@ -44,8 +44,11 @@
                         @Html.Raw(data.TransDate.ToString("dddd<br/>MM/dd/yyyy<br/>hh:mm:ss tt"))
                     </td>
                     <td class="text-left">
-                        @data.TransType
-                        <br />
+                        @if(!data.IsHiddenTransType)
+                        {
+                            @data.TransType
+                            <br />
+                        }
                         @data.TransDesc
                     </td>
                     <td>@{
