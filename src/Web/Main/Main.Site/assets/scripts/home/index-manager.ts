@@ -704,10 +704,7 @@ var indexManager = {
     },
 
     sessionCookieComparison: {
-        sessionCookieName: '.AspNetCore.Session',
-        maxRetries: 3,
         currentSessionId: null,
-        retryCount: 0,
         isEnabled: true,
         monitoredPaths: [
             '/reports/winlossdetail',
@@ -716,12 +713,6 @@ var indexManager = {
 
         initialize: function() {
             this.currentSessionId = this.getSessionCookie();
-            
-            window.addEventListener('storage', (event) => {
-                if (event.key === 'sessionCookieChanged') {
-                    this.handleSessionChange(event.newValue);
-                }
-            });
 
             document.addEventListener('visibilitychange', () => {
                 if (!document.hidden && this.isCurrentPathMonitored()) {
@@ -733,8 +724,13 @@ var indexManager = {
         },
 
         getSessionCookie: function() {
-            var sessionCookie = localStorage.getItem('AspNetCoreSessionCookie') || $('#AspNetCoreSessionCookie').val();
-            localStorage.setItem('AspNetCoreSessionCookie', sessionCookie);
+            var sessionCookie = localStorage.getItem('AspNetCoreSessionCookie');
+            if(!sessionCookie) {
+                sessionCookie = $.cookie('X-Response-Session');
+                if(sessionCookie) {
+                    localStorage.setItem('AspNetCoreSessionCookie', sessionCookie);
+                }
+            }
             return sessionCookie;
         },
 
@@ -742,6 +738,7 @@ var indexManager = {
             const mainFrame = $('#main');
             if (mainFrame.length > 0) {
                 mainFrame.on('load', () => {
+                    this.getSessionCookie();
                     this.handleMainFrameLoad();
                 });
             }
@@ -765,12 +762,13 @@ var indexManager = {
         checkSessionConsistency: function() {
             if (!this.isEnabled) return;
 
-            const currentCookie = this.getSessionCookie();
-            
+            const currentCookie = $.cookie('X-Response-Session') || '';
+
             if (!currentCookie) {
                 return;
             }
 
+            this.currentSessionId = localStorage.getItem('AspNetCoreSessionCookie');
             if (this.currentSessionId && currentCookie !== this.currentSessionId) {
                 this.handleSessionMismatch(currentCookie);
             } else if (!this.currentSessionId) {
@@ -789,29 +787,13 @@ var indexManager = {
 
             this.logSessionMismatch(newSessionId);
 
-            this.retryCount++;
-            
-            if (this.retryCount <= this.maxRetries) {
-                console.log(`Retrying session sync (${this.retryCount}/${this.maxRetries})...`);
-                localStorage.setItem('AspNetCoreSessionCookie', $('#AspNetCoreSessionCookie').val());
-                this.refreshPage();
-            } else {
-                console.error('Max retries reached for session sync. Redirecting to login...');
-                this.redirectToLogin();
-            }
-        },
-
-        handleSessionChange: function(newSessionId) {
-            if (newSessionId && newSessionId !== this.currentSessionId) {
-                this.currentSessionId = newSessionId;
-                this.retryCount = 0;
-                console.log('Session synchronized from other tab');
-            }
+            localStorage.setItem('AspNetCoreSessionCookie', $.cookie('X-Response-Session'));
+            this.refreshPage();
         },
 
         logSessionMismatch: function(newSessionId) {
             const logData = {
-                event: 'session_cookie_mismatch',
+                event: 'session_cookie_mismatch: from Client/CDN',
                 originalSessionId: this.currentSessionId,
                 newSessionId: newSessionId,
                 timestamp: new Date().toString(),
@@ -845,15 +827,7 @@ var indexManager = {
         },
 
         refreshPage: function() {
-            const url = new URL(window.location.href);
-            url.searchParams.set('_session_refresh', Date.now().toString());
-            
-            window.location.href = url.toString();
-        },
-
-        redirectToLogin: function() {
-            const loginUrl = '/main/Account/Login?r=SessionExpired';
-            window.location.href = loginUrl;
+            window.location.reload();
         },
 
         isCurrentPathMonitored: function() {

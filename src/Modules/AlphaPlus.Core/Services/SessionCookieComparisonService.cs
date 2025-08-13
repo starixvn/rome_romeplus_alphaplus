@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using Fanex.Logging;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Core.Configurations;
+using System.Text.Json;
 
 namespace AlphaPlus.Core.Services;
 
@@ -22,7 +23,7 @@ public class SessionCookieComparisonService : ISessionCookieComparisonService
         _options = options.Value;
     }
 
-    public async Task CompareAndLogSessionCookiesAsync(HttpContext context, string requestCookie, string responseCookie)
+    public async Task CompareAndLogSessionCookiesAsync(HttpContext context, string requestCookie, string responseCookie, string messageTitle)
     {
         if (!_options.EnableSessionCookieComparison)
             return;
@@ -32,7 +33,7 @@ public class SessionCookieComparisonService : ISessionCookieComparisonService
 
         if (!string.Equals(requestCookie, responseCookie, StringComparison.OrdinalIgnoreCase))
         {
-            var logMessage = BuildLogMessage(context, requestCookie, responseCookie);
+            var logMessage = BuildLogMessage(context, requestCookie, responseCookie, messageTitle);
             
             switch (_options.LogLevel.ToLowerInvariant())
             {
@@ -63,7 +64,7 @@ public class SessionCookieComparisonService : ISessionCookieComparisonService
 
     public string ExtractSessionCookieFromRequest(HttpRequest request)
     {
-        return request.Cookies[".AspNetCore.Session"];
+        return request.Cookies["X-Response-Session"];
     }
 
     public string ExtractSessionCookieFromResponse(HttpResponse response)
@@ -85,10 +86,10 @@ public class SessionCookieComparisonService : ISessionCookieComparisonService
 
     private static string ParseSessionCookieFromSetCookieHeader(string setCookieHeader)
     {
-        if (setCookieHeader.Contains(".AspNetCore.Session="))
+        if (setCookieHeader.Contains("X-Response-Session="))
         {
-            var startIndex = setCookieHeader.IndexOf(".AspNetCore.Session=");
-            var valueStart = startIndex + ".AspNetCore.Session=".Length;
+            var startIndex = setCookieHeader.IndexOf("X-Response-Session=");
+            var valueStart = startIndex + "X-Response-Session=".Length;
             var endIndex = setCookieHeader.IndexOf(';', valueStart);
             
             if (endIndex == -1)
@@ -100,34 +101,26 @@ public class SessionCookieComparisonService : ISessionCookieComparisonService
         return null;
     }
 
-    private string BuildLogMessage(HttpContext context, string requestCookie, string responseCookie)
+    private string BuildLogMessage(HttpContext context, string requestCookie, string responseCookie, string messageTitle)
     {
-        var userInfo = $"User: {_userSession.UserName} (ID: {_userSession.CustId})";
-        var sessionInfo = $"Session: {_userSession.NetSessionId}";
-        var roleInfo = $"Role: {_userSession.RoleId}";
-        var adminInfo = _userSession.AdminId > 0 ? $"Admin: {_userSession.AdminName} (ID: {_userSession.AdminId})" : "";
-        var pathInfo = $"Path: {context.Request.Path}{context.Request.QueryString}";
-        var cookieInfo = $"Request Cookie: {requestCookie ?? "null"} | Response Cookie: {responseCookie ?? "null"}";
-
-        var logParts = new List<string>
+        var logData = new
         {
-            $"Server Side Comparison: Session cookie mismatch detected. {pathInfo}. {userInfo}. {sessionInfo}. {roleInfo}."
+            Event = messageTitle,
+            OriginalSessionId = requestCookie,
+            NewSessionId = responseCookie,
+            Timestamp = DateTime.UtcNow,
+            Url = context.Request.Path,
+            Referer = context.Request.Headers["Referer"],
+            UserAgent = context.Request.Headers["User-Agent"],
+            CustId = _userSession.CustId,
+            Username = _userSession.UserName,
+            SubAccId = _userSession.SubAccId,
+            AdminId = _userSession.AdminId,
+            AdminName = _userSession.AdminName,
+            RoleId = _userSession.RoleId,
+            IpAddress = _userSession.UserLoginIp
         };
 
-        if (!string.IsNullOrEmpty(adminInfo))
-            logParts.Add(adminInfo);
-
-        if (_options.IncludeIpAddressInLog)
-            logParts.Add($"IP: {_userSession.UserLoginIp}");
-
-        if (_options.IncludeRefererInLog)
-            logParts.Add($"Referer: {context.Request.Headers["Referer"]}");
-
-        if (_options.IncludeUserAgentInLog)
-            logParts.Add($"UserAgent: {context.Request.Headers["User-Agent"]}");
-
-        logParts.Add(cookieInfo);
-
-        return string.Join(" ", logParts);
+        return $"Server Side Comparison: Session Cookie Mismatch:{Environment.NewLine}{JsonSerializer.Serialize(logData, new JsonSerializerOptions { WriteIndented = true })}";
     }
-} 
+}
