@@ -41,8 +41,8 @@ export default function ContactInfo() {
             visible: true
         },
         {
-            title: t('Phone'),
-            value: customer.Phone,
+            title: customer.IsCashMember ? t('Mobile') : t('Phone'),
+            value: customer.IsCashMember ? customer.MobilePhone : customer.Phone,
             visible: true
         },
         {

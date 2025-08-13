@@ -11,6 +11,7 @@ export default interface Customer {
     ShowNickName: boolean;
     FullName: string;
     Phone: string;
+    MobilePhone: string;
     Fax: string;
     Closed: boolean;
     ClosedReason: number;
