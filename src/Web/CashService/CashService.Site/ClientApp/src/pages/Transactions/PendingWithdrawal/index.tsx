@@ -102,6 +102,12 @@ const PendingWithdrawal: React.FC = () => {
     return result;
   }, [withdrawals, searchTerm]);
 
+  useEffect(() => {
+    setTimeout(function () {
+      top?.indexManager && top.indexManager.initFeedbackFunction(35);
+    }, 1000);
+  }, []);
+
   return (
     <>
       {showManualAddWithdrawalForm ? (

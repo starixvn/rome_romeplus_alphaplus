@@ -297,6 +297,12 @@ const BankAccountComponent: React.FC<BankAccountComponentProps> = ({
     fetchBankAccounts();
   };
 
+  useEffect(() => {
+    setTimeout(function () {
+      top?.indexManager && top.indexManager.initFeedbackFunction(33);
+    }, 1000);
+  }, []);
+
   return (
     <>
       {showAddBankAccountModal ? (

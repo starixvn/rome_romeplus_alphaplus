@@ -88,6 +88,13 @@ const Promotion: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    isShowCommingUpPrmotion ||
+      setTimeout(function () {
+        top?.indexManager && top.indexManager.initFeedbackFunction(38);
+      }, 1000);
+  }, []);
+
   return (
     <div className="pb-[12px] flex flex-col promotion-page">
       {validationMessage.message !== '' && (

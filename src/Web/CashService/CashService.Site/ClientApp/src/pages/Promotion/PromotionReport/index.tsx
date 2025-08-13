@@ -1,6 +1,6 @@
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 import i18n from '../../../i18n/i18n-promotion';
@@ -83,6 +83,13 @@ function PromotionReport() {
     }));
     setPromotion(promotion);
   }
+
+  useEffect(() => {
+    isShowCommingUpPrmotion ||
+      setTimeout(function () {
+        top?.indexManager && top.indexManager.initFeedbackFunction(40);
+      }, 1000);
+  }, []);
 
   return (
     <>

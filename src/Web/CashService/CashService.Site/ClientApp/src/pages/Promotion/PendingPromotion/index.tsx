@@ -35,6 +35,14 @@ const PendingPromotion: React.FC = () => {
       ?.getAttribute('value');
     setIsCashServiceEnabled(isCashServiceEnabled === '1');
   }, []);
+
+  React.useEffect(() => {
+    isShowCommingUpPrmotion ||
+      setTimeout(function () {
+        top?.indexManager && top.indexManager.initFeedbackFunction(39);
+      }, 1000);
+  }, []);
+
   return (
     <>
       {showAddBonus ? (

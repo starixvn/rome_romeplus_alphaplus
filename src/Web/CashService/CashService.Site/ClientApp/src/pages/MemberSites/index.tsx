@@ -46,12 +46,14 @@ const MemberSiteManagement: React.FC = () => {
 
   useEffect(() => {
     fetchData();
-    const isCashServiceEnabled = document.getElementById('IsCashServiceEnabled')?.getAttribute('value');
+    const isCashServiceEnabled = document
+      .getElementById('IsCashServiceEnabled')
+      ?.getAttribute('value');
 
     const enabled = isCashServiceEnabled === '1';
     setIsCashServiceEnabled(enabled);
 
-    if(enabled) {
+    if (enabled) {
       fetchSetupCheckList();
     }
   }, []);
@@ -125,40 +127,45 @@ const MemberSiteManagement: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    setTimeout(function () {
+      top?.indexManager && top.indexManager.initFeedbackFunction(37);
+    }, 1000);
+  }, []);
+
   return (
     <div className="">
- 
-        <div className="mb-[8px]">
-          <TitleComponent type='main' text={t('title')} />
-        </div>
-        <div className="max-w-[950px]">               
-          {result && <MessageComponent className="mb-[10px]" type={result.type} message={result.text} />}
-          <FormProvider {...methods}>
-            <form onSubmit={handleSubmit(onSubmit)} className="py-[5px] ">              
-                <RegistrationLinks
-                  domains={methods
-                    .watch('domains')
-                    .map((domain) => ({ ...domain, status: 'active' }))}
-                  loading={loading}
-                  isCashServiceEnabled={isCashServiceEnabled}
-                  setupChecklist={setupCheckList}
-                />             
-              <div className="block w-[100%] h-[1px] bg-[var(--border-color)] my-[10px]" ></div>              
-              <GeneralSettings loading={loading} />               
-              <div className="block w-[100%] h-[1px] bg-[var(--border-color)] my-[10px]" ></div>             
-              <MessageForm loading={loading} />  
-              <div className="flex justify-start py-[8px] mt-[8px]">
-                <ButtonComponent
-                  variant="apply"
-                  text={isSaving ? t('actions.saving') : t('actions.save')}
-                  disabled={isSaving || !isCashServiceEnabled}
-                  title={isCashServiceEnabled ? '' : t('global:cashServiceDisabled')}
-                  type="submit"
-                />
-              </div>
-            </form>
-          </FormProvider>
-        </div>   
+      <div className="mb-[8px]">
+        <TitleComponent type="main" text={t('title')} />
+      </div>
+      <div className="max-w-[950px]">
+        {result && (
+          <MessageComponent className="mb-[10px]" type={result.type} message={result.text} />
+        )}
+        <FormProvider {...methods}>
+          <form onSubmit={handleSubmit(onSubmit)} className="py-[5px] ">
+            <RegistrationLinks
+              domains={methods.watch('domains').map((domain) => ({ ...domain, status: 'active' }))}
+              loading={loading}
+              isCashServiceEnabled={isCashServiceEnabled}
+              setupChecklist={setupCheckList}
+            />
+            <div className="block w-[100%] h-[1px] bg-[var(--border-color)] my-[10px]"></div>
+            <GeneralSettings loading={loading} />
+            <div className="block w-[100%] h-[1px] bg-[var(--border-color)] my-[10px]"></div>
+            <MessageForm loading={loading} />
+            <div className="flex justify-start py-[8px] mt-[8px]">
+              <ButtonComponent
+                variant="apply"
+                text={isSaving ? t('actions.saving') : t('actions.save')}
+                disabled={isSaving || !isCashServiceEnabled}
+                title={isCashServiceEnabled ? '' : t('global:cashServiceDisabled')}
+                type="submit"
+              />
+            </div>
+          </form>
+        </FormProvider>
+      </div>
     </div>
   );
 };
