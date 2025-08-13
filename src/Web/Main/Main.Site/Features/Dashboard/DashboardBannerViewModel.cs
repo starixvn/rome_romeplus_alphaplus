@@ -4,17 +4,19 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
 {
     public class DashboardBannerViewModel
     {
+        private readonly IUserSession userSession;
+        private readonly IConfiguration configuration;
+
         public DashboardBannerViewModel(IUserSession userSession, IConfiguration configuration)
         {
+            this.userSession = userSession;
+            this.configuration = configuration;
             IsShow = AppSettings.DashboardBannerOfferedSites.Contains("*")
                 || AppSettings.DashboardBannerOfferedSites.Contains(userSession.Site);
             if (IsShow)
             {
                 SetBannerUrls(userSession);
             }
-
-            var banners = configuration.GetSection("Banners").Get<List<Banner>>();
-            Banners = [.. banners];
         }
 
         public bool IsShow { get; private set; }
@@ -23,7 +25,7 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
 
         public string BannerMobileName { get; private set; }
 
-        public Banner[] Banners { get; private set; }
+        public IEnumerable<Banner> Banners => GetBannerConfiguration();
 
         private void SetBannerUrls(IUserSession userSession)
         {
@@ -32,6 +34,19 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
             var version = AppSettings.JsVersion;
             BannerName = $"{folder}/banner_{language}.jpg?v={version}";
             BannerMobileName = $"{folder}/banner_mobile_{language}.jpg?v={version}";
+        }
+
+        private IEnumerable<Banner> GetBannerConfiguration()
+        {
+            var folder = AppSettings.IsSiteLabel789y ? "i7" : "i1";
+            var banners = configuration.GetSection($"Banners:{folder}").GetChildren();
+            return banners.Select(b => new Banner
+            {
+                ImageSource = b["ImageSource_" + userSession.Language] ?? b["ImageSource_" + Shared.Constants.Language.Default],
+                ImageMobileSource = b["ImageMobileSource_" + userSession.Language] ?? b["ImageMobileSource_" + Shared.Constants.Language.Default],
+                Url = b.GetValue<string>("Url"),
+                IsVideo = b.GetValue<bool>("IsVideo")
+            });
         }
     }
 }
