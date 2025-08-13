@@ -380,7 +380,7 @@
                         "Url": "Customer/Update",
                         "Permission": "[B]",
                         "IsCheckBelonging": true,
-                        "IsAllowToDoByThemselves": false
+                        "IsAllowToDoByThemselves": true
                     },
                     {
                         "Url": "Customer/EditCustomer",
