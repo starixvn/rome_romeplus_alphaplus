@@ -63,9 +63,12 @@ const Information: React.FC<InformationProps> = ({
         <EnableButtonComponent isActive={isActive} onClick={() => setIsActive(true)} />
         <DisableButtonComponent isActive={!isActive} onClick={() => setIsActive(false)} />
       </div>
-      <div className="flex flex-wrap items-center pb-[5px] border-b border-[var(--border-control)] mb-[10px]">
+    <div className='max-w-[620px]  flex flex-wrap items-center pb-[5px] border-b border-[var(--border-control)] mb-[10px]'>
         <div className="inline-block mr-[10px]">
-          <TitleComponent text={t('addPromotionForm.promotionSettings.title')} type="medium" />
+          <TitleComponent
+            text={t('addPromotionForm.promotionSettings.title')}
+            type="medium"
+          ></TitleComponent>
         </div>
         <Tippy
           className="max-w-[640px]!"
@@ -98,7 +101,7 @@ const Information: React.FC<InformationProps> = ({
       </div>
 
       <div className="flex flex-wrap w-full">
-        <div className="w-[190px] mr-[12px] mb-[12px]">
+        <div className="w-[198px] mr-[12px] mb-[12px]">
           <div className="flex items-center">
             <TitleComponent
               text={t('addPromotionForm.promotionType')}
@@ -116,7 +119,7 @@ const Information: React.FC<InformationProps> = ({
           />
         </div>
 
-        <div className="w-[190px] mr-[12px] mb-[12px]">
+        <div className="w-[198px] mr-[12px] mb-[12px]">
           <TitleComponent text={t('table.period')} required={true} type="label" />
           <DateRangePickerComponent
             value={period}
@@ -128,7 +131,7 @@ const Information: React.FC<InformationProps> = ({
           />
         </div>
 
-        <div className="w-[190px] mr-[12px] mb-[12px]">
+        <div className="w-[198px] mr-[12px] mb-[12px]">
           <div className="flex items-center">
             <TitleComponent
               text={t('table.Product')}

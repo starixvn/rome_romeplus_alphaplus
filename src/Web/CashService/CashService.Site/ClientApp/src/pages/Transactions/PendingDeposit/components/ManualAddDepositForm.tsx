@@ -262,6 +262,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
 
   return (
     <>
+    <div>
       <Header onClose={() => onClose(false)} title={t('manualDepositForm.title')} />
       <div
         id="manual-deposit-form"
@@ -307,6 +308,7 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
           buttonTitle={tGlobal('cashServiceDisabled')}
         />
       </div>
+    </div>
     </>
   );
 };
