@@ -37,7 +37,6 @@ public class CheckBelongingFilterAttribute : TypeFilterAttribute
             if (!context.HttpContext.User.Identity.IsAuthenticated ||
                 context.HttpContext.Session.Get<int>("CUSTID") == 0)
             {
-                await Fanex.Logging.LogService.InfoAsync("Mat session");
                 await UnAuthorization(context);
                 return;
             }
@@ -51,7 +50,6 @@ public class CheckBelongingFilterAttribute : TypeFilterAttribute
             {
                 if (!await authorizationService.IsBelonging())
                 {
-                    await Fanex.Logging.LogService.InfoAsync("IsBelonging = false");
                     await UnAuthorization(context);
                     return;
                 }
