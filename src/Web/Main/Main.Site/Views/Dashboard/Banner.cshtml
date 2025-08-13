@@ -265,11 +265,11 @@
                     <div class="item @(i == 0 ? "active" : string.Empty)">
                         @if(banner.IsVideo)
                         {
-                            <div class="video-banner pc" onclick="openVideoInFancybox('@Url.Content(banner.Url)')">
+                            <a class="video-banner" href="@Url.Content(banner.Url)" data-fancybox>
                                 <img src="@Url.Content(banner.ImageSource)" class="img-banner pc @className" />
                                 <img src="@Url.Content(banner.ImageMobileSource)" class="img-banner sm @className" />
                                 <div class="play-icon"></div>
-                            </div>
+                            </a>
                         }
                         else
                         {
@@ -367,79 +367,21 @@
             hideLoading();
         }
 
-        // Function to open video in Fancybox
-        function openVideoInFancybox(videoUrl) {
-            try {
-                // Check if video URL is valid
-                if (!videoUrl || videoUrl.trim() === '') {
-                    console.error('Invalid video URL');
-                    return;
-                }
-
-                // Show loading state
-                const loadingHtml = '<div class="video-loading"><div class="spinner"></div><p>Loading video...</p></div>';
-                
-                Fancybox.show([{
-                    src: videoUrl,
-                    type: 'video',
-                    title: 'Video',
-                    options: {
-                        autoplay: true,
-                        controls: true,
-                        loop: false,
-                        muted: false,
-                        volume: 0.8,
-                        ratio: 16/9,
-                        fit: 'contain',
-                        preload: 'metadata'
-                    }
-                }], {
-                    // Fancybox options
-                    dragToClose: true,
-                    closeButton: true,
-                    fullscreen: true,
-                    keyboard: true,
-                    toolbar: true,
-                    animationEffect: 'fade',
-                    transitionEffect: 'fade',
-                    on: {
-                        init: (fancybox) => {
-                            // Add custom loading indicator
-                            const container = fancybox.container;
-                            if (container) {
-                                container.insertAdjacentHTML('beforeend', loadingHtml);
-                            }
-                        },
-                        done: (fancybox, slide) => {
-                            // Remove loading indicator when video is ready
-                            const loadingElement = fancybox.container.querySelector('.video-loading');
-                            if (loadingElement) {
-                                loadingElement.remove();
-                            }
-                        },
-                        error: (fancybox, slide) => {
-                            // Handle video loading errors
-                            console.error('Error loading video:', slide.src);
-                            const container = fancybox.container;
-                            if (container) {
-                                container.innerHTML = '<div class="video-error"><p>Error loading video. Please try again.</p></div>';
-                            }
-                        }
-                    }
-                });
-            } catch (error) {
-                console.error('Error opening video:', error);
-                // Fallback: open video in new tab
-                window.open(videoUrl, '_blank');
-            }
-        }
-
         // Add keyboard navigation
         $(document).keydown(function (e) {
             if (e.keyCode === 37) { // Left arrow
                 $('#bannerCarousel').carousel('prev');
             } else if (e.keyCode === 39) { // Right arrow
                 $('#bannerCarousel').carousel('next');
+            }
+        });
+
+        Fancybox.bind("[data-fancybox]", {
+            // Your custom options
+            on: {
+                init: (fancybox) => {
+                    console.log('Fancybox initialized');
+                }
             }
         });
     </script>
