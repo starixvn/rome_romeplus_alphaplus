@@ -2,8 +2,8 @@
     "Banners": {
         "i1": [
             {
-                "ImageSource_en-US": "~/assets/images/DashboardBanner/i1/viva/desktop/en-US.jpg",
-                "ImageMobileSource_en-US": "~/assets/images/DashboardBanner/i1/viva/mobile/en-US.jpg",
+                "ImageSource_en-US": "~/assets/images/DashboardBanner/i7/viva/desktop/en-US.jpg",
+                "ImageMobileSource_en-US": "~/assets/images/DashboardBanner/i7/viva/mobile/en-US.jpg",
                 "Url": "~/assets/videos/TVC1-5.mp4",
                 "IsVideo": true
             },
