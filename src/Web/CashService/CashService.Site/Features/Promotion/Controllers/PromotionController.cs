@@ -157,7 +157,7 @@ public class PromotionController(
 
         if (userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
 
         request.SetUserSession(userSession);
@@ -183,7 +183,7 @@ public class PromotionController(
     {
         if (userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
 
         request.SetUserSession(userSession);
@@ -215,7 +215,7 @@ public class PromotionController(
     {
         if (userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
 
         var url = $"/api/promotions/delete/{promotionId}";
@@ -256,7 +256,7 @@ public class PromotionController(
     {
         if (userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
 
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
@@ -280,7 +280,7 @@ public class PromotionController(
     {
         if (userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
 
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
@@ -300,7 +300,7 @@ public class PromotionController(
     {
         if (userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
 
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
