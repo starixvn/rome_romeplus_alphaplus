@@ -11,6 +11,7 @@ using Fanex.Customer.Client.Services;
 using Fanex.Customer.Client.Params;
 using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
 using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Params;
+using AlphaPlus.Core.Constants;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn;
 
@@ -222,6 +223,7 @@ public class QRCodeMemberSignInHandler :
 
     public async Task<bool> Handle(CheckExistedCustomerRequest message, CancellationToken cancellationToken)
         => await IsValidBelongingByUsername(message.CustId, message.Username, message.SubAccId)
+        && await customerService.GetCashServiceStatus(message.CustId) != ServiceType.Cash
         && await customerService.CheckExistedCustomer(message.Username);
 
     internal async Task<bool> IsValidBelongingByUsername(int custId, string username, int subAccountId)
