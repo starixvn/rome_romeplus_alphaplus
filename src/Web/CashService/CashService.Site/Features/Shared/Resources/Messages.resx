@@ -120,4 +120,7 @@
   <data name="CashServiceIsDisabled" xml:space="preserve">
     <value>Permission denied. Please enable the Cash Service to proceed.</value>
   </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>You are not authorized on this function.</value>
+  </data>
 </root>

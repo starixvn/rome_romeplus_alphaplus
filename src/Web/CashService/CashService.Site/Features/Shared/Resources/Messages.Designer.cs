@@ -68,5 +68,14 @@ namespace AlphaPlus.CashService.Site.Features.Shared.Resources {
                 return ResourceManager.GetString("CashServiceIsDisabled", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are not authorized on this function..
+        /// </summary>
+        public static string NotAuthorized {
+            get {
+                return ResourceManager.GetString("NotAuthorized", resourceCulture);
+            }
+        }
     }
 }

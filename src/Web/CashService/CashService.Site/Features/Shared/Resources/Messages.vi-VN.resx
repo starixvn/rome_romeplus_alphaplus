@@ -120,4 +120,7 @@
   <data name="CashServiceIsDisabled" xml:space="preserve">
     <value>Bạn không có quyền truy cập vì dịch vụ tiền mặt đã bị vô hiệu hóa. Vui lòng bật dịch vụ tiền mặt để tiếp tục.</value>
   </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>Bạn không được cho phép sử dụng chức năng này.</value>
+  </data>
 </root>
