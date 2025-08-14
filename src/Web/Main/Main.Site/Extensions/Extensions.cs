@@ -4,7 +4,6 @@ using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Main.Site.Features.Account;
 using AlphaPlus.Main.Site.Features.ApiKey;
-using AlphaPlus.Main.Site.Features.Banner;
 using AlphaPlus.Main.Site.Features.CustomerProfile;
 using AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo;
 using AlphaPlus.Main.Site.Features.Dashboard.Statistics;
@@ -67,7 +66,6 @@ public static class Extensions
         services.AddSingleton<IUser, User>();
 
         services.AddSingleton<INicknameChecker, NicknameChecker>();
-        services.AddSingleton<IBannerService, BannerService>();
         services.AddSingleton<IUMMessageService, UMMessageService>();
         services.AddSingleton<OtpService, OtpServiceImpl>();
         services.AddSingleton<OtpAdapter, OtpAdapterImpl>();
