@@ -93,9 +93,9 @@ function PromotionReport() {
 
   return (
     <>
-      <div className="relative">
+      <div>       
         <TitleComponent text={t('promotionReport')} type="main" />
-        {isShowCommingUpPrmotion && <UpcomingComponent />}
+        {isShowCommingUpPrmotion && <UpcomingComponent hasTab={true} />}
         <PromotionReportTab activeTab={activeTab} onTabChange={handleTabChange} />
         {activeTab === 0 ? (
           promotion === null ? (

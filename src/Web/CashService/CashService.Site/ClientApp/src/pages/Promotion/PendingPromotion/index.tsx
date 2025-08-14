@@ -54,8 +54,7 @@ const PendingPromotion: React.FC = () => {
         <>
           <div className="flex h-full flex-col">
             {isShowCommingUpPrmotion && <UpcomingComponent />}
-
-            <TitleComponent text={t('pendingPromotion')} type="main" />
+            <TitleComponent className='mb-0!' text={t('pendingPromotion')} type="main" />
             <div className="flex flex-col gap-2 mb-2">
               <MessageComponent message={resultMessage.message} type={resultMessage.type} />
             </div>
