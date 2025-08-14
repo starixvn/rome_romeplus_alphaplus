@@ -187,7 +187,7 @@ public class SearchAccountService(
 
     public async Task<Result> UpdateGivenCredit(GivenCreditCommand param)
     {
-        decimal accumCreditAllCashMember = await GetAccumCreditAllCashMember(param.SearchAccountRoleId, param.CustId);
+        decimal accumCreditAllCashMember = await GetAccumCreditAllCashMember(param.SearchAccountRoleId, param.SearchAccountId);
 
         UpdateMasterGivenCreditCommand command;
         if (param.SearchAccountRoleId == UserLevel.Member.Value)
@@ -243,28 +243,27 @@ public class SearchAccountService(
         }
     }
 
-    private async Task<decimal> GetAccumCreditAllCashMember(byte searchAccountRoleId, int custId)
+    private async Task<decimal> GetAccumCreditAllCashMember(byte searchAccountRoleId, int searchAccountId)
     {
-        await Fanex.Logging.LogService.InfoAsync($"searchAccountRoleId = {searchAccountRoleId}; custId = {custId}");
         return searchAccountRoleId switch
         {
-            var roleId when roleId == UserLevel.Member.Value => await GetMemberAccumCredit(custId),
-            var roleId when roleId == UserLevel.Agent.Value => await GetAccumCredit(custId),
+            var roleId when roleId == UserLevel.Member.Value => await GetMemberAccumCredit(searchAccountId),
+            var roleId when roleId == UserLevel.Agent.Value => await GetAccumCredit(searchAccountId),
             _ => 0
         };
     }
 
-    private async Task<decimal> GetMemberAccumCredit(int custId)
+    private async Task<decimal> GetMemberAccumCredit(int searchAccountId)
     {
-        var getUplineByCustIdCommand = new GetUplineByCustIdCommand(custId);
+        var getUplineByCustIdCommand = new GetUplineByCustIdCommand(searchAccountId);
         await dynamicRepository.ExecuteAsync(getUplineByCustIdCommand);
         
         return await GetAccumCredit(getUplineByCustIdCommand.UplineId);
     }
 
-    private async Task<decimal> GetAccumCredit(int custId)
+    private async Task<decimal> GetAccumCredit(int searchAccountId)
     {
-        var accumCreditCommand = new GetAccumCreditCommand(custId);
+        var accumCreditCommand = new GetAccumCreditCommand(searchAccountId);
         await dynamicRepository.ExecuteAsync(accumCreditCommand);
         
         return accumCreditCommand.AccumCreditReturn;
