@@ -18,7 +18,7 @@
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Title')" /></td>
             <td class="colW2"><xsl:value-of select="@title" /></td>
-            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Amount ')" /></td>
+            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Amount')" /></td>
             <td class="colW2"><xsl:value-of select="@amount" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Status')" /></td>
             <td class="colW2"><xsl:value-of select="@status" /></td>
