@@ -2662,6 +2662,42 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string CashService_RegisterInfo_0 {
+            get {
+                return ResourceManager.GetString("CashService_RegisterInfo_0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow member to register.
+        /// </summary>
+        public static string CashService_RegisterInfo_1 {
+            get {
+                return ResourceManager.GetString("CashService_RegisterInfo_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow member to deposit.
+        /// </summary>
+        public static string CashService_RegisterInfo_2 {
+            get {
+                return ResourceManager.GetString("CashService_RegisterInfo_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All.
+        /// </summary>
+        public static string CashService_RegisterInfo_3 {
+            get {
+                return ResourceManager.GetString("CashService_RegisterInfo_3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Casino No.
         /// </summary>
         public static string casinoNo {
@@ -5938,6 +5974,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LineID.
+        /// </summary>
+        public static string LineID {
+            get {
+                return ResourceManager.GetString("LineID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Live.
         /// </summary>
         public static string Live {
@@ -8872,6 +8917,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Setting Info.
+        /// </summary>
+        public static string SettingInfo {
+            get {
+                return ResourceManager.GetString("SettingInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 7 days.
         /// </summary>
         public static string SevenDays {
@@ -9345,6 +9399,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         public static string SystemId_8 {
             get {
                 return ResourceManager.GetString("SystemId_8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Telegram.
+        /// </summary>
+        public static string Tele {
+            get {
+                return ResourceManager.GetString("Tele", resourceCulture);
             }
         }
         

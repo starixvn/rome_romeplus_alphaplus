@@ -8,18 +8,26 @@
       <xsl:when test="@custid">
         <table class="tblDesc">
           <tr>
-            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Contact')" /></td>
-            <td class="colW2"><xsl:value-of select="@contact" /></td>
+            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SettingInfo')" /></td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingRegisterInfo(@settinginfo)" /></td>
+            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('LineID')" /></td>
+            <td class="colW2"><xsl:value-of select="@lineid" /></td>
+            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Tele')" /></td>
+            <td class="colW2"><xsl:value-of select="@tele" /></td>
+          </tr>
+          <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Mobile')" /></td>
             <td class="colW2"><xsl:value-of select="@mobile" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Announcement')" /></td>
             <td class="colW2"><xsl:value-of select="@announcement" /></td>
-          </tr>
-          <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SubAccName')" /></td>
             <td class="colW2"><xsl:value-of select="@subaccname" /></td>
+          </tr>
+          <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('IP')" /></td>
             <td class="colW2"><xsl:value-of select="xslLogFormat:FormatIP(@ip)" /></td>
+            <td class="colW1"></td>
+            <td class="colW2"></td>
             <td class="colW1"></td>
             <td class="colW2"></td>
           </tr>

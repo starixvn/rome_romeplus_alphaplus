@@ -3714,4 +3714,19 @@
   <data name="TransactionStatus_2" xml:space="preserve">
     <value>รอการชำระเงิน</value>
   </data>
+  <data name="SettingInfo" xml:space="preserve">
+    <value>ข้อมูลการตั้งค่า</value>
+  </data>
+  <data name="CashService_RegisterInfo_3" xml:space="preserve">
+    <value>ทั้งหมด</value>
+  </data>
+  <data name="CashService_RegisterInfo_0" xml:space="preserve">
+    <value>ไม่มี</value>
+  </data>
+  <data name="CashService_RegisterInfo_1" xml:space="preserve">
+    <value>อนุญาตการลงทะเบียนสมาชิก</value>
+  </data>
+  <data name="CashService_RegisterInfo_2" xml:space="preserve">
+    <value>อนุญาตการฝากเงินสมาชิก</value>
+  </data>
 </root>

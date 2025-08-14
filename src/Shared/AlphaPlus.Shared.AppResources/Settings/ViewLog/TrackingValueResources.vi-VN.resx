@@ -3360,4 +3360,19 @@
   <data name="TransactionStatus_2" xml:space="preserve">
     <value>Chờ thanh toán</value>
   </data>
+  <data name="SettingInfo" xml:space="preserve">
+    <value>Thông tin cài đặt</value>
+  </data>
+  <data name="CashService_RegisterInfo_3" xml:space="preserve">
+    <value>Tất cả</value>
+  </data>
+  <data name="CashService_RegisterInfo_0" xml:space="preserve">
+    <value>Không</value>
+  </data>
+  <data name="CashService_RegisterInfo_1" xml:space="preserve">
+    <value>Cho phép đăng ký thành viên</value>
+  </data>
+  <data name="CashService_RegisterInfo_2" xml:space="preserve">
+    <value>Cho phép nạp tiền thành viên</value>
+  </data>
 </root>

@@ -56,6 +56,11 @@
             return ReplaceOldNewValue(promotionType, GetPromotionTypeName);
         }
 
+        public string GetTrackingRegisterInfo(string registerInfo)
+        {
+            return ReplaceOldNewValue(registerInfo, GetRegisterInfo);
+        }
+
         private string GetTransactionTypeName(string type)
         {
             return GetLogResource("Transaction_" + type);
@@ -100,6 +105,11 @@
         private string GetPromotionTypeName(string promotionType)
         {
             return GetLogResource("PromotionType_" + promotionType);
+        }
+
+        private string GetRegisterInfo(string registerInfo)
+        {
+            return GetLogResource("CashService_RegisterInfo_" + registerInfo);
         }
     }
 }

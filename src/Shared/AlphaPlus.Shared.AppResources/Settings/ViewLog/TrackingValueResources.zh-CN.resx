@@ -3621,4 +3621,19 @@
   <data name="TransactionStatus_2" xml:space="preserve">
     <value>待处理</value>
   </data>
+  <data name="SettingInfo" xml:space="preserve">
+    <value>设置信息</value>
+  </data>
+  <data name="CashService_RegisterInfo_3" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="CashService_RegisterInfo_0" xml:space="preserve">
+    <value>无</value>
+  </data>
+  <data name="CashService_RegisterInfo_1" xml:space="preserve">
+    <value>允许会员注册</value>
+  </data>
+  <data name="CashService_RegisterInfo_2" xml:space="preserve">
+    <value>允许会员存款</value>
+  </data>
 </root>
