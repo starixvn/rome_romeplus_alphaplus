@@ -18,11 +18,13 @@ public class CashFeeWorkbook(IWebHostEnvironment webHostEnvironment) :
     ReportNpoiWorkbook<CashFeeItemModel>(webHostEnvironment),
     ICashFeeWorkbook
 {
+    private const int ReportSheetIndex = 1;
     private const int BodyStartRowIndex = 3;
     private CashFeeModel cashFeeModel;
     private Mapper<CashFeeItemModel> cashFeeItemMapper;
     private Row cashFeeTypeRowTemplate;
     private Row cashFeeItemRowTemplate;
+    private Row totalRowTemplate;
     private int currentRowIndex;
 
     public ExcelFileViewModel BuildCashFeeExcelFile(CashFeeExcelParam excelParam, CashFeeModel cashFeeModel)
@@ -41,7 +43,6 @@ public class CashFeeWorkbook(IWebHostEnvironment webHostEnvironment) :
             .Title($"{Resources.CashServiceBilling} {fromDateString} --> {toDateString} - {custName}")
             .Header(Resources.ResourceManager.GetString)
             .Footer(cashFeeModel.GrandTotal, GetTotalRowMapper())
-            .Sheet(Resources.DefaultSheetName)
             .ExportToBytes();
 
         return new ExcelFileViewModel($"{excelParam.CustName}-CASH-SERVICE-BILLING-{fromDateString}-{toDateString}", fileContent);
@@ -76,21 +77,13 @@ public class CashFeeWorkbook(IWebHostEnvironment webHostEnvironment) :
 
         cashFeeTypeRowTemplate = sheet.GetRow(startRowIndex++);
         cashFeeItemRowTemplate = sheet.GetRow(startRowIndex++);
-        sheet.FooterRowsTemplate = [sheet.GetRow(startRowIndex)];
+        totalRowTemplate = sheet.GetRow(startRowIndex);
 
-        return sheet;
+        return GetSheetAt(ReportSheetIndex);
     }
 
     protected override void RemoveTemplateRows(Sheet sheet)
-    {
-        sheet.RemoveRow(cashFeeTypeRowTemplate);
-        sheet.RemoveRow(cashFeeItemRowTemplate);
-
-        foreach (Row item in sheet.FooterRowsTemplate)
-        {
-            sheet.RemoveRow(item);
-        }
-    }
+        => Workbook.RemoveSheetAt(TemplateInfo.SheetIndex);
 
     protected override void FillBody(Sheet sheet)
     {
@@ -133,9 +126,7 @@ public class CashFeeWorkbook(IWebHostEnvironment webHostEnvironment) :
         CashFeeItemModel cashFeeItem)
     {
         var row = sheet.GetRow(rowIndex);
-        var templateRow = cashFeeTypeRowTemplate;
-
-        row.CopyCellsFrom(templateRow);
+        row.CopyCellsFrom(cashFeeTypeRowTemplate);
         FillCells(row, cashFeeItem, cashFeeItemMapper.Mappings);
     }
 
@@ -145,16 +136,22 @@ public class CashFeeWorkbook(IWebHostEnvironment webHostEnvironment) :
         CashFeeItemModel cashFeeItem)
     {
         var row = sheet.GetRow(rowIndex);
-        var templateRow = cashFeeItemRowTemplate;
-
-        row.CopyCellsFrom(templateRow);
+        row.CopyCellsFrom(cashFeeItemRowTemplate);
         FillCells(row, cashFeeItem, cashFeeItemMapper.Mappings);
     }
 
     protected override void FillFooterRows(Sheet sheet)
     {
         var row = sheet.GetRow(currentRowIndex);
-        row.CopyCellsFrom(sheet.FooterRowsTemplate.First());
+        row.CopyCellsFrom(totalRowTemplate);
         FillCells(row, SpreadSheet.FooterRows.First(), SpreadSheet.FooterRowMapper.Mappings);
+    }
+
+    protected override void FillNoInfoRow(Sheet sheet)
+    {
+        int bodyStartIndex = TemplateInfo.BodyStartIndex;
+        int colIndex = GetColIndex(TemplateInfo.ColumnStartName);
+        sheet.SetCellRangeValue(bodyStartIndex, colIndex, bodyStartIndex, cashFeeItemRowTemplate.LastCellIndex - 1, TemplateInfo.NoInfomationText);
+        sheet.GetCell(bodyStartIndex, colIndex).SetCenterHorizontalAlignment();
     }
 }
