@@ -17,7 +17,6 @@ using AlphaPlus.Main.Site.Features.ProtectionCode;
 using AlphaPlus.Main.Site.Features.SecurityCode;
 using AlphaPlus.Main.Site.Features.Tour;
 using AlphaPlus.Main.Site.Features.UMMessage;
-using AlphaPlus.Main.Site.Features.WhiteLabel;
 using AlphaPlus.Main.Site.Shared.Models;
 using AlphaPlus.Main.Site.Shared.Services;
 using AlphaPlus.RequestInfo;
@@ -95,7 +94,6 @@ public static class Extensions
         services.AddHttpClient<IProfilePictureService, ProfilePictureService>(httpClient => httpClient.BaseAddress = customerServiceUri);
         services.AddHttpClient<IProtectionCodeService, ProtectionCodeService>(httpClient => httpClient.BaseAddress = customerServiceUri);
         services.AddHttpClient<ILanguageService, LanguageService>(httpClient => httpClient.BaseAddress = customerServiceUri);
-        services.AddHttpClient<IWhiteLabelService, WhiteLabelService>(HttpClient => HttpClient.BaseAddress = new Uri(configuration.GetValue<string>("WhiteLabel:BackOfficeApiUrl")));
 
         services.AddSingleton<IRewardTourService, RewardTourService>();
         services.AddHealthChecks();
