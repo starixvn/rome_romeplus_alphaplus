@@ -189,14 +189,13 @@ public class SearchAccountService(
     {
         decimal accumCreditAllCashMember = await GetAccumCreditAllCashMember(param.SearchAccountRoleId, param.CustId);
 
-        UpdateSMGivenCreditCommand command;
+        UpdateMasterGivenCreditCommand command;
         if (param.SearchAccountRoleId == UserLevel.Member.Value)
         {
             var totalAmtCommand = new GetTotalAmtCommand(param.SearchAccountId);
             await dynamicRepository.ExecuteAsync(totalAmtCommand, param.AGIP);
             command = new UpdateMemberGivenCreditCommand(
                 param.SearchAccountId,
-                param.SearchAccountRoleId,
                 param.CreditAmount,
                 param.ViewerId,
                 param.SubAccountId,
@@ -210,7 +209,6 @@ public class SearchAccountService(
         {
             command = new UpdateAgentGivenCreditCommand(
                 param.SearchAccountId,
-                param.SearchAccountRoleId,
                 param.CreditAmount,
                 param.ViewerId,
                 param.SubAccountId,
@@ -221,9 +219,8 @@ public class SearchAccountService(
         }
         else
         {
-            command = new UpdateSMGivenCreditCommand(
+            command = new UpdateMasterGivenCreditCommand(
                 param.SearchAccountId,
-                param.SearchAccountRoleId,
                 param.CreditAmount,
                 param.ViewerId,
                 param.SubAccountId,
@@ -248,6 +245,7 @@ public class SearchAccountService(
 
     private async Task<decimal> GetAccumCreditAllCashMember(byte searchAccountRoleId, int custId)
     {
+        await Fanex.Logging.LogService.InfoAsync($"searchAccountRoleId = {searchAccountRoleId}; custId = {custId}");
         return searchAccountRoleId switch
         {
             var roleId when roleId == UserLevel.Member.Value => await GetMemberAccumCredit(custId),

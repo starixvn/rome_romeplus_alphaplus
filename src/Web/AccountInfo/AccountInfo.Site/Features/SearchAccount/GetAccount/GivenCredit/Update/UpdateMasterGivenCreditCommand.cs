@@ -4,19 +4,10 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.Update
 {
-    public class UpdateSMGivenCreditCommand : NonQueryCommand
+    public class UpdateMasterGivenCreditCommand : NonQueryCommand
     {
-        private static readonly IDictionary<UserLevel, string> settingKeys =
-                    new Dictionary<UserLevel, string>
-                    {
-                {UserLevel.Master, "Age_CustomerUpdCredit_SAg" },
-                {UserLevel.Agent, "Age_CustomerUpdCredit_MAg" },
-                {UserLevel.Member, "Age_CustomerUpdCredit_Ag" }
-                    };
-
-        public UpdateSMGivenCreditCommand(
+        public UpdateMasterGivenCreditCommand(
             int searchAccountId,
-            byte searchAccountRoleId,
             decimal creditAmount,
             int actorId,
             int subAccountId,
@@ -24,7 +15,6 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCred
             string ip)
         {
             SearchAccountId = searchAccountId;
-            SearchAccountRoleId = searchAccountRoleId;
             CreditAmount = creditAmount;
             ActorId = actorId;
             SubAccountId = subAccountId;
@@ -34,9 +24,6 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCred
 
         [SpParam(SqlParamName = "CustId")]
         public int SearchAccountId { get; }
-
-        [SpParam(Ignored = true)]
-        public byte SearchAccountRoleId { get; }
 
         [SpParam(SqlParamName = "CreditAmt")]
         public decimal CreditAmount { get; }
@@ -55,10 +42,8 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCred
 
         public string ErrMsg { get; set; }
 
-        public override string GetSettingKey() => settingKeys[SearchAccountLevel];
+        public override string GetSettingKey() => "Age_CustomerUpdCredit_SAg";
 
         public override bool IsValid() => SearchAccountId > 0 && ActorId > 0 && CreditAmount >= 0;
-
-        private UserLevel SearchAccountLevel => Enumeration.FromValue<UserLevel>(SearchAccountRoleId);
     }
 }

@@ -4,7 +4,6 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCred
     {
         public UpdateMemberGivenCreditCommand(
             int searchAccountId,
-            byte searchAccountRoleId,
             decimal creditAmount,
             int actorId,
             int subAccountId,
@@ -13,7 +12,6 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCred
             decimal accumCreditAllCashMember,
             decimal totalAmt) : base(
                 searchAccountId,
-                searchAccountRoleId,
                 creditAmount,
                 actorId,
                 subAccountId,
@@ -25,5 +23,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCred
         }
 
         public decimal TotalAmt { get; }
+
+        public override string GetSettingKey() => "Age_CustomerUpdCredit_Ag";
     }
 }
