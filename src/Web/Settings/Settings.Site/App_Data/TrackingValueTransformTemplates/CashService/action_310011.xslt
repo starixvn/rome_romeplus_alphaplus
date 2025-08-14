@@ -9,27 +9,17 @@
         <table class="tblDesc">
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('transID')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@transid" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@transid" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('ProviderTransID')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@providertransid" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@providertransid" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('PaymentMethod')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTrackingPaymentMethodName(@paymenttype)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingPaymentMethodName(@paymenttype)" /></td>
           </tr>
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('TransactionType')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTrackingTransactionTypeName(@transactiontypeid)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingTransactionTypeName(@transactiontypeid)" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('IP')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:FormatIP(@ip)" /></td>
           </tr>
         </table>
       </xsl:when>

@@ -9,31 +9,19 @@
         <table class="tblDesc">
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Contact')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@contact" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@contact" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('StartTime')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@starttime" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@starttime" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('TrialEndTime')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@trialendtime" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@trialendtime" /></td>
           </tr>
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('DailyWithdrawalCount')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@dailywithdrawalcount" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@dailywithdrawalcount" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SubAccName')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@subaccname" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@subaccname" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('IP')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:FormatIP(@ip)" /></td>
           </tr>
         </table>
       </xsl:when>

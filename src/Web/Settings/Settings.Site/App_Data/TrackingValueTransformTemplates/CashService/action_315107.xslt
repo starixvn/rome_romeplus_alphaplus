@@ -9,31 +9,19 @@
         <table class="tblDesc">
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('CreatedTime')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@createdtime" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@createdtime" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('From')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@fromdate" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@fromdate" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('To')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@todate" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@todate" /></td>
           </tr>
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Title')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@title" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@title" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Amount ')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@amount" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@amount" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Status')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@status" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@status" /></td>
           </tr>
         </table>
       </xsl:when>

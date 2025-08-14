@@ -9,17 +9,11 @@
         <table class="tblDesc">
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('bank')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTrackingBankName(@bankcode)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingBankName(@bankcode)" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SubAccName')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@subaccname" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@subaccname" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('IP')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:FormatIP(@ip)" /></td>
           </tr>
         </table>
       </xsl:when>

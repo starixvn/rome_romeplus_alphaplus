@@ -9,13 +9,9 @@
         <table class="tblDesc">
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SubAccName')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@subaccname" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@subaccname" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('IP')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:FormatIP(@ip)" /></td>
           </tr>
         </table>
 
@@ -23,9 +19,7 @@
           <table class="tblDesc">
             <tr>
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Promotion')" /></td>
-              <td class="colW2" colspan="5">
-                <xsl:value-of select="@promotionid" />
-              </td>
+              <td class="colW2" colspan="5"><xsl:value-of select="@promotionid" /></td>
             </tr>
           
             <tr>
@@ -36,17 +30,11 @@
               <xsl:for-each select="r">
                 <tr>
                   <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('language')" /></td>
-                  <td class="colW2">
-                    <xsl:value-of select="@language" />
-                  </td>
+                  <td class="colW2"><xsl:value-of select="@language" /></td>
                   <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Title')" /></td>
-                  <td class="colW2">
-                    <xsl:value-of select="@title" />
-                  </td>
+                  <td class="colW2"><xsl:value-of select="@title" /></td>
                   <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Content')" /></td>
-                  <td class="colW2">
-                    <xsl:value-of select="@content" />
-                  </td>
+                  <td class="colW2"><xsl:value-of select="@content" /></td>
                 </tr>
               </xsl:for-each>
             </xsl:for-each>

@@ -9,13 +9,9 @@
         <table class="tblDesc">
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SubAccName')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@subaccname" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@subaccname" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('IP')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:FormatIP(@ip)" /></td>
           </tr>
         </table>
 
@@ -23,21 +19,13 @@
           <table class="tblDesc">
             <tr>
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Type')" /></td>
-              <td class="colW2">
-                <xsl:value-of select="@amount" />
-              </td>
+              <td class="colW2"><xsl:value-of select="@amount" /></td>
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Status')" /></td>
-              <td class="colW2">
-                <xsl:value-of select="xslLogFormat:GetTrackingStatus(@enabled)" />
-              </td>
+              <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingStatus(@enabled)" /></td>
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('From')" /></td>
-              <td class="colW2">
-                <xsl:value-of select="@fromdate" />
-              </td>
+              <td class="colW2"><xsl:value-of select="@fromdate" /></td>
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('To')" /></td>
-              <td class="colW2">
-                <xsl:value-of select="@todate" />
-              </td>
+              <td class="colW2"><xsl:value-of select="@todate" /></td>
               <td class="colW1"></td>
               <td class="colW2"></td>
               <td class="colW1"></td>
@@ -50,25 +38,15 @@
               <xsl:for-each select="r">
                 <tr>
                   <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('ProductCategory')" /></td>
-                  <td class="colW2">
-                    <xsl:value-of select="@productcategoryid" />
-                  </td>
+                  <td class="colW2"><xsl:value-of select="@productcategoryid" /></td>
                   <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('product')" /></td>
-                  <td class="colW2">
-                    <xsl:value-of select="xslLogFormat:GetProductName(@product)" />
-                  </td>
+                  <td class="colW2"><xsl:value-of select="xslLogFormat:GetProductName(@product)" /></td>
                   <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Percentage')" /></td>
-                  <td class="colW2">
-                    <xsl:value-of select="@percentage" />
-                  </td>
+                  <td class="colW2"><xsl:value-of select="@percentage" /></td>
                   <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('MinTO')" /></td>
-                  <td class="colW2">
-                    <xsl:value-of select="@minto" />
-                  </td>
+                  <td class="colW2"><xsl:value-of select="@minto" /></td>
                   <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('MaxPayout')" /></td>
-                  <td class="colW2">
-                    <xsl:value-of select="@maxpayout" />
-                  </td>
+                  <td class="colW2"><xsl:value-of select="@maxpayout" /></td>
                 </tr>
               </xsl:for-each>
             </xsl:for-each>
@@ -81,17 +59,11 @@
               <xsl:for-each select="r">
                 <tr>
                   <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('language')" /></td>
-                  <td class="colW2">
-                    <xsl:value-of select="@language" />
-                  </td>
+                  <td class="colW2"><xsl:value-of select="@language" /></td>
                   <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Title')" /></td>
-                  <td class="colW2">
-                    <xsl:value-of select="@title" />
-                  </td>
+                  <td class="colW2"><xsl:value-of select="@title" /></td>
                   <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Content')" /></td>
-                  <td class="colW2">
-                    <xsl:value-of select="@content" />
-                  </td>
+                  <td class="colW2"><xsl:value-of select="@content" /></td>
                   <td class="colW1"></td>
                   <td class="colW2"></td>
                   <td class="colW1"></td>

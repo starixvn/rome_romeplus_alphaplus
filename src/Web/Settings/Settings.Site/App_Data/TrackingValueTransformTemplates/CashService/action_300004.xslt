@@ -9,55 +9,33 @@
         <table class="tblDesc">
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('bank')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTrackingBankName(@bankcode)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingBankName(@bankcode)" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('status')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTrackingStatus(@bankaccountstatus)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingStatus(@bankaccountstatus)" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('TransactionType')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTrackingTransactionTypes(@transtypelist)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingTransactionTypes(@transtypelist)" /></td>
           </tr>
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('AccountHolderName')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@accountholdername" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@accountholdername" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('BankAccountNumber')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@bankaccountnumber" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@bankaccountnumber" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('AccountNickname')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@accountnickname" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@accountnickname" /></td>
           </tr>
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('DepositMatchingMode')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTrackingDepositMatchingMode(@depositmatchingmode)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingDepositMatchingMode(@depositmatchingmode)" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('PromptPay')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTrackingStatus(@promptpayenabled)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingStatus(@promptpayenabled)" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Mobile')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@promptpaymobile" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@promptpaymobile" /></td>
           </tr>
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SubAccName')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@subaccname" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@subaccname" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('IP')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:FormatIP(@ip)" /></td>
             <td class="colW1"></td>
             <td class="colW2"></td>
           </tr>

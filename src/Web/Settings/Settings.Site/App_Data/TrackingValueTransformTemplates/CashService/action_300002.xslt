@@ -9,37 +9,25 @@
         <table class="tblDesc">
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('MinPerDeposit')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@minperdeposit" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@minperdeposit" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('MaxPerDeposit')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@maxperdeposit" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@maxperdeposit" /></td>
             <td class="colW1"></td>
             <td class="colW2"></td>
           </tr>
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('MinPerWithdrawal')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@minperwithdrawal" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@minperwithdrawal" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('MaxPerWithdrawal')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@maxperwithdrawal" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@maxperwithdrawal" /></td>
             <td class="colW1"></td>
             <td class="colW2"></td>
           </tr>
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SubAccName')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@subaccname" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@subaccname" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('IP')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:FormatIP(@ip)" /></td>
             <td class="colW1"></td>
             <td class="colW2"></td>
           </tr>

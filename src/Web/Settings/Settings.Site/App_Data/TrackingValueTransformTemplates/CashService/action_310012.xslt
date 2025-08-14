@@ -9,45 +9,27 @@
         <table class="tblDesc">
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Provider')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@providerid" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@providerid" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('PaymentMethod')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTrackingPaymentMethodName(@paymentmethod)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingPaymentMethodName(@paymentmethod)" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('From')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@paymentfrom" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@paymentfrom" /></td>
           </tr>
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('TransID')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@transid" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@transid" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Refno')   " /></td>
-            <td class="colW2">
-              <xsl:value-of select="@transferrefno" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@transferrefno" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('AdjustCreditAmt')   " /></td>
-            <td class="colW2">
-              <xsl:value-of select="@adjustcreditamt" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@adjustcreditamt" /></td>
           </tr>
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Status')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTrackingTransactionStatus(@statusid)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingTransactionStatus(@statusid)" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SubAccName')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@subaccname" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@subaccname" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('IP')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:FormatIP(@ip)" /></td>
           </tr>
         </table>
       </xsl:when>

@@ -9,27 +9,17 @@
         <table class="tblDesc">
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('bank')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTrackingBankName(@memberbankcode)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingBankName(@memberbankcode)" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('accnumber')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@memberbankaccountnumber" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@memberbankaccountnumber" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('AgentBankAccount')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:FormatBankAccountNumber(@agentbankaccountnumber)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:FormatBankAccountNumber(@agentbankaccountnumber)" /></td>
           </tr>
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SubAccName')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@subaccname" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@subaccname" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('IP')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:FormatIP(@ip)" /></td>
             <td class="colW1"></td>
             <td class="colW2"></td>
           </tr>

@@ -9,23 +9,15 @@
         <table class="tblDesc">
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('transID')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@transid" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@transid" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('PaymentMethod')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTrackingPaymentMethodName(@paymenttype)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingPaymentMethodName(@paymenttype)" /></td>
           </tr>
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('From')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@paymentfrom" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@paymentfrom" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('IP')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:FormatIP(@ip)" /></td>
           </tr>
         </table>
       </xsl:when>

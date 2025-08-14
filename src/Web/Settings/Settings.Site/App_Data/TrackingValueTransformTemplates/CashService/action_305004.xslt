@@ -9,31 +9,19 @@
         <table class="tblDesc">
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Provider')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@providername" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@providername" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('TransactionType')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTrackingTransactionTypeName(@transactiontype)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingTransactionTypeName(@transactiontype)" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('PaymentMethod')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTrackingPaymentMethodName(@paymentmethodid)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingPaymentMethodName(@paymentmethodid)" /></td>
           </tr>
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('PaymentMethodStatus')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:GetTrackingPaymentMethodStatusName(@paymentmethodstatus)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingPaymentMethodStatusName(@paymentmethodstatus)" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SubAccName')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="@subaccname" />
-            </td>
+            <td class="colW2"><xsl:value-of select="@subaccname" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('IP')" /></td>
-            <td class="colW2">
-              <xsl:value-of select="xslLogFormat:FormatIP(@ip)" />
-            </td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:FormatIP(@ip)" /></td>
           </tr>
         </table>
       </xsl:when>
