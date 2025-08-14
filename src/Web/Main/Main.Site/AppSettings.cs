@@ -89,8 +89,6 @@ namespace AlphaPlus.Main.Site
                .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                .Select(site => site.Trim()), StringComparer.OrdinalIgnoreCase);
 
-        public static Uri WhiteLabelBackOfficeApiUri => new(GetValue<string>("WhiteLabel:BackOfficeApiUrl"));
-
         public static DateTime EndWhiteLabelOffer => DateTime.Parse(GetValue<string>("EndWhiteLabelOffer"));
 
         public static string WinningThresholdSurveySites => GetValue<string>("WinningThresholdSurveySites");
