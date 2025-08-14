@@ -3711,4 +3711,7 @@
   <data name="CreatedTime" xml:space="preserve">
     <value>วันที่สร้างขึ้น</value>
   </data>
+  <data name="TransactionStatus_2" xml:space="preserve">
+    <value>รอการชำระเงิน</value>
+  </data>
 </root>

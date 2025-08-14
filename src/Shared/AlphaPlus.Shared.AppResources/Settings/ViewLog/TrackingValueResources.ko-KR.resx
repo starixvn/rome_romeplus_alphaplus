@@ -1876,4 +1876,7 @@
   <data name="CreatedTime" xml:space="preserve">
     <value>생성 시간</value>
   </data>
+  <data name="TransactionStatus_2" xml:space="preserve">
+    <value>보류</value>
+  </data>
 </root>

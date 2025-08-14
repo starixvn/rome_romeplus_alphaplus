@@ -3618,4 +3618,7 @@
   <data name="CreatedTime" xml:space="preserve">
     <value>創建時間</value>
   </data>
+  <data name="TransactionStatus_2" xml:space="preserve">
+    <value>待處理</value>
+  </data>
 </root>

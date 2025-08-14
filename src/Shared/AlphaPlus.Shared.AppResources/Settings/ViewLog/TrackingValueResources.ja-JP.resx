@@ -2892,4 +2892,7 @@
   <data name="Promotion" xml:space="preserve">
     <value>プロモーション</value>
   </data>
+  <data name="TransactionStatus_2" xml:space="preserve">
+    <value>保留中</value>
+  </data>
 </root>

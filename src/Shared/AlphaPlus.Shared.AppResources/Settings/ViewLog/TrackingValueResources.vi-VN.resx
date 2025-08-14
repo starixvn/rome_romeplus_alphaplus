@@ -3357,4 +3357,7 @@
   <data name="CreatedTime" xml:space="preserve">
     <value>Thời Gian Tạo</value>
   </data>
+  <data name="TransactionStatus_2" xml:space="preserve">
+    <value>Chờ thanh toán</value>
+  </data>
 </root>
