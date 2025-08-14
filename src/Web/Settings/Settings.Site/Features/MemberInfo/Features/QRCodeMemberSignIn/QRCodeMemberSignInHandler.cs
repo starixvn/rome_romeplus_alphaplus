@@ -1,17 +1,17 @@
-﻿using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.Helpers;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.Requests;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.ViewModels;
+﻿using AlphaPlus.Core.Constants;
+using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn;
 using AlphaPlus.Settings.MemberInfo.API.Features.QRCodeMemberSignIn.Criteria;
-using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
-using AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Models;
-using MediatR;
-using AlphaPlus.Core.Models;
-using Fanex.Customer.Client.Services;
-using Fanex.Customer.Client.Params;
 using AlphaPlus.Settings.MemberInfo.API.Features.Shared;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.QRCodeMemberSignIn.Models;
 using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Params;
-using AlphaPlus.Core.Constants;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.Helpers;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.Requests;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.ViewModels;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using Fanex.Customer.Client.Params;
+using Fanex.Customer.Client.Services;
+using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn;
 
@@ -223,12 +223,13 @@ public class QRCodeMemberSignInHandler :
 
     public async Task<bool> Handle(CheckExistedCustomerRequest message, CancellationToken cancellationToken)
         => await IsValidBelongingByUsername(message.CustId, message.Username, message.SubAccId)
-        && await customerService.GetCashServiceStatus(message.CustId) != ServiceType.Cash
         && await customerService.CheckExistedCustomer(message.Username);
 
     internal async Task<bool> IsValidBelongingByUsername(int custId, string username, int subAccountId)
     {
         var model = await customerService.GetDownlineByUsername(custId, subAccountId, username);
-        return model.CustId > 0 && Enumeration.FromValue<UserLevel>(model.RoleId).IsMemberLevel();
+        return model.CustId > 0 
+            && Enumeration.FromValue<UserLevel>(model.RoleId).IsMemberLevel()
+            && await customerService.GetCashServiceStatus(model.CustId) != ServiceType.Cash;
     }
 }
