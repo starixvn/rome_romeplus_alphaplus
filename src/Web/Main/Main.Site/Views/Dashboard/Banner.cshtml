@@ -26,7 +26,7 @@
                     <div class="item @(i == 0 ? "active" : string.Empty)">
                         @if(banner.IsVideo)
                         {
-                            <div class="video-banner" onclick="openVideo('@Url.Content(banner.Url)')">
+                            <div class="video-banner" data-target-url="@Url.Content(banner.Url)">
                                 <img src="@Url.Content(banner.ImageSource)" class="img-banner pc @className" data-name="@banner.Name"/>
                                 <img src="@Url.Content(banner.ImageMobileSource)" class="img-banner sm @className" data-name="@banner.Name"/>
                                 <div class="play-icon"></div>
@@ -41,8 +41,8 @@
                             }
                             else
                             {
-                                <img src="@Url.Content(banner.ImageSource)" class="img-banner pc @className"data-target-url="@banner.Url" data-target="_blank" data-name="@banner.Name"/>
-                                <img src="@Url.Content(banner.ImageMobileSource)" class="img-banner sm @className"data-target-url="@banner.Url" data-target="_blank" data-name="@banner.Name"/>
+                                <img src="@Url.Content(banner.ImageSource)" class="img-banner pc @className" data-target-url="@banner.Url" data-target="_blank" data-name="@banner.Name"/>
+                                <img src="@Url.Content(banner.ImageMobileSource)" class="img-banner sm @className" data-target-url="@banner.Url" data-target="_blank" data-name="@banner.Name"/>
                             }
                         }
                     </div>
