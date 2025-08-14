@@ -4,7 +4,7 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.Update
 {
-    public class UpdateSMAGivenCreditCommand : NonQueryCommand
+    public class UpdateSMGivenCreditCommand : NonQueryCommand
     {
         private static readonly IDictionary<UserLevel, string> settingKeys =
                     new Dictionary<UserLevel, string>
@@ -14,7 +14,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCred
                 {UserLevel.Member, "Age_CustomerUpdCredit_Ag" }
                     };
 
-        public UpdateSMAGivenCreditCommand(
+        public UpdateSMGivenCreditCommand(
             int searchAccountId,
             byte searchAccountRoleId,
             decimal creditAmount,

@@ -1,6 +1,6 @@
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.Update
 {
-    public class UpdateAgentGivenCreditCommand : UpdateSMAGivenCreditCommand
+    public class UpdateAgentGivenCreditCommand : UpdateSMGivenCreditCommand
     {
         public UpdateAgentGivenCreditCommand(
             int searchAccountId,

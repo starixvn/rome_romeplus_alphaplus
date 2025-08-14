@@ -187,18 +187,9 @@ public class SearchAccountService(
 
     public async Task<Result> UpdateGivenCredit(GivenCreditCommand param)
     {
-        decimal accumCreditAllCashMember = 0;
-        if (param.SearchAccountRoleId == UserLevel.Member.Value || param.SearchAccountRoleId == UserLevel.Agent.Value)
-        {
-            var agentId = param.SearchAccountRoleId == UserLevel.Agent.Value
-                ? param.SearchAccountId
-                : param.CustId;
-            var accumCreditCommand = new GetAccumCreditCommand(agentId);
-            await dynamicRepository.ExecuteAsync(accumCreditCommand);
-            accumCreditAllCashMember = accumCreditCommand.AccumCreditReturn;
-        }
+        decimal accumCreditAllCashMember = await GetAccumCreditAllCashMember(param.SearchAccountRoleId, param.CustId);
 
-        UpdateSMAGivenCreditCommand command;
+        UpdateSMGivenCreditCommand command;
         if (param.SearchAccountRoleId == UserLevel.Member.Value)
         {
             var totalAmtCommand = new GetTotalAmtCommand(param.SearchAccountId);
@@ -230,7 +221,7 @@ public class SearchAccountService(
         }
         else
         {
-            command = new UpdateSMAGivenCreditCommand(
+            command = new UpdateSMGivenCreditCommand(
                 param.SearchAccountId,
                 param.SearchAccountRoleId,
                 param.CreditAmount,
@@ -253,6 +244,32 @@ public class SearchAccountService(
             await dynamicRepository.ExecuteAsync(replicateServerCommand);
             return Result.CreateSuccessfulResult();
         }
+    }
+
+    private async Task<decimal> GetAccumCreditAllCashMember(byte searchAccountRoleId, int custId)
+    {
+        return searchAccountRoleId switch
+        {
+            var roleId when roleId == UserLevel.Member.Value => await GetMemberAccumCredit(custId),
+            var roleId when roleId == UserLevel.Agent.Value => await GetAccumCredit(custId),
+            _ => 0
+        };
+    }
+
+    private async Task<decimal> GetMemberAccumCredit(int custId)
+    {
+        var getUplineByCustIdCommand = new GetUplineByCustIdCommand(custId);
+        await dynamicRepository.ExecuteAsync(getUplineByCustIdCommand);
+        
+        return await GetAccumCredit(getUplineByCustIdCommand.UplineId);
+    }
+
+    private async Task<decimal> GetAccumCredit(int custId)
+    {
+        var accumCreditCommand = new GetAccumCreditCommand(custId);
+        await dynamicRepository.ExecuteAsync(accumCreditCommand);
+        
+        return accumCreditCommand.AccumCreditReturn;
     }
 
     public async Task<Result> UpdateCustomerStatus(UpdateCustomerStatusParam param)

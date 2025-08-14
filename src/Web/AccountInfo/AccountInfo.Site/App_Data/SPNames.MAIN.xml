@@ -44,6 +44,7 @@
         <Setting Key="Acc_CustSetting_ProductProfileSelect" SpName="Acc_CustSetting_ProductProfileSelect" DbName="DBCust.CustDB.wsv_alp" />
     </Function>
     <Function Name="Account Info">
+        <Setting Key="Age_CustSetting_GetUplineByCustID" SpName="Age_CustSetting_GetUplineByCustID" DbName="DBCUST.CUSTDB.wsv_alp" />
         <Setting Key="Age_CustomerUpdCredit_Ag" SpName="Age_CustomerUpdCredit_Ag" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
         <Setting Key="Age_CustomerUpdCredit_MAg" SpName="Age_CustomerUpdCredit_MAg" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
         <Setting Key="Age_CustomerUpdCredit_SAg" SpName="Age_CustomerUpdCredit_SAg" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
