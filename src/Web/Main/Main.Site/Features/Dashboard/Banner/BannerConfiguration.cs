@@ -1,6 +1,6 @@
-namespace AlphaPlus.Main.Site.Features.Dashboard
+namespace AlphaPlus.Main.Site.Features.Dashboard.Banner
 {
-    public class Banner
+    public class BannerConfiguration
     {
         public string Name { get; set; }
 

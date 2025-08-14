@@ -6,6 +6,7 @@ using AlphaPlus.Main.Site.Features.Account;
 using AlphaPlus.Main.Site.Features.ApiKey;
 using AlphaPlus.Main.Site.Features.CustomerProfile;
 using AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo;
+using AlphaPlus.Main.Site.Features.Dashboard.Banner;
 using AlphaPlus.Main.Site.Features.Dashboard.Statistics;
 using AlphaPlus.Main.Site.Features.Default.MenuBar;
 using AlphaPlus.Main.Site.Features.Language;
@@ -94,6 +95,7 @@ public static class Extensions
         services.AddHttpClient<IProfilePictureService, ProfilePictureService>(httpClient => httpClient.BaseAddress = customerServiceUri);
         services.AddHttpClient<IProtectionCodeService, ProtectionCodeService>(httpClient => httpClient.BaseAddress = customerServiceUri);
         services.AddHttpClient<ILanguageService, LanguageService>(httpClient => httpClient.BaseAddress = customerServiceUri);
+        services.AddSingleton<IBannerService, BannerService>();
 
         services.AddSingleton<IRewardTourService, RewardTourService>();
         services.AddHealthChecks();

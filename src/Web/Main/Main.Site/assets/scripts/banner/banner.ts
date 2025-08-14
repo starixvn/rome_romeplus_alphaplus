@@ -1,3 +1,7 @@
+interface Window {
+    alpha: any;
+}
+
 class Banner {
     private readonly $: JQueryStatic;
     private $bannerCarousel: JQuery;
@@ -45,6 +49,20 @@ class Banner {
             this.$('.video-banner').on('click', function () {
                 const targetUrl = $(this).data('target-url');
                 self.openVideo(targetUrl);
+            });
+
+            this.$('.log-banner').click(function () {
+                const bannerName = $(this).data('name');
+                $.ajax({
+                    type: 'POST',
+                    url: window.top.alpha.urls.mainRootPath + 'Dashboard/BannerClickLog?bannerName=' + bannerName,
+                    data: {},
+                    headers: {
+                        RequestVerificationToken: $("input[name='__RequestVerificationToken']").val(),
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    success: function () {}
+                });
             });
         }
     }

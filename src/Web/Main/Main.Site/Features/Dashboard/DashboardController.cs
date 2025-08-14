@@ -3,6 +3,7 @@ using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo;
+using AlphaPlus.Main.Site.Features.Dashboard.Banner;
 using AlphaPlus.Main.Site.Features.Dashboard.CashService;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -91,5 +92,9 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
             var result = await mediator.Send(new UpdateCashServiceStatusCommand(userSession, isEnableCash));
             return result;
         }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public async Task<JsonResult> BannerClickLog(string bannerName)
+            => Json(await mediator.Send(new BannerClickLogRequest(bannerName, userSession.RoleId)));
     }
 }
