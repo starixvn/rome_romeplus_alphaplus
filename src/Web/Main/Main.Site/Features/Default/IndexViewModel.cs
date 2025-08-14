@@ -175,9 +175,10 @@ public class IndexViewModel
     {
         get
         {
-            var actorLevel = Enumeration.FromValue<UserLevel>(message.RoleId);
+            //var actorLevel = Enumeration.FromValue<UserLevel>(message.RoleId);
 
-            return actorLevel.IsSuperLevel() || actorLevel.IsMasterLevel();
+            //return actorLevel.IsSuperLevel() || actorLevel.IsMasterLevel();
+            return false;
         }
     }
 
