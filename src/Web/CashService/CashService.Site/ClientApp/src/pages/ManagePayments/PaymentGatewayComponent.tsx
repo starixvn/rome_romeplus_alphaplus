@@ -37,6 +37,8 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
   const [showFeePopup, setShowFeePopup] = React.useState<boolean>(false);
   const [showDailyLimitPopup, setShowDailyLimitPopup] = React.useState<boolean>(false);
 
+  const isShowCommingUpPrmotion =
+    document.getElementById('HideUpcomingPromotion')?.getAttribute('value') === 'false';
   React.useEffect(() => {
     const fetchProviders = async () => {
       setLoading(true);
@@ -118,7 +120,7 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
       </ul>
 
       <div className="max-w-[1000px]">
-        <UpcomingComponent hasTab={true} />
+        {isShowCommingUpPrmotion && <UpcomingComponent hasTab={true} />}
         {loading ? (
           <Loading />
         ) : error ? (
