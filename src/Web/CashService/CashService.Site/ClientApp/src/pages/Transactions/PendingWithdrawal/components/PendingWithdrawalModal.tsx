@@ -261,8 +261,10 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
   };
 
   const renderMinMaxAmount = () => {
-    if (providerId <= 0) return null;
-    let displayMaxAmount = maxAmount ? displayAmount(maxAmount) : 'unlimited';
+    if (providerId <= 0) {
+      return null;
+    }
+    const displayMaxAmount = maxAmount ? displayAmount(maxAmount) : 'unlimited';
     return (
       <span className="text-xs text-gray-500">
         ({t('manualWithdrawalForm.minAmount')}: {displayAmount(minAmount)} -{' '}
