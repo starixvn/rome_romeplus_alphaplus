@@ -2,6 +2,7 @@
 using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.WinLossLimit;
+using AlphaPlus.Shared.AppResources.Common;
 using MediatR;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
@@ -37,7 +38,7 @@ public partial class WinLossLimitController(
     {
         if(!userSession.IsAgent || userSession.IsInternal)
         {
-            return Json(new { isSuccessful = false, message = "Unauthorized" });
+            return Json(new { IsSuccessful = false, Message = CommonResx.NotAuthorized });
         }
 
         command.SubAccId = user.SubAccId;
@@ -56,7 +57,7 @@ public partial class WinLossLimitController(
     {
         if(!userSession.IsAgent || userSession.IsInternal)
         {
-            return Json(new { isSuccessful = false, message = "Unauthorized" });
+            return Json(new { IsSuccessful = false, Message =  CommonResx.NotAuthorized });
         }
         
         command.SubAccId = user.SubAccId;
