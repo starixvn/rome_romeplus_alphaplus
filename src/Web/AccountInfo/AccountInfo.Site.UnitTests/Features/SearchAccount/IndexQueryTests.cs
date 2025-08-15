@@ -1,6 +1,5 @@
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount;
 using AlphaPlus.Core;
-using MediatR;
 
 namespace AlphaPlus.AccountInfo.Site.UnitTests.Features.SearchAccount;
 

@@ -1,9 +1,3 @@
-using AlphaPlus.Identity.API.Features.Auth;
-using Fanex.Data.Repository;
-using FluentAssertions;
-using Moq;
-using Xunit;
-
 namespace AlphaPlus.Identity.API.UnitTests.Features.Auth;
 
 public class AdminPermissionServiceTests

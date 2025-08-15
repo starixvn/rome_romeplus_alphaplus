@@ -1,9 +1,5 @@
 using AlphaPlus.AccountInfo.Site.Extensions;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Moq;
 
 namespace AlphaPlus.AccountInfo.Site.UnitTests;
 

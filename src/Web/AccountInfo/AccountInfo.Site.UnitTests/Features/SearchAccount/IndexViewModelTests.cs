@@ -1,6 +1,4 @@
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount;
-using AlphaPlus.Core.Models;
-using Moq;
 
 namespace AlphaPlus.AccountInfo.Site.UnitTests.Features.SearchAccount;
 

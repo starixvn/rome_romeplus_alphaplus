@@ -2,7 +2,6 @@ using AlphaPlus.Main.Site.Features.Dashboard.Banner;
 using Fanex.Data.Repository;
 using FluentAssertions;
 using Moq;
-using Xunit;
 
 namespace AlphaPlus.Main.Site.UnitTests.Features.Dashboard.Banner
 {

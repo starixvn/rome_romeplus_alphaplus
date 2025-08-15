@@ -1,4 +1,3 @@
-using AlphaPlus.Core.Models;
 using Fanex.Data;
 using Fanex.Data.Repository;
 

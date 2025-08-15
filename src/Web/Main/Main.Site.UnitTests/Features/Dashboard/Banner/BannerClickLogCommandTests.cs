@@ -1,6 +1,5 @@
 using AlphaPlus.Main.Site.Features.Dashboard.Banner;
 using FluentAssertions;
-using Xunit;
 
 namespace AlphaPlus.Main.Site.UnitTests.Features.Dashboard.Banner
 {

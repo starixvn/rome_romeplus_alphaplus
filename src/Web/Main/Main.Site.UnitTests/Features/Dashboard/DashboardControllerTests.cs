@@ -1,4 +1,3 @@
-using AlphaPlus.Core;
 using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Main.Site.Features.Dashboard;
@@ -82,7 +81,7 @@ namespace AlphaPlus.Main.Site.UnitTests.Features.Dashboard
         }
 
         [Fact]
-        public void Index_WhenUserIsNotInProtectedMode_ShouldCallIndex2()
+        public void Index_WhenUserIsNotInProtectedMode_ShouldReturnIndex2View()
         {
             // Arrange
             _userSessionMock.Setup(x => x.IsProtectedMode).Returns(false);

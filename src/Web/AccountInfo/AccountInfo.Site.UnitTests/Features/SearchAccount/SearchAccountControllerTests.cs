@@ -1,17 +1,4 @@
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount;
-using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount;
-using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.CustomerStatus;
-using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.DonwlineList;
-using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.Get;
-using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.Update;
-using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.OnlineList;
-using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Transfer.Requests;
-using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Transfer.Requests;
-using AlphaPlus.Shared.AppResources.Common;
-using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Moq;
 
 namespace AlphaPlus.AccountInfo.Site.UnitTests.Features.SearchAccount;
 

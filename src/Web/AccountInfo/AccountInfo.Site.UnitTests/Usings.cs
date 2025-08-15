@@ -1,5 +1,3 @@
-global using System.Security.Claims;
-global using System.Security.Principal;
 global using AutoFixture;
 global using Fanex.Data.Repository;
 global using MediatR;

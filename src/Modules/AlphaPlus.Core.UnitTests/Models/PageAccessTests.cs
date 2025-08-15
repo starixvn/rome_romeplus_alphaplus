@@ -1,5 +1,3 @@
-using AlphaPlus.Core.Models;
-
 namespace AlphaPlus.Core.UnitTests.Models;
 
 public class PageAccessTests

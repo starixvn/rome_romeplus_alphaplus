@@ -1,9 +1,7 @@
 using AlphaPlus.AccountInfo.Site.Features.Shared;
 using AlphaPlus.Core.Configurations;
-using Fanex.Data.Repository;
 using Fanex.Logging;
 using Microsoft.Extensions.Options;
-using Moq;
 
 namespace AlphaPlus.AccountInfo.Site.UnitTests.Features.Shared;
 

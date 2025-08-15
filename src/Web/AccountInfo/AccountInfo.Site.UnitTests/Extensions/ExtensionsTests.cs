@@ -1,16 +1,5 @@
 using AlphaPlus.AccountInfo.Site.Extensions;
-using AlphaPlus.AccountInfo.Site.Features.OpenDownlines;
-using AlphaPlus.AccountInfo.Site.Features.ProfilePicture;
-using AlphaPlus.AccountInfo.Site.Features.ProtectedStatus;
-using AlphaPlus.AccountInfo.Site.Features.SearchAccount;
-using AlphaPlus.AccountInfo.Site.Features.Shared;
-using AlphaPlus.AccountInfo.Site.Features.UnsuspendDownlines;
-using AlphaPlus.Utilities.IP;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Moq;
 
 namespace AlphaPlus.AccountInfo.Site.UnitTests.Extensions;
 
