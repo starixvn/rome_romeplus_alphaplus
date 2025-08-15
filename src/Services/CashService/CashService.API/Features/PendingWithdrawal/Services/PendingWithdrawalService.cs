@@ -192,7 +192,7 @@ public class PendingWithdrawalService(
             MaxAmt = null
         };
 
-        if (param.StatusId == 4 && param.ProviderId > 0)
+        if (param.StatusId is null && param.ProviderId > 0)
         {
             memberSettings = await GetLimitAmtWithdrawAsync(
                 new GetCashLimitAmt
