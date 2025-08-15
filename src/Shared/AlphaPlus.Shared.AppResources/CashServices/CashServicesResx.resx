@@ -312,4 +312,7 @@
   <data name="DateRange" xml:space="preserve">
     <value>Date Range</value>
   </data>
+  <data name="AgentCashBalanceIsInsufficient" xml:space="preserve">
+    <value>Agent’s cash balance is insufficient.</value>
+  </data>
 </root>

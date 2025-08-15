@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -214,13 +214,13 @@
     <value>總申請次數</value>
   </data>
   <data name="TotalRequestApproved" xml:space="preserve">
-    <value>已批準申請總數</value>
+    <value>已批准申請總數</value>
   </data>
   <data name="TotalBonusGiven" xml:space="preserve">
     <value>已發放獎金總額</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value />
+    <value>狀態</value>
   </data>
   <data name="PromotionTitle" xml:space="preserve">
     <value>優惠標題</value>
@@ -235,13 +235,13 @@
     <value>最後更新</value>
   </data>
   <data name="Approved" xml:space="preserve">
-    <value>已批準</value>
+    <value>已批准</value>
   </data>
   <data name="AccountType" xml:space="preserve">
-    <value>賬戶類型</value>
+    <value>帳戶類型</value>
   </data>
   <data name="MemberListNoteEditMultipleNotAvailable" xml:space="preserve">
-    <value>如果帳戶類型為“全部”，則無法編輯多個客戶。</value>
+    <value>如果帳戶類型為「全部」，則無法編輯多個客戶。</value>
   </data>
   <data name="ProviderRejectErrorMessage" xml:space="preserve">
     <value>您的提款申請已被支付服務商拒絕。</value>
@@ -250,16 +250,25 @@
     <value>支付服務商目前無法使用，請稍後再試。</value>
   </data>
   <data name="PromotionType_1" xml:space="preserve">
-    <value>Turnover Rebate</value>
+    <value>流水返水</value>
   </data>
   <data name="UpdatedBy" xml:space="preserve">
-    <value />
+    <value>更新者</value>
+  </data>
+  <data name="PromotionType_RebateOnTurnover" xml:space="preserve">
+    <value>流水返水</value>
   </data>
   <data name="Period" xml:space="preserve">
-    <value />
+    <value>期間</value>
+  </data>
+  <data name="PendingPromotion" xml:space="preserve">
+    <value>待處理優惠</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>標題</value>
   </data>
   <data name="RebatePeriod" xml:space="preserve">
-    <value />
+    <value>返水期間</value>
   </data>
   <data name="FreeTrial" xml:space="preserve">
     <value>&lt;b&gt;免費&lt;/b&gt;試用14天</value>
@@ -285,19 +294,34 @@
   <data name="RefNo" xml:space="preserve">
     <value>參照號碼</value>
   </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>日期範圍</value>
+  </data>
   <data name="ManualBonus" xml:space="preserve">
-    <value>Manual Bonus</value>
+    <value>手動獎金</value>
   </data>
   <data name="CreatedBy" xml:space="preserve">
     <value>創建者</value>
   </data>
   <data name="CreatedTime" xml:space="preserve">
-    <value>Created Time</value>
+    <value>創建時間</value>
   </data>
   <data name="Remark" xml:space="preserve">
-    <value>Remark</value>
+    <value>備註</value>
   </data>
-  <data name="Title" xml:space="preserve">
-    <value>Title</value>
-  </data>
-</root>
+            <data name="AgentCashBalanceIsInsufficient" xml:space="preserve">
+            <value>代理現金餘額不足。</value>
+          </data>
+          <data name="TheAmountMustBeBetween0And1AsPerProviderLimits" xml:space="preserve">
+            <value>金額必須在{0}和{1}之間，符合提供商限制</value>
+          </data>
+          <data name="SuperchargeYourCashFlow" xml:space="preserve">
+            <value>增強您的現金流？</value>
+          </data>
+          <data name="PromotionType_RebateOnTurnover" xml:space="preserve">
+            <value>流水返水</value>
+          </data>
+          <data name="DateRange" xml:space="preserve">
+            <value>日期範圍</value>
+          </data>
+        </root>

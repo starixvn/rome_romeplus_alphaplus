@@ -281,7 +281,7 @@ public class TransactionsController(
         var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending-deposit", request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingRevertTransactionErrCode(result.Code);
+            result.Message = ErrorCodeHandler.MappingRevertTransactionErrCode(result.Code, 1);
         }
 
         return Ok(result);
@@ -305,7 +305,7 @@ public class TransactionsController(
         var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending-withdrawal", request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingRevertTransactionErrCode(result.Code);
+            result.Message = ErrorCodeHandler.MappingRevertTransactionErrCode(result.Code, 2);
         }
         return Ok(result);
     }

@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -205,43 +205,43 @@
     <value>取引履歴</value>
   </data>
   <data name="PromotionReport" xml:space="preserve">
-    <value />
+    <value>プロモーション報告</value>
   </data>
   <data name="PromotionType" xml:space="preserve">
-    <value />
+    <value>プロモーションタイプ</value>
   </data>
   <data name="TotalRequest" xml:space="preserve">
-    <value />
+    <value>総リクエスト数</value>
   </data>
   <data name="TotalRequestApproved" xml:space="preserve">
-    <value />
+    <value>承認された総リクエスト数</value>
   </data>
   <data name="TotalBonusGiven" xml:space="preserve">
-    <value />
+    <value>支給された総ボーナス</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value />
+    <value>ステータス</value>
   </data>
   <data name="PromotionTitle" xml:space="preserve">
-    <value />
+    <value>プロモーションタイトル</value>
   </data>
   <data name="TotalRequestRejected" xml:space="preserve">
-    <value />
+    <value>拒否された総リクエスト数</value>
   </data>
   <data name="BonusAmount" xml:space="preserve">
-    <value />
+    <value>ボーナス金額</value>
   </data>
   <data name="LastUpdated" xml:space="preserve">
-    <value />
+    <value>最終更新</value>
   </data>
   <data name="Approved" xml:space="preserve">
-    <value />
+    <value>承認済み</value>
   </data>
   <data name="AccountType" xml:space="preserve">
-    <value />
+    <value>アカウントタイプ</value>
   </data>
   <data name="MemberListNoteEditMultipleNotAvailable" xml:space="preserve">
-    <value />
+    <value>アカウントタイプが「すべて」の場合、複数の顧客の編集は利用できません。</value>
   </data>
   <data name="ProviderRejectErrorMessage" xml:space="preserve">
     <value>出金リクエストはプロバイダーによって拒否されました。</value>
@@ -250,16 +250,25 @@
     <value>現在、決済プロバイダーを利用できません。しばらくしてから再度お試しください。</value>
   </data>
   <data name="PromotionType_1" xml:space="preserve">
-    <value>Turnover Rebate</value>
+    <value>ターンオーバーリベート</value>
   </data>
   <data name="UpdatedBy" xml:space="preserve">
-    <value />
+    <value>更新者</value>
+  </data>
+  <data name="PromotionType_RebateOnTurnover" xml:space="preserve">
+    <value>ターンオーバーリベート</value>
   </data>
   <data name="Period" xml:space="preserve">
-    <value />
+    <value>期間</value>
+  </data>
+  <data name="PendingPromotion" xml:space="preserve">
+    <value>保留中のプロモーション</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>タイトル</value>
   </data>
   <data name="RebatePeriod" xml:space="preserve">
-    <value />
+    <value>リベート期間</value>
   </data>
   <data name="FreeTrial" xml:space="preserve">
     <value>14日間の&lt;b&gt;無料&lt;/b&gt;トライアル</value>
@@ -285,19 +294,34 @@
   <data name="RefNo" xml:space="preserve">
     <value>受付番号</value>
   </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>日付範囲</value>
+  </data>
   <data name="ManualBonus" xml:space="preserve">
-    <value>Manual Bonus</value>
+    <value>手動ボーナス</value>
   </data>
   <data name="CreatedBy" xml:space="preserve">
     <value>作成者</value>
   </data>
   <data name="CreatedTime" xml:space="preserve">
-    <value>Created Time</value>
+    <value>作成時間</value>
   </data>
   <data name="Remark" xml:space="preserve">
-    <value>Remark</value>
+    <value>備考</value>
   </data>
-  <data name="Title" xml:space="preserve">
-    <value>Title</value>
-  </data>
-</root>
+            <data name="AgentCashBalanceIsInsufficient" xml:space="preserve">
+            <value>エージェントの現金残高が不足しています。</value>
+          </data>
+          <data name="TheAmountMustBeBetween0And1AsPerProviderLimits" xml:space="preserve">
+            <value>金額はプロバイダーの制限に従って{0}と{1}の間である必要があります</value>
+          </data>
+          <data name="SuperchargeYourCashFlow" xml:space="preserve">
+            <value>キャッシュフローを強化しますか？</value>
+          </data>
+          <data name="PromotionType_RebateOnTurnover" xml:space="preserve">
+            <value>ターンオーバーに対するリベート</value>
+          </data>
+          <data name="DateRange" xml:space="preserve">
+            <value>日付範囲</value>
+          </data>
+        </root>

@@ -47,11 +47,11 @@ public static class ErrorCodeHandler
             _ => sqlException
         };
 
-    public static string MappingRevertTransactionErrCode(int errCode)
+    public static string MappingRevertTransactionErrCode(int errCode, int transactionTypeId)
         => errCode switch
         {
             405 => CashServicesResx.InvalidParameters,
-            406 => CashServicesResx.MemberCashBalanceIsInsufficient,
+            406 => transactionTypeId == 1 ? CashServicesResx.AgentCashBalanceIsInsufficient : CashServicesResx.MemberCashBalanceIsInsufficient,
             407 => CashServicesResx.TheAmountExceedsTheAllowedMinimumOrMaximumValue,
             409 => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain,
             _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain

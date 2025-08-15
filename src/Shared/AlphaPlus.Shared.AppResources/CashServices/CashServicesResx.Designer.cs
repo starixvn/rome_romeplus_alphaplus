@@ -88,6 +88,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent’s cash balance is insufficient..
+        /// </summary>
+        public static string AgentCashBalanceIsInsufficient {
+            get {
+                return ResourceManager.GetString("AgentCashBalanceIsInsufficient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred while processing withdrawal request..
         /// </summary>
         public static string AnErrorOccurredWhileProcessingWithdrawalRequest {
