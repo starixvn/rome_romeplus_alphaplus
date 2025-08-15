@@ -13,7 +13,7 @@ namespace AlphaPlus.Main.Site.Features.Dashboard.Banner
 
         public async Task<bool> LogClick(string bannerName, byte roleId)
         {
-            await dynamicRepository.ExecuteAsync(new BannerClickLogCommand(bannerName, roleId));
+            await dynamicRepository.ExecuteAsync(new BannerClickLogCommand($"DashboardBanner/{bannerName}", roleId));
             return true;
         }
     }
