@@ -26,18 +26,10 @@
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('transID')" /></td>
             <td class="colW2"><xsl:value-of select="@transid" /></td>
-            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('AdjustCreditAmt')" /></td>
-            <td class="colW2"><xsl:value-of select="@adjustcreditamt" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Status')" /></td>
             <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingTransactionStatus(@statusid)" /></td>
-          </tr>
-          <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('IP')" /></td>
             <td class="colW2"><xsl:value-of select="xslLogFormat:FormatIP(@ip)" /></td>
-            <td class="colW1"></td>
-            <td class="colW2"></td>
-            <td class="colW1"></td>
-            <td class="colW2"></td>
           </tr>
         </table>
       </xsl:when>

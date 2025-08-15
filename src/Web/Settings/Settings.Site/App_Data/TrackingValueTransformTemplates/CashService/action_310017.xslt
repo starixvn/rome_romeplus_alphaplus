@@ -12,8 +12,6 @@
             <td class="colW2"><xsl:value-of select="@transid" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Amount')" /></td>
             <td class="colW2"><xsl:value-of select="@amount" /></td>
-            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('AdjustCreditAmt')" /></td>
-            <td class="colW2"><xsl:value-of select="@adjustcreditamt" /></td>
           </tr>
         </table>
       </xsl:when>

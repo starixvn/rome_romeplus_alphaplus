@@ -12,24 +12,24 @@
             <td class="colW2"><xsl:value-of select="@transferrefno" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('TransID')" /></td>
             <td class="colW2"><xsl:value-of select="@transid" /></td>
-            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('AdjustCreditAmt')" /></td>
-            <td class="colW2"><xsl:value-of select="@adjustcreditamt" /></td>
-          </tr>
-          <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('OperatedBy')" /></td>
             <td class="colW2"><xsl:value-of select="@operatedby" /></td>
+          </tr>
+          <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Amount')" /></td>
             <td class="colW2"><xsl:value-of select="@amount" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Status')" /></td>
             <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingTransactionStatus(@statusid)" /></td>
-          </tr>
-          <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Creator')" /></td>
             <td class="colW2"><xsl:value-of select="@creator" /></td>
+          </tr>
+          <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SubAccName')" /></td>
             <td class="colW2"><xsl:value-of select="@subaccname" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('IP')" /></td>
             <td class="colW2"><xsl:value-of select="xslLogFormat:FormatIP(@ip)" /></td>
+            <td class="colW1"></td>
+            <td class="colW2"></td>
           </tr>
         </table>
       </xsl:when>
