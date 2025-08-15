@@ -626,7 +626,9 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             var result = await _controller.SetDailyWithdrawalCount(request, CancellationToken.None);
 
             // Assert
-            result.Should().BeOfType<UnauthorizedResult>();
+            result.Should().BeOfType<JsonResult>();
+            var jsonResult = result as JsonResult;
+            AssertJsonResultEquals(jsonResult, new ResultModel { Code = 401 });
         }
 
         [Fact]
@@ -812,7 +814,9 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             var result = await _controller.UpdatePaymentMethod(request, CancellationToken.None);
 
             // Assert
-            result.Should().BeOfType<UnauthorizedResult>();
+            result.Should().BeOfType<JsonResult>();
+            var jsonResult = result as JsonResult;
+            AssertJsonResultEquals(jsonResult, new ResultModel { Code = 401 });
         }
 
         [Fact]
