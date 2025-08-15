@@ -566,16 +566,12 @@ public class IPInfoServiceTests
             IPV4TopCountriesCacheInMinutes = 60,
             IPV4CacheInMinutes = 30,
             IPV6CacheInMinutes = 10,
-            CommonIPInfoRedisConfiguration = "localhost:6379",
-            IndividualIPInfoRedisConfiguration = "localhost:6379"
+            CommonIPInfoRedisConfiguration = "invalid-host:9999",
+            IndividualIPInfoRedisConfiguration = "invalid-host:9999"
         };
 
         var serviceWithRedis = new IPInfoService(configWithRedis, _mockDataAccess.Object);
         var ipList = new List<string> { "192.168.1.1" };
-        var expectedResult = new Dictionary<string, string>
-        {
-            { "192.168.1.1", "United States" }
-        };
 
         _mockDataAccess.Setup(x => x.GetIPV4InfoByTopCountries(It.IsAny<string>()))
             .ReturnsAsync(new List<IPV4Information>
@@ -584,8 +580,8 @@ public class IPInfoServiceTests
             });
 
         // Act & Assert
-        // This test is skipped because it requires a real Redis connection
-        // In a real scenario, you would use a test Redis instance or mock the Redis connection
+        // This test verifies that the service can handle Redis configuration
+        // The invalid connection string should cause a connection exception
         await Assert.ThrowsAsync<StackExchange.Redis.RedisConnectionException>(() => serviceWithRedis.GetCountries(ipList));
     }
 
