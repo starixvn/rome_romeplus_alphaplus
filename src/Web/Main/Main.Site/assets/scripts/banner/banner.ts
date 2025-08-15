@@ -75,9 +75,12 @@ class Banner {
         }
 
         const video =
-            "<div class='wrapper-video'><div class='video-container'><div class='icon-close' id='closeVideo'></div><video controls autoplay><source src='" +
-            url +
-            "' type='video/mp4'></video></div></div>";
+            `<div class='wrapper-video'>
+                <div class='video-container'>
+                    <div class='icon-close' id='closeVideo'></div>
+                    <iframe class="content-video" src="${url}" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>`;
         document.body.style.overflow = 'hidden';
         document.body.appendChild(this.$(video)[0]);
 
