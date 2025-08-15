@@ -2,6 +2,14 @@
     "Banners": {
         "i1": [
             {
+                "Name": "Viva",
+                "ImageSource_en-US": "~/assets/images/DashboardBanner/i7/viva/desktop/en-US.png",
+                "ImageMobileSource_en-US": "~/assets/images/DashboardBanner/i7/viva/mobile/en-US.jpg",
+                "Url": "https://youtu.be/AylDzbdSmC8?si=uZCQm7WPEC8nfQAD",
+                "IsVideo": true,
+                "LogClick": true
+            },
+            {
                 "Name": "SoccerMarbleSpinner",
                 "ImageSource_en-US": "~/assets/images/DashboardBanner/i1/soccer_marble_spinner/desktop/en-US.jpg",
                 "ImageMobileSource_en-US": "~/assets/images/DashboardBanner/i1/soccer_marble_spinner/mobile/en-US.jpg",
@@ -29,7 +37,7 @@
                 "Name": "Viva",
                 "ImageSource_en-US": "~/assets/images/DashboardBanner/i7/viva/desktop/en-US.png",
                 "ImageMobileSource_en-US": "~/assets/images/DashboardBanner/i7/viva/mobile/en-US.jpg",
-                "Url": "~/assets/videos/TVC1-5.mp4",
+                "Url": "https://youtu.be/AylDzbdSmC8?si=uZCQm7WPEC8nfQAD",
                 "IsVideo": true,
                 "LogClick": true
             },

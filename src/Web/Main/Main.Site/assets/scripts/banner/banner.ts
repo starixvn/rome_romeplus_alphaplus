@@ -74,15 +74,6 @@ class Banner {
             return;
         }
 
-        // Check if URL has valid video extension
-        const validExtensions = ['.mp4', '.webm', '.ogg', '.avi', '.mov'];
-        const hasValidExtension = validExtensions.some((ext) => url.toLowerCase().indexOf(ext) !== -1);
-
-        if (!hasValidExtension) {
-            console.info('Video URL does not have a valid video extension:', url);
-            return;
-        }
-
         const video =
             "<div class='wrapper-video'><div class='video-container'><div class='icon-close' id='closeVideo'></div><video controls autoplay><source src='" +
             url +
