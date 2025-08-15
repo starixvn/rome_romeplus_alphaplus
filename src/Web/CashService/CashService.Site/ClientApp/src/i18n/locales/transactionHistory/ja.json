@@ -42,7 +42,7 @@
     "username": "ユーザー名",
     "nickname": "ニックネーム",
     "fullName": "氏名",
-    "betCredit": "ベットクレジット",
+    "betCredit": "メンバー現金残高",
     "from": "から",
     "to": "まで",
     "dateAndTime": "作成日時",

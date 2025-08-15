@@ -46,7 +46,7 @@
     "firstName": "이름",
     "lastName": "성",
     "name": "성명",
-    "betCredit": "베팅 크레딧",
+    "betCredit": "회원 현금 잔액",
     "from": "에서",
     "to": "까지",
     "depositAmount": "입금액",

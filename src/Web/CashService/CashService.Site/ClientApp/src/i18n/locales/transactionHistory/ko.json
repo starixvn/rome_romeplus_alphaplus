@@ -42,7 +42,7 @@
     "username": "사용자명",
     "nickname": "닉네임",
     "fullName": "성명",
-    "betCredit": "베팅 크레딧",
+    "betCredit": "회원 현금 잔액",
     "from": "에서",
     "to": "까지",
     "dateAndTime": "생성일시",
