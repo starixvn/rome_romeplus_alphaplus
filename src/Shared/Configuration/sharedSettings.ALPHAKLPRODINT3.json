@@ -151,8 +151,8 @@
             },
             "SystemId": 2,
             "AssetAppPath": "/stcdn",
-            "JsVersion": "20250805001",
-            "AssetsApp:StaticResourcesVersion": "20250805001",
+            "JsVersion": "20250819001",
+            "AssetsApp:StaticResourcesVersion": "20250819001",
             "LocalTest": false,
             "SettingStatus": 0,
             "ProductOfferProductDetail": [
