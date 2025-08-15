@@ -6,6 +6,8 @@
 
         string GetTrackingTransactionTypeName(string transactionType);
 
+        string GetTrackingTransactionName(string transactionType);
+
         string GetTrackingPaymentMethodName(string paymentMethod);
 
         string GetTrackingPaymentMethodStatusName(string paymentMethodStatus);

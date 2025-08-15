@@ -25,7 +25,7 @@
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('PaymentMethod')" /></td>
               <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingPaymentMethodName(@paymentmethodid)" /></td>
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('TransactionType')" /></td>
-              <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingTransactionTypeName(@transactiontype)" /></td>
+              <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingTransactionName(@transactiontype)" /></td>
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Status')" /></td>
               <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingStatus(@paymentmethodenable)" /></td>
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Minimum')" /></td>

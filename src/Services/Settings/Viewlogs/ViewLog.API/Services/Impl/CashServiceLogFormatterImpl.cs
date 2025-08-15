@@ -16,6 +16,11 @@
             return ReplaceOldNewValue(transactionType, GetTransactionTypeName);
         }
 
+        public string GetTrackingTransactionName(string transactionType)
+        {
+            return ReplaceOldNewValue(transactionType, GetTransactionName);
+        }
+
         public string GetTrackingPaymentMethodName(string paymentMethod)
         {
             return ReplaceOldNewValue(paymentMethod, GetPaymentMethodName);
@@ -62,6 +67,11 @@
         }
 
         private string GetTransactionTypeName(string type)
+        {
+            return GetLogResource("TransactionType_" + type);
+        }
+
+        private string GetTransactionName(string type)
         {
             return GetLogResource("Transaction_" + type);
         }
