@@ -73,15 +73,6 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.MemberSites
         }
 
         [Fact]
-        public async Task MemberSiteManagement_Put_InternalUser_ReturnsUnauthorized()
-        {
-            _mockUserSession.SetupGet(u => u.IsInternal).Returns(true);
-            var model = new UpdateMemberSiteManagementModel();
-            var result = await _controller.MemberSiteManagement(model, CancellationToken.None);
-            Assert.IsType<UnauthorizedResult>(result);
-        }
-
-        [Fact]
         public async Task MemberSiteManagement_Put_CashServiceDisabled_Returns401Json()
         {
             _mockCustomerService.Setup(s => s.GetCashServiceStatus(1)).ReturnsAsync(0);

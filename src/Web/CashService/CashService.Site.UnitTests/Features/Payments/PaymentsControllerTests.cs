@@ -320,7 +320,9 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             var result = await _controller.AddPaymentMethod(request, CancellationToken.None);
 
             // Assert
-            result.Should().BeOfType<UnauthorizedResult>();
+            result.Should().BeOfType<JsonResult>();
+            var jsonResult = result as JsonResult;
+            AssertJsonResultEquals(jsonResult, new ResultModel { Code = 401 });
         }
 
         [Fact]

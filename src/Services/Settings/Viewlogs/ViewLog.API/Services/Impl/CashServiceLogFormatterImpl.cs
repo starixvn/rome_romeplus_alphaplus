@@ -2,7 +2,7 @@
 {
     public class CashServiceLogFormatterImpl : BaseLogFormatterImpl, CashServiceLogFormatter
     {
-        public CashServiceLogFormatterImpl(RemotingRefWrapper remotingRef, ViewLogIPService ipService) : base(remotingRef, ipService)  
+        public CashServiceLogFormatterImpl(RemotingRefWrapper remotingRef, ViewLogIPService ipService) : base(remotingRef, ipService)
         {
         }
 
@@ -15,7 +15,7 @@
         {
             return ReplaceOldNewValue(transactionType, GetTransactionTypeName);
         }
- 
+
         public string GetTrackingPaymentMethodName(string paymentMethod)
         {
             return ReplaceOldNewValue(paymentMethod, GetPaymentMethodName);
@@ -68,9 +68,9 @@
 
         private string GetPaymentMethodName(string paymentMethod)
         {
-            return remotingRef.GetPaymentMethodName(int.Parse(paymentMethod));
+            return string.IsNullOrWhiteSpace(paymentMethod) ? remotingRef.GetPaymentMethodName(int.Parse(paymentMethod)) : string.Empty;
         }
-    
+
         private string GetPaymentMethodStatusName(string paymentMethodStatus)
         {
             return GetLogResource("PaymentMethodStatus_" + paymentMethodStatus);
