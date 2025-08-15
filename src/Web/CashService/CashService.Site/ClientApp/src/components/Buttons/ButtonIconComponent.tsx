@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { IconBack, IconClose, IconCopy, IconDelete, IconExcel, IconEye, IconPen } from '../Icons';
+import { IconBack, IconClose, IconCopy, IconDelete, IconExcel, IconEye, IconEyeOff, IconPen } from '../Icons';
 import { useTranslation } from 'react-i18next';
 
 interface ButtonIconStyles {
@@ -12,7 +12,7 @@ export const ButtonIconComponent: React.FC<{
     onClick: () => void;
     disabled?: boolean;
     type?: 'button' | 'submit' | 'reset';
-    style?: 'Close' | 'Edit' | 'Delete' | 'Excel' | 'Copy' | 'Back' | 'Eye';
+    style?: 'Close' | 'Edit' | 'Delete' | 'Excel' | 'Copy' | 'Back' | 'Eye' | 'EyeOff';
     icon?: React.ReactNode;
     className?: string;
     
@@ -51,11 +51,16 @@ export const ButtonIconComponent: React.FC<{
               iconComponent: <IconBack className='w-[18px] h-[18px] fill-[var(--button-back-text)] mr-[8px] group-hover:fill-[var(--button-back-text-hover)]' />,
               text: tGlobal('back')
             };
-          case 'Eye': 
-            return {
-              container: 'hover:bg-[var(--button-icon-hover)] mx-[4px] py-[4px] px-[4px] rounded-[3px] ',
-              iconComponent: <IconEye />
-            };
+            case 'Eye': 
+              return {
+                container: 'hover:bg-[var(--button-icon-hover)] mx-[4px] py-[4px] px-[4px] rounded-[3px] ',
+                iconComponent: <IconEye />
+              };
+            case 'EyeOff': 
+              return {
+                container: 'hover:bg-[var(--button-icon-hover)] mx-[4px] py-[4px] px-[4px] rounded-[3px] ',
+                iconComponent: <IconEyeOff />
+              };
           default:
             return {
               container: 'mx-[4px] py-[4px] px-[4px] rounded-[3px] ',            

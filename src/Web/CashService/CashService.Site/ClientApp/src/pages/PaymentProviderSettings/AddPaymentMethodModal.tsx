@@ -313,7 +313,10 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
                     name="password "
                     autoComplete="new-password "
                   />
-                  <ButtonIconComponent className='absolute right-[-3px] top-[0] hover:bg-transparent!' style='Eye' onClick={() => { setIsShowAppSecret(!isShowAppSecret); }} />                 
+                  {
+                    isShowAppSecret ? <ButtonIconComponent className='absolute right-[-3px] top-[0] hover:bg-transparent!' style='EyeOff' onClick={() => { setIsShowAppSecret(!isShowAppSecret); }} />
+                    : <ButtonIconComponent className='absolute right-[-3px] top-[0] hover:bg-transparent!' style='Eye' onClick={() => { setIsShowAppSecret(!isShowAppSecret); }} />
+                  }                  
                   </div>
                   <MessageComponent message={fieldErrors.appSecret} type='validate' />
                 </div>
