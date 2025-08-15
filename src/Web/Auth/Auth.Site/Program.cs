@@ -24,6 +24,7 @@ configuration
     .AddJsonFile(sharedSettingsPath, optional: true, reloadOnChange: false)
     .AddJsonFile(SharedSettings, optional: true, reloadOnChange: false)
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
+    .AddJsonFile("Domains/domainmappings.json", optional: true, reloadOnChange: false)
     .AddCommandLine(args);
 
 builder.Services
