@@ -203,5 +203,204 @@ namespace AlphaPlus.Main.Site.UnitTests.Features.Dashboard.Banner
                 string.Empty),
                 Times.Once);
         }
+
+        [Fact]
+        public async Task LogClick_WithMaximumRoleId_ShouldExecuteCommandWithMaximumRoleId()
+        {
+            // Arrange
+            const string bannerName = "TestBanner";
+            const byte roleId = byte.MaxValue;
+
+            _dynamicRepositoryMock
+                .Setup(x => x.ExecuteAsync(It.IsAny<BannerClickLogCommand>(), string.Empty))
+                .ReturnsAsync(1);
+
+            // Act
+            var result = await _bannerService.LogClick(bannerName, roleId);
+
+            // Assert
+            result.Should().BeTrue();
+            _dynamicRepositoryMock.Verify(x => x.ExecuteAsync(
+                It.Is<BannerClickLogCommand>(cmd =>
+                    cmd.PageUrl == $"DashboardBanner/{bannerName}" &&
+                    cmd.Role == roleId),
+                string.Empty),
+                Times.Once);
+        }
+
+        [Fact]
+        public async Task LogClick_WithWhitespaceBannerName_ShouldExecuteCommandWithWhitespaceBannerName()
+        {
+            // Arrange
+            const string bannerName = "   ";
+            const byte roleId = 1;
+
+            _dynamicRepositoryMock
+                .Setup(x => x.ExecuteAsync(It.IsAny<BannerClickLogCommand>(), string.Empty))
+                .ReturnsAsync(1);
+
+            // Act
+            var result = await _bannerService.LogClick(bannerName, roleId);
+
+            // Assert
+            result.Should().BeTrue();
+            _dynamicRepositoryMock.Verify(x => x.ExecuteAsync(
+                It.Is<BannerClickLogCommand>(cmd =>
+                    cmd.PageUrl == "DashboardBanner/   " &&
+                    cmd.Role == roleId),
+                string.Empty),
+                Times.Once);
+        }
+
+        [Fact]
+        public async Task LogClick_WithLongBannerName_ShouldExecuteCommandWithLongBannerName()
+        {
+            // Arrange
+            const string bannerName = "VeryLongBannerNameThatExceedsNormalLength";
+            const byte roleId = 4;
+
+            _dynamicRepositoryMock
+                .Setup(x => x.ExecuteAsync(It.IsAny<BannerClickLogCommand>(), string.Empty))
+                .ReturnsAsync(1);
+
+            // Act
+            var result = await _bannerService.LogClick(bannerName, roleId);
+
+            // Assert
+            result.Should().BeTrue();
+            _dynamicRepositoryMock.Verify(x => x.ExecuteAsync(
+                It.Is<BannerClickLogCommand>(cmd =>
+                    cmd.PageUrl == $"DashboardBanner/{bannerName}" &&
+                    cmd.Role == roleId),
+                string.Empty),
+                Times.Once);
+        }
+
+        [Fact]
+        public async Task LogClick_WithSpecialCharactersInBannerName_ShouldExecuteCommandWithSpecialCharacters()
+        {
+            // Arrange
+            const string bannerName = "Test-Banner_123";
+            const byte roleId = 4;
+
+            _dynamicRepositoryMock
+                .Setup(x => x.ExecuteAsync(It.IsAny<BannerClickLogCommand>(), string.Empty))
+                .ReturnsAsync(1);
+
+            // Act
+            var result = await _bannerService.LogClick(bannerName, roleId);
+
+            // Assert
+            result.Should().BeTrue();
+            _dynamicRepositoryMock.Verify(x => x.ExecuteAsync(
+                It.Is<BannerClickLogCommand>(cmd =>
+                    cmd.PageUrl == $"DashboardBanner/{bannerName}" &&
+                    cmd.Role == roleId),
+                string.Empty),
+                Times.Once);
+        }
+
+        [Fact]
+        public async Task LogClick_WhenRepositoryReturnsZero_ShouldStillReturnTrue()
+        {
+            // Arrange
+            const string bannerName = "TestBanner";
+            const byte roleId = 4;
+
+            _dynamicRepositoryMock
+                .Setup(x => x.ExecuteAsync(It.IsAny<BannerClickLogCommand>(), string.Empty))
+                .ReturnsAsync(0);
+
+            // Act
+            var result = await _bannerService.LogClick(bannerName, roleId);
+
+            // Assert
+            result.Should().BeTrue();
+            _dynamicRepositoryMock.Verify(x => x.ExecuteAsync(
+                It.Is<BannerClickLogCommand>(cmd =>
+                    cmd.PageUrl == $"DashboardBanner/{bannerName}" &&
+                    cmd.Role == roleId),
+                string.Empty),
+                Times.Once);
+        }
+
+        [Fact]
+        public async Task LogClick_WhenRepositoryReturnsNegativeValue_ShouldStillReturnTrue()
+        {
+            // Arrange
+            const string bannerName = "TestBanner";
+            const byte roleId = 4;
+
+            _dynamicRepositoryMock
+                .Setup(x => x.ExecuteAsync(It.IsAny<BannerClickLogCommand>(), string.Empty))
+                .ReturnsAsync(-1);
+
+            // Act
+            var result = await _bannerService.LogClick(bannerName, roleId);
+
+            // Assert
+            result.Should().BeTrue();
+            _dynamicRepositoryMock.Verify(x => x.ExecuteAsync(
+                It.Is<BannerClickLogCommand>(cmd =>
+                    cmd.PageUrl == $"DashboardBanner/{bannerName}" &&
+                    cmd.Role == roleId),
+                string.Empty),
+                Times.Once);
+        }
+
+        [Fact]
+        public async Task LogClick_WithMultipleCalls_ShouldExecuteCommandCorrectlyForEach()
+        {
+            // Arrange
+            var calls = new[]
+            {
+                new { BannerName = "Banner1", RoleId = (byte)1 },
+                new { BannerName = "Banner2", RoleId = (byte)2 },
+                new { BannerName = "Banner3", RoleId = (byte)3 }
+            };
+
+            _dynamicRepositoryMock
+                .Setup(x => x.ExecuteAsync(It.IsAny<BannerClickLogCommand>(), string.Empty))
+                .ReturnsAsync(1);
+
+            // Act
+            foreach (var call in calls)
+            {
+                await _bannerService.LogClick(call.BannerName, call.RoleId);
+            }
+
+            // Assert
+            foreach (var call in calls)
+            {
+                _dynamicRepositoryMock.Verify(x => x.ExecuteAsync(
+                    It.Is<BannerClickLogCommand>(cmd =>
+                        cmd.PageUrl == $"DashboardBanner/{call.BannerName}" &&
+                        cmd.Role == call.RoleId),
+                    string.Empty),
+                    Times.Once);
+            }
+        }
+
+        [Fact]
+        public async Task LogClick_ShouldAlwaysReturnTrue_RegardlessOfRepositoryResult()
+        {
+            // Arrange
+            const string bannerName = "TestBanner";
+            const byte roleId = 4;
+            var repositoryResults = new[] { -5, 0, 1, 100, 999 };
+
+            foreach (var result in repositoryResults)
+            {
+                _dynamicRepositoryMock
+                    .Setup(x => x.ExecuteAsync(It.IsAny<BannerClickLogCommand>(), string.Empty))
+                    .ReturnsAsync(result);
+
+                // Act
+                var serviceResult = await _bannerService.LogClick(bannerName, roleId);
+
+                // Assert
+                serviceResult.Should().BeTrue();
+            }
+        }
     }
 }

@@ -284,6 +284,256 @@ namespace AlphaPlus.Main.Site.UnitTests.Features.Dashboard
         }
 
         [Fact]
+        public async Task BannerClickLog_WithEmptyBannerName_ShouldSendRequestWithEmptyBannerName()
+        {
+            // Arrange
+            const string bannerName = "";
+            const bool expectedResult = true;
+            const byte expectedRoleId = 2;
+
+            _userSessionMock.Setup(x => x.RoleId).Returns(expectedRoleId);
+            _mediatorMock.Setup(x => x.Send(
+                It.IsAny<BannerClickLogRequest>(),
+                It.IsAny<CancellationToken>()))
+                .ReturnsAsync(expectedResult);
+
+            // Act
+            var result = await _controller.BannerClickLog(bannerName);
+
+            // Assert
+            var jsonResult = Assert.IsType<JsonResult>(result);
+            Assert.Equal(expectedResult, jsonResult.Value);
+
+            _mediatorMock.Verify(x => x.Send(
+                It.Is<BannerClickLogRequest>(req =>
+                    req.BannerName == bannerName &&
+                    req.RoleId == expectedRoleId),
+                It.IsAny<CancellationToken>()), Times.Once);
+        }
+
+        [Fact]
+        public async Task BannerClickLog_WithNullBannerName_ShouldSendRequestWithNullBannerName()
+        {
+            // Arrange
+            const string bannerName = null;
+            const bool expectedResult = false;
+            const byte expectedRoleId = 3;
+
+            _userSessionMock.Setup(x => x.RoleId).Returns(expectedRoleId);
+            _mediatorMock.Setup(x => x.Send(
+                It.IsAny<BannerClickLogRequest>(),
+                It.IsAny<CancellationToken>()))
+                .ReturnsAsync(expectedResult);
+
+            // Act
+            var result = await _controller.BannerClickLog(bannerName);
+
+            // Assert
+            var jsonResult = Assert.IsType<JsonResult>(result);
+            Assert.Equal(expectedResult, jsonResult.Value);
+
+            _mediatorMock.Verify(x => x.Send(
+                It.Is<BannerClickLogRequest>(req =>
+                    req.BannerName == bannerName &&
+                    req.RoleId == expectedRoleId),
+                It.IsAny<CancellationToken>()), Times.Once);
+        }
+
+        [Fact]
+        public async Task BannerClickLog_WithWhitespaceBannerName_ShouldSendRequestWithWhitespaceBannerName()
+        {
+            // Arrange
+            const string bannerName = "   ";
+            const bool expectedResult = true;
+            const byte expectedRoleId = 1;
+
+            _userSessionMock.Setup(x => x.RoleId).Returns(expectedRoleId);
+            _mediatorMock.Setup(x => x.Send(
+                It.IsAny<BannerClickLogRequest>(),
+                It.IsAny<CancellationToken>()))
+                .ReturnsAsync(expectedResult);
+
+            // Act
+            var result = await _controller.BannerClickLog(bannerName);
+
+            // Assert
+            var jsonResult = Assert.IsType<JsonResult>(result);
+            Assert.Equal(expectedResult, jsonResult.Value);
+
+            _mediatorMock.Verify(x => x.Send(
+                It.Is<BannerClickLogRequest>(req =>
+                    req.BannerName == bannerName &&
+                    req.RoleId == expectedRoleId),
+                It.IsAny<CancellationToken>()), Times.Once);
+        }
+
+        [Fact]
+        public async Task BannerClickLog_WithLongBannerName_ShouldSendRequestWithLongBannerName()
+        {
+            // Arrange
+            const string bannerName = "VeryLongBannerNameThatExceedsNormalLength";
+            const bool expectedResult = true;
+            const byte expectedRoleId = 4;
+
+            _userSessionMock.Setup(x => x.RoleId).Returns(expectedRoleId);
+            _mediatorMock.Setup(x => x.Send(
+                It.IsAny<BannerClickLogRequest>(),
+                It.IsAny<CancellationToken>()))
+                .ReturnsAsync(expectedResult);
+
+            // Act
+            var result = await _controller.BannerClickLog(bannerName);
+
+            // Assert
+            var jsonResult = Assert.IsType<JsonResult>(result);
+            Assert.Equal(expectedResult, jsonResult.Value);
+
+            _mediatorMock.Verify(x => x.Send(
+                It.Is<BannerClickLogRequest>(req =>
+                    req.BannerName == bannerName &&
+                    req.RoleId == expectedRoleId),
+                It.IsAny<CancellationToken>()), Times.Once);
+        }
+
+        [Fact]
+        public async Task BannerClickLog_WithSpecialCharactersInBannerName_ShouldSendRequestWithSpecialCharacters()
+        {
+            // Arrange
+            const string bannerName = "Test-Banner_123";
+            const bool expectedResult = true;
+            const byte expectedRoleId = 4;
+
+            _userSessionMock.Setup(x => x.RoleId).Returns(expectedRoleId);
+            _mediatorMock.Setup(x => x.Send(
+                It.IsAny<BannerClickLogRequest>(),
+                It.IsAny<CancellationToken>()))
+                .ReturnsAsync(expectedResult);
+
+            // Act
+            var result = await _controller.BannerClickLog(bannerName);
+
+            // Assert
+            var jsonResult = Assert.IsType<JsonResult>(result);
+            Assert.Equal(expectedResult, jsonResult.Value);
+
+            _mediatorMock.Verify(x => x.Send(
+                It.Is<BannerClickLogRequest>(req =>
+                    req.BannerName == bannerName &&
+                    req.RoleId == expectedRoleId),
+                It.IsAny<CancellationToken>()), Times.Once);
+        }
+
+        [Fact]
+        public async Task BannerClickLog_WithZeroRoleId_ShouldSendRequestWithZeroRoleId()
+        {
+            // Arrange
+            const string bannerName = "TestBanner";
+            const bool expectedResult = true;
+            const byte expectedRoleId = 0;
+
+            _userSessionMock.Setup(x => x.RoleId).Returns(expectedRoleId);
+            _mediatorMock.Setup(x => x.Send(
+                It.IsAny<BannerClickLogRequest>(),
+                It.IsAny<CancellationToken>()))
+                .ReturnsAsync(expectedResult);
+
+            // Act
+            var result = await _controller.BannerClickLog(bannerName);
+
+            // Assert
+            var jsonResult = Assert.IsType<JsonResult>(result);
+            Assert.Equal(expectedResult, jsonResult.Value);
+
+            _mediatorMock.Verify(x => x.Send(
+                It.Is<BannerClickLogRequest>(req =>
+                    req.BannerName == bannerName &&
+                    req.RoleId == expectedRoleId),
+                It.IsAny<CancellationToken>()), Times.Once);
+        }
+
+        [Fact]
+        public async Task BannerClickLog_WithMaximumRoleId_ShouldSendRequestWithMaximumRoleId()
+        {
+            // Arrange
+            const string bannerName = "TestBanner";
+            const bool expectedResult = true;
+            const byte expectedRoleId = byte.MaxValue;
+
+            _userSessionMock.Setup(x => x.RoleId).Returns(expectedRoleId);
+            _mediatorMock.Setup(x => x.Send(
+                It.IsAny<BannerClickLogRequest>(),
+                It.IsAny<CancellationToken>()))
+                .ReturnsAsync(expectedResult);
+
+            // Act
+            var result = await _controller.BannerClickLog(bannerName);
+
+            // Assert
+            var jsonResult = Assert.IsType<JsonResult>(result);
+            Assert.Equal(expectedResult, jsonResult.Value);
+
+            _mediatorMock.Verify(x => x.Send(
+                It.Is<BannerClickLogRequest>(req =>
+                    req.BannerName == bannerName &&
+                    req.RoleId == expectedRoleId),
+                It.IsAny<CancellationToken>()), Times.Once);
+        }
+
+        [Fact]
+        public async Task BannerClickLog_WhenMediatorThrowsException_ShouldPropagateException()
+        {
+            // Arrange
+            const string bannerName = "TestBanner";
+            const byte expectedRoleId = 4;
+            var expectedException = new InvalidOperationException("Mediator error");
+
+            _userSessionMock.Setup(x => x.RoleId).Returns(expectedRoleId);
+            _mediatorMock.Setup(x => x.Send(
+                It.IsAny<BannerClickLogRequest>(),
+                It.IsAny<CancellationToken>()))
+                .ThrowsAsync(expectedException);
+
+            // Act & Assert
+            var exception = await Assert.ThrowsAsync<InvalidOperationException>(
+                () => _controller.BannerClickLog(bannerName));
+
+            Assert.Equal(expectedException, exception);
+            _mediatorMock.Verify(x => x.Send(
+                It.Is<BannerClickLogRequest>(req =>
+                    req.BannerName == bannerName &&
+                    req.RoleId == expectedRoleId),
+                It.IsAny<CancellationToken>()), Times.Once);
+        }
+
+        [Fact]
+        public async Task BannerClickLog_WhenServiceReturnsFalse_ShouldReturnFalseInJson()
+        {
+            // Arrange
+            const string bannerName = "TestBanner";
+            const bool expectedResult = false;
+            const byte expectedRoleId = 4;
+
+            _userSessionMock.Setup(x => x.RoleId).Returns(expectedRoleId);
+            _mediatorMock.Setup(x => x.Send(
+                It.IsAny<BannerClickLogRequest>(),
+                It.IsAny<CancellationToken>()))
+                .ReturnsAsync(expectedResult);
+
+            // Act
+            var result = await _controller.BannerClickLog(bannerName);
+
+            // Assert
+            var jsonResult = Assert.IsType<JsonResult>(result);
+            Assert.Equal(expectedResult, jsonResult.Value);
+
+            _mediatorMock.Verify(x => x.Send(
+                It.Is<BannerClickLogRequest>(req =>
+                    req.BannerName == bannerName &&
+                    req.RoleId == expectedRoleId),
+                It.IsAny<CancellationToken>()), Times.Once);
+        }
+
+        [Fact]
         public void GetServerTime_WhenOnUserIdIsNegativeOne_ShouldReturnCurrentTimeJson()
         {
             // Arrange

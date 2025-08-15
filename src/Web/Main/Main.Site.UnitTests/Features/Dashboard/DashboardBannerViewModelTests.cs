@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Main.Site.Features.Dashboard;
 using AlphaPlus.Main.Site.Features.Dashboard.Banner;
@@ -68,6 +69,79 @@ namespace AlphaPlus.Main.Site.UnitTests.Features.Dashboard
             // Assert
             viewModel.Banners.Should().NotBeNull();
             viewModel.Banners.Should().BeAssignableTo<IEnumerable<BannerConfiguration>>();
+        }
+
+        [Fact]
+        public void Banners_WhenIsShowIsFalse_ShouldReturnEmptyEnumerable()
+        {
+            // Arrange
+            _userSessionMock.Setup(x => x.Site).Returns("unknown-site");
+
+            // Act
+            var viewModel = new DashboardBannerViewModel(_userSessionMock.Object, _configurationMock.Object);
+
+            // Assert
+            viewModel.Banners.Should().BeEmpty();
+        }
+
+        [Fact]
+        public void Banners_WithNullConfigurationSection_ShouldReturnEmptyEnumerable()
+        {
+            // Arrange
+            _userSessionMock.Setup(x => x.Site).Returns("MBC");
+            _userSessionMock.Setup(x => x.Language).Returns("en");
+
+            _configurationMock.Setup(x => x.GetSection("Banners:i1")).Returns((IConfigurationSection)null);
+
+            // Act
+            var viewModel = new DashboardBannerViewModel(_userSessionMock.Object, _configurationMock.Object);
+
+            // Assert
+            viewModel.Banners.Should().BeEmpty();
+        }
+
+        [Fact]
+        public void Banners_WithEmptyConfigurationSection_ShouldReturnEmptyEnumerable()
+        {
+            // Arrange
+            _userSessionMock.Setup(x => x.Site).Returns("MBC");
+            _userSessionMock.Setup(x => x.Language).Returns("en");
+
+            var mockSection = new Mock<IConfigurationSection>();
+            mockSection.Setup(x => x.GetChildren()).Returns(new List<IConfigurationSection>());
+            _configurationMock.Setup(x => x.GetSection("Banners:i1")).Returns(mockSection.Object);
+
+            // Act
+            var viewModel = new DashboardBannerViewModel(_userSessionMock.Object, _configurationMock.Object);
+
+            // Assert
+            viewModel.Banners.Should().BeEmpty();
+        }
+
+        [Fact]
+        public void IsShow_Property_ShouldBeAccessible()
+        {
+            // Arrange
+            _userSessionMock.Setup(x => x.Site).Returns("test-site");
+
+            // Act
+            var viewModel = new DashboardBannerViewModel(_userSessionMock.Object, _configurationMock.Object);
+
+            // Assert
+            viewModel.IsShow.Should().BeFalse(); // Default behavior when site is not in offered sites
+        }
+
+        [Fact]
+        public void Banners_Property_ShouldBeAccessible()
+        {
+            // Arrange
+            _userSessionMock.Setup(x => x.Site).Returns("test-site");
+
+            // Act
+            var viewModel = new DashboardBannerViewModel(_userSessionMock.Object, _configurationMock.Object);
+
+            // Assert
+            viewModel.Banners.Should().NotBeNull();
         }
     }
 }
