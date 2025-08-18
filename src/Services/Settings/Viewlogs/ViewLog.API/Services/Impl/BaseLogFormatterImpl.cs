@@ -12,7 +12,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
 
         protected readonly RemotingRefWrapper remotingRef;
         protected readonly ViewLogIPService ipService;
-        
+
         public BaseLogFormatterImpl(RemotingRefWrapper remotingRef, ViewLogIPService ipService)
         {
             this.remotingRef = remotingRef;
@@ -20,10 +20,11 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
         }
 
         public virtual void Init(TransformParam transformParam, bool isHideNickname = false) { }
-    
+
         public string ReplaceOldNewValue(string trackingValue, Func<string, string> replaceFunc)
         {
-            if (string.IsNullOrEmpty(trackingValue)) {
+            if (string.IsNullOrWhiteSpace(trackingValue))
+            {
                 return trackingValue;
             }
 
@@ -52,7 +53,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
             // If the pattern doesn't match, return the original value as new value and empty as old value
             return replaceFunc(trackingValue.Trim());
         }
-        
+
         public string FormatIP(string ip)
         {
             return ipService.FormatIP(ip);
