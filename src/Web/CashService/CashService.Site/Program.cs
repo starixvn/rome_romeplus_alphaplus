@@ -1,5 +1,4 @@
 using System.Text.Json;
-using AlphaPlus.CashService.Site.Features.ChatHub;
 using AlphaPlus.CashService.Site.Features.Promotion.Services;
 using AlphaPlus.CashService.Site.Features.Transactions.Services;
 using AlphaPlus.CashService.Site.Helpers;
@@ -156,8 +155,6 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Payments}/{action=Index}/{id?}");
 
-// Add SignalR hub endpoint
-app.MapHub<ChatHub>("/chathub");
 try
 {
     //Log.Information("Starting web application");
