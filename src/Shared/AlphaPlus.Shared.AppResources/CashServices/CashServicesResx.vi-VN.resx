@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -205,43 +205,43 @@
     <value>Lịch sử giao dịch</value>
   </data>
   <data name="PromotionReport" xml:space="preserve">
-    <value />
+    <value>Báo cáo khuyến mãi</value>
   </data>
   <data name="PromotionType" xml:space="preserve">
-    <value />
+    <value>Loại khuyến mãi</value>
   </data>
   <data name="TotalRequest" xml:space="preserve">
-    <value />
+    <value>Tổng yêu cầu</value>
   </data>
   <data name="TotalRequestApproved" xml:space="preserve">
-    <value />
+    <value>Tổng yêu cầu được duyệt</value>
   </data>
   <data name="TotalBonusGiven" xml:space="preserve">
-    <value />
+    <value>Tổng tiền thưởng đã phát</value>
   </data>
   <data name="Status" xml:space="preserve">
-    <value />
+    <value>Trạng thái</value>
   </data>
   <data name="PromotionTitle" xml:space="preserve">
-    <value />
+    <value>Tiêu đề khuyến mãi</value>
   </data>
   <data name="TotalRequestRejected" xml:space="preserve">
-    <value />
+    <value>Tổng yêu cầu bị từ chối</value>
   </data>
   <data name="BonusAmount" xml:space="preserve">
-    <value />
+    <value>Số tiền thưởng</value>
   </data>
   <data name="LastUpdated" xml:space="preserve">
-    <value />
+    <value>Cập nhật lần cuối</value>
   </data>
   <data name="Approved" xml:space="preserve">
-    <value />
+    <value>Đã duyệt</value>
   </data>
   <data name="AccountType" xml:space="preserve">
-    <value />
+    <value>Loại tài khoản</value>
   </data>
   <data name="MemberListNoteEditMultipleNotAvailable" xml:space="preserve">
-    <value />
+    <value>Chỉnh sửa nhiều khách hàng không khả dụng nếu Loại tài khoản là 'Tất cả'.</value>
   </data>
   <data name="ProviderRejectErrorMessage" xml:space="preserve">
     <value>Yêu cầu rút tiền của bạn đã bị nhà cung cấp từ chối.</value>
@@ -250,16 +250,25 @@
     <value>Nhà cung cấp thanh toán hiện không khả dụng. Vui lòng thử lại sau.</value>
   </data>
   <data name="PromotionType_1" xml:space="preserve">
-    <value>Turnover Rebate</value>
+    <value>Hoàn tiền doanh thu</value>
   </data>
   <data name="UpdatedBy" xml:space="preserve">
-    <value />
+    <value>Cập nhật bởi</value>
+  </data>
+  <data name="PromotionType_RebateOnTurnover" xml:space="preserve">
+    <value>Hoàn tiền doanh thu</value>
   </data>
   <data name="Period" xml:space="preserve">
-    <value />
+    <value>Thời gian</value>
+  </data>
+  <data name="PendingPromotion" xml:space="preserve">
+    <value>Khuyến mãi đang chờ</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Tiêu đề</value>
   </data>
   <data name="RebatePeriod" xml:space="preserve">
-    <value />
+    <value>Thời gian hoàn tiền</value>
   </data>
   <data name="FreeTrial" xml:space="preserve">
     <value>Dùng thử &lt;b&gt;miễn phí&lt;/b&gt; 14 ngày</value>
@@ -278,5 +287,32 @@
   </data>
   <data name="CashFlowToTheNextLevel" xml:space="preserve">
     <value>Đừng bỏ lỡ – Kích hoạt ngay và đưa dòng tiền của bạn lên tầm cao mới.</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>Số Tham Chiếu</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>Khoảng thời gian</value>
+  </data>
+  <data name="ManualBonus" xml:space="preserve">
+    <value>Thưởng thủ công</value>
+  </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>Tạo bởi</value>
+  </data>
+  <data name="CreatedTime" xml:space="preserve">
+    <value>Thời gian tạo</value>
+  </data>
+  <data name="Remark" xml:space="preserve">
+    <value>Ghi chú</value>
+  </data>
+  <data name="SuperchargeYourCashFlow" xml:space="preserve">
+    <value>Tăng cường dòng tiền của bạn?</value>
+  </data>
+  <data name="TheAmountMustBeBetween0And1AsPerProviderLimits" xml:space="preserve">
+    <value>Số tiền phải nằm trong khoảng {0} và {1} theo giới hạn của nhà cung cấp</value>
+  </data>
+  <data name="AgentCashBalanceIsInsufficient" xml:space="preserve">
+    <value>Số dư tiền mặt của đại lý không đủ.</value>
   </data>
 </root>

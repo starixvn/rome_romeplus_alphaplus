@@ -10,6 +10,6 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.Requests
 
         public byte LevelType { get; set; } = 1;
 
-        public byte ServiceType { get; set; } = 2;
+        public byte ServiceType { get; set; } = 0;
     }
 }

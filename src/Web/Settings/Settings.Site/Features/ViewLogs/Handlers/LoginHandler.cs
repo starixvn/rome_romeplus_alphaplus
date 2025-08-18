@@ -63,7 +63,7 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
 
                     Domain = log.Domain,
                     Browser = log.Browser,
-                    Country = LogFormatter.FormatCountryCode(log.IP, log.Country)
+                    Country = (LogFormatter as LogFormatter).FormatCountryCode(log.IP, log.Country)
                 });
             }
 

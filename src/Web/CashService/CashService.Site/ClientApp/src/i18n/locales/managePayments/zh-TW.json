@@ -98,6 +98,8 @@
   "bankAccountDeletedSuccessfully": "銀行賬戶刪除成功",
   "bankAccountUpdatedSuccessfully": "銀行賬戶更新成功",
   "failedToUpdateBankAccount": "更新銀行賬戶失敗",
+  "bankAccountAlreadyExist": "此銀行賬戶已存在。請輸入其他銀行賬戶。",
+  "bankAccountNotFound": "未找到銀行賬戶。",
   
   "enableDisable": "啟用/停用提供商",
   "enableDisableTip1": "為您的會員啟用或停用提供商。",

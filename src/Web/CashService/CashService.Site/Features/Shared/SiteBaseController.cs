@@ -41,7 +41,7 @@ public class SiteBaseController : BaseController
     {
         if (_userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, Messages.NotAuthorized));
         }
 
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);

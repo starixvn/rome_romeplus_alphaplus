@@ -486,5 +486,17 @@
       "assets/scripts/tour/base-tour-controller.js",
       "assets/scripts/tour/reward-tour.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/banner/banner.css",
+    "inputFiles": [
+      "assets/styles/banner/banner.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/banner/banner.js",
+    "inputFiles": [
+      "assets/scripts/banner/banner.js"
+    ]
   }
 ]

@@ -42,7 +42,7 @@
     "username": "사용자명",
     "nickname": "닉네임",
     "fullName": "성명",
-    "betCredit": "베팅 크레딧",
+    "betCredit": "회원 현금 잔액",
     "from": "에서",
     "to": "까지",
     "dateAndTime": "생성일시",
@@ -61,7 +61,8 @@
     "confirmRevert": "거래 되돌리기",
     "confirmRevertMessage": "거래 #{{transactionId}}을(를) 대기 상태로 되돌리시겠습니까?",
     "revertSuccess": "거래를 성공적으로 되돌렸습니다",
-    "revertError": "거래 되돌리기에 실패했습니다"
+    "revertError": "거래 되돌리기에 실패했습니다",
+    "processedBy": "처리자"
   },
 
   "status": {

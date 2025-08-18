@@ -46,6 +46,11 @@ public static class EndpointHelper
             return "Update Withdrawal Transaction Status";
         }
 
+        if (Regex.IsMatch(path, @"/api/transactions/[^/]+/ProviderTransId$", RegexOptions.IgnoreCase))
+        {
+            return "Update Provider Transaction ID";
+        }
+
         return string.Empty;
     }
 

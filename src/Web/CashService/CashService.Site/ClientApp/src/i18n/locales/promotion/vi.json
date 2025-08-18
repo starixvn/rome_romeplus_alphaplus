@@ -1,5 +1,6 @@
 {
     "promotionReport": "Báo cáo khuyến mãi",
+    "promotionContent": "Nội dung khuyến mãi",
     "table": {
         "no": "STT",
         "action": "Thao tác",
@@ -28,5 +29,6 @@
     "search": {
         "placeholder": "Tìm kiếm theo tiêu đề hoặc loại..."
     },
-    "promotionType_1": "Hoàn tiền từ doanh thu"
+    "promotionType_1": "Hoàn tiền từ doanh thu",
+    "manualBonus": "Manual Bonus"
 }

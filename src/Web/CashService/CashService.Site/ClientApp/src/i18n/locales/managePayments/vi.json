@@ -98,6 +98,8 @@
   "bankAccountDeletedSuccessfully": "Xóa tài khoản ngân hàng thành công",
   "bankAccountUpdatedSuccessfully": "Cập nhật tài khoản ngân hàng thành công",
   "failedToUpdateBankAccount": "Cập nhật tài khoản ngân hàng thất bại",
+  "bankAccountAlreadyExist": "Tài khoản ngân hàng này đã tồn tại. Vui lòng nhập số tài khoản ngân hàng khác.",
+  "bankAccountNotFound": "Không tìm thấy tài khoản ngân hàng",
   
   "enableDisable": "Bật/tắt nhà cung cấp",
   "enableDisableTip1": "Bật hoặc tắt nhà cung cấp cho thành viên của bạn",

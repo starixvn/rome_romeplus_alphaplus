@@ -1,24 +1,14 @@
-﻿using AlphaPlus.Settings.ViewLogs.API.Params;
-
-namespace AlphaPlus.Settings.ViewLogs.API.Services
+﻿namespace AlphaPlus.Settings.ViewLogs.API.Services
 {
-    public interface LogFormatter
+    public interface LogFormatter : BaseLogFormatter
     {
-        void Init(TransformParam transformParam, bool isHideNickname = false);
-
-        string FormatIP(string ip);
-
         string FormatCountryCode(string ip, string country);
 
         bool IsVisible(string key);
 
-        string GetLogResource(string key);
-
         string GetSportName(int sportType);
 
         string GetBetTypeName(int betType);
-
-        string GetProductName(int productId);
 
         string TransferConditionFromCode(string dayCodesWithDiff);
 
@@ -79,7 +69,5 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services
         string FormatWinLossLimit(decimal value);
 
         string FormatAutoTransferSchedule(string schedulesDiff);
-
-        string GetBankName(string code);
     }
 }

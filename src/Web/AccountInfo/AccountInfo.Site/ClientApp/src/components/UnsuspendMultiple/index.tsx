@@ -4,8 +4,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
-    UnsuspendMultipleModel,
-    UnsuspendMultipleResult
+    UnsuspendMultipleModel, UnsuspendMultipleResult
 } from '../../models/UnsuspenDownlines/UnsuspendMultipleViewModel';
 import UnsuspendAPI from '../../services/UnsuspendAPI';
 import { getMultipleConfirmMessage, viewInformation } from '../unsuspend-helper';
@@ -47,7 +46,7 @@ export default function UnsuspendMultiple({
         $.blockUI?.();
         const params: { SearchAccountId: number; Username: string; Suspended: boolean }[] = [];
 
-        viewModel.map(function (item, index) {
+        viewModel.forEach(function (item, index) {
             if (item.Suspended !== originalViewModel[index].Suspended) {
                 params.push({
                     SearchAccountId: item.SearchAccountId,

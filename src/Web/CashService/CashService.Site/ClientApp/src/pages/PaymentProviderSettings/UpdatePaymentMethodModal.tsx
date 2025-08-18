@@ -53,6 +53,7 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
   const [resultType, setResultType] = React.useState<ResultType | undefined>(undefined);
   const [resultMessage, setResultMessage] = React.useState<string>('');
   const [isBlockAction, setIsBlockAction] = React.useState<boolean>(false);
+  const [isShowAppSecret, setIsShowAppSecret] = React.useState<boolean>(false);
 
   // Combined form state
   const [formState, setFormState] = React.useState<PaymentMethodFormState>({
@@ -148,8 +149,17 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
           )
       );
       
-      var ms = addPaymentMethodInfo.paymentMethods.filter((p: any) => p.id !== 0 && p.status === paymentMethodStatusConstant.fail);
-      setFormState({ ...formState, 'selectedPaymentMethod': ms.length > 0 ? ms[0].id.toString() : '0' });
+      var ms = addPaymentMethodInfo.paymentMethods.filter((p: any) => p.id !== 0);
+
+      const selectedMethod = ms.find((p: any) => p.id === parseInt(formState.selectedPaymentMethod)) || null;
+      var apiConfigObject = selectedMethod ? JSON.parse(selectedMethod.apiConfig || '{}') : null;
+      setFormState({ 
+        ...formState, 
+        'selectedPaymentMethod': selectedMethod?.id.toString() || '0',
+        'apiKey': apiConfigObject?.secretKey || '',
+        'merchantID': apiConfigObject?.merchantNo || '',
+        'appSecret': apiConfigObject?.appSecret || '',
+      });
     };
 
     loadPaymentMethods();
@@ -186,8 +196,8 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
       id: existingPaymentMethod.id,
       name: selectedMethod?.name || '',
       providerId,
-      method: parseInt(formState.selectedPaymentMethod),
-      transactionType: parseInt(formState.selectedTransactionType),
+      method: existingPaymentMethod.method,
+      transactionType: existingPaymentMethod.transactionType,
       status: existingPaymentMethod.status,
       custId: existingPaymentMethod.custId || 0,
       apiMethodKey: formState.apiKey,
@@ -274,10 +284,10 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                   >
                     <option value="">{tGlobal('select')}</option>
                     {paymentMethods
-                      .filter((p) => p.id !== 0 && p.status === paymentMethodStatusConstant.fail)
+                      .filter((p) => p.id !== 0)
                       .map((method) => (
                         <option key={method.id} value={method.id} selected={method.id === existingPaymentMethod.method}
-                        data-state={formState.selectedPaymentMethod}>
+                          data-state={formState.selectedPaymentMethod}>
                           {method.name}                          
                         </option>
                       ))}
@@ -313,7 +323,6 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
             <div>
               <hr className="mt-[16px] mb-[16px] border-[#0000001F]" />
               <TitleComponent type='normal' text={tPaymentProviderSettings('addPaymentMethodStep3')} />
-              <MessageComponent message={tGlobal('somethingWentWrong')} type='validate' />
               <div className="flex flex-wrap gap-[16px] max-[768px]:justify-between max-[768px]:gap-[0] max-[768px]:flex-wrap w-full">
                 <div className="w-[48%]">
                   <TitleComponent type='label' text={`${tPaymentProviderSettings('apiKey')}`} required={true} />
@@ -339,13 +348,19 @@ const UpdatePaymentMethodModal: React.FC<UpdatePaymentMethodModalProps> = ({
                 </div>
                 <div className="w-[48%]">
                   <TitleComponent type='label' text={`${tPaymentProviderSettings('appSecret')}`} required={true} />
+                  <div className="relative">
                   <input
-                    type="password"
+                    type={isShowAppSecret ? 'text' : 'password'}
                     className={`control-field ${fieldErrors.appSecret ? 'error' : ''}`}
                     id="appSecret"
                     value={formState.appSecret}
                     onChange={(e) => { onInputChange('appSecret', e.target.value); }}
                   />
+                  {
+                    isShowAppSecret ? <ButtonIconComponent className='absolute right-[-3px] top-[0] hover:bg-transparent!' style='EyeOff' onClick={() => { setIsShowAppSecret(!isShowAppSecret); }} />
+                    : <ButtonIconComponent className='absolute right-[-3px] top-[0] hover:bg-transparent!' style='Eye' onClick={() => { setIsShowAppSecret(!isShowAppSecret); }} />
+                  }                  
+                  </div>
                   <MessageComponent message={fieldErrors.appSecret} type='validate' />
                 </div>
               </div>

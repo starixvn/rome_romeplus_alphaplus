@@ -120,4 +120,7 @@
   <data name="CashServiceIsDisabled" xml:space="preserve">
     <value>현금서비스가 비활성화되었습니다. 현금서비스를 활성화하여 진행하세요.</value>
   </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>해당 기능에 대한 권한이 없습니다.</value>
+  </data>
 </root>

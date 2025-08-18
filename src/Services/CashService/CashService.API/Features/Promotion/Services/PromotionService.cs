@@ -137,7 +137,7 @@ public class PromotionService(IDynamicRepository repository,
 
     public async Task<ResultModel> EditPromotionAsync(EditPromotionRequest editPromotionMdoel)
     {
-        var result = new ResultModel(0, "Success");
+        var result = new ResultModel();
 
         if (HasContentChanged(editPromotionMdoel.Contents, editPromotionMdoel.OriginalContents))
         {
@@ -154,6 +154,8 @@ public class PromotionService(IDynamicRepository repository,
             };
 
             var logEditPromotion = await repository.FetchAsync<WriteLogDBCommandModel>(editPromotionCriteria);
+            result.Code = editPromotionCriteria.ErrCode;
+            result.Message = editPromotionCriteria.ErrMsg;
             if (editPromotionCriteria.ErrCode == 0 && logEditPromotion is not null && logEditPromotion.Any())
             {
                 WriteLog(logEditPromotion.ToList(), editPromotionMdoel.SiteDBGroupId);
@@ -174,8 +176,10 @@ public class PromotionService(IDynamicRepository repository,
             };
 
             var logUpdateStatus = await repository.FetchAsync<WriteLogDBCommandModel>(updateStatusCriteria);
-            result = new ResultModel(updateStatusCriteria.ErrCode, updateStatusCriteria.ErrMsg);
-            if (updateStatusCriteria.ErrCode == 0 && logUpdateStatus is not null && logUpdateStatus.Any())
+            result.Code = updateStatusCriteria.ErrCode;
+            result.Message = updateStatusCriteria.ErrMsg;
+
+            if (logUpdateStatus is not null && logUpdateStatus.Any())
             {
                 WriteLog(logUpdateStatus.ToList(), editPromotionMdoel.SiteDBGroupId);
             }

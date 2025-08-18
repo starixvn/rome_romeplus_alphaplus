@@ -235,6 +235,10 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
                       <TitleComponent type="label" text={t('detail.processedOn')} />
                       <div>{formatDateTime(detailData.operatedTime)}</div>
                     </div>
+                    <div className="w-[48%]">
+                      <TitleComponent type="label" text={t('detail.processedBy')} />
+                      <div>{detailData.operatedBy}</div>
+                    </div>
                   </div>
                   <div className="mb-[10px]">
                     <TitleComponent type="label" text={t('detail.remarks')} />

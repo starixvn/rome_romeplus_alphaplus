@@ -122,7 +122,7 @@ public class InsertPaymentMethodRequestTests
         var result = request.GetAPIConfigJson();
 
         // Assert
-        var expected = "{\"APIMethodKey\":\"test-key\",\"MerchantID\":\"test-merchant\",\"AppSecret\":\"test-secret\"}";
+        var expected = "{\"secretKey\":\"test-key\",\"merchantNo\":\"test-merchant\",\"appSecret\":\"test-secret\"}";
         Assert.Equal(expected, result);
     }
 
@@ -141,7 +141,7 @@ public class InsertPaymentMethodRequestTests
         var result = request.GetAPIConfigJson();
 
         // Assert
-        var expected = "{\"APIMethodKey\":\"\",\"MerchantID\":\"\",\"AppSecret\":\"\"}";
+        var expected = "{\"secretKey\":\"\",\"merchantNo\":\"\",\"appSecret\":\"\"}";
         Assert.Equal(expected, result);
     }
 
@@ -160,7 +160,7 @@ public class InsertPaymentMethodRequestTests
         var result = request.GetAPIConfigJson();
 
         // Assert
-        var expected = "{\"APIMethodKey\":\"key\"with\"quotes\",\"MerchantID\":\"merchant\\with\\backslashes\",\"AppSecret\":\"secret\nwith\nnewlines\"}";
+        var expected = "{\"secretKey\":\"key\"with\"quotes\",\"merchantNo\":\"merchant\\with\\backslashes\",\"appSecret\":\"secret\nwith\nnewlines\"}";
         Assert.Equal(expected, result);
     }
 

@@ -39,7 +39,7 @@
     "firstName": "ชื่อ",
     "lastName": "นามสกุล",
     "name": "ชื่อ-นามสกุล",
-    "betCredit": "เครดิตเดิมพัน",
+    "betCredit": "ยอดเงินสดของสมาชิก",
     "from": "จาก",
     "to": "ถึง",
     "withdrawalAmount": "จำนวนเงินที่ถอน",

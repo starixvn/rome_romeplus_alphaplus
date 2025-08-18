@@ -291,4 +291,28 @@
   <data name="SuperchargeYourCashFlow" xml:space="preserve">
     <value>Supercharge Your Cash Flow?</value>
   </data>
+  <data name="TheAmountMustBeBetween0And1AsPerProviderLimits" xml:space="preserve">
+    <value>The amount must be between {0} and {1} as per provider limits</value>
+  </data>
+  <data name="ManualBonus" xml:space="preserve">
+    <value>Manual Bonus</value>
+  </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>Created By</value>
+  </data>
+  <data name="CreatedTime" xml:space="preserve">
+    <value>Created Time</value>
+  </data>
+  <data name="Remark" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>Ref No</value>
+  </data>
+  <data name="DateRange" xml:space="preserve">
+    <value>Date Range</value>
+  </data>
+  <data name="AgentCashBalanceIsInsufficient" xml:space="preserve">
+    <value>Agent’s cash balance is insufficient.</value>
+  </data>
 </root>

@@ -8,7 +8,6 @@
   "setLimit": "Set limit",
   "setLimitSuccess": "Set limit successfully",
 
-  
   "managePaymentProviders": "Manage payment providers",
   "provider": "Provider",
   "fee": "Fee",
@@ -99,7 +98,9 @@
   "bankAccountDeletedSuccessfully": "Bank account deleted successfully",
   "bankAccountUpdatedSuccessfully": "Bank account updated successfully",
   "failedToUpdateBankAccount": "Failed to update bank account",
-  
+  "bankAccountAlreadyExist": "This bank account already exist, please enter a different bank account number.",
+  "bankAccountNotFound": "Bank account not found",
+
   "enableDisable": "Enable/deposit provider",
   "enableDisableTip1": "Enable or deposit provider for your members.",
   "enableDisableTip2": "When the provider is under maintenance:",

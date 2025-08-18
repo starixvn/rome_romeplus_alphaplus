@@ -41,9 +41,11 @@
         <Setting Key="Acc_CustSetting_ProductProfileSelect" SpName="Acc_CustSetting_ProductProfileSelect" DbName="DBCust.CustDB.wsv_alpv" />
     </Function>
     <Function Name="Account Info">
+        <Setting Key="Age_CustSetting_GetUplineByCustID" SpName="Age_CustSetting_GetUplineByCustID" DbName="DBCust.CustDB.wsv_alpv" />
         <Setting Key="Age_CustomerUpdCredit_Ag" SpName="Age_CustomerUpdCredit_Ag" DbName="DBCust.CustDB.wsv_alpv" Plain="0" />
         <Setting Key="Age_CustomerUpdCredit_MAg" SpName="Age_CustomerUpdCredit_MAg" DbName="DBCust.CustDB.wsv_alpv" Plain="0" />
         <Setting Key="Age_CustomerUpdCredit_SAg" SpName="Age_CustomerUpdCredit_SAg" DbName="DBCust.CustDB.wsv_alpv" Plain="0" />
+        <Setting Key="Age_CashAccumCredit_AgSel" SpName="Age_CashAccumCredit_AgSel" DbName="DBSIC.bodb02.wsv_alpv" Plain="0" />
         <Setting Key="Acc_CustomerUpdClosed" SpName="Acc_CustomerUpdClosed" DbName="DBCust.CustDB.wsv_alpv" Plain="0" />
         <Setting Key="Acc_CustomerUpdSuspended" SpName="Acc_CustomerUpdSuspended" DbName="DBCust.CustDB.wsv_alpv" Plain="0" />
         <Setting Key="Acc_CustomerUpdMaster_DisableAutoMPT" SpName="Acc_CustomerUpdMaster_DisableAutoMPT" DbName="DBCust.CustDB.wsv_alpv" Plain="0" />

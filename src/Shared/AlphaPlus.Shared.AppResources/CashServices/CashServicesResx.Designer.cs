@@ -88,6 +88,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Agent’s cash balance is insufficient..
+        /// </summary>
+        public static string AgentCashBalanceIsInsufficient {
+            get {
+                return ResourceManager.GetString("AgentCashBalanceIsInsufficient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error occurred while processing withdrawal request..
         /// </summary>
         public static string AnErrorOccurredWhileProcessingWithdrawalRequest {
@@ -129,6 +138,33 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         public static string CashFlowToTheNextLevel {
             get {
                 return ResourceManager.GetString("CashFlowToTheNextLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created By.
+        /// </summary>
+        public static string CreatedBy {
+            get {
+                return ResourceManager.GetString("CreatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created Time.
+        /// </summary>
+        public static string CreatedTime {
+            get {
+                return ResourceManager.GetString("CreatedTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Range.
+        /// </summary>
+        public static string DateRange {
+            get {
+                return ResourceManager.GetString("DateRange", resourceCulture);
             }
         }
         
@@ -201,6 +237,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         public static string LastUpdated {
             get {
                 return ResourceManager.GetString("LastUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manual Bonus.
+        /// </summary>
+        public static string ManualBonus {
+            get {
+                return ResourceManager.GetString("ManualBonus", resourceCulture);
             }
         }
         
@@ -340,6 +385,24 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ref No.
+        /// </summary>
+        public static string RefNo {
+            get {
+                return ResourceManager.GetString("RefNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remark.
+        /// </summary>
+        public static string Remark {
+            get {
+                return ResourceManager.GetString("Remark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start today and enjoy instant savings of &lt;b&gt;THB 2,800&lt;/b&gt;.
         /// </summary>
         public static string StartTodayAndEnjoy {
@@ -381,6 +444,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         public static string TheAmountExceedsTheAllowedMinimumOrMaximumValue {
             get {
                 return ResourceManager.GetString("TheAmountExceedsTheAllowedMinimumOrMaximumValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The amount must be between {0} and {1} as per provider limits.
+        /// </summary>
+        public static string TheAmountMustBeBetween0And1AsPerProviderLimits {
+            get {
+                return ResourceManager.GetString("TheAmountMustBeBetween0And1AsPerProviderLimits", resourceCulture);
             }
         }
         

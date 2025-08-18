@@ -16,17 +16,25 @@ const History: React.FC = () => {
   const [isCashServiceEnabled, setIsCashServiceEnabled] = useState(false);
 
   React.useEffect(() => {
-    const isCashServiceEnabled = document.getElementById('IsCashServiceEnabled')?.getAttribute('value');
+    const isCashServiceEnabled = document
+      .getElementById('IsCashServiceEnabled')
+      ?.getAttribute('value');
     setIsCashServiceEnabled(isCashServiceEnabled === '1');
   }, []);
-  
+
   const handleTabChange = (tab: number) => {
     setActiveTab(tab);
   };
 
+  React.useEffect(() => {
+    setTimeout(function () {
+      top?.indexManager && top.indexManager.initFeedbackFunction(36);
+    }, 1000);
+  }, []);
+
   return (
     <div className="flex h-full flex-col">
-      <TitleComponent type='main' text={tTransactionHistory('transactionHistory')} />
+      <TitleComponent type="main" text={tTransactionHistory('transactionHistory')} />
       <HistoryTab activeTab={activeTab} onTabChange={handleTabChange} />
       <TransactionList transactionType={activeTab} isCashServiceEnabled={isCashServiceEnabled} />
     </div>

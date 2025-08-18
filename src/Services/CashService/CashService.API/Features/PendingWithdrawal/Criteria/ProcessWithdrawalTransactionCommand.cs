@@ -22,6 +22,12 @@ public class ProcessWithdrawalTransactionCommand : CriteriaBase
     public int PaymentMethodId { get; set; }
 
     [SpParam(AllowNull = true)]
+    public decimal? MinLimitAmt { get; set; }
+
+    [SpParam(AllowNull = true)]
+    public decimal? MaxLimitAmt { get; set; }
+
+    [SpParam(AllowNull = true)]
     public string Remark { get; set; }
 
     [SpParam(AllowNull = true)]

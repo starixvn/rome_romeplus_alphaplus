@@ -151,8 +151,8 @@
     },
     "SystemId": 2,
     "AssetAppPath": "/stcdn",
-    "JsVersion": "20250805001",
-    "AssetsApp:StaticResourcesVersion": "20250805001",
+    "JsVersion": "20250819001",
+    "AssetsApp:StaticResourcesVersion": "20250819001",
     "LocalTest": false,
     "SettingStatus": 0,
     "ProductOfferProductDetail": [
@@ -272,7 +272,7 @@
     },
     "OfferProfilePictureTour": true,
     "CashService": {
-        "OfferedSites": "222227",
+        "OfferedSites": "755555,222227",
         "APIUrl": "http://alphaplus_api_cashservice_alphaklprod_2:5000/api"
     }
 }

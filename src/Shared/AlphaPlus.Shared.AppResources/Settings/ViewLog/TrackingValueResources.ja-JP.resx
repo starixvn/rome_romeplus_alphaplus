@@ -2742,4 +2742,172 @@
   <data name="NoMatchingBankAccount" xml:space="preserve">
     <value>一致する銀行口座がありません</value>
   </data>
+  <data name="DailyWithdrawalCount" xml:space="preserve">
+    <value>1日の出金回数</value>
+  </data>
+  <data name="MinPerDeposit" xml:space="preserve">
+    <value>最低入金額</value>
+  </data>
+  <data name="MaxPerDeposit" xml:space="preserve">
+    <value>最高入金額</value>
+  </data>
+  <data name="MinPerWithdrawal" xml:space="preserve">
+    <value>最低出金額</value>
+  </data>
+  <data name="MaxPerWithdrawal" xml:space="preserve">
+    <value>最高出金額</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>開始時間</value>
+  </data>
+  <data name="TrialEndTime" xml:space="preserve">
+    <value>試用終了時間</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>連絡先</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>携帯電話</value>
+  </data>
+  <data name="Announcement" xml:space="preserve">
+    <value>通知</value>
+  </data>
+  <data name="Provider" xml:space="preserve">
+    <value>プロバイダー</value>
+  </data>
+  <data name="TransactionType" xml:space="preserve">
+    <value>取引タイプ</value>
+  </data>
+  <data name="PaymentMethod" xml:space="preserve">
+    <value>支払い方法</value>
+  </data>
+  <data name="Transaction_1" xml:space="preserve">
+    <value>入金</value>
+  </data>
+  <data name="Transaction_2" xml:space="preserve">
+    <value>出金</value>
+  </data>
+  <data name="PaymentMethodStatus_2" xml:space="preserve">
+    <value>完了</value>
+  </data>
+  <data name="PaymentMethodStatus_3" xml:space="preserve">
+    <value>失敗</value>
+  </data>
+  <data name="PaymentMethodStatus" xml:space="preserve">
+    <value>状態</value>
+  </data>
+  <data name="enabled" xml:space="preserve">
+    <value>有効</value>
+  </data>
+  <data name="AccountHolderName" xml:space="preserve">
+    <value>口座名義人</value>
+  </data>
+  <data name="BankAccountNumber" xml:space="preserve">
+    <value>銀行口座番号</value>
+  </data>
+  <data name="AccountNickname" xml:space="preserve">
+    <value>口座のニックネーム</value>
+  </data>
+  <data name="DepositMatchingMode" xml:space="preserve">
+    <value>入金マッチングモード</value>
+  </data>
+  <data name="PromptPay" xml:space="preserve">
+    <value>PromptPay</value>
+  </data>
+  <data name="TransactionType_1" xml:space="preserve">
+    <value>手動入金</value>
+  </data>
+  <data name="TransactionType_2" xml:space="preserve">
+    <value>自動入金</value>
+  </data>
+  <data name="TransactionType_3" xml:space="preserve">
+    <value>手動出金</value>
+  </data>
+  <data name="TransactionType_4" xml:space="preserve">
+    <value>自動出金</value>
+  </data>
+  <data name="DepositMatchingMode_1" xml:space="preserve">
+    <value>小数点</value>
+  </data>
+  <data name="DepositMatchingMode_2" xml:space="preserve">
+    <value>銀行マッチング</value>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>最小</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>最大</value>
+  </data>
+  <data name="TransactionStatus_-1" xml:space="preserve">
+    <value>すべて</value>
+  </data>
+  <data name="TransactionStatus_4" xml:space="preserve">
+    <value>完了</value>
+  </data>
+  <data name="TransactionStatus_5" xml:space="preserve">
+    <value>拒否</value>
+  </data>
+  <data name="TransactionStatus_6" xml:space="preserve">
+    <value>プロバイダー拒否</value>
+  </data>
+  <data name="TransactionStatus_3" xml:space="preserve">
+    <value>期限切れ</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>参照番号</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>金額</value>
+  </data>
+  <data name="OperatedBy" xml:space="preserve">
+    <value>処理者</value>
+  </data>
+  <data name="AdjustCreditAmt" xml:space="preserve">
+    <value>調整クレジット金額</value>
+  </data>
+  <data name="HasPaySlip" xml:space="preserve">
+    <value>支払い証明書</value>
+  </data>
+  <data name="ProviderTransID" xml:space="preserve">
+    <value>プロバイダー取引ID</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>タイプ</value>
+  </data>
+  <data name="PromotionType_1" xml:space="preserve">
+    <value>売上リベート</value>
+  </data>
+  <data name="ProductCategory" xml:space="preserve">
+    <value>製品カテゴリ</value>
+  </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>パーセンテージ (%)</value>
+  </data>
+  <data name="MinTO" xml:space="preserve">
+    <value>最低トランザクション</value>
+  </data>
+  <data name="MaxPayout" xml:space="preserve">
+    <value>最大ペイアウト</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>プロモーション</value>
+  </data>
+  <data name="TransactionStatus_2" xml:space="preserve">
+    <value>保留中</value>
+  </data>
+  <data name="SettingInfo" xml:space="preserve">
+    <value>設定情報</value>
+  </data>
+  <data name="CashService_RegisterInfo_3" xml:space="preserve">
+    <value>すべて</value>
+  </data>
+  <data name="CashService_RegisterInfo_0" xml:space="preserve">
+    <value>なし</value>
+  </data>
+  <data name="CashService_RegisterInfo_1" xml:space="preserve">
+    <value>会員登録を許可</value>
+  </data>
+  <data name="CashService_RegisterInfo_2" xml:space="preserve">
+    <value>会員入金を許可</value>
+  </data>
 </root>

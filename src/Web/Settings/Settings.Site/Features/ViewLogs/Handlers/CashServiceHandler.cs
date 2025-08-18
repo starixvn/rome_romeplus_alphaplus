@@ -23,15 +23,17 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
 
         public CashServiceHandler(
             [FromKeyedServices("cashServiceLogSvc")] LogService logService,
-            LogFormatter logFormatter,
+            CashServiceLogFormatter logFormatter,
             IDateTime dateTimeWrapper,
             TransformService transformService,
             TrackingValueFormatter trackingValueFormatter,
             Fanex.Logging.ILogger logger,
             IUserSession userSession) :
-             base(logService, logFormatter, dateTimeWrapper, userSession)
+            base(logService, logFormatter, dateTimeWrapper, userSession)
         {
             this.trackingValueFormatter = trackingValueFormatter;
+
+            transformService.Init(logFormatter);
             this.transformService = transformService;
             this.logger = logger;
         }

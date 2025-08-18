@@ -1,14 +1,17 @@
 import '../../../styles/common.css';
 import '../../../styles/global.scss';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useCookieLanguage } from '../../../hooks/useCookieLanguage';
 import i18n from '../../../i18n/i18n-promotion';
 import { createRoot } from 'react-dom/client';
 import { TitleComponent } from '../../../components/Title';
+import PromotionReportTab from './components/PromotionReportTab';
 import MainReport from './components/MainReport';
 import DetailsReport from './components/DetailsReport';
+import ManualBonusReport from './components/ManualBonusReport';
 import { convertToGMT4 } from '../../../utils/commonFunctions';
+import UpcomingComponent from '../../../components/UpcomingComponent';
 
 function calculatedDates() {
   // Get today in GMT-4
@@ -49,11 +52,29 @@ function calculatedDates() {
 function PromotionReport() {
   const { t } = useTranslation('promotion');
   useCookieLanguage(i18n);
-  const [promotion, setPromotion]: any = useState(null);
-  const [mainReportFilterParams, setMainReportFilterParams]: any = useState(() => {
-    const dates = calculatedDates();
-    return { ...dates, promotionType: '0', status: '2' };
+  const [initialDates, _] = useState(calculatedDates);
+  const [activeTab, setActiveTab] = useState(0);
+  const [promotion, setPromotion] = useState(null);
+  const [mainReportFilterParams, setMainReportFilterParams] = useState({
+    ...initialDates,
+    promotionType: '0',
+    status: '2',
   });
+
+  const isShowCommingUpPrmotion =
+    document.getElementById('HideUpcomingPromotion')?.getAttribute('value') === 'false';
+
+  function handleTabChange(tab: number) {
+    setActiveTab(tab);
+    if (tab === 0) {
+      setPromotion(null);
+      setMainReportFilterParams({
+        ...initialDates,
+        promotionType: '0',
+        status: '2',
+      });
+    }
+  }
 
   function handleClickPromotionTitle(promotion: any, filterParams: any) {
     setMainReportFilterParams((prevFilter: any) => ({
@@ -63,24 +84,39 @@ function PromotionReport() {
     setPromotion(promotion);
   }
 
+  useEffect(() => {
+    isShowCommingUpPrmotion ||
+      setTimeout(function () {
+        top?.indexManager && top.indexManager.initFeedbackFunction(40);
+      }, 1000);
+  }, []);
+
   return (
     <>
-      <TitleComponent text={t('promotionReport')} type="main" />
-      {promotion === null ? (
-        <MainReport
-          onClickPromotionTitle={handleClickPromotionTitle}
-          initialFilterParams={mainReportFilterParams}
-        />
-      ) : (
-        <DetailsReport
-          promotion={promotion}
-          onClickBreadcrumb={() => setPromotion(null)}
-          initialDateRange={{
-            minDate: mainReportFilterParams.minDate,
-            maxDate: mainReportFilterParams.maxDate,
-          }}
-        />
-      )}
+      <div>       
+        <TitleComponent text={t('promotionReport')} type="main" />
+        {isShowCommingUpPrmotion && <UpcomingComponent hasTab={true} />}
+        <PromotionReportTab activeTab={activeTab} onTabChange={handleTabChange} />
+        {activeTab === 0 ? (
+          promotion === null ? (
+            <MainReport
+              onClickPromotionTitle={handleClickPromotionTitle}
+              initialFilterParams={mainReportFilterParams}
+            />
+          ) : (
+            <DetailsReport
+              promotion={promotion}
+              onClickBreadcrumb={() => setPromotion(null)}
+              initialDateRange={{
+                minDate: mainReportFilterParams.minDate,
+                maxDate: mainReportFilterParams.maxDate,
+              }}
+            />
+          )
+        ) : (
+          <ManualBonusReport {...initialDates} />
+        )}
+      </div>
     </>
   );
 }

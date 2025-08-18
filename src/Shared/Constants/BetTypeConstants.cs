@@ -1,3 +1,6 @@
+using System.Diagnostics.CodeAnalysis;
+
+[SuppressMessage("SonarQube", "S3903:Types should be defined in named namespaces", Justification = "This is a static class that contains constants for bet types.")]
 internal static class BetTypeConstants
 {
     public const int AllBetTypes = 0;

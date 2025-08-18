@@ -128,14 +128,14 @@ const DataGrid: React.FC<DataGridProps> = ({
                   )}
                   {shouldShowColumn('from') && (
                     <td>
-                      <div className="flex items-center">
+                      <div className="flex items-center min-w-[100px]">
                         {renderBankAccount(item.paymentFrom, tGlobal)}
                       </div>
                     </td>
                   )}
                   {shouldShowColumn('to') && (
                     <td>
-                      <div className="flex items-center">
+                      <div className="flex items-center min-w-[100px]">
                         {renderBankAccount(item.paymentTo, tGlobal)}
                       </div>
                     </td>

@@ -53,7 +53,6 @@ var menuBar = {
         menuBar.storeElements();
         menuBar.bindEvents();
         menuBar.initSideBar();
-        menuBar.setMenuBarBanner();
     },
 
     storeElements: function () {
@@ -498,39 +497,6 @@ var menuBar = {
         }, 400);
     },
 
-    setMenuBarBanner: function () {
-        const carouselBanner = $('#carousel-banner');
-
-        if (carouselBanner.length) {
-            const type = menuBar.detectBannerTypeHandler();
-
-            $.get(menuBar.urls.banner + type, function (html) {
-                if (html) {
-                    carouselBanner.html(html).carousel();
-                } else {
-                    carouselBanner.remove();
-                }
-
-                $('.img-banner').click(function (e) {
-                    var href = $(this).attr('data-target-url');
-                    var target = $(this).attr('data-target');
-                    if (target) {
-                        $('#' + target).attr('src', href);
-                    }
-                });
-
-                $('.log-banner').click(() => {
-                    $.ajax({
-                        type: 'POST',
-                        url: alpha.urls.mainRootPath + 'WhiteLabel/BannerLog?username=' + $('#Username').val(),
-                        data: {},
-                        success: function () {}
-                    });
-                });
-            });
-        }
-    },
-
     detectBannerTypeHandler: function () {
         alpha.isScreenGreater1024 = false;
         alpha.isScreenLower768 = false;
@@ -589,8 +555,4 @@ var menuBar = {
 
 $(function () {
     menuBar.init();
-});
-
-$(window).on('orientationchange', function () {
-    menuBar.setMenuBarBanner();
 });

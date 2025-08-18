@@ -20,6 +20,7 @@ export interface DateRangePickerProps {
   hideQuickRanges?: boolean;
   minDate?: Date | null;
   maxDate?: Date | null;
+  readOnly?: boolean;
 }
 
 function formatDateWithLeadingZeros(date: Date | null): string {
@@ -176,6 +177,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   hideQuickRanges = false,
   minDate = null,
   maxDate = null,
+  readOnly = false,
 }) => {
   const { t } = useTranslation('global');
   const { i18n } = useTranslation();
@@ -356,10 +358,15 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   return (
     <div className={`relative text-[13px] custom-datarangepicker ${className || ''}`} ref={ref}>
       <input
-        readOnly
+        readOnly={readOnly}
         className="control-field"
         value={formatRange(value) || 'Select date range'}
-        onClick={() => setOpen((v) => !v)}
+        onChange={() => {}}
+        onClick={() => {
+          if (!readOnly) {
+            setOpen((v) => !v);
+          }
+        }}
       />
       <span className="pointer-events-none absolute right-[2px] top-[3px]">
         <CalendarIcon className="w-[22px] h-[22px] fill-[var(--datarangepicker-color-icon)]" />

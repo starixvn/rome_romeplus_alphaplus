@@ -131,7 +131,7 @@
             "Name": "DBSIC.bodb02.wsv_alp",
             "ConnectionString": "packet size=4096; Data Source=dbsite03.gamora.prod;Initial Catalog=bodb02;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
-        }   
+        }
     ],
     "StoredProcedurePath": "~/App_Data/SPNames.MAIN.xml",
     "FanexDataServiceApi": "http://alpha_data_service_ALPHAKLPROD:5000",
@@ -151,8 +151,8 @@
     },
     "SystemId": 2,
     "AssetAppPath": "/stcdn",
-    "JsVersion": "20250805001",
-    "AssetsApp:StaticResourcesVersion": "20250805001",
+    "JsVersion": "20250819001",
+    "AssetsApp:StaticResourcesVersion": "20250819001",
     "LocalTest": false,
     "SettingStatus": 0,
     "ProductOfferProductDetail": [
@@ -283,7 +283,7 @@
     },
     "OfferProfilePictureTour": true,
     "CashService": {
-        "OfferedSites": "222227",
+        "OfferedSites": "755555,222227",
         "APIUrl": "http://alphaplus_api_cashservice_alphaklprod:5000/api"
     }
 }

@@ -18,7 +18,7 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Controllers
         {
             var isOfferedCashService = AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(_userSession.Site);
             
-            return PartialView(new TabViewModel(tabName, isOfferedCashService));
+            return PartialView(new TabViewModel(tabName, isOfferedCashService, _userSession.RoleId));
         }
     }
 }

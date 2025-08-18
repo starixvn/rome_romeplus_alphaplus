@@ -133,7 +133,7 @@
         <siteMapNode resourceKey="status" url="/settings/Status"></siteMapNode>
         <siteMapNode resourceKey="credit" url="/settings/Credit"></siteMapNode>
         <siteMapNode resourceKey="login" url="/settings/Login"></siteMapNode>
-        <siteMapNode resourceKey="cashService" url="/settings/CashService" menuItemType="CashServiceMenuItem"></siteMapNode>
+        <siteMapNode resourceKey="cashService" url="/settings/CashService" menuItemType="ViewLogCashServiceMenuItem"></siteMapNode>
     </siteMapNode>
     <siteMapNode resourceKey="announcements" byPassProtectedMode="true">
         <siteMapNode resourceKey="normal" url="/features/MessageHistory/Index?messagetype=0" byPassAuthorization="true" byPassProtectedMode="true"></siteMapNode>

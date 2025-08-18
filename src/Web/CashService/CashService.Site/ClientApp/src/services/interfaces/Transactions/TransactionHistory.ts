@@ -22,6 +22,7 @@ export interface TransactionItem {
   isAllowRevert: boolean;
   createdBy: string;
   operatedTime: string;
+  operatedBy: string;
   isHadPayslip: boolean;
   paymentType: number;
 }

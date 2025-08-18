@@ -118,10 +118,10 @@ public class PendingDepositServiceTests
         // Mock GetMemberSettingDepositAsync
         mockTransactionService
             .Setup(ts => ts.GetMemberSettingDepositAsync(param.CustId, param.CustDbGroupId))
-            .ReturnsAsync(new MemberSettingDeposit 
+            .ReturnsAsync(new MemberSettingDeposit
             { 
-                AgentGivenCredit = memberAgentCredit, 
-                CreditMembers_GivenCredit = memberCreditMemberCredit 
+                AgentGivenCredit = memberAgentCredit,
+                CreditMembers_GivenCredit = memberCreditMemberCredit
             });
 
         mockDynamicRepository

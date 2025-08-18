@@ -15,6 +15,7 @@ import AddPromotion from './components/AddPromotion';
 import EditPromotion from './components/EditPromotion';
 import Filter from './components/Filter';
 import PromotionList from './components/PromotionList';
+import UpcomingComponent from '../../../components/UpcomingComponent';
 
 const Promotion: React.FC = () => {
   const [promotionType, setPromotionType] = useState<number>(0);
@@ -32,6 +33,10 @@ const Promotion: React.FC = () => {
   const [deletePromotionId, setDeletePromotionId] = useState<number>(0);
   const { t } = useTranslation('promotion');
   const { t: tGlobal } = useTranslation('global');
+
+  const isShowCommingUpPrmotion =
+    document.getElementById('HideUpcomingPromotion')?.getAttribute('value') === 'false';
+
   const handleFilterChange = (type: number, status: number) => {
     setPromotionType(type);
     setStatus(status);
@@ -59,7 +64,6 @@ const Promotion: React.FC = () => {
   }, [promotionType, status]);
 
   const handleEdit = (promotion: PromotionDetail) => {
-    console.log(promotion);
     setEditPromotionId(promotion.promotionId);
     setShowEditPromotion(true);
   };
@@ -84,10 +88,15 @@ const Promotion: React.FC = () => {
     }
   };
 
-
+  useEffect(() => {
+    isShowCommingUpPrmotion ||
+      setTimeout(function () {
+        top?.indexManager && top.indexManager.initFeedbackFunction(38);
+      }, 1000);
+  }, []);
 
   return (
-    <div className="pb-[12px] h-full flex flex-col promotion-page">
+    <div className="pb-[12px] flex flex-col promotion-page">
       {validationMessage.message !== '' && (
         <MessageComponent
           message={validationMessage.message}
@@ -114,7 +123,12 @@ const Promotion: React.FC = () => {
       )}
       {!showAddPromotion && !showEditPromotion ? (
         <>
-          <TitleComponent text={t('managePromotion.managePromotion')} showTippy={false} type='main'/>
+          {isShowCommingUpPrmotion && <UpcomingComponent />}
+          <TitleComponent
+            text={t('managePromotion.managePromotion')}
+            showTippy={false}
+            type="main"
+          />
           <div className="mb-[8px]">
             <ButtonComponent
               variant="full"

@@ -1,6 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Fanex.RemotingRef;
 
+[SuppressMessage("SonarQube", "S3903:Types should be defined in named namespaces", Justification = "This is a static class that contains extension methods for IEnumerable<T>.")]
 internal static class RemotingRefExtensions
 {
     internal static IServiceCollection AddRemotingRef(this IServiceCollection services, IConfiguration configuration)

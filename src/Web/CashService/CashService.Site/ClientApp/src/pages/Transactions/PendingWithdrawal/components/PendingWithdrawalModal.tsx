@@ -16,10 +16,14 @@ import DropdownComponent, { DropdownOption } from '../../../../components/Custom
 import { MessageComponent } from '../../../../components/Message';
 import { TitleComponent } from '../../../../components/Title';
 import { TransactionItem } from '../../../../services/interfaces/Transactions/TransactionHistory.ts';
-import { approveWithdrawal, rejectWithdrawal } from '../../../../services/pendingWithdrawalAPI.ts';
+import {
+  approveWithdrawal,
+  getSettingLimitAmtWithdrawal,
+  rejectWithdrawal,
+} from '../../../../services/pendingWithdrawalAPI.ts';
 import { transactionAPI } from '../../../../services/transactionsHistoryAPI.ts';
 import { TransactionTypes } from '../../../../constants/sharedConstants.ts';
-import UploadImage from '../../Components/UploadImage';
+import UploadImage from '../../../../components/UploadImage/UploadImage.tsx';
 import { LoadingFullComponent } from '../../../../components/LoadingComponent';
 import ConfirmPopup from '../../../../components/ConfirmPopup';
 import { ResultModel } from '../../../../services/interfaces/ResultModel.ts';
@@ -49,6 +53,8 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
   const [paymentMethodId, setPaymentMethodId] = useState(0);
   const [isRemovePayslip, setIsRemovePayslip] = useState(false);
   const [isProviderProcessing, setIsProviderProcessing] = useState(false);
+  const [minAmount, setMinAmount] = useState(0);
+  const [maxAmount, setMaxAmount] = useState<number | null>(null);
   const [resultMessage, setResultMessage] = useState<{
     type: 'success' | 'error' | 'warning' | null;
     message: string;
@@ -237,12 +243,34 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
     return true;
   };
 
-  const handleChangePaymentFrom = (option: DropdownOption) => {
+  const handleChangePaymentFrom = async (option: DropdownOption) => {
     let providerId = option.attributes?.providerId || 0;
     let paymentMethodId = option.attributes?.paymentMethodId || 0;
     setProviderId(providerId);
     setPaymentMethodId(paymentMethodId);
     setWithdrawalFrom(option.value.toString());
+    if (providerId > 0) {
+      const limits = await getSettingLimitAmtWithdrawal({
+        custId: withdrawal?.custId || 0,
+        providerId,
+        paymentMethodId,
+      });
+      setMinAmount(limits.minAmt);
+      setMaxAmount(limits.maxAmt);
+    }
+  };
+
+  const renderMinMaxAmount = () => {
+    if (providerId <= 0) {
+      return null;
+    }
+    const displayMaxAmount = maxAmount ? displayAmount(maxAmount) : 'unlimited';
+    return (
+      <span className="text-xs text-gray-500">
+        ({t('manualWithdrawalForm.minAmount')}: {displayAmount(minAmount)} -{' '}
+        {t('manualWithdrawalForm.maxAmount')}: {displayMaxAmount})
+      </span>
+    );
   };
 
   return (
@@ -358,6 +386,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
                             disable={isSubmitting || isProviderProcessing}
                             searchable={true}
                           />
+                          {renderMinMaxAmount()}
                         </div>
                       </div>
                     </div>

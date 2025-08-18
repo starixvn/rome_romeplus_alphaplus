@@ -38,7 +38,7 @@ export default function OpenMultiple({
         $.blockUI?.();
         const params: { SearchAccountId: number; Username: string; IsClosed: boolean }[] = [];
 
-        viewModel.map(function (item, index) {
+        viewModel.forEach(function (item, index) {
             if (item.IsClosed !== originalViewModel[index].IsClosed) {
                 params.push({
                     SearchAccountId: item.SearchAccountId,

@@ -2,6 +2,7 @@ using AlphaPlus.CashService.API.Features.Shared.Criteria;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Requests;
 using Fanex.Data.Repository;
+using AlphaPlus.CashService.API.Features.Shared.Constants;
 
 namespace AlphaPlus.CashService.API.Features.Shared.Services;
 
@@ -17,7 +18,7 @@ public interface ICommonService
 
     Task<SetupCheckListModel> GetSetupCheckList(int custId);
 
-    Task WriteLogRequestResponse(AddRequestLogCommand requestLog, short custDbGroupId);
+    Task WriteLogRequestResponse(AddRequestLogCommand command, short custDbGroupId);
 }
 
 public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger logger) : ICommonService
@@ -33,17 +34,17 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
     {
         var writeLLogDBCommandModels = await repository.FetchAsync<WriteLogDBCommandModel>(baseDBCommand);
 
-        if (baseDBCommand.ErrCode != 0)
+        var isSuccess = ErrorCodeConstants.IsSuccess(baseDBCommand.ErrCode) || ErrorCodeConstants.IsWarning(baseDBCommand.ErrCode);
+
+        if (isSuccess)
         {
-            return new ResultModel(baseDBCommand.ErrCode, baseDBCommand.ErrMsg);
+            foreach (var writeLogDBCommandModel in writeLLogDBCommandModels)
+            {
+                await WriteLogDBCommand(request, writeLogDBCommandModel);
+            }
         }
 
-        foreach (var writeLogDBCommandModel in writeLLogDBCommandModels)
-        {
-            await WriteLogDBCommand(request, writeLogDBCommandModel);
-        }
-
-        return new ResultModel(0, string.Empty);
+        return new ResultModel(baseDBCommand.ErrCode, baseDBCommand.ErrMsg);
     }
 
     public async Task WriteLogDBCommand(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)
@@ -65,27 +66,27 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
         return result;
     }
 
-    public async Task WriteLogRequestResponse(AddRequestLogCommand criteria, short custDbGroupId)
+    public async Task WriteLogRequestResponse(AddRequestLogCommand command, short custDbGroupId)
     {
-        var isSuccess = await ExecuteNonQuery(criteria);
+        var isSuccess = await ExecuteNonQuery(command);
 
         if (!isSuccess)
         {
-            criteria.CustDBGroupId = custDbGroupId;
-            await ExecuteNonQuery(criteria);
+            command.CustDBGroupId = custDbGroupId;
+            await ExecuteNonQuery(command);
         }
     }
 
-    private async Task<bool> ExecuteNonQuery(INonQueryCommand criteria)
+    private async Task<bool> ExecuteNonQuery(AddRequestLogCommand command)
     {
         try
         {
-            await repository.ExecuteAsync(criteria);
+            await repository.ExecuteAsync(command);
             return true;
         }
         catch (Exception ex)
         {
-            await logger.ErrorAsync($"{nameof(WriteLogRequestResponse)} failed. Key: {criteria.GetSettingKey()}, Criteria: {JsonConvert.SerializeObject(criteria)}", ex);
+            await logger.ErrorAsync($"{nameof(WriteLogRequestResponse)} failed. Key: {command.GetSettingKey()}, Criteria: {JsonConvert.SerializeObject(command)}", ex);
             return false;
         }
     }
@@ -120,4 +121,5 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
             await logger.ErrorAsync(e.Message, e);
         }
     }
+
 }

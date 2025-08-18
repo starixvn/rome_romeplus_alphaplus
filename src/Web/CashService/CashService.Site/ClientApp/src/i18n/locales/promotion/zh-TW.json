@@ -1,5 +1,6 @@
 {
     "promotionReport": "優惠報告",
+    "promotionContent": "優惠內容",
     "table": {
         "no": "序號",
         "action": "操作",
@@ -28,5 +29,6 @@
     "search": {
         "placeholder": "按標題或類型搜索..."
     },
-    "promotionType_1": "營業額返利"
+    "promotionType_1": "營業額返利",
+    "manualBonus": "Manual Bonus"
 }

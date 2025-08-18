@@ -1,4 +1,5 @@
 ﻿using AlphaPlus.Core.Helpers;
+
 namespace AlphaPlus.Main.Site
 {
     using AlphaPlus.Core.Configurations;
@@ -87,8 +88,6 @@ namespace AlphaPlus.Main.Site
            (GetValue<string>("WhiteLabel:OfferedSites") ?? string.Empty)
                .Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
                .Select(site => site.Trim()), StringComparer.OrdinalIgnoreCase);
-
-        public static Uri WhiteLabelBackOfficeApiUri => new(GetValue<string>("WhiteLabel:BackOfficeApiUrl"));
 
         public static DateTime EndWhiteLabelOffer => DateTime.Parse(GetValue<string>("EndWhiteLabelOffer"));
 

@@ -14,7 +14,7 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
 
         public BaseHandler(
             LogService logService,
-            LogFormatter logFormatter,
+            BaseLogFormatter logFormatter,
             IDateTime dateTimeWrapper,
             IUserSession userSession)
         {
@@ -24,7 +24,7 @@ namespace AlphaPlus.Settings.Site.Features.ViewLogs.Handlers
             _userSession = userSession;
         }
 
-        public LogFormatter LogFormatter { get; }
+        public BaseLogFormatter LogFormatter { get; }
 
         public LogService LogService { get; }
 

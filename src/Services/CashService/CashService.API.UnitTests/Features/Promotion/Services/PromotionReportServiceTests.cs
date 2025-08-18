@@ -124,4 +124,83 @@ public class PromotionReportServiceTests
         Assert.Null(result.Summary);
         Assert.Equal(details, result.PromotionDetails);
     }
+
+    [Fact]
+    public async Task GetManualBonus_Should_Call_Repository_With_Correct_Criteria()
+    {
+        // Arrange
+        var custId = 123;
+        var fromDate = new DateTime(2023, 1, 1);
+        var toDate = new DateTime(2023, 1, 31);
+        var request = new GetManualBonusRequest
+        {
+            CustId = custId,
+            FromDate = fromDate,
+            ToDate = toDate
+        };
+
+        var expectedCriteria = new GetManualBonusCriteria(custId, fromDate, toDate);
+        var expectedResult = new List<ManualBonus> { new ManualBonus() };
+
+        repositoryMock
+            .Setup(r => r.FetchAsync<ManualBonus>(It.IsAny<ICriteria>(), string.Empty, default))
+            .ReturnsAsync(expectedResult)
+            .Callback<ICriteria, string, CancellationToken>((criteria, _, _) =>
+            {
+                var c = criteria as GetManualBonusCriteria;
+                Assert.Equal(custId, c.CustId);
+                Assert.Equal(fromDate, c.FromDate);
+                Assert.Equal(toDate, c.ToDate);
+            });
+
+        // Act
+        var result = await service.GetManualBonus(request);
+
+        // Assert
+        repositoryMock.Verify(r => r.FetchAsync<ManualBonus>(It.IsAny<GetManualBonusCriteria>(), string.Empty, default), Times.Once);
+        Assert.Same(expectedResult, result);
+    }
+
+    [Fact]
+    public async Task GetManualBonus_Should_Return_Empty_Collection_When_Repository_Returns_Null()
+    {
+        // Arrange
+        var request = new GetManualBonusRequest
+        {
+            CustId = 123,
+            FromDate = DateTime.Now,
+            ToDate = DateTime.Now
+        };
+
+        repositoryMock
+            .Setup(r => r.FetchAsync<ManualBonus>(It.IsAny<GetManualBonusCriteria>(), string.Empty, default))
+            .ReturnsAsync((IEnumerable<ManualBonus>)null);
+
+        // Act
+        var result = await service.GetManualBonus(request);
+
+        // Assert
+        Assert.Null(result);
+    }
+
+    [Fact]
+    public async Task GetManualBonus_Should_Pass_Through_Exception_From_Repository()
+    {
+        // Arrange
+        var request = new GetManualBonusRequest
+        {
+            CustId = 123,
+            FromDate = DateTime.Now,
+            ToDate = DateTime.Now
+        };
+
+        var expectedException = new Exception("Repository error");
+        repositoryMock
+            .Setup(r => r.FetchAsync<ManualBonus>(It.IsAny<GetManualBonusCriteria>(), string.Empty, default))
+            .ThrowsAsync(expectedException);
+
+        // Act & Assert
+        var exception = await Assert.ThrowsAsync<Exception>(() => service.GetManualBonus(request));
+        Assert.Same(expectedException, exception);
+    }
 }

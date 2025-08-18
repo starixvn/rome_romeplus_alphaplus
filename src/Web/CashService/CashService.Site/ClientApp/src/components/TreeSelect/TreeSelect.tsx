@@ -16,6 +16,7 @@ interface TreeSelectProps {
   placeholder?: string;
   isAllowCollapseExpand?: boolean;
   isShowSelectAll?: boolean;
+  isDisabled?: boolean;
 }
 
 const flattenTree = (nodes: TreeNodeOption[]): TreeNodeOption[] => {
@@ -132,6 +133,7 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
   placeholder,
   isAllowCollapseExpand = false,
   isShowSelectAll = true,
+  isDisabled = false,
 }) => {
   const [expanded, setExpanded] = useState<{ [key: string]: boolean }>({});
   const [search, setSearch] = useState('');
@@ -169,6 +171,7 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
   const allChecked = allLeafValues.length > 0 && allLeafValues.every((v) => value.includes(v));
 
   const handleCheck = (node: TreeNodeOption) => {
+    if (isDisabled) return;
     const hasChildren = !!node.children && node.children.length > 0;
 
     let newValue: (string | number)[] = value;
@@ -245,6 +248,7 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
           type="checkbox"
           checked={allChecked}
           readOnly
+          disabled={isDisabled}
           style={{ marginRight: 6, marginLeft: 16, width: 13, height: 13 }}
         />
         <span>{t('selectAll')}</span>
@@ -267,14 +271,13 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
           return (
             <li key={String(node.value)} style={{ marginBottom: 0 }} className="relative">
               <div
-              className='flex items-center cursor-pointer user-select-none pl-[8px] h-[28px] hover:bg-[#1967D2] justify-between hover:text-[#fff]'
+                className="flex items-center cursor-pointer user-select-none pl-[8px] h-[28px] hover:bg-[#1967D2] justify-between hover:text-[#fff]"
                 style={{
-                  paddingLeft: level * 25,                 
+                  paddingLeft: level * 25,
                 }}
                 tabIndex={-1}
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => handleCheck(node)}
-              
               >
                 <span style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
                   <span>
@@ -290,8 +293,8 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
                       </span>
                     )}
                     {!isAllowCollapseExpand && hasChildren && (
-                      <span className='block w-[16px] text-center'>
-                        <IconTriangle className='inline-block' />
+                      <span className="block w-[16px] text-center">
+                        <IconTriangle className="inline-block" />
                       </span>
                     )}
                   </span>
@@ -299,6 +302,7 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
                     type="checkbox"
                     checked={checked}
                     readOnly
+                    disabled={isDisabled}
                     style={{ marginRight: 6, width: 13, height: 13 }}
                   />
                   <span>{node.label}</span>
@@ -314,14 +318,15 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
 
   return (
     <div ref={containerRef} style={{ position: 'relative', minWidth: 180, width: '100%' }}>
-      <div className="flex items-center control-field pr-[20px]!"
+      <div
+        className="flex items-center control-field pr-[20px]!"
         ref={inputRef}
-        tabIndex={0}     
+        tabIndex={0}
         onClick={() => setDropdownOpen((open) => !open)}
       >
         <span
           style={{
-            flex: 1,           
+            flex: 1,
             whiteSpace: 'nowrap',
             overflow: 'hidden',
             textOverflow: 'ellipsis',
@@ -331,15 +336,18 @@ const TreeSelect: React.FC<TreeSelectProps> = ({
           {displayValue}
         </span>
         <span>
-          {
-          dropdownOpen ? <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] transform-[rotate(180deg)] fill-[#333] dark:fill-[#ededed]  " /> : <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />}
+          {dropdownOpen ? (
+            <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] transform-[rotate(180deg)] fill-[#333] dark:fill-[#ededed]  " />
+          ) : (
+            <IconArrowDown className="w-[12px] h-[12px] absolute right-[3px] top-[7px] fill-[#333] dark:fill-[#ededed]  " />
+          )}
         </span>
         <span style={{ marginLeft: 8, color: '#1976d2', fontWeight: 500, fontSize: 13 }}>
           {value.length > 0 ? `(${value.length})` : ''}
         </span>
       </div>
       {dropdownOpen && (
-        <div className='absolute top-[calc(100%+2px)] left-0 z-[100] min-w-[180px] w-full bg-[var(--background-control)] border border-[var(--border-control)] rounded-[3px] box-shadow-none pl-[5px]   font-size-[15px]'>
+        <div className="absolute top-[calc(100%+2px)] left-0 z-[100] min-w-[180px] w-full bg-[var(--background-control)] border border-[var(--border-control)] rounded-[3px] box-shadow-none pl-[5px]   font-size-[15px]">
           <div style={{ padding: '8px 5px 4px 0' }}>
             <input
               type="text"

@@ -33,4 +33,5 @@ public record Transaction
     public string Base64Payslip { get; set; }
     public DateTime? LastUpdatedDate { get; set; }
     public DateTime? OperatedTime { get; set; }
+    public string OperatedBy { get; set; }
 }

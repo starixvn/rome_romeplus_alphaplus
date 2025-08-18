@@ -39,7 +39,6 @@ export const CkEditorWrapper: React.FC<CkEditorWrapperProps> = ({
         try {
           const editorData = editor?.editor?.getData();
           if (editorData) {
-            console.log('Click outside - editor data:', editorData);
             onChange(editorData);
           }
         } catch (error) {
@@ -78,6 +77,29 @@ export const CkEditorWrapper: React.FC<CkEditorWrapperProps> = ({
         breakBeforeClose: false,
         breakAfterClose: true,
       });
+
+      // Disable drag & drop functionality
+      this.on('contentDom', function (this: any) {
+        const editable = this.document.getById('cke_' + this.name + '_editable_1');
+        if (editable) {
+          editable.$.ondragover = function (e: DragEvent) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+          };
+          editable.$.ondrop = function (e: DragEvent) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+          };
+          editable.$.ondragenter = function (e: DragEvent) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+          };
+        }
+      });
+
       setIsEditorReady(true);
     });
   }, []);
@@ -126,7 +148,6 @@ export const CkEditorWrapper: React.FC<CkEditorWrapperProps> = ({
       try {
         const editorData = editor?.editor?.getData();
         if (editorData) {
-          console.log('Component unmount - editor data:', editorData);
           onChange(editorData);
         }
       } catch (error) {
@@ -149,14 +170,90 @@ export const CkEditorWrapper: React.FC<CkEditorWrapperProps> = ({
           colorButton_enableMore: true,
           extraPlugins: EXTRA_TOOLBAR,
           toolbar: TOOLBAR,
-          allowedContent: true,
-          removePlugins: REMOVE_PLUGINS,
+          // Configure allowedContent to prevent JavaScript injection
+          allowedContent: {
+            // Allow basic text formatting
+            $1: {
+              elements: {
+                // Basic text elements
+                p: { attributes: '!class' },
+                br: {},
+                strong: {},
+                b: {},
+                em: {},
+                i: {},
+                u: {},
+                s: {},
+                strike: {},
+                sub: {},
+                sup: {},
+
+                // Headings
+                h1: { attributes: '!class' },
+                h2: { attributes: '!class' },
+                h3: { attributes: '!class' },
+                h4: { attributes: '!class' },
+                h5: { attributes: '!class' },
+                h6: { attributes: '!class' },
+
+                // Lists
+                ul: { attributes: '!class' },
+                ol: { attributes: '!class' },
+                li: { attributes: '!class' },
+
+                // Links (but no javascript: protocol)
+                a: {
+                  attributes: '!href,!target,!class',
+                  protocols: 'http,https,mailto,ftp',
+                },
+
+                // Tables
+                table: { attributes: '!class,!width,!height' },
+                tbody: { attributes: '!class' },
+                thead: { attributes: '!class' },
+                tfoot: { attributes: '!class' },
+                tr: { attributes: '!class' },
+                td: { attributes: '!class,!width,!height' },
+                th: { attributes: '!class,!width,!height' },
+
+                // Blockquotes
+                blockquote: { attributes: '!class' },
+
+                // Code
+                code: { attributes: '!class' },
+                pre: { attributes: '!class' },
+
+                // Horizontal rule
+                hr: { attributes: '!class' },
+
+                // Images (but no javascript: protocol)
+                img: {
+                  attributes: '!src,!alt,!title,!width,!height,!class',
+                  protocols: 'http,https',
+                },
+              },
+            },
+          },
+          // Disable plugins that might allow file uploads
+          removePlugins: REMOVE_PLUGINS + ',filebrowser,uploadfile,uploadimage',
           entities: false,
           basicEntities: false,
           language: 'en',
           disableNativeSpellChecker: false,
           enterMode: 2,
           versionCheck: false,
+          // Disable paste from Word/Excel to prevent unwanted content
+          pasteFromWordRemoveFontStyles: true,
+          pasteFromWordRemoveStyles: true,
+          // Disable auto-embedding of media
+          embed_provider: '',
+          // Disable file browser
+          filebrowserBrowseUrl: '',
+          filebrowserUploadUrl: '',
+          filebrowserImageBrowseUrl: '',
+          filebrowserImageUploadUrl: '',
+          filebrowserFlashBrowseUrl: '',
+          filebrowserFlashUploadUrl: '',
         }}
         style={{ body: 'margin: 0' }}
         onLoaded={onLoaded}

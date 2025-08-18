@@ -3,7 +3,7 @@ using System.Net.Sockets;
 
 namespace AlphaPlus.IPInfo.Services;
 
-internal static class IPInfoHelper
+public static class IPInfoHelper
 {
     public static Tuple<IList<string>, IList<string>> SplitIPV4AndIPV6List(IEnumerable<string> ipList)
     {

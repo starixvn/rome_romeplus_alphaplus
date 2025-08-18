@@ -120,4 +120,7 @@
   <data name="CashServiceIsDisabled" xml:space="preserve">
     <value>現金サービスが無効になっています。現金サービスを有効にしてください。</value>
   </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>この機能を使用する権限がありません。</value>
+  </data>
 </root>

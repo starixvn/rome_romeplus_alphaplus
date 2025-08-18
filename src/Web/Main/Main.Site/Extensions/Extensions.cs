@@ -4,9 +4,9 @@ using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Main.Site.Features.Account;
 using AlphaPlus.Main.Site.Features.ApiKey;
-using AlphaPlus.Main.Site.Features.Banner;
 using AlphaPlus.Main.Site.Features.CustomerProfile;
 using AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo;
+using AlphaPlus.Main.Site.Features.Dashboard.Banner;
 using AlphaPlus.Main.Site.Features.Dashboard.Statistics;
 using AlphaPlus.Main.Site.Features.Default.MenuBar;
 using AlphaPlus.Main.Site.Features.Language;
@@ -18,7 +18,6 @@ using AlphaPlus.Main.Site.Features.ProtectionCode;
 using AlphaPlus.Main.Site.Features.SecurityCode;
 using AlphaPlus.Main.Site.Features.Tour;
 using AlphaPlus.Main.Site.Features.UMMessage;
-using AlphaPlus.Main.Site.Features.WhiteLabel;
 using AlphaPlus.Main.Site.Shared.Models;
 using AlphaPlus.Main.Site.Shared.Services;
 using AlphaPlus.RequestInfo;
@@ -67,7 +66,6 @@ public static class Extensions
         services.AddSingleton<IUser, User>();
 
         services.AddSingleton<INicknameChecker, NicknameChecker>();
-        services.AddSingleton<IBannerService, BannerService>();
         services.AddSingleton<IUMMessageService, UMMessageService>();
         services.AddSingleton<OtpService, OtpServiceImpl>();
         services.AddSingleton<OtpAdapter, OtpAdapterImpl>();
@@ -97,7 +95,7 @@ public static class Extensions
         services.AddHttpClient<IProfilePictureService, ProfilePictureService>(httpClient => httpClient.BaseAddress = customerServiceUri);
         services.AddHttpClient<IProtectionCodeService, ProtectionCodeService>(httpClient => httpClient.BaseAddress = customerServiceUri);
         services.AddHttpClient<ILanguageService, LanguageService>(httpClient => httpClient.BaseAddress = customerServiceUri);
-        services.AddHttpClient<IWhiteLabelService, WhiteLabelService>(HttpClient => HttpClient.BaseAddress = new Uri(configuration.GetValue<string>("WhiteLabel:BackOfficeApiUrl")));
+        services.AddSingleton<IBannerService, BannerService>();
 
         services.AddSingleton<IRewardTourService, RewardTourService>();
         services.AddHealthChecks();

@@ -96,8 +96,7 @@ public class WinLossLimitViewModel
     public bool ShowPager => WinLossLimitPage.NumberOfRows >= MaxItemToShowPager;
 
     public int NumberOfColumns => 
-        (NumberOfColumnBySportType.ContainsKey(SportType) ? NumberOfColumnBySportType[SportType] : DefaultNumberOfColumns) 
-        - (AccountType == 1 ? 2 : 0);
+        (NumberOfColumnBySportType.ContainsKey(SportType) ? NumberOfColumnBySportType[SportType] : DefaultNumberOfColumns);
 
     public static string GetPlayerIdText(string playerId)
         => string.IsNullOrWhiteSpace(playerId) ? "-" : playerId;

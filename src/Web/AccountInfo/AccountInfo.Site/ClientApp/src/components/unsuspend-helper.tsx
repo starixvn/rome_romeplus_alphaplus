@@ -30,7 +30,7 @@ export const getMultipleConfirmMessage = (
     const unsuspendUsernames: string[] = [],
         suspendUsernames: string[] = [];
 
-    viewModel.map(function (item, index) {
+    viewModel.forEach(function (item, index) {
         if (item.Suspended !== originalViewModel[index].Suspended) {
             if (item.Suspended) {
                 suspendUsernames.push(item.Username);

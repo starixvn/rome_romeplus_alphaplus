@@ -1,5 +1,6 @@
 {
   "promotionReport": "프로모션 보고서",
+  "promotionContent": "프로모션 콘텐츠",
   "pendingPromotion": "대기 중인 프로모션",
   "addBonus": "보너스 추가",
   "table": {
@@ -61,5 +62,6 @@
     "copy": "복사",
     "copied": "복사됨!",
     "exportToExcel": "Excel로 내보내기"
-  }
+  },
+  "manualBonus": "Manual Bonus"
 }

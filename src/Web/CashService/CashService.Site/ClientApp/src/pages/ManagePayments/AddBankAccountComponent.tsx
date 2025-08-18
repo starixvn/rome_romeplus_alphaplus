@@ -206,6 +206,8 @@ const AddBankAccountComponent: React.FC<AddBankAccountComponentProps> = ({ onClo
       setTimeout(() => {
         onSave();
       }, 3000);
+    } else if(result.code === 102) {
+      setError(tManagePayments('bankAccountAlreadyExist'));
     } else {
       setError(result.message || tManagePayments('failedToAddBankAccount'));
     }

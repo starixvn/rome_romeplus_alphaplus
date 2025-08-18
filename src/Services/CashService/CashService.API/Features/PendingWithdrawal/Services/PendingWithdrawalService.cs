@@ -29,8 +29,7 @@ public interface IPendingWithdrawalService
 public class PendingWithdrawalService(
     IDynamicRepository dynamicRepository,
     ITransactionService transactionService,
-    IPaymentGatewayService paymentGateway,
-    ICommonService commonService) : IPendingWithdrawalService
+    IPaymentGatewayService paymentGateway) : IPendingWithdrawalService
 {
     public async Task<decimal> GetCashBalanceAsync(int custId, int siteDbGroupId)
     {
@@ -187,6 +186,25 @@ public class PendingWithdrawalService(
 
     public async Task<ResultModel> ProcessWithdrawAsync(ProcessWithdrawalTransaction param)
     {
+        var memberSettings = new CreditAmount
+        {
+            MinAmt = null,
+            MaxAmt = null
+        };
+
+        if (param.StatusId is null && param.ProviderId > 0)
+        {
+            memberSettings = await GetLimitAmtWithdrawAsync(
+                new GetCashLimitAmt
+                {
+                    CustId = param.CustId,
+                    CustDbGroupId = param.CustDBGroupId,
+                    UplineId = param.UserId,
+                    ProviderId = param.ProviderId,
+                    PaymentMethodId = param.PaymentMethodId
+                });
+        }
+
         var command = new ProcessWithdrawalTransactionCommand
         {
             TransId = param.TransId,
@@ -198,6 +216,8 @@ public class PendingWithdrawalService(
             SubAccId = param.SubAccId,
             SiteDbGroupId = param.SiteDBGroupId,
             Remark = param.Remark ?? string.Empty,
+            MinLimitAmt = memberSettings.MinAmt,
+            MaxLimitAmt = memberSettings.MaxAmt,
             StatusId = param.StatusId,
             Payslip = param.IsRemovePayslip ? [] : param.Payslip,
             Ip = param.IP,

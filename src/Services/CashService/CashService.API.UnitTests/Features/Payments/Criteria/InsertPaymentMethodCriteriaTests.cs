@@ -188,7 +188,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
             var criteria = new InsertPaymentMethodCriteria(request, true);
 
             // Assert
-            var expectedJson = "{\"APIMethodKey\":\"api_key_123\",\"MerchantID\":\"merchant_456\",\"AppSecret\":\"secret_789\"}";
+            var expectedJson = "{\"secretKey\":\"api_key_123\",\"merchantNo\":\"merchant_456\",\"appSecret\":\"secret_789\"}";
             Assert.Equal(expectedJson, criteria.APIConfig);
         }
 
@@ -214,7 +214,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.Payments.Criteria
             var criteria = new InsertPaymentMethodCriteria(request, true);
 
             // Assert
-            var expectedJson = "{\"APIMethodKey\":\"\",\"MerchantID\":\"\",\"AppSecret\":\"\"}";
+            var expectedJson = "{\"secretKey\":\"\",\"merchantNo\":\"\",\"appSecret\":\"\"}";
             Assert.Equal(expectedJson, criteria.APIConfig);
         }
 

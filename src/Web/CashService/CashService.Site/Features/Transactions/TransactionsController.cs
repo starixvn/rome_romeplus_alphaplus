@@ -17,7 +17,6 @@ using Shared.Resources;
 public class TransactionsController(
     HttpClientHelper httpClientHelper,
     IUserSession userSession,
-    IHttpContextAccessor httpContextAccessor,
     ITransactionHistoryWorkbook transactionHistoryWorkbook,
     IAntiforgery antiforgery,
     HttpClient httpClient,
@@ -28,7 +27,6 @@ public class TransactionsController(
     private readonly int agentId = userSession.CustId;
     private readonly int custDbGroupId = userSession.CustDBGroupId;
     private readonly int siteDbGroupId = userSession.SiteDBGroupId;
-    private readonly int userId = userSession.UserId;
 
     public IActionResult Index() => Ok("Transactions");
 
@@ -132,7 +130,7 @@ public class TransactionsController(
     {
         if (userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
 
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
@@ -160,7 +158,7 @@ public class TransactionsController(
     {
         if (userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
 
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
@@ -271,7 +269,7 @@ public class TransactionsController(
     {
         if (userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
 
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
@@ -283,7 +281,7 @@ public class TransactionsController(
         var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending-deposit", request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingRevertTransactionErrCode(result.Code);
+            result.Message = ErrorCodeHandler.MappingRevertTransactionErrCode(result.Code, 1);
         }
 
         return Ok(result);
@@ -294,7 +292,7 @@ public class TransactionsController(
     {
         if (userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
 
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
@@ -307,7 +305,7 @@ public class TransactionsController(
         var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending-withdrawal", request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingRevertTransactionErrCode(result.Code);
+            result.Message = ErrorCodeHandler.MappingRevertTransactionErrCode(result.Code, 2);
         }
         return Ok(result);
     }
@@ -317,7 +315,7 @@ public class TransactionsController(
     {
         if (userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
 
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
@@ -340,7 +338,7 @@ public class TransactionsController(
     {
         if (userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
 
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
@@ -364,7 +362,7 @@ public class TransactionsController(
     {
         if (userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
         request.SetUserSession(userSession);
 
@@ -385,7 +383,7 @@ public class TransactionsController(
     {
         if (userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
         request.SetUserSession(userSession);
 

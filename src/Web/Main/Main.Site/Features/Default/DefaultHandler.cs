@@ -1,15 +1,15 @@
-﻿using MediatR;
+﻿using AlphaPlus.Core.Helpers;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Core.Utils;
+using AlphaPlus.Main.Site.Features.Account;
+using AlphaPlus.Main.Site.Features.CustomerProfile;
+using AlphaPlus.Main.Site.Features.Default.MenuBar;
+using AlphaPlus.Main.Site.Features.Tour;
+using AlphaPlus.SecurityCode.Web;
+using MediatR;
 using TelegramBot.Client.Models;
 using TelegramBot.Client.Services;
 using TelegramBot.Constants;
-using AlphaPlus.Core.Models;
-using AlphaPlus.SecurityCode.Web;
-using AlphaPlus.Core.Helpers;
-using AlphaPlus.Core.Utils;
-using AlphaPlus.Main.Site.Features.Default.MenuBar;
-using AlphaPlus.Main.Site.Features.Account;
-using AlphaPlus.Main.Site.Features.CustomerProfile;
-using AlphaPlus.Main.Site.Features.Tour;
 
 namespace AlphaPlus.Main.Site.Features.Default
 {
@@ -120,7 +120,7 @@ namespace AlphaPlus.Main.Site.Features.Default
             }
             catch (Exception ex)
             {
-                await Fanex.Logging.Logger.Log.ErrorAsync(ex.Message, ex);
+                await logger.ErrorAsync(ex.Message, ex);
                 return null;
             }
         }

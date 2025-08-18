@@ -102,7 +102,7 @@ const DataGrid: React.FC<DataGridProps> = ({
 
   return (
     <>
-      <div className="table-fixed-header table-fixed-body min-h-0">
+      <div className="table">
         <table className="w-full border-collapse border border-[#0000001f] border-t-[0px]  border-l-[0px]">
           <thead className="z-11!">
             <tr>
@@ -179,7 +179,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                       {item.title}
                     </div>
                   </td>
-                  <td className="text-left">{item.promotionTypeName}</td>
+                  <td className="text-center">{item.promotionTypeName}</td>
                   <td className="text-right">
                     <div className="flex w-full justify-end relative">
                       {displayAmount(item.amount)}
@@ -190,7 +190,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                       {formatDate(item.fromDate)} - {formatDate(item.toDate)}
                     </div>
                   </td>
-                  <td className="text-left">{item.transId}</td>
+                  <td className="text-center">{item.transId}</td>
                   {isCashServiceEnabled && (
                     <td className="text-center">
                       <div
@@ -204,7 +204,7 @@ const DataGrid: React.FC<DataGridProps> = ({
                 </tr>
               ))
             ) : (
-              <NoRecordFound colSpan={isCashServiceEnabled ? 9 : 8} />
+              <NoRecordFound colSpan={isCashServiceEnabled ? 10 : 9} />
             )}
           </tbody>
         </table>

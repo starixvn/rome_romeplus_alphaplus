@@ -1,6 +1,7 @@
 ﻿@using AlphaPlus.Reports.Features.CashBillingService.Models
 @using AlphaPlus.Reports.Features.Shared.Extensions
 @using AlphaPlus.Shared.AppResources.Report
+@addTagHelper *, AlphaPlus.Reports.Site
 @{
 	Layout = null;
 
@@ -37,8 +38,7 @@
 	}
 }
 @model CashFeeModel
-<table class="tb tb-bordered tb-hover w-full tb-cashfee tbl-win-loss-by-product "
-	   id="tbl-report">
+<table class="tb tb-bordered tb-hover w-full tb-cashfee tbl-win-loss-by-product " id="tbl-report">
 	<thead>
 		<tr>
 			<th>@Resources.Type</th>
@@ -71,4 +71,3 @@
 		<no-information colspan="5" />
 	}
 </table>
-

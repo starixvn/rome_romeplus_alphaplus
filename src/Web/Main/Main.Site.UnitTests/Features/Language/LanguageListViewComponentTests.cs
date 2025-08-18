@@ -22,7 +22,8 @@ namespace AlphaPlus.Main.Site.UnitTests.Features.Language
 
             // Setup mock configuration
             var inMemorySettings = new Dictionary<string, string> {
-                {"SiteLabel", "MBC"}
+                {"SiteLabel", "MBC"},
+                {"SiteLabel789y", "789y"}
             };
 
             _configuration = new ConfigurationBuilder()

@@ -9,9 +9,7 @@ import {
 
 import Loading from '../../components/LoadingComponent';
 import { MessageComponent } from '../../components/Message';
-import {
-  StatusComponent,
-} from '../../components/Status';
+import { StatusComponent } from '../../components/Status';
 import { TitleComponent } from '../../components/Title';
 import { PaymentProvider } from '../../services/interfaces/Payments/PaymentProvider';
 import { paymentProviderService } from '../../services/paymentsAPI';
@@ -19,6 +17,7 @@ import ProviderFeesPopupModal from './ProviderFeesPopupModal';
 import DailyLimitPopupModal from './SetDailyLimitPopupModal';
 import NoRecordFound from '../../components/NoRecordFoundComponent';
 import { ButtonIconComponent } from '../../components/Buttons/ButtonIconComponent';
+import UpcomingComponent from '../../components/UpcomingComponent';
 
 interface PaymentGatewayComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
@@ -27,7 +26,7 @@ interface PaymentGatewayComponentProps {
 
 const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
   setActiveTab,
-  isCashServiceEnabled
+  isCashServiceEnabled,
 }) => {
   const { t: tGlobal } = useTranslation('global');
   const { t: tManagePayments } = useTranslation('managePayments');
@@ -38,6 +37,8 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
   const [showFeePopup, setShowFeePopup] = React.useState<boolean>(false);
   const [showDailyLimitPopup, setShowDailyLimitPopup] = React.useState<boolean>(false);
 
+  const isShowCommingUpPrmotion =
+    document.getElementById('HideUpcomingPromotion')?.getAttribute('value') === 'false';
   React.useEffect(() => {
     const fetchProviders = async () => {
       setLoading(true);
@@ -81,23 +82,26 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
   const renderProviderStatus = (status: number) => {
     switch (status) {
       case 0:
-        return <StatusComponent type='disabled' />;
+        return <StatusComponent type="disabled" />;
       case 1:
-        return <StatusComponent type='completed' text={tGlobal('enabled')} />;
+        return <StatusComponent type="completed" text={tGlobal('enabled')} />;
       default:
-        return <StatusComponent type='failed' text="-" />;
+        return <StatusComponent type="failed" text="-" />;
     }
   };
-
 
   const onEditClick = (provider: PaymentProvider) => {
     localStorage.setItem('cashsite_previousUrl', window.location.href);
     location.href = 'ManageProviderSettings?id=' + provider.id;
   };
 
+  React.useEffect(() => {
+    top?.indexManager.hideFloatingFeedbackIcon();
+  }, []);
+
   return (
     <>
-      <TitleComponent type='main' text={tManagePayments('managePayments')} showTippy={true}>
+      <TitleComponent type="main" text={tManagePayments('managePayments')} showTippy={true}>
         <div>
           <div>• {tManagePayments('managePaymentsTip1')}</div>
           <div>• {tManagePayments('managePaymentsTip2')}</div>
@@ -108,53 +112,69 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
           <ButtonTabActiveComponent text={tManagePayments('paymentGateway')} />
         </li>
         <li>
-          <ButtonTabInactiveComponent text={tManagePayments('bankAccount')} onClick={() => setActiveTab('bankAccount')} />
+          <ButtonTabInactiveComponent
+            text={tManagePayments('bankAccount')}
+            onClick={() => setActiveTab('bankAccount')}
+          />
         </li>
       </ul>
-     
+
       <div className="max-w-[1000px]">
-         
-        {loading ? (<Loading />) : 
-          error ? (<MessageComponent message={error} type='error' className='mb-[10px]' />) : (
+        {isShowCommingUpPrmotion && <UpcomingComponent hasTab={true} />}
+        {loading ? (
+          <Loading />
+        ) : error ? (
+          <MessageComponent message={error} type="error" className="mb-[10px]" />
+        ) : (
           <>
-          <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex">
-            <ButtonComponent variant="full" text={tManagePayments('setLimit')} onClick={() => onSetLimitClick()} />
-          </div>
-          <div className="table">
-            <table className=" w-full border-collapse">
-              <thead>
-                <tr>
-                  <th scope="col" className="border-l border-[var(--border-color)]">#</th>
-                  <th scope="col">{tGlobal('action')}</th>
-                  <th scope="col">{tManagePayments('provider')}</th>
-                  <th scope="col">{tManagePayments('fee')}</th>
-                  <th scope="col">{tManagePayments('providerStatus')}</th>
-                </tr>
-              </thead>
-              <tbody className="font-[500]">                  
-                {providers.length > 0 && (
-                  providers.map((provider, index) => (
-                    <tr key={provider.id}>
-                      <td>{index + 1}</td>
-                      <td>
-                        <div className="flex justify-center items-center">                          
-                          <ButtonIconComponent style='Edit' onClick={() => onEditClick(provider)} />
-                        </div>
-                      </td>
-                      <td>{provider.name}</td>
-                      <td>
-                        <ButtonComponent variant="full" text={tGlobal('view')} onClick={() => onFeeClick(provider)} />
-                      </td>
-                      <td>{renderProviderStatus(provider.status)}</td>
-                    </tr>
-                  ))
-                )}
-                {providers.length === 0 && (
-                  <NoRecordFound colSpan={5} />
-                )}
-              </tbody>
-            </table>
-          </div>
+            <div className="w-full border border-[var(--table-border-color)] border-b-0 p-[6px] flex">
+              <ButtonComponent
+                variant="full"
+                text={tManagePayments('setLimit')}
+                onClick={() => onSetLimitClick()}
+              />
+            </div>
+            <div className="table">
+              <table className=" w-full border-collapse">
+                <thead>
+                  <tr>
+                    <th scope="col" className="border-l border-[var(--border-color)]">
+                      #
+                    </th>
+                    <th scope="col">{tGlobal('action')}</th>
+                    <th scope="col">{tManagePayments('provider')}</th>
+                    <th scope="col">{tManagePayments('fee')}</th>
+                    <th scope="col">{tManagePayments('providerStatus')}</th>
+                  </tr>
+                </thead>
+                <tbody className="font-[500]">
+                  {providers.length > 0 &&
+                    providers.map((provider, index) => (
+                      <tr key={provider.id}>
+                        <td>{index + 1}</td>
+                        <td>
+                          <div className="flex justify-center items-center">
+                            <ButtonIconComponent
+                              style="Edit"
+                              onClick={() => onEditClick(provider)}
+                            />
+                          </div>
+                        </td>
+                        <td>{provider.name}</td>
+                        <td>
+                          <ButtonComponent
+                            variant="full"
+                            text={tGlobal('view')}
+                            onClick={() => onFeeClick(provider)}
+                          />
+                        </td>
+                        <td>{renderProviderStatus(provider.status)}</td>
+                      </tr>
+                    ))}
+                  {providers.length === 0 && <NoRecordFound colSpan={5} />}
+                </tbody>
+              </table>
+            </div>
           </>
         )}
 
@@ -165,12 +185,13 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
 
         {/* Daily Limit Popup Modal */}
         {showDailyLimitPopup && (
-          <DailyLimitPopupModal onClose={onCloseDailyLimitPopup} 
-            onSave={onSaveDailyLimit} 
-            isCashServiceEnabled={isCashServiceEnabled} />
+          <DailyLimitPopupModal
+            onClose={onCloseDailyLimitPopup}
+            onSave={onSaveDailyLimit}
+            isCashServiceEnabled={isCashServiceEnabled}
+          />
         )}
-      </div>    
-     
+      </div>
     </>
   );
 };

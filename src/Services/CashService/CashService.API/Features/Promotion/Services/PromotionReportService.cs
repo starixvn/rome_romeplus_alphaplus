@@ -10,6 +10,8 @@ public interface IPromotionReportService
     Task<IEnumerable<PromotionReport>> GetMainReport(GetPromotionReportRequest request);
 
     Task<PromotionDetailsReport> GetDetailsReport(int promotionId, GetPromotionDetailsReportRequest request);
+
+    Task<IEnumerable<ManualBonus>> GetManualBonus(GetManualBonusRequest request);
 }
 
 public class PromotionReportService(IDynamicRepository repository) : IPromotionReportService
@@ -40,5 +42,15 @@ public class PromotionReportService(IDynamicRepository repository) : IPromotionR
         var (promotionDetails, summary) = await repository.FetchMultipleAsync<PromotionDetails, PromotionDetailsSummary>(criteria);
 
         return new PromotionDetailsReport(summary.FirstOrDefault(), promotionDetails);
+    }
+
+    public Task<IEnumerable<ManualBonus>> GetManualBonus(GetManualBonusRequest request)
+    {
+        var criteria = new GetManualBonusCriteria(
+            request.CustId,
+            request.FromDate,
+            request.ToDate);
+
+        return repository.FetchAsync<ManualBonus>(criteria);
     }
 }

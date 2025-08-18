@@ -17,7 +17,7 @@ export const TitleComponent: React.FC<TitleComponentProps> = ({
   required = false,
   showTippy = false,
   children,
-  classNameTippy, 
+  classNameTippy,
 }) => {
   // Validate and get safe type
   const safeType = validateTitleType(type);
@@ -27,34 +27,33 @@ export const TitleComponent: React.FC<TitleComponentProps> = ({
       case 'main':
         return {
           container: getTitleClasses(safeType, className),
-          element: 'h2'
+          element: 'h2',
         };
       case 'medium':
         return {
           container: getTitleClasses(safeType, className),
-          element: 'h3'
+          element: 'h3',
         };
       case 'normal':
         return {
           container: getTitleClasses(safeType, className),
-          element: 'h3'
+          element: 'h3',
         };
       case 'label':
         return {
           container: getTitleClasses(safeType, className),
-          element: 'label'
+          element: 'label',
         };
       default:
         return {
           container: getTitleClasses('main', className),
-          element: 'h2'
+          element: 'h2',
         };
     }
   }, [safeType, className]);
 
   // Handle empty or null text gracefully
   if (!isValidText(text)) {
-    console.warn('TitleComponent: Empty text provided');
     return null;
   }
 
@@ -66,7 +65,13 @@ export const TitleComponent: React.FC<TitleComponentProps> = ({
   const renderTippy = () => {
     if (!showTippy || !children) return null;
     return (
-      <Tippy content={children} placement="top" className={classNameTippy} theme="light" arrow={true}>
+      <Tippy
+        content={children}
+        placement="top"
+        className={classNameTippy}
+        theme="light"
+        arrow={true}
+      >
         <span>
           <IconInfo className="cursor-pointer ml-[4px] " />
         </span>
@@ -74,14 +79,13 @@ export const TitleComponent: React.FC<TitleComponentProps> = ({
     );
   };
 
- 
   const Element = styles.element;
 
   return (
     <Element className={styles.container}>
       {text}
       {renderRequired()}
-      {renderTippy()} 
+      {renderTippy()}
     </Element>
   );
 };

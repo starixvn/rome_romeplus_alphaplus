@@ -161,6 +161,14 @@ html * {
         &#menu-CHATBOT .txt-item {
             color: #0776c1;
         }
+        &#menu-CASHSERVICE, &#menu-PROMOTION{
+            a:hover{
+                .icon {
+                    background: transparent;
+                    box-shadow: none;
+                }
+            }
+        }
 
         .icon {
             line-height: 24px;
@@ -201,15 +209,7 @@ html * {
                     top: 0;
                     left: 0;
                     background-color: transparent;
-                }
-
-                &:after {
-                    @include animation(cd-pulse 2s infinite);
-                }
-
-                &:before {
-                    @include animation(cd-pulse 2s infinite 4s);
-                }
+                } 
             }
 
             &.icon-chatbot {
@@ -236,6 +236,10 @@ html * {
             }
 
             &.icon-promotion,&.icon-cashservice {
+                background: none!important;
+                box-shadow: none!important;
+                font-size: 24px;
+                color: #F7931A;
                 &:after{
                     content: '';
                     position: absolute;
@@ -263,16 +267,16 @@ html * {
             @include keyframes(cd-pulse) {
                 0% {
                     @include transform(scale(1));
-                    @include box-shadow-multiple(inset 0 0 1px 4px rgba(154, 223, 254, 0.8));
+                    @include box-shadow-multiple(inset 0 0 1px 4px rgba(247, 147, 26, 0.3));
                 }
 
                 50% {
-                    @include box-shadow-multiple(inset 0 0 1px 4px rgba(154, 223, 254, 0.8));
+                    @include box-shadow-multiple(inset 0 0 1px 4px rgba(247, 147, 26, 0.3));
                 }
 
                 100% {
-                    @include transform(scale(3));
-                    @include box-shadow-multiple(inset 0 0 1px 4px rgba(154, 223, 254, 0));
+                    @include transform(scale(2.3));
+                    @include box-shadow-multiple(inset 0 0 1px 4px rgba(247, 147, 26, 0));
                 }
             }
         }

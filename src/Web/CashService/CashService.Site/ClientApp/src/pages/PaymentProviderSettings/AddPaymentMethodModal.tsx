@@ -49,6 +49,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
   
   const [resultType, setResultType] = React.useState<ResultType | undefined>(undefined);
   const [resultMessage, setResultMessage] = React.useState<string>('');
+  const [isShowAppSecret, setIsShowAppSecret] = React.useState<boolean>(false);
 
   // Combined form state
   const [formState, setFormState] = React.useState<PaymentMethodFormState>({
@@ -109,7 +110,7 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
       }
 
       const addPaymentMethodInfo = response.data || createDefaultAddPaymentMethodViewModel();
-      setPaymentMethods(addPaymentMethodInfo.paymentMethods);
+      setPaymentMethods(addPaymentMethodInfo.paymentMethods.filter((p: any) => p.id !== paymentMethodStatusConstant.completed));
       setTelegramAssistantUrl(addPaymentMethodInfo.channelContact.tele || '');
 
       const isAllMethodsInactive =
@@ -302,8 +303,9 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
                 </div>
                 <div className="w-[230px] pt-[4px] max-[768px]:w-[48%]">
                   <TitleComponent type='label' text={`${tPaymentProviderSettings('appSecret')}`} required={true} />
+                  <div className="relative">
                   <input
-                    type="password"
+                    type={isShowAppSecret ? 'text' : 'password'}
                     className={`control-field ${fieldErrors.appSecret ? 'error' : ''}`}
                     id="appSecret"
                     value={formState.appSecret}
@@ -311,6 +313,11 @@ const AddPaymentMethodModal: React.FC<AddPaymentMethodModalProps> = ({
                     name="password "
                     autoComplete="new-password "
                   />
+                  {
+                    isShowAppSecret ? <ButtonIconComponent className='absolute right-[-3px] top-[0] hover:bg-transparent!' style='EyeOff' onClick={() => { setIsShowAppSecret(!isShowAppSecret); }} />
+                    : <ButtonIconComponent className='absolute right-[-3px] top-[0] hover:bg-transparent!' style='Eye' onClick={() => { setIsShowAppSecret(!isShowAppSecret); }} />
+                  }                  
+                  </div>
                   <MessageComponent message={fieldErrors.appSecret} type='validate' />
                 </div>
               </div>

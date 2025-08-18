@@ -10,7 +10,7 @@ import {
 } from '../../../../services/pendingWithdrawalAPI';
 import { AddWithdrawalModel } from '../../../../services/interfaces/AddWithdrawalModel';
 import { MessageComponent } from '../../../../components/Message';
-import UploadImage from '../../Components/UploadImage';
+import UploadImage from '../../../../components/UploadImage/UploadImage';
 import BankIcon from '../../../../components/BankComponents';
 import { displayAmount, renderBankOptionValue } from '../../../../utils/commonFunctions';
 import { ButtonComponent } from '../../../../components/Buttons/index';
@@ -89,7 +89,15 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({
             }, 3000);
           }
         } else {
-          setResultMessage({ type: 'error', message: addWithdrawalResponse.message });
+          setResultMessage({
+            type: 'error',
+            message:
+              addWithdrawalResponse.code === 407
+                ? addWithdrawalResponse.message
+                    .replace('{0}', displayAmount(minAmount))
+                    .replace('{1}', displayAmount(maxAmount || 0))
+                : addWithdrawalResponse.message,
+          });
           setIsSubmitting(false);
         }
       }
@@ -125,7 +133,13 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({
     }
 
     if (isNaN(withdrawalAmount) || withdrawalAmount <= 0 || withdrawalAmount > memberCashBalance) {
-      setResultMessage({ type: 'error', message: t('manualWithdrawalForm.amountRangeError') });
+      setResultMessage({
+        type: 'error',
+        message: t('manualWithdrawalForm.amountRangeError').replace(
+          '{memberCashBalance}',
+          displayAmount(memberCashBalance)
+        ),
+      });
       return false;
     }
 
@@ -263,11 +277,11 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({
 
   const renderMinMaxAmount = () => {
     if (providerId <= 0) return null;
-    let displayMaxAmount = maxAmount ? maxAmount : 'unlimited';
+    let displayMaxAmount = maxAmount ? displayAmount(maxAmount) : 'unlimited';
     return (
       <span className="text-xs text-gray-500 pl-3">
-        ({t('manualWithdrawalForm.minAmount')}: {minAmount} - {t('manualWithdrawalForm.maxAmount')}:{' '}
-        {displayMaxAmount})
+        ({t('manualWithdrawalForm.minAmount')}: {displayAmount(minAmount)} -{' '}
+        {t('manualWithdrawalForm.maxAmount')}: {displayMaxAmount})
       </span>
     );
   };

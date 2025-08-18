@@ -66,7 +66,9 @@ public class CommonServiceTests
         var request = new BaseActionRequest { ActorId = 1, UserId = 2, CustDBGroupId = 3 };
         var baseDBCommand = new BaseDBCommand(1, 0, "192.168.1.1", "en") { ErrCode = 0 };
         var writeLogModels = new List<WriteLogDBCommandModel>();
-        _repositoryMock.Setup(x => x.FetchAsync<WriteLogDBCommandModel>(It.Is<BaseDBCommand>(c => c.CustId == 1 && c.SubAccId == 0), string.Empty, CancellationToken.None))
+
+        // Fix: Mock the FetchAsync call with the correct parameter type
+        _repositoryMock.Setup(x => x.FetchAsync<WriteLogDBCommandModel>(baseDBCommand, string.Empty, CancellationToken.None))
             .ReturnsAsync(writeLogModels);
 
         // Act
@@ -74,8 +76,10 @@ public class CommonServiceTests
 
         // Assert
         Assert.Equal(0, result.Code);
-        Assert.Empty(result.Message);
-        _repositoryMock.Verify(x => x.FetchAsync<WriteLogDBCommandModel>(It.Is<BaseDBCommand>(c => c.CustId == 1 && c.SubAccId == 0), string.Empty, CancellationToken.None), Times.Once);
+        Assert.Null(result.Message);
+
+        // Fix: Verify the mock call with the correct parameter
+        _repositoryMock.Verify(x => x.FetchAsync<WriteLogDBCommandModel>(baseDBCommand, string.Empty, CancellationToken.None), Times.Once);
     }
 
     [Fact]

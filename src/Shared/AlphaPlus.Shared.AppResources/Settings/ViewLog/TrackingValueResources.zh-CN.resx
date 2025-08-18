@@ -3459,4 +3459,181 @@
   <data name="NoMatchingBankAccount" xml:space="preserve">
     <value>没有匹配的银行账户</value>
   </data>
+  <data name="DailyWithdrawalCount" xml:space="preserve">
+    <value>每日提款次数</value>
+  </data>
+  <data name="MinPerDeposit" xml:space="preserve">
+    <value>最低入金额</value>
+  </data>
+  <data name="MaxPerDeposit" xml:space="preserve">
+    <value>最高入金额</value>
+  </data>
+  <data name="MinPerWithdrawal" xml:space="preserve">
+    <value>最低出金额</value>
+  </data>
+  <data name="MaxPerWithdrawal" xml:space="preserve">
+    <value>最高出金额</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>开始时间</value>
+  </data>
+  <data name="TrialEndTime" xml:space="preserve">
+    <value>试用结束时间</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>联系人</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>手机</value>
+  </data>
+  <data name="Announcement" xml:space="preserve">
+    <value>通告</value>
+  </data>
+  <data name="Provider" xml:space="preserve">
+    <value>提供商</value>
+  </data>
+  <data name="TransactionType" xml:space="preserve">
+    <value>交易类型</value>
+  </data>
+  <data name="PaymentMethod" xml:space="preserve">
+    <value>支付方式</value>
+  </data>
+  <data name="Transaction_1" xml:space="preserve">
+    <value>存款</value>
+  </data>
+  <data name="Transaction_2" xml:space="preserve">
+    <value>提款</value>
+  </data>
+  <data name="PaymentMethodStatus_2" xml:space="preserve">
+    <value>完成</value>
+  </data>
+  <data name="PaymentMethodStatus_3" xml:space="preserve">
+    <value>失败</value>
+  </data>
+  <data name="PaymentMethodStatus" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="enabled" xml:space="preserve">
+    <value>已开启</value>
+  </data>
+  <data name="AccountHolderName" xml:space="preserve">
+    <value>账户持有人姓名</value>
+  </data>
+  <data name="BankAccountNumber" xml:space="preserve">
+    <value>银行账号</value>
+  </data>
+  <data name="AccountNickname" xml:space="preserve">
+    <value>账户昵称</value>
+  </data>
+  <data name="DepositMatchingMode" xml:space="preserve">
+    <value>存款匹配模式</value>
+  </data>
+  <data name="PromptPay" xml:space="preserve">
+    <value>PromptPay</value>
+  </data>
+  <data name="TransactionType_1" xml:space="preserve">
+    <value>手动存款</value>
+  </data>
+  <data name="TransactionType_2" xml:space="preserve">
+    <value>自动存款</value>
+  </data>
+  <data name="TransactionType_3" xml:space="preserve">
+    <value>手动提款</value>
+  </data>
+  <data name="TransactionType_4" xml:space="preserve">
+    <value>自动提款</value>
+  </data>
+  <data name="DepositMatchingMode_1" xml:space="preserve">
+    <value>小数</value>
+  </data>
+  <data name="DepositMatchingMode_2" xml:space="preserve">
+    <value>银行匹配</value>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>最低</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>最高</value>
+  </data>
+  <data name="TransactionStatus_4" xml:space="preserve">
+    <value>已完成</value>
+  </data>
+  <data name="TransactionStatus_5" xml:space="preserve">
+    <value>已拒绝</value>
+  </data>
+  <data name="TransactionStatus_6" xml:space="preserve">
+    <value>提供商拒绝</value>
+  </data>
+  <data name="TransactionStatus_3" xml:space="preserve">
+    <value>已过期</value>
+  </data>
+  <data name="TransactionStatus_-1" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>金额</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>参考号</value>
+  </data>
+  <data name="OperatedBy" xml:space="preserve">
+    <value>操作员</value>
+  </data>
+  <data name="AdjustCreditAmt" xml:space="preserve">
+    <value>调整信用额度</value>
+  </data>
+  <data name="HasPaySlip" xml:space="preserve">
+    <value>有付款收据</value>
+  </data>
+  <data name="ProviderTransID" xml:space="preserve">
+    <value>提供商交易 ID</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="PromotionType_1" xml:space="preserve">
+    <value>营业额返利</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>详情</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>内容</value>
+  </data>
+  <data name="ProductCategory" xml:space="preserve">
+    <value>产品类别</value>
+  </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>百分比 (%)</value>
+  </data>
+  <data name="MinTO" xml:space="preserve">
+    <value>最低投注额</value>
+  </data>
+  <data name="MaxPayout" xml:space="preserve">
+    <value>最大派彩</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>促销</value>
+  </data>
+  <data name="CreatedTime" xml:space="preserve">
+    <value>创建时间</value>
+  </data>
+  <data name="TransactionStatus_2" xml:space="preserve">
+    <value>待处理</value>
+  </data>
+  <data name="SettingInfo" xml:space="preserve">
+    <value>设置信息</value>
+  </data>
+  <data name="CashService_RegisterInfo_3" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="CashService_RegisterInfo_0" xml:space="preserve">
+    <value>无</value>
+  </data>
+  <data name="CashService_RegisterInfo_1" xml:space="preserve">
+    <value>允许会员注册</value>
+  </data>
+  <data name="CashService_RegisterInfo_2" xml:space="preserve">
+    <value>允许会员存款</value>
+  </data>
 </root>

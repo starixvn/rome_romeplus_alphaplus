@@ -1,20 +1,15 @@
-﻿using System.Resources;
-using System.Text;
+﻿using System.Text;
 using System.Xml.Linq;
-using AlphaPlus.Settings.ViewLogs.API.Extensions;
-using AlphaPlus.Core.Configurations;
 using AlphaPlus.Settings.ViewLogs.API.Constants;
+using AlphaPlus.Settings.ViewLogs.API.Extensions;
 using AlphaPlus.Settings.ViewLogs.API.Helpers;
 using AlphaPlus.Settings.ViewLogs.API.Params;
 using AlphaPlus.Shared.AppResources.Settings.ViewLog;
 
 namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
 {
-    public class LogFormatterImpl : LogFormatter
-    {
-        private readonly ViewLogIPService ipService;
-        private readonly RemotingRefWrapper remotingRef;
-
+    public class LogFormatterImpl : BaseLogFormatterImpl, LogFormatter
+    {   
         private Dictionary<string, bool> custStatuses;
         private Dictionary<string, int> resourcesByProductCacheRef;
         private Dictionary<string, int> resourcesBySportTypeCacheRef;
@@ -23,21 +18,15 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
 
         private const int SevenDaysIndex = 8;
 
-        public LogFormatterImpl(
-            ViewLogIPService ipService,
-            RemotingRefWrapper remotingRef)
+        public LogFormatterImpl(RemotingRefWrapper remotingRef, ViewLogIPService ipService) : base(remotingRef, ipService)
         {
-            this.ipService = ipService;
-            this.remotingRef = remotingRef;
         }
-
-        public ResourceManager ResourceManager { get; set; } = TrackingValueResources.ResourceManager;
 
         /// <summary>
         /// Need be reviewed code here, AssignParams should not in formatter class
         /// </summary>
         /// <param name="transformParam"></param>
-        public void Init(TransformParam transformParam, bool isHideNickname = false)
+        public override void Init(TransformParam transformParam, bool isHideNickname = false)
         {
             if (transformParam == null)
             {
@@ -51,11 +40,6 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
             this.isHideNickname = isHideNickname;
         }
 
-        public string FormatIP(string ip)
-        {
-            return ipService.FormatIP(ip);
-        }
-
         public string FormatCountryCode(string ip, string country)
         {
             return ipService.FormatCountryCode(ip, country);
@@ -64,18 +48,6 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
         public bool IsVisible(string key)
         {
             return custStatuses.ContainsKey(key) && custStatuses[key];
-        }
-
-        public string GetLogResource(string key)
-        {
-            ResourceManager.IgnoreCase = true;
-            var value = ResourceManager.GetString(key) ?? string.Empty;
-            if (AppSettings.IsSiteLabel777 && key.Contains("Saba"))
-            {
-                value = ResourceManager.GetString(key.Replace("Saba", "Virtual")) ?? value;
-            }
-
-            return value;
         }
 
         public string GetSportName(int sportType)
@@ -91,11 +63,6 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
             }
 
             return remotingRef.GetBetType(betType);
-        }
-
-        public string GetProductName(int productId)
-        {
-            return remotingRef.GetProductName(productId);
         }
 
         public string TransferConditionFromCode(string dayCodesWithDiff)
@@ -537,11 +504,6 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
             return string.Join("-", dates.Select(d => dateNames[int.Parse(d.ToString()) - 1]));
         }
 
-        public string GetBankName(string code)
-        {
-            return TrackingValueResources.ResourceManager.GetString("BankName_" + code) ?? string.Empty;
-        }
-
         private static string ReplaceValues(
             string oldValue,
             string newValue,
@@ -574,11 +536,6 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
 
             result = result.Replace($"({oldValue})", $"({formatDiffFunc(oldValue)})");
             return result;
-        }
-
-        public string FormatBankAccountNumber(string bankAccountNumber)
-        {
-            return bankAccountNumber.Replace("NoMatchingBankAccount", GetLogResource("NoMatchingBankAccount"), StringComparison.OrdinalIgnoreCase);
         }
     }
 }

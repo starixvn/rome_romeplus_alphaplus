@@ -2,13 +2,13 @@ namespace AlphaPlus.CashService.Site.Features.Promotion.Controllers;
 
 using System.Collections.Immutable;
 using AlphaPlus.CashService.Site.Features.Shared.Requests;
-using AlphaPlus.CashService.Site.Features.Shared.Resources;
 using AlphaPlus.CashService.Site.Helpers;
 using AlphaPlus.Shared.AppResources.CashServices;
 using Core.Configurations;
 using Core.Models;
 using Enum;
 using Fanex.Customer.Client.Services;
+using Helpers;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 using Models;
@@ -16,9 +16,10 @@ using Models.Products;
 using Requests;
 using Services;
 using Shared;
-using Shared.Contants;
+using Shared.Constants;
 using Shared.Filters;
 using Shared.Models;
+using Shared.Resources;
 using Transactions.Enum;
 using ViewModels;
 
@@ -33,7 +34,8 @@ public class PromotionController(
     IPromotionService promotionService,
     IPromotionReportWorkbook promotionReportWorkbook,
     IPendingPromotionReportWorkbook pendingPromotionReportWorkbook,
-    IPromotionDetailsReportWorkbook promotionDetailsReportWorkbook) : SiteBaseController(userSession, antiforgery, httpClient, customerService)
+    IPromotionDetailsReportWorkbook promotionDetailsReportWorkbook,
+    IManualBonusReportWorkbook manualBonusReportWorkbook) : SiteBaseController(userSession, antiforgery, httpClient, customerService)
 {
     private readonly string _apiBaseUrl = configuration["CashService:APIUrl"];
 
@@ -150,26 +152,30 @@ public class PromotionController(
     [HttpPost]
     public async Task<IActionResult> AddPromotion([FromForm] AddPromotionRequest request)
     {
+        var errMsg = CashServicesResx.InvalidParameters;
+        var result = new ResultModel { Code = 1, Message = errMsg };
+
         if (userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
 
         request.SetUserSession(userSession);
-        if (request.IsValid())
+        if (request.IsValid(out errMsg))
         {
             var files = promotionService.ProcessPromotionRequest(request);
-            var url = $"/api/promotions";
-            var result = await httpClientHelper.PostAsync<object, ResultModel>(url, request);
+            result = await promotionService.ProcessBannerUploadedAsync(files);
+
             if (result.IsSuccessful)
             {
-                promotionService.ProcessImageUploads(files);
+                CleanUpHtmlContent(request.Contents);
+                result = await httpClientHelper.PostAsync<object, ResultModel>("/api/promotions", request);
             }
 
             return Json(result);
         }
 
-        return Json(new { Code = "01", Message = "Invalid request" });
+        return Json(result);
     }
 
     [HttpPut]
@@ -177,25 +183,31 @@ public class PromotionController(
     {
         if (userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
 
         request.SetUserSession(userSession);
 
-        if (request.IsValid())
+        var files = promotionService.ProcessEditPromotionRequest(request);
+        var result = await promotionService.ProcessBannerUploadedAsync(files);
+        if (result.IsSuccessful)
         {
-            var files = promotionService.ProcessPromotionRequest(request);
-            var url = $"/api/promotions/{promotionId}";
-            var result = await httpClientHelper.PutAsync<EditPromotionRequest, ResultModel>(url, request);
-            if (result.IsSuccessful)
-            {
-                promotionService.ProcessImageUploads(files);
-            }
+            CleanUpHtmlContent(request.Contents);
 
-            return Json(result);
+            var url = $"/api/promotions/{promotionId}";
+            result = await httpClientHelper.PutAsync<EditPromotionRequest, ResultModel>(url, request);
         }
 
-        return Json(new { Code = "01", Message = "Invalid request" });
+        return Json(result);
+    }
+
+    private static void CleanUpHtmlContent(List<PromotionLanguageSetting> listLanguageSettings)
+    {
+        foreach (var lang in listLanguageSettings)
+        {
+            var cleanContent = InputCleaner.Clean(lang.Content);
+            lang.Content = cleanContent;
+        }
     }
 
     [HttpDelete]
@@ -203,7 +215,7 @@ public class PromotionController(
     {
         if (userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
 
         var url = $"/api/promotions/delete/{promotionId}";
@@ -244,7 +256,7 @@ public class PromotionController(
     {
         if (userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
 
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
@@ -268,7 +280,7 @@ public class PromotionController(
     {
         if (userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
 
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
@@ -288,7 +300,7 @@ public class PromotionController(
     {
         if (userSession.IsInternal)
         {
-            return Unauthorized();
+            return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
 
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
@@ -312,5 +324,29 @@ public class PromotionController(
             result.Message = ErrorCodeHandler.MappingAddManualWithdrawalErrCode(result.Code);
         }
         return result;
+    }
+
+    public async Task<IActionResult> GetManualBonusReport(GetManualBonusRequest request)
+        => Json(await GetManualBonus(request));
+
+    public async Task<IActionResult> ExportManualBonusReport(GetManualBonusRequest request)
+    {
+        var reportData = await GetManualBonus(request);
+        var excelFileViewModel = manualBonusReportWorkbook.BuildExcelFile(request, reportData);
+
+        return File(excelFileViewModel.Content, excelFileViewModel.ContentType, excelFileViewModel.Name);
+    }
+
+    private Task<ManualBonus[]> GetManualBonus(GetManualBonusRequest request)
+    {
+        request.SetUserSession(userSession);
+        if (!request.IsValid())
+        {
+            return Task.FromResult(Array.Empty<ManualBonus>());
+        }
+
+        var url = $"{_apiBaseUrl}/promotions/reports/ManualBonus{request.ToQueryString()}";
+
+        return _httpClient.GetFromJsonAsync<ManualBonus[]>(url);
     }
 }

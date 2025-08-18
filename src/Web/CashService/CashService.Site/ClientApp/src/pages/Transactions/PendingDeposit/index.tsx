@@ -147,6 +147,12 @@ const PendingDeposit: React.FC = () => {
     return result;
   }, [deposits, cashAgentTo, searchTerm]);
 
+  useEffect(() => {
+    setTimeout(function () {
+      top?.indexManager && top.indexManager.initFeedbackFunction(34);
+    }, 1000);
+  }, []);
+
   return (
     <>
       {showManualAddDepositForm ? (

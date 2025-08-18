@@ -21,7 +21,9 @@ public class StatementDetailWorkbook(IWebHostEnvironment webHostEnvironment) :
     private Mapper<StatementDetailModel> BodyRowMapper
         => new Mapper<StatementDetailModel>()
             .Map(A, statement => statement.TransDate.ToString("dddd\r\nMM/dd/yyyy\r\nhh:mm:ss tt"))
-            .Map(B, statement => $"{statement.TransType}\r\n{statement.TransDesc}")
+            .Map(B, statement => statement.IsHiddenTransType
+                ? statement.TransDesc
+                : $"{statement.TransType}\r\n{statement.TransDesc}")
             .Map(C, statement => (object)statement.Amount ?? Resources.Symbol_NoDataNumber);
 
     private Mapper<StatementDetailModel> FooterRowMapper

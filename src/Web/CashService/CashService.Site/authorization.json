@@ -63,6 +63,16 @@
                     "MemberSites",
                     "Promotion"
                 ]
+            },
+            {
+                "RoleId": 4,
+                "Name": "Super",
+                "DeniedPages": [
+                    "Payments",
+                    "Transactions",
+                    "MemberSites",
+                    "Promotion"
+                ]
             }
         ]
     }

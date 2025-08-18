@@ -49,6 +49,8 @@ public class CustomerInfoViewModel : AccountInfoViewModelBase
 
     public string Phone => DefaultStringValueIfNull(customerInfo.Phone);
 
+    public string MobilePhone => DefaultStringValueIfNull(customerInfo.MobilePhone);
+
     public string Fax => DefaultStringValueIfNull(customerInfo.Fax);
 
     public bool Closed => customerInfo.Closed;

@@ -15,8 +15,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
             var viewModel = new MenuBarViewModel(
                 menuItems,
                 message.IsSmallDevice,
-                isDarkMode: !string.IsNullOrWhiteSpace(message.DarkModeName),
-                isHideBanner: message.IsHideBanner);
+                isDarkMode: !string.IsNullOrWhiteSpace(message.DarkModeName));
 
             return Task.FromResult(viewModel);
         }

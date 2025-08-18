@@ -4,16 +4,14 @@ import { transactionAPI } from '../../../../services/transactionsHistoryAPI';
 import { MemberLoginName } from '../../../../services/interfaces/Transactions/MemberLoginName';
 import { BankInfo } from '../../../../services/interfaces/Transactions/BankInfo';
 import pendingDepositAPI from '../../../../services/pendingDepositAPI';
-import UploadImage from '../../Components/UploadImage';
+import UploadImage from '../../../../components/UploadImage/UploadImage';
 import { AddDepositManualModel } from '../../../../services/interfaces/AddDepositManualModel';
 import { LoadingFullComponent } from '../../../../components/LoadingComponent';
 import { MessageComponent } from '../../../../components/Message';
 import AccountInformation from './AccountInformation';
 import { TitleComponent } from '../../../../components/Title';
-import {
-  ButtonComponent,
-} from '../../../../components/Buttons/index';
-import { renderBankOptionValue } from '../../../../utils/commonFunctions';
+import { ButtonComponent } from '../../../../components/Buttons/index';
+import { displayAmount, renderBankOptionValue } from '../../../../utils/commonFunctions';
 import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
 
 interface ManualAddDepositFormProps {
@@ -45,8 +43,8 @@ interface StatusState {
 
 const Header: React.FC<{ onClose: () => void; title: string }> = ({ onClose, title }) => (
   <div className="flex items-center justify-flex-start mb-[8px] py-[8px] border-[var(--border-control)] border-b-[1px] [&>:nth-child(2)]:border-0 [&>:nth-child(2)]:mb-[0] [&>:nth-child(1)]:mb-[0]">
-    <ButtonIconComponent style='Back' onClick={onClose} />
-    <TitleComponent type='main' text={title} />
+    <ButtonIconComponent style="Back" onClick={onClose} />
+    <TitleComponent type="main" text={title} />
   </div>
 );
 
@@ -56,10 +54,19 @@ const FormActions: React.FC<{
   isSubmitting: boolean;
   cancelText: string;
   submitText: string;
-  submittingText: string; 
+  submittingText: string;
   isCashServiceEnabled: boolean;
   buttonTitle: string;
-}> = ({ onCancel, onSubmit, isSubmitting, cancelText, submitText, submittingText, isCashServiceEnabled, buttonTitle }) => (
+}> = ({
+  onCancel,
+  onSubmit,
+  isSubmitting,
+  cancelText,
+  submitText,
+  submittingText,
+  isCashServiceEnabled,
+  buttonTitle,
+}) => (
   <div className="flex gap-[16px]">
     <ButtonComponent variant="cancel" text={cancelText} onClick={onCancel} />
     <ButtonComponent
@@ -102,31 +109,31 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
   });
 
   const updateFormState = (updates: Partial<FormState>) => {
-    setFormState(prev => ({ ...prev, ...updates }));
+    setFormState((prev) => ({ ...prev, ...updates }));
   };
 
   const updateStatus = (updates: Partial<StatusState>) => {
-    setStatus(prev => ({ ...prev, ...updates }));
+    setStatus((prev) => ({ ...prev, ...updates }));
   };
 
   const fetchMemberData = async (selectedMemberId: number) => {
     try {
       const [bankInfo, agentAC] = await Promise.all([
         transactionAPI.getCashMemberBankInfo(selectedMemberId),
-        pendingDepositAPI.getLimitAmtDeposit(selectedMemberId)
+        pendingDepositAPI.getLimitAmtDeposit(selectedMemberId),
       ]);
 
       updateFormState({
         cashMemberOptions: bankInfo,
         paymentFrom: renderBankOptionValue(bankInfo[0]?.bankCode, bankInfo[0]?.bankAccountNumber),
-        agentAvailableCredit: agentAC
+        agentAvailableCredit: agentAC,
       });
     } catch (error) {
       updateStatus({
         validationMessage: {
           type: 'error',
-          message: t('errorMessages.failedToFetchData')
-        }
+          message: t('errorMessages.failedToFetchData'),
+        },
       });
     }
   };
@@ -135,37 +142,43 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
     const validationChecks = [
       {
         condition: !formState.memberId || formState.memberId <= 0,
-        message: t('manualDepositForm.memberLoginNameRequired')
+        message: t('manualDepositForm.memberLoginNameRequired'),
       },
       {
         condition: !formState.paymentFrom,
-        message: t('manualDepositForm.agentBankSelectionRequired')
+        message: t('manualDepositForm.agentBankSelectionRequired'),
       },
       {
         condition: !formState.paymentTo,
-        message: t('manualDepositForm.memberBankSelectionRequired')
+        message: t('manualDepositForm.memberBankSelectionRequired'),
       },
       {
-        condition: formState.depositAmount <= 0 || formState.depositAmount > formState.agentAvailableCredit,
-        message: t('manualDepositForm.amountMustBeGreaterThan0AndLessThanMaxLimit')
+        condition:
+          formState.depositAmount <= 0 || formState.depositAmount > formState.agentAvailableCredit,
+        message: t('manualDepositForm.amountMustBeGreaterThan0AndLessThanMaxLimit').replace(
+          '{0}',
+          displayAmount(formState.agentAvailableCredit)
+        ),
       },
       {
         condition: formState.image && formState.image.size > 1024 * 1024,
-        message: t('manualDepositForm.imageSizeError')
+        message: t('manualDepositForm.imageSizeError'),
       },
       {
-        condition: formState.image && !['image/jpeg', 'image/jpg', 'image/png'].includes(formState.image.type),
-        message: t('manualDepositForm.invalidFileType')
-      }
+        condition:
+          formState.image &&
+          !['image/jpeg', 'image/jpg', 'image/png'].includes(formState.image.type),
+        message: t('manualDepositForm.invalidFileType'),
+      },
     ];
 
-    const failedValidation = validationChecks.find(check => check.condition);
+    const failedValidation = validationChecks.find((check) => check.condition);
     if (failedValidation) {
       updateStatus({
         validationMessage: {
           type: 'error',
-          message: failedValidation.message
-        }
+          message: failedValidation.message,
+        },
       });
       return false;
     }
@@ -193,8 +206,8 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
         updateStatus({
           validationMessage: {
             type: 'success',
-            message: t('successMessages.depositSubmitted')
-          }
+            message: t('successMessages.depositSubmitted'),
+          },
         });
         setTimeout(() => onClose(true), 3000);
       } else {
@@ -205,8 +218,8 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
         isSubmitting: false,
         validationMessage: {
           type: 'error',
-          message: error instanceof Error ? error.message : t('errorMessages.failedToSubmit')
-        }
+          message: error instanceof Error ? error.message : t('errorMessages.failedToSubmit'),
+        },
       });
     }
   };
@@ -226,8 +239,8 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
         updateStatus({
           validationMessage: {
             type: 'error',
-            message: t('errorMessages.failedToFetchData')
-          }
+            message: t('errorMessages.failedToFetchData'),
+          },
         });
       } finally {
         updateStatus({ initialLoading: false });
@@ -249,8 +262,12 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
 
   return (
     <>
+    <div>
       <Header onClose={() => onClose(false)} title={t('manualDepositForm.title')} />
-      <div id="manual-deposit-form" className="max-w-[1100px] w-full max-[768px]:w-full pb-[16px] pt-[10px]">
+      <div
+        id="manual-deposit-form"
+        className="max-w-[1100px] w-full max-[768px]:w-full pb-[16px] pt-[10px]"
+      >
         {status.validationMessage && (
           <MessageComponent
             message={status.validationMessage.message}
@@ -264,7 +281,9 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
             memberId={formState.memberId}
             onMemberChange={(selected) => updateFormState({ memberId: Number(selected.value) })}
             paymentFrom={formState.paymentFrom}
-            onPaymentFromChange={(selected) => updateFormState({ paymentFrom: String(selected.value) })}
+            onPaymentFromChange={(selected) =>
+              updateFormState({ paymentFrom: String(selected.value) })
+            }
             cashMemberOptions={formState.cashMemberOptions}
             paymentTo={formState.paymentTo}
             onPaymentToChange={(selected) => updateFormState({ paymentTo: String(selected.value) })}
@@ -275,9 +294,8 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
             remarks={formState.remarks}
             onRemarksChange={(e) => updateFormState({ remarks: e.target.value })}
           />
-         
-            <UploadImage setImage={(image) => updateFormState({ image })} />
-     
+
+          <UploadImage setImage={(image) => updateFormState({ image })} />
         </div>
         <FormActions
           onCancel={() => onClose(false)}
@@ -287,9 +305,10 @@ const ManualAddDepositForm: React.FC<ManualAddDepositFormProps> = ({
           submitText={t('manualDepositForm.approve')}
           submittingText={t('manualDepositForm.approving')}
           isCashServiceEnabled={isCashServiceEnabled}
-          buttonTitle={tGlobal('cashServiceDisabled')} 
-        />  
+          buttonTitle={tGlobal('cashServiceDisabled')}
+        />
       </div>
+    </div>
     </>
   );
 };

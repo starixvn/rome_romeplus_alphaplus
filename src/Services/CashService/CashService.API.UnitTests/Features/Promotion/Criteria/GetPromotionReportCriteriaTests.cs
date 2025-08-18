@@ -1,5 +1,5 @@
-using Xunit;
 using AlphaPlus.CashService.API.Features.Promotion.Criteria;
+using Xunit;
 
 namespace AlphaPlus.CashService.API.UnitTests.Features.Promotion.Criteria;
 
@@ -10,11 +10,11 @@ public class GetPromotionReportCriteriaTests
     public void Constructor_Should_Initialize_Properties_Correctly()
     {
         // Arrange
-        int custId = 12345;
-        DateTime fromDate = new DateTime(2023, 1, 1);
-        DateTime toDate = new DateTime(2023, 1, 31);
+        var custId = 12345;
+        var fromDate = new DateTime(2023, 1, 1);
+        var toDate = new DateTime(2023, 1, 31);
         byte promotionType = 2;
-        bool statusId = true;
+        var statusId = true;
 
         // Act
         var criteria = new GetPromotionReportCriteria(
@@ -39,7 +39,7 @@ public class GetPromotionReportCriteriaTests
         var criteria = new GetPromotionReportCriteria(1, DateTime.Now, DateTime.Now, null, null);
 
         // Act
-        string settingKey = criteria.GetSettingKey();
+        var settingKey = criteria.GetSettingKey();
 
         // Assert
         Assert.Equal("Age_CashPromotion_PromotionReport", settingKey);
@@ -61,7 +61,7 @@ public class GetPromotionReportCriteriaTests
             null);
 
         // Act
-        bool isValid = criteria.IsValid();
+        var isValid = criteria.IsValid();
 
         // Assert
         Assert.Equal(expectedResult, isValid);
@@ -71,9 +71,9 @@ public class GetPromotionReportCriteriaTests
     public void Constructor_Should_Initialize_With_Nullable_Parameters()
     {
         // Arrange
-        int custId = 12345;
-        DateTime fromDate = new DateTime(2023, 1, 1);
-        DateTime toDate = new DateTime(2023, 1, 31);
+        var custId = 12345;
+        var fromDate = new DateTime(2023, 1, 1);
+        var toDate = new DateTime(2023, 1, 31);
 
         // Act
         var criteria = new GetPromotionReportCriteria(

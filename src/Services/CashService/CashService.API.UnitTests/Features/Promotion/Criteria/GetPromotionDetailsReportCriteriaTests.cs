@@ -1,5 +1,5 @@
-using Xunit;
 using AlphaPlus.CashService.API.Features.Promotion.Criteria;
+using Xunit;
 
 namespace AlphaPlus.CashService.API.UnitTests.Features.Promotion.Criteria;
 
@@ -10,10 +10,10 @@ public class GetPromotionDetailsReportCriteriaTest
     public void Constructor_Should_Set_Properties_Correctly()
     {
         // Arrange
-        int custId = 1;
-        int promotionId = 2;
-        DateTime fromDate = new DateTime(2023, 1, 1);
-        DateTime toDate = new DateTime(2023, 1, 31);
+        var custId = 1;
+        var promotionId = 2;
+        var fromDate = new DateTime(2023, 1, 1);
+        var toDate = new DateTime(2023, 1, 31);
         byte? statusId = 3;
 
         // Act

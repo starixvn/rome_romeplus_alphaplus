@@ -18,7 +18,7 @@ const StatusFilter: React.FC<StatusFilterProps> = ({ status, onStatusChange }) =
     { value: 6, label: t('status.providerRejected') },
     { value: 3, label: t('status.expired') },
   ];
-
+ 
   return (
     <div className="form-group">
       <TitleComponent type='label' text={t('filter.status')} />

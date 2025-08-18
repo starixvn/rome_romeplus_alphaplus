@@ -1,18 +1,18 @@
 {
   "title": "會員網站管理",
   "registrationLinks": {
-    "title": "註冊連結",
+    "title": "注冊鏈接",
     "note": "如果兩個連結都被封鎖，請申請新連結。",
     "domain": "網域",
-    "downloadQRCode": "下載 QR 碼",
-    "requestNewLink": "申請新連結",
+    "downloadQRCode": "下載二維碼",
+    "requestNewLink": "申請新鏈接",
     "noRegistrationLinks": "暫無註冊連結"
   },
   "generalSettings": {
-    "title": "一般設定",
+    "title": "常規設置",
     "allowRegistration": {
-      "title": "註冊",
-      "description": "允許會員註冊"
+      "title": "注冊",
+      "description": "允許會員注冊"
     },
     "allowDeposit": {
       "title": "存款",
@@ -21,18 +21,18 @@
   },
   "message": {
     "title": "留言",
-    "description": "請包含您的聯絡方式和給會員的訊息。",
+    "description": "請包含您的聯系方式和給會員的信息。",
     "mobile": "手機號碼",
     "line": "LINE ID",
     "tele": "Telegram",
     "announcement": "公告",
     "placeholder": {
-      "message": "在此輸入您的訊息..."
+      "message": "在此輸入您的信息..."
     }
   },
   "actions": {
     "save": "儲存",
-    "saving": "儲存中..."
+    "saving": "保存中..."
   },
   "errors": {
     "title": "錯誤！",

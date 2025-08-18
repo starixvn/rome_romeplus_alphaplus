@@ -1,0 +1,64 @@
+{
+    "Banners": {
+        "i1": [
+            {
+                "Name": "SoccerMarbleSpinner",
+                "ImageSource_en-US": "~/assets/images/DashboardBanner/i1/soccer_marble_spinner/desktop/en-US.jpg",
+                "ImageMobileSource_en-US": "~/assets/images/DashboardBanner/i1/soccer_marble_spinner/mobile/en-US.jpg",
+                "ImageSource_zh-CN": "~/assets/images/DashboardBanner/i1/soccer_marble_spinner/desktop/zh-CN.jpg",
+                "ImageMobileSource_zh-CN": "~/assets/images/DashboardBanner/i1/soccer_marble_spinner/mobile/zh-CN.jpg",
+                "ImageSource_zh-TW": "~/assets/images/DashboardBanner/i1/soccer_marble_spinner/desktop/zh-TW.jpg",
+                "ImageMobileSource_zh-TW": "~/assets/images/DashboardBanner/i1/soccer_marble_spinner/mobile/zh-TW.jpg",
+                "ImageSource_th-TH": "~/assets/images/DashboardBanner/i1/soccer_marble_spinner/desktop/th-TH.jpg",
+                "ImageMobileSource_th-TH": "~/assets/images/DashboardBanner/i1/soccer_marble_spinner/mobile/th-TH.jpg"
+            },
+            {
+                "Name": "SoccerMarble",
+                "ImageSource_en-US": "~/assets/images/DashboardBanner/i1/soccer_marble/desktop/en-US.jpg",
+                "ImageMobileSource_en-US": "~/assets/images/DashboardBanner/i1/soccer_marble/mobile/en-US.jpg",
+                "ImageSource_zh-CN": "~/assets/images/DashboardBanner/i1/soccer_marble/desktop/zh-CN.jpg",
+                "ImageMobileSource_zh-CN": "~/assets/images/DashboardBanner/i1/soccer_marble/mobile/zh-CN.jpg",
+                "ImageSource_zh-TW": "~/assets/images/DashboardBanner/i1/soccer_marble/desktop/zh-TW.jpg",
+                "ImageMobileSource_zh-TW": "~/assets/images/DashboardBanner/i1/soccer_marble/mobile/zh-TW.jpg",
+                "ImageSource_th-TH": "~/assets/images/DashboardBanner/i1/soccer_marble/desktop/th-TH.jpg",
+                "ImageMobileSource_th-TH": "~/assets/images/DashboardBanner/i1/soccer_marble/mobile/th-TH.jpg"
+            }
+        ],
+        "i7": [
+            // {
+            //     "Name": "Viva",
+            //     "ImageSource_en-US": "~/assets/images/DashboardBanner/i7/viva/desktop/en-US.png",
+            //     "ImageMobileSource_en-US": "~/assets/images/DashboardBanner/i7/viva/mobile/en-US.jpg",
+            //     "Url": "https://www.youtube.com/embed/AylDzbdSmC8?autoplay=1",
+            //     "IsVideo": true,
+            //     "LogClick": true
+            // },
+            {
+                "Name": "SoccerMarbleSpinner",
+                "ImageSource_en-US": "~/assets/images/DashboardBanner/i7/soccer_marble_spinner/desktop/en-US.jpg",
+                "ImageMobileSource_en-US": "~/assets/images/DashboardBanner/i7/soccer_marble_spinner/mobile/en-US.jpg",
+                "ImageSource_zh-CN": "~/assets/images/DashboardBanner/i7/soccer_marble_spinner/desktop/zh-CN.jpg",
+                "ImageMobileSource_zh-CN": "~/assets/images/DashboardBanner/i7/soccer_marble_spinner/mobile/zh-CN.jpg",
+                "ImageSource_zh-TW": "~/assets/images/DashboardBanner/i7/soccer_marble_spinner/desktop/zh-TW.jpg",
+                "ImageMobileSource_zh-TW": "~/assets/images/DashboardBanner/i7/soccer_marble_spinner/mobile/zh-TW.jpg",
+                "ImageSource_th-TH": "~/assets/images/DashboardBanner/i7/soccer_marble_spinner/desktop/th-TH.jpg",
+                "ImageMobileSource_th-TH": "~/assets/images/DashboardBanner/i7/soccer_marble_spinner/mobile/th-TH.jpg",
+                "ImageSource_vi-VN": "~/assets/images/DashboardBanner/i7/soccer_marble_spinner/desktop/vi-VN.jpg",
+                "ImageMobileSource_vi-VN": "~/assets/images/DashboardBanner/i7/soccer_marble_spinner/mobile/vi-VN.jpg"
+            },
+            {
+                "Name": "SoccerMarble",
+                "ImageSource_en-US": "~/assets/images/DashboardBanner/i7/soccer_marble/desktop/en-US.jpg",
+                "ImageMobileSource_en-US": "~/assets/images/DashboardBanner/i7/soccer_marble/mobile/en-US.jpg",
+                "ImageSource_zh-CN": "~/assets/images/DashboardBanner/i7/soccer_marble/desktop/zh-CN.jpg",
+                "ImageMobileSource_zh-CN": "~/assets/images/DashboardBanner/i7/soccer_marble/mobile/zh-CN.jpg",
+                "ImageSource_zh-TW": "~/assets/images/DashboardBanner/i7/soccer_marble/desktop/zh-TW.jpg",
+                "ImageMobileSource_zh-TW": "~/assets/images/DashboardBanner/i7/soccer_marble/mobile/zh-TW.jpg",
+                "ImageSource_th-TH": "~/assets/images/DashboardBanner/i7/soccer_marble/desktop/th-TH.jpg",
+                "ImageMobileSource_th-TH": "~/assets/images/DashboardBanner/i7/soccer_marble/mobile/th-TH.jpg",
+                "ImageSource_vi-VN": "~/assets/images/DashboardBanner/i7/soccer_marble/desktop/vi-VN.jpg",
+                "ImageMobileSource_vi-VN": "~/assets/images/DashboardBanner/i7/soccer_marble/mobile/vi-VN.jpg"
+            }
+        ]
+    }
+}

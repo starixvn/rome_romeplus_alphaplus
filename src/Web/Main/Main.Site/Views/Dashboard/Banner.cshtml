@@ -1,6 +1,7 @@
 @model AlphaPlus.Main.Site.Features.Dashboard.DashboardBannerViewModel
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,26 +9,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
-    <style>
-        body { background: transparent; }
-        .icon-home { margin-right: 0; }
-        .icon-home:after { content: none; }
-        .text { padding: 10px 0; margin: 0; font-size: 15px; }
-        .banner { padding: 1px; }
-        .banner img { border-radius: 20px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5); max-width: 100% }
-        .sm { display: none }
-    </style>
-    <style media="screen and (max-device-width: 768px)">
-        .text { font-size: 20px; }       
-        .sm { display: block; }
-        .pc { display: none; }
-    </style>
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
+    @StaticResources.RenderStyles("~/assets/bundles/banner/banner")    
 </head>
+
 <body>
     <p class="text">@Html.Raw(string.Format(Resources.DashboardViewOverallInformation, "<span onclick=\"location.href=top.headerNav.urls.home;\" class=\"icon icon-home\"></span>"))</p>
+
     <div class="banner">
-        <img class="pc" src="~/assets/images/DashboardBanner/@Model.BannerName" alt="" />
-        <img class="sm" src="~/assets/images/DashboardBanner/@Model.BannerMobileName" alt="" />
+        <div id="bannerCarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                @for (int i = 0; i < Model.Banners.Count(); i++)
+                {
+                    var banner = Model.Banners.ElementAt(i);
+                    var className = banner.LogClick ? "log-banner" : "";
+                    <div class="item @(i == 0 ? "active" : string.Empty)">
+                        @if(banner.IsVideo)
+                        {
+                            <div class="video-banner" data-target-url="@Url.Content(banner.Url)">
+                                <img src="@Url.Content(banner.ImageSource)" class="img-banner pc @className" data-name="@banner.Name"/>
+                                <img src="@Url.Content(banner.ImageMobileSource)" class="img-banner sm @className" data-name="@banner.Name"/>
+                                <div class="play-icon"></div>
+                            </div>
+                        }
+                        else
+                        {
+                            if (string.IsNullOrWhiteSpace(banner.Url))
+                            {
+                                <img src="@Url.Content(banner.ImageSource)" class="img-banner pc @className" data-name="@banner.Name"/>
+                                <img src="@Url.Content(banner.ImageMobileSource)" class="img-banner sm @className" data-name="@banner.Name"/>
+                            }
+                            else
+                            {
+                                <img src="@Url.Content(banner.ImageSource)" class="img-banner pc @className" data-target-url="@banner.Url" data-target="_blank" data-name="@banner.Name"/>
+                                <img src="@Url.Content(banner.ImageMobileSource)" class="img-banner sm @className" data-target-url="@banner.Url" data-target="_blank" data-name="@banner.Name"/>
+                            }
+                        }
+                    </div>
+                }
+            </div>
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                @for (int i = 0; i < Model.Banners.Count(); i++)
+                {
+                    <li data-target="#bannerCarousel" data-slide-to="@i" @(i == 0 ? "class=active" : string.Empty)></li>
+                }
+            </ol>
+            <!-- Controls -->
+            <div class="buttons-control">
+                <a class="left carousel-control" href="#bannerCarousel" role="button" data-slide="prev">
+                    <span class="prev">
+                    </span>
+                </a>
+                <a class="right carousel-control" href="#bannerCarousel" role="button" data-slide="next">
+                    <span class="next">
+                    </span>
+                </a>
+            </div>
+        </div>
     </div>
+    @Html.AntiForgeryToken()
+    @StaticResources.RenderScripts("~/assets/bundles/banner/banner")
 </body>
 </html>

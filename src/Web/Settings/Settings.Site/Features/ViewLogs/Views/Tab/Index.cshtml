@@ -18,7 +18,7 @@
         <a data-tablink="/settings/login/index")" role="tab" aria-controls="@TabType.Login" data-toggle="tab" class="lnk-changetab">@Resources.Login</a>
     </li>
 
-    @if (Model.IsOfferedCashService)
+    @if (Model.IsAgent && Model.IsOfferedCashService)
     {
         <li role="presentation" class="@(string.Equals(Model.SelectedTabName, TabType.CashService,StringComparison.OrdinalIgnoreCase) ? "active" : string.Empty)">
             <a data-tablink="/settings/cashservice/index")" role="tab" aria-controls="@TabType.CashService" data-toggle="tab" class="lnk-changetab">@Resources.CashService</a>

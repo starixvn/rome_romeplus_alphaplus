@@ -1,5 +1,10 @@
 @using AlphaPlus.Core.Models
 @inject IUserSession UserSession
+@inject IConfiguration Configuration;
+@{
+    var hideUpcomingPromotion = Configuration.GetValue<bool>("HideUpcomingPromotion");
+}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +30,7 @@
 <body class="view-@UserSession.SiteName.ToLowerInvariant()"
     data-theme="@(string.IsNullOrWhiteSpace(UserSession.DarkModeName) ? "light" : "dark")">
     <span id="user-currency" hidden="">@UserSession.Currency</span>
-
+    <input hidden id="HideUpcomingPromotion" value="@hideUpcomingPromotion.ToString().ToLowerInvariant()" />
     @RenderBody()
     @await RenderSectionAsync("Scripts", required: false)
 

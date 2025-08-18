@@ -120,4 +120,7 @@
   <data name="CashServiceIsDisabled" xml:space="preserve">
     <value>沒有權限。請啟用現金服務以繼續操作。</value>
   </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>您沒有使用此功能的權限</value>
+  </data>
 </root>

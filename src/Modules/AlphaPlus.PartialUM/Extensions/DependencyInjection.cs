@@ -22,17 +22,20 @@ public static class DependencyInjection
         var partialUMConfig = new Dictionary<string, IList<string>>(StringComparer.OrdinalIgnoreCase);
         var partialUMArray = configuration.GetSection("PartialUMOptions:PartialUM").Get<UMConfig[]>();
 
-        foreach (var partialUM in partialUMArray)
+        if (partialUMArray != null)
         {
-            foreach (var key in partialUM.SettingKeys)
+            foreach (var partialUM in partialUMArray)
             {
-                if (!partialUMConfig.TryGetValue(key, out var functionNames))
+                foreach (var key in partialUM.SettingKeys)
                 {
-                    functionNames = new List<string>();
-                    partialUMConfig[key] = functionNames;
-                }
+                    if (!partialUMConfig.TryGetValue(key, out var functionNames))
+                    {
+                        functionNames = new List<string>();
+                        partialUMConfig[key] = functionNames;
+                    }
 
-                functionNames.Add(partialUM.FunctionName);
+                    functionNames.Add(partialUM.FunctionName);
+                }
             }
         }
 

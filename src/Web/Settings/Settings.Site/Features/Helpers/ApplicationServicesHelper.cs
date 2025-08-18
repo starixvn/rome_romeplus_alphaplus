@@ -205,6 +205,7 @@ namespace AlphaPlus.Settings.Site.Features.Helpers
                 .AddScoped<TrackingValueFormatter, TrackingValueFormatterImpl>()
                 .AddScoped<ViewLogs.Helpers.MicroSites, MicroSitesImpl>()
                 .AddScoped<LogFormatter, LogFormatterImpl>()
+                .AddScoped<CashServiceLogFormatter, CashServiceLogFormatterImpl>()
                 .AddScoped<LogDataAccess, LogDataAccessImpl>()
                 .AddScoped<ViewLogIPService, ViewLogIPServiceImpl>()
                 .AddScoped<RemotingRefWrapper, RemotingRefWrapperImpl>()

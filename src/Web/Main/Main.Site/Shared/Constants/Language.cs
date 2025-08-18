@@ -15,7 +15,7 @@
 
         public const string Default = English;
 
-        public static readonly Dictionary<string, string> CodeKeys = new Dictionary<string, string>
+        private static readonly Dictionary<string, string> _codeKeys = new()
         {
             [English] = "E",
             [ChineseTraditional] = "CT",
@@ -26,7 +26,7 @@
             [Vietnamese] = "VI"
         };
 
-        public static readonly Dictionary<string, string> CodeNames = new Dictionary<string, string>
+        private static readonly Dictionary<string, string> _codeNames = new()
         {
             [English] = "English",
             [ChineseTraditional] = "繁體中文",
@@ -37,7 +37,7 @@
             [Vietnamese] = "Tiếng Việt"
         };
 
-        public static readonly Dictionary<string, string> TelegramChatBotCodeNames = new Dictionary<string, string>
+        private static readonly Dictionary<string, string> _telegramChatBotCodeNames = new()
         {
             [English] = "English",
             [NewChineseTraditional] = "繁體中文",
@@ -46,13 +46,23 @@
             [Vietnamese] = "Tiếng Việt"
         };
 
-        public static readonly Dictionary<string, string> TelegramChatBotCodeNamesWithoutVietNamese = TelegramChatBotCodeNames
+        private static readonly Dictionary<string, string> _telegramChatBotCodeNamesWithoutVietnamese = _telegramChatBotCodeNames
             .Where(langauge => langauge.Key != Vietnamese)
             .ToDictionary(language => language.Key, language => language.Value);
 
-        public static readonly Dictionary<string, string> CodeNamesWithoutVietNamese = CodeNames
+        private static readonly Dictionary<string, string> _codeNamesWithoutVietnamese = _codeNames
             .Where(langauge => langauge.Key != Vietnamese)
             .ToDictionary(language => language.Key, language => language.Value);
+
+        public static readonly Dictionary<string, string> CodeKeys = _codeKeys;
+
+        public static readonly Dictionary<string, string> CodeNames = _codeNames;
+
+        public static readonly Dictionary<string, string> TelegramChatBotCodeNames = _telegramChatBotCodeNames;
+
+        public static readonly Dictionary<string, string> TelegramChatBotCodeNamesWithoutVietNamese = _telegramChatBotCodeNamesWithoutVietnamese;
+
+        public static readonly Dictionary<string, string> CodeNamesWithoutVietNamese = _codeNamesWithoutVietnamese;
 
         public static string MapNewChineseLanguageCode(string languageCode)
         {

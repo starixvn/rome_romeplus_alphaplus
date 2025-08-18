@@ -1,5 +1,6 @@
 {
     "promotionReport": "优惠报告",
+    "promotionContent": "优惠内容",
     "table": {
         "no": "序号",
         "action": "操作",
@@ -28,5 +29,6 @@
     "search": {
         "placeholder": "按标题或类型搜索..."
     },
-    "promotionType_1": "营业额返利"
+    "promotionType_1": "营业额返利",
+    "manualBonus": "Manual Bonus"
 }

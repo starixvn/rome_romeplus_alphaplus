@@ -13,5 +13,6 @@ namespace AlphaPlus.CashService.API.Features.Payments.Models
         public string APIMethodKey { get; set; } = string.Empty;
         public string MerchantID { get; set; } = string.Empty;
         public string AppSecret { get; set; } = string.Empty;
+        public string APIConfig { get; set; }
     }
-} 
+}

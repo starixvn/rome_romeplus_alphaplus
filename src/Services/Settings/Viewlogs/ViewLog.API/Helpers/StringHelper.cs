@@ -14,8 +14,9 @@
         public static string RemoveTrailingZeros(string value)
         {
             double numberValue;
-
-            if (string.IsNullOrWhiteSpace(value)
+            if(string.IsNullOrWhiteSpace(value)
+                || value.IndexOf('.') == -1
+                || !value.EndsWith("0")
                 || !char.IsDigit(value[0])
                 || !double.TryParse(value, out numberValue)
                 || ((int)numberValue != 0 && value.StartsWith("0", StringComparison.OrdinalIgnoreCase))

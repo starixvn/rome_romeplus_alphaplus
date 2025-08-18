@@ -1717,4 +1717,181 @@
   <data name="NoMatchingBankAccount" xml:space="preserve">
     <value>일치하는 은행 계좌가 없습니다</value>
   </data>
+  <data name="DailyWithdrawalCount" xml:space="preserve">
+    <value>일일 출금 횟수</value>
+  </data>
+  <data name="MinPerDeposit" xml:space="preserve">
+    <value>최소 입금액</value>
+  </data>
+  <data name="MaxPerDeposit" xml:space="preserve">
+    <value>최대 입금액</value>
+  </data>
+  <data name="MinPerWithdrawal" xml:space="preserve">
+    <value>최소 출금액</value>
+  </data>
+  <data name="MaxPerWithdrawal" xml:space="preserve">
+    <value>최대 출금액</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>시작 시간</value>
+  </data>
+  <data name="TrialEndTime" xml:space="preserve">
+    <value>시도 종료 시간</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>연락처</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>휴대폰</value>
+  </data>
+  <data name="Announcement" xml:space="preserve">
+    <value>공지사항</value>
+  </data>
+  <data name="Provider" xml:space="preserve">
+    <value>제공업체</value>
+  </data>
+  <data name="TransactionType" xml:space="preserve">
+    <value>거래 유형</value>
+  </data>
+  <data name="PaymentMethod" xml:space="preserve">
+    <value>결제 방법</value>
+  </data>
+  <data name="Transaction_1" xml:space="preserve">
+    <value>입금</value>
+  </data>
+  <data name="Transaction_2" xml:space="preserve">
+    <value>출금</value>
+  </data>
+  <data name="PaymentMethodStatus_2" xml:space="preserve">
+    <value>완료</value>
+  </data>
+  <data name="PaymentMethodStatus_3" xml:space="preserve">
+    <value>실패</value>
+  </data>
+  <data name="PaymentMethodStatus" xml:space="preserve">
+    <value>상태</value>
+  </data>
+  <data name="enabled" xml:space="preserve">
+    <value>활성화됨</value>
+  </data>
+  <data name="AccountHolderName" xml:space="preserve">
+    <value>예금주 이름</value>
+  </data>
+  <data name="BankAccountNumber" xml:space="preserve">
+    <value>은행 계좌 번호</value>
+  </data>
+  <data name="AccountNickname" xml:space="preserve">
+    <value>계좌 별칭</value>
+  </data>
+  <data name="DepositMatchingMode" xml:space="preserve">
+    <value>입금 매칭 모드</value>
+  </data>
+  <data name="PromptPay" xml:space="preserve">
+    <value>PromptPay</value>
+  </data>
+  <data name="TransactionType_1" xml:space="preserve">
+    <value>수동 입금</value>
+  </data>
+  <data name="TransactionType_2" xml:space="preserve">
+    <value>자동 입금</value>
+  </data>
+  <data name="TransactionType_3" xml:space="preserve">
+    <value>수동 출금</value>
+  </data>
+  <data name="TransactionType_4" xml:space="preserve">
+    <value>자동 출금</value>
+  </data>
+  <data name="DepositMatchingMode_1" xml:space="preserve">
+    <value>소수점</value>
+  </data>
+  <data name="DepositMatchingMode_2" xml:space="preserve">
+    <value>은행 매칭</value>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>최소</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>최대</value>
+  </data>
+  <data name="TransactionStatus_-1" xml:space="preserve">
+    <value>전체</value>
+  </data>
+  <data name="TransactionStatus_4" xml:space="preserve">
+    <value>완료</value>
+  </data>
+  <data name="TransactionStatus_5" xml:space="preserve">
+    <value>거부</value>
+  </data>
+  <data name="TransactionStatus_6" xml:space="preserve">
+    <value>공급자 거부</value>
+  </data>
+  <data name="TransactionStatus_3" xml:space="preserve">
+    <value>만료</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>참조번호</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>금액</value>
+  </data>
+  <data name="OperatedBy" xml:space="preserve">
+    <value>처리자</value>
+  </data>
+  <data name="AdjustCreditAmt" xml:space="preserve">
+    <value>조정 크레딧 금액</value>
+  </data>
+  <data name="HasPaySlip" xml:space="preserve">
+    <value>영수증 있음</value>
+  </data>
+  <data name="ProviderTransID" xml:space="preserve">
+    <value>제공자 거래 ID</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>유형</value>
+  </data>
+  <data name="PromotionType_1" xml:space="preserve">
+    <value>매출 리베이트</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>상세 정보</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>목차</value>
+  </data>
+  <data name="ProductCategory" xml:space="preserve">
+    <value>제품 카테고리</value>
+  </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>비율 (%)</value>
+  </data>
+  <data name="MinTO" xml:space="preserve">
+    <value>최소 턴오버</value>
+  </data>
+  <data name="MaxPayout" xml:space="preserve">
+    <value>최대 지급액</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>프로모션</value>
+  </data>
+  <data name="CreatedTime" xml:space="preserve">
+    <value>생성 시간</value>
+  </data>
+  <data name="TransactionStatus_2" xml:space="preserve">
+    <value>보류</value>
+  </data>
+  <data name="SettingInfo" xml:space="preserve">
+    <value>설정 정보</value>
+  </data>
+  <data name="CashService_RegisterInfo_3" xml:space="preserve">
+    <value>전체</value>
+  </data>
+  <data name="CashService_RegisterInfo_0" xml:space="preserve">
+    <value>없음</value>
+  </data>
+  <data name="CashService_RegisterInfo_1" xml:space="preserve">
+    <value>회원 등록 허용</value>
+  </data>
+  <data name="CashService_RegisterInfo_2" xml:space="preserve">
+    <value>회원 입금 허용</value>
+  </data>
 </root>

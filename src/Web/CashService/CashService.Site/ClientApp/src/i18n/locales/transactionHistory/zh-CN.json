@@ -42,7 +42,7 @@
     "username": "用户名",
     "nickname": "昵称",
     "fullName": "姓名",
-    "betCredit": "投注额度",
+    "betCredit": "会员现金余额",
     "from": "从",
     "to": "至",
     "dateAndTime": "创建日期",
@@ -61,7 +61,8 @@
     "confirmRevert": "恢复交易",
     "confirmRevertMessage": "确定要恢复交易 #{{transactionId}} 到待处理状态吗？",
     "revertSuccess": "交易已成功恢复",
-    "revertError": "恢复交易失败"
+    "revertError": "恢复交易失败",
+    "processedBy": "处理人"
   },
 
   "status": {

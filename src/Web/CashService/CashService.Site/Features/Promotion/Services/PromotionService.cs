@@ -1,83 +1,96 @@
-using AlphaPlus.CashService.Site.Features.Promotion.Helpers;
-using AlphaPlus.CashService.Site.Features.Promotion.Requests;
-using Newtonsoft.Json;
-
 namespace AlphaPlus.CashService.Site.Features.Promotion.Services;
+
+using Fanex.Logging;
+using Helpers;
+using Newtonsoft.Json;
+using Requests;
+using Shared.Models;
 
 public interface IPromotionService
 {
     Dictionary<string, IFormFile> ProcessPromotionRequest(AddPromotionRequest request);
-    Dictionary<string, IFormFile> ProcessPromotionRequest(EditPromotionRequest request);
-    void ProcessImageUploads(Dictionary<string, IFormFile> files);
+
+    Dictionary<string, IFormFile> ProcessEditPromotionRequest(EditPromotionRequest request);
+
+    Task<ResultModel> ProcessBannerUploadedAsync(Dictionary<string, IFormFile> files);
 }
 
-public class PromotionService : IPromotionService
+public class PromotionService(ILogger logger) : IPromotionService
 {
-    public Dictionary<string, IFormFile> ProcessPromotionRequest(EditPromotionRequest request)
-    {
-        var files = new Dictionary<string, IFormFile>();        
-        foreach (var content in request.Contents)
-        {
-            if (content.Banner != null)
-            {
-                content.BannerName = FormatBannerName(request.UserId, request.FromDate, content.Language, Path.GetExtension(content.Banner.FileName));
-                files.Add(content.BannerName, content.Banner);
+    private const string PromotionUploadFolder = "wwwroot/PromotionImages";
 
-                content.Banner = null;
-            }
-        }
+    public Dictionary<string, IFormFile> ProcessEditPromotionRequest(EditPromotionRequest request)
+    {
+        var files = ProcessUploadedFiles(request.UserId,
+            request.Contents.Where(content => content.Banner != null).ToList());
 
         return files;
     }
 
     public Dictionary<string, IFormFile> ProcessPromotionRequest(AddPromotionRequest request)
     {
-        var files = new Dictionary<string, IFormFile>();
         if (!string.IsNullOrEmpty(request.ProductSettingsJson))
         {
             request.ProductSettings = JsonConvert.DeserializeObject<List<PromotionProductSetting>>(request.ProductSettingsJson);
             request.ProductSettingsJson = null;
         }
 
-        foreach (var content in request.Contents)
-        {
-            if (content.Banner != null)
-            {
-                content.BannerName = FormatBannerName(request.UserId, request.FromDate, content.Language, Path.GetExtension(content.Banner.FileName));
-                files.Add(content.BannerName, content.Banner);
-
-                content.Banner = null;
-            }
-        }
+        var files = ProcessUploadedFiles(request.UserId,
+            request.Contents.Where(content => content.Banner != null).ToList());
 
         return files;
     }
 
-    public void ProcessImageUploads(Dictionary<string, IFormFile> files)
+    public async Task<ResultModel> ProcessBannerUploadedAsync(Dictionary<string, IFormFile> files)
     {
-        _ = Task.Run(async () =>
-        {
-            try
-            {
-                var uploadTasks = files
-                .Where(content => content.Value != null)
-                .Select(async content =>
-                {
-                    await ImageUploadHelper.ProcessUploadedImages(content.Value, content.Key);
-                });
+        ImageUploadHelper.CreateDirectoryIfNotExisted(PromotionUploadFolder);
 
-                await Task.WhenAll(uploadTasks);
-            }
-            catch (Exception ex)
-            {
-                // Log error but don't throw to avoid affecting the main response
-                Console.WriteLine($"Background image processing failed: {ex.Message}");
-            }
-        });
+        var uploadDirectory = Path.Combine(Directory.GetCurrentDirectory(), PromotionUploadFolder);
+        var listResults = new List<ResultModel>();
+        foreach (var file in files)
+        {
+            var result = await UploadBannerResultAsync(file.Value, file.Key, uploadDirectory);
+            listResults.Add(result);
+        }
+
+        if (listResults.Any(r => r.Code != 0))
+        {
+            return new ResultModel { Code = 1, Message = "Upload banner failed" };
+        }
+        return new ResultModel(0, string.Empty);
     }
 
-    private static string FormatBannerName(int userId, DateTime fromDate, string language, string fileExtension)
+    private async Task<ResultModel> UploadBannerResultAsync(IFormFile file, string fileName, string directory)
     {
-        return $"{userId}_{fromDate:yyyyMMdd}_{language}{fileExtension}";
+        var result = new ResultModel { Code = 0 };
+        try
+        {
+            await ImageUploadHelper.ProcessUploadedImage(file, fileName, directory);
+        }
+        catch (Exception e)
+        {
+            result.Code = 1;
+            result.Data = fileName;
+            result.Message = e.Message;
+            await logger.ErrorAsync($"Upload {file.FileName} to {directory} failed. Error message: {e.Message}", e);
+        }
+        return result;
+    }
+
+    private static string FormatBannerName(int userId, string langCode, string fileExtension)
+        => $"{userId}_{DateTime.Now:yyyyMMddHHmmsss}_{Guid.NewGuid().ToString("N")[..6]}_{langCode}{fileExtension}";
+
+    private static Dictionary<string, IFormFile> ProcessUploadedFiles(int userId, List<PromotionLanguageSetting> files)
+    {
+        var fileDictionary = new Dictionary<string, IFormFile>();
+        foreach (var file in files)
+        {
+            var fileName = FormatBannerName(userId, file.Language, Path.GetExtension(file.Banner.FileName));
+            fileDictionary.Add(fileName, file.Banner);
+            file.BannerName = fileName;
+            file.Banner = null;
+        }
+
+        return fileDictionary;
     }
 }

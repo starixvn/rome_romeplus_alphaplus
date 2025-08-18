@@ -1,5 +1,5 @@
-﻿using AlphaPlus.Settings.ViewLogs.API.Constants;
-using AlphaPlus.Core.Configurations;
+﻿using AlphaPlus.Core.Configurations;
+using AlphaPlus.Settings.ViewLogs.API.Constants;
 using Fanex.RemotingRef;
 
 namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
@@ -174,7 +174,25 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
                 string.Empty);
         }
 
+        public string GetPaymentMethodName(string methodId)
+        {
+            return remotingRefService.GetResourceDataByRefIdAndResourceId(
+                "CashPaymentMethod",
+                methodId,
+                LanguageCode,
+                string.Empty);
+        }
+
+        public string GetProviderName(int providerId)
+        {
+            return remotingRefService.GetResourceDataByRefIdAndResourceId(
+                "CashPaymentProvider",
+                providerId.ToString(),
+                LanguageCode,
+                string.Empty);
+        }
+
         private static string LanguageCode
-        => Thread.CurrentThread.CurrentCulture.Name;
+            => Thread.CurrentThread.CurrentCulture.Name;
     }
 }

@@ -98,6 +98,8 @@
   "bankAccountDeletedSuccessfully": "銀行口座の削除に成功しました",
   "bankAccountUpdatedSuccessfully": "銀行口座の更新に成功しました",
   "failedToUpdateBankAccount": "銀行口座の更新に失敗しました",
+  "bankAccountAlreadyExist": "この銀行口座はすでに存在します。別の銀行口座番号を入力してください。",
+  "bankAccountNotFound": "銀行口座が見つかりません",
   
   "enableDisable": "プロバイダーの有効/無効",
   "enableDisableTip1": "メンバーのためのプロバイダーを有効または無効にしてください",

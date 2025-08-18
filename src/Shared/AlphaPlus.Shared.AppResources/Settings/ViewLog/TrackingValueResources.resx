@@ -3701,4 +3701,190 @@
   <data name="NoMatchingBankAccount" xml:space="preserve">
     <value>No Matching Bank Account</value>
   </data>
+  <data name="DailyWithdrawalCount" xml:space="preserve">
+    <value>Daily withdrawal count</value>
+  </data>
+  <data name="MinPerDeposit" xml:space="preserve">
+    <value>Min Per Deposit</value>
+  </data>
+  <data name="MaxPerDeposit" xml:space="preserve">
+    <value>Max Per Deposit</value>
+  </data>
+  <data name="MinPerWithdrawal" xml:space="preserve">
+    <value>Min Per Withdrawal</value>
+  </data>
+  <data name="MaxPerWithdrawal" xml:space="preserve">
+    <value>Max Per Withdrawal</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>Start Time</value>
+  </data>
+  <data name="TrialEndTime" xml:space="preserve">
+    <value>Trial End Time</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="Announcement" xml:space="preserve">
+    <value>Announcement</value>
+  </data>
+  <data name="Provider" xml:space="preserve">
+    <value>Provider</value>
+  </data>
+  <data name="TransactionType" xml:space="preserve">
+    <value>Transaction Type</value>
+  </data>
+  <data name="PaymentMethod" xml:space="preserve">
+    <value>Payment Method</value>
+  </data>
+  <data name="Transaction_1" xml:space="preserve">
+    <value>Deposit</value>
+  </data>
+  <data name="Transaction_2" xml:space="preserve">
+    <value>Withdrawal</value>
+  </data>
+  <data name="PaymentMethodStatus_2" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="PaymentMethodStatus_3" xml:space="preserve">
+    <value>Fail</value>
+  </data>
+  <data name="PaymentMethodStatus" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="enabled" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="AccountHolderName" xml:space="preserve">
+    <value>Account holder name</value>
+  </data>
+  <data name="BankAccountNumber" xml:space="preserve">
+    <value>Bank account number</value>
+  </data>
+  <data name="AccountNickname" xml:space="preserve">
+    <value>Account nickname</value>
+  </data>
+  <data name="DepositMatchingMode" xml:space="preserve">
+    <value>Deposit matching mode</value>
+  </data>
+  <data name="PromptPay" xml:space="preserve">
+    <value>PromptPay</value>
+  </data>
+  <data name="TransactionType_1" xml:space="preserve">
+    <value>Manual Deposit</value>
+  </data>
+  <data name="TransactionType_2" xml:space="preserve">
+    <value>Auto Deposit</value>
+  </data>
+  <data name="TransactionType_3" xml:space="preserve">
+    <value>Manual Withdrawal</value>
+  </data>
+  <data name="TransactionType_4" xml:space="preserve">
+    <value>Auto Withdrawal</value>
+  </data>
+  <data name="DepositMatchingMode_1" xml:space="preserve">
+    <value>Decimal</value>
+  </data>
+  <data name="DepositMatchingMode_2" xml:space="preserve">
+    <value>Bank Matching</value>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>Minimum</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>Maximum</value>
+  </data>
+  <data name="TransactionStatus_-1" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="TransactionStatus_3" xml:space="preserve">
+    <value>Expired</value>
+  </data>
+  <data name="TransactionStatus_4" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="TransactionStatus_5" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="TransactionStatus_6" xml:space="preserve">
+    <value>Provider Rejected</value>
+  </data>
+  <data name="RefNo" xml:space="preserve">
+    <value>Ref No</value>
+  </data>
+  <data name="OperatedBy" xml:space="preserve">
+    <value>Operated By</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="AdjustCreditAmt" xml:space="preserve">
+    <value>Adjust Credit Amt</value>
+  </data>
+  <data name="HasPaySlip" xml:space="preserve">
+    <value>Has Pay Slip</value>
+  </data>
+  <data name="ProviderTransID" xml:space="preserve">
+    <value>Provider Trans ID</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="PromotionType_1" xml:space="preserve">
+    <value>Turnover Rebate</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="ProductCategory" xml:space="preserve">
+    <value>Product Category</value>
+  </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>Percentage</value>
+  </data>
+  <data name="MinTO" xml:space="preserve">
+    <value>Min Turnover</value>
+  </data>
+  <data name="MaxPayout" xml:space="preserve">
+    <value>Max Payout</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>Promotion</value>
+  </data>
+  <data name="CreatedTime" xml:space="preserve">
+    <value>Created Time</value>
+  </data>
+  <data name="TransactionStatus_2" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="SettingInfo" xml:space="preserve">
+    <value>Setting Info</value>
+  </data>
+  <data name="CashService_RegisterInfo_0" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="CashService_RegisterInfo_1" xml:space="preserve">
+    <value>Allow member to register</value>
+  </data>
+  <data name="CashService_RegisterInfo_2" xml:space="preserve">
+    <value>Allow member to deposit</value>
+  </data>
+  <data name="CashService_RegisterInfo_3" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="LineID" xml:space="preserve">
+    <value>LineID</value>
+  </data>
+  <data name="Tele" xml:space="preserve">
+    <value>Telegram</value>
+  </data>
 </root>

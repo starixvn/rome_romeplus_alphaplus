@@ -42,7 +42,7 @@
     "username": "Username",
     "nickname": "Nickname",
     "fullName": "First & Last Name",
-    "betCredit": "Bet Credit",
+    "betCredit": "Member Cash Balance",
     "from": "From",
     "to": "To",
     "dateAndTime": "Created Date",
@@ -61,7 +61,8 @@
     "confirmRevert": "Revert Transaction",
     "confirmRevertMessage": "Are you sure you want to revert transaction #{{transactionId}} to pending status?",
     "revertSuccess": "Transaction has been reverted successfully",
-    "revertError": "Failed to revert transaction"
+    "revertError": "Failed to revert transaction",
+    "processedBy": "Processed By"
   },
 
   "status": {

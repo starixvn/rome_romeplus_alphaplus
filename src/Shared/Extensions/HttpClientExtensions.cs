@@ -1,6 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Newtonsoft.Json;
 
+[SuppressMessage("SonarQube", "S3903:Types should be defined in named namespaces", Justification = "This is a static class that contains extension methods for IEnumerable<T>.")]
 internal static class HttpClientExtensions
 {
     public static async Task<T> GetAsJsonAsync<T>(this HttpClient httpClient, string requestUri)

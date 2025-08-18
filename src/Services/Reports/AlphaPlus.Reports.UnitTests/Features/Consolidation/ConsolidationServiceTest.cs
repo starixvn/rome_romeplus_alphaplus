@@ -5,11 +5,12 @@ using AlphaPlus.Reports.Features.Shared;
 using AlphaPlus.Reports.Features.Shared.Models;
 using Fanex.Data.Repository;
 using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Configuration;
 
 namespace AlphaPlus.Reports.UnitTests.Features.Consolidation;
 
 [Trait("Category", "Consolidation")]
-public class ConsolidationServiceTest
+public class ConsolidationServiceTest : IDisposable
 {
     private readonly Mock<IDynamicRepository> repositoryMock = new();
     private readonly Mock<IReportDateService> reportDateServiceMock = new();
@@ -47,6 +48,34 @@ public class ConsolidationServiceTest
 
     public ConsolidationServiceTest()
     {
+        // Initialize configuration for tests
+        var configuration = new ConfigurationBuilder()
+            .AddInMemoryCollection(new Dictionary<string, string>
+            {
+                ["ForcedHideProductIds"] = "999,998",
+                ["CashService:OfferedSites"] = "TestSite,AnotherSite",
+                ["MarketsSupportedNewHandbook"] = "*",
+                ["SiteLabel"] = "Test",
+                ["SettingStatus"] = "1",
+                ["DBTXN_IP"] = "127.0.0.1",
+                ["SubAccountPermission_LockAdminAccounts"] = "",
+                ["ProductColumnNameMappings"] = "",
+                ["AllowedListSuperAccounts"] = "",
+                ["JsVersion"] = "1.0",
+                ["LocalTest"] = "true",
+                ["PageSize"] = "20",
+                ["DisableMessages"] = "false",
+                ["GoogleAnalyticId"] = "",
+                ["InsertProfilePictureSiteMode"] = "0",
+                ["ProductConfigsFileRelativePath"] = "",
+                ["QRCodeMemberSiteLoginConfigs"] = "",
+                ["HideProductStatus:Sites"] = "",
+                ["SiteLabel789y"] = ""
+            })
+            .Build();
+
+        AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
+
         service = new ConsolidationService(
             repositoryMock.Object,
             reportDateServiceMock.Object,
@@ -54,6 +83,11 @@ public class ConsolidationServiceTest
             cacheRefServiceMock.Object,
             partialUMServiceMock.Object,
             new AllowedSitesToShareLoad(new Dictionary<string, string>()));
+    }
+
+    public void Dispose()
+    {
+        // Clean up if needed
     }
 
     [Fact]
