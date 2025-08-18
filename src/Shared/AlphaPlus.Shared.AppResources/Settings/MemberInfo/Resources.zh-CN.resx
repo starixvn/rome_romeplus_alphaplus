@@ -1276,17 +1276,14 @@
   <data name="PotentialWin" xml:space="preserve">
     <value>潜在赢额</value>
   </data>
+  <data name="SportsbookPotentialWinLimit" xml:space="preserve">
+    <value>体育博彩潜在赢额上限</value>
+  </data>
   <data name="MaxPotentialWinLimit" xml:space="preserve">
     <value>最大潛在赢额上限</value>
   </data>
   <data name="CurrentPotentialWin" xml:space="preserve">
     <value>当前潜在赢额百分比 (%)</value>
-  </data>
-  <data name="PotentialWinLimitNote1" xml:space="preserve">
-    <value>仅显示潜在赢额上限未设置为“无限制”的会员</value>
-  </data>
-  <data name="PotentialWinLimitNote2" xml:space="preserve">
-    <value>由于成绩修改、结算延迟等因素，累计潜在赢额可能暂时超过设定的限额。</value>
   </data>
   <data name="ToWin" xml:space="preserve">
     <value>赢取金额</value>
@@ -1294,8 +1291,11 @@
   <data name="AccumulatedWinLoss" xml:space="preserve">
     <value>累计输赢</value>
   </data>
-  <data name="SportsbookPotentialWinLimit" xml:space="preserve">
-    <value>体育博彩潜在赢额上限</value>
+  <data name="PotentialWinLimitNote1" xml:space="preserve">
+    <value>仅显示潜在赢额上限未设置为“无限制”的会员</value>
+  </data>
+  <data name="PotentialWinLimitNote2" xml:space="preserve">
+    <value>由于成绩修改、结算延迟等因素，累计潜在赢额可能暂时超过设定的限额。</value>
   </data>
   <data name="AccountType" xml:space="preserve">
     <value>账户类型</value>
@@ -1313,9 +1313,9 @@
     <value>成功重置当前赢额</value>
   </data>
   <data name="ResetCurrentWinAmountNote" xml:space="preserve">
-    <value>Reset Current win Amount is only available for Cash member, who has not set Daily reset</value>
+    <value>重置目前赢额仅适用于未设置每日重置的现金会员。</value>
   </data>
   <data name="ResetAccumulatedWinAmountNote" xml:space="preserve">
-     <value>Reset Accumulated win is only available for Cash member, who has not set Daily reset</value>
+    <value>重置累计赢额仅适用于未设置每日重置的现金会员。</value>
   </data>
 </root>

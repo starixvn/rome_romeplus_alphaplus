@@ -1276,17 +1276,14 @@
   <data name="PotentialWin" xml:space="preserve">
     <value>การชนะที่เป็นไปได้</value>
   </data>
+  <data name="SportsbookPotentialWinLimit" xml:space="preserve">
+    <value>ขีดจำกัดการชนะสูงสุดใน Sportsbook</value>
+  </data>
   <data name="MaxPotentialWinLimit" xml:space="preserve">
     <value>ขีดจำกัดการชนะสูงสุด</value>
   </data>
   <data name="CurrentPotentialWin" xml:space="preserve">
     <value>เปอร์เซ็นต์การชนะปัจจุบัน (%)</value>
-  </data>
-  <data name="PotentialWinLimitNote1" xml:space="preserve">
-    <value>แสดงเฉพาะสมาชิกที่ไม่ได้ตั้งค่าขีดจำกัดการชนะสูงสุดเป็น ‘ไม่จำกัด’</value>
-  </data>
-  <data name="PotentialWinLimitNote2" xml:space="preserve">
-    <value>เนื่องจากการแก้ไขผล การล่าช้าในการตัดสิน และปัจจัยอื่น ๆ ยอดชนะสะสมอาจเกินขีดจำกัดที่ตั้งไว้ชั่วคราว</value>
   </data>
   <data name="ToWin" xml:space="preserve">
     <value>จำนวนที่อาจชนะ</value>
@@ -1294,8 +1291,11 @@
   <data name="AccumulatedWinLoss" xml:space="preserve">
     <value>ผลชนะ/แพ้สะสม</value>
   </data>
-  <data name="SportsbookPotentialWinLimit" xml:space="preserve">
-    <value>ขีดจำกัดการชนะสูงสุดใน Sportsbook</value>
+  <data name="PotentialWinLimitNote1" xml:space="preserve">
+    <value>แสดงเฉพาะสมาชิกที่ไม่ได้ตั้งค่าขีดจำกัดการชนะสูงสุดเป็น ‘ไม่จำกัด’</value>
+  </data>
+  <data name="PotentialWinLimitNote2" xml:space="preserve">
+    <value>เนื่องจากการแก้ไขผล การล่าช้าในการตัดสิน และปัจจัยอื่น ๆ ยอดชนะสะสมอาจเกินขีดจำกัดที่ตั้งไว้ชั่วคราว</value>
   </data>
   <data name="AccountType" xml:space="preserve">
     <value>ประเภทบัญชี</value>
@@ -1313,9 +1313,9 @@
     <value>ยอดชนะปัจจุบันถูกรีเซ็ตเรียบร้อย</value>
   </data>
   <data name="ResetCurrentWinAmountNote" xml:space="preserve">
-    <value>Reset Current win Amount is only available for Cash member, who has not set Daily reset</value>
+    <value>การรีเซ็ตจำนวนเงินที่ชนะปัจจุบันสามารถใช้งานได้เฉพาะสำหรับสมาชิกเงินสดที่ยังไม่ได้ตั้งค่าการรีเซ็ตประจำวันเท่านั้น</value>
   </data>
   <data name="ResetAccumulatedWinAmountNote" xml:space="preserve">
-     <value>Reset Accumulated win is only available for Cash member, who has not set Daily reset</value>
+    <value>การรีเซ็ตจำนวนเงินรางวัลสะสมสามารถใช้งานได้เฉพาะสำหรับสมาชิกเงินสดที่ยังไม่ได้ตั้งค่าการรีเซ็ตประจำวันเท่านั้น</value>
   </data>
 </root>
