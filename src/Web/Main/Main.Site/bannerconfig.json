@@ -25,14 +25,14 @@
             }
         ],
         "i7": [
-            // {
-            //     "Name": "Viva",
-            //     "ImageSource_en-US": "~/assets/images/DashboardBanner/i7/viva/desktop/en-US.png",
-            //     "ImageMobileSource_en-US": "~/assets/images/DashboardBanner/i7/viva/mobile/en-US.jpg",
-            //     "Url": "https://www.youtube.com/embed/AylDzbdSmC8?autoplay=1",
-            //     "IsVideo": true,
-            //     "LogClick": true
-            // },
+            {
+                "Name": "Viva",
+                "ImageSource_en-US": "~/assets/images/DashboardBanner/i7/viva/desktop/en-US.png",
+                "ImageMobileSource_en-US": "~/assets/images/DashboardBanner/i7/viva/mobile/en-US.jpg",
+                "Url": "https://www.youtube.com/embed/AylDzbdSmC8?autoplay=1",
+                "IsVideo": true,
+                "LogClick": true
+            },
             {
                 "Name": "SoccerMarbleSpinner",
                 "ImageSource_en-US": "~/assets/images/DashboardBanner/i7/soccer_marble_spinner/desktop/en-US.jpg",
