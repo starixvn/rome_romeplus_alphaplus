@@ -78,7 +78,7 @@
 
         private string GetPaymentMethodName(string paymentMethod)
         {
-            return string.IsNullOrWhiteSpace(paymentMethod) ? remotingRef.GetPaymentMethodName(int.Parse(paymentMethod)) : string.Empty;
+            return remotingRef.GetPaymentMethodName(int.Parse(paymentMethod));
         }
 
         private string GetPaymentMethodStatusName(string paymentMethodStatus)
