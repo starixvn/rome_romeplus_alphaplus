@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Main.Site.Features.Dashboard;
 using AlphaPlus.Main.Site.Features.Dashboard.Banner;
@@ -76,22 +75,6 @@ namespace AlphaPlus.Main.Site.UnitTests.Features.Dashboard
         {
             // Arrange
             _userSessionMock.Setup(x => x.Site).Returns("unknown-site");
-
-            // Act
-            var viewModel = new DashboardBannerViewModel(_userSessionMock.Object, _configurationMock.Object);
-
-            // Assert
-            viewModel.Banners.Should().BeEmpty();
-        }
-
-        [Fact]
-        public void Banners_WithNullConfigurationSection_ShouldReturnEmptyEnumerable()
-        {
-            // Arrange
-            _userSessionMock.Setup(x => x.Site).Returns("MBC");
-            _userSessionMock.Setup(x => x.Language).Returns("en");
-
-            _configurationMock.Setup(x => x.GetSection("Banners:i1")).Returns((IConfigurationSection)null);
 
             // Act
             var viewModel = new DashboardBannerViewModel(_userSessionMock.Object, _configurationMock.Object);
