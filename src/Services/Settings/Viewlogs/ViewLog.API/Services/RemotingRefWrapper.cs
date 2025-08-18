@@ -28,7 +28,7 @@
 
         string GetOtherGamesBetSettingName(int sportType, int betType);
 
-        string GetPaymentMethodName(int methodId);
+        string GetPaymentMethodName(string methodId);
 
         string GetProviderName(int providerId);
     }

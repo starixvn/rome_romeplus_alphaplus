@@ -1,5 +1,5 @@
-﻿using AlphaPlus.Settings.ViewLogs.API.Constants;
-using AlphaPlus.Core.Configurations;
+﻿using AlphaPlus.Core.Configurations;
+using AlphaPlus.Settings.ViewLogs.API.Constants;
 using Fanex.RemotingRef;
 
 namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
@@ -174,10 +174,11 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
                 string.Empty);
         }
 
-        public string GetPaymentMethodName(int methodId) {
+        public string GetPaymentMethodName(string methodId)
+        {
             return remotingRefService.GetResourceDataByRefIdAndResourceId(
                 "CashPaymentMethod",
-                methodId.ToString(),
+                methodId,
                 LanguageCode,
                 string.Empty);
         }

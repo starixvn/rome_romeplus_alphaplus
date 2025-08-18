@@ -78,7 +78,7 @@
 
         private string GetPaymentMethodName(string paymentMethod)
         {
-            return remotingRef.GetPaymentMethodName(int.Parse(paymentMethod));
+            return remotingRef.GetPaymentMethodName(paymentMethod);
         }
 
         private string GetPaymentMethodStatusName(string paymentMethodStatus)
