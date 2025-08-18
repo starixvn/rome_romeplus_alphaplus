@@ -30,7 +30,7 @@ export const getMultipleConfirmMessage = (
     const openingUsernames: string[] = [],
         closingUsernames: string[] = [];
 
-    viewModel.map((item, index: number) => {
+    viewModel.forEach((item, index: number) => {
         if (item.IsClosed !== originalViewModel[index].IsClosed) {
             if (item.IsClosed) {
                 closingUsernames.push(item.Username);
