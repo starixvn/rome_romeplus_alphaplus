@@ -8,20 +8,12 @@
       <xsl:when test="@custid">
         <table class="tblDesc">
           <tr>
-            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('TransactionType')" /></td>
-            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingTransactionTypeName(@transactiontypeid)" /></td>
-            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('PaymentMethod')" /></td>
-            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingPaymentMethodName(@paymenttype)" /></td>
+            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('RefNo')" /></td>
+            <td class="colW2"><xsl:value-of select="@transferrefno" /></td>
+            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('transID')" /></td>
+            <td class="colW2"><xsl:value-of select="@transid" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Status')" /></td>
             <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingTransactionStatus(@statusid)" /></td>
-          </tr>
-          <tr>
-            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('From')" /></td>
-            <td class="colW2"><xsl:value-of select="@paymentfrom" /></td>
-            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('To')" /></td>
-            <td class="colW2"><xsl:value-of select="@paymentto" /></td>
-            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Amount')" /></td>
-            <td class="colW2"><xsl:value-of select="@amount" /></td>
           </tr>
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SubAccName')" /></td>
