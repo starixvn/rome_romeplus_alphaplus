@@ -77,7 +77,7 @@ class Banner {
         const video = `<div class='wrapper-video'>
                 <div class='video-container'>
                     <div class='icon-close' id='closeVideo'></div>
-                    <iframe class="content-video" src="${url}" allow="autoplay; encrypted-media" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <iframe class="content-video" src="${url}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                 </div>
             </div>`;
         document.body.style.overflow = 'hidden';
