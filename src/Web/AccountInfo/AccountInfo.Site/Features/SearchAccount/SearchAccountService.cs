@@ -236,7 +236,6 @@ public class SearchAccountService(
         }
         else
         {
-
             var replicateServerCommand = new UpdateGivenCreditReplicateServerCommand(param.SearchAccountId, param.CreditAmount);
             await dynamicRepository.ExecuteAsync(replicateServerCommand);
             return Result.CreateSuccessfulResult();

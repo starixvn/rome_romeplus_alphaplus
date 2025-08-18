@@ -60,6 +60,7 @@ public class QRCodeMemberSignInHandler :
                 message.ViewerLevelId,
                 message.ActorUsername,
                 false,
+                false,
                 message.Language);
             onlyShowErrorMessage = limitNewDownlineResult.IsFailed;
             message.ErrorMessage = limitNewDownlineResult.Message;
