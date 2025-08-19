@@ -89,7 +89,7 @@ class CashFeeView extends BaseReportNew {
     getWeeks(queryStringObject: any) {
         const CashBillingServiceProductId = '111';
 
-        var getWeekParams = $.extend({}, queryStringObject);
+        const getWeekParams = $.extend({}, queryStringObject);
         getWeekParams.userSelectedProductIds = CashBillingServiceProductId;
 
         const queryString = $.param(getWeekParams);
