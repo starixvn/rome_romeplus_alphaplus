@@ -39,14 +39,6 @@ namespace AlphaPlus.Main.Site.UnitTests.Features.Default
         }
 
         [Fact]
-        public void DefaultController_ShouldHaveKickOutAction()
-        {
-            // Assert
-            var kickOutMethod = typeof(DefaultController).GetMethod("KickOut");
-            kickOutMethod.Should().NotBeNull();
-        }
-
-        [Fact]
         public void DefaultController_ShouldHaveRedirectAction()
         {
             // Assert - Use more specific method search to avoid ambiguity

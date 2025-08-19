@@ -60,7 +60,7 @@ public class ExceptionMiddleware(RequestDelegate next, ILogger logger, IUserSess
         }
         else
         {
-            var darkModeName = _userSession.DarkModeName;
+            var darkModeName = userSession.DarkModeName;
             context.Response.ContentType = "text/html";
             await context.Response.WriteAsync(@"<!DOCTYPE html>
             <html lang=""en"">

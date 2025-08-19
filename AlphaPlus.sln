@@ -167,12 +167,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountInfo.Site.UnitTests"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.Utilities.IP.UnitTests", "src\Modules\AlphaPlus.Utilities.IP.UnitTests\AlphaPlus.Utilities.IP.UnitTests.csproj", "{6E3E55F2-5AAB-4053-8F44-54530382AACB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{D93A4E35-2705-E8AD-048A-F59C2D109D18}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Site", "src\Web\Auth\Auth.Site\Auth.Site.csproj", "{CB93AD2F-4DA0-4E45-BC46-5F927A4D9141}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.SmartPunter.UnitTests", "src\Modules\AlphaPlus.SmartPunter.UnitTests\AlphaPlus.SmartPunter.UnitTests.csproj", "{D47DED8E-332C-49BF-9307-016A6A0091C1}"
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Site.UnitTests", "src\Web\Auth\Auth.Site.UnitTests\Auth.Site.UnitTests.csproj", "{D92EEB28-67D0-4EA8-8046-11DC27CEACFE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.IPInfo.UnitTests", "src\Modules\AlphaPlus.IPInfo.UnitTests\AlphaPlus.IPInfo.UnitTests.csproj", "{7F117A97-1847-42ED-9218-2192F2E5070B}"
 EndProject
@@ -189,6 +184,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlphaPlus.Logging.UnitTests", "src\Modules\AlphaPlus.Logging.UnitTests\AlphaPlus.Logging.UnitTests.csproj", "{C3133AA5-01AC-4F4D-A8D6-0E812711E892}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Indentity.API.UnitTests", "src\Services\Identity\Indentity.API.UnitTests\Indentity.API.UnitTests.csproj", "{99C7F6C1-5FAF-431B-8E25-22C85E2C243E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Auth", "Auth", "{D93A4E35-2705-E8AD-048A-F59C2D109D18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Site", "src\Web\Auth\Auth.Site\Auth.Site.csproj", "{C53850C5-4121-4960-9189-8040D74B1620}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Site.UnitTests", "src\Web\Auth\Auth.Site.UnitTests\Auth.Site.UnitTests.csproj", "{6269D1B1-56FD-4C99-B794-23B5AB47191B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -908,6 +909,30 @@ Global
 		{99C7F6C1-5FAF-431B-8E25-22C85E2C243E}.Release|x64.Build.0 = Release|Any CPU
 		{99C7F6C1-5FAF-431B-8E25-22C85E2C243E}.Release|x86.ActiveCfg = Release|Any CPU
 		{99C7F6C1-5FAF-431B-8E25-22C85E2C243E}.Release|x86.Build.0 = Release|Any CPU
+		{C53850C5-4121-4960-9189-8040D74B1620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C53850C5-4121-4960-9189-8040D74B1620}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C53850C5-4121-4960-9189-8040D74B1620}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C53850C5-4121-4960-9189-8040D74B1620}.Debug|x64.Build.0 = Debug|Any CPU
+		{C53850C5-4121-4960-9189-8040D74B1620}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C53850C5-4121-4960-9189-8040D74B1620}.Debug|x86.Build.0 = Debug|Any CPU
+		{C53850C5-4121-4960-9189-8040D74B1620}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C53850C5-4121-4960-9189-8040D74B1620}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C53850C5-4121-4960-9189-8040D74B1620}.Release|x64.ActiveCfg = Release|Any CPU
+		{C53850C5-4121-4960-9189-8040D74B1620}.Release|x64.Build.0 = Release|Any CPU
+		{C53850C5-4121-4960-9189-8040D74B1620}.Release|x86.ActiveCfg = Release|Any CPU
+		{C53850C5-4121-4960-9189-8040D74B1620}.Release|x86.Build.0 = Release|Any CPU
+		{6269D1B1-56FD-4C99-B794-23B5AB47191B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6269D1B1-56FD-4C99-B794-23B5AB47191B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6269D1B1-56FD-4C99-B794-23B5AB47191B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6269D1B1-56FD-4C99-B794-23B5AB47191B}.Debug|x64.Build.0 = Debug|Any CPU
+		{6269D1B1-56FD-4C99-B794-23B5AB47191B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6269D1B1-56FD-4C99-B794-23B5AB47191B}.Debug|x86.Build.0 = Debug|Any CPU
+		{6269D1B1-56FD-4C99-B794-23B5AB47191B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6269D1B1-56FD-4C99-B794-23B5AB47191B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6269D1B1-56FD-4C99-B794-23B5AB47191B}.Release|x64.ActiveCfg = Release|Any CPU
+		{6269D1B1-56FD-4C99-B794-23B5AB47191B}.Release|x64.Build.0 = Release|Any CPU
+		{6269D1B1-56FD-4C99-B794-23B5AB47191B}.Release|x86.ActiveCfg = Release|Any CPU
+		{6269D1B1-56FD-4C99-B794-23B5AB47191B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -996,6 +1021,9 @@ Global
 		{95EF0183-3303-435C-B0C4-7131AC533621} = {EC447DCF-ABFA-6E24-52A5-D7FD48A5C558}
 		{C3133AA5-01AC-4F4D-A8D6-0E812711E892} = {EC447DCF-ABFA-6E24-52A5-D7FD48A5C558}
 		{99C7F6C1-5FAF-431B-8E25-22C85E2C243E} = {8564DBAE-EFF8-4A48-86EC-D65C67546E42}
+		{D93A4E35-2705-E8AD-048A-F59C2D109D18} = {0FC925DF-F976-4D1F-A25F-7460F356EDFF}
+		{C53850C5-4121-4960-9189-8040D74B1620} = {D93A4E35-2705-E8AD-048A-F59C2D109D18}
+		{6269D1B1-56FD-4C99-B794-23B5AB47191B} = {D93A4E35-2705-E8AD-048A-F59C2D109D18}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {96B8FE04-10B1-4AF3-8637-2A70F4B419A8}
