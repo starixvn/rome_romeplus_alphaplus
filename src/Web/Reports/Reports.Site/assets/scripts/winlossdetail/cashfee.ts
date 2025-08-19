@@ -11,7 +11,6 @@ class CashFeeView extends BaseReportNew {
     private cashFeeCopyHtml: CashFeeCopyHtml;
     private $tblReportContainer: JQuery;
     private globalFormData: any;
-    
 
     constructor(
         dateRangeComponent: DateRangePickerJQueryComponent,
@@ -43,7 +42,7 @@ class CashFeeView extends BaseReportNew {
             location.href = `${$('#winloss-detail-report-path').val()}?${$.param(winlossDetailParams)}`;
         });
         this.weekComponent.init($('#week-container'), (dateRange) => this.getCashFee(dateRange, true));
-        
+
         this.registerEvents();
     }
 
@@ -53,7 +52,7 @@ class CashFeeView extends BaseReportNew {
         const $iconExcel = $('#icon-excel');
         const excelUrl = $iconExcel.attr('href');
         $iconExcel
-            .click((e) => {
+            .click(() => {
                 let excelParams = {
                     custId: winlossDetailFromData.custId,
                     custName: winlossDetailFromData.custName
@@ -72,14 +71,14 @@ class CashFeeView extends BaseReportNew {
         this.clearActiveWeek();
         this.$tblReportContainer.block();
         const dateRange = this.dateRangeComponent.getDateRangeValues();
-        const queryStringObject = $.extend(
-            {}, this.globalFormData, dateRange, weekRange);
+        const queryStringObject = $.extend({}, this.globalFormData, dateRange, weekRange);
         const queryString = $.param(queryStringObject);
         isGetWeeks && this.getWeeks(queryStringObject);
         this.globalFormData = queryStringObject;
         const url = 'GetCashFeeData';
         $.get(`${url}?${queryString}`, (html) => {
             this.$tblReportContainer.html(html);
+            this.cashFeeCopyHtml.bindEvent($('#tbl-report'));
             this.$tblReportContainer.unblock();
         }).fail((jqXHR) => {
             alphaReports.ajaxFail(jqXHR);
@@ -88,10 +87,9 @@ class CashFeeView extends BaseReportNew {
     }
 
     getWeeks(queryStringObject: any) {
-        const CashBillingServiceProductId = "111";
+        const CashBillingServiceProductId = '111';
 
-        var getWeekParams = $.extend(
-            {}, queryStringObject);
+        var getWeekParams = $.extend({}, queryStringObject);
         getWeekParams.userSelectedProductIds = CashBillingServiceProductId;
 
         const queryString = $.param(getWeekParams);
