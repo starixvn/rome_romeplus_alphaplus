@@ -3,11 +3,10 @@
     ViewData["Title"] = Model.PageHeader.Title;
     var isSuperLevel = Model.ViewerLevel.IsSuperLevel();
     var isMasterOrSuperLevel = Model.ViewerLevel.IsMasterOrSuperLevel();
-    var version = AlphaPlus.Core.Configurations.AppSettings.JsVersion;
 }
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/winlossdetailnew")
-    <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css?v=@version" />
+    @StaticResources.RenderStyles("~/bundles-v2/winlossdetailnew")
 }
 @section Scripts {
     <script type="text/javascript">
@@ -54,7 +53,7 @@
         var viewerLevelId = @Model.ViewerLevel.Value;
     </script>
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-reports/winlossdetail")
-    <script src="~/bundles/winlossdetail/winlossdetail.js?v=@version"></script>
+    @StaticResources.RenderScripts("~/bundles/winlossdetail/winlossdetail")
 }
 @model WinLossDetailViewModel
 <div class="flex" style="visibility: hidden">

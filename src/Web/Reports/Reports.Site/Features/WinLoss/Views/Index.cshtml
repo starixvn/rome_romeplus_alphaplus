@@ -13,7 +13,6 @@
 	var isSuperLevel = Model.CustLevel.IsSuperLevel();
 	var isMasterLevel = Model.CustLevel.IsMasterLevel();
 	var isAgentLevel = Model.CustLevel.IsAgentLevel();
-	var version = AlphaPlus.Core.Configurations.AppSettings.JsVersion;
 
 	void RenderTableHeaderForSuperMaster()
 	{
@@ -281,10 +280,10 @@
 }
 @section Styles {
 	@StaticResources.AssetStyles.Render("/bundles-v2/site-reports/winloss")
-	<link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css?v=@version" />
+	@StaticResources.RenderStyles("~/bundles-v2/winlossdetailnew")
 }
 @section Scripts {
-	<script src="~/bundles/winloss/winloss.js?v=@version"></script>
+	@StaticResources.RenderScripts("~/bundles/winloss/winloss")
 }
 @model WinLossViewModel
 <report-title model="Model.PageHeader" />

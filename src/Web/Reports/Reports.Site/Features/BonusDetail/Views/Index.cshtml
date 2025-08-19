@@ -181,10 +181,10 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/bonusdetail")
-    <link rel="stylesheet" href="~/bundles-v2/bonusdetail.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles-v2/bonusdetail")
 }
 @section Scripts {
-    <script src="~/bundles/bonusdetail/bonusdetail.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/bonusdetail/bonusdetail")
 }
 @model BonusDetailViewModel
 <report-title model="Model.PageHeader" fid="28" />

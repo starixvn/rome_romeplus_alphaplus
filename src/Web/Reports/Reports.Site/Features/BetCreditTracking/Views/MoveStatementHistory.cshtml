@@ -47,11 +47,11 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/betcredittracking")
-    <link rel="stylesheet" href="~/bundles-v2/movestatementhistory.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles-v2/movestatementhistory")
 }
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles-v2/site-assets/tipsy")
-    <script src="~/bundles/betcredittracking/movestatementhistory.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/betcredittracking/movestatementhistory")
 }
 @model MoveStatementHistoryViewModel
 <div

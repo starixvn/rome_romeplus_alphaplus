@@ -1,10 +1,10 @@
-﻿declare interface Window {
+﻿'use strict';
+
+declare interface Window {
     popupManager: any;
     indexManager: any;
     afterDislikeSubmitCallback: () => void;
 }
-
-('use strict');
 
 class CompactFeedback {
     init() {

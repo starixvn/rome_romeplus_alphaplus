@@ -77,10 +77,10 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/winlossdetailnew")
-    <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles-v2/winlossdetailnew")
 }
 @section Scripts {
-    <script src="~/bundles/matchwinlossdetail/matchwinlossdetail.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/matchwinlossdetail/matchwinlossdetail")
 }
 @model MatchWinLossDetailViewModel
 <report-title model="Model.PageHeader" />

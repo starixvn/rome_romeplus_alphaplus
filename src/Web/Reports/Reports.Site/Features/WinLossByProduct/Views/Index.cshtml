@@ -25,17 +25,17 @@
 
     void RenderWinLossByProduct(WinLossByProductModel data, bool isExpand)
     {
-                <tr class="product-row" data-product-id="@data.ProductId" data-is-hide="@(isExpand ? "false" : "true")">
-                    <td class="text-left col-username bold @(isExpand ? "active" : string.Empty)">
-                        <div class="text-icon-left">
-                            <span class="@(isExpand ? "ic-arrow-down" : "ic-arrow-right")"></span>
+        <tr class="product-row" data-product-id="@data.ProductId" data-is-hide="@(isExpand ? "false" : "true")">
+            <td class="text-left col-username bold @(isExpand ? "active" : string.Empty)">
+                <div class="text-icon-left">
+                    <span class="@(isExpand ? "ic-arrow-down" : "ic-arrow-right")"></span>
                     @data.ProductName
-                        </div>
-                    </td>
+                </div>
+            </td>
             @{
                 RenderWinLossInfo(data.Total);
             }
-                </tr>
+        </tr>
     }
 
     void RenderSport(int productId, WinLossBySportModel data, bool isExpand)
@@ -53,18 +53,18 @@
 
     void RenderWinLossBySport(int productId, WinLossBySportModel data, bool isExpand)
     {
-                <tr class="sport-row sport-of-@productId@(isExpand ? string.Empty : " hide")" data-product-id="@productId"
-                    data-sporttype="@data.SportType" data-is-hide="@(isExpand ? "false" : "true")">
-                    <td class="text-left col-username bold @(isExpand ? "active" : string.Empty)">
-                        <div class="text-icon-left">
-                            <span class="@(isExpand ? "ic-arrow-down" : "ic-arrow-right")"></span>
+        <tr class="sport-row sport-of-@productId@(isExpand ? string.Empty : " hide")" data-product-id="@productId"
+            data-sporttype="@data.SportType" data-is-hide="@(isExpand ? "false" : "true")">
+            <td class="text-left col-username bold @(isExpand ? "active" : string.Empty)">
+                <div class="text-icon-left">
+                    <span class="@(isExpand ? "ic-arrow-down" : "ic-arrow-right")"></span>
                     @data.SportTypeName
-                        </div>
-                    </td>
+                </div>
+            </td>
             @{
                 RenderWinLossInfo(data.Total);
             }
-                </tr>
+        </tr>
     }
 
     void RenderWinLossByBetType(int productId, int sportType, WinLossByBetTypeModel data, bool isTotalRow, bool isExpand =
@@ -72,29 +72,29 @@
     {
         var betTypeRowClass = $"bet-type-row bet-type-of-product-{productId} bet-type-of-sport-{sportType}";
         var rowClass = isTotalRow ? "tbl-footer" : isExpand ? betTypeRowClass : betTypeRowClass + " hide";
-                <tr class="@rowClass">
-                    <td class="text-left col-username">@(isTotalRow ? Resources.Total : @data.BetTypeName)</td>
+        <tr class="@rowClass">
+            <td class="text-left col-username">@(isTotalRow ? Resources.Total : @data.BetTypeName)</td>
             @{
                 RenderWinLossInfo(data);
             }
-                </tr>
+        </tr>
     }
 
     void RenderWinLossInfo(WinLossByBetTypeModel data)
     {
-                <td>@data.NumberOfTickets.FormatNumber()</td>
+        <td>@data.NumberOfTickets.FormatNumber()</td>
         if (Model.PageHeader.IsStackMode)
         {
-                        <td class="visible-stack-mode combinedcell col-turnover-combined">
-                            <ul>
-                                <li>@data.Turnover.FormatNumber()</li>
-                                <li>@data.GrossComm.FormatNumber()</li>
+            <td class="visible-stack-mode combinedcell col-turnover-combined">
+                <ul>
+                    <li>@data.Turnover.FormatNumber()</li>
+                    <li>@data.GrossComm.FormatNumber()</li>
                     @if (!isAgentLevel)
                     {
-                                        <li>@data.DownlineTotal.FormatNumber()</li>
+                        <li>@data.DownlineTotal.FormatNumber()</li>
                     }
-                            </ul>
-                        </td>
+                </ul>
+            </td>
             if (isAgentLevel)
             {
                 RenderStackNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
@@ -111,8 +111,8 @@
         }
         else
         {
-                        <td class="hidden-stack-mode col-turnover">@data.Turnover.FormatNumber()</td>
-                        <td class="hidden-stack-mode col-gross-com">@data.GrossComm.FormatNumber()</td>
+            <td class="hidden-stack-mode col-turnover">@data.Turnover.FormatNumber()</td>
+            <td class="hidden-stack-mode col-gross-com">@data.GrossComm.FormatNumber()</td>
             if (isAgentLevel)
             {
                 RenderNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
@@ -120,42 +120,42 @@
             }
             else if (isMasterLevel)
             {
-                                <td class="hidden-stack-mode bold col-cust-total">@data.DownlineTotal.FormatNumber()</td>
+                <td class="hidden-stack-mode bold col-cust-total">@data.DownlineTotal.FormatNumber()</td>
                 RenderNetWinLoss("master", data.WinLoss, data.Comm, data.Total, "altercol");
             }
             else
             {
-                                <td class="hidden-stack-mode bold col-cust-total">@data.DownlineTotal.FormatNumber()</td>
+                <td class="hidden-stack-mode bold col-cust-total">@data.DownlineTotal.FormatNumber()</td>
                 RenderNetWinLoss("super", data.WinLoss, data.Comm, data.Total, "altercol");
             }
         }
-                <td class="text-right col-company">@data.Company.FormatNumber()</td>
+        <td class="text-right col-company">@data.Company.FormatNumber()</td>
     }
 
     void RenderStackNetWinLoss(string level, decimal winloss, decimal comm, decimal total, string highlightClass = "")
     {
-                <td class="visible-stack-mode combinedcell col-@level-winloss-combined @highlightClass">
-                    <ul>
-                        <li>@winloss.FormatNumber()</li>
-                        <li>@comm.FormatNumber()</li>
-                        <li>@total.FormatNumber()</li>
-                    </ul>
-                </td>
+        <td class="visible-stack-mode combinedcell col-@level-winloss-combined @highlightClass">
+            <ul>
+                <li>@winloss.FormatNumber()</li>
+                <li>@comm.FormatNumber()</li>
+                <li>@total.FormatNumber()</li>
+            </ul>
+        </td>
     }
 
     void RenderNetWinLoss(string level, decimal winloss, decimal comm, decimal total, string highlightClass = "")
     {
-                <td class="hidden-stack-mode col-@level-winloss @highlightClass">@winloss.FormatNumber()</td>
-                <td class="hidden-stack-mode @highlightClass">@comm.FormatNumber()</td>
-                <td class="hidden-stack-mode bold col-cust-total @highlightClass">@total.FormatNumber()</td>
+        <td class="hidden-stack-mode col-@level-winloss @highlightClass">@winloss.FormatNumber()</td>
+        <td class="hidden-stack-mode @highlightClass">@comm.FormatNumber()</td>
+        <td class="hidden-stack-mode bold col-cust-total @highlightClass">@total.FormatNumber()</td>
     }
 }
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/winlossbyproduct")
-        <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles-v2/winlossdetailnew")
 }
 @section Scripts {
-        <script src="~/bundles/winlossbyproduct/winlossbyproduct.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/winlossbyproduct/winlossbyproduct")
 }
 @model WinLossByProductViewModel
 <report-title model="Model.PageHeader" />
@@ -172,9 +172,9 @@
     </div>
     @if (Model.ReportData.Any())
     {
-            <div class="form-group">
-                <compact-feedback fid="19" />
-            </div>
+        <div class="form-group">
+            <compact-feedback fid="19" />
+        </div>
     }
     <div class="note">
         <span class="star">*</span>@Model.ViewDataInstructionMessage
@@ -195,49 +195,49 @@
             </th>
             @if (isSuperLevel || isMasterLevel)
             {
-                    <th rowspan="2" class="hidden-stack-mode">@Resources.DownlineTotal</th>
+                <th rowspan="2" class="hidden-stack-mode">@Resources.DownlineTotal</th>
             }
             @if (isAgentLevel)
             {
-                    <th colspan="3" class="col-level hidden-stack-mode">@Resources.Member</th>
-                    <th class="visible-stack-mode col-combine" rowspan="2">
+                <th colspan="3" class="col-level hidden-stack-mode">@Resources.Member</th>
+                <th class="visible-stack-mode col-combine" rowspan="2">
                     @Resources.Member<br />(<span>@Resources.WinLossAbbr</span>@Resources.CommAndTotal)</th>
-                    <th colspan="3" class="col-level hidden-stack-mode">@Model.CustLevelName</th>
-                    <th class="visible-stack-mode col-combine" rowspan="2">
+                <th colspan="3" class="col-level hidden-stack-mode">@Model.CustLevelName</th>
+                <th class="visible-stack-mode col-combine" rowspan="2">
                     @Model.CustLevelName<br />(<span>@Resources.WinLossAbbr</span>@Resources.CommAndTotal)</th>
-                    <th class="hidden-stack-mode" rowspan="2">@Resources.Company</th>
-                    <th class="visible-stack-mode" rowspan="2">@Resources.Company</th>
+                <th class="hidden-stack-mode" rowspan="2">@Resources.Company</th>
+                <th class="visible-stack-mode" rowspan="2">@Resources.Company</th>
             }
             else
             {
-                    <th colspan="3" class="col-level hidden-stack-mode">@Model.CustLevelName</th>
-                    <th class="visible-stack-mode col-combine" rowspan="2">
+                <th colspan="3" class="col-level hidden-stack-mode">@Model.CustLevelName</th>
+                <th class="visible-stack-mode col-combine" rowspan="2">
                     @Model.CustLevelName<br />(<span>@Resources.WinLossAbbr</span>@Resources.CommAndTotal)</th>
-                    <th class="hidden-stack-mode" rowspan="2">@Resources.Company</th>
-                    <th class="visible-stack-mode" rowspan="2">@Resources.Company</th>
+                <th class="hidden-stack-mode" rowspan="2">@Resources.Company</th>
+                <th class="visible-stack-mode" rowspan="2">@Resources.Company</th>
             }
         </tr>
         <tr class="thead-row2">
             @if (isAgentLevel)
             {
-                    <th class="hidden-stack-mode col-winloss">@Resources.WinLoss</th>
-                    <th class="hidden-stack-mode">@Resources.Comm</th>
-                    <th class="hidden-stack-mode">@Resources.Total</th>
-                    <th class="hidden-stack-mode col-winloss">@Resources.WinLoss</th>
-                    <th class="hidden-stack-mode">@Resources.Comm</th>
-                    <th class="hidden-stack-mode">@Resources.Total</th>
+                <th class="hidden-stack-mode col-winloss">@Resources.WinLoss</th>
+                <th class="hidden-stack-mode">@Resources.Comm</th>
+                <th class="hidden-stack-mode">@Resources.Total</th>
+                <th class="hidden-stack-mode col-winloss">@Resources.WinLoss</th>
+                <th class="hidden-stack-mode">@Resources.Comm</th>
+                <th class="hidden-stack-mode">@Resources.Total</th>
             }
             else
             {
-                    <th class="hidden-stack-mode col-winloss">@Resources.WinLoss</th>
-                    <th class="hidden-stack-mode">@Resources.Comm</th>
-                    <th class="hidden-stack-mode">@Resources.Total</th>
+                <th class="hidden-stack-mode col-winloss">@Resources.WinLoss</th>
+                <th class="hidden-stack-mode">@Resources.Comm</th>
+                <th class="hidden-stack-mode">@Resources.Total</th>
             }
         </tr>
     </thead>
     @if (Model.ReportData.Any())
     {
-            <tbody>
+        <tbody>
             @{
                 var isExpand = true;
                 foreach (var data in Model.ReportData)
@@ -246,16 +246,16 @@
                     isExpand = false;
                 }
             }
-            </tbody>
-            <tfoot>
+        </tbody>
+        <tfoot>
             @{
                 RenderWinLossByBetType(0, 0, Model.Total, true);
             }
-            </tfoot>
+        </tfoot>
     }
     else
     {
-            <no-information colspan="@(isAgentLevel ? 11 : 9)" />
+        <no-information colspan="@(isAgentLevel ? 11 : 9)" />
     }
 </table>
 <a class="hide" id="LoadLegendURL" asp-action="WinLoss" asp-controller="Legends" asp-route-MinDate="01/01/0001"></a>

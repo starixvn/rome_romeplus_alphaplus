@@ -508,9 +508,9 @@
     <value>ยืนยัน</value>
   </data>
   <data name="LikeTooltip" xml:space="preserve">
-    <value>Satisfied with this feature</value>
+    <value>พึงพอใจกับฟีเจอร์นี้</value>
   </data>
   <data name="DislikeTooltip" xml:space="preserve">
-    <value>Need improvement</value>
+    <value>ต้องการการปรับปรุง</value>
   </data>
 </root>

@@ -4,23 +4,23 @@
 
     void RenderNegativeNumberCell(decimal? cellValue)
     {
-                <span class="@(cellValue.HasValue && cellValue.Value < 0 ? "format-negative" : string.Empty)">
+        <span class="@(cellValue.HasValue && cellValue.Value < 0 ? "format-negative" : string.Empty)">
             @(cellValue.HasValue ? cellValue.Value.FormatNumber() : Resources.Symbol_NoDataNumber)
-                </span>
+        </span>
     }
     void RenderNumberCell(decimal? cellValue)
     {
-                <span>
+        <span>
             @(cellValue.HasValue ? cellValue.Value.FormatNumber() : Resources.Symbol_NoDataNumber)
-                </span>
+        </span>
     }
 }
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/statement")
-        <link rel="stylesheet" href="~/bundles-v2/statement.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles-v2/statement")
 }
 @section Scripts {
-        <script src="~/bundles/statement/sma-statement.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/statement/sma-statement")
 }
 @model SMAStatementViewModel
 <report-title model="Model.PageHeader" />
@@ -36,9 +36,9 @@
     </div>
     @if (Model.Pager.TotalRecords > 0)
     {
-            <div class="form-group">
-                <compact-feedback fid="22" />
-            </div>
+        <div class="form-group">
+            <compact-feedback fid="22" />
+        </div>
     }
     <div class="note">
         <span class="star">*</span>@Model.ViewDataInstructionMessage
@@ -63,44 +63,44 @@
         @if (Model.Pager.TotalRecords > 0)
         {
             StatementModel prevStatement = null;
-                <tbody>
+            <tbody>
                 @foreach (var data in Model.ReportData)
                 {
                     var winLossDateString = data.WinLossDate.ToShortDateWithSlash();
-                            <tr class="hide">
-                                <td class="text-center">@winLossDateString</td>
-                                <td class="@(data.IsNotedBalance(prevStatement) ? "note-opening-balance" : string.Empty)">
+                    <tr class="hide">
+                        <td class="text-center">@winLossDateString</td>
+                        <td class="@(data.IsNotedBalance(prevStatement) ? "note-opening-balance" : string.Empty)">
                             @{
                                 RenderNegativeNumberCell(data.OpeningBalance);
                             }
-                                </td>
-                                <td>@{
+                        </td>
+                        <td>@{
                                 RenderNumberCell(data.Turnover);
                             }</td>
-                                <td>@{
+                        <td>@{
                                 RenderNegativeNumberCell(data.WinLoss);
                             }</td>
-                                <td>@{
+                        <td>@{
                                 RenderNegativeNumberCell(data.Commission);
                             }</td>
-                                <td>
-                                    <span
-                                        class="@(data.TransferAmount.HasValue ? "column-transfer-amount" : string.Empty) @(data.TransferAmount.HasValue && data.TransferAmount.Value < 0 ? "format-negative" : string.Empty)"
-                                        data-transfer-date="@winLossDateString">@(data.TransferAmount.HasValue ?
+                        <td>
+                            <span
+                                class="@(data.TransferAmount.HasValue ? "column-transfer-amount" : string.Empty) @(data.TransferAmount.HasValue && data.TransferAmount.Value < 0 ? "format-negative" : string.Empty)"
+                                data-transfer-date="@winLossDateString">@(data.TransferAmount.HasValue ?
                         data.TransferAmount.Value.FormatNumber() : Resources.Symbol_NoDataNumber)
-                                    </span>
-                                </td>
-                                <td>@{
+                            </span>
+                        </td>
+                        <td>@{
                                 RenderNegativeNumberCell(data.ClosingBalance);
                             }</td>
-                            </tr>
+                    </tr>
                     prevStatement = data;
                 }
-                </tbody>
+            </tbody>
         }
         else
         {
-                <no-information colspan="7" />
+            <no-information colspan="7" />
         }
     </table>
 </div>

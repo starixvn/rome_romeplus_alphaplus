@@ -11,7 +11,7 @@ class CashFeeView extends BaseReportNew {
     private cashFeeCopyHtml: CashFeeCopyHtml;
     private $tblReportContainer: JQuery;
     private globalFormData: any;
-    private tableId = '#tbl-report';
+    private readonly tableId = '#tbl-report';
 
     constructor(
         dateRangeComponent: DateRangePickerJQueryComponent,

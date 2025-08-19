@@ -502,9 +502,9 @@
     <value>Xác nhận</value>
   </data>
   <data name="LikeTooltip" xml:space="preserve">
-    <value>Satisfied with this feature</value>
+    <value>Hài lòng với tính năng này</value>
   </data>
   <data name="DislikeTooltip" xml:space="preserve">
-    <value>Need improvement</value>
+    <value>Cần cải thiện</value>
   </data>
 </root>

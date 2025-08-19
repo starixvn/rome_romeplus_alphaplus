@@ -64,15 +64,15 @@
 }
 @section Styles {
 	@StaticResources.AssetStyles.Render("/bundles-v2/site-reports/consolidation")
-	<link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
+	@StaticResources.RenderStyles("~/bundles-v2/winlossdetailnew")
 }
 @section Scripts {
-	<script src="~/bundles/consolidation/consolidation.js" asp-append-version="true"></script>
+	@StaticResources.RenderScripts("~/bundles/consolidation/consolidation")
 }
 @model ConsolidationByUsernameViewModel
 <partial name="TitleAndFilter" model="Model" />
 <table class="tb tb-bordered tb-hover w-full  @(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
-	   id="tbl-report">
+	id="tbl-report">
 	<thead>
 		<tr>
 			<th rowspan="2" class="hidden-stack-mode">@Resources.Level</th>
@@ -128,9 +128,9 @@
 							@if (isShowPT)
 							{
 								<a class="downline-link" asp-action="ConsolidationDetail"
-								   asp-all-route-data="@Model.BuildDrillDownParams(total.CustId, total.Username, total.CustLevel)">@total.Username</a>
-								<span class="ic-percent view-product-pt-list" data-custid="@total.CustId" data-username="@total.Username"
-									  data-userlevel="@total.CustLevelName"></span>
+									asp-all-route-data="@Model.BuildDrillDownParams(total.CustId, total.Username, total.CustLevel)">@total.Username</a>
+								<span class="ic-percent view-product-pt-list" data-custid="@total.CustId"
+									data-username="@total.Username" data-userlevel="@total.CustLevelName"></span>
 							}
 							else
 							{
@@ -141,7 +141,7 @@
 								else
 								{
 									<a class="open-link"
-									   data-url="@Model.BuildBetListUrl(total.CustId, total.Username)">@total.Username</a>
+										data-url="@Model.BuildBetListUrl(total.CustId, total.Username)">@total.Username</a>
 								}
 							}
 						</div>
@@ -204,12 +204,11 @@
 	}
 </table>
 <div class="modal fade consolidation-modal" id="consolidation-product-pt-list-popup" tabindex="-1" role="dialog"
-	 aria-labelledby="myModalLabel">
+	aria-labelledby="myModalLabel">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<button type="button" class="icon icon-close close" data-dismiss="modal"
-						aria-label="@Resources.Close">
+				<button type="button" class="icon icon-close close" data-dismiss="modal" aria-label="@Resources.Close">
 					<span aria-hidden="true"></span>
 				</button>
 				<h4 class="modal-title">@Resources.ViewProductPTList - <span id="product-pt-list-username"></span></h4>
@@ -225,5 +224,5 @@
 	</div>
 </div>
 <a class="hide" id="LoadLegendURL" asp-action="WinLoss" asp-controller="Legends"
-   asp-route-MinDate="@Model.DateRangePicker.MinDate" asp-route-IsConsolidation="true"></a>
+	asp-route-MinDate="@Model.DateRangePicker.MinDate" asp-route-IsConsolidation="true"></a>
 <input type="hidden" asp-for="IsSetDefaultStackMode" />

@@ -508,9 +508,9 @@
     <value>확인</value>
   </data>
   <data name="LikeTooltip" xml:space="preserve">
-    <value>Satisfied with this feature</value>
+    <value>이 기능에 만족합니다.</value>
   </data>
   <data name="DislikeTooltip" xml:space="preserve">
-    <value>Need improvement</value>
+    <value>개선 필요</value>
   </data>
 </root>
