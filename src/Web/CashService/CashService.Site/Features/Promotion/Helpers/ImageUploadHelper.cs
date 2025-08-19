@@ -2,7 +2,7 @@ namespace AlphaPlus.CashService.Site.Features.Promotion.Helpers;
 
 public static class ImageUploadHelper
 {
-    private static readonly string[] AllowedExtensions = [".jpg", ".jpeg", ".png", ".gif", ".webp"];
+    private static readonly string[] AllowedExtensions = [".jpg", ".jpeg", ".png"];
 
     public static void CreateDirectoryIfNotExisted(string path)
     {

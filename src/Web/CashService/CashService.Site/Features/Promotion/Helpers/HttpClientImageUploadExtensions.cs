@@ -1,0 +1,101 @@
+﻿namespace AlphaPlus.CashService.Site.Features.Promotion.Helpers;
+
+using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Json;
+using Fanex.Logging;
+using Models.Configurations;
+using Shared.Models;
+
+public static class HttpClientImageUploadExtensions
+{
+    public static async Task<ResultModel> UploadImageToAllDomainsAsync(
+        this HttpClient client,
+        ILogger logger,
+        List<UploadApiSettings> settings,
+        IFormFile file,
+        string fileName,
+        CancellationToken cancellationToken = default)
+    {
+        if (file == null)
+        {
+            throw new ArgumentNullException(nameof(file));
+        }
+
+        if (string.IsNullOrWhiteSpace(fileName))
+        {
+            throw new ArgumentException(@"File name must be provided.", nameof(fileName));
+        }
+
+        byte[] fileBytes;
+        using (var ms = new MemoryStream())
+        {
+            await file.CopyToAsync(ms, cancellationToken);
+            fileBytes = ms.ToArray();
+        }
+
+        var uploadTasks = settings.Select(setting =>
+            Task.Run(async () =>
+            {
+                try
+                {
+                    await UploadToDomainAsync(client, setting, fileBytes, fileName, cancellationToken);
+                    return (Success: true, Error: null);
+                }
+                catch (Exception ex)
+                {
+                    await logger.ErrorAsync($"Error uploading image to {setting.BaseUrl}: {ex.Message}", ex);
+                    return (Success: false, Error: ex.Message);
+                }
+            }, cancellationToken)
+        ).ToArray();
+
+        var results = await Task.WhenAll(uploadTasks);
+
+        var failed = results.FirstOrDefault(r => !r.Success);
+        if (failed.Success)
+        {
+            return new ResultModel { Code = 0 };
+        }
+
+        return new ResultModel { Code = 1, Message = failed.Error ?? "Unknown error." };
+    }
+
+    private static async Task UploadToDomainAsync(
+        HttpClient client,
+        UploadApiSettings setting,
+        byte[] fileBytes,
+        string fileName,
+        CancellationToken cancellationToken)
+    {
+        var token = await GetTokenAsync(client, setting, cancellationToken);
+
+        var patchUrl = $"{setting.BaseUrl.TrimEnd('/')}/api/tus/{Uri.EscapeDataString(fileName)}";
+        using var patchReq = new HttpRequestMessage(HttpMethod.Patch, patchUrl);
+        patchReq.Headers.TryAddWithoutValidation("X-Auth", token);
+        patchReq.Headers.TryAddWithoutValidation("Tus-Resumable", "1.0.0");
+        patchReq.Headers.TryAddWithoutValidation("Upload-Offset", "0");
+        patchReq.Content = new ByteArrayContent(fileBytes);
+        patchReq.Content.Headers.ContentType = new MediaTypeHeaderValue("application/offset+octet-stream");
+
+        using var patchResp = await client.SendAsync(patchReq, cancellationToken);
+        patchResp.EnsureSuccessStatusCode();
+    }
+
+    private static async Task<string> GetTokenAsync(HttpClient client, UploadApiSettings setting, CancellationToken cancellationToken)
+    {
+        var loginUrl = $"{setting.BaseUrl.TrimEnd('/')}/api/login";
+        var loginPayload = new
+        {
+            username = setting.Username,
+            pwd = setting.Password
+        };
+        var content = new StringContent(JsonSerializer.Serialize(loginPayload), Encoding.UTF8, "application/json");
+
+        using var resp = await client.PostAsync(loginUrl, content, cancellationToken);
+        resp.EnsureSuccessStatusCode();
+
+        var token = await resp.Content.ReadAsStringAsync(cancellationToken);
+        return token.Trim('"');
+    }
+}
