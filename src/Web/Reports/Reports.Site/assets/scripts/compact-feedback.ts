@@ -12,6 +12,33 @@ class CompactFeebackView {
         }
 
         const $like = $('#icon-like').removeClass('active hide finished');
+
+        // Function to check and update position classes
+        const updatePositionClass = () => {
+            const elementOffset = $boxIconTitle.offset();
+            const elementWidth = $boxIconTitle.outerWidth() || 0;
+            const windowWidth = $(window).width() || 0;
+            const scrollLeft = $(window).scrollLeft() || 0;
+            
+            const screenLeft = elementOffset?.left ? elementOffset.left - scrollLeft : 0;
+            const screenRight = windowWidth - (screenLeft + elementWidth);           
+            // Remove existing position classes
+            $boxIconTitle.removeClass('left right');
+            
+            if (screenLeft < 100) {
+                $boxIconTitle.addClass('left');
+            }
+            else if (screenRight < 100) {
+                $boxIconTitle.addClass('right');
+            }
+        };
+ 
+        // Update position after page fully loads
+        $(window).off('load.compactFeedback').on('load.compactFeedback , resize.compactFeedback', () => {
+            // Small delay to ensure all layout calculations are complete
+            setTimeout(updatePositionClass, 100);
+        });
+
         const $dislike = $('#icon-dislike').removeClass('active hide');
         if (initTooltip) {
             $like.tooltip();

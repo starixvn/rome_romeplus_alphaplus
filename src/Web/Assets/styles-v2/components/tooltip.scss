@@ -134,6 +134,43 @@
     }
 }
 .box-icon-title{
+    &.left{
+        [class$="-rotate"], [class*="-rotate "]{
+            &[data-title]{
+                &:after{
+                    transform: rotate(180deg)  translateX(0);
+                    left: auto;
+                    right: calc(-100% - 4px);
+                }
+        
+            }
+        }
+        [data-title]{
+            &:after{
+                left: 0;
+                transform: translateX(0);                 
+            }
+        }
+    }
+    &.right{
+        [data-title]{
+            &:after{
+                left: auto;
+                right: calc(-100% - 4px);  
+                transform: translateX(0);          
+            }
+        }
+        [class$="-rotate"], [class*="-rotate "]{
+            &[data-title]{
+                &:after{
+                    transform: rotate(180deg) translateX(-100%);
+                    left: auto;
+                    right: 100%;
+                }
+        
+            }
+        }
+    }
     [data-title] {
         position: relative;
         &:hover {
