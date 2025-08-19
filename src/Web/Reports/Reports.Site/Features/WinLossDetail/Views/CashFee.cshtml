@@ -26,7 +26,7 @@
 		}
 	</script>
 	@StaticResources.AssetScripts.RenderCommon("/bundles/site-reports/winlossdetail")
-	<script src="~/bundles/winlossdetail/cashfee.js"></script>
+	<script src="~/bundles/winlossdetail/cashfee.js?v=1"></script>
 }
 @model CashFeeViewModel
 <div class="">
@@ -57,8 +57,8 @@
 						{
 							index++;
 							<li>
-								<a href="javascript:;" class="upline-link" data-custid="@item.CustId" data-custname="@item.CustName"
-								data-custlevelid="@item.CustLevelId">@item.CustName</a>
+								<a href="javascript:;" class="upline-link" data-custid="@item.CustId"
+									data-custname="@item.CustName" data-custlevelid="@item.CustLevelId">@item.CustName</a>
 							</li>
 						}
 					}
@@ -72,13 +72,13 @@
 					</li>
 					<li>
 						<a id="icon-excel" class="ic-excel" data-toggle="tooltip" data-placement="top"
-						title="@Resources.ExportToExcel" asp-action="CashFeeExcel"></a>
+							title="@Resources.ExportToExcel" asp-action="CashFeeExcel"></a>
 					</li>
 				</ul>
 			</div>
 		</div>
 		<div id="tbl-report-container">
-		<partial name="~/Features/CashBillingService/Views/CashFeeData.cshtml" model="@Model.CashFee" />
+			<partial name="~/Features/CashBillingService/Views/CashFeeData.cshtml" model="@Model.CashFee" />
 		</div>
 	</div>
 </div>
