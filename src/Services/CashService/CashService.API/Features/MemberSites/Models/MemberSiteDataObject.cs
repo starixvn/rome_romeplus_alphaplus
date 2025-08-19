@@ -6,7 +6,7 @@ public class MemberSiteDataObject
     {
         None = 0,
         AllowRegister = 1,
-        AllowLogin = 2,
+        AllowDeposit = 2,
         AllowAll = 3
     }
     public int SettingInfo { get; set; } = 0;
@@ -17,9 +17,9 @@ public class MemberSiteDataObject
                SettingInfo == (int)GeneralSettingType.AllowAll;
     }
 
-    public bool IsAllowLogin
+    public bool IsAllowDeposit
     {
-        get => SettingInfo == (int)GeneralSettingType.AllowLogin ||
+        get => SettingInfo == (int)GeneralSettingType.AllowDeposit ||
                SettingInfo == (int)GeneralSettingType.AllowAll;
     }
 
