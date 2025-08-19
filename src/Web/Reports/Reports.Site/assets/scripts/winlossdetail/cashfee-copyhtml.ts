@@ -44,7 +44,6 @@
     private buildHtmlHeader($tblReport: JQuery, html: string[]) {
         html.push('<thead><tr>');
         $tblReport.find('thead tr:first th:not(.hide)').each(function () {
-            const $this = $(this);
             html.push('<th>', this.innerText, '</th>');
         });
 
