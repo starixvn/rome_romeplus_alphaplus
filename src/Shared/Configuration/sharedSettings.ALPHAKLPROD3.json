@@ -283,7 +283,7 @@
     },
     "OfferProfilePictureTour": true,
     "CashService": {
-        "OfferedSites": "222227",
+        "OfferedSites": "755555,222227",
         "APIUrl": "http://alphaplus_api_cashservice_alphaklprod_3:5000/api"
     }
 }
