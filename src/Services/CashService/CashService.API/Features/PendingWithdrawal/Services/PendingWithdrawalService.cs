@@ -143,7 +143,7 @@ public class PendingWithdrawalService(
     {
         var result = new ResultModel(405, "Invalid parameters");
 
-        var transaction = await transactionService.GetTransactionByIdAsync(command.TransId, command.ActorId, command.SiteDBGroupId);
+        var transaction = await transactionService.GetTransactionByIdAsync(command.TransId, command.CustId, command.SiteDBGroupId);
         var parts = transaction?.PaymentTo?.Split('-') ?? [];
         var bankCode = parts.ElementAtOrDefault(0) ?? string.Empty;
         var accountNumber = parts.ElementAtOrDefault(1) ?? string.Empty;
