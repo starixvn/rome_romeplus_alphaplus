@@ -109,7 +109,7 @@ var DefaultPage = /** @class */ (function () {
             var self = _this;
             _this.$.ajax({
                 type: "POST",
-                url: _this.$("#MainRootPath").val() + 'Account/ReCheckIn',
+                url: _this.$("#MainRootPath").val() + '/Account/ReCheckIn',
                 data: { onid: _this.$("#OnUserId").val() },
                 success: function (result) {
                     try {

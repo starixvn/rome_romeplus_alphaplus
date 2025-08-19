@@ -6,5 +6,7 @@ namespace Alpha.Handbook.Demo.ViewModels
     {
         public ArticleModel Article { get; set; }
         public string Language { get; set; }
+        public string MainRootPath => "/main";
+        public string MessageRootPath => "/message";
     }
 }
