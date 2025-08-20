@@ -177,8 +177,7 @@
     "SiteLabel": "MBC",
     "SiteLabel789y": "789y",
     "AllowedSitesToViewBonusDetail": [
-        "IBCINDO",
-        "BEST-ODDS"
+        "IBCINDO"
     ],
     "AllowedSitesToShareLoad": {
         "10.18.200.58": "BEST-ODDS,789y"
