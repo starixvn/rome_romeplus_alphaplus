@@ -1,6 +1,13 @@
 {
   "Result3rdConfig": [
     {
+      "Name": "Smart Soft",
+      "SportTypeId": 135,
+      "Url": "http://saba-wallet-group-004.3rd-party.klt2p.gamora.prod:32280/api/SmartSoftGamingInternal/GetBetHistoryUrl",
+      "Debug": 0,
+      "IsPostMethod": true
+    },
+    {
       "Name": "GPI Lottery",
       "SportTypeId": 132,
       "Url": "http://saba-wallet-group-003.3rd-party.klt2p.gamora.prod:32280/api/GamePlayIntLotteryInternal/GetBetHistoryUrl",
