@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap enableLocalization="true">
+    <siteMapNode resourceKey="dashboard" url="/main/Dashboard/Index2"></siteMapNode>
     <!--Report-->
     <siteMapNode resourceKey="reports" expand="1" menuItemType="ReportMenuItem" functionType="[E]" byPassProtectedMode="true">
         <siteMapNode resourceKey="memberOutstanding" url="/reports/outstanding/index" roles="Agent"></siteMapNode>

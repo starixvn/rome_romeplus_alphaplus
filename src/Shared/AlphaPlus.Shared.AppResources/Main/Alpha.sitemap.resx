@@ -486,4 +486,7 @@
   <data name="newCashMember" xml:space="preserve">
     <value>New Cash Member</value>
   </data>
+  <data name="dashboard" xml:space="preserve">
+    <value>DASHBOARD</value>
+  </data>
 </root>
