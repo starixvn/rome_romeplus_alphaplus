@@ -5,11 +5,10 @@ using System.Text;
 using System.Text.Json;
 using Fanex.Logging;
 using Models.Configurations;
-using Shared.Models;
 
 public static class HttpClientImageUploadExtensions
 {
-    public static async Task<ResultModel> UploadImageToAllDomainsAsync(
+    public static async Task UploadImageToAllDomainsAsync(
         this HttpClient client,
         ILogger logger,
         List<UploadApiSettings> settings,
@@ -50,15 +49,7 @@ public static class HttpClientImageUploadExtensions
             }, cancellationToken)
         ).ToArray();
 
-        var results = await Task.WhenAll(uploadTasks);
-
-        var failed = results.FirstOrDefault(r => !r.Success);
-        if (failed.Success)
-        {
-            return new ResultModel { Code = 0 };
-        }
-
-        return new ResultModel { Code = 1, Message = failed.Error ?? "Unknown error." };
+        await Task.WhenAll(uploadTasks);
     }
 
     private static async Task UploadToDomainAsync(

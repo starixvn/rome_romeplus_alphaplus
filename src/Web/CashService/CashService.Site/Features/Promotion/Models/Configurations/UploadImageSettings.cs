@@ -2,9 +2,9 @@
 
 public class UploadImageSettings
 {
-    public bool IsUploadLocal { get; set; }
+    public bool IsHttpClientUpload { get; set; }
 
-    public List<UploadApiSettings> ApiSettings { get; set; }
+    public List<UploadApiSettings> Locations { get; set; }
 }
 
 public class UploadApiSettings

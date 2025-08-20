@@ -136,7 +136,7 @@ public class PromotionController(
 
     public async Task<IActionResult> GetPromotionProducts()
     {
-        var url = $"/promotions/products?site={userSession.SiteName}&currency={userSession.CurrencyId}&settingstatus=0&language={userSession.Language}";
+        var url = $"/promotions/products?site={userSession.Site}&currency={userSession.CurrencyId}&settingstatus=0&language={userSession.Language}";
         var products = await httpClientHelper.GetAsync<List<Product>>(url);
         var productCategoryList = products.GroupBy(p => p.ProductCategoryId).Select(g
             => new ProductDropdown
