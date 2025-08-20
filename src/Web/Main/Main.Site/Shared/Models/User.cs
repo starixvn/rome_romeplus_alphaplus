@@ -1,5 +1,5 @@
-﻿using AlphaPlus.Core.Helpers;
-using AlphaPlus.Core.Extensions;
+﻿using AlphaPlus.Core.Extensions;
+using AlphaPlus.Core.Helpers;
 using AlphaPlus.Main.Site.Shared.Constants;
 
 namespace AlphaPlus.Main.Site.Shared.Models
@@ -11,8 +11,6 @@ namespace AlphaPlus.Main.Site.Shared.Models
         bool ShowProgressiveJackpotGames { get; }
 
         bool IsAdminCanUpdateSubAccount { get; }
-
-        void RemoveNewCaptchaByCurrency();
 
         bool IsEnabledTelegramOTP { get; set; }
 
@@ -57,8 +55,5 @@ namespace AlphaPlus.Main.Site.Shared.Models
             get => AlphaContext.Current.Session.Get<bool>(IsSyncedNovaCasinoSessionKey);
             set => AlphaContext.Current.Session.Set(IsSyncedNovaCasinoSessionKey, value);
         }
-
-        public void RemoveNewCaptchaByCurrency()
-            => AlphaContext.Current.Session.Set("CreatedSettingLastDate", DateTime.MinValue);
     }
 }
