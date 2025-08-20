@@ -4,7 +4,7 @@
     <AssemblyName>AlphaPlus.Shared.AppResources</AssemblyName>
     <RootNamespace>AlphaPlus.Shared.AppResources</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="CashServices\CashServicesResx.Designer.cs">
