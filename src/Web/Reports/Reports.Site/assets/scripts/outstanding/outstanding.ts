@@ -23,16 +23,9 @@
 
     initDataTable() {
         const canSort = this.$tableReport.data('totalrecords') > 1;
-        const sortedcolumn = this.$tableReport.data('sortedcolumn').toLowerCase();
+        const sortedcolumn = this.$tableReport.data('sortedcolumn');
         const isDescendingSort = this.$tableReport.data('descendingsort') === 1;
-
-        let colunmSortIndex = 0;
-        this.displayOutstandingLevels.forEach((element, index) => {
-            if (sortedcolumn === `${element.DisplayName}Outstanding`.toLowerCase()) {
-                colunmSortIndex = index + 1;
-                return;
-            }
-        });
+        const colunmSortIndex = this.$tableReport.find(`th[data-name="${sortedcolumn}"]`).data('colindex') || 0;
 
         const tableOptions = this.buildTableOptions();
         $.extend(tableOptions, {
@@ -184,16 +177,9 @@
     };
 
     getColumnSortName = () => {
-        const order = this.$dataTable.order();
-        const length = this.displayOutstandingLevels.length;
-
-        for (let index = 0; index < length; index++) {
-            if (order[0][0] - 1 === index) {
-                return `${this.displayOutstandingLevels[index].DisplayName}Outstanding`;
-            }
-        }
-
-        return 'CustName';
+        const colIndex = this.$dataTable.order()[0][0];
+        const thead = this.$tableReport.find(`th[data-colindex="${colIndex}"]`);
+        return (thead.length > 0 && thead.data('name')) || 'CustName';
     };
 
     isDescendingSort = () => this.$dataTable.order()[0][1] !== 'asc';

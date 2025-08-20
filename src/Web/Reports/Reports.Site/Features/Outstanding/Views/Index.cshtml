@@ -13,24 +13,24 @@
     ViewData["Title"] = Model.PageHeader.Title;
     var downlineRoleId = Model.CustLevel.Value - 1;
 
-    void DisplayUserLevelText(UserLevel userLevel)
+    (string, string) GetUserLevelTextAndTranslate(UserLevel userLevel)
     {
         if (userLevel.IsMemberLevel())
         {
-            @Resources.Member
+            return (UserLevel.Member.DisplayName, Resources.Member);
         }
-        else if (userLevel.IsAgentLevel())
+
+        if (userLevel.IsAgentLevel())
         {
-            @Resources.Agent
+            return (UserLevel.Agent.DisplayName, Resources.Agent);
         }
-        else if (userLevel.IsMasterLevel())
+
+        if (userLevel.IsMasterLevel())
         {
-            @Resources.Master
+            return (UserLevel.Master.DisplayName, Resources.Master);
         }
-        else if (userLevel.IsSuperLevel())
-        {
-            @Resources.Super
-        }
+
+        return (UserLevel.Super.DisplayName, Resources.Super);
     }
 
     void RenderOutstandingCells(OutstandingModel data)
@@ -43,6 +43,7 @@
 
     var length = Model.DisplayOutstandingLevels.Count;
     var isAgentLevel = Model.CustLevel.IsAgentLevel();
+    var colIndex = 0;
 }
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/outstanding")
@@ -53,7 +54,7 @@
     @StaticResources.RenderScripts("~/bundles/outstanding/outstanding")
 }
 @model OutstandingViewModel
-<report-title model="Model.PageHeader" fid="13" />
+<report-title model="Model.PageHeader" />
 <form method="get" class="form-inline filter form-report@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")"
     role="form" id="report-form">
     <product-multiselection model="@Model.ProductViewModel" />
@@ -103,10 +104,10 @@
                 <th></th>
             </tr>
             <tr>
-                <th rowspan="2" class="header" data-name="CustName">@Resources.Username</th>
+                <th rowspan="2" class="header" data-name="CustName" data-colindex="@(colIndex++)">@Resources.Username</th>
                 @if (Model.ShowLevelType)
                 {
-                    <th rowspan="2" class="header" data-name="IsDirectMember">@Resources.Level</th>
+                    <th rowspan="2" class="header" data-name="Level" data-colindex="@(colIndex++)">@Resources.Level</th>
                 }
                 <th colspan="@length" class="header">@Resources.Outstanding</th>
                 <th colspan="2" class="header">@Resources.SportsbookRiskAmount</th>
@@ -116,18 +117,17 @@
                 @{
                     for (var i = 0; i < length; i++)
                     {
-                        <th data-priority="@(length - i)">
-                            @{
-                                DisplayUserLevelText(Model.DisplayOutstandingLevels[i]);
-                            }
+                        var (userLevel, userLevelTranslate) = GetUserLevelTextAndTranslate(Model.DisplayOutstandingLevels[i]);
+                        <th data-priority="@(length - i)" data-name="@userLevel" data-colindex="@(colIndex++)">
+                            @userLevelTranslate
                         </th>
                     }
                 }
 
-                <th data-priority="@(length + 1)">
+                <th data-priority="@(length + 1)" data-name="ToWin" data-colindex="@(colIndex++)">
                     @Resources.ToWin
                 </th>
-                <th data-priority="@(length + 2)">
+                <th data-priority="@(length + 2)" data-name="Risk" data-colindex="@colIndex">
                     @Model.GetSMARiskText
                 </th>
             </tr>

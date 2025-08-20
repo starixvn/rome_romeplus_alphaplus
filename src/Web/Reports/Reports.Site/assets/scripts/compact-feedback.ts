@@ -19,25 +19,26 @@ class CompactFeebackView {
             const elementWidth = $boxIconTitle.outerWidth() || 0;
             const windowWidth = $(window).width() || 0;
             const scrollLeft = $(window).scrollLeft() || 0;
-            
+
             const screenLeft = elementOffset?.left ? elementOffset.left - scrollLeft : 0;
-            const screenRight = windowWidth - (screenLeft + elementWidth);           
+            const screenRight = windowWidth - (screenLeft + elementWidth);
             // Remove existing position classes
             $boxIconTitle.removeClass('left right');
-            
+
             if (screenLeft < 100) {
                 $boxIconTitle.addClass('left');
-            }
-            else if (screenRight < 100) {
+            } else if (screenRight < 100) {
                 $boxIconTitle.addClass('right');
             }
         };
- 
+
         // Update position after page fully loads
-        $(window).off('load.compactFeedback').on('load.compactFeedback , resize.compactFeedback', () => {
-            // Small delay to ensure all layout calculations are complete
-            setTimeout(updatePositionClass, 100);
-        });
+        $(window)
+            .off('load.compactFeedback')
+            .on('load.compactFeedback , resize.compactFeedback', () => {
+                // Small delay to ensure all layout calculations are complete
+                setTimeout(updatePositionClass, 100);
+            });
 
         const $dislike = $('#icon-dislike').removeClass('active hide');
         if (initTooltip) {
@@ -51,15 +52,24 @@ class CompactFeebackView {
 
     private registerEvents($boxIconTitle: JQuery, $like: JQuery, $dislike: JQuery, currentFormData) {
         $like.off('click').one('click', () => {
-            $.post(`${top.alpha.urls.messageRootPath}Feedback/Add`, {
-                functionId: $boxIconTitle.data('fid'),
-                rate: 5,
-                extraInfo: JSON.stringify(currentFormData)
-            });
+            $.post(
+                `${top.alpha.urls.messageRootPath}Feedback/Add`,
+                {
+                    functionId: $boxIconTitle.data('fid'),
+                    rate: 5,
+                    extraInfo: JSON.stringify(currentFormData)
+                },
+                (result) => {
+                    if (result.Code) {
+                        top.bootboxAlert(result.Message);
+                    } else {
+                        $like.addClass('active');
+                        setTimeout(() => $like.addClass('finished'), 1000);
+                        $dislike.addClass('hide');
+                    }
+                }
+            );
             top.popupManager.close();
-            $like.addClass('active');
-            setTimeout(() => $like.addClass('finished'), 1000);
-            $dislike.addClass('hide');
         });
 
         $dislike.off('click').click(() => {

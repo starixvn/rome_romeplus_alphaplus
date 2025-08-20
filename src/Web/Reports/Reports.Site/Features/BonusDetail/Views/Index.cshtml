@@ -187,7 +187,7 @@
     @StaticResources.RenderScripts("~/bundles/bonusdetail/bonusdetail")
 }
 @model BonusDetailViewModel
-<report-title model="Model.PageHeader" fid="28" />
+<report-title model="Model.PageHeader" />
 <form class="form-inline filter@(Model.PageHeader.IsFilterVisible ? string.Empty : " hide")" role="form"
     id="report-form">
     <div class="form-group">
@@ -206,6 +206,12 @@
     <div class="form-group submit-container">
         <button type="submit" class="btn-submit" id="btn-submit">@Resources.Submit</button>
     </div>
+    @if (Model.ReportData.HasData)
+    {
+        <div class="form-group">
+            <compact-feedback fid="28" />
+        </div>
+    }
 </form>
 <table class="tb tb-bordered tb-hover w-full text-right" id="tbl-report">
     <thead>

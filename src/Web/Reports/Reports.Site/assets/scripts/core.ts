@@ -20,6 +20,7 @@ interface Window {
     alpha: any;
     popupManager: any;
     afterDislikeSubmitCallback: () => void;
+    bootboxAlert: (message: string) => void;
 }
 
 declare var TipsyHelper;
