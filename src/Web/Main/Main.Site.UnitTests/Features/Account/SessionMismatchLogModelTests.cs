@@ -20,11 +20,7 @@ public class SessionMismatchLogModelTests
         model.Url.Should().Be(string.Empty);
         model.Referrer.Should().Be(string.Empty);
         model.UserAgent.Should().Be(string.Empty);
-        model.RetryCount.Should().Be(0);
-        model.MaxRetries.Should().Be(0);
-        model.UserId.Should().Be(0);
         model.Username.Should().Be(string.Empty);
-        model.SiteLabel.Should().Be(string.Empty);
         model.IpAddress.Should().Be(string.Empty);
     }
 
@@ -42,11 +38,7 @@ public class SessionMismatchLogModelTests
         model.Url = "https://example.com/test";
         model.Referrer = "https://example.com";
         model.UserAgent = "Test Browser";
-        model.RetryCount = 3;
-        model.MaxRetries = 5;
-        model.UserId = 123;
         model.Username = "testuser";
-        model.SiteLabel = "TestSite";
         model.IpAddress = "192.168.1.1";
 
         // Assert
@@ -57,11 +49,7 @@ public class SessionMismatchLogModelTests
         model.Url.Should().Be("https://example.com/test");
         model.Referrer.Should().Be("https://example.com");
         model.UserAgent.Should().Be("Test Browser");
-        model.RetryCount.Should().Be(3);
-        model.MaxRetries.Should().Be(5);
-        model.UserId.Should().Be(123);
         model.Username.Should().Be("testuser");
-        model.SiteLabel.Should().Be("TestSite");
         model.IpAddress.Should().Be("192.168.1.1");
     }
 
@@ -80,7 +68,6 @@ public class SessionMismatchLogModelTests
         model.Referrer = null!;
         model.UserAgent = null!;
         model.Username = null!;
-        model.SiteLabel = null!;
         model.IpAddress = null!;
 
         // Assert
@@ -92,7 +79,6 @@ public class SessionMismatchLogModelTests
         model.Referrer.Should().BeNull();
         model.UserAgent.Should().BeNull();
         model.Username.Should().BeNull();
-        model.SiteLabel.Should().BeNull();
         model.IpAddress.Should().BeNull();
     }
 
@@ -111,7 +97,6 @@ public class SessionMismatchLogModelTests
         model.Referrer = "";
         model.UserAgent = "";
         model.Username = "";
-        model.SiteLabel = "";
         model.IpAddress = "";
 
         // Assert
@@ -123,42 +108,7 @@ public class SessionMismatchLogModelTests
         model.Referrer.Should().Be("");
         model.UserAgent.Should().Be("");
         model.Username.Should().Be("");
-        model.SiteLabel.Should().Be("");
         model.IpAddress.Should().Be("");
-    }
-
-    [Fact]
-    public void SessionMismatchLogModel_ShouldHandleNegativeValues()
-    {
-        // Arrange
-        var model = new SessionMismatchLogModel();
-
-        // Act
-        model.RetryCount = -1;
-        model.MaxRetries = -5;
-        model.UserId = -123;
-
-        // Assert
-        model.RetryCount.Should().Be(-1);
-        model.MaxRetries.Should().Be(-5);
-        model.UserId.Should().Be(-123);
-    }
-
-    [Fact]
-    public void SessionMismatchLogModel_ShouldHandleLargeValues()
-    {
-        // Arrange
-        var model = new SessionMismatchLogModel();
-
-        // Act
-        model.RetryCount = int.MaxValue;
-        model.MaxRetries = int.MaxValue;
-        model.UserId = int.MaxValue;
-
-        // Assert
-        model.RetryCount.Should().Be(int.MaxValue);
-        model.MaxRetries.Should().Be(int.MaxValue);
-        model.UserId.Should().Be(int.MaxValue);
     }
 
     [Fact]
@@ -176,7 +126,6 @@ public class SessionMismatchLogModelTests
         model.Referrer = "https://example.com/path/to/page";
         model.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36";
         model.Username = "user@domain.com";
-        model.SiteLabel = "Test Site Label";
         model.IpAddress = "192.168.1.100";
 
         // Assert
@@ -188,7 +137,6 @@ public class SessionMismatchLogModelTests
         model.Referrer.Should().Be("https://example.com/path/to/page");
         model.UserAgent.Should().Be("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36");
         model.Username.Should().Be("user@domain.com");
-        model.SiteLabel.Should().Be("Test Site Label");
         model.IpAddress.Should().Be("192.168.1.100");
     }
 } 

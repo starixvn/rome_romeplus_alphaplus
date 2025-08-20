@@ -18,9 +18,7 @@ public static class SessionControllerTestHelpers
             NewSessionId = "new_session_id",
             Timestamp = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"),
             Url = "https://example.com/test",
-            Referrer = "https://example.com",
-            RetryCount = 1,
-            MaxRetries = 3
+            Referrer = "https://example.com"
         };
     }
 
@@ -30,9 +28,7 @@ public static class SessionControllerTestHelpers
         string newSessionId = "new_session_id",
         string timestamp = null!,
         string url = "https://example.com/test",
-        string referrer = "https://example.com",
-        int retryCount = 1,
-        int maxRetries = 3)
+        string referrer = "https://example.com")
     {
         return new SessionMismatchLogModel
         {
@@ -41,9 +37,7 @@ public static class SessionControllerTestHelpers
             NewSessionId = newSessionId,
             Timestamp = timestamp ?? DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"),
             Url = url,
-            Referrer = referrer,
-            RetryCount = retryCount,
-            MaxRetries = maxRetries
+            Referrer = referrer
         };
     }
 
@@ -61,10 +55,14 @@ public static class SessionControllerTestHelpers
         string siteName = "TestSite", 
         string userLoginIp = "192.168.1.1")
     {
-        userSessionMock.Setup(x => x.UserId).Returns(userId);
+        userSessionMock.Setup(x => x.CustId).Returns(userId);
         userSessionMock.Setup(x => x.UserName).Returns(userName);
         userSessionMock.Setup(x => x.SiteName).Returns(siteName);
         userSessionMock.Setup(x => x.UserLoginIp).Returns(userLoginIp);
+        userSessionMock.Setup(x => x.SubAccId).Returns(0);
+        userSessionMock.Setup(x => x.AdminId).Returns(0);
+        userSessionMock.Setup(x => x.AdminName).Returns("");
+        userSessionMock.Setup(x => x.RoleId).Returns(0);
     }
 
     public static void SetupHttpContext(Mock<HttpContext> httpContextMock, string userAgent = "Test User Agent")

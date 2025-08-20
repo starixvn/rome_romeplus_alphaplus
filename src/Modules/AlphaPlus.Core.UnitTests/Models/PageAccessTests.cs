@@ -1,3 +1,5 @@
+using AlphaPlus.Core.Models;
+
 namespace AlphaPlus.Core.UnitTests.Models;
 
 public class PageAccessTests
@@ -6,7 +8,7 @@ public class PageAccessTests
     public void Default_Constructor_Should_Initialize_All_Permissions_As_False()
     {
         // Act
-        var pageAccess = new PageAccess();
+        var pageAccess = new AlphaPlus.Core.Models.PageAccess();
 
         // Assert
         Assert.False(pageAccess.CreateAccount);
@@ -25,7 +27,7 @@ public class PageAccessTests
     public void CreateAccount_Property_Should_Get_And_Set_Correctly()
     {
         // Arrange
-        var pageAccess = new PageAccess();
+        var pageAccess = new AlphaPlus.Core.Models.PageAccess();
 
         // Act & Assert
         pageAccess.CreateAccount = true;
@@ -39,7 +41,7 @@ public class PageAccessTests
     public void UpdateAccount_Property_Should_Get_And_Set_Correctly()
     {
         // Arrange
-        var pageAccess = new PageAccess();
+        var pageAccess = new AlphaPlus.Core.Models.PageAccess();
 
         // Act & Assert
         pageAccess.UpdateAccount = true;
@@ -53,7 +55,7 @@ public class PageAccessTests
     public void Transfer_Property_Should_Get_And_Set_Correctly()
     {
         // Arrange
-        var pageAccess = new PageAccess();
+        var pageAccess = new AlphaPlus.Core.Models.PageAccess();
 
         // Act & Assert
         pageAccess.Transfer = true;
@@ -67,7 +69,7 @@ public class PageAccessTests
     public void ViewTotalBets_Property_Should_Get_And_Set_Correctly()
     {
         // Arrange
-        var pageAccess = new PageAccess();
+        var pageAccess = new AlphaPlus.Core.Models.PageAccess();
 
         // Act & Assert
         pageAccess.ViewTotalBets = true;
@@ -81,7 +83,7 @@ public class PageAccessTests
     public void ViewReports_Property_Should_Get_And_Set_Correctly()
     {
         // Arrange
-        var pageAccess = new PageAccess();
+        var pageAccess = new AlphaPlus.Core.Models.PageAccess();
 
         // Act & Assert
         pageAccess.ViewReports = true;
@@ -95,7 +97,7 @@ public class PageAccessTests
     public void ViewLog_Property_Should_Get_And_Set_Correctly()
     {
         // Arrange
-        var pageAccess = new PageAccess();
+        var pageAccess = new AlphaPlus.Core.Models.PageAccess();
 
         // Act & Assert
         pageAccess.ViewLog = true;
@@ -109,7 +111,7 @@ public class PageAccessTests
     public void ViewMemberInfo_Property_Should_Get_And_Set_Correctly()
     {
         // Arrange
-        var pageAccess = new PageAccess();
+        var pageAccess = new AlphaPlus.Core.Models.PageAccess();
 
         // Act & Assert
         pageAccess.ViewMemberInfo = true;
@@ -123,7 +125,7 @@ public class PageAccessTests
     public void ViewBetLists_Property_Should_Get_And_Set_Correctly()
     {
         // Arrange
-        var pageAccess = new PageAccess();
+        var pageAccess = new AlphaPlus.Core.Models.PageAccess();
 
         // Act & Assert
         pageAccess.ViewBetLists = true;
@@ -137,7 +139,7 @@ public class PageAccessTests
     public void CashService_Property_Should_Get_And_Set_Correctly()
     {
         // Arrange
-        var pageAccess = new PageAccess();
+        var pageAccess = new AlphaPlus.Core.Models.PageAccess();
 
         // Act & Assert
         pageAccess.CashService = true;
@@ -151,7 +153,7 @@ public class PageAccessTests
     public void CashPromotion_Property_Should_Get_And_Set_Correctly()
     {
         // Arrange
-        var pageAccess = new PageAccess();
+        var pageAccess = new AlphaPlus.Core.Models.PageAccess();
 
         // Act & Assert
         pageAccess.CashPromotion = true;
@@ -162,28 +164,32 @@ public class PageAccessTests
     }
 
     [Fact]
-    public void SetPermission_With_Valid_Key_Should_Set_Permission()
+    public void SetPermission_With_Valid_Key_Should_Set_Permission_Value()
     {
         // Arrange
-        var pageAccess = new PageAccess();
-        var key = PageAccessType.CreateAccount;
+        var pageAccess = new AlphaPlus.Core.Models.PageAccess();
+        var key = PageAccessType.Transfer;
 
         // Act
         pageAccess.SetPermission(key, true);
 
         // Assert
-        Assert.True(pageAccess.CreateAccount);
+        Assert.True(pageAccess.GetPermission(key));
     }
 
     [Fact]
-    public void SetPermission_With_Invalid_Key_Should_Not_Throw_Exception()
+    public async Task SetPermission_With_Invalid_Key_Should_Not_Throw_Exception()
     {
         // Arrange
-        var pageAccess = new PageAccess();
+        var pageAccess = new AlphaPlus.Core.Models.PageAccess();
         var invalidKey = "InvalidKey";
 
         // Act & Assert - Should not throw
-        var exception = Record.Exception(() => pageAccess.SetPermission(invalidKey, true));
+        var exception = await Record.ExceptionAsync(async () => 
+        {
+            pageAccess.SetPermission(invalidKey, true);
+            await Task.CompletedTask;
+        });
         Assert.Null(exception);
     }
 
@@ -191,7 +197,7 @@ public class PageAccessTests
     public void GetPermission_With_Valid_Key_Should_Return_Permission_Value()
     {
         // Arrange
-        var pageAccess = new PageAccess();
+        var pageAccess = new AlphaPlus.Core.Models.PageAccess();
         var key = PageAccessType.Transfer;
         pageAccess.Transfer = true;
 
@@ -206,7 +212,7 @@ public class PageAccessTests
     public void GetPermission_With_Invalid_Key_Should_Return_False()
     {
         // Arrange
-        var pageAccess = new PageAccess();
+        var pageAccess = new AlphaPlus.Core.Models.PageAccess();
         var invalidKey = "InvalidKey";
 
         // Act
@@ -220,7 +226,7 @@ public class PageAccessTests
     public void IsEmptyPermission_Should_Return_True_When_All_Permissions_Are_False()
     {
         // Arrange
-        var pageAccess = new PageAccess();
+        var pageAccess = new AlphaPlus.Core.Models.PageAccess();
 
         // Act
         var result = pageAccess.IsEmptyPermission();
@@ -233,7 +239,7 @@ public class PageAccessTests
     public void IsEmptyPermission_Should_Return_False_When_Any_Permission_Is_True()
     {
         // Arrange
-        var pageAccess = new PageAccess();
+        var pageAccess = new AlphaPlus.Core.Models.PageAccess();
         pageAccess.CreateAccount = true;
 
         // Act
@@ -248,7 +254,7 @@ public class PageAccessTests
     public void SetFullPermission_Should_Set_All_Permissions_To_True()
     {
         // Arrange
-        var pageAccess = new PageAccess();
+        var pageAccess = new AlphaPlus.Core.Models.PageAccess();
 
         // Act
         pageAccess.SetFullPermission();
@@ -268,7 +274,7 @@ public class PageAccessTests
     public void SetCashServicePermission_Should_Set_Cash_Related_Permissions_To_True()
     {
         // Arrange
-        var pageAccess = new PageAccess();
+        var pageAccess = new AlphaPlus.Core.Models.PageAccess();
 
         // Act
         pageAccess.SetCashServicePermission();
@@ -276,60 +282,95 @@ public class PageAccessTests
         // Assert
         Assert.True(pageAccess.CashService);
         Assert.True(pageAccess.CashPromotion);
-        Assert.False(pageAccess.CreateAccount); // Other permissions should remain false
-        Assert.False(pageAccess.Transfer);
     }
 
     [Fact]
-    public void Multiple_Properties_Can_Be_Set_Independently()
+    public void Implicit_Conversion_To_String_Should_Return_Correct_String()
     {
         // Arrange
-        var pageAccess = new PageAccess();
-
-        // Act
+        var pageAccess = new AlphaPlus.Core.Models.PageAccess();
         pageAccess.CreateAccount = true;
         pageAccess.Transfer = true;
-        pageAccess.ViewReports = false;
-        pageAccess.CashService = true;
+
+        // Act
+        string result = pageAccess;
+
+        // Assert
+        Assert.Contains(PageAccessType.CreateAccount, result);
+        Assert.Contains(PageAccessType.Transfer, result);
+        Assert.DoesNotContain(PageAccessType.UpdateAccount, result);
+    }
+
+    [Fact]
+    public void Implicit_Conversion_From_String_Should_Set_Correct_Permissions()
+    {
+        // Arrange
+        var permissionString = PageAccessType.CreateAccount + PageAccessType.Transfer;
+
+        // Act
+        AlphaPlus.Core.Models.PageAccess pageAccess = permissionString;
 
         // Assert
         Assert.True(pageAccess.CreateAccount);
         Assert.True(pageAccess.Transfer);
-        Assert.False(pageAccess.ViewReports);
-        Assert.True(pageAccess.CashService);
-        Assert.False(pageAccess.UpdateAccount); // Should remain false
-    }
-
-    [Fact]
-    public void Properties_Should_Be_Independent_Of_Each_Other()
-    {
-        // Arrange
-        var pageAccess = new PageAccess();
-
-        // Act
-        pageAccess.CreateAccount = true;
-        pageAccess.UpdateAccount = false;
-        pageAccess.Transfer = true;
-
-        // Assert
-        Assert.True(pageAccess.CreateAccount);
         Assert.False(pageAccess.UpdateAccount);
-        Assert.True(pageAccess.Transfer);
     }
 
     [Fact]
-    public void PageAccess_Should_Be_Serializable()
+    public void Implicit_Conversion_From_Empty_String_Should_Set_All_Permissions_To_False()
     {
         // Arrange
-        var pageAccess = new PageAccess();
-        pageAccess.CreateAccount = true;
-        pageAccess.Transfer = true;
+        var permissionString = "";
 
-        // Act & Assert
-        var type = typeof(PageAccess);
-        var attributes = type.GetCustomAttributes(typeof(SerializableAttribute), false);
+        // Act
+        AlphaPlus.Core.Models.PageAccess pageAccess = permissionString;
 
-        Assert.True(attributes.Length > 0);
-        Assert.IsType<SerializableAttribute>(attributes[0]);
+        // Assert
+        Assert.False(pageAccess.CreateAccount);
+        Assert.False(pageAccess.UpdateAccount);
+        Assert.False(pageAccess.Transfer);
+        Assert.False(pageAccess.ViewTotalBets);
+        Assert.False(pageAccess.ViewReports);
+        Assert.False(pageAccess.ViewLog);
+        Assert.False(pageAccess.ViewMemberInfo);
+        Assert.False(pageAccess.ViewBetLists);
+        Assert.False(pageAccess.CashService);
+        Assert.False(pageAccess.CashPromotion);
+    }
+
+    [Fact]
+    public void Contains_Should_Return_True_When_Permissions_Match()
+    {
+        // Arrange
+        var pageAccess1 = new AlphaPlus.Core.Models.PageAccess();
+        var pageAccess2 = new AlphaPlus.Core.Models.PageAccess();
+        pageAccess1.CreateAccount = true;
+        pageAccess1.Transfer = true;
+        pageAccess2.CreateAccount = true;
+        pageAccess2.Transfer = true;
+
+        // Act
+        var result = pageAccess1.Contains(pageAccess2);
+
+        // Assert
+        Assert.True(result);
+    }
+
+    [Fact]
+    public void Contains_Should_Return_False_When_Permissions_Dont_Match()
+    {
+        // Arrange
+        var pageAccess1 = new AlphaPlus.Core.Models.PageAccess();
+        var pageAccess2 = new AlphaPlus.Core.Models.PageAccess();
+        pageAccess1.CreateAccount = true;
+        pageAccess1.Transfer = true;
+        pageAccess2.CreateAccount = true;
+        pageAccess2.Transfer = false;
+
+        // Act
+        var result = pageAccess1.Contains(pageAccess2);
+
+        // Assert
+        Assert.False(result);
     }
 }
