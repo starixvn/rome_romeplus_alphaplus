@@ -89,7 +89,7 @@ export interface Product {
 
 export interface ProductSetting extends ProductDropdown {
   percentage: number;
-  minTurnover: number;
+  minTO: number;
   maxPayout: number;
   unlimited: boolean;
   productIds: number[];

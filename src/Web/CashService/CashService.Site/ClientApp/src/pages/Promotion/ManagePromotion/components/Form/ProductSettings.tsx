@@ -66,14 +66,14 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
                 type="number"
                 min="1"
                 className={`control-field ${readOnlyMode || !selectedProductCategories.includes(product.productCategoryId) ? 'disabled' : ''}`}
-                value={product.minTurnover}
+                value={product.minTO}
                 disabled={
                   readOnlyMode || !selectedProductCategories.includes(product.productCategoryId)
                 }
                 onChange={(e) =>
                   handleProductFieldChange(
                     product.productCategoryId,
-                    'minTurnover',
+                    'minTO',
                     Number(e.target.value)
                   )
                 }

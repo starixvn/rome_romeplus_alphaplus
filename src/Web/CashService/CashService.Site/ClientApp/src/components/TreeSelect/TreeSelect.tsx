@@ -68,7 +68,7 @@ const getSelectedLabels = (nodes: TreeNodeOption[], selected: (string | number)[
       result = result.concat(getSelectedLabels(node.children, selected));
     }
   });
-  return result;
+  return [...new Set(result)];
 };
 
 function filterTreeBySelected(
