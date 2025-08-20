@@ -125,6 +125,12 @@
                         "IsAllowToDoByThemselves": true
                     },
                     {
+                        "Url": "WinLossLimit/ResetCurrentWinAmount",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
                         "Url": "WinLossLimit",
                         "Permission": "[H]",
                         "IsCheckBelonging": true,
