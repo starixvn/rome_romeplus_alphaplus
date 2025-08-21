@@ -64,7 +64,7 @@ public class SessionCookieComparisonService : ISessionCookieComparisonService
 
     public string ExtractSessionCookieFromRequest(HttpRequest request)
     {
-        return request.Cookies["X-Response-Session"];
+        return request.Cookies[".AspNetCore.Session"];
     }
 
     public string ExtractSessionCookieFromResponse(HttpResponse response)
@@ -86,10 +86,10 @@ public class SessionCookieComparisonService : ISessionCookieComparisonService
 
     private static string ParseSessionCookieFromSetCookieHeader(string setCookieHeader)
     {
-        if (setCookieHeader.Contains("X-Response-Session="))
+        if (setCookieHeader.Contains(".AspNetCore.Session="))
         {
-            var startIndex = setCookieHeader.IndexOf("X-Response-Session=");
-            var valueStart = startIndex + "X-Response-Session=".Length;
+            var startIndex = setCookieHeader.IndexOf(".AspNetCore.Session=", StringComparison.OrdinalIgnoreCase);
+            var valueStart = startIndex + ".AspNetCore.Session=".Length;
             var endIndex = setCookieHeader.IndexOf(';', valueStart);
             
             if (endIndex == -1)

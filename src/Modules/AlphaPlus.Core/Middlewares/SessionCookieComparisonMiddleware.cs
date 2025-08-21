@@ -21,7 +21,7 @@ public class SessionCookieComparisonMiddleware
         try
         {
             var originalFromHeader = context.Request.Headers["X-Original-Session"].ToString();
-            var fromCookie = context.Request.Cookies["X-Response-Session"];
+            var fromCookie = context.Request.Cookies[".AspNetCore.Session"];
             
             if (!string.IsNullOrWhiteSpace(originalFromHeader) && !string.IsNullOrWhiteSpace(fromCookie))
             {
