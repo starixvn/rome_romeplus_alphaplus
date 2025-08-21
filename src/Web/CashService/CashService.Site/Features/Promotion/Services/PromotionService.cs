@@ -62,7 +62,9 @@ public class PromotionService(ILogger logger, IOptions<UploadImageSettings> opti
             return new ResultModel { Code = 1, Message = "Upload banner failed" };
         }
 
-        if (uploadBannerSettings is not null && uploadBannerSettings.IsHttpClientUpload)
+        if (uploadBannerSettings is not null
+            && uploadBannerSettings.IsHttpClientUpload
+            && uploadBannerSettings.Locations.Count > 0)
         {
             UploadImageThroughApi(files);
         }

@@ -261,7 +261,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
   };
 
   const renderMinMaxAmount = () => {
-    if (providerId <= 0) {
+    if (providerId <= 0 || isProviderProcessing) {
       return null;
     }
     const displayMaxAmount = maxAmount ? displayAmount(maxAmount) : 'unlimited';

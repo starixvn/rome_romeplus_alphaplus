@@ -79,7 +79,7 @@ public static class HttpClientImageUploadExtensions
         var loginPayload = new
         {
             username = setting.Username,
-            pwd = setting.Password
+            password = setting.Password
         };
         var content = new StringContent(JsonSerializer.Serialize(loginPayload), Encoding.UTF8, "application/json");
 
