@@ -28,13 +28,13 @@ public class SessionCookieComparisonService : ISessionCookieComparisonService
         if (!_options.EnableSessionCookieComparison)
             return;
 
-        if (!IsMonitoredPage(context.Request.Path))
-            return;
+        if (!IsMonitoredPage($"{context.Request.PathBase}{context.Request.Path}"))
+            return;        
 
         if (!string.Equals(requestCookie, responseCookie, StringComparison.OrdinalIgnoreCase))
         {
             var logMessage = BuildLogMessage(context, requestCookie, responseCookie, messageTitle);
-            
+
             switch (_options.LogLevel.ToLowerInvariant())
             {
                 case "error":
@@ -109,9 +109,9 @@ public class SessionCookieComparisonService : ISessionCookieComparisonService
             OriginalSessionId = requestCookie,
             NewSessionId = responseCookie,
             Timestamp = DateTime.UtcNow,
-            Url = context.Request.Path,
-            Referer = context.Request.Headers["Referer"],
-            UserAgent = context.Request.Headers["User-Agent"],
+            Url = context.Request.Path.Value,
+            Referer = context.Request.Headers["Referer"].ToString(),
+            UserAgent = context.Request.Headers["User-Agent"].ToString(),
             CustId = _userSession.CustId,
             Username = _userSession.UserName,
             SubAccId = _userSession.SubAccId,

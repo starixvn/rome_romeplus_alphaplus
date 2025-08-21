@@ -33,7 +33,10 @@ public class SessionCookieComparisonMiddleware
         finally
         {
             var responseSessionCookie = _sessionCookieComparisonService.ExtractSessionCookieFromResponse(context.Response);
-            await _sessionCookieComparisonService.CompareAndLogSessionCookiesAsync(context, requestSessionCookie, responseSessionCookie, "session_cookie_mismatch: from Server");
+            if (!string.IsNullOrWhiteSpace(responseSessionCookie))
+            {
+                await _sessionCookieComparisonService.CompareAndLogSessionCookiesAsync(context, requestSessionCookie, responseSessionCookie, "session_cookie_mismatch: from Server");
+            }
         }
     }
 }
