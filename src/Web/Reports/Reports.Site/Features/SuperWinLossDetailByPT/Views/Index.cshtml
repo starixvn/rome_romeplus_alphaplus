@@ -101,10 +101,10 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/superwinlossdetailbypt")
-    <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles-v2/winlossdetailnew")
 }
 @section Scripts {
-    <script src="~/bundles/superwinlossdetailbypt/superwinlossdetailbypt.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/superwinlossdetailbypt/superwinlossdetailbypt")
 }
 @model SuperWinLossDetailByPTViewModel
 <report-title model="Model.PageHeader" />
@@ -119,6 +119,12 @@
         <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="Excel"
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
+    @if (reportDataCount > 0)
+    {
+        <div class="form-group">
+            <compact-feedback fid="20" />
+        </div>
+    }
     <div class="note">
         <span class="star">*</span>@Model.ViewDataInstructionMessage
         <a href="javascript:;" id="view-product-pt-list">@Resources.ViewProductPTList</a>

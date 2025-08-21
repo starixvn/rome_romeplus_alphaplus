@@ -66,7 +66,8 @@ namespace AlphaPlus.Features.Site.Messages.Handlers
                     message.Message,
                     message.Rate,
                     message.FunctionId,
-                    xmlFeedback));
+                    xmlFeedback,
+                    message.ExtraInfo));
 
                 return new Result { Message = Resources.Feedback_Success };
             }

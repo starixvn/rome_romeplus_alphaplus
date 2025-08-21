@@ -152,10 +152,10 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/winlossbyproduct")
-    <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles-v2/winlossdetailnew")
 }
 @section Scripts {
-    <script src="~/bundles/winlossbyproduct/winlossbyproduct.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/winlossbyproduct/winlossbyproduct")
 }
 @model WinLossByProductViewModel
 <report-title model="Model.PageHeader" />
@@ -170,6 +170,12 @@
         <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="Excel"
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
+    @if (Model.ReportData.Any())
+    {
+        <div class="form-group">
+            <compact-feedback fid="19" />
+        </div>
+    }
     <div class="note">
         <span class="star">*</span>@Model.ViewDataInstructionMessage
     </div>

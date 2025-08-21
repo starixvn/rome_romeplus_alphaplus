@@ -5,7 +5,7 @@
 }
 @section Styles {
 	@StaticResources.AssetStyles.Render("/bundles-v2/site-reports/winlossdetailnew")
-	<link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" />
+	@StaticResources.RenderStyles("~/bundles-v2/winlossdetailnew")
 }
 @section Scripts {
 	<script type="text/javascript">
@@ -22,11 +22,10 @@
 			username: '@Model.Username',
 			visibleColumns: '@Model.VisibleColumns',
 			userSelectedResourceIds: '@Model.UserSelectedResourceIds'
-
 		}
 	</script>
 	@StaticResources.AssetScripts.RenderCommon("/bundles/site-reports/winlossdetail")
-	<script src="~/bundles/winlossdetail/cashfee.js?v=1"></script>
+	@StaticResources.RenderScripts("~/bundles/winlossdetail/cashfee")
 }
 @model CashFeeViewModel
 <div class="">
@@ -66,6 +65,7 @@
 			</div>
 			<div class="list-icon">
 				<ul>
+					<li><compact-feedback fid="32" bootstrap-tooltip="true" /></li>
 					<li>
 						<span id="icon-copy" class="ic-copy" data-toggle="tooltip" data-placement="top"
 							title="@Resources.Copy"></span>

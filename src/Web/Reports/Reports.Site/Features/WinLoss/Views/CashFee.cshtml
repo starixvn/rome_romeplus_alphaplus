@@ -5,19 +5,22 @@
 @addTagHelper *, AlphaPlus.Reports.Site
 @{
 	Layout = "_Layout";
-	var version = AlphaPlus.Core.Configurations.AppSettings.JsVersion;
 }
 @section Styles {
 	@StaticResources.AssetStyles.Render("/bundles-v2/site-reports/winloss")
-	<link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css?v=@version" />
+	@StaticResources.RenderStyles("~/bundles-v2/winlossdetailnew.css")
+}
+@section Scripts {
+	@StaticResources.RenderScripts("~/bundles/winloss/cashfee-report")
 }
 @model CashFeeViewModel
-
-<div class="page-title has-icon">
-	<div class="text-title">@Model.PageHeader.Title</div>	 
-	<a id="icon-excel" class="ic-excel ic-title" data-toggle="tooltip" data-placement="top"
-			title="@Resources.ExportToExcel" asp-action="CashFeeExcel" asp-all-route-data="Model.GetExcelParams()"></a>
-	 
+<div class="page-title page-title-upper">
+	<div class="text-title icon-center">
+		<span>@Model.PageHeader.Title</span>
+		<a id="icon-excel" class="ic-excel ic-title" data-title="@Resources.ExportToExcel" asp-action="CashFeeExcel"
+			asp-all-route-data="Model.GetExcelParams()"></a>
+		<compact-feedback fid="32" />
+	</div>
 </div>
 <div class="cash-fee-container">
 	<div id="tbl-report-container">

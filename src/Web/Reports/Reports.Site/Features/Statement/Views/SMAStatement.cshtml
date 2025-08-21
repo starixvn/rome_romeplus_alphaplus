@@ -17,10 +17,10 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/statement")
-    <link rel="stylesheet" href="~/bundles-v2/statement.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles-v2/statement")
 }
 @section Scripts {
-    <script src="~/bundles/statement/sma-statement.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/statement/sma-statement")
 }
 @model SMAStatementViewModel
 <report-title model="Model.PageHeader" />
@@ -34,6 +34,12 @@
         <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="SMAStatementExcel"
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
+    @if (Model.Pager.TotalRecords > 0)
+    {
+        <div class="form-group">
+            <compact-feedback fid="22" />
+        </div>
+    }
     <div class="note">
         <span class="star">*</span>@Model.ViewDataInstructionMessage
     </div>

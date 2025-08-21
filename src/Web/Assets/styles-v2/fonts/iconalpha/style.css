@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icon-alpha-v2';
-  src:  url('fonts/icon-alpha-v2.eot?sqz4hn');
-  src:  url('fonts/icon-alpha-v2.eot?sqz4hn#iefix') format('embedded-opentype'),
-    url('fonts/icon-alpha-v2.ttf?sqz4hn') format('truetype'),
-    url('fonts/icon-alpha-v2.woff?sqz4hn') format('woff'),
-    url('fonts/icon-alpha-v2.svg?sqz4hn#icon-alpha-v2') format('svg');
+  src:  url('fonts/icon-alpha-v2.eot?wlmnv1');
+  src:  url('fonts/icon-alpha-v2.eot?wlmnv1#iefix') format('embedded-opentype'),
+    url('fonts/icon-alpha-v2.ttf?wlmnv1') format('truetype'),
+    url('fonts/icon-alpha-v2.woff?wlmnv1') format('woff'),
+    url('fonts/icon-alpha-v2.svg?wlmnv1#icon-alpha-v2') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.ic-like:before {
+  content: "\e920";
+}
+.ic-liked:before {
+  content: "\e921";
+}
 .ic-cashservice:before {
   content: "\e91f";
 }

@@ -34,10 +34,10 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/betchoicematching")
-    <link rel="stylesheet" href="~/bundles-v2/betchoicematching.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles-v2/betchoicematching")
 }
 @section Scripts {
-    <script src="~/bundles/ipmatching/ipmatching.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/ipmatching/ipmatching")
 }
 @model IPMatchingViewModel
 <report-title model="Model.PageHeader" />
@@ -65,6 +65,12 @@
         <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="Excel"
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
+    @if (Model.ReportData.HasData)
+    {
+        <div class="form-group">
+            <compact-feedback fid="30" />
+        </div>
+    }
     <div class="note">
         <span class="star">*</span>@Resources.IPMatchingNote
     </div>

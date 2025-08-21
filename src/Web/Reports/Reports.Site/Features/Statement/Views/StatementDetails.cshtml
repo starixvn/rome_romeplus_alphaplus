@@ -10,12 +10,12 @@
         </span>
     }
 }
-@section Styles {    
+@section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/statement")
-    <link rel="stylesheet" href="~/bundles-v2/statement.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles-v2/statement")
 }
 @section Scripts {
-    <script src="~/bundles/statement/statement-details.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/statement/statement-details")
 }
 @model StatementDetailViewModel
 <form class="form-inline filter statement-details-filter" role="form" id="report-form">
@@ -25,8 +25,7 @@
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
 </form>
-<table class="tb tb-bordered tb-hover tbl-report-statement-detail w-full text-right"
-    id="tbl-report">
+<table class="tb tb-bordered tb-hover tbl-report-statement-detail w-full text-right" id="tbl-report">
     <thead>
         <tr>
             <th>@Resources.Date</th>
@@ -44,7 +43,7 @@
                         @Html.Raw(data.TransDate.ToString("dddd<br/>MM/dd/yyyy<br/>hh:mm:ss tt"))
                     </td>
                     <td class="text-left">
-                        @if(!data.IsHiddenTransType)
+                        @if (!data.IsHiddenTransType)
                         {
                             @data.TransType
                             <br />

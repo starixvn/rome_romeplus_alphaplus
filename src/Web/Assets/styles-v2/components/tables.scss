@@ -113,9 +113,10 @@
             .ic-excel {
                 color: var(--ic-copy-excel)
             }
+            
         }
 
-        [class^="ic-"], [class*=" ic-"] {
+        [class^="ic-"], [class*=" ic-"] {                    
             font-size: 20px;
             cursor: pointer;
             width: 28px;
@@ -123,8 +124,15 @@
             text-align: center;
             padding: 4px;
             border-radius: 3px;
-            background: rgba(0,0,0,0.1);
+            background: var(--filter-bg-ic);           
         }
+        .ic-like{        
+            padding: 3px;     
+            &.active{
+                background: var(--filter-bg-ic);
+            }
+        }
+
     }
 }
 .tb {

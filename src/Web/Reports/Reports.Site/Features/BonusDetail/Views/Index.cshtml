@@ -179,12 +179,12 @@
         }
     }
 }
-@section Styles {    
+@section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/bonusdetail")
-    <link rel="stylesheet" href="~/bundles-v2/bonusdetail.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles-v2/bonusdetail")
 }
 @section Scripts {
-    <script src="~/bundles/bonusdetail/bonusdetail.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/bonusdetail/bonusdetail")
 }
 @model BonusDetailViewModel
 <report-title model="Model.PageHeader" />
@@ -206,6 +206,12 @@
     <div class="form-group submit-container">
         <button type="submit" class="btn-submit" id="btn-submit">@Resources.Submit</button>
     </div>
+    @if (Model.ReportData.HasData)
+    {
+        <div class="form-group">
+            <compact-feedback fid="28" />
+        </div>
+    }
 </form>
 <table class="tb tb-bordered tb-hover w-full text-right" id="tbl-report">
     <thead>

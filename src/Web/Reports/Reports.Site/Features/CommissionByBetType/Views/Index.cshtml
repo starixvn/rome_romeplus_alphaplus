@@ -19,13 +19,12 @@
     }
 
     var colindex = 0;
-    var version = AlphaPlus.Core.Configurations.AppSettings.JsVersion;
 }
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/commissionbybettype")
 }
 @section Scripts {
-    <script src="~/bundles/commissionbybettype/commissionbybettype.js?v=@version"></script>
+    @StaticResources.RenderScripts("~/bundles/commissionbybettype/commissionbybettype")
 }
 @model CommissionByBetTypeViewModel
 <report-title model="Model.PageHeader" />
@@ -43,6 +42,12 @@
         <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="Excel"
             asp-all-route-data="@Model.BuildExcelParams()"></a>
     </div>
+    @if (Model.ReportData.HasData)
+    {
+        <div class="form-group">
+            <compact-feedback fid="21" />
+        </div>
+    }
     <div class="note">
         <span class="star">*</span>@Model.ViewDataInstructionMessage
     </div>

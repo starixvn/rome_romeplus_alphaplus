@@ -1,0 +1,24 @@
+﻿@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Shared.AppResources.Features.Messages
+@{
+    Layout = "~/Views/Feedback/_SharedLayout.cshtml";
+}
+@model AlphaPlus.Features.Site.Requests.Feedback.DislikeQuery
+<form asp-controller="feedback" asp-action="add" class="feedback-box" id="formFeedback">
+    @Html.Hidden("FunctionId", @Model.Id)
+    @Html.Hidden("ExtraInfo", @Model.ExtraInfo)
+    <div class="hide msg msg-error" id="msg-error"></div>
+    <textarea class="feedback-msg" rows="6" maxlength="4000" id="feedback-msg"
+        placeholder="@Resources.FeedbackFunction_Message"></textarea>
+    <div class="btn-box">
+        <button type="button" class="btn-cancel" id="buttonClose">@Resources.Later</button>
+        <button type="submit" class="btn-submit" id="buttonSubmit" disabled>@Resources.submit</button>
+    </div>
+</form>
+<div style="padding-top: 1px;">
+    <div class="hide msg msg-success" id="msg-success"></div>
+</div>
+@Html.Hidden("Feedback_NoInput", Resources.Feedback_NoInputError)
+@section Scripts {
+    @StaticResources.RenderScripts("~/assets/bundles/feedback/dislike")
+}

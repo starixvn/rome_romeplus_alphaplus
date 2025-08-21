@@ -11,6 +11,7 @@ class CashFeeView extends BaseReportNew {
     private cashFeeCopyHtml: CashFeeCopyHtml;
     private $tblReportContainer: JQuery;
     private globalFormData: any;
+    private readonly tableId = '#tbl-report';
 
     constructor(
         dateRangeComponent: DateRangePickerJQueryComponent,
@@ -27,6 +28,7 @@ class CashFeeView extends BaseReportNew {
 
     init() {
         super.initShowHideFilter();
+        this.compactFeeback.initCompactFeedback(true, true, winlossDetailFromData);
         this.$tblReportContainer = $('#tbl-report-container');
         this.globalFormData = winlossDetailFromData;
 
@@ -47,7 +49,7 @@ class CashFeeView extends BaseReportNew {
     }
 
     registerEvents() {
-        this.cashFeeCopyHtml.bindEvent($('#tbl-report'));
+        this.cashFeeCopyHtml.bindEvent($(this.tableId));
 
         const $iconExcel = $('#icon-excel');
         const excelUrl = $iconExcel.attr('href');
@@ -78,7 +80,9 @@ class CashFeeView extends BaseReportNew {
         const url = 'GetCashFeeData';
         $.get(`${url}?${queryString}`, (html) => {
             this.$tblReportContainer.html(html);
-            this.cashFeeCopyHtml.bindEvent($('#tbl-report'));
+            const $tblReport = $(this.tableId);
+            this.cashFeeCopyHtml.bindEvent($tblReport);
+            this.compactFeeback.initCompactFeedback($tblReport.find('tbody tr').length > 0, true, queryStringObject);
             this.$tblReportContainer.unblock();
         }).fail((jqXHR) => {
             alphaReports.ajaxFail(jqXHR);

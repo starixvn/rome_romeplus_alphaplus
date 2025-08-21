@@ -2,17 +2,16 @@
     Layout = "_Layout";
     ViewData["Title"] = Model.PageHeader.Title;
 }
-@section Styles {    
+@section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/consolidation")
-    <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles-v2/winlossdetailnew")
 }
 @section Scripts {
-    <script src="~/bundles/consolidation/consolidation.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/consolidation/consolidation")
 }
 @model ConsolidationByProductViewModel
 <partial name="TitleAndFilter" model="Model" />
-<table
-    class="tb tb-bordered tb-hover w-full  @(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
+<table class="tb tb-bordered tb-hover w-full  @(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
     id="tbl-report">
     <thead>
         <tr>
@@ -60,7 +59,8 @@
                 var isFirstRow = true;
                 foreach (var data in date.WinLoss)
                 {
-                    var isCashServiceBilling = data.BreakDown.Equals(cashServiceBillingProductId, StringComparison.OrdinalIgnoreCase);
+                    var isCashServiceBilling = data.BreakDown.Equals(cashServiceBillingProductId,
+                    StringComparison.OrdinalIgnoreCase);
                     if (!isCashServiceBilling && data.BetCount == 0)
                     {
                         continue;
@@ -68,7 +68,8 @@
                     <tr>
                         @if (isFirstRow)
                         {
-                            <td class="text-left bold first-row consolidation" rowspan="@date.WinLoss.Count(x => x.BetCount > 0)">@date.BreakDown</td>
+                            <td class="text-left bold first-row consolidation" rowspan="@date.WinLoss.Count(x => x.BetCount > 0)">
+                                @date.BreakDown</td>
                             isFirstRow = false;
                         }
                         <td class="text-left @data.CustLevelName.ToLowerInvariant()">@data.CustLevelName</td>
@@ -122,8 +123,9 @@
             }
         </tbody>
     }
-    
-    @if (!Model.ReportData.Any() || Model.ReportData.All(x => x.WinLoss.All(o => o.BreakDown != cashServiceBillingProductId && o.BetCount == 0)))
+
+    @if (!Model.ReportData.Any() || Model.ReportData.All(x => x.WinLoss.All(o => o.BreakDown !=
+    cashServiceBillingProductId && o.BetCount == 0)))
     {
         <no-information colspan="15" />
     }

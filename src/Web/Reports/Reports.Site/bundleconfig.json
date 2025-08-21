@@ -20,6 +20,7 @@
       "assets/scripts/components/productmultiselection.js",
       "assets/scripts/components/single-dropdown.js",
       "assets/scripts/base-report.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/outstanding/outstanding.js"
     ]
   },
@@ -45,6 +46,7 @@
       "assets/scripts/components/daterangepicker.js",
       "assets/scripts/components/sort.js",
       "assets/scripts/base-report.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/enteredresult/enteredresult.js"
     ]
   },
@@ -59,6 +61,7 @@
       "assets/scripts/components/single-dropdown.js",
       "assets/scripts/components/sort.js",
       "assets/scripts/base-report.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/winloss/winloss.js"
     ]
   },
@@ -67,6 +70,7 @@
     "inputFiles": [
       "assets/scripts/core.js",
       "assets/scripts/base-report-new.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/components/total-entered-nonentered.js",
       "assets/scripts/components/daterangepicker-jquery.js",
       "assets/scripts/components/product-dropdown.js",
@@ -85,11 +89,19 @@
     "inputFiles": [
       "assets/scripts/core.js",
       "assets/scripts/base-report-new.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/components/daterangepicker-jquery.js",
       "assets/scripts/components/breadcrumb-level.js",
       "assets/scripts/components/week.js",
       "assets/scripts/winlossdetail/cashfee-copyhtml.js",
       "assets/scripts/winlossdetail/cashfee.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/winloss/cashfee-report.js",
+    "inputFiles": [
+      "assets/scripts/compact-feedback.js",
+      "assets/scripts/winloss/cashfee.js"
     ]
   },
   {
@@ -107,6 +119,7 @@
       "assets/scripts/components/league-multiselection.js",
       "assets/scripts/components/tooltip.js",
       "assets/scripts/base-report.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/matchwinlossdetail/matchwinlossdetail.js"
     ]
   },
@@ -119,6 +132,7 @@
       "assets/scripts/components/productmultiselection.js",
       "assets/scripts/components/sort.js",
       "assets/scripts/base-report.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/winlossanalysis/winlossanalysis.js"
     ]
   },
@@ -131,6 +145,7 @@
       "assets/scripts/components/productmultiselection.js",
       "assets/scripts/components/dual-axis-chart.js",
       "assets/scripts/base-report.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/winlossanalysischart/winlossanalysischart.js"
     ]
   },
@@ -142,6 +157,7 @@
       "assets/scripts/components/daterangepicker.js",
       "assets/scripts/components/tooltip.js",
       "assets/scripts/base-report.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/winlossbyproduct/winlossbyproduct.js"
     ]
   },
@@ -154,6 +170,7 @@
       "assets/scripts/components/tooltip.js",
       "assets/scripts/components/sort.js",
       "assets/scripts/base-report.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/superwinlossdetailbypt/superwinlossdetailbypt.js"
     ]
   },
@@ -165,6 +182,7 @@
       "assets/scripts/components/daterangepicker.js",
       "assets/scripts/components/sort.js",
       "assets/scripts/base-report.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/commissionbybettype/commissionbybettype.js"
     ]
   },
@@ -182,6 +200,7 @@
       "assets/scripts/components/daterangepicker.js",
       "assets/scripts/components/tooltip.js",
       "assets/scripts/base-report.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/consolidation/consolidation.js"
     ]
   },
@@ -195,6 +214,7 @@
       "assets/scripts/components/tooltip.js",
       "assets/scripts/components/sort.js",
       "assets/scripts/base-report.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/consolidation/consolidation-detail.js"
     ]
   },
@@ -209,6 +229,7 @@
     "inputFiles": [
       "assets/scripts/core.js",
       "assets/scripts/base-report.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/components/daterangepicker.js",
       "assets/scripts/components/client-pager.js",
       "assets/scripts/statement/statement-details.js",
@@ -221,6 +242,7 @@
     "inputFiles": [
       "assets/scripts/core.js",
       "assets/scripts/base-report.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/components/daterangepicker.js",
       "assets/scripts/components/client-pager.js",
       "assets/scripts/components/single-dropdown.js",
@@ -246,6 +268,7 @@
     "inputFiles": [
       "assets/scripts/core.js",
       "assets/scripts/base-report.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/components/monthpicker.js",
       "assets/scripts/components/daterangepicker.js",
       "assets/scripts/components/productmultiselection.js",
@@ -264,6 +287,7 @@
     "inputFiles": [
       "assets/scripts/core.js",
       "assets/scripts/base-report.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/components/daterangepicker.js",
       "assets/scripts/components/pager.js",
       "assets/scripts/bonusdetail/confirm-payment.js",
@@ -281,6 +305,7 @@
     "inputFiles": [
       "assets/scripts/core.js",
       "assets/scripts/base-report.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/components/pager.js",
       "assets/scripts/components/daterangepicker.js",
       "assets/scripts/betcredittracking/bet-credit-history.js"
@@ -297,6 +322,7 @@
     "inputFiles": [
       "assets/scripts/core.js",
       "assets/scripts/base-report.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/components/pager.js",
       "assets/scripts/components/monthpicker.js",
       "assets/scripts/betcredittracking/move-statement-history.js"
@@ -307,6 +333,7 @@
     "inputFiles": [
       "assets/scripts/core.js",
       "assets/scripts/base-report.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/components/daterangepicker.js",
       "assets/scripts/ipmatching/ip-matching.js"
     ]
@@ -321,6 +348,7 @@
     "outputFileName": "wwwroot/bundles/betchoicematching/betchoicematching.js",
     "inputFiles": [
       "assets/scripts/core.js",
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/components/simple-tooltip.js",
       "assets/scripts/betchoicematching/betchoicematching.js"
     ]

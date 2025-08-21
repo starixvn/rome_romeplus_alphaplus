@@ -2,17 +2,16 @@
     Layout = "_Layout";
     ViewData["Title"] = Model.PageHeader.Title;
 }
-@section Styles {    
+@section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/consolidation")
-    <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles-v2/winlossdetailnew")
 }
 @section Scripts {
-    <script src="~/bundles/consolidation/consolidation.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/consolidation/consolidation")
 }
 @model ConsolidationByDateViewModel
 <partial name="TitleAndFilter" model="Model" />
-<table
-    class="tb tb-bordered tb-hover w-full @(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
+<table class="tb tb-bordered tb-hover w-full @(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
     id="tbl-report">
     <thead>
         <tr>

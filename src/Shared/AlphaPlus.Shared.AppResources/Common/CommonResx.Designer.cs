@@ -538,6 +538,15 @@ namespace AlphaPlus.Shared.AppResources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Need improvement.
+        /// </summary>
+        public static string DislikeTooltip {
+            get {
+                return ResourceManager.GetString("DislikeTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Downline List.
         /// </summary>
         public static string DownlineList {
@@ -678,6 +687,15 @@ namespace AlphaPlus.Shared.AppResources.Common {
         public static string lblNew {
             get {
                 return ResourceManager.GetString("lblNew", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Satisfied with this feature.
+        /// </summary>
+        public static string LikeTooltip {
+            get {
+                return ResourceManager.GetString("LikeTooltip", resourceCulture);
             }
         }
         

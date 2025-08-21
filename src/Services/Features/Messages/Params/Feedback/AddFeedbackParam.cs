@@ -8,7 +8,8 @@
             string comment,
             byte rate,
             int? functionId,
-            string xmlFeedback)
+            string xmlFeedback,
+            string extraInfo)
         {
             CustId = custId;
             SubAccountId = subAccId;
@@ -16,6 +17,7 @@
             Rate = rate;
             FunctionId = functionId;
             XMLFeedback = xmlFeedback;
+            ExtraInfo = extraInfo;
         }
 
         public int CustId { get; }
@@ -29,5 +31,7 @@
         public int? FunctionId { get; }
 
         public string XMLFeedback { get; }
+
+        public string ExtraInfo { get; }
     }
 }

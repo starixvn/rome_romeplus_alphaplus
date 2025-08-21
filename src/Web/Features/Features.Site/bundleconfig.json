@@ -64,7 +64,6 @@
       "assets/styles/message/message-dark.css"
     ]
   },
-
   {
     "outputFileName": "wwwroot/assets/bundles/popup-dark.css",
     "inputFiles": [
@@ -129,25 +128,25 @@
   {
     "outputFileName": "wwwroot/assets/bundles/handbook/common.css",
     "inputFiles": [
-        "assets/styles/handbook/base/reset.css",
-        "assets/styles/handbook/base/fonts/iconhandbook/style.css",
-        "assets/styles/handbook/base/fonts/roboto/roboto.css",
-        "assets/styles/handbook/base/scaffolding.css",
-        "assets/styles/handbook/base/utilities.css",
-        "assets/styles/handbook/pages/page-handbook.css"
+      "assets/styles/handbook/base/reset.css",
+      "assets/styles/handbook/base/fonts/iconhandbook/style.css",
+      "assets/styles/handbook/base/fonts/roboto/roboto.css",
+      "assets/styles/handbook/base/scaffolding.css",
+      "assets/styles/handbook/base/utilities.css",
+      "assets/styles/handbook/pages/page-handbook.css"
     ]
   },
   {
-      "outputFileName": "wwwroot/assets/bundles/handbook/page-default.css",
-      "inputFiles": [
-        "assets/styles/handbook/pages/page-default.css"
-      ]
+    "outputFileName": "wwwroot/assets/bundles/handbook/page-default.css",
+    "inputFiles": [
+      "assets/styles/handbook/pages/page-default.css"
+    ]
   },
   {
-      "outputFileName": "wwwroot/assets/bundles/handbook/page-home.css",
-      "inputFiles": [
-          "assets/styles/handbook/pages/page-home.css"
-      ]
+    "outputFileName": "wwwroot/assets/bundles/handbook/page-home.css",
+    "inputFiles": [
+      "assets/styles/handbook/pages/page-home.css"
+    ]
   },
   {
     "outputFileName": "wwwroot/assets/bundles/handbook/articles/get-by-slug.css",
@@ -186,6 +185,12 @@
     "outputFileName": "wwwroot/assets/bundles/feedback/winning-threshold-survey.js",
     "inputFiles": [
       "assets/scripts/feedback/winning-threshold-survey.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/feedback/dislike.js",
+    "inputFiles": [
+      "assets/scripts/feedback/dislike.js"
     ]
   }
 ]

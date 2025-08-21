@@ -133,3 +133,83 @@
         border-bottom-color: var(--tooltip-background);
     }
 }
+.box-icon-title{
+    &.left{
+        [class$="-rotate"], [class*="-rotate "]{
+            &[data-title]{
+                &:after{
+                    transform: rotate(180deg)  translateX(0);
+                    left: auto;
+                    right: calc(-100% - 4px);
+                }
+        
+            }
+        }
+        [data-title]{
+            &:after{
+                left: 0;
+                transform: translateX(0);                 
+            }
+        }
+    }
+    &.right{
+        [data-title]{
+            &:after{
+                left: auto;
+                right: calc(-100% - 4px);  
+                transform: translateX(0);          
+            }
+        }
+        [class$="-rotate"], [class*="-rotate "]{
+            &[data-title]{
+                &:after{
+                    transform: rotate(180deg) translateX(-100%);
+                    left: auto;
+                    right: 100%;
+                }
+        
+            }
+        }
+    }
+    [data-title] {
+        position: relative;
+        &:hover {
+            &:after {
+                display: block;
+            }
+        }
+
+        &:after {
+            position: absolute;
+            transition: 0.35s;
+            pointer-events: none;
+            display: none;
+        }
+
+        &:after {
+            content: attr(data-title);
+            top: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 13px;
+            padding: 5px 8px;
+            line-height: 20px;
+            border-radius: 4px;
+            background-color: #2E2E2E;
+            color: #fff;
+            white-space: nowrap;
+            font-family: var(--font-family);
+        }  
+        
+    }
+    [class$="-rotate"], [class*="-rotate "]{
+        &[data-title]{
+            &:after{
+                transform: rotate(180deg)  translateX(50%);
+                top: auto;
+                bottom: calc(100% + 10px);
+            }
+    
+        }
+    }
+}

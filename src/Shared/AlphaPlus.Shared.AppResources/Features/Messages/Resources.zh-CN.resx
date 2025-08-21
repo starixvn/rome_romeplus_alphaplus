@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="announcement" xml:space="preserve">
+    <value>通告</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>没资料显示</value>
   </data>
@@ -137,9 +143,6 @@
   </data>
   <data name="NewBetTypeEffectDate1" xml:space="preserve">
     <value>足球的新投注类别将于{0}开始生效</value>
-  </data>
-  <data name="announcement" xml:space="preserve">
-    <value>通告</value>
   </data>
   <data name="normalAnnouncement" xml:space="preserve">
     <value>一般公告</value>
@@ -165,11 +168,20 @@
   <data name="more" xml:space="preserve">
     <value>更多</value>
   </data>
-  <data name="New" xml:space="preserve">
-    <value>新增</value>
-  </data>
   <data name="SystemUpdate" xml:space="preserve">
     <value>系统更新</value>
+  </data>
+  <data name="normal" xml:space="preserve">
+    <value>一般</value>
+  </data>
+  <data name="Personal" xml:space="preserve">
+    <value>个人</value>
+  </data>
+  <data name="Special" xml:space="preserve">
+    <value>特殊</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>新增</value>
   </data>
   <data name="systemAnnouncement" xml:space="preserve">
     <value>系统公告</value>
@@ -222,47 +234,47 @@
   <data name="Feedback_NoInput" xml:space="preserve">
     <value>欢迎留下您宝贵的建议与评分</value>
   </data>
+  <data name="Feedback_NoInputError" xml:space="preserve">
+    <value>欢迎留下您宝贵的建议与评分</value>
+  </data>
   <data name="NotAuthorized" xml:space="preserve">
     <value>您没有使用此功能的权限</value>
-  </data>
-  <data name="No" xml:space="preserve">
-    <value>编号</value>
   </data>
   <data name="BackupDomains" xml:space="preserve">
     <value>后备域名</value>
   </data>
-  <data name="CopyDomain" xml:space="preserve">
-    <value>复制</value>
-  </data>
   <data name="Domain" xml:space="preserve">
     <value>域名</value>
   </data>
-  <data name="Down" xml:space="preserve">
-    <value>中断</value>
-  </data>
-  <data name="InUse" xml:space="preserve">
-    <value>正在使用</value>
-  </data>
-  <data name="normal2" xml:space="preserve">
-    <value>普通</value>
-  </data>
-  <data name="VeryGood" xml:space="preserve">
-    <value>非常快速</value>
+  <data name="CopyDomain" xml:space="preserve">
+    <value>复制</value>
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>刷新</value>
   </data>
-  <data name="Status" xml:space="preserve">
-    <value>状态</value>
+  <data name="Down" xml:space="preserve">
+    <value>中断</value>
+  </data>
+  <data name="VeryGood" xml:space="preserve">
+    <value>非常快速</value>
   </data>
   <data name="Copied" xml:space="preserve">
     <value>复制</value>
   </data>
+  <data name="InUse" xml:space="preserve">
+    <value>正在使用</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>编号</value>
+  </data>
   <data name="Loading" xml:space="preserve">
     <value>载入中</value>
   </data>
-  <data name="Loading_Duplicate[1]" xml:space="preserve">
-    <value>载入中</value>
+  <data name="normal2" xml:space="preserve">
+    <value>普通</value>
   </data>
   <data name="Fast" xml:space="preserve">
     <value>快速</value>
@@ -300,15 +312,6 @@
   <data name="Pager_DisplayItems" xml:space="preserve">
     <value>显示 {from} 到 {to} 的 {total} 项目</value>
   </data>
-  <data name="Special" xml:space="preserve">
-    <value>特殊</value>
-  </data>
-  <data name="normal" xml:space="preserve">
-    <value>一般</value>
-  </data>
-  <data name="Personal" xml:space="preserve">
-    <value>个人</value>
-  </data>
   <data name="GuideNote" xml:space="preserve">
     <value>公告在默认的情况下将从您上次看到的日期显示至今天。&lt;br&gt;
  一般公告和个人讯息最多显示3 个月。</value>
@@ -324,9 +327,6 @@
   </data>
   <data name="CopyAll" xml:space="preserve">
     <value>复制全部</value>
-  </data>
-  <data name="close" xml:space="preserve">
-    <value>关闭</value>
   </data>
   <data name="FeedbackSurvey_SelectUsefulOrNot" xml:space="preserve">
     <value>请选择 &lt;b&gt;有用&lt;/b&gt; 或 &lt;b&gt;没有用&lt;/b&gt; 继续。</value>
@@ -354,5 +354,8 @@
   </data>
   <data name="FeedbackSurveyTitle" xml:space="preserve">
     <value>协助我们&lt;span&gt;改进！&lt;/span&gt;</value>
+  </data>
+  <data name="Loading_Duplicate[1]" xml:space="preserve">
+    <value>载入中</value>
   </data>
 </root>

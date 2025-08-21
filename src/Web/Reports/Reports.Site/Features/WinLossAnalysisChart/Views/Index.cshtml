@@ -11,13 +11,13 @@
     Layout = "_Layout";
     ViewData["Title"] = Model.PageHeader.Title;
 }
-@section Styles {    
+@section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/winlossanalysischart")
-    <link rel="stylesheet" href="~/bundles-v2/winlossanalysischart.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles-v2/winlossanalysischart")
 }
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles/site-reports/winloss-analysis-chart")
-    <script src="~/bundles/winlossanalysischart/winlossanalysischart.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/winlossanalysischart/winlossanalysischart")
 }
 @model WinLossAnalysisChartViewModel
 <report-title model="Model.PageHeader" />
@@ -34,6 +34,12 @@
     <div class="form-group hide">
         <span id="icon-information" class="ic-information"></span>
     </div>
+    @if (Model.ReportData.Any())
+    {
+        <div class="form-group">
+            <compact-feedback fid="18" />
+        </div>
+    }
     <div class="note">
         <span class="star">*</span>@Model.ViewDataInstructionMessage
     </div>

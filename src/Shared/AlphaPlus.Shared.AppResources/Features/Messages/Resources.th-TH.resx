@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="announcement" xml:space="preserve">
+    <value>ประกาศ</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>ปิด</value>
+  </data>
   <data name="NoInformationIsAvailable" xml:space="preserve">
     <value>ไม่มีข้อมูล</value>
   </data>
@@ -137,9 +143,6 @@
   </data>
   <data name="NewBetTypeEffectDate1" xml:space="preserve">
     <value>ประเภทเดิมพันใหม่ของฟุตบอล มีผลตั้งแต่ {0}:</value>
-  </data>
-  <data name="announcement" xml:space="preserve">
-    <value>ประกาศ</value>
   </data>
   <data name="normalAnnouncement" xml:space="preserve">
     <value>ประกาศธรรมดา</value>
@@ -165,11 +168,20 @@
   <data name="more" xml:space="preserve">
     <value>เพิ่ม</value>
   </data>
-  <data name="New" xml:space="preserve">
-    <value>บใหม่</value>
-  </data>
   <data name="SystemUpdate" xml:space="preserve">
     <value>อัปเดตระบบ</value>
+  </data>
+  <data name="normal" xml:space="preserve">
+    <value>ธรรมดา</value>
+  </data>
+  <data name="Personal" xml:space="preserve">
+    <value>รายบุคคล</value>
+  </data>
+  <data name="Special" xml:space="preserve">
+    <value>พิเศษ</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>บใหม่</value>
   </data>
   <data name="systemAnnouncement" xml:space="preserve">
     <value>ประกาศระบบ</value>
@@ -222,47 +234,47 @@
   <data name="Feedback_NoInput" xml:space="preserve">
     <value>โปรดทำการให้คะแนนหรือแสดงความคิดเห็นของท่าน</value>
   </data>
+  <data name="Feedback_NoInputError" xml:space="preserve">
+    <value>โปรดทำการให้คะแนนหรือแสดงความคิดเห็นของท่าน</value>
+  </data>
   <data name="NotAuthorized" xml:space="preserve">
     <value>คุณไม่มีอำนาจในการเข้าใช้งานฟังก์ชันนี้</value>
-  </data>
-  <data name="No" xml:space="preserve">
-    <value> ลำดับที่</value>
   </data>
   <data name="BackupDomains" xml:space="preserve">
     <value>โดเมนสำรอง</value>
   </data>
-  <data name="CopyDomain" xml:space="preserve">
-    <value>สำเนา</value>
-  </data>
   <data name="Domain" xml:space="preserve">
     <value>โดเมน</value>
   </data>
-  <data name="Down" xml:space="preserve">
-    <value>ขัดข้อง</value>
-  </data>
-  <data name="InUse" xml:space="preserve">
-    <value>กำลังใช้งาน</value>
-  </data>
-  <data name="normal2" xml:space="preserve">
-    <value>ปกติ</value>
-  </data>
-  <data name="VeryGood" xml:space="preserve">
-    <value>ดีเยี่ยม</value>
+  <data name="CopyDomain" xml:space="preserve">
+    <value>สำเนา</value>
   </data>
   <data name="Refresh" xml:space="preserve">
     <value>รีเฟรช</value>
   </data>
-  <data name="Status" xml:space="preserve">
-    <value>สถานะ</value>
+  <data name="Down" xml:space="preserve">
+    <value>ขัดข้อง</value>
+  </data>
+  <data name="VeryGood" xml:space="preserve">
+    <value>ดีเยี่ยม</value>
   </data>
   <data name="Copied" xml:space="preserve">
     <value>คัดลอก</value>
   </data>
+  <data name="InUse" xml:space="preserve">
+    <value>กำลังใช้งาน</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>สถานะ</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value> ลำดับที่</value>
+  </data>
   <data name="Loading" xml:space="preserve">
     <value>กำลังโหลด</value>
   </data>
-  <data name="Loading_Duplicate[1]" xml:space="preserve">
-    <value>กำลังโหลด</value>
+  <data name="normal2" xml:space="preserve">
+    <value>ปกติ</value>
   </data>
   <data name="Fast" xml:space="preserve">
     <value>ดี</value>
@@ -300,15 +312,6 @@
   <data name="Pager_DisplayItems" xml:space="preserve">
     <value>กำลังแสดงข้อมูล {from} ถึง {to} จากทั้งหมด {total}</value>
   </data>
-  <data name="Special" xml:space="preserve">
-    <value>พิเศษ</value>
-  </data>
-  <data name="normal" xml:space="preserve">
-    <value>ธรรมดา</value>
-  </data>
-  <data name="Personal" xml:space="preserve">
-    <value>รายบุคคล</value>
-  </data>
   <data name="GuideNote" xml:space="preserve">
     <value>การแสดงประกาศ ระบบจะแสดงข้อมูลตั้งแต่วันที่คุณเห็นประกาศครั้งล่าสุดจนถึงปัจจุบัน&lt;br&gt;
 โดยประกาศปกติและข้อความส่วนตัวระบบจะเก็บรักษาไว้เป็นเวลา 3 เดือน</value>
@@ -324,9 +327,6 @@
   </data>
   <data name="CopyAll" xml:space="preserve">
     <value>คัดลอกทั้งหมด</value>
-  </data>
-  <data name="close" xml:space="preserve">
-    <value>ปิด</value>
   </data>
   <data name="FeedbackSurvey_SelectUsefulOrNot" xml:space="preserve">
     <value>โปรดเลือก &lt;b&gt;มีประโยชน์&lt;/b&gt; หรือ &lt;b&gt;ไม่มีประโยชน์&lt;/b&gt; เพื่อดำเนินการต่อ</value>
@@ -354,5 +354,8 @@
   </data>
   <data name="FeedbackSurveyTitle" xml:space="preserve">
     <value>ช่วยเรา&lt;span&gt;พัฒนา!&lt;/span&gt;</value>
+  </data>
+  <data name="Loading_Duplicate[1]" xml:space="preserve">
+    <value>กำลังโหลด</value>
   </data>
 </root>

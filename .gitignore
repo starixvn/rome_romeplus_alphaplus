@@ -39,9 +39,10 @@ wwwroot/
 *.bat
 *.orig
 
-
 # Test coverage
 coverage
 coverage/**
 .nyc_output
 coverage-report/**
+
+*.css

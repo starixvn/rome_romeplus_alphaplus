@@ -609,33 +609,33 @@ var indexManager = {
         $.get(indexManager.urls.cashServiceSetupChecklist, function (result) {
             var checklistDiv = $('#cash-service-checklist');
 
-            if(result.isCompleteAll) {
+            if (result.isCompleteAll) {
                 checklistDiv.addClass('hide');
             } else {
                 checklistDiv.removeClass('hide');
             }
-            
+
             var content = checklistDiv.find('.checklist-content');
 
-            if(result.hasDepositMethods) {
+            if (result.hasDepositMethods) {
                 content.find('.chk-deposit-methods').addClass('complete');
             } else {
                 content.find('.chk-deposit-methods').removeClass('complete');
             }
 
-            if(result.hasWithdrawalMethods) {
+            if (result.hasWithdrawalMethods) {
                 content.find('.chk-withdrawal-methods').addClass('complete');
             } else {
                 content.find('.chk-withdrawal-methods').removeClass('complete');
             }
 
-            if(result.hasLineID) {
+            if (result.hasLineID) {
                 content.find('.chk-line-id').addClass('complete');
             } else {
                 content.find('.chk-line-id').removeClass('complete');
             }
 
-            if(openContent) {
+            if (openContent) {
                 checklistDiv.addClass('show');
             } else {
                 checklistDiv.removeClass('show');
@@ -643,14 +643,14 @@ var indexManager = {
         });
     },
     toggleCashServiceChecklist: function (isShow: boolean) {
-        if(isShow) {
+        if (isShow) {
             $('#cash-service-checklist').addClass('show');
         } else {
             $('#cash-service-checklist').removeClass('show');
         }
     },
     showHideCashServiceChecklist: function (isShow: boolean) {
-        if(isShow) {
+        if (isShow) {
             $('#ShowCashServiceChecklist').val(1);
             indexManager.initCashServiceChecklist(true);
         } else {
@@ -667,7 +667,7 @@ var indexManager = {
         });
 
         // Bind click event on main frame to hide cash-service-checklist
-        indexManager.domElements.mainFrame.on('load', function() {
+        indexManager.domElements.mainFrame.on('load', function () {
             try {
                 const iframeWindow = this.contentWindow || this.contentDocument;
                 if (iframeWindow && iframeWindow.document) {
@@ -683,9 +683,8 @@ var indexManager = {
             }
         });
 
-      
         checklistDiv.find('#ico-checklist').click(() => {
-            if(checklistDiv.hasClass('show')) {
+            if (checklistDiv.hasClass('show')) {
                 indexManager.toggleCashServiceChecklist(false);
             } else {
                 indexManager.initCashServiceChecklist(true);

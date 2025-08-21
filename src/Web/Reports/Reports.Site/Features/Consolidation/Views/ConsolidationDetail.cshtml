@@ -1,14 +1,13 @@
 @{
     Layout = "_Layout";
     ViewData["Title"] = Model.PageHeader.Title;
-    var version = AlphaPlus.Core.Configurations.AppSettings.JsVersion;
 }
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/consolidation")
-    <link rel="stylesheet" href="~/bundles-v2/winlossdetailnew.css?v=@version" />
+    @StaticResources.RenderStyles("~/bundles-v2/winlossdetailnew")
 }
 @section Scripts {
-    <script src="~/bundles/consolidation/consolidation-detail.js?v=@version"></script>
+    @StaticResources.RenderScripts("~/bundles/consolidation/consolidation-detail")
 }
 @model ConsolidationDetailViewModel
 <report-title model="Model.PageHeader" />
@@ -27,6 +26,12 @@
         <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="ConsolidationDetailExcel"
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
+    @if (Model.ReportData.HasData)
+    {
+        <div class="form-group">
+            <compact-feedback fid="27" />
+        </div>
+    }
     <input type="hidden" asp-for="CustId" />
     <input type="hidden" asp-for="CustName" />
     <input type="hidden" id="CustLevelId" name="CustLevelId" value="@Model.CustLevel.Value.ToString()" />

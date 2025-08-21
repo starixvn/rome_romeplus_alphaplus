@@ -304,6 +304,7 @@ class BetChoiceMatching {
     activeUplinesTooltip: SimpleTooltip;
     activeIPTooltip: SimpleTooltip;
     queryIPGroup: QueryIPGroup = {};
+    compactFeedback = new CompactFeebackView();
 
     init = () => {
         $.blockUI();
@@ -381,6 +382,7 @@ class BetChoiceMatching {
                 this.data = data;
                 this.groupIPs(data.IPs);
                 this.filterAndRender();
+                this.compactFeedback.initCompactFeedback(data.Events.length > 0, false, this.getCurrentFormData());
                 alphaReports.updateQueryString(this.queryParam);
             })
             .fail((jqXHR) => {
@@ -656,6 +658,16 @@ class BetChoiceMatching {
         this.usernameFilterForm.removeCriteria();
         this.stakeFilterForm.removeCriteria();
         this.memberWinLossFilterForm.removeCriteria();
+    };
+
+    getCurrentFormData = () => {
+        const formData = {};
+        const formDataArray = this.$reportForm.serializeArray();
+        $.each(formDataArray, function () {
+            formData[this.name] = this.value || '';
+        });
+
+        return formData;
     };
 }
 

@@ -23,7 +23,7 @@ public class ReportTitleNewTagHelper : TagHelper
         sb
             .Append($"<div class=\"text-title\" id=\"report-title\">{Model.Title}</div>")
             .Append("<a href=\"javascript:;\" class=\"hide\"><span class=\"ic-information\" id=\"icon-information\"></span></a>");
-        
+
         AppendActionIcons(sb);
 
         output.Content.SetHtmlContent(sb.ToString());

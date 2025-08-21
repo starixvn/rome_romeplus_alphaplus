@@ -47,11 +47,11 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-reports/betcredittracking")
-    <link rel="stylesheet" href="~/bundles-v2/movestatementhistory.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles-v2/movestatementhistory")
 }
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles-v2/site-assets/tipsy")
-    <script src="~/bundles/betcredittracking/movestatementhistory.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/betcredittracking/movestatementhistory")
 }
 @model MoveStatementHistoryViewModel
 <div
@@ -92,6 +92,12 @@
                 <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="MoveStatementHistoryExcel"
                     asp-all-route-data="Model.GetExcelParams()"></a>
             </div>
+            @if (Model.ReportData != null && Model.ReportData.Any())
+            {
+                <div class="form-group">
+                    <compact-feedback fid="26" />
+                </div>
+            }
             <div class="note-box">
                 <p class="note"><span class="star">*</span>@Model.ViewDataInstructionMessage</p>
                 <p class="note" style="margin-left: 14px;">@Resources.MoveStatementHistoryNote</p>
