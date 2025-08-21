@@ -19,8 +19,8 @@
           <xsl:for-each select="promotion">
               <tr>
                 <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Promotion')" /></td>
-                <td class="colW2"><xsl:value-of select="@promotionid" /></td>
-                <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Type ')" /></td>
+                <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingProviderName(@promotionid)" /></td>
+                <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Type')" /></td>
                 <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingPromotionTypeName(@promotiontype)" /></td>
                 <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Title')" /></td>
                 <td class="colW2"><xsl:value-of select="@title" /></td>
