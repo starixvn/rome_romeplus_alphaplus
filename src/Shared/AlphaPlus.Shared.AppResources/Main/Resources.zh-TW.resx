@@ -886,4 +886,7 @@
   <data name="DeactivateCashServiceNote" xml:space="preserve">
     <value>您賬戶的現金服務將於明日關閉，相關費用也將同步停止計收。</value>
   </data>
+  <data name="TotalCashMember" xml:space="preserve">
+    <value>現金會員總數</value>
+  </data>
 </root>

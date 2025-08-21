@@ -883,4 +883,7 @@
   <data name="DeactivateCashServiceNote" xml:space="preserve">
     <value>您账户的现金服务将于明日关闭，相关费用也将同步停止计收。</value>
   </data>
+  <data name="TotalCashMember" xml:space="preserve">
+    <value>现金会员总数</value>
+  </data>
 </root>

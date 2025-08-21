@@ -866,7 +866,7 @@
     <value>รายงานรายละเอียดการชนะ/แพ้มีคอลัมน์เงินรางวัลใหม่แล้วขณะนี้</value>
   </data>
   <data name="TotalCashMember" xml:space="preserve">
-    <value>Total Cash Member</value>
+    <value>สมาชิกเงินสดทั้งหมด</value>
   </data>
   <data name="CashService" xml:space="preserve">
     <value>Cash Service</value>
