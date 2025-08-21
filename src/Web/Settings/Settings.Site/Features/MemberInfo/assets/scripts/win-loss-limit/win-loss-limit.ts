@@ -34,6 +34,7 @@ class WinLossLimit {
     $playerId: JQuery;
     $tableReport: JQuery;
     $resultMsg: JQuery;
+    $notAuthorizedMessage: JQuery;
 
     constructor(
         $: JQueryStatic,
@@ -106,6 +107,8 @@ class WinLossLimit {
         this.$tableReport = this.$('#tbl-report');
 
         this.$resultMsg = this.$('#result-msg');
+
+        this.$notAuthorizedMessage = this.$('input[name="NotAuthorizedMessage"]');
     };
     bindEvents = () => {
         this.$username.keyup(this.doneInputTextbox);
@@ -211,7 +214,14 @@ class WinLossLimit {
                     window.scrollTo(0, 0);
                 },
                 error: (xhr: any, status: any, error: any) => {
-                    window.top.bootboxAlert(error || errorMessage);
+                    if (error === 'Unauthorized') {
+                        error = this.$notAuthorizedMessage.val();
+                    }
+                    this.$resultMsg.html(error || errorMessage);
+                    this.$resultMsg.removeClass('msg-success msg-error msg-warning');
+                    this.$resultMsg.addClass('msg-error');
+                    this.$resultMsg.removeClass('hide');
+                    window.scrollTo(0, 0);
                 },
                 complete: () => {
                     this.$.unblockUI();

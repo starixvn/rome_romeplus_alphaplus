@@ -27,6 +27,7 @@ class PotentialWinLimit {
     $tableReport: JQuery;
     $iconExcel: JQuery; 
     $resultMsg: JQuery;
+    $notAuthorizedMessage: JQuery;
 
     constructor(
         $: JQueryStatic,
@@ -85,6 +86,7 @@ class PotentialWinLimit {
         this.$iconExcel = this.$('#icon-excel');
 
         this.$resultMsg = this.$('#result-msg');
+        this.$notAuthorizedMessage = this.$('input[name="NotAuthorizedMessage"]');
     };
 
     bindEvents = () => {
@@ -195,6 +197,9 @@ class PotentialWinLimit {
                     window.scrollTo(0, 0);
                 },
                 error: (xhr: any, status: any, error: any) => {
+                    if (error === 'Unauthorized') {
+                        error = this.$notAuthorizedMessage.val();
+                    }
                     this.$resultMsg.html(error || errorMessage);
                     this.$resultMsg.removeClass('msg-success msg-error msg-warning');
                     this.$resultMsg.addClass('msg-error');
