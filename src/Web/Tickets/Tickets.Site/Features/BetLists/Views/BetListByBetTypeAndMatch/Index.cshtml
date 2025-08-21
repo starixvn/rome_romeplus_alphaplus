@@ -4,7 +4,7 @@
     ViewData["Title"] = @Resources.BetList;
 }
 @section Scripts {
-    <script src="~/bundles/betlists/icon-note.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/betlists/betlist-feedback")
 }
 <div class="bl_title">
     <div class="box">
@@ -12,7 +12,8 @@
         <div>
             <partial name="IconInformation" model="new[] { Resources.ipnote, CommonResx.MemberWinNote }" />
         </div>
-        <div class="push">
+        <div class="left-icon-title">
+            <compact-feedback fid="100" />
             <div class="bl-export-excel">
                 <a asp-action="Excel" asp-all-route-data="@Model.GetExcelParams()" class="icon icon-excel"
                     title="@Resources.ExportToExcel"></a>

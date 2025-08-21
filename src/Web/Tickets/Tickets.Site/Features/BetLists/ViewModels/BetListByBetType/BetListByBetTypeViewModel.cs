@@ -22,6 +22,14 @@ public class BetListByBetTypeViewModel(
         [27] = "ToWinToNil",
         [28] = "ThreeWayHandicap"
     };
+    private readonly IDictionary<int, int> FeedbackFunctionIds = new Dictionary<int, int>
+    {
+        [13] = 100,
+        [24] = 100,
+        [26] = 100,
+        [27] = 100,
+        [28] = 100
+    };
 
     public int BetType { get; } = message.BetType;
 
@@ -36,4 +44,7 @@ public class BetListByBetTypeViewModel(
 
     public string FuncName
         => BetTypes.TryGetValue(BetType, out var functionName) ? functionName : string.Empty;
+
+    public int FeedbackFuncId
+        => FeedbackFunctionIds.TryGetValue(BetType, out var fId) ? fId : 0;
 }

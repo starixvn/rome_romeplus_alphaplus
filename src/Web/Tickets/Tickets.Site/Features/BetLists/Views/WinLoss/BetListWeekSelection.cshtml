@@ -3,10 +3,16 @@
     ViewData["WinLossBetListNew"] = true;
 }
 @model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.WinLoss.WinLossWeekSelectionViewModel
-<div class="breadcrumb-table">
+<div class="breadcrumb-table has-tooltip">
     <breadcrumb-level model="@Model.BreadcrumbLevels" />
     <div class="list-icon">
         <ul>
+            @if (Model.BetListData.Total > 0)
+            {
+                <li>
+                    <compact-feedback fid="100" />
+                </li>
+            }
             <li>
                 <a href="javascript:;" id="icon-excel" class="icon icon-excel icon-excel-new"
                     title="@Resources.ExportToExcel" data-url="@MicroSites.TicketUrl("~/WinLoss/Excel")"></a>

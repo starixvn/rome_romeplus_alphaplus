@@ -16,6 +16,7 @@ interface Window {
     alpha: {
         urls: {
             mainRootPath: string;
+            messageRootPath: string;
         };
     };
 }

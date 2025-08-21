@@ -10,7 +10,7 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter-new")
-    <link rel="stylesheet" href="~/bundles/betlists/winloss.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles/betlists/winloss")
 }
 @section Scripts {
     <script type="text/javascript">
@@ -19,7 +19,7 @@
         var productDetailList = $.parseJSON('@Html.Raw(JsonSerializer.Serialize(Model.ProductViewModel.ProductDetails))');
     </script>
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter-new")
-    <script src="~/bundles/betlists/winloss.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/betlists/winloss")
 }
 @model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.WinLoss.WinLossNewViewModel
 <div class="flex">

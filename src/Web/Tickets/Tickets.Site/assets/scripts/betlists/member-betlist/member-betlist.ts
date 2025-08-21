@@ -6,21 +6,25 @@ class MemberBetListView {
     betlistTypeComponent: DropdownListComponent;
     productMultiSelectionComponent: ProductMultiSelectionComponent;
     dateRangePickerComponent: DateRangePickerComponent;
+    compactFeeback: CompactFeebackComponent;
 
     constructor(
         betlistTypeComponent: DropdownListComponent,
         productMultiSelectionComponent: ProductMultiSelectionComponent,
-        dateRangePickerComponent: DateRangePickerComponent
+        dateRangePickerComponent: DateRangePickerComponent,
+        compactFeeback: CompactFeebackComponent
     ) {
         this.betlistTypeComponent = betlistTypeComponent;
         this.productMultiSelectionComponent = productMultiSelectionComponent;
         this.dateRangePickerComponent = dateRangePickerComponent;
+        this.compactFeeback = compactFeeback;
     }
 
     init() {
         this.cacheElements();
         this.bindFilter();
         this.registerEvents();
+        this.compactFeeback.init(this.$betlistForm);
     }
 
     protected cacheElements() {
@@ -81,6 +85,7 @@ $(function () {
     new MemberBetListView(
         new DropdownListComponent(),
         new ProductMultiSelectionComponent(),
-        new DateRangePickerComponent()
+        new DateRangePickerComponent(),
+        new CompactFeebackComponent()
     ).init();
 });

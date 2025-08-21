@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'Iconalpha';
-  src:  url('../fonts/iconalpha/fonts/Iconalpha.eot?kyr3md');
-  src:  url('../fonts/iconalpha/fonts/Iconalpha.eot?kyr3md#iefix') format('embedded-opentype'),
-    url('../fonts/iconalpha/fonts/Iconalpha.ttf?kyr3md') format('truetype'),
-    url('../fonts/iconalpha/fonts/Iconalpha.woff?kyr3md') format('woff'),
-    url('../fonts/iconalpha/fonts/Iconalpha.svg?kyr3md#Iconalpha') format('svg');
+  src:  url('../fonts/iconalpha/fonts/Iconalpha.eot?rvcm94');
+  src:  url('../fonts/iconalpha/fonts/Iconalpha.eot?rvcm94#iefix') format('embedded-opentype'),
+    url('../fonts/iconalpha/fonts/Iconalpha.ttf?rvcm94') format('truetype'),
+    url('../fonts/iconalpha/fonts/Iconalpha.woff?rvcm94') format('woff'),
+    url('../fonts/iconalpha/fonts/Iconalpha.svg?rvcm94#Iconalpha') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,6 +25,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-like:before {
+  content: "\e990";
+}
+.icon-liked:before {
+  content: "\e991";
+}
 .icon-settingapi:before {
   content: "\e98f";
 }

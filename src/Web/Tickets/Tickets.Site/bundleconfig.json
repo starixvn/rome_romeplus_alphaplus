@@ -133,6 +133,7 @@
   {
     "outputFileName": "wwwroot/bundles/betlists/search-tickets.js",
     "inputFiles": [
+      "assets/scripts/components/compact-feedback.js",
       "assets/scripts/betlists/common/ajax-helper.js",
       "assets/scripts/betlists/common/icon-note.js",
       "assets/scripts/betlists/search-tickets/search-tickets.js"
@@ -192,6 +193,7 @@
       "assets/scripts/betlists/common/icon-note.js",
       "assets/scripts/components/autorefresh.js",
       "assets/scripts/components/inline-message.js",
+      "assets/scripts/components/compact-feedback.js",
       "assets/scripts/betlists/monitoring-bets/save-filter.js",
       "assets/scripts/betlists/last-bets/last-bets-copyhtml.js",
       "assets/scripts/betlists/last-bets/last-bets-new.js"
@@ -210,8 +212,17 @@
       "assets/scripts/components/daterangepicker.js",
       "assets/scripts/components/dropdown-list.js",
       "assets/scripts/components/pager.js",
+      "assets/scripts/components/compact-feedback.js",
       "assets/scripts/betlists/common/icon-note.js",
       "assets/scripts/betlists/cancelledbets/cancelledbets.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/bundles/betlists/betlist-feedback.js",
+    "inputFiles": [
+      "assets/scripts/components/compact-feedback.js",
+      "assets/scripts/betlists/common/icon-note.js",
+      "assets/scripts/betlists/betlist-feedback.js"
     ]
   },
   {
@@ -227,6 +238,7 @@
       "assets/scripts/components/productmultiselection.js",
       "assets/scripts/components/daterangepicker.js",
       "assets/scripts/components/dropdown-list.js",
+      "assets/scripts/components/compact-feedback.js",
       "assets/scripts/betlists/common/icon-note.js",
       "assets/scripts/betlists/member-betlist/member-betlist.js"
     ]
@@ -245,6 +257,7 @@
       "assets/scripts/components/daterangepicker-jquery.js",
       "assets/scripts/components/product-dropdown.js",
       "assets/scripts/components/week.js",
+      "assets/scripts/components/compact-feedback.js",
       "assets/scripts/betlists/common/ajax-helper.js",
       "assets/scripts/betlists/common/icon-note.js",
       "assets/scripts/betlists/winloss/winloss.js"

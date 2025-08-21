@@ -4,12 +4,12 @@
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/pagination")
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter")
-    <link rel="stylesheet" href="~/bundles/betlists/filter.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles/betlists/filter")
 }
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/pagination")
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter")
-    <script src="~/bundles/betlists/cancelledbets.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/betlists/cancelledbets")
 }
 @model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.CancelledBets.CancelledBetViewModel
 <div class="bl_title">
@@ -45,6 +45,12 @@
         <a class="icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
+    @if (Model.BetListData.Tickets.Any())
+    {
+        <div class="form-group">
+            <compact-feedback fid="100" />
+        </div>
+    }
 </form>
 <table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tablesorter tblRpt-hover tbl-betlist">
     <thead>
@@ -88,8 +94,3 @@
     </tbody>
 </table>
 <pager model="@Model.Pager" />
-@* @Html.Hidden("betlist-path",
-Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}"))
-@Html.Hidden("old-main-path", Model.OldMainPath)
-@Html.Hidden("results-path", Model.ResultsPath)
-@Html.Hidden("totalbets-forecast-path", Model.TotalBetsForecastPath) *@

@@ -6,7 +6,21 @@ interface Window {
     popupManager: {
         open(url: string, title: string, width: number): void;
         open(url: string, title: string, width: number, height: number): void;
+        open(
+            url: string,
+            title: string,
+            width: number,
+            height: number,
+            windowCss,
+            titleCss,
+            closeBtnCss,
+            left,
+            top,
+            iframeAttributes,
+            options
+        ): void;
         openMultiple(url: string, title: string, width: number): void;
+        close(): void;
     };
 }
 

@@ -2,7 +2,7 @@
     ViewData["Title"] = Model.Title;
 }
 @section Scripts {
-    <script src="~/bundles/betlists/icon-note.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/betlists/betlist-feedback")
 }
 @model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.RiskAnalysisIPMatching.RiskAnalysisIPMatchingViewModel
 <div class="bl_title">
@@ -12,7 +12,8 @@
             <partial name="IconInformation"
                 model="new[] { Resources.ipnote, Resources.CommissionRoundNote, CommonResx.MemberWinNote }" />
         </div>
-        <div class="push">
+        <div class="left-icon-title">
+            <compact-feedback fid="100" />
             <div class="bl-export-excel">
                 <a asp-action="Excel" asp-route-ip="@Model.IP" asp-route-date="@Model.Date" class="icon icon-excel"
                     title="@Resources.ExportToExcel"></a>

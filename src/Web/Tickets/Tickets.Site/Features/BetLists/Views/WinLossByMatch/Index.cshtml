@@ -7,7 +7,7 @@
     }
 }
 @section Scripts {
-    <script src="~/bundles/betlists/icon-note.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/betlists/betlist-feedback")
 }
 @model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.WinLossByMatch.WinLossByMatchViewModel
 <div class="bl_title">
@@ -16,7 +16,8 @@
         <div>
             <partial name="IconInformation" model="@notes" />
         </div>
-        <div class="push">
+        <div class="left-icon-title">
+            <compact-feedback fid="100" />
             <div class="bl-export-excel">
                 <a class="icon icon-excel" title="@Resources.ExportToExcel" asp-action="Excel"
                     asp-all-route-data="Model.GetExcelParams()"></a>

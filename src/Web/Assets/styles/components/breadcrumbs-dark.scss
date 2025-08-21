@@ -27,7 +27,10 @@
     padding: 5px 7px 3px 10px;
     min-height: 30px;
     line-height: 18px;
-
+    &.has-tooltip{
+        position: relative;
+        z-index: 30;
+    }
     .breadcrumb {
         border: 0;
         padding: 0;
