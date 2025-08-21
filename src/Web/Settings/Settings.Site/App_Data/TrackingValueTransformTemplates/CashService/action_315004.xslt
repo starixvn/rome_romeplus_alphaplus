@@ -24,7 +24,7 @@
                 <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingPromotionTypeName(@promotiontype)" /></td>
                 <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Status')" /></td>
                 <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingStatus(@enabled)" /></td>
-                <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('From ')" /></td>
+                <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('From')" /></td>
                 <td class="colW2"><xsl:value-of select="@fromdate" /></td>
                 <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('To')" /></td>
                 <td class="colW2"><xsl:value-of select="@todate" /></td>
