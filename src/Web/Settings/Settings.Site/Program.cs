@@ -49,7 +49,6 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthorization();
 app.UseSession();
-app.UseSessionCookieComparison();
 app.UseNetThrottling();
 app.UseMiddleware<RequestCultureMiddleware>();
 if (app.Environment.IsDevelopment())
@@ -78,5 +77,7 @@ app.Use(async (context, next) =>
 
     await next(context);
 });
+
+app.UseSessionCookieComparison();
 
 app.Run();

@@ -8,15 +8,9 @@ public class SessionCookieComparisonOptions
     
     public string[] MonitoredPaths { get; set; } = new[]
     {
-        "/settings/creditbalance",
+        "/settings/CreditBalance",
         "/reports/winlossdetail"
     };
     
     public string LogLevel { get; set; } = "Error";
-    
-    public bool IncludeUserAgentInLog { get; set; } = true;
-    
-    public bool IncludeRefererInLog { get; set; } = true;
-    
-    public bool IncludeIpAddressInLog { get; set; } = true;
 } 

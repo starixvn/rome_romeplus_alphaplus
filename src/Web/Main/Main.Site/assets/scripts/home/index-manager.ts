@@ -705,14 +705,15 @@ var indexManager = {
 
     sessionCookieComparison: {
         currentSessionId: null,
-        isEnabled: true,
-        monitoredPaths: [
-            '/reports/winlossdetail',
-            '/settings/CreditBalance'
-        ],
+        isEnabled: false,
+        monitoredPaths: [],
+        xResponseSessionCookie: 'X-Response-Session',
+        firstAuthSessionCookie: 'AspNetCoreSessionCookie',
 
         initialize: function() {
             this.currentSessionId = this.getSessionCookie();
+            this.isEnabled = $('#IsEnabledSessionCookieComparison').val() === '1';
+            this.monitoredPaths = $('#MonitoredPaths').val().split(',');
 
             document.addEventListener('visibilitychange', () => {
                 if (!document.hidden && this.isCurrentPathMonitored()) {
@@ -724,11 +725,11 @@ var indexManager = {
         },
 
         getSessionCookie: function() {
-            var sessionCookie = localStorage.getItem('AspNetCoreSessionCookie');
+            let sessionCookie = localStorage.getItem(this.firstAuthSessionCookie);
             if(!sessionCookie) {
-                sessionCookie = $.cookie('X-Response-Session');
+                sessionCookie = $.cookie(this.xResponseSessionCookie);
                 if(sessionCookie) {
-                    localStorage.setItem('AspNetCoreSessionCookie', sessionCookie);
+                    localStorage.setItem(this.firstAuthSessionCookie, sessionCookie);
                 }
             }
             return sessionCookie;
@@ -749,7 +750,6 @@ var indexManager = {
             if (mainFrame.length > 0) {
                 const src = mainFrame.attr('src');
                 if (src && this.isMonitoredPath(src)) {
-                    console.log('Monitored path detected in main frame:', src);
                     this.checkSessionConsistency();
                 }
             }
@@ -760,15 +760,17 @@ var indexManager = {
         },
 
         checkSessionConsistency: function() {
-            if (!this.isEnabled) return;
+            if (!this.isEnabled) {
+                return;
+            }
 
-            const currentCookie = $.cookie('X-Response-Session') || '';
+            const currentCookie = $.cookie(this.xResponseSessionCookie) || '';
 
             if (!currentCookie) {
                 return;
             }
 
-            this.currentSessionId = localStorage.getItem('AspNetCoreSessionCookie');
+            this.currentSessionId = localStorage.getItem(this.firstAuthSessionCookie);
             if (this.currentSessionId && currentCookie !== this.currentSessionId) {
                 this.handleSessionMismatch(currentCookie);
             } else if (!this.currentSessionId) {
@@ -777,17 +779,9 @@ var indexManager = {
         },
 
         handleSessionMismatch: function(newSessionId) {
-            console.warn('Session cookie mismatch detected:', {
-                original: this.currentSessionId,
-                current: newSessionId,
-                timestamp: new Date().toISOString(),
-                url: window.location.href,
-                userAgent: navigator.userAgent
-            });
-
             this.logSessionMismatch(newSessionId);
 
-            localStorage.setItem('AspNetCoreSessionCookie', $.cookie('X-Response-Session'));
+            localStorage.setItem(this.firstAuthSessionCookie, $.cookie(this.xResponseSessionCookie));
             this.refreshPage();
         },
 
@@ -803,12 +797,6 @@ var indexManager = {
             };
 
             this.sendLogToServer(logData);
-
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                console.group('Session Cookie Mismatch Details');
-                console.table(logData);
-                console.groupEnd();
-            }
         },
 
         sendLogToServer: function(logData) {
@@ -816,13 +804,7 @@ var indexManager = {
                 url: '/main/api/session/log',
                 method: 'POST',
                 contentType: 'application/json',
-                data: JSON.stringify(logData),
-                success: function(response) {
-                    // Success callback - no action needed for logging
-                },
-                error: function(xhr, status, error) {
-                    console.warn('Error sending session log:', error);
-                }
+                data: JSON.stringify(logData)
             });
         },
 

@@ -275,5 +275,13 @@
     "CashService": {
         "OfferedSites": "755555,222227",
         "APIUrl": "http://alphaplus_api_cashservice_alphaklprod_2:5000/api"
+    },
+    "SessionCookieComparison": {
+        "EnableSessionCookieComparison": true,
+        "LogLevel": "Error",
+        "MonitoredPaths": [
+            "/reports/winlossdetail",
+            "/settings/CreditBalance"
+        ]
     }
 }

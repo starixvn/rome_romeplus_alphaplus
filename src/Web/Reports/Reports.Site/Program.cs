@@ -82,8 +82,7 @@ app
     .UseRouting()
     .UseDefaultFiles()
     .UseStaticFiles()
-    .UseSession()
-    .UseSessionCookieComparison()
+    .UseSession()    
     .UseAuthentication()
     .UseAuthorization()
     .UseNetThrottling()
@@ -115,6 +114,8 @@ app.Use(async (context, next) =>
 
     await next(context);
 });
+
+app.UseSessionCookieComparison();
 
 app.MapDefaultControllerRoute();
 

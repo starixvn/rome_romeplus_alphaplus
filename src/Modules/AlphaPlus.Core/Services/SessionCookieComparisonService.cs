@@ -4,6 +4,7 @@ using Fanex.Logging;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Core.Configurations;
 using System.Text.Json;
+using Microsoft.AspNetCore.Http.Extensions;
 
 namespace AlphaPlus.Core.Services;
 
@@ -26,10 +27,14 @@ public class SessionCookieComparisonService : ISessionCookieComparisonService
     public async Task CompareAndLogSessionCookiesAsync(HttpContext context, string requestCookie, string responseCookie, string messageTitle)
     {
         if (!_options.EnableSessionCookieComparison)
+        {   
             return;
+        }
 
         if (!IsMonitoredPage($"{context.Request.PathBase}{context.Request.Path}"))
-            return;        
+        {
+            return;
+        }
 
         if (!string.Equals(requestCookie, responseCookie, StringComparison.OrdinalIgnoreCase))
         {
@@ -53,10 +58,9 @@ public class SessionCookieComparisonService : ISessionCookieComparisonService
         }
     }
 
-    public bool IsMonitoredPage(PathString path)
+    public bool IsMonitoredPage(string path)
     {
-        var pathString = path.Value?.ToLowerInvariant() ?? "";
-        
+        var pathString = path.ToLowerInvariant();
         var allPatterns = _options.MonitoredPaths;
 
         return allPatterns.Any(pattern => pathString.Contains(pattern.ToLowerInvariant()));
@@ -109,7 +113,7 @@ public class SessionCookieComparisonService : ISessionCookieComparisonService
             OriginalSessionId = requestCookie,
             NewSessionId = responseCookie,
             Timestamp = DateTime.UtcNow,
-            Url = context.Request.Path.Value,
+            Url = context.Request.GetDisplayUrl(),
             Referer = context.Request.Headers["Referer"].ToString(),
             UserAgent = context.Request.Headers["User-Agent"].ToString(),
             CustId = _userSession.CustId,
