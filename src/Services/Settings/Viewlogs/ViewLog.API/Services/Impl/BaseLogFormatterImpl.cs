@@ -1,5 +1,4 @@
 ﻿using System.Resources;
-using System.Text;
 using System.Text.RegularExpressions;
 using AlphaPlus.Core.Configurations;
 using AlphaPlus.Settings.ViewLogs.API.Params;
@@ -79,12 +78,10 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
 
         public string GetProductNames(string productIds)
         {
-            var productIdArray = productIds.Split(',');
-            var productNames = new List<string>();
-            foreach (var productId in productIdArray)
-            {
-                productNames.Add(GetProductName(int.Parse(productId)));
-            }
+            var productNames = productIds
+                .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                .Select(productId => GetProductName(int.Parse(productId)));
+
             return string.Join(", ", productNames);
         }
 
