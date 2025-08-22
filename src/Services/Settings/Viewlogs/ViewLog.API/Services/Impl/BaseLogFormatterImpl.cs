@@ -79,13 +79,13 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
 
         public string GetProductNames(string productIds)
         {
-            var stringBuilder = new StringBuilder();
             var productIdArray = productIds.Split(',');
+            var productNames = new List<string>();
             foreach (var productId in productIdArray)
             {
-                stringBuilder.Append(GetProductName(int.Parse(productId)) + ", ");
+                productNames.Add(GetProductName(int.Parse(productId)));
             }
-            return stringBuilder.ToString().TrimEnd(',');
+            return string.Join(", ", productNames);
         }
 
         public string GetTrackingBankName(string code)
