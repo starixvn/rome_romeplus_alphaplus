@@ -3375,4 +3375,7 @@
   <data name="CashService_RegisterInfo_2" xml:space="preserve">
     <value>Cho phép nạp tiền thành viên</value>
   </data>
+  <data name="system" xml:space="preserve">
+    <value>Hệ thống</value>
+  </data>
 </root>

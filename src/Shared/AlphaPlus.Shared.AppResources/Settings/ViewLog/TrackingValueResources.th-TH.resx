@@ -3729,4 +3729,7 @@
   <data name="CashService_RegisterInfo_2" xml:space="preserve">
     <value>อนุญาตการฝากเงินสมาชิก</value>
   </data>
+  <data name="system" xml:space="preserve">
+    <value>ระบบ</value>
+  </data>
 </root>

@@ -1894,4 +1894,7 @@
   <data name="CashService_RegisterInfo_2" xml:space="preserve">
     <value>회원 입금 허용</value>
   </data>
+  <data name="system" xml:space="preserve">
+    <value>시스템</value>
+  </data>
 </root>

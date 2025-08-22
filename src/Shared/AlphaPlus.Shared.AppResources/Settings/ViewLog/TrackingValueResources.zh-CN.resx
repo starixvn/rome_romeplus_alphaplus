@@ -3636,4 +3636,7 @@
   <data name="CashService_RegisterInfo_2" xml:space="preserve">
     <value>允许会员存款</value>
   </data>
+  <data name="system" xml:space="preserve">
+    <value>系统</value>
+  </data>
 </root>

@@ -12,6 +12,8 @@
             <td class="colW2"><xsl:value-of select="@transid" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Status')" /></td>
             <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingTransactionStatus(@statusid)" /></td>
+            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('OperatedBy')" /></td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:GetLogResource('system')" /></td>
           </tr>
         </table>
       </xsl:when>

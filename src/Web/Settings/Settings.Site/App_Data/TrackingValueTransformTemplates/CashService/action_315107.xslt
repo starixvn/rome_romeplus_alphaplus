@@ -23,6 +23,14 @@
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Status')" /></td>
             <td class="colW2"><xsl:value-of select="@status" /></td>
           </tr>
+          <tr>
+            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('OperatedBy')" /></td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:GetLogResource('system')" /></td>
+            <td class="colW1"></td>
+            <td class="colW2"></td>
+            <td class="colW1"></td>
+            <td class="colW2"></td>
+          </tr>
         </table>
       </xsl:when>
     </xsl:choose>
