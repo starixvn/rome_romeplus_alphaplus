@@ -12,6 +12,8 @@
             <td class="colW2"><xsl:value-of select="@subaccname" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('IP')" /></td>
             <td class="colW2"><xsl:value-of select="xslLogFormat:FormatIP(@ip)" /></td>
+            <td class="colW1"></td>
+            <td class="colW2"></td>
           </tr>
         </table>
 
@@ -24,14 +26,16 @@
               <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingStatus(@enabled)" /></td>
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('From')" /></td>
               <td class="colW2"><xsl:value-of select="@fromdate" /></td>
-              <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('To')" /></td>
+            </tr>
+            <tr>
+             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('To')" /></td>
               <td class="colW2"><xsl:value-of select="@todate" /></td>
               <td class="colW1"></td>
               <td class="colW2"></td>
               <td class="colW1"></td>
               <td class="colW2"></td>
             </tr>
-            <tr>
+            <tr class="headerDetail" onclick="toggle(this)">
               <td class="colW1" colspan="12"><xsl:value-of select="xslLogFormat:GetLogResource('Details')" /></td>
             </tr>
             <xsl:for-each select="details">
@@ -51,11 +55,11 @@
               </xsl:for-each>
             </xsl:for-each>
 
-            <tr>
+            <tr class="headerDetail" onclick="toggle(this)">
               <td class="colW1" colspan="12"><xsl:value-of select="xslLogFormat:GetLogResource('Content')" /></td>
             </tr>
 
-            <xsl:for-each select="content">
+            <xsl:for-each select="contents">
               <xsl:for-each select="r">
                 <tr>
                   <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('language')" /></td>
@@ -64,12 +68,6 @@
                   <td class="colW2"><xsl:value-of select="@title" /></td>
                   <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Content')" /></td>
                   <td class="colW2"><xsl:value-of select="@content" /></td>
-                  <td class="colW1"></td>
-                  <td class="colW2"></td>
-                  <td class="colW1"></td>
-                  <td class="colW2"></td>
-                  <td class="colW1"></td>
-                  <td class="colW2"></td>
                 </tr>
               </xsl:for-each>
             </xsl:for-each>
