@@ -9484,7 +9484,7 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Title.
         /// </summary>
         public static string Title {
             get {

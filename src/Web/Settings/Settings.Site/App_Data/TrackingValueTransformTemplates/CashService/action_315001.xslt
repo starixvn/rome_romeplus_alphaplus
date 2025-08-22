@@ -19,7 +19,7 @@
           <table class="tblDesc">
             <tr>
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Type')" /></td>
-              <td class="colW2"><xsl:value-of select="@amount" /></td>
+              <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingPromotionTypeName(@type)" /></td>
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Status')" /></td>
               <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingStatus(@enabled)" /></td>
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('From')" /></td>
