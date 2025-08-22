@@ -61,7 +61,7 @@ const MessageForm: React.FC<MessageFormProps> = ({loading}) => {
           ))}
         </div>
 
-        <div className='w-full max-[768px]:w-[100%]'>        
+        <div className='w-full max-[768px]:w-[100%] hidden'>        
           <TitleComponent text={t('message.announcement')}  type='label'/>
           <div className="relative">
             <textarea

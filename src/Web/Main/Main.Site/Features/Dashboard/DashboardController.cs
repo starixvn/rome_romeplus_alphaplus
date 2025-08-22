@@ -86,6 +86,12 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
             });
         }
 
+        [HttpGet]
+        public IActionResult AnalyzeCashServiceAds(string name, int step, string act)
+        {
+            return Json(new { name, step, act });
+        }
+
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateCashServiceStatus(bool isEnableCash)
         {
@@ -96,5 +102,6 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<JsonResult> BannerClickLog(string bannerName)
             => Json(await mediator.Send(new BannerClickLogRequest(bannerName, userSession.RoleId)));
+
     }
 }

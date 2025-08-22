@@ -1,4 +1,5 @@
 @using AlphaPlus.Settings.Site.Features.Customer.ViewModels;
+@inject AlphaPlus.Core.Models.IUserSession userSession
 @model CreateCustomerViewModel
 @{
     Layout = "~/Features/Shared/Views/_Layout.cshtml";
@@ -34,6 +35,7 @@
                 const appConfig = @Html.Raw(Model.AppConfig);
                 const params = @Html.Raw(Model.Params);
                 const cdnUri = "@Html.Raw(Model.CdnUri)";
+                const nickName = "@Html.Raw(userSession.NickName)"
             </script>
             <environment names="Production">
                 <script type="module" src="@(Model.CdnUri)cash-member/create/index.js?version=@(Model.AssetsVersion)"></script>
