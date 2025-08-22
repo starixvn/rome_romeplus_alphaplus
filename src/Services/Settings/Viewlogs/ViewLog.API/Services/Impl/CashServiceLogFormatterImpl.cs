@@ -104,7 +104,7 @@
 
         private string GetProviderName(string providerId)
         {
-            return remotingRef.GetProviderName(int.Parse(providerId));
+            return !string.IsNullOrWhiteSpace(providerId) ? remotingRef.GetProviderName(int.Parse(providerId)) : string.Empty;
         }
 
         private string GetTransactionStatus(string transactionStatus)
