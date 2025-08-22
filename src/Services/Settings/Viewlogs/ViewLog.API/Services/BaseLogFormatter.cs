@@ -13,7 +13,9 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services
         string GetLogResource(string key);
 
         string GetProductName(int productId);
-        
+
+        string GetProductNames(string productIds);
+
         string GetTrackingBankName(string code);
     }
 }

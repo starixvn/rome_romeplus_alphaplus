@@ -76,6 +76,17 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
             return remotingRef.GetProductName(productId);
         }
 
+        public string GetProductNames(string productIds)
+        {
+            var productNames = string.Empty;
+            var productIdArray = productIds.Split(',');
+            foreach (var productId in productIdArray)
+            {
+                productNames += GetProductName(int.Parse(productId)) + ",";
+            }
+            return productNames;
+        }
+
         public string GetTrackingBankName(string code)
         {
             return ReplaceOldNewValue(code, GetBankName);

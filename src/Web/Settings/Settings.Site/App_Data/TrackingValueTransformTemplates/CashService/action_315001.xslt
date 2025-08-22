@@ -44,7 +44,7 @@
                   <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('ProductCategory')" /></td>
                   <td class="colW2"><xsl:value-of select="@productcategoryid" /></td>
                   <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('product')" /></td>
-                  <td class="colW2"><xsl:value-of select="xslLogFormat:GetProductName(@product)" /></td>
+                  <td class="colW2"><xsl:value-of select="xslLogFormat:GetProductNames(@product)" /></td>
                   <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Percentage')" /></td>
                   <td class="colW2"><xsl:value-of select="@percentage" /></td>
                   <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('MinTO')" /></td>
