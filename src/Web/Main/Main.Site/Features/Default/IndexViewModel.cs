@@ -187,7 +187,7 @@ public class IndexViewModel
     public string HightLightFeatureImageName => "new_feature" + DarkModeName;
 
     public string HightLightFeatureUrl 
-    => AppSettings.IsSiteLabel789y ? MicroSites.FeatureUrl("~/StaticMessage/Help?id=226060") : MicroSites.FeatureUrl($"~/HandbookDefault/GetBySlug?slug=potential-win-limit-overview");
+    => MicroSites.FeatureUrl($"~/HandbookDefault/GetBySlug?slug=potential-win-limit-overview");
 
     public bool IsShowRewardTour { get; }
 

@@ -255,7 +255,7 @@
         },
         "ApplicationName": "Alpha.After.MBC.UAT"
     },
-    "MarketsSupportedNewHandbook": "IBC,MBC",
+    "MarketsSupportedNewHandbook": "*",
     "GoogleAnalyticId": "G-Y9E8EEDTFF",
     "OfferAutoTransfer.Currencies": "*",
     "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo",

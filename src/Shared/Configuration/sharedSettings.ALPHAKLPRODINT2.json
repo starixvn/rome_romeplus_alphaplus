@@ -244,7 +244,7 @@
     "ProtectedMode": {
         "OfferSites": "*"
     },
-    "MarketsSupportedNewHandbook": "IBC,MBC",
+    "MarketsSupportedNewHandbook": "*",
     "GoogleAnalyticId": "G-5LBSPVVKVJ",
     "OfferAutoTransfer.Currencies": "",
     "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo",
