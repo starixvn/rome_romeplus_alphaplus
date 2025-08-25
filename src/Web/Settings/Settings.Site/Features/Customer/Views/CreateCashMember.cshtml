@@ -31,27 +31,30 @@
         <input type="hidden" id="SecretKey" value="@Model.SecretKey" />
         <div id="root"></div>
         @section Scripts {
-            <script type="text/javascript">
-                const appConfig = @Html.Raw(Model.AppConfig);
-                const params = @Html.Raw(Model.Params);
-                const cdnUri = "@Html.Raw(Model.CdnUri)";
-                const nickName = "@Html.Raw(userSession.NickName)"
+        <script type="text/javascript">
+            const appConfig = @Html.Raw(Model.AppConfig);
+            const params = @Html.Raw(Model.Params);
+            const cdnUri = "@Html.Raw(Model.CdnUri)";
+            const nickName = "@Html.Raw(userSession.NickName)";
+            setTimeout(function () {
+                window.top.indexManager && window.top.indexManager.initFeedbackFunction(41);
+            }, 1000);
+        </script>
+        <environment names="Production">
+            <script type="module" src="@(Model.CdnUri)cash-member/create/index.js?version=@(Model.AssetsVersion)"></script>
+        </environment>
+        <environment names="Development">
+            <script type="module">
+                import RefreshRuntime from "http://localhost:4211/@@react-refresh";
+                RefreshRuntime.injectIntoGlobalHook(window);
+                window.$RefreshReg$ = () => { };
+                window.$RefreshSig$ = () => (type) => type;
+                window.__vite_plugin_react_preamble_installed__ = true;
             </script>
-            <environment names="Production">
-                <script type="module" src="@(Model.CdnUri)cash-member/create/index.js?version=@(Model.AssetsVersion)"></script>
-            </environment>
-            <environment names="Development">
-                <script type="module">
-                    import RefreshRuntime from "http://localhost:4211/@@react-refresh";
-                    RefreshRuntime.injectIntoGlobalHook(window);
-                    window.$RefreshReg$ = () => { };
-                    window.$RefreshSig$ = () => (type) => type;
-                    window.__vite_plugin_react_preamble_installed__ = true;
-                </script>
-                <script type="module" src=@("http://localhost:4211/@vite/client")></script>
+            <script type="module" src=@("http://localhost:4211/@vite/client")></script>
 
-                <script type="module" src="http://localhost:4211/src/main.tsx"></script>
-            </environment>
+            <script type="module" src="http://localhost:4211/src/main.tsx"></script>
+        </environment>
         }
     }
 </div>
