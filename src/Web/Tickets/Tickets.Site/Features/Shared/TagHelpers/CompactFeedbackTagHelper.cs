@@ -12,6 +12,9 @@ public class CompactFeedbackTagHelper : TagHelper
     [HtmlAttributeName("fid")]
     public int FunctionId { get; set; }
 
+    [HtmlAttributeName("class-name")]
+    public string ClassName { get; set; }
+
     [HtmlAttributeName("bootstrap-tooltip")]
     public bool IsBootstrapTooltip { get; set; }
 
@@ -22,7 +25,7 @@ public class CompactFeedbackTagHelper : TagHelper
     {
         output.TagName = "div";
         output.TagMode = TagMode.StartTagAndEndTag;
-        output.AddClass("box-icon-title", HtmlEncoder.Default);
+        output.Attributes.SetAttribute("class", $"box-icon-title {ClassName ?? string.Empty}");
         output.Attributes.SetAttribute("id", "box-icon-title");
         output.Attributes.SetAttribute("data-fid", FunctionId);
         var sb = new StringBuilder();

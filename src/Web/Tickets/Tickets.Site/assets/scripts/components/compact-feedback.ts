@@ -3,7 +3,7 @@ interface Window {
     afterDislikeSubmitCallback: () => void;
 }
 
-class CompactFeebackComponent {
+class CompactFeedbackComponent {
     private readonly boxIconTitleId = '#box-icon-title';
     private extraInfo = '';
 

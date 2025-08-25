@@ -1,7 +1,7 @@
 class SearchTicketView {
     $refNo: JQuery;
     $submitButton: JQuery;
-    compactFeeback = new CompactFeebackComponent();
+    compactFeedback = new CompactFeedbackComponent();
 
     init() {
         this.$submitButton = $('#btn-submit');
@@ -17,15 +17,15 @@ class SearchTicketView {
             AJAXHelper.get(`${$betlistForm.attr('action')}?refno=${refno}`, (html: string) => {
                 $('#tbl-betlist-box').html(html);
                 this.expandParlay();
-                this.compactFeeback.setExtraInfo({ refno });
-                this.compactFeeback.toggleShowHide(
-                    $('#tbl-betlist-box').find('#tbl-betlist tbody tr:first td').length > 1
-                );
+
+                const firstCell = $('#tbl-betlist tbody tr:first td:first');
+                this.compactFeedback.setExtraInfo({ refno });
+                this.compactFeedback.toggleShowHide(firstCell.length > 0 && !firstCell.data('noinfo'));
             });
         });
 
         setTimeout(() => window.top.indexManager.initFeedbackFunction(3), 1000);
-        this.compactFeeback.init();
+        this.compactFeedback.init();
     }
 
     updateSubmitButtonStateOnTextChange = () => {

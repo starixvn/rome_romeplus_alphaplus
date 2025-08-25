@@ -30,6 +30,7 @@ const soccer = {
     loadingMatches: [],
     maxNumOfEvents: null,
     currentRequest: null,
+    compactFeedback: new CompactFeedbackComponent(),
 
     urls: {
         getLeagues: 'GetSoccerLeagues',
@@ -64,6 +65,7 @@ const soccer = {
         soccer.registerEvents();
 
         soccerRenderer.init();
+        this.compactFeedback.init();
 
         setInterval(soccer.loadLeagues, soccer.loadMatchesInterval);
     },
@@ -134,25 +136,28 @@ const soccer = {
         }
         soccer.domElements.blockIconSmall.show();
 
+        const formData = {
+            matchIds: matchIds.join(','),
+            leagueId: soccer.domElements.ddlLeague.val(),
+            isLive: soccer.domElements.ddlDeadBall.val() === 'true'
+        };
         soccer.currentRequest = $.ajax({
             url: soccer.urls.getMatchForecasts,
             type: 'GET',
             cache: false,
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
-            data: {
-                matchIds: matchIds.join(','),
-                leagueId: soccer.domElements.ddlLeague.val(),
-                isLive: soccer.domElements.ddlDeadBall.val() === 'true'
-            }
+            data: formData
         })
             .done(function (matchForecasts) {
                 if (matchForecasts) {
                     soccer.removeLoadingIcon();
+                    this.compactFeedback.setExtraInfo(formData);
 
                     if (matchForecasts.length === 0) {
                         const noInfoHtml = soccerRenderer.renderNoInfo('no-info-body');
                         soccer.addNoInfoRow(noInfoHtml);
+                        this.compactFeedback.toggleShowHide(false);
                     } else {
                         for (let i = 0; i < matchForecasts.length; i++) {
                             const matchForecast = matchForecasts[i];
@@ -170,6 +175,7 @@ const soccer = {
                         }
 
                         soccerRenderer.updateMatchesCached(matchForecasts);
+                        this.compactFeedback.toggleShowHide(true);
                     }
 
                     soccer.domElements.mainContent.parent().show();

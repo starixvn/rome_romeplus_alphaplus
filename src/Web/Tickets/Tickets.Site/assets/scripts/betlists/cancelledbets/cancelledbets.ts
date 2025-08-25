@@ -5,19 +5,19 @@ class CancelledBetsListView {
     productMultiSelection: ProductMultiSelectionComponent;
     statusMultiSelection: DropdownListComponent;
     pagerComponent: PagerComponent;
-    compactFeeback: CompactFeebackComponent;
+    compactFeedback: CompactFeedbackComponent;
     constructor(
         dateRangePicker: DateRangePickerComponent,
         productMultiSelection: ProductMultiSelectionComponent,
         statusMultiSelection: DropdownListComponent,
         pagerComponent: PagerComponent,
-        compactFeeback: CompactFeebackComponent
+        compactFeedback: CompactFeedbackComponent
     ) {
         this.dateRangePicker = dateRangePicker;
         this.productMultiSelection = productMultiSelection;
         this.statusMultiSelection = statusMultiSelection;
         this.pagerComponent = pagerComponent;
-        this.compactFeeback = compactFeeback;
+        this.compactFeedback = compactFeedback;
     }
 
     public init() {
@@ -32,7 +32,7 @@ class CancelledBetsListView {
         this.pagerComponent.pageList = this.pagerComponent.smallPageList;
         this.pagerComponent.render();
 
-        this.compactFeeback.init(this.$betlistForm);
+        this.compactFeedback.init(this.$betlistForm);
     }
 
     private cacheElements() {
@@ -80,6 +80,6 @@ $(function () {
         new ProductMultiSelectionComponent(),
         new DropdownListComponent(),
         new PagerComponent(),
-        new CompactFeebackComponent()
+        new CompactFeedbackComponent()
     ).init();
 });

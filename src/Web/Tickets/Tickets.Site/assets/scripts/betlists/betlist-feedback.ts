@@ -10,5 +10,5 @@ $(function () {
         return formData;
     };
 
-    new CompactFeebackComponent().init(getCurrentFormData());
+    new CompactFeedbackComponent().init(getCurrentFormData());
 });

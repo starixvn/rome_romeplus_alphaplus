@@ -9,6 +9,7 @@
         <select asp-items="Model.Leagues" id="ddlLeague"></select>
     }
 </div>
+<compact-feedback fid="200" class-name="@(Model.Forecast.Any() ? string.Empty : "hide")" />
 <div class="clearfix"></div>
 <table class="tblRpt tblRpt-bordered tbl-hdpoulive text-center" id="tblRpt">
     <thead>

@@ -2,15 +2,16 @@
     ViewData["Title"] = Resources.TotalGoal;
 }
 @section Styles {
-    <link rel="stylesheet" href="~/bundles/totalbets/totalbets.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles/totalbets/totalbets")
 }
 @section Scripts {
-    <script src="~/bundles/totalbets/totalbets.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/totalbets/totalbets")
 }
 @model IEnumerable<TotalGoal>
 <div class="page-title">@Resources.TotalGoal</div>
 <div class="filter">
     <div class="auto-refresh"></div>
+    <compact-feedback fid="200" class-name="@(Model.Any() ? string.Empty : "hide")" />
 </div>
 <table class="tblRpt tblRpt-bordered" id="tblRpt">
     <thead>

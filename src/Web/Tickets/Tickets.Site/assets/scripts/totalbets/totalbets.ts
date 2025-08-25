@@ -25,6 +25,8 @@ interface Window {
 }
 
 class TotalBets {
+    private compactFeedback: CompactFeedbackComponent = null;
+
     initAutoRefresh($tblRpt: JQuery) {
         const autoRefreshSeconds = $('#hidden-autoRefreshSeconds')
             .val()
@@ -42,6 +44,7 @@ class TotalBets {
                 $.get(autoRefreshUrl, (html) => {
                     $tblRpt.html(html);
                     this.bindViewForecast($tblRpt);
+                    this.initCompactFeedback($tblRpt);
                 });
             },
             savedSecondKey: $('#hidden-autoRefreshSavedSecondKey').val()
@@ -58,10 +61,21 @@ class TotalBets {
             });
     }
 
+    initCompactFeedback($tblRpt: JQuery) {
+        if (this.compactFeedback === null) {
+            this.compactFeedback = new CompactFeedbackComponent();
+            this.compactFeedback.init();
+        } else {
+            const firstCell = $tblRpt.find('tr:first td:first');
+            this.compactFeedback.toggleShowHide(firstCell.length > 0 && !firstCell.data('noinfo'));
+        }
+    }
+
     init() {
         const $tblRpt = $('#tblRpt').find('tbody');
         this.initAutoRefresh($tblRpt);
         this.bindViewForecast($tblRpt);
+        this.initCompactFeedback($tblRpt);
     }
 }
 

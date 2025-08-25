@@ -3,17 +3,21 @@ interface JQuery {
 }
 
 class Forecast {
-    private initAutoRefresh() {
-        const $ddlLeague = $('#ddlLeague');
-        const url = `${$('#hidden-autoRefreshUrl').val()}${$ddlLeague.length ? $ddlLeague.val() : ''}`;
+    private readonly dropdownLeagueId = '#ddlLeague';
+    private readonly compactFeedback = new CompactFeedbackComponent();
 
+    private initAutoRefresh() {
         $('.auto-refresh').fanexAutoRefresh({
             buttonRefreshTooltip: $('#hidden-autoRefreshRefreshText').val(),
             seconds: $('#hidden-autoRefreshSeconds')
                 .val()
                 .split(',')
                 .map((second) => +second),
-            refreshHandler: () => this.handleAutoRefresh(url),
+            refreshHandler: () => {
+                const $ddlLeague = $(this.dropdownLeagueId);
+                const url = `${$('#hidden-autoRefreshUrl').val()}${$ddlLeague.length ? $ddlLeague.val() : ''}`;
+                this.handleAutoRefresh(url);
+            },
             savedSecondKey: $('#hidden-autoRefreshSavedSecondKey').val()
         });
     }
@@ -27,21 +31,27 @@ class Forecast {
     }
 
     private bindEvents() {
-        this.bindLeagueChangeEvent();
+        const $ddlLeague = this.bindLeagueChangeEvent();
         this.bindViewForecast();
         this.bindViewBetList();
         this.bindViewAH();
+        this.compactFeedback.init($ddlLeague.length > 0 ? { leagueId: $ddlLeague.val() } : '');
+        this.toggleShowHideCompactFeedback();
     }
 
-    private bindLeagueChangeEvent() {
-        $('#ddlLeague')
-            .off('change')
-            .change((e) => {
-                $.get(`${$('#hidden-dataUrl').val()}${$(e.target).val()}`, (html) => {
-                    $('#tblRpt tbody').html(html);
-                    this.bindViewForecast();
-                });
+    private bindLeagueChangeEvent(): JQuery {
+        const $ddlLeague = $(this.dropdownLeagueId);
+        $ddlLeague.off('change').change(() => {
+            const leagueId = $ddlLeague.val();
+            $.get(`${$('#hidden-dataUrl').val()}${leagueId}`, (html) => {
+                $('#tblRpt tbody').html(html);
+                this.bindViewForecast();
+                this.compactFeedback.setExtraInfo({ leagueId });
+                this.toggleShowHideCompactFeedback();
             });
+        });
+
+        return $ddlLeague;
     }
 
     private bindViewForecast() {
@@ -72,6 +82,11 @@ class Forecast {
                     $('#hidden-autoRefreshUrl').val(url);
                 });
             });
+    }
+
+    private toggleShowHideCompactFeedback() {
+        const firstCell = $('#tblRpt tbody tr:first td:first');
+        this.compactFeedback.toggleShowHide(firstCell.length > 0 && !firstCell.data('noinfo'));
     }
 
     init() {

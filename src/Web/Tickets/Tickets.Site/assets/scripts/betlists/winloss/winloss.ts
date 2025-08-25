@@ -9,7 +9,7 @@ class WinLossBetListView {
     private productComponent: ProductDropdownComponent;
     private weekComponent: WeekComponent;
     private breadcrumbLevelComponent: BreadcrumbLevelComponent;
-    private compactFeeback: CompactFeebackComponent;
+    private compactFeedback: CompactFeedbackComponent;
     private productList: any;
     private productDetailList: any;
     private globalFormData: any;
@@ -23,7 +23,7 @@ class WinLossBetListView {
         productComponent: ProductDropdownComponent,
         weekComponent: WeekComponent,
         breadcrumbLevelComponent: BreadcrumbLevelComponent,
-        compactFeeback: CompactFeebackComponent,
+        compactFeedback: CompactFeedbackComponent,
         productList: any,
         productDetailList: any,
         previousSelectedProductIds: any
@@ -32,7 +32,7 @@ class WinLossBetListView {
         this.productComponent = productComponent;
         this.weekComponent = weekComponent;
         this.breadcrumbLevelComponent = breadcrumbLevelComponent;
-        this.compactFeeback = compactFeeback;
+        this.compactFeedback = compactFeedback;
         this.productList = productList;
         this.productDetailList = productDetailList;
         this.previousSelectedProductIds = previousSelectedProductIds;
@@ -43,7 +43,7 @@ class WinLossBetListView {
         this.bindShowHideFilterEvent();
         this.bindExportExcelEvent();
         this.renderComponents();
-        this.compactFeeback.init(this.globalFormData);
+        this.compactFeedback.init(this.globalFormData);
     }
 
     private cacheDOMElements() {
@@ -186,7 +186,7 @@ class WinLossBetListView {
                 this.tableBetList = this.betListWeekSelection.find('#tbl-betlist');
                 this.breadcrumbLevelComponent.bindEvents();
                 this.bindExportExcelEvent();
-                this.compactFeeback.init(this.globalFormData);
+                this.compactFeedback.init(this.globalFormData);
 
                 this.updateCurrentUrl(queryString);
             },
@@ -205,7 +205,7 @@ class WinLossBetListView {
             (html) => {
                 this.globalFormData = formData;
                 this.tableBetList.find('tbody').html(html);
-                this.compactFeeback.setExtraInfo(this.globalFormData);
+                this.compactFeedback.setExtraInfo(this.globalFormData);
             },
             this.tableBetList
         );
@@ -265,7 +265,7 @@ $(function () {
         new ProductDropdownComponent(),
         new WeekComponent(),
         new BreadcrumbLevelComponent(),
-        new CompactFeebackComponent(),
+        new CompactFeedbackComponent(),
         window.productList,
         window.productDetailList,
         window.previousSelectedProductIds

@@ -24,11 +24,11 @@ public class BetListByBetTypeViewModel(
     };
     private readonly IDictionary<int, int> FeedbackFunctionIds = new Dictionary<int, int>
     {
-        [13] = 100,
-        [24] = 100,
-        [26] = 100,
-        [27] = 100,
-        [28] = 100
+        [13] = 47,
+        [24] = 48,
+        [26] = 49,
+        [27] = 50,
+        [28] = 51
     };
 
     public int BetType { get; } = message.BetType;

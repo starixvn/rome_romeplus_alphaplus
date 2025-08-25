@@ -18,6 +18,7 @@ class ScoreMap {
     isLeagueChanged = true;
     globalFormData = null;
     cacheMatchIds = null;
+    compactFeedback: CompactFeedbackComponent;
 
     constructor() {
         this.$ddlLeague = $('#ddlLeague');
@@ -73,6 +74,9 @@ class ScoreMap {
             this.bindEventsAfterRenderScoreMapSucessfully(this.$content);
             this.handleBetTypeChanged($allLiveBetTypeCheckbox, $liveBetTypeCheckboxes);
             this.handleBetTypeChanged($allDeadBetTypeCheckbox, $deadBetTypeCheckboxes);
+        } else {
+            this.compactFeedback = new CompactFeedbackComponent();
+            this.compactFeedback.init();
         }
         $('.icon-information-outline').click(function (e) {
             e.preventDefault();
@@ -87,6 +91,7 @@ class ScoreMap {
         this.$content.html('');
         this.$btnSubmit.addClass('hidden');
         this.$tblLiveDeadBetType.addClass('hidden');
+        this.compactFeedback && this.compactFeedback.toggleShowHide(false);
     }
 
     refreshLeagues() {
@@ -183,6 +188,10 @@ class ScoreMap {
             $.get('ScoreMapResults?' + $.param(this.globalFormData), (resultHtml) => {
                 this.$content.html(resultHtml);
                 this.bindEventsAfterRenderScoreMapSucessfully(this.$content);
+                if (this.compactFeedback) {
+                    this.compactFeedback.setExtraInfo(this.globalFormData);
+                    this.compactFeedback.toggleShowHide(true);
+                }
             }).always(() => {
                 this.$iconLoadingScoreMapResults.addClass('hidden');
             });

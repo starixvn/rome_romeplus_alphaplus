@@ -5,7 +5,7 @@ class LastBetsNewView {
     private autoRefreshComponent: AutoRefreshComponent;
     private lastBetsCopyHtml: LastBetsCopyHtml;
     private saveFilterView: SaveFilterView;
-    private compactFeeback: CompactFeebackComponent;
+    private compactFeedback: CompactFeedbackComponent;
 
     $msgError: JQuery;
     $betListTableContainer: JQuery;
@@ -20,12 +20,12 @@ class LastBetsNewView {
         autoRefreshComponent: AutoRefreshComponent,
         lastBetsCopyHtml: LastBetsCopyHtml,
         saveFilter: SaveFilterView,
-        compactFeeback: CompactFeebackComponent
+        compactFeedback: CompactFeedbackComponent
     ) {
         this.autoRefreshComponent = autoRefreshComponent;
         this.lastBetsCopyHtml = lastBetsCopyHtml;
         this.saveFilterView = saveFilter;
-        this.compactFeeback = compactFeeback;
+        this.compactFeedback = compactFeedback;
     }
 
     init() {
@@ -50,9 +50,9 @@ class LastBetsNewView {
         }
 
         this.initFeedback();
-        const hasBetListData = this.$betListTableContainer.find('tr:first td').length > 1;
-        this.compactFeeback.init(hasBetListData ? this.getParam() : undefined);
-        hasBetListData && this.compactFeeback.toggleShowHide(hasBetListData);
+        const hasBetListData = this.hasBetListData();
+        this.compactFeedback.init(hasBetListData ? this.getParam() : undefined);
+        hasBetListData && this.compactFeedback.toggleShowHide(hasBetListData);
     }
 
     private cacheElements() {
@@ -130,6 +130,11 @@ class LastBetsNewView {
         setTimeout(function () {
             window.top.indexManager.initFeedbackFunction(4, undefined, 450);
         }, 1000);
+    }
+
+    private hasBetListData() {
+        const firstCell = this.$betListTableContainer.find('tr:first td:first');
+        return firstCell.length > 0 && !firstCell.data('noinfo');
     }
 
     private setTransIdCacheKeyByFilter(lastTransId, lastestTransId) {
@@ -220,8 +225,8 @@ class LastBetsNewView {
         const latestTransId = this.$betListTableContainer.find('#latest-trans-id').val();
         this.setTransId(lastTransId, latestTransId);
 
-        this.compactFeeback.setExtraInfo(formData);
-        this.compactFeeback.toggleShowHide(this.$betListTableContainer.find('tr:first td').length > 1);
+        this.compactFeedback.setExtraInfo(formData);
+        this.compactFeedback.toggleShowHide(this.hasBetListData());
 
         this.isCalling = false;
     }
@@ -247,6 +252,6 @@ $(function () {
         new AutoRefreshComponent(),
         new LastBetsCopyHtml(Clipboard),
         new SaveFilterView(),
-        new CompactFeebackComponent()
+        new CompactFeedbackComponent()
     ).init();
 });
