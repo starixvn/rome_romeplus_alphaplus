@@ -25,7 +25,7 @@ public static class LanguageConstant
         [Vietnamese] = "Tiếng Việt"
     }.ToImmutableDictionary();
 
-    public static readonly ImmutableDictionary<string, string> CodeKeysWithoutCN3 = CodeNames
-        .Where(langauge => langauge.Key != Vietnamese)
+    public static readonly ImmutableDictionary<string, string> CodeKeysWithoutCn3 = CodeNames
+        .Where(language => language.Key != Vietnamese)
         .ToImmutableDictionary(language => language.Key, language => language.Value);
 }

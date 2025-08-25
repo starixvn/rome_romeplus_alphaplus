@@ -12,7 +12,6 @@ public class PromotionProductSetting : BasePromotion
 
     public double Percentage { get; set; }
 
-    [JsonProperty("MinTO")]
     public decimal MinTurnover { get; set; }
 
     public decimal MaxPayout { get; set; }

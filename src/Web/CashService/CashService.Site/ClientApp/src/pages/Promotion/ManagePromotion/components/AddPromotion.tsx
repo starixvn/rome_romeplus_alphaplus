@@ -66,7 +66,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
             productCategoryName: p.productCategoryName,
             products: p.products,
             percentage: 0,
-            minTO: 0,
+            minTurnover: 0,
             maxPayout: 0,
             unlimited: false,
             productIds: [],
@@ -107,7 +107,11 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
           ...setting,
           productIds: selectedProductsInCategory,
           percentage: isCategorySelected ? (setting.percentage === 0 ? 1 : setting.percentage) : 0,
-          minTO: isCategorySelected ? (setting.minTO === 0 ? 0 : setting.minTO) : 0,
+          minTurnover: isCategorySelected
+            ? setting.minTurnover === 0
+              ? 0
+              : setting.minTurnover
+            : 0,
           maxPayout: isCategorySelected ? (setting.maxPayout === 0 ? 1 : setting.maxPayout) : 0,
           unlimited: isCategorySelected ? setting.unlimited : false,
         };

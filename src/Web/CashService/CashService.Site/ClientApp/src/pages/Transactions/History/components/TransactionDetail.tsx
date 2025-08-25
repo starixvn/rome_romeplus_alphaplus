@@ -203,6 +203,7 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
                       <TitleComponent type="label" text={t('detail.from')} />
                       <div className="flex items-center">
                         {renderBankAccount(detailData.paymentFrom, tGlobal)}
+                        {detailData.providerTransId ? `(${detailData.providerTransId})` : ''}
                       </div>
                     </div>
                     <div className="w-[48%]">

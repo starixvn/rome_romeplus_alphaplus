@@ -19,7 +19,7 @@ public class AddPromotionRequest : BaseActionRequest
     public bool IsValid(out string errMsg)
     {
         errMsg = string.Empty;
-        if (FromDate is null || ToDate is null || FromDate >= ToDate)
+        if (FromDate is null || ToDate is null || FromDate > ToDate)
         {
             errMsg = "Promotion period is invalid.";
             return false;
@@ -59,7 +59,6 @@ public class PromotionProductSetting
 
     public double Percentage { get; set; }
 
-    [JsonProperty("MinTO")]
     public decimal MinTurnover { get; set; }
 
     public decimal MaxPayout { get; set; }

@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Models.Products;
+using Models.PromotionItems;
 using Requests;
 using Services;
 using Shared;
@@ -113,14 +114,14 @@ public class PromotionController(
     {
         var url = $"/promotions/get?promotionTypeId={promotionType}&statusId={status}&custId={userSession.CustId}&sitedbgroupId={userSession.SiteDBGroupId}&language={userSession.Language}";
 
-        var result = await httpClientHelper.GetAsync<object>(url);
+        var result = await httpClientHelper.GetAsync<List<PromotionDetail>>(url);
 
         return Json(result);
     }
 
     public async Task<ImmutableDictionary<string, string>> GetLanguages(CancellationToken cancellationToken)
     {
-        var fullLanguages = AppSettings.IsSiteLabel789y ? LanguageConstant.CodeNames : LanguageConstant.CodeKeysWithoutCN3;
+        var fullLanguages = AppSettings.IsSiteLabel789y ? LanguageConstant.CodeNames : LanguageConstant.CodeKeysWithoutCn3;
 
         return await Task.FromResult(fullLanguages);
     }
@@ -129,7 +130,7 @@ public class PromotionController(
     {
         var url = $"/promotions/{promotionId}?promotionId={promotionId}&custId={userSession.CustId}&sitedbgroupId={userSession.SiteDBGroupId}&language={userSession.Language}";
 
-        var result = await httpClientHelper.GetAsync<object>(url);
+        var result = await httpClientHelper.GetAsync<PromotionDetail>(url);
 
         return Json(result);
     }
@@ -174,6 +175,8 @@ public class PromotionController(
 
             return Json(result);
         }
+
+        result.Message = errMsg;
 
         return Json(result);
     }
