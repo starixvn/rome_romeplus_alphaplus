@@ -2913,6 +2913,9 @@
   <data name="system" xml:space="preserve">
     <value>システム</value>
   </data>
+  <data name="Account" xml:space="preserve">
+    <value>アカウント</value>
+  </data>
   <data name="SubDomainPrefix" xml:space="preserve">
     <value>サブドメインプレフィックス</value>
   </data>

@@ -869,7 +869,7 @@
     <value>สมาชิกเงินสดทั้งหมด</value>
   </data>
   <data name="CashService" xml:space="preserve">
-    <value>Cash Service</value>
+    <value>บริการเงินสด</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro2" xml:space="preserve">
     <value>ลดความเสี่ยงในการจ่ายเงิน</value>

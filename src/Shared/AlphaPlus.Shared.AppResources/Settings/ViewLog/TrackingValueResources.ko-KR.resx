@@ -1897,6 +1897,9 @@
   <data name="system" xml:space="preserve">
     <value>시스템</value>
   </data>
+  <data name="Account" xml:space="preserve">
+    <value>계정</value>
+  </data>
   <data name="SubDomainPrefix" xml:space="preserve">
     <value>서브도메인 접두사</value>
   </data>
