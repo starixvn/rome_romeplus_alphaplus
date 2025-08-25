@@ -131,6 +131,12 @@
                         "IsAllowToDoByThemselves": true
                     },
                     {
+                        "Url": "WinLossLimit/ResetCurrentSportsbookWinAmount",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true,
+                        "IsAllowToDoByThemselves": true
+                    },
+                    {
                         "Url": "WinLossLimit",
                         "Permission": "[H]",
                         "IsCheckBelonging": true,
