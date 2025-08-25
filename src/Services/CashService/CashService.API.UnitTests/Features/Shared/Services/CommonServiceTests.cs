@@ -6,6 +6,7 @@ using Fanex.Data.Repository;
 using Fanex.Logging;
 using Moq;
 using Xunit;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.CashService.API.UnitTests.Features.Shared.Services;
 
@@ -13,13 +14,15 @@ public class CommonServiceTests
 {
     private readonly Mock<IDynamicRepository> _repositoryMock;
     private readonly Mock<ILogger> _loggerMock;
+    private readonly Mock<ICacheRefService> _cacheRefServiceMock;
+    private readonly Mock<IMemoryCache> _cacheServiceMock;
     private readonly CommonService _commonService;
 
     public CommonServiceTests()
     {
         _repositoryMock = new Mock<IDynamicRepository>();
         _loggerMock = new Mock<ILogger>();
-        _commonService = new CommonService(_repositoryMock.Object, _loggerMock.Object);
+        _commonService = new CommonService(_repositoryMock.Object, _loggerMock.Object, _cacheRefServiceMock.Object, _cacheServiceMock.Object);
     }
 
     [Fact]

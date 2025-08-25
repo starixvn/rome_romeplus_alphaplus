@@ -35,5 +35,12 @@ namespace AlphaPlus.CashService.Site.Features.Shared
 
             return Json(setupChecklist);
         }
+
+        public async Task<IActionResult> GetProviderBanks(int providerId, CancellationToken cancellationToken)
+        {
+            var url = $"{_apiBaseUrl}/common/banks?site={_userSession.Site}&providerId={providerId}&languageCode={_userSession.Language}";
+            var banks = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
+            return Json(banks);
+        }
     }
 } 

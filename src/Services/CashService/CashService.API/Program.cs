@@ -5,6 +5,7 @@ var configuration = builder.Configuration;
 
 // Add services to the container
 builder.Services
+    .AddMemoryCache()
     .AddCashServiceApi()
     .AddCashServiceCors(configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? ["*"])
     .AddCashServiceLogging()

@@ -22,7 +22,7 @@ public interface IPaymentsService
     Task<AddPaymentMethodViewModel> GetAddPaymentMethodInfo(int custId, int providerId, int transactionType, string languageCode);
     Task<IEnumerable<ProviderSettingsModel>> GetProviderSettings(int providerId, int custId, int method, int status, int transactionType, string languageCode);
     Task<ResultModel> InsertPaymentMethod(InsertPaymentMethodRequest request);
-    Task<IEnumerable<BankModel>> GetBanks(string site, int providerId, int transactionType, string languageCode);
+    Task<IEnumerable<BankModel>> GetBanks(string site, int transactionType, string languageCode);
     Task<ResultModel> UpdateProvider(UpdateProviderRequest request);
     Task<IEnumerable<BankModel>> GetBanksByCust(int custId, string languageCode);
     Task<IEnumerable<TransactionTypeModel>> GetTransactionTypes();
@@ -147,9 +147,9 @@ public class PaymentsService(
         return result;
     }
   
-    public async Task<IEnumerable<BankModel>> GetBanks(string site, int providerId, int transactionType, string languageCode)
+    public async Task<IEnumerable<BankModel>> GetBanks(string site, int transactionType, string languageCode)
     {
-        var banks = await repository.FetchAsync<BankModel>(new GetBanksByTransactionTypeCriteria(site, providerId, transactionType));
+        var banks = await repository.FetchAsync<BankModel>(new GetBanksByTransactionTypeCriteria(site, transactionType));
         foreach (var bank in banks)
         {
             bank.Name = cacheRefService.GetBankName(bank.Id, bank.Bank, languageCode);

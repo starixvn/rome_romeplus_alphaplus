@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Bank } from '../../services/interfaces/Payments/Bank';
-import { paymentProviderService } from '../../services/paymentsAPI';
+import { Bank } from '../../services/interfaces/Bank';
 import Loading from '../../components/LoadingComponent';
 import BankIcon from '../../components/BankComponents';
 import { MessageComponent } from '../../components/Message';
 import PopupModalComponent from '../../components/PopupModalComponent';
 import { TableComponent } from '../../components/TableComponents';
+import { baseAPI } from '../../services/commonAPI';
 
 interface BanksPopupModalProps {
   onClose: () => void;
@@ -24,7 +24,7 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
   React.useEffect(() => {
     const fetchBanks = async () => {
       setLoading(true);
-      const response = await paymentProviderService.getBanksByTransactionType(providerId, transactionType);
+      const response = await baseAPI.getProviderBanks(providerId);
 
       if(response.error) {
         setError(response.error.message);

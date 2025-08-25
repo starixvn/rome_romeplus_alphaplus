@@ -3,26 +3,30 @@ using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Requests;
 using Fanex.Data.Repository;
 using AlphaPlus.CashService.API.Features.Shared.Constants;
+using Newtonsoft.Json;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.CashService.API.Features.Shared.Services;
-
-using Newtonsoft.Json;
 
 public interface ICommonService
 {
     Task<IEnumerable<string>> GetCountryCodes(string siteName);
-
     Task<ResultModel> RunDBCommand(BaseActionRequest request, BaseDBCommand baseDBCommand);
-
     Task WriteLogDBCommand(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel);
-
     Task<SetupCheckListModel> GetSetupCheckList(int custId);
-
     Task WriteLogRequestResponse(AddRequestLogCommand command, short custDbGroupId);
+    Task<IEnumerable<BankModel>> GetProviderBanks(string site, int providerId, string languageCode);
 }
 
-public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger logger) : ICommonService
+public class CommonService(
+    IDynamicRepository repository, 
+    Fanex.Logging.ILogger logger, 
+    ICacheRefService cacheRefService,
+    IMemoryCache cacheService) : ICommonService
 {
+    private const string ProviderBanksCacheKey = "AlphaPlus.CashService.API.Features.Shared.Services.CommonService.GetProviderBanks";
+    private const int CacheProviderBanksInMinutes = 10;
+
     public async Task<IEnumerable<string>> GetCountryCodes(string siteName)
     {
         var criteria = new GetCountryCodesCriteria(siteName);
@@ -49,7 +53,7 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
 
     public async Task WriteLogDBCommand(BaseActionRequest request, WriteLogDBCommandModel writeLogDBCommandModel)
     {
-        var isSuccess = await WriteLogDBCommandIntoDBLog(request, writeLogDBCommandModel);
+        var isSuccess = await WriteLogDBCommandIntoDBLog(request, writeLogDBCommandModel); 
 
         if (isSuccess)
         {
@@ -121,5 +125,36 @@ public class CommonService(IDynamicRepository repository, Fanex.Logging.ILogger 
             await logger.ErrorAsync(e.Message, e);
         }
     }
+  
+    public async Task<IEnumerable<BankModel>> GetProviderBanks(string site, int providerId, string languageCode)
+    {
+        var banks = await cacheService.GetOrCreateAsync(
+            ProviderBanksCacheKey,
+            async entry =>
+            {
+                entry.SlidingExpiration = TimeSpan.FromMinutes(CacheProviderBanksInMinutes);
+                return await repository.FetchAsync<BankModel>(new GetProviderBanksCriteria(site));
+            }
+        );
 
+        if(banks == null)
+        {
+            return Enumerable.Empty<BankModel>();
+        }
+        
+        var result = banks.Where(b => b.ProviderId == providerId);
+
+        foreach (var bank in result)
+        {
+            bank.Name = cacheRefService.GetBankName(bank.Id, bank.Bank, languageCode);
+
+            if(bank.DepositMode != null)
+            {
+                bank.DepositMatchingMode = JsonConvert.DeserializeObject<DepositMatchingModeModel>(bank.DepositMode);
+                bank.DepositMatchingMode.SourceTypeName = cacheRefService.GetDepositAutoModeName(bank.DepositMatchingMode.SourceType, bank.DepositMatchingMode.SourceType, languageCode);
+            }
+        }
+
+        return result;
+    }
 }

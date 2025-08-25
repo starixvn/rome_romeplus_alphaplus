@@ -1,3 +1,5 @@
+using AlphaPlus.CashService.API.Features.Shared.Models;
+
 namespace AlphaPlus.CashService.API.Features.Payments.Models
 {
     public class BankAccountModel

@@ -19,7 +19,7 @@ import { MessageComponent } from '../../components/Message';
 import { StatusComponent } from '../../components/Status';
 import { TitleComponent } from '../../components/Title';
 import { BANK_STATUS_OPTIONS } from '../../constants/paymentConstants';
-import { Bank, BankAccount } from '../../services/interfaces/Payments';
+import { BankAccount } from '../../services/interfaces/Payments';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import AddBankAccountComponent from './AddBankAccountComponent';
 import SetTransactionLimitModal from './SetTransactionLimitModal';
@@ -27,6 +27,7 @@ import UpdateBankAccountComponent from './UpdateBankAccountComponent';
 import { createErrorResultModel } from '../../services/interfaces/ResultModel';
 import NoRecordFound from '../../components/NoRecordFoundComponent';
 import { ButtonIconComponent } from '../../components/Buttons/ButtonIconComponent';
+import { Bank } from '../../services/interfaces/Bank';
 
 interface BankAccountComponentProps {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;

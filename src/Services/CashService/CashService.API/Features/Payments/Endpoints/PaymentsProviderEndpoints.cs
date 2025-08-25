@@ -71,9 +71,9 @@ public static class PaymentsProviderEndpoints
             Description = "Returns the fees for a specific payment provider"
         });
 
-        app.MapGet("/api/payments/banks", async (string site, int providerId, int transactionType, string languageCode, IPaymentsService service) =>
+        app.MapGet("/api/payments/banks", async (string site, int transactionType, string languageCode, IPaymentsService service) =>
         {
-            var banks = await service.GetBanks(site, providerId, transactionType, languageCode);
+            var banks = await service.GetBanks(site, transactionType, languageCode);
             return Results.Ok(banks);
         })
         .WithName("GetAllBanks")

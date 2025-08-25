@@ -1,4 +1,3 @@
-export * from './Bank';
 export * from './BankAccount';
 export * from './DepositMatchingMode';
 export * from './PaymentProviderFee';
