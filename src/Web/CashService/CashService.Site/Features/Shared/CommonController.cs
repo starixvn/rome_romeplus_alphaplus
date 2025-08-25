@@ -30,8 +30,7 @@ namespace AlphaPlus.CashService.Site.Features.Shared
 
             if (setupChecklist != null)
             {
-                setupChecklist.IsCanEditCashService = !_userSession.IsInternal && 
-                    (!_userSession.IsSubAcc || _userSession.SubPageAccess.CashService);
+                setupChecklist.IsCanEditCashService = !_userSession.IsSubAcc || _userSession.SubPageAccess.CashService;
             }
 
             return Json(setupChecklist);
