@@ -9295,6 +9295,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sub Domain Prefix.
+        /// </summary>
+        public static string SubDomainPrefix {
+            get {
+                return ResourceManager.GetString("SubDomainPrefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Success.
         /// </summary>
         public static string success {

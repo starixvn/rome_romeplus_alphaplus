@@ -3890,4 +3890,7 @@
   <data name="system" xml:space="preserve">
     <value>System</value>
   </data>
+  <data name="SubDomainPrefix" xml:space="preserve">
+    <value>Sub Domain Prefix</value>
+  </data>
 </root>

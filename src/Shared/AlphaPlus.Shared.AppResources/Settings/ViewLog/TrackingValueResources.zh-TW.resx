@@ -3639,4 +3639,7 @@
   <data name="system" xml:space="preserve">
     <value>系統</value>
   </data>
+  <data name="SubDomainPrefix" xml:space="preserve">
+    <value>子域名前綴</value>
+  </data>
 </root>

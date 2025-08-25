@@ -2913,4 +2913,7 @@
   <data name="system" xml:space="preserve">
     <value>システム</value>
   </data>
+  <data name="SubDomainPrefix" xml:space="preserve">
+    <value>サブドメインプレフィックス</value>
+  </data>
 </root>

@@ -3732,4 +3732,7 @@
   <data name="system" xml:space="preserve">
     <value>ระบบ</value>
   </data>
+  <data name="SubDomainPrefix" xml:space="preserve">
+    <value>คำนำหน้าของชื่อระบบ</value>
+  </data>
 </root>

@@ -3378,4 +3378,7 @@
   <data name="system" xml:space="preserve">
     <value>Hệ thống</value>
   </data>
+  <data name="SubDomainPrefix" xml:space="preserve">
+    <value>Tiền tố tên miền</value>
+  </data>
 </root>
