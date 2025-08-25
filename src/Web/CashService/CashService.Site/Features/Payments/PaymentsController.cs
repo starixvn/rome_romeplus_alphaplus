@@ -117,9 +117,9 @@ namespace AlphaPlus.CashService.Site.Features.Payments
             CancellationToken cancellationToken)
             => await DoAction<UpdatePaymentMethodRequest, object>($"{_apiBaseUrl}/payments/update-payment-method", request, cancellationToken);
 
-        public async Task<IActionResult> GetBanksByTransactionType(int transactionType, CancellationToken cancellationToken)
+        public async Task<IActionResult> GetBanksByTransactionType(int providerId, int transactionType, CancellationToken cancellationToken)
         {
-            var url = $"{_apiBaseUrl}/payments/banks?site={_userSession.Site}&transactionType={transactionType}&languageCode={_userSession.Language}";
+            var url = $"{_apiBaseUrl}/payments/banks?site={_userSession.Site}&providerId={providerId}&transactionType={transactionType}&languageCode={_userSession.Language}";
             var banks = await _httpClient.GetFromJsonAsync<object>(url, cancellationToken);
             return Json(banks);
         }

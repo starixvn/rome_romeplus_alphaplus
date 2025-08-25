@@ -3642,4 +3642,16 @@
   <data name="SubDomainPrefix" xml:space="preserve">
     <value>子域名前缀</value>
   </data>
+  <data name="Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="AllowRegistration" xml:space="preserve">
+    <value>允许会员注册</value>
+  </data>
+  <data name="AllowDeposit" xml:space="preserve">
+    <value>允许会员存款</value>
+  </data>
 </root>

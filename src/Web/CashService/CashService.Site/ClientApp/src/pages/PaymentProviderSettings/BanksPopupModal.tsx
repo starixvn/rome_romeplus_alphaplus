@@ -11,9 +11,10 @@ import { TableComponent } from '../../components/TableComponents';
 interface BanksPopupModalProps {
   onClose: () => void;
   transactionType: number;
+  providerId: number;
 }
 
-const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionType }) => {
+const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionType, providerId }) => {
   const { t: tGlobal } = useTranslation('global');
   const { t: tPaymentProviderSettings } = useTranslation('paymentProviderSettings');
   const [banks, setBanks] = React.useState<Bank[]>([]);
@@ -23,7 +24,7 @@ const BanksPopupModal: React.FC<BanksPopupModalProps> = ({ onClose, transactionT
   React.useEffect(() => {
     const fetchBanks = async () => {
       setLoading(true);
-      const response = await paymentProviderService.getBanksByTransactionType(transactionType);
+      const response = await paymentProviderService.getBanksByTransactionType(providerId, transactionType);
 
       if(response.error) {
         setError(response.error.message);

@@ -233,7 +233,7 @@ const UpdateBankAccountComponent: React.FC<UpdateBankAccountComponentProps> = ({
   };
 
   const fetchBanks = async () => {
-    const response = await paymentProviderService.getBanksByTransactionType(0);
+    const response = await paymentProviderService.getBanksByTransactionType(0, 0);
     if (response.error) {
       setError(response.error.message);
       return;

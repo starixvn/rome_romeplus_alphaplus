@@ -3,13 +3,13 @@
   <xsl:param name="IsInternal" select="0"></xsl:param>
   <xsl:output method="html" indent="no" />
 
-  <xsl:template match="age_cashservice_custservicetypeinitialize">
+  <xsl:template match="age_cashservice_bankaccountagent_del">
     <xsl:choose>
       <xsl:when test="@custid">
         <table class="tblDesc">
-          <tr>            
-            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SubDomainPrefix')" /></td>
-            <td class="colW2"><xsl:value-of select="@subdomainprefix" /></td>
+          <tr>
+            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('AgentBankAccount')" /></td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:FormatBankAccountNumber(@agentbankaccountnumber)" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('IP')" /></td>
             <td class="colW2"><xsl:value-of select="xslLogFormat:FormatIP(@ip)" /></td>
           </tr>

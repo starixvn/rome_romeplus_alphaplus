@@ -804,6 +804,7 @@ function PaymentProviderSettings() {
       {showBanksPopup && selectedSetting && (
         <BanksPopupModal
           onClose={onCloseBanksPopup}
+          providerId={window.providerSettingsViewModel.Provider.Id}
           transactionType={selectedSetting.transactionType}
         />
       )}

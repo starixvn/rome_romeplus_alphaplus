@@ -25,5 +25,7 @@
         string GetTrackingPromotionTypeName(string promotionType);
 
         string GetTrackingRegisterInfo(string registerInfo);
+
+        string GetTrackingAllowed(string status);
     }
 }

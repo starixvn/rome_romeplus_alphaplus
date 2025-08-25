@@ -1843,6 +1843,24 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allow member to deposit.
+        /// </summary>
+        public static string AllowDeposit {
+            get {
+                return ResourceManager.GetString("AllowDeposit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow member to register.
+        /// </summary>
+        public static string AllowRegistration {
+            get {
+                return ResourceManager.GetString("AllowRegistration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allow Update PT.
         /// </summary>
         public static string allowupdpt {
@@ -8314,6 +8332,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No information is available.
         /// </summary>
         public static string noInfo {
@@ -11280,6 +11307,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         public static string WrongPasswordAlert {
             get {
                 return ResourceManager.GetString("WrongPasswordAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
         

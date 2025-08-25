@@ -403,7 +403,7 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Payments
             SetupHttpClientResponse(HttpStatusCode.OK, expectedBanks);
 
             // Act
-            var result = await _controller.GetBanksByTransactionType(1, CancellationToken.None);
+            var result = await _controller.GetBanksByTransactionType(1, 1, CancellationToken.None);
 
             // Assert
             result.Should().BeOfType<JsonResult>();

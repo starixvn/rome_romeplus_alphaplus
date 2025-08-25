@@ -3381,4 +3381,16 @@
   <data name="SubDomainPrefix" xml:space="preserve">
     <value>Tiền tố tên miền</value>
   </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Có</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Không</value>
+  </data>
+  <data name="AllowRegistration" xml:space="preserve">
+    <value>Cho phép đăng ký thành viên</value>
+  </data>
+  <data name="AllowDeposit" xml:space="preserve">
+    <value>Cho phép nạp tiền thành viên</value>
+  </data>
 </root>

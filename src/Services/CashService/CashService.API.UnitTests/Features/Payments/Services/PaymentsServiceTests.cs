@@ -302,7 +302,7 @@ public class PaymentsServiceTests
             .Returns("Translated Source Type");
 
         // Act
-        var result = await _paymentsService.GetBanks(site, transactionType, languageCode);
+        var result = await _paymentsService.GetBanks(site, 1, transactionType, languageCode);
 
         // Assert
         Assert.Equal(2, result.Count());

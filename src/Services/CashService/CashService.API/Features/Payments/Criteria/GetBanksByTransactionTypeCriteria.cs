@@ -3,9 +3,11 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.CashService.API.Features.Payments.Criteria
 {
-    public class GetBanksByTransactionTypeCriteria(string site, int transactionType) : CriteriaBase
+    public class GetBanksByTransactionTypeCriteria(string site, int providerId, int transactionType) : CriteriaBase
     {
         public string Site { get; } = site;
+
+        public int ProviderId { get; } = providerId;
 
         [SpParam(Ignored = true)]
         public int? TransactionType { get; } = transactionType == 0 ? null : transactionType;

@@ -1900,4 +1900,16 @@
   <data name="SubDomainPrefix" xml:space="preserve">
     <value>서브도메인 접두사</value>
   </data>
+  <data name="Yes" xml:space="preserve">
+    <value>예</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>아니오</value>
+  </data>
+  <data name="AllowRegistration" xml:space="preserve">
+    <value>회원 등록 허용</value>
+  </data>
+  <data name="AllowDeposit" xml:space="preserve">
+    <value>회원 입금 허용</value>
+  </data>
 </root>

@@ -2916,4 +2916,16 @@
   <data name="SubDomainPrefix" xml:space="preserve">
     <value>サブドメインプレフィックス</value>
   </data>
+  <data name="Yes" xml:space="preserve">
+    <value>はい</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>いいえ</value>
+  </data>
+  <data name="AllowRegistration" xml:space="preserve">
+    <value>会員登録を許可</value>
+  </data>
+  <data name="AllowDeposit" xml:space="preserve">
+    <value>会員入金を許可</value>
+  </data>
 </root>

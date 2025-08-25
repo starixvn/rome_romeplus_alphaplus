@@ -3735,4 +3735,16 @@
   <data name="SubDomainPrefix" xml:space="preserve">
     <value>คำนำหน้าของชื่อระบบ</value>
   </data>
+  <data name="Yes" xml:space="preserve">
+    <value>ใช่</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>ไม่มี</value>
+  </data>
+  <data name="AllowRegistration" xml:space="preserve">
+    <value>อนุญาตการลงทะเบียนสมาชิก</value>
+  </data>
+  <data name="AllowDeposit" xml:space="preserve">
+    <value>อนุญาตการฝากเงินสมาชิก</value>
+  </data>
 </root>

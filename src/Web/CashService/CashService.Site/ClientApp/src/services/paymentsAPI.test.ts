@@ -339,7 +339,8 @@ describe('paymentProviderService', () => {
 
   describe('getBanksByTransactionType', () => {
     it('should successfully fetch banks by transaction type', async () => {
-      const transactionType = 1;
+      const transactionType = 1;  
+      const providerId = 1;
       const mockBanks: PaymentsInterfaces.Bank[] = [
         { 
           id: 1, 
@@ -379,9 +380,9 @@ describe('paymentProviderService', () => {
 
       vi.mocked(api.get).mockResolvedValueOnce(mockResponse);
 
-      const result = await paymentProviderService.getBanksByTransactionType(transactionType);
+      const result = await paymentProviderService.getBanksByTransactionType(providerId, transactionType);
       expect(result).toEqual(mockResponse);
-      expect(api.get).toHaveBeenCalledWith(`GetBanksByTransactionType?transactionType=${transactionType}`);
+      expect(api.get).toHaveBeenCalledWith(`GetBanksByTransactionType?providerId=${providerId}&transactionType=${transactionType}`);
     });
   });
 

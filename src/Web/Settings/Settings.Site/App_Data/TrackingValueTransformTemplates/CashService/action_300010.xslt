@@ -3,23 +3,13 @@
   <xsl:param name="IsInternal" select="0"></xsl:param>
   <xsl:output method="html" indent="no" />
 
-  <xsl:template match="age_cashservice_custservicetypeinitialize">
+  <xsl:template match="age_cashservice_bankaccountagent_upd">
     <xsl:choose>
       <xsl:when test="@custid">
         <table class="tblDesc">
           <tr>
-            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Contact')" /></td>
-            <td class="colW2"><xsl:value-of select="@contact" /></td>
-            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('StartTime')" /></td>
-            <td class="colW2"><xsl:value-of select="@starttime" /></td>
-            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('TrialEndTime')" /></td>
-            <td class="colW2"><xsl:value-of select="@trialendtime" /></td>
-          </tr>
-          <tr>
-            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('DailyWithdrawalCount')" /></td>
-            <td class="colW2"><xsl:value-of select="@dailywithdrawalcount" /></td>
-            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SettingInfo')" /></td>
-            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingRegisterInfo(@settinginfo)" /></td>
+            <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('AgentBankAccount')" /></td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:FormatBankAccountNumber(@agentbankaccountnumber)" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('IP')" /></td>
             <td class="colW2"><xsl:value-of select="xslLogFormat:FormatIP(@ip)" /></td>
           </tr>

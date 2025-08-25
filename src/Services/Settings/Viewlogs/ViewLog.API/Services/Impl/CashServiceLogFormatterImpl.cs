@@ -66,6 +66,11 @@
             return ReplaceOldNewValue(registerInfo, GetRegisterInfo);
         }
 
+        public string GetTrackingAllowed(string status)
+        {
+            return ReplaceOldNewValue(status, GetAllowed);
+        }
+
         private string GetTransactionTypeName(string type)
         {
             return GetLogResource("TransactionType_" + type);
@@ -120,6 +125,11 @@
         private string GetRegisterInfo(string registerInfo)
         {
             return GetLogResource("CashService_RegisterInfo_" + registerInfo);
+        }
+
+        private string GetAllowed(string status)
+        {
+            return status == "1" ? GetLogResource("Yes") : GetLogResource("No");
         }
     }
 }

@@ -45,8 +45,8 @@ export const paymentProviderService = {
     return await api.post('UpdatePaymentMethod', paymentMethod);
   },
 
-  getBanksByTransactionType: async (transactionType: number): Promise<any> => {
-    return await api.get<PaymentsInterfaces.Bank[]>(`GetBanksByTransactionType?transactionType=${transactionType}`);
+  getBanksByTransactionType: async (providerId: number, transactionType: number): Promise<any> => {
+    return await api.get<PaymentsInterfaces.Bank[]>(`GetBanksByTransactionType?providerId=${providerId}&transactionType=${transactionType}`);
   },
 
   updateProvider: async (provider: any): Promise<any> => {

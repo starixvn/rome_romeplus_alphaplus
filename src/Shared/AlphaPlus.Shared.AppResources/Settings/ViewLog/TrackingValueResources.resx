@@ -3893,4 +3893,16 @@
   <data name="SubDomainPrefix" xml:space="preserve">
     <value>Sub Domain Prefix</value>
   </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="AllowRegistration" xml:space="preserve">
+    <value>Allow member to register</value>
+  </data>
+  <data name="AllowDeposit" xml:space="preserve">
+    <value>Allow member to deposit</value>
+  </data>
 </root>
