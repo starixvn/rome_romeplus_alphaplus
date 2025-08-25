@@ -94,5 +94,12 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
         {
             return GetLogResource("BankName_" + code);
         }
+
+        public string HtmlDecode(string text)
+        {
+            return string.IsNullOrWhiteSpace(text)
+                ? text
+                : System.Web.HttpUtility.HtmlDecode(text);
+        }
     }
 }

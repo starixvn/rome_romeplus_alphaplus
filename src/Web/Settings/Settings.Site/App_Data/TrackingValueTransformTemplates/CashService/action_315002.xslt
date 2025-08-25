@@ -30,7 +30,7 @@
                 <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Title')" /></td>
                 <td class="colW2"><xsl:value-of select="@title" /></td>
                 <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Content')" /></td>
-                <td class="colW2"><xsl:value-of select="@content" /></td>
+                <td class="colW2"><xsl:value-of select="xslLogFormat:HtmlDecode(@content)" /></td>
               </tr>
             </xsl:for-each>
           </table>
