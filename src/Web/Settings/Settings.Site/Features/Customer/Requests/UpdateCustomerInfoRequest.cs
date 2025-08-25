@@ -15,4 +15,6 @@ public class UpdateCustomerInfoRequest : BaseQuery
     public string Email { get; set; }
 
     public string Fax { get; set; }
+
+    public string Remark { get; set; }
 }

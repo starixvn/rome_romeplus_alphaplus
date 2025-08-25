@@ -447,7 +447,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 UserId = request.ViewerId,
                 SubAccId = request.SubAccId,
                 IP = request.IP,
-                Language = request.LangKey
+                Language = request.LangKey,
+                Remark = request.Remark?.Trim() ?? string.Empty,
             };
 
             return Json(await customerService.UpdateCustomerInfo(updateCustomerInfoParam), serializeOptions);
