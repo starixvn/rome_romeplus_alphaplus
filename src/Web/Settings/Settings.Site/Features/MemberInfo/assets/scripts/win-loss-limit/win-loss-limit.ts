@@ -214,7 +214,7 @@ class WinLossLimit {
                     window.scrollTo(0, 0);
                 },
                 error: (xhr: any, status: any, error: any) => {
-                    if (error === 'Unauthorized') {
+                    if (JSON.parse(xhr.responseText) && JSON.parse(xhr.responseText).message === 'NoPermission') {
                         error = this.$notAuthorizedMessage.val();
                     }
                     this.$resultMsg.html(error || errorMessage);
