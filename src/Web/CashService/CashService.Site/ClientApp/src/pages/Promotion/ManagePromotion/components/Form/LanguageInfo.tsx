@@ -64,6 +64,7 @@ export const TitleField: React.FC<{
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder=""
+        maxLength={66}
       />
     </div>
   );

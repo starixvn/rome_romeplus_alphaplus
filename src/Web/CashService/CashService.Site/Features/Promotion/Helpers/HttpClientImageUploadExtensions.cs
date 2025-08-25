@@ -2,9 +2,11 @@
 
 using System.Net.Http.Headers;
 using System.Text;
-using System.Text.Json;
 using Fanex.Logging;
 using Models.Configurations;
+using Newtonsoft.Json;
+using Site.Helpers;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 public static class HttpClientImageUploadExtensions
 {
@@ -43,7 +45,7 @@ public static class HttpClientImageUploadExtensions
                 }
                 catch (Exception ex)
                 {
-                    await logger.ErrorAsync($"Error uploading image to {setting.BaseUrl}: {ex.Message}", ex);
+                    await logger.ErrorAsync($"Error uploading image to {setting.BaseUrl}, fileName: {fileName}, settings: {JsonConvert.SerializeObject(setting)}: {ex.Message}", ex);
                     return (Success: false, Error: ex.Message);
                 }
             }, cancellationToken)
@@ -70,7 +72,16 @@ public static class HttpClientImageUploadExtensions
         patchReq.Content.Headers.ContentType = new MediaTypeHeaderValue("application/offset+octet-stream");
 
         using var patchResp = await client.SendAsync(patchReq, cancellationToken);
-        patchResp.EnsureSuccessStatusCode();
+
+        if (!patchResp.IsSuccessStatusCode)
+        {
+            throw new CustomHttpClientException(
+                requestUri: new Uri(patchUrl),
+                requestContent: JsonConvert.SerializeObject(setting),
+                statusCode: patchResp.StatusCode,
+                reasonPhrase: patchResp.ReasonPhrase
+            );
+        }
     }
 
     private static async Task<string> GetTokenAsync(HttpClient client, UploadApiSettings setting, CancellationToken cancellationToken)
