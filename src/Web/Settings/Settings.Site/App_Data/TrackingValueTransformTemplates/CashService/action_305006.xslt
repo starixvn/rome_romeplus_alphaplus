@@ -9,9 +9,9 @@
         <table class="tblDesc">
           <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('AllowRegistration')" /></td>
-            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingAllowed(@allowregistration)" /></td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingYesNo(@allowregistration)" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('AllowDeposit')" /></td>
-            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingAllowed(@allowdeposit)" /></td>
+            <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingYesNo(@allowdeposit)" /></td>
             <td class="colW1"></td>
             <td class="colW2"></td>
           </tr>

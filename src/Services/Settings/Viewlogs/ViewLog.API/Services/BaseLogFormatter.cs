@@ -19,5 +19,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services
         string GetTrackingBankName(string code);
 
         string HtmlDecode(string text);
+
+        string GetTrackingYesNo(string status);
     }
 }

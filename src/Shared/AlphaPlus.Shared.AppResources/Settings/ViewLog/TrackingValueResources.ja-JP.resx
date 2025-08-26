@@ -2898,18 +2898,6 @@
   <data name="SettingInfo" xml:space="preserve">
     <value>設定情報</value>
   </data>
-  <data name="CashService_RegisterInfo_3" xml:space="preserve">
-    <value>すべて</value>
-  </data>
-  <data name="CashService_RegisterInfo_0" xml:space="preserve">
-    <value>なし</value>
-  </data>
-  <data name="CashService_RegisterInfo_1" xml:space="preserve">
-    <value>会員登録を許可</value>
-  </data>
-  <data name="CashService_RegisterInfo_2" xml:space="preserve">
-    <value>会員入金を許可</value>
-  </data>
   <data name="system" xml:space="preserve">
     <value>システム</value>
   </data>

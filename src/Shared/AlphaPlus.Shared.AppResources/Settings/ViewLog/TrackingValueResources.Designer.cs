@@ -2680,42 +2680,6 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to None.
-        /// </summary>
-        public static string CashService_RegisterInfo_0 {
-            get {
-                return ResourceManager.GetString("CashService_RegisterInfo_0", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Allow member to register.
-        /// </summary>
-        public static string CashService_RegisterInfo_1 {
-            get {
-                return ResourceManager.GetString("CashService_RegisterInfo_1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Allow member to deposit.
-        /// </summary>
-        public static string CashService_RegisterInfo_2 {
-            get {
-                return ResourceManager.GetString("CashService_RegisterInfo_2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to All.
-        /// </summary>
-        public static string CashService_RegisterInfo_3 {
-            get {
-                return ResourceManager.GetString("CashService_RegisterInfo_3", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Casino No.
         /// </summary>
         public static string casinoNo {

@@ -3869,18 +3869,6 @@
   <data name="SettingInfo" xml:space="preserve">
     <value>Setting Info</value>
   </data>
-  <data name="CashService_RegisterInfo_0" xml:space="preserve">
-    <value>None</value>
-  </data>
-  <data name="CashService_RegisterInfo_1" xml:space="preserve">
-    <value>Allow member to register</value>
-  </data>
-  <data name="CashService_RegisterInfo_2" xml:space="preserve">
-    <value>Allow member to deposit</value>
-  </data>
-  <data name="CashService_RegisterInfo_3" xml:space="preserve">
-    <value>All</value>
-  </data>
   <data name="LineID" xml:space="preserve">
     <value>LineID</value>
   </data>

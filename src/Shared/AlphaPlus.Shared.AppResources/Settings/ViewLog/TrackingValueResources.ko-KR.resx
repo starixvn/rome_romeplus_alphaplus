@@ -1882,18 +1882,6 @@
   <data name="SettingInfo" xml:space="preserve">
     <value>설정 정보</value>
   </data>
-  <data name="CashService_RegisterInfo_3" xml:space="preserve">
-    <value>전체</value>
-  </data>
-  <data name="CashService_RegisterInfo_0" xml:space="preserve">
-    <value>없음</value>
-  </data>
-  <data name="CashService_RegisterInfo_1" xml:space="preserve">
-    <value>회원 등록 허용</value>
-  </data>
-  <data name="CashService_RegisterInfo_2" xml:space="preserve">
-    <value>회원 입금 허용</value>
-  </data>
   <data name="system" xml:space="preserve">
     <value>시스템</value>
   </data>

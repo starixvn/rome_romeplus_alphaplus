@@ -90,6 +90,11 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
             return ReplaceOldNewValue(code, GetBankName);
         }
 
+        public string GetTrackingYesNo(string status)
+        {
+            return ReplaceOldNewValue(status, GetYesNo);
+        }
+
         private string GetBankName(string code)
         {
             return GetLogResource("BankName_" + code);
@@ -100,6 +105,12 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
             return string.IsNullOrWhiteSpace(text)
                 ? text
                 : System.Web.HttpUtility.HtmlDecode(text);
+        }
+
+        private string GetYesNo(string status)
+        {
+            var key = status == "1" ? "Yes" : "No";
+            return GetLogResource(key);
         }
     }
 }

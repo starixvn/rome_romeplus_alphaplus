@@ -3624,18 +3624,6 @@
   <data name="SettingInfo" xml:space="preserve">
     <value>設定信息</value>
   </data>
-  <data name="CashService_RegisterInfo_3" xml:space="preserve">
-    <value>全部</value>
-  </data>
-  <data name="CashService_RegisterInfo_0" xml:space="preserve">
-    <value>無</value>
-  </data>
-  <data name="CashService_RegisterInfo_1" xml:space="preserve">
-    <value>允許會員註冊</value>
-  </data>
-  <data name="CashService_RegisterInfo_2" xml:space="preserve">
-    <value>允許會員存款</value>
-  </data>
   <data name="system" xml:space="preserve">
     <value>系統</value>
   </data>
