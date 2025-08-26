@@ -13,8 +13,8 @@ namespace Alpha.Handbook.Demo.ViewModels
         public string LanguageName => LanguageConsts.LanguageNames[LanguageKey];
         public string Locale => LanguageConsts.Locales[LanguageKey];
         public string LanguageCode => LanguageConsts.Codes[LanguageKey];
-        public string MainRootPath => "~/main";
-        public string MessageRootPath => "~/message";
+        public string MainRootPath => "/main";
+        public string MessageRootPath => "/message";
 
         public BriefProfileViewModel BriefProfile { get; set; }
 

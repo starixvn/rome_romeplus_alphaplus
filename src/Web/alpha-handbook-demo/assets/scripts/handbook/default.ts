@@ -12,7 +12,6 @@ class DefaultPage {
     topWindow: any;
     autoSuggestion: AutoSuggestion;
     popupManager: any;
-
     enterKeyCode = 13;
     currentUrlCookieName = 'DFFKDHFJKLDHFJDH2';
     recheckInIntervalMiliseconds = 30000;
@@ -30,6 +29,7 @@ class DefaultPage {
 
     init = () => {
         this.registerEvents();
+        this.scrollToTop();
 
         this.autoSuggestion.init({
             elmSearch: this.$('#txt-search'),
@@ -148,7 +148,7 @@ class DefaultPage {
 
         this.$.ajax({
             type: "POST",
-            url: this.$("#MainRootPath").val() + 'Account/ReCheckIn',
+            url: this.$("#MainRootPath").val() + '/Account/ReCheckIn',
             data: { onid: this.$("#OnUserId").val() },
             success: (result) => {
                 try { 
@@ -202,7 +202,7 @@ class DefaultPage {
         }
 
         var functionId = 8;
-        var url = this.$("#MessageRootPath").val() + 'Feedback/CheckExist?id=' + functionId;
+        var url = this.$("#MessageRootPath").val() + '/Feedback/CheckExist?id=' + functionId;
         this.$.get(url, (result) => {
             if (result.IsExist) {
                 return;
@@ -214,7 +214,7 @@ class DefaultPage {
             feedbackBox
                 .off()
                 .click(() => {
-                    var url = this.$("#MessageRootPath").val() + 'Feedback/Function?id=' + functionId;
+                    var url = this.$("#MessageRootPath").val() + '/Feedback/Function?id=' + functionId;
                     this.popupManager.open(url, undefined, width || 440, height || 380, null, null, null, null, null, null, { customClass: "feedback-modal" });
                 });
 
@@ -226,6 +226,19 @@ class DefaultPage {
                 });
 
             feedbackFunction.removeClass("hidden");
+        });
+    };
+
+    scrollToTop = () => {
+        this.$("#back-to-top").click(function () {
+            document.querySelector('.center-container').scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            }); 
+            document.querySelector('.right-container').scrollTo({
+            top: 0,
+            behavior: 'smooth'
+            }); 
         });
     };
 };
