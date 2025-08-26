@@ -103,7 +103,7 @@ public class CashServiceStatusHandler :
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(request.UserSession.CustId);
         var totalCashMember = await _customerService.GetCashServiceTotalDownline(request.UserSession.CustId);
         
-        var isCanEditCashService = isSiteOfferedCashService && !request.UserSession.IsInternal &&
+        var isCanEditCashService = isSiteOfferedCashService &&
             (!request.UserSession.IsSubAcc || request.UserSession.SubPageAccess.CashService);
 
         return new CashServiceInfoViewModel

@@ -265,7 +265,7 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Shared
         }
 
         [Fact]
-        public async Task GetSetupChecklist_WhenUserIsInternal_IsCanEditCashServiceShouldBeFalse()
+        public async Task GetSetupChecklist_WhenUserIsInternal_IsCanEditCashServiceShouldBeTrue()
         {
             // Arrange
             _userSessionMock.Setup(x => x.IsInternal).Returns(true);
@@ -285,7 +285,7 @@ namespace AlphaPlus.CashService.Site.UnitTests.Features.Shared
             var jsonResult = result as JsonResult;
             var resultValue = jsonResult.Value as SetupCheckListModel;
             
-            resultValue.IsCanEditCashService.Should().BeFalse();
+            resultValue.IsCanEditCashService.Should().BeTrue();
         }
 
         [Fact]
