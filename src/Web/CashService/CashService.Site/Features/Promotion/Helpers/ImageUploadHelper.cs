@@ -36,7 +36,7 @@ public static class ImageUploadHelper
         }
     }
 
-    private static bool IsValidImageFile(IFormFile file)
+    public static bool IsValidImageFile(IFormFile file)
     {
         var extension = Path.GetExtension(file.FileName).ToLowerInvariant();
         return AllowedExtensions.Contains(extension) && file.ContentType.StartsWith("image/");

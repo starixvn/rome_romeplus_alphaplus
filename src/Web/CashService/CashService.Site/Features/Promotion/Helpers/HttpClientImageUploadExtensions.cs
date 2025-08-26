@@ -37,14 +37,16 @@ public static class HttpClientImageUploadExtensions
 
         _ = settings.Select(async setting =>
         {
+            var patchUrl = $"{setting.BaseUrl.TrimEnd('/')}/api/tus/{Uri.EscapeDataString(fileName)}";
+
             try
             {
-                await UploadToDomainAsync(client, setting, fileBytes, fileName, cancellationToken);
+                await UploadToDomainAsync(client, setting, fileBytes, patchUrl, cancellationToken);
+                await logger.InfoAsync($"Successfully uploaded image to {patchUrl}, fileName: {fileName}");
                 return (Success: true, Error: null);
             }
             catch (Exception ex)
             {
-                var patchUrl = $"{setting.BaseUrl.TrimEnd('/')}/api/tus/{Uri.EscapeDataString(fileName)}";
                 await logger.ErrorAsync(
                     $"Error uploading image to {patchUrl}, fileName: {fileName}, settings: {JsonConvert.SerializeObject(setting)}: {ex.Message}",
                     ex);
@@ -57,12 +59,11 @@ public static class HttpClientImageUploadExtensions
         HttpClient client,
         UploadApiSettings setting,
         byte[] fileBytes,
-        string fileName,
+        string patchUrl,
         CancellationToken cancellationToken)
     {
         var token = await GetTokenAsync(client, setting, cancellationToken);
 
-        var patchUrl = $"{setting.BaseUrl.TrimEnd('/')}/api/tus/{Uri.EscapeDataString(fileName)}";
         using var patchReq = new HttpRequestMessage(HttpMethod.Patch, patchUrl);
         patchReq.Headers.TryAddWithoutValidation("X-Auth", token);
         patchReq.Headers.TryAddWithoutValidation("Tus-Resumable", "1.0.0");

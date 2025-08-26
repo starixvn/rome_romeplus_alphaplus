@@ -13,7 +13,7 @@ interface UploadImageProps {
   inputId?: string;
 }
 
-const ACCEPTED_FILE_TYPES = '.jpeg,.jpg,.png';
+const ACCEPTED_FILE_TYPES = '.jpeg,.jpg,.png,.webp';
 
 const UploadImage: React.FC<UploadImageProps> = ({
   setImage,

@@ -1,6 +1,7 @@
 namespace AlphaPlus.CashService.Site.Features.Promotion.Requests;
 
 using AlphaPlus.CashService.Site.Features.Shared.Requests;
+using Helpers;
 using Newtonsoft.Json;
 
 public class AddPromotionRequest : BaseActionRequest
@@ -37,6 +38,13 @@ public class AddPromotionRequest : BaseActionRequest
             errMsg = "English content is required.";
             return false;
         }
+
+        if (Contents.Any(content => ImageUploadHelper.IsValidImageFile(content.Banner)))
+        {
+            errMsg = "Invalid image format";
+            return false;
+        }
+
         const int bannerSizeLimit = 20 * 1024 * 1024;
 
         if (Contents.Any(content => content.Banner.Length > bannerSizeLimit))
