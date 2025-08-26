@@ -22,6 +22,7 @@
             <tr class="headerDetail" onclick="toggle(this)">
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Promotion')" /></td>
               <td class="colW2"><xsl:value-of select="@promotionid" /></td>
+              <td colspan="4"></td>
             </tr>
             <xsl:for-each select="r">
               <tr>
