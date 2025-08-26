@@ -5,6 +5,7 @@ using System.Text;
 using Fanex.Logging;
 using Models.Configurations;
 using Newtonsoft.Json;
+using Site.Helpers;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 public static class HttpClientImageUploadExtensions
@@ -42,35 +43,92 @@ public static class HttpClientImageUploadExtensions
     {
         var token = await GetTokenAsync(client, setting, cancellationToken);
         if (string.IsNullOrWhiteSpace(token))
+        {
             throw new InvalidOperationException(@$"Upload to {setting.BaseUrl} failed Token is empty or invalid.");
-
-        var createUrl = $"{setting.BaseUrl.TrimEnd('/')}/api/tus/{Uri.EscapeDataString(fileName)}";
-        await logger.InfoAsync($"[TUS] Create upload: {createUrl}");
-
-        using (var createReq = new HttpRequestMessage(HttpMethod.Post, createUrl))
-        {
-            createReq.Headers.TryAddWithoutValidation("X-Auth", token);
-            createReq.Headers.TryAddWithoutValidation("Tus-Resumable", "1.0.0");
-            createReq.Headers.TryAddWithoutValidation("Upload-Length", fileBytes.LongLength.ToString());
-
-            using var createResp = await client.SendAsync(createReq, cancellationToken);
-            createResp.EnsureSuccessStatusCode();
         }
 
-        var patchUrl = $"{setting.BaseUrl.TrimEnd('/')}/api/tus/{Uri.EscapeDataString(fileName)}";
-        await logger.InfoAsync($"[TUS] Upload bytes: {patchUrl}");
+        var baseUrl = setting.BaseUrl.TrimEnd('/');
+        var escapedFileName = Uri.EscapeDataString(fileName);
 
-        using (var patchReq = new HttpRequestMessage(new HttpMethod("PATCH"), patchUrl))
+        await CreateUploadSessionAsync(client, logger, baseUrl, escapedFileName, token, fileBytes.LongLength, cancellationToken);
+
+        await UploadFileContentAsync(client, logger, baseUrl, escapedFileName, token, fileBytes, cancellationToken);
+    }
+
+    private static async Task CreateUploadSessionAsync(
+        HttpClient client,
+        ILogger logger,
+        string baseUrl,
+        string escapedFileName,
+        string token,
+        long fileSize,
+        CancellationToken cancellationToken)
+    {
+        var createUrl = $"{baseUrl}/api/tus/{escapedFileName}";
+
+        using var createReq = new HttpRequestMessage(HttpMethod.Post, createUrl);
+        AddTusHeaders(createReq, token, fileSize: fileSize);
+
+        using var createResp = await client.SendAsync(createReq, cancellationToken);
+        await ValidateResponseAsync(createResp, createUrl, "Create upload");
+
+        await logger.InfoAsync($"[TUS] Create upload: {createUrl} successful!!!");
+    }
+
+    private static async Task UploadFileContentAsync(
+        HttpClient client,
+        ILogger logger,
+        string baseUrl,
+        string escapedFileName,
+        string token,
+        byte[] fileBytes,
+        CancellationToken cancellationToken)
+    {
+        var patchUrl = $"{baseUrl}/api/tus/{escapedFileName}";
+
+        using var patchReq = new HttpRequestMessage(new HttpMethod("PATCH"), patchUrl);
+        AddTusHeaders(patchReq, token, uploadOffset: 0);
+        patchReq.Content = new ByteArrayContent(fileBytes);
+        patchReq.Content.Headers.ContentType = new MediaTypeHeaderValue("application/offset+octet-stream");
+
+        using var patchResp = await client.SendAsync(patchReq, cancellationToken);
+        await ValidateResponseAsync(patchResp, patchUrl, "Upload bytes");
+
+        await logger.InfoAsync($"[TUS] Upload bytes: {patchUrl}, upload successful!!!");
+    }
+
+    private static void AddTusHeaders(HttpRequestMessage request, string token, long? fileSize = null, long? uploadOffset = null)
+    {
+        request.Headers.TryAddWithoutValidation("X-Auth", token);
+        request.Headers.TryAddWithoutValidation("Tus-Resumable", "1.0.0");
+
+        if (fileSize.HasValue)
         {
-            patchReq.Headers.TryAddWithoutValidation("X-Auth", token);
-            patchReq.Headers.TryAddWithoutValidation("Tus-Resumable", "1.0.0");
-            patchReq.Headers.TryAddWithoutValidation("Upload-Offset", "0");
-            patchReq.Content = new ByteArrayContent(fileBytes);
-            patchReq.Content.Headers.ContentType = new MediaTypeHeaderValue("application/offset+octet-stream");
-
-            using var patchResp = await client.SendAsync(patchReq, cancellationToken);
-            patchResp.EnsureSuccessStatusCode();
+            request.Headers.TryAddWithoutValidation("Upload-Length", fileSize.Value.ToString());
         }
+
+        if (uploadOffset.HasValue)
+        {
+            request.Headers.TryAddWithoutValidation("Upload-Offset", uploadOffset.Value.ToString());
+        }
+    }
+
+    private static Task ValidateResponseAsync(
+        HttpResponseMessage response,
+        string requestUrl,
+        string operation)
+    {
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new CustomHttpClientException(
+                requestUri: new Uri(requestUrl),
+                requestContent: operation,
+                statusCode: response.StatusCode,
+                reasonPhrase: response.ReasonPhrase
+            );
+        }
+
+        return Task.CompletedTask;
     }
 
     private static async Task<string> GetTokenAsync(HttpClient client, UploadApiSettings setting, CancellationToken cancellationToken)
