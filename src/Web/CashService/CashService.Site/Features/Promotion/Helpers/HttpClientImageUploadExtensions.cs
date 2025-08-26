@@ -5,7 +5,6 @@ using System.Text;
 using Fanex.Logging;
 using Models.Configurations;
 using Newtonsoft.Json;
-using Site.Helpers;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
 public static class HttpClientImageUploadExtensions
@@ -18,29 +17,16 @@ public static class HttpClientImageUploadExtensions
         string fileName,
         CancellationToken cancellationToken = default)
     {
-        if (fileBytes == null)
-        {
-            throw new ArgumentNullException(nameof(fileBytes));
-        }
-
-        if (string.IsNullOrWhiteSpace(fileName))
-        {
-            throw new ArgumentException(@"File name must be provided.", nameof(fileName));
-        }
-
         foreach (var setting in settings)
         {
-            var patchUrl = $"{setting.BaseUrl.TrimEnd('/')}/api/tus/{Uri.EscapeDataString(fileName)}";
-
             try
             {
-                await UploadToDomainAsync(client, setting, fileBytes, patchUrl, cancellationToken);
-                await logger.InfoAsync($"Successfully uploaded image to {patchUrl}, fileName: {fileName}");
+                await UploadToDomainAsync(client, logger, setting, fileBytes, fileName, cancellationToken);
             }
             catch (Exception ex)
             {
                 await logger.ErrorAsync(
-                    $"Error uploading image to {patchUrl}, fileName: {fileName}, settings: {JsonConvert.SerializeObject(setting)}: {ex.Message}",
+                    $"Error uploading image with fileName: {fileName}, settings: {JsonConvert.SerializeObject(setting)}: {ex.Message}",
                     ex);
             }
         }
@@ -48,29 +34,42 @@ public static class HttpClientImageUploadExtensions
 
     private static async Task UploadToDomainAsync(
         HttpClient client,
+        ILogger logger,
         UploadApiSettings setting,
         byte[] fileBytes,
-        string patchUrl,
+        string fileName,
         CancellationToken cancellationToken)
     {
         var token = await GetTokenAsync(client, setting, cancellationToken);
+        if (string.IsNullOrWhiteSpace(token))
+            throw new InvalidOperationException(@$"Upload to {setting.BaseUrl} failed Token is empty or invalid.");
 
-        using var patchReq = new HttpRequestMessage(HttpMethod.Patch, patchUrl);
-        patchReq.Headers.TryAddWithoutValidation("X-Auth", token);
-        patchReq.Headers.TryAddWithoutValidation("Tus-Resumable", "1.0.0");
-        patchReq.Headers.TryAddWithoutValidation("Upload-Offset", "0");
-        patchReq.Content = new ByteArrayContent(fileBytes);
-        patchReq.Content.Headers.ContentType = new MediaTypeHeaderValue("application/offset+octet-stream");
-        using var patchResp = await client.SendAsync(patchReq, cancellationToken);
+        var createUrl = $"{setting.BaseUrl.TrimEnd('/')}/api/tus/{Uri.EscapeDataString(fileName)}";
+        await logger.InfoAsync($"[TUS] Create upload: {createUrl}");
 
-        if (!patchResp.IsSuccessStatusCode)
+        using (var createReq = new HttpRequestMessage(HttpMethod.Post, createUrl))
         {
-            throw new CustomHttpClientException(
-                requestUri: new Uri(patchUrl),
-                requestContent: @$"Settings: {JsonConvert.SerializeObject(setting)} \nToken: {token}",
-                statusCode: patchResp.StatusCode,
-                reasonPhrase: patchResp.ReasonPhrase
-            );
+            createReq.Headers.TryAddWithoutValidation("X-Auth", token);
+            createReq.Headers.TryAddWithoutValidation("Tus-Resumable", "1.0.0");
+            createReq.Headers.TryAddWithoutValidation("Upload-Length", fileBytes.LongLength.ToString());
+
+            using var createResp = await client.SendAsync(createReq, cancellationToken);
+            createResp.EnsureSuccessStatusCode();
+        }
+
+        var patchUrl = $"{setting.BaseUrl.TrimEnd('/')}/api/tus/{Uri.EscapeDataString(fileName)}";
+        await logger.InfoAsync($"[TUS] Upload bytes: {patchUrl}");
+
+        using (var patchReq = new HttpRequestMessage(new HttpMethod("PATCH"), patchUrl))
+        {
+            patchReq.Headers.TryAddWithoutValidation("X-Auth", token);
+            patchReq.Headers.TryAddWithoutValidation("Tus-Resumable", "1.0.0");
+            patchReq.Headers.TryAddWithoutValidation("Upload-Offset", "0");
+            patchReq.Content = new ByteArrayContent(fileBytes);
+            patchReq.Content.Headers.ContentType = new MediaTypeHeaderValue("application/offset+octet-stream");
+
+            using var patchResp = await client.SendAsync(patchReq, cancellationToken);
+            patchResp.EnsureSuccessStatusCode();
         }
     }
 

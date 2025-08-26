@@ -66,39 +66,32 @@ public class PromotionService(ILogger logger, IOptions<UploadImageSettings> opti
             && uploadBannerSettings.IsHttpClientUpload
             && uploadBannerSettings.Locations.Count > 0)
         {
-            UploadImageThroughApi(files);
+            var fileNames = files.Keys.ToList();
+            UploadImageThroughApi(fileNames);
         }
         return new ResultModel(0, string.Empty);
     }
 
-    private void UploadImageThroughApi(Dictionary<string, IFormFile> files)
+    private void UploadImageThroughApi(List<string> fileNames)
     {
-        foreach (var file in files)
+        foreach (var fileName in fileNames)
         {
-            byte[] fileBytes;
-            using (var ms = new MemoryStream())
-            {
-                file.Value.CopyTo(ms);
-                fileBytes = ms.ToArray();
-            }
-            var fileName = file.Key;
-            var locations = uploadBannerSettings.Locations;
-            var loggerRef = logger;
-            var httpClientRef = HttpClient;
-
+            var localPath = Path.Combine(Directory.GetCurrentDirectory(), PromotionUploadFolder, fileName);
+            var fileBytes = File.ReadAllBytes(localPath);
             Task.Run(async () =>
             {
                 try
                 {
-                    await httpClientRef.UploadImageToAllDomainsAsync(
-                        loggerRef,
-                        locations,
+                    await HttpClient.UploadImageToAllDomainsAsync(
+                        logger,
+                        uploadBannerSettings.Locations,
                         fileBytes,
-                        fileName);
+                        fileName
+                    );
                 }
                 catch (Exception ex)
                 {
-                    await logger.ErrorAsync($@"Error uploading {file.Key} through API: {ex.Message}", ex);
+                    await logger.ErrorAsync($@"Error uploading {fileName} through API: {ex.Message}", ex);
                 }
             });
         }
