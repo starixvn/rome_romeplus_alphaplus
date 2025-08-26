@@ -35,23 +35,22 @@ public static class HttpClientImageUploadExtensions
             fileBytes = ms.ToArray();
         }
 
-        var uploadTasks = settings.Select(setting =>
-            Task.Run(async () =>
+        _ = settings.Select(async setting =>
+        {
+            try
             {
-                try
-                {
-                    await UploadToDomainAsync(client, setting, fileBytes, fileName, cancellationToken);
-                    return (Success: true, Error: null);
-                }
-                catch (Exception ex)
-                {
-                    await logger.ErrorAsync($"Error uploading image to {setting.BaseUrl}, fileName: {fileName}, settings: {JsonConvert.SerializeObject(setting)}: {ex.Message}", ex);
-                    return (Success: false, Error: ex.Message);
-                }
-            }, cancellationToken)
-        ).ToArray();
-
-        await Task.WhenAll(uploadTasks);
+                await UploadToDomainAsync(client, setting, fileBytes, fileName, cancellationToken);
+                return (Success: true, Error: null);
+            }
+            catch (Exception ex)
+            {
+                var patchUrl = $"{setting.BaseUrl.TrimEnd('/')}/api/tus/{Uri.EscapeDataString(fileName)}";
+                await logger.ErrorAsync(
+                    $"Error uploading image to {patchUrl}, fileName: {fileName}, settings: {JsonConvert.SerializeObject(setting)}: {ex.Message}",
+                    ex);
+                return (Success: false, Error: ex.Message);
+            }
+        });
     }
 
     private static async Task UploadToDomainAsync(

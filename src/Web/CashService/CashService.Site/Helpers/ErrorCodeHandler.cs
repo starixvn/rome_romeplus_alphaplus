@@ -35,6 +35,23 @@ public static class ErrorCodeHandler
             _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain
         };
 
+    public static string MappingUpdatePromoteTransactionStatusErrCode(int errCode, string transId, int memberId, int agentId)
+        => errCode switch
+        {
+            400 => CashServicesResx.ModelValidationFailed,
+            401 => CashServicesResx.AccountDisabled,
+            402 => CashServicesResx.AccountClosed,
+            404 => CashServicesResx.TheAccountWasSuspended,
+            405 => CashServicesResx.InvalidParameters,
+            406 => CashServicesResx.MemberCashBalanceIsInsufficient,
+            408 => CashServicesResx.ExceedsTheDailyWithdrawalLimit,
+            409 => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain,
+            415 => string.Format(CashServicesResx.InvalidMemberErrMsg, memberId, agentId),
+            416 => string.Format(CashServicesResx.InvalidTransactionErrMsg, transId, memberId),
+            500 => CashServicesResx.AnErrorOccurredWhileProcessingWithdrawalRequest,
+            _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain
+        };
+
     public static string MappingUpdateTransactionStatus(int errCode, string sqlException)
         => errCode switch
         {

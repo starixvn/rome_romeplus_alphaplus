@@ -324,7 +324,7 @@ public class PromotionController(
         var result = await httpClientHelper.PostAsync<ProcessPromotionTransactionRequest, ResultModel>("/api/promotions/updateTransactionStatus", request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingAddManualWithdrawalErrCode(result.Code);
+            result.Message = ErrorCodeHandler.MappingUpdatePromoteTransactionStatusErrCode(result.Code, request.TransId, request.CustId, request.ActorId);
         }
         return result;
     }

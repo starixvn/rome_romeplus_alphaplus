@@ -223,11 +223,29 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Member [{0}, {1}].
+        /// </summary>
+        public static string InvalidMemberErrMsg {
+            get {
+                return ResourceManager.GetString("InvalidMemberErrMsg", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid parameters..
         /// </summary>
         public static string InvalidParameters {
             get {
                 return ResourceManager.GetString("InvalidParameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Transaction [{0}, {1}].
+        /// </summary>
+        public static string InvalidTransactionErrMsg {
+            get {
+                return ResourceManager.GetString("InvalidTransactionErrMsg", resourceCulture);
             }
         }
         
