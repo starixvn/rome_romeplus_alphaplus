@@ -21,7 +21,7 @@
           <table class="tblDesc">
             <tr class="headerDetail" onclick="toggle(this)">
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Promotion')" /></td>
-              <td class="colW2" colspan="5"><xsl:value-of select="@promotionid" /></td>
+              <td class="colW2"><xsl:value-of select="@promotionid" /></td>
             </tr>
             <xsl:for-each select="r">
               <tr>
@@ -30,7 +30,7 @@
                 <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Title')" /></td>
                 <td class="colW2"><xsl:value-of select="@title" /></td>
                 <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Content')" /></td>
-                <td class="colW2"><xsl:value-of select="xslLogFormat:HtmlDecode(@content)" /></td>
+                <td class="colW2"><div class="valuecontent"><xsl:value-of select="xslLogFormat:HtmlDecode(@content)" /></div></td>
               </tr>
             </xsl:for-each>
           </table>
