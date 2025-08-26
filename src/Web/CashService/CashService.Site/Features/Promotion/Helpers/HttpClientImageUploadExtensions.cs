@@ -61,14 +61,13 @@ public static class HttpClientImageUploadExtensions
         patchReq.Headers.TryAddWithoutValidation("Upload-Offset", "0");
         patchReq.Content = new ByteArrayContent(fileBytes);
         patchReq.Content.Headers.ContentType = new MediaTypeHeaderValue("application/offset+octet-stream");
-
         using var patchResp = await client.SendAsync(patchReq, cancellationToken);
 
         if (!patchResp.IsSuccessStatusCode)
         {
             throw new CustomHttpClientException(
                 requestUri: new Uri(patchUrl),
-                requestContent: JsonConvert.SerializeObject(setting),
+                requestContent: @$"Settings: {JsonConvert.SerializeObject(setting)} \nToken: {token}",
                 statusCode: patchResp.StatusCode,
                 reasonPhrase: patchResp.ReasonPhrase
             );
