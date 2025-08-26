@@ -69,7 +69,7 @@ var headerNav = {
     clockTimeInterval: null,
 
     urls: {
-        home: alpha.urls.mainRootPath + 'Dashboard/Index2',
+        home: alpha.urls.mainRootPath + 'Dashboard/Index',
         qrCodeTop: alpha.urls.memberInfoRootPath + 'QRCodeMemberSignIn',
         messages: alpha.urls.messageRootPath + 'MessageHistory/Index',
         announcements: alpha.urls.messageRootPath + 'Announcement/Index',
@@ -460,15 +460,15 @@ var headerNav = {
 
     showLiveChat: () => {
         LiveChatWidget.init();
-        LiveChatWidget.call("set_customer_name", $("#UsernameShowOnLiveChat").val());
-        LiveChatWidget.call("maximize");
+        LiveChatWidget.call('set_customer_name', $('#UsernameShowOnLiveChat').val());
+        LiveChatWidget.call('maximize');
 
-        LiveChatWidget.on("visibility_changed", function (data) {
-            data.visibility === "minimized" && LiveChatWidget.call("hide");
+        LiveChatWidget.on('visibility_changed', function (data) {
+            data.visibility === 'minimized' && LiveChatWidget.call('hide');
         });
 
-        headerNav.domElements.liveChat.on("click", function () {
-            LiveChatWidget.call("maximize");
+        headerNav.domElements.liveChat.on('click', function () {
+            LiveChatWidget.call('maximize');
         });
     }
 };
@@ -479,9 +479,10 @@ $(function () {
         headerNav.getServerTime(alpha.user.onUserId || '-1');
     };
 
-    indexManager.domElements.mainFrame && indexManager.domElements.mainFrame.on('load.newmain', function () {
-        headerNav.getServerTime(alpha.user.onUserId || '-1');
-    });
+    indexManager.domElements.mainFrame &&
+        indexManager.domElements.mainFrame.on('load.newmain', function () {
+            headerNav.getServerTime(alpha.user.onUserId || '-1');
+        });
 
     try {
         document.addEventListener('visibilitychange', function () {
