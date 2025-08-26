@@ -433,30 +433,6 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/assets/bundles/ChatBotBanneri7-dark.css",
-    "inputFiles": [
-      "assets/styles/Home/ChatBotBanneri7-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/assets/bundles/ChatBotBanneri7.css",
-    "inputFiles": [
-      "assets/styles/Home/ChatBotBanneri7.css"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/assets/bundles/ChatBotBanneri1-dark.css",
-    "inputFiles": [
-      "assets/styles/Home/ChatBotBanneri1-dark.css"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/assets/bundles/ChatBotBanneri1.css",
-    "inputFiles": [
-      "assets/styles/Home/ChatBotBanneri1.css"
-    ]
-  },
-  {
     "outputFileName": "wwwroot/assets/bundles/apikey/apikey-dark.css",
     "inputFiles": [
       "assets/styles/apikey/apikey-dark.css"
