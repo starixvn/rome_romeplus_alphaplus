@@ -10,12 +10,10 @@
     <link rel="shortcut icon" type="image/x-icon" href="~/favico.ico" />
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
-    @StaticResources.RenderStyles("~/assets/bundles/banner/banner")    
+    @StaticResources.RenderStyles("~/assets/bundles/banner/banner")
 </head>
 
 <body>
-    <p class="text">@Html.Raw(string.Format(Resources.DashboardViewOverallInformation, "<span onclick=\"location.href=top.headerNav.urls.home;\" class=\"icon icon-home\"></span>"))</p>
-
     <div class="banner">
         <div id="bannerCarousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
@@ -24,11 +22,13 @@
                     var banner = Model.Banners.ElementAt(i);
                     var className = banner.LogClick ? "log-banner" : "";
                     <div class="item @(i == 0 ? "active" : string.Empty)">
-                        @if(banner.IsVideo)
+                        @if (banner.IsVideo)
                         {
                             <div class="video-banner" data-target-url="@Url.Content(banner.Url)">
-                                <img src="@Url.Content(banner.ImageSource)" class="img-banner pc @className" data-name="@banner.Name"/>
-                                <img src="@Url.Content(banner.ImageMobileSource)" class="img-banner sm @className" data-name="@banner.Name"/>
+                                <img src="@Url.Content(banner.ImageSource)" class="img-banner pc @className"
+                                    data-name="@banner.Name" />
+                                <img src="@Url.Content(banner.ImageMobileSource)" class="img-banner sm @className"
+                                    data-name="@banner.Name" />
                                 <div class="play-icon"></div>
                             </div>
                         }
@@ -36,13 +36,17 @@
                         {
                             if (string.IsNullOrWhiteSpace(banner.Url))
                             {
-                                <img src="@Url.Content(banner.ImageSource)" class="img-banner pc @className" data-name="@banner.Name"/>
-                                <img src="@Url.Content(banner.ImageMobileSource)" class="img-banner sm @className" data-name="@banner.Name"/>
+                                <img src="@Url.Content(banner.ImageSource)" class="img-banner pc @className"
+                                    data-name="@banner.Name" />
+                                <img src="@Url.Content(banner.ImageMobileSource)" class="img-banner sm @className"
+                                    data-name="@banner.Name" />
                             }
                             else
                             {
-                                <img src="@Url.Content(banner.ImageSource)" class="img-banner pc @className" data-target-url="@banner.Url" data-target="_blank" data-name="@banner.Name"/>
-                                <img src="@Url.Content(banner.ImageMobileSource)" class="img-banner sm @className" data-target-url="@banner.Url" data-target="_blank" data-name="@banner.Name"/>
+                                <img src="@Url.Content(banner.ImageSource)" class="img-banner pc @className"
+                                    data-target-url="@banner.Url" data-target="_blank" data-name="@banner.Name" />
+                                <img src="@Url.Content(banner.ImageMobileSource)" class="img-banner sm @className"
+                                    data-target-url="@banner.Url" data-target="_blank" data-name="@banner.Name" />
                             }
                         }
                     </div>
@@ -71,4 +75,5 @@
     @Html.AntiForgeryToken()
     @StaticResources.RenderScripts("~/assets/bundles/banner/banner")
 </body>
+
 </html>
