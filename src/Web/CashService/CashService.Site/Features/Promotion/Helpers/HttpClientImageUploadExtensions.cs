@@ -14,13 +14,13 @@ public static class HttpClientImageUploadExtensions
         this HttpClient client,
         ILogger logger,
         List<UploadApiSettings> settings,
-        IFormFile file,
+        byte[] fileBytes,
         string fileName,
         CancellationToken cancellationToken = default)
     {
-        if (file == null)
+        if (fileBytes == null)
         {
-            throw new ArgumentNullException(nameof(file));
+            throw new ArgumentNullException(nameof(fileBytes));
         }
 
         if (string.IsNullOrWhiteSpace(fileName))
@@ -28,14 +28,7 @@ public static class HttpClientImageUploadExtensions
             throw new ArgumentException(@"File name must be provided.", nameof(fileName));
         }
 
-        byte[] fileBytes;
-        using (var ms = new MemoryStream())
-        {
-            await file.CopyToAsync(ms, cancellationToken);
-            fileBytes = ms.ToArray();
-        }
-
-        _ = settings.Select(async setting =>
+        foreach (var setting in settings)
         {
             var patchUrl = $"{setting.BaseUrl.TrimEnd('/')}/api/tus/{Uri.EscapeDataString(fileName)}";
 
@@ -43,16 +36,14 @@ public static class HttpClientImageUploadExtensions
             {
                 await UploadToDomainAsync(client, setting, fileBytes, patchUrl, cancellationToken);
                 await logger.InfoAsync($"Successfully uploaded image to {patchUrl}, fileName: {fileName}");
-                return (Success: true, Error: null);
             }
             catch (Exception ex)
             {
                 await logger.ErrorAsync(
                     $"Error uploading image to {patchUrl}, fileName: {fileName}, settings: {JsonConvert.SerializeObject(setting)}: {ex.Message}",
                     ex);
-                return (Success: false, Error: ex.Message);
             }
-        });
+        }
     }
 
     private static async Task UploadToDomainAsync(

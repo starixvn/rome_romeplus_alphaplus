@@ -75,14 +75,26 @@ public class PromotionService(ILogger logger, IOptions<UploadImageSettings> opti
     {
         foreach (var file in files)
         {
+            byte[] fileBytes;
+            using (var ms = new MemoryStream())
+            {
+                file.Value.CopyTo(ms);
+                fileBytes = ms.ToArray();
+            }
+            var fileName = file.Key;
+            var locations = uploadBannerSettings.Locations;
+            var loggerRef = logger;
+            var httpClientRef = HttpClient;
+
             Task.Run(async () =>
             {
                 try
                 {
-                    await HttpClient.UploadImageToAllDomainsAsync(logger,
-                        uploadBannerSettings.Locations,
-                        file.Value,
-                        file.Key);
+                    await httpClientRef.UploadImageToAllDomainsAsync(
+                        loggerRef,
+                        locations,
+                        fileBytes,
+                        fileName);
                 }
                 catch (Exception ex)
                 {
