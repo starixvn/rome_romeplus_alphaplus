@@ -5,7 +5,10 @@ import { ButtonComponent } from '../../../../components/Buttons/index';
 import { MessageComponent } from '../../../../components/Message';
 import { TitleComponent } from '../../../../components/Title';
 import { TreeNodeOption } from '../../../../components/TreeSelect/TreeSelect';
-import { PROMOTION_TYPES } from '../../../../constants/promotionConstants';
+import {
+  PROMOTION_BANNER_SIZE_LIMIT,
+  PROMOTION_TYPES,
+} from '../../../../constants/promotionConstants';
 import {
   Language,
   ProductDropdown,
@@ -172,7 +175,7 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
         message: t('addPromotionForm.requiredTitle'),
       },
       {
-        condition: promotionInfo.en && !promotionInfo.en.title,
+        condition: promotionInfo.en && !promotionInfo.en.title.trim(),
         message: t('addPromotionForm.requiredTitle'),
       },
       {
@@ -183,11 +186,11 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
         condition:
           promotionInfo.en &&
           promotionInfo.en.banner &&
-          (promotionInfo.en.banner as File).size > 20 * 1024 * 1024,
+          (promotionInfo.en.banner as File).size > PROMOTION_BANNER_SIZE_LIMIT * 1024 * 1024,
         message: t('addPromotionForm.bannerSizeLimit'),
       },
       {
-        condition: promotionInfo.en && !promotionInfo.en.content,
+        condition: promotionInfo.en && !promotionInfo.en.content.trim(),
         message: t('addPromotionForm.requiredContent'),
       },
     ];

@@ -7,6 +7,7 @@ using Helpers;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 using Models;
+using Payments.Models;
 using Services;
 using Shared;
 using Shared.Filters;
@@ -20,8 +21,7 @@ public class TransactionsController(
     ITransactionHistoryWorkbook transactionHistoryWorkbook,
     IAntiforgery antiforgery,
     HttpClient httpClient,
-    ICustomerService customerService
-    )
+    ICustomerService customerService)
     : SiteBaseController(userSession, antiforgery, httpClient, customerService)
 {
     private readonly int agentId = userSession.CustId;
@@ -168,6 +168,12 @@ public class TransactionsController(
         }
 
         var result = VerifyInputParam(request, true);
+        if (request.ProviderId > 0 && !string.IsNullOrWhiteSpace(request.PaymentTo))
+        {
+            var bankCode = request.PaymentTo.Split('-')[0].Trim();
+            result = await ValidateProviderBankSupported(request.ProviderId, bankCode, request.PaymentFrom.Split("-")[1]);
+        }
+
         if (result.Code != 0)
         {
             return Json(result);
@@ -219,6 +225,22 @@ public class TransactionsController(
             result.Message = CashServicesResx.FileUploadMustBeLessThan1MB;
         }
         return result;
+    }
+
+    private async Task<ResultModel> ValidateProviderBankSupported(int providerId, string bankCode, string providerName)
+    {
+        var url = $"/common/banks?site={_userSession.Site}&providerId={providerId}&languageCode={_userSession.Language}";
+        var supportedBanks = await httpClientHelper.GetAsync<List<BankModel>>(url);
+        if (supportedBanks == null || !supportedBanks.Exists(b => b.Code == bankCode))
+        {
+            return new ResultModel
+            {
+                Code = 1,
+                Message = string.Format(CashServicesResx.SelectedBankIsNotSupportedByProvider, providerName)
+            };
+        }
+
+        return new ResultModel(0, string.Empty);
     }
 
     private static bool IsValidFile(IFormFile file)

@@ -6,23 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.CashService.Site.Features.Shared
 {
-    public class CommonController : SiteBaseController
+    public class CommonController(
+        IConfiguration configuration,
+        HttpClient httpClient,
+        IUserSession userSession,
+        IAntiforgery antiforgery,
+        ICustomerService customerService)
+        : SiteBaseController(userSession, antiforgery, httpClient, customerService)
     {
-        private readonly string _apiBaseUrl;
-
-        public CommonController(
-            IConfiguration configuration,
-            HttpClient httpClient,
-            IUserSession userSession,
-            IAntiforgery antiforgery,
-            ICustomerService customerService) : base(userSession, antiforgery, httpClient, customerService)
-        {
-            _apiBaseUrl = configuration["CashService:APIUrl"];
-        }
+        private readonly string _apiBaseUrl = configuration["CashService:APIUrl"];
 
         [HttpGet]
         public async Task<IActionResult> GetSetupChecklist(CancellationToken cancellationToken = default)
-        { 
+        {
             var url = $"{_apiBaseUrl}/common/setup-checklist/{_userSession.CustId}";
             var response = await _httpClient.GetAsync(url, cancellationToken);
             response.EnsureSuccessStatusCode();
@@ -43,4 +39,4 @@ namespace AlphaPlus.CashService.Site.Features.Shared
             return Json(banks);
         }
     }
-} 
+}

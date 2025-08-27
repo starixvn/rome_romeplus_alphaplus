@@ -421,6 +421,15 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selected bank is not supported by {0}. Please choose another..
+        /// </summary>
+        public static string SelectedBankIsNotSupportedByProvider {
+            get {
+                return ResourceManager.GetString("SelectedBankIsNotSupportedByProvider", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start today and enjoy instant savings of &lt;b&gt;THB 2,800&lt;/b&gt;.
         /// </summary>
         public static string StartTodayAndEnjoy {

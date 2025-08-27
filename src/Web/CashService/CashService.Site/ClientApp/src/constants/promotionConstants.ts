@@ -13,3 +13,5 @@ export const PROMOTION_BONUS_STATUS_OPTIONS = {
   rejected: 5,
   expired: 3,
 };
+
+export const PROMOTION_BANNER_SIZE_LIMIT = 5;

@@ -89,7 +89,8 @@
     "memberCashBalance": "Số dư tiền mặt thành viên",
     "minAmount": "Tối thiểu",
     "maxAmount": "Tối đa",
-    "invalidFileType": "Định dạng tệp không hợp lệ. Vui lòng tải lên tệp jpeg, jpg, hoặc png."
+    "invalidFileType": "Định dạng tệp không hợp lệ. Vui lòng tải lên tệp jpeg, jpg, hoặc png.",
+    "providerSupportedBankError": "{providerName} không hỗ trợ ngân hàng này. Vui lòng chọn ngân hàng khác."
   },
 
   "updateWithdrawal": {

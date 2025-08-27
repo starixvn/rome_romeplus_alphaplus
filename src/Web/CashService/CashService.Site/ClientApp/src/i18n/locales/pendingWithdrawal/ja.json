@@ -89,7 +89,8 @@
     "memberCashBalance": "メンバーのキャッシュ残高",
     "minAmount": "最小",
     "maxAmount": "最大",
-    "invalidFileType": "無効なファイル形式です。jpeg、jpg、またはpngファイルをアップロードしてください"
+    "invalidFileType": "無効なファイル形式です。jpeg、jpg、またはpngファイルをアップロードしてください",
+    "providerSupportedBankError": "{providerName}でサポートされていない銀行が選択されています。別の銀行を選択してください。"
   },
 
   "updateWithdrawal": {

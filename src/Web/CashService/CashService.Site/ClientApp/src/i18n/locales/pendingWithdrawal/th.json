@@ -89,7 +89,8 @@
     "memberCashBalance": "ยอดเงินสดของสมาชิก",
     "minAmount": "ต่ำสุด",
     "maxAmount": "สูงสุด",
-    "invalidFileType": "ประเภทไฟล์ไม่ถูกต้อง กรุณาอัปโหลดไฟล์ jpeg, jpg หรือ png"
+    "invalidFileType": "ประเภทไฟล์ไม่ถูกต้อง กรุณาอัปโหลดไฟล์ jpeg, jpg หรือ png",
+    "providerSupportedBankError": "{providerName} ไม่สนับสนุนธนาคารนี้ กรุณาเลือกธนาคารอื่น"
   },
 
   "updateWithdrawal": {

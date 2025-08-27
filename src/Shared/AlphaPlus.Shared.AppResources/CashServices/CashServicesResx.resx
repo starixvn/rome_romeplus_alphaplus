@@ -321,4 +321,7 @@
   <data name="InvalidTransactionErrMsg" xml:space="preserve">
     <value>Invalid Transaction [{0}, {1}]</value>
   </data>
+  <data name="SelectedBankIsNotSupportedByProvider" xml:space="preserve">
+    <value>Selected bank is not supported by {0}. Please choose another.</value>
+  </data>
 </root>

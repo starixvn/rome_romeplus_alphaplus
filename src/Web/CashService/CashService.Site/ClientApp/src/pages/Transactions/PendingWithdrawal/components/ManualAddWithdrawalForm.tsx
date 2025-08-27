@@ -18,6 +18,8 @@ import DropdownComponent, { DropdownOption } from '../../../../components/Custom
 import { TitleComponent } from '../../../../components/Title';
 import { AmountInput } from '../../../../components/AmountInput';
 import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent';
+import { baseAPI } from '../../../../services/commonAPI';
+import { Bank } from '../../../../services/interfaces/Bank';
 
 interface ManualAddWithdrawalFormProps {
   onClose?: () => void;
@@ -52,6 +54,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({
   });
   const [memberOptions, setMemberOptions] = useState<DropdownOption[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [providerSupportedBank, setProviderSupportedBank] = useState<string[]>([]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -148,6 +151,17 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({
       return false;
     }
 
+    if (providerSupportedBank.length > 0 && !providerSupportedBank.includes(to.split('-')[0])) {
+      setResultMessage({
+        type: 'error',
+        message: t('manualWithdrawalForm.providerSupportedBankError').replace(
+          '{providerName}',
+          from.split('-')[1]
+        ),
+      });
+      return false;
+    }
+
     const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
     if (image && !allowedTypes.includes(image.type)) {
       setResultMessage({
@@ -178,12 +192,50 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({
     await handleUpdateLimitWithdrawalAmt(selectedMemberId);
   };
 
-  const handleFromSelect = (option: DropdownOption) => {
+  const handleFromSelect = async (option: DropdownOption) => {
     let providerId = option.attributes?.providerId || 0;
     let paymentMethodId = option.attributes?.paymentMethodId || 0;
     setFrom(option.value.toString());
     setProviderId(providerId);
     setPaymentMethodId(paymentMethodId);
+
+    if (providerId <= 0) {
+      setProviderSupportedBank([]);
+      setResultMessage({
+        type: null,
+        message: '',
+      });
+      return;
+    }
+    const response = await baseAPI.getProviderBanks(providerId);
+
+    if (response.error) {
+      setResultMessage({
+        type: 'error',
+        message: response.error.message,
+      });
+    } else {
+      const supportedBankCodes = response.data.map((bank: Bank) => bank.code);
+      setProviderSupportedBank(supportedBankCodes);
+    }
+  };
+
+  const handleProviderSupportedBank = () => {
+    const toBankCode = to.split('-')[0].trim();
+    if (providerSupportedBank.length > 0 && !providerSupportedBank.includes(toBankCode)) {
+      setResultMessage({
+        type: 'error',
+        message: t('manualWithdrawalForm.providerSupportedBankError').replace(
+          '{providerName}',
+          from.split('-')[1]
+        ),
+      });
+    } else {
+      setResultMessage({
+        type: null,
+        message: '',
+      });
+    }
   };
 
   useEffect(() => {
@@ -192,8 +244,15 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({
     }
   }, [providerId, custId]);
 
+  useEffect(() => {
+    if (providerSupportedBank.length > 0) {
+      handleProviderSupportedBank();
+    }
+  }, [providerSupportedBank, to]);
+
   const handleToSelect = (option: DropdownOption) => {
     setTo(option.value.toString());
+    handleProviderSupportedBank();
   };
 
   const handleUpdateLimitWithdrawalAmt = async (memberCustId: number | null) => {
