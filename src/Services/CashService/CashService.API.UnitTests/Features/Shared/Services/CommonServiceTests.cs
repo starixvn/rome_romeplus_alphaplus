@@ -22,6 +22,8 @@ public class CommonServiceTests
     {
         _repositoryMock = new Mock<IDynamicRepository>();
         _loggerMock = new Mock<ILogger>();
+        _cacheRefServiceMock = new Mock<ICacheRefService>();
+        _cacheServiceMock = new Mock<IMemoryCache>();
         _commonService = new CommonService(_repositoryMock.Object, _loggerMock.Object, _cacheRefServiceMock.Object, _cacheServiceMock.Object);
     }
 
