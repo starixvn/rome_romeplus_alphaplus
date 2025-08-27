@@ -84,6 +84,15 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
           })
         );
         setLanguages(transformedLanguages);
+        setPromotionInfo(
+          transformedLanguages.reduce(
+            (acc, lang) => {
+              acc[lang.key] = { title: '', content: '', banner: null, bannerName: null };
+              return acc;
+            },
+            {} as Record<string, PromotionLangFields>
+          )
+        );
       }
     });
   }, []);
@@ -213,8 +222,8 @@ const AddPromotion: React.FC<AddPromotionProps> = ({ onClose }) => {
       }
       Object.entries(promotionInfo).forEach(([lang, info], index) => {
         formData.append(`Contents[${index}].Language`, lang);
-        formData.append(`Contents[${index}].Title`, info.title || '');
-        formData.append(`Contents[${index}].Content`, info.content || '');
+        formData.append(`Contents[${index}].Title`, info.title.trim() || '');
+        formData.append(`Contents[${index}].Content`, info.content.trim() || '');
 
         if (info.banner instanceof File) {
           formData.append(`Contents[${index}].Banner`, info.banner);

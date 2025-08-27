@@ -188,7 +188,6 @@ public class PromotionController(
         {
             return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
-
         request.SetUserSession(userSession);
 
         var files = promotionService.ProcessEditPromotionRequest(request);

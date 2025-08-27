@@ -176,9 +176,9 @@ const EditPromotion: React.FC<EditPromotionProps> = ({ onClose, promotionId }) =
       formData.append('OriginalEnabled', originalStatus.toString());
       Object.entries(promotionInfo).forEach(([lang, info], index) => {
         formData.append(`Contents[${index}].Language`, lang);
-        formData.append(`Contents[${index}].Title`, info.title || '');
-        formData.append(`Contents[${index}].Content`, info.content || '');
-        formData.append(`Contents[${index}].BannerName`, info.bannerName || '');
+        formData.append(`Contents[${index}].Title`, info.title?.trim() || '');
+        formData.append(`Contents[${index}].Content`, info.content?.trim() || '');
+        formData.append(`Contents[${index}].BannerName`, info.bannerName?.trim() || '');
         if (info.banner) {
           formData.append(`Contents[${index}].Banner`, info.banner as File);
         }
