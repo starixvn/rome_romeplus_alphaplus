@@ -222,4 +222,374 @@ public class CommonServiceTests
         Assert.False(result.IsCompleteAll);
         _repositoryMock.Verify(x => x.GetAsync<SetupCheckListModel>(It.Is<GetSetupCheckListCriteria>(c => c.CustId == custId), string.Empty, CancellationToken.None), Times.Once);
     }
+
+    [Fact]
+    public async Task GetProviderBanks_WhenValidParametersProvided_ReturnsFilteredBanks()
+    {
+        // Arrange
+        var site = "test-site";
+        var providerId = 1;
+        var languageCode = "en";
+        var allBanks = new List<BankModel>
+        {
+            new BankModel { Id = 1, ProviderId = 1, Bank = "Bank1", Name = "OriginalName1" },
+            new BankModel { Id = 2, ProviderId = 1, Bank = "Bank2", Name = "OriginalName2" },
+            new BankModel { Id = 3, ProviderId = 2, Bank = "Bank3", Name = "OriginalName3" }
+        };
+
+        // Mock the GetOrCreateAsync extension method behavior
+        _cacheServiceMock.Setup(x => x.TryGetValue(It.IsAny<object>(), out It.Ref<object>.IsAny))
+            .Returns(false);
+
+        var cacheEntry = Mock.Of<ICacheEntry>();
+        _cacheServiceMock.Setup(x => x.CreateEntry(It.IsAny<object>()))
+            .Returns(cacheEntry);
+
+        // Mock the repository call that the factory function would make
+        _repositoryMock.Setup(x => x.FetchAsync<BankModel>(It.IsAny<GetProviderBanksCriteria>(), string.Empty, CancellationToken.None))
+            .ReturnsAsync(allBanks);
+
+        _cacheRefServiceMock.Setup(x => x.GetBankName(1, "Bank1", languageCode))
+            .Returns("TranslatedBank1");
+        _cacheRefServiceMock.Setup(x => x.GetBankName(2, "Bank2", languageCode))
+            .Returns("TranslatedBank2");
+
+        // Act
+        var result = await _commonService.GetProviderBanks(site, providerId, languageCode);
+
+        // Assert
+        var resultList = result.ToList();
+        Assert.Equal(2, resultList.Count);
+        Assert.Equal("TranslatedBank1", resultList[0].Name);
+        Assert.Equal("TranslatedBank2", resultList[1].Name);
+        Assert.Equal(1, resultList[0].ProviderId);
+        Assert.Equal(1, resultList[1].ProviderId);
+
+        _cacheServiceMock.Verify(x => x.TryGetValue(It.IsAny<object>(), out It.Ref<object>.IsAny), Times.Once);
+        _cacheServiceMock.Verify(x => x.CreateEntry(It.IsAny<object>()), Times.Once);
+        _repositoryMock.Verify(x => x.FetchAsync<BankModel>(It.IsAny<GetProviderBanksCriteria>(), string.Empty, CancellationToken.None), Times.Once);
+        _cacheRefServiceMock.Verify(x => x.GetBankName(1, "Bank1", languageCode), Times.Once);
+        _cacheRefServiceMock.Verify(x => x.GetBankName(2, "Bank2", languageCode), Times.Once);
+    }
+
+    [Fact]
+    public async Task GetProviderBanks_WhenNoBanksFound_ReturnsEmptyCollection()
+    {
+        // Arrange
+        var site = "test-site";
+        var providerId = 1;
+        var languageCode = "en";
+        var allBanks = new List<BankModel>();
+
+        // Mock the GetOrCreateAsync extension method behavior
+        _cacheServiceMock.Setup(x => x.TryGetValue(It.IsAny<object>(), out It.Ref<object>.IsAny))
+            .Returns(false);
+
+        var cacheEntry = Mock.Of<ICacheEntry>();
+        _cacheServiceMock.Setup(x => x.CreateEntry(It.IsAny<object>()))
+            .Returns(cacheEntry);
+
+        // Mock the repository call that the factory function would make
+        _repositoryMock.Setup(x => x.FetchAsync<BankModel>(It.IsAny<GetProviderBanksCriteria>(), string.Empty, CancellationToken.None))
+            .ReturnsAsync(allBanks);
+
+        // Act
+        var result = await _commonService.GetProviderBanks(site, providerId, languageCode);
+
+        // Assert
+        Assert.Empty(result);
+        _cacheServiceMock.Verify(x => x.TryGetValue(It.IsAny<object>(), out It.Ref<object>.IsAny), Times.Once);
+        _cacheServiceMock.Verify(x => x.CreateEntry(It.IsAny<object>()), Times.Once);
+        _repositoryMock.Verify(x => x.FetchAsync<BankModel>(It.IsAny<GetProviderBanksCriteria>(), string.Empty, CancellationToken.None), Times.Once);
+    }
+
+    [Fact]
+    public async Task GetProviderBanks_WhenNoMatchingProviderId_ReturnsEmptyCollection()
+    {
+        // Arrange
+        var site = "test-site";
+        var providerId = 1;
+        var languageCode = "en";
+        var allBanks = new List<BankModel>
+        {
+            new BankModel { Id = 1, ProviderId = 2, Bank = "Bank1", Name = "OriginalName1" },
+            new BankModel { Id = 2, ProviderId = 3, Bank = "Bank2", Name = "OriginalName2" }
+        };
+
+        // Mock the GetOrCreateAsync extension method behavior
+        _cacheServiceMock.Setup(x => x.TryGetValue(It.IsAny<object>(), out It.Ref<object>.IsAny))
+            .Returns(false);
+
+        var cacheEntry = Mock.Of<ICacheEntry>();
+        _cacheServiceMock.Setup(x => x.CreateEntry(It.IsAny<object>()))
+            .Returns(cacheEntry);
+
+        // Mock the repository call that the factory function would make
+        _repositoryMock.Setup(x => x.FetchAsync<BankModel>(It.IsAny<GetProviderBanksCriteria>(), string.Empty, CancellationToken.None))
+            .ReturnsAsync(allBanks);
+
+        // Act
+        var result = await _commonService.GetProviderBanks(site, providerId, languageCode);
+
+        // Assert
+        Assert.Empty(result);
+        _cacheServiceMock.Verify(x => x.TryGetValue(It.IsAny<object>(), out It.Ref<object>.IsAny), Times.Once);
+        _cacheServiceMock.Verify(x => x.CreateEntry(It.IsAny<object>()), Times.Once);
+        _repositoryMock.Verify(x => x.FetchAsync<BankModel>(It.IsAny<GetProviderBanksCriteria>(), string.Empty, CancellationToken.None), Times.Once);
+        _cacheRefServiceMock.Verify(x => x.GetBankName(It.IsAny<int>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+    }
+
+    [Fact]
+    public async Task GetProviderBanks_WhenCacheReturnsNull_ReturnsEmptyCollection()
+    {
+        // Arrange
+        var site = "test-site";
+        var providerId = 1;
+        var languageCode = "en";
+
+        var cacheEntry = Mock.Of<ICacheEntry>();
+        _cacheServiceMock.Setup(x => x.CreateEntry(It.IsAny<object>()))
+            .Returns(cacheEntry);
+
+        // Mock the GetOrCreateAsync extension method behavior
+        _cacheServiceMock.Setup(x => x.TryGetValue(It.IsAny<object>(), out It.Ref<object>.IsAny))
+            .Returns(false);
+
+        // Mock the repository call that the factory function would make
+        _repositoryMock.Setup(x => x.FetchAsync<BankModel>(It.IsAny<GetProviderBanksCriteria>(), string.Empty, CancellationToken.None))
+            .ReturnsAsync((IEnumerable<BankModel>)null);
+
+        // Act
+        var result = await _commonService.GetProviderBanks(site, providerId, languageCode);
+
+        // Assert
+        Assert.Empty(result);
+        _cacheServiceMock.Verify(x => x.TryGetValue(It.IsAny<object>(), out It.Ref<object>.IsAny), Times.Once);
+        _cacheServiceMock.Verify(x => x.CreateEntry(It.IsAny<object>()), Times.Once);
+        _repositoryMock.Verify(x => x.FetchAsync<BankModel>(It.IsAny<GetProviderBanksCriteria>(), string.Empty, CancellationToken.None), Times.Once);
+        _cacheRefServiceMock.Verify(x => x.GetBankName(It.IsAny<int>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+    }
+
+    [Fact]
+    public async Task GetProviderBanks_WhenBankHasDepositMode_DeserializesAndSetsDepositMatchingMode()
+    {
+        // Arrange
+        var site = "test-site";
+        var providerId = 1;
+        var languageCode = "en";
+        var depositModeJson = "{\"SourceType\":\"TestSource\",\"MappingType\":[1,2,3],\"SourceTypeName\":\"OriginalSourceTypeName\"}";
+        
+        var allBanks = new List<BankModel>
+        {
+            new BankModel 
+            { 
+                Id = 1, 
+                ProviderId = 1, 
+                Bank = "Bank1", 
+                Name = "OriginalName1",
+                DepositMode = depositModeJson
+            }
+        };
+
+        var cacheEntry = Mock.Of<ICacheEntry>();
+        _cacheServiceMock.Setup(x => x.CreateEntry(It.IsAny<object>()))
+            .Returns(cacheEntry);
+
+        // Mock the GetOrCreateAsync extension method behavior
+        _cacheServiceMock.Setup(x => x.TryGetValue(It.IsAny<object>(), out It.Ref<object>.IsAny))
+            .Returns(false);
+
+        // Mock the repository call that the factory function would make
+        _repositoryMock.Setup(x => x.FetchAsync<BankModel>(It.IsAny<GetProviderBanksCriteria>(), string.Empty, CancellationToken.None))
+            .ReturnsAsync(allBanks);
+
+        _cacheRefServiceMock.Setup(x => x.GetBankName(1, "Bank1", languageCode))
+            .Returns("TranslatedBank1");
+        _cacheRefServiceMock.Setup(x => x.GetDepositAutoModeName("TestSource", "TestSource", languageCode))
+            .Returns("TranslatedSourceTypeName");
+
+        // Act
+        var result = await _commonService.GetProviderBanks(site, providerId, languageCode);
+
+        // Assert
+        var resultList = result.ToList();
+        Assert.Single(resultList);
+        Assert.NotNull(resultList[0].DepositMatchingMode);
+        Assert.Equal("TestSource", resultList[0].DepositMatchingMode.SourceType);
+        Assert.Equal(new[] { 1, 2, 3 }, resultList[0].DepositMatchingMode.MappingType);
+        Assert.Equal("TranslatedSourceTypeName", resultList[0].DepositMatchingMode.SourceTypeName);
+
+        _cacheRefServiceMock.Verify(x => x.GetDepositAutoModeName("TestSource", "TestSource", languageCode), Times.Once);
+    }
+
+    [Fact]
+    public async Task GetProviderBanks_WhenBankHasNullDepositMode_DoesNotSetDepositMatchingMode()
+    {
+        // Arrange
+        var site = "test-site";
+        var providerId = 1;
+        var languageCode = "en";
+        
+        var allBanks = new List<BankModel>
+        {
+            new BankModel 
+            { 
+                Id = 1, 
+                ProviderId = 1, 
+                Bank = "Bank1", 
+                Name = "OriginalName1",
+                DepositMode = null
+            }
+        };
+
+        var cacheEntry = Mock.Of<ICacheEntry>();
+        _cacheServiceMock.Setup(x => x.CreateEntry(It.IsAny<object>()))
+            .Returns(cacheEntry);
+
+        // Mock the underlying methods that GetOrCreateAsync extension method uses
+        _cacheServiceMock.Setup(x => x.TryGetValue(It.IsAny<object>(), out It.Ref<object>.IsAny))
+            .Returns(false);
+
+        // Mock the repository call that the factory function would make
+        _repositoryMock.Setup(x => x.FetchAsync<BankModel>(It.IsAny<GetProviderBanksCriteria>(), string.Empty, CancellationToken.None))
+            .ReturnsAsync(allBanks);
+
+        _cacheRefServiceMock.Setup(x => x.GetBankName(1, "Bank1", languageCode))
+            .Returns("TranslatedBank1");
+
+        // Act
+        var result = await _commonService.GetProviderBanks(site, providerId, languageCode);
+
+        // Assert
+        var resultList = result.ToList();
+        Assert.Single(resultList);
+        Assert.Null(resultList[0].DepositMatchingMode);
+
+        _cacheRefServiceMock.Verify(x => x.GetDepositAutoModeName(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+    }
+
+    [Fact]
+    public async Task GetProviderBanks_WhenBankHasEmptyDepositMode_DoesNotSetDepositMatchingMode()
+    {
+        // Arrange
+        var site = "test-site";
+        var providerId = 1;
+        var languageCode = "en";
+        
+        var allBanks = new List<BankModel>
+        {
+            new BankModel 
+            { 
+                Id = 1, 
+                ProviderId = 1, 
+                Bank = "Bank1", 
+                Name = "OriginalName1",
+                DepositMode = null
+            }
+        };
+
+        // Mock the GetOrCreateAsync extension method behavior
+        _cacheServiceMock.Setup(x => x.TryGetValue(It.IsAny<object>(), out It.Ref<object>.IsAny))
+            .Returns(false);
+
+        var cacheEntry = Mock.Of<ICacheEntry>();
+        _cacheServiceMock.Setup(x => x.CreateEntry(It.IsAny<object>()))
+            .Returns(cacheEntry);
+
+        // Mock the repository call that the factory function would make
+        _repositoryMock.Setup(x => x.FetchAsync<BankModel>(It.IsAny<GetProviderBanksCriteria>(), string.Empty, CancellationToken.None))
+            .ReturnsAsync(allBanks);
+
+        _cacheRefServiceMock.Setup(x => x.GetBankName(1, "Bank1", languageCode))
+            .Returns("TranslatedBank1");
+
+        // Act
+        var result = await _commonService.GetProviderBanks(site, providerId, languageCode);
+
+        // Assert
+        var resultList = result.ToList();
+        Assert.Single(resultList);
+        Assert.Null(resultList[0].DepositMatchingMode);
+
+        _cacheRefServiceMock.Verify(x => x.GetDepositAutoModeName(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+    }
+
+    [Fact]
+    public async Task GetProviderBanks_WhenMultipleBanksWithMixedDepositModes_ProcessesCorrectly()
+    {
+        // Arrange
+        var site = "test-site";
+        var providerId = 1;
+        var languageCode = "en";
+        var depositModeJson = "{\"SourceType\":\"TestSource\",\"MappingType\":[1,2,3],\"SourceTypeName\":\"OriginalSourceTypeName\"}";
+        
+        var allBanks = new List<BankModel>
+        {
+            new BankModel 
+            { 
+                Id = 1, 
+                ProviderId = 1, 
+                Bank = "Bank1", 
+                Name = "OriginalName1",
+                DepositMode = depositModeJson
+            },
+            new BankModel 
+            { 
+                Id = 2, 
+                ProviderId = 1, 
+                Bank = "Bank2", 
+                Name = "OriginalName2",
+                DepositMode = null
+            },
+            new BankModel 
+            { 
+                Id = 3, 
+                ProviderId = 1, 
+                Bank = "Bank3", 
+                Name = "OriginalName3",
+                DepositMode = null
+            }
+        };
+
+        // Mock the GetOrCreateAsync extension method behavior
+        _cacheServiceMock.Setup(x => x.TryGetValue(It.IsAny<object>(), out It.Ref<object>.IsAny))
+            .Returns(false);
+
+        var cacheEntry = Mock.Of<ICacheEntry>();
+        _cacheServiceMock.Setup(x => x.CreateEntry(It.IsAny<object>()))
+            .Returns(cacheEntry);
+
+        // Mock the repository call that the factory function would make
+        _repositoryMock.Setup(x => x.FetchAsync<BankModel>(It.IsAny<GetProviderBanksCriteria>(), string.Empty, CancellationToken.None))
+            .ReturnsAsync(allBanks);
+
+        _cacheRefServiceMock.Setup(x => x.GetBankName(1, "Bank1", languageCode))
+            .Returns("TranslatedBank1");
+        _cacheRefServiceMock.Setup(x => x.GetBankName(2, "Bank2", languageCode))
+            .Returns("TranslatedBank2");
+        _cacheRefServiceMock.Setup(x => x.GetBankName(3, "Bank3", languageCode))
+            .Returns("TranslatedBank3");
+        _cacheRefServiceMock.Setup(x => x.GetDepositAutoModeName("TestSource", "TestSource", languageCode))
+            .Returns("TranslatedSourceTypeName");
+
+        // Act
+        var result = await _commonService.GetProviderBanks(site, providerId, languageCode);
+
+        // Assert
+        var resultList = result.ToList();
+        Assert.Equal(3, resultList.Count);
+        
+        // Bank with deposit mode
+        Assert.NotNull(resultList[0].DepositMatchingMode);
+        Assert.Equal("TestSource", resultList[0].DepositMatchingMode.SourceType);
+        Assert.Equal("TranslatedSourceTypeName", resultList[0].DepositMatchingMode.SourceTypeName);
+        
+        // Bank with null deposit mode
+        Assert.Null(resultList[1].DepositMatchingMode);
+        
+        // Bank with empty deposit mode
+        Assert.Null(resultList[2].DepositMatchingMode);
+
+        _cacheRefServiceMock.Verify(x => x.GetDepositAutoModeName("TestSource", "TestSource", languageCode), Times.Once);
+    }
 }
