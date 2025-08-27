@@ -13,23 +13,19 @@
               <td class="colW2"><xsl:value-of select="@promotionid" /></td>
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Status')" /></td>
               <td class="colW2"><xsl:value-of select="xslLogFormat:GetTrackingStatus(@enabled)" /></td>
-              <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('From')" /></td>
-              <td class="colW2"><xsl:value-of select="@fromdate" /></td>
             </tr>
             <tr>
+              <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('From')" /></td>
+              <td class="colW2"><xsl:value-of select="@fromdate" /></td>
               <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('To')" /></td>
               <td class="colW2"><xsl:value-of select="@todate" /></td>
-              <td class="colW1"></td>
-              <td class="colW2"></td>
             </tr>
           </xsl:for-each>
-           <tr>
+          <tr>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('SubAccName')" /></td>
             <td class="colW2"><xsl:value-of select="@subaccname" /></td>
             <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('IP')" /></td>
             <td class="colW2"><xsl:value-of select="xslLogFormat:FormatIP(@ip)" /></td>
-            <td class="colW1"></td>
-            <td class="colW2"></td>
           </tr>
         </table>
       </xsl:when>
