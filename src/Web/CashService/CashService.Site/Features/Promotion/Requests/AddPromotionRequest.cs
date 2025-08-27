@@ -39,17 +39,17 @@ public class AddPromotionRequest : BaseActionRequest
             return false;
         }
 
-        if (Contents.Any(content => content.Banner is not null && !ImageUploadHelper.IsValidImageFile(content.Banner)))
+        if (Contents.Exists(content => content.Banner is not null && !ImageUploadHelper.IsValidImageFile(content.Banner)))
         {
             errMsg = "Invalid image format";
             return false;
         }
 
-        const int bannerSizeLimit = 20 * 1024 * 1024;
+        const int bannerSizeLimit = 5 * 1024 * 1024;
 
-        if (Contents.Any(content => content.Banner is not null && content.Banner.Length > bannerSizeLimit))
+        if (Contents.Exists(content => content.Banner is not null && content.Banner.Length > bannerSizeLimit))
         {
-            errMsg = "Banner size maximum is 20MB";
+            errMsg = "Banner size maximum is 5MB";
             return false;
         }
 
