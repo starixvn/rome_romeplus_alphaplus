@@ -220,7 +220,8 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
     }
   };
 
-  const isValidParams = (isReject: boolean = false) => {
+  // Validation functions
+  const validateBankSelection = (isReject: boolean): boolean => {
     if (!withdrawalFrom && !isReject) {
       setResultMessage({
         type: 'error',
@@ -228,6 +229,10 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
       });
       return false;
     }
+    return true;
+  };
+
+  const validateProviderSupportedBank = (isReject: boolean): boolean => {
     if (
       providerSupportedBank.length > 0 &&
       !providerSupportedBank.includes(withdrawal?.paymentTo.split('-')[0] || '') &&
@@ -242,18 +247,43 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
       });
       return false;
     }
+    return true;
+  };
 
+  const validateImageSize = (): boolean => {
     if (image && image.size > 1024 * 1024) {
       setResultMessage({ type: 'error', message: t('manualWithdrawalForm.imageSizeError') });
       return false;
     }
+    return true;
+  };
 
+  const validateImageType = (): boolean => {
     const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
     if (image && !allowedTypes.includes(image.type)) {
       setResultMessage({
         type: 'error',
         message: t('manualWithdrawalForm.invalidFileType'),
       });
+      return false;
+    }
+    return true;
+  };
+
+  const isValidParams = (isReject: boolean = false) => {
+    if (!validateBankSelection(isReject)) {
+      return false;
+    }
+
+    if (!validateProviderSupportedBank(isReject)) {
+      return false;
+    }
+
+    if (!validateImageSize()) {
+      return false;
+    }
+
+    if (!validateImageType()) {
       return false;
     }
 
