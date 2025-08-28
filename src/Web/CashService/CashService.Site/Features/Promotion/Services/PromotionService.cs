@@ -2,6 +2,7 @@ namespace AlphaPlus.CashService.Site.Features.Promotion.Services;
 
 using Fanex.Logging;
 using Helpers;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
 using Models.Configurations;
 using Newtonsoft.Json;
@@ -17,7 +18,7 @@ public interface IPromotionService
     Task<ResultModel> ProcessBannerUploadedAsync(Dictionary<string, IFormFile> files);
 }
 
-public class PromotionService(ILogger logger, IOptions<UploadImageSettings> options) : IPromotionService
+public class PromotionService(ILogger logger, IMemoryCache memCache, IOptions<UploadImageSettings> options) : IPromotionService
 {
     private const string PromotionUploadFolder = "wwwroot/PromotionImages";
     private readonly UploadImageSettings uploadBannerSettings = options.Value;
@@ -84,6 +85,7 @@ public class PromotionService(ILogger logger, IOptions<UploadImageSettings> opti
                 {
                     await HttpClient.UploadImageToAllDomainsAsync(
                         logger,
+                        memCache,
                         uploadBannerSettings.Locations,
                         fileBytes,
                         fileName

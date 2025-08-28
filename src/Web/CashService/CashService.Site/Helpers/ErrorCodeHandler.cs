@@ -64,13 +64,14 @@ public static class ErrorCodeHandler
             _ => sqlException
         };
 
-    public static string MappingRevertTransactionErrCode(int errCode, int transactionTypeId)
+    public static string MappingRevertTransactionErrCode(int errCode, int transactionTypeId, string transId, int memberId, int agentId)
         => errCode switch
         {
-            405 => CashServicesResx.InvalidParameters,
             406 => transactionTypeId == 1 ? CashServicesResx.AgentCashBalanceIsInsufficient : CashServicesResx.MemberCashBalanceIsInsufficient,
             407 => CashServicesResx.TheAmountExceedsTheAllowedMinimumOrMaximumValue,
             409 => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain,
+            415 => string.Format(CashServicesResx.InvalidMemberErrMsg, memberId, agentId),
+            416 => string.Format(CashServicesResx.InvalidTransactionErrMsg, transId, memberId),
             _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain
         };
 }
