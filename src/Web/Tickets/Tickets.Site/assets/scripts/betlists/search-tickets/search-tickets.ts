@@ -17,15 +17,11 @@ class SearchTicketView {
             AJAXHelper.get(`${$betlistForm.attr('action')}?refno=${refno}`, (html: string) => {
                 $('#tbl-betlist-box').html(html);
                 this.expandParlay();
-
-                const firstCell = $('#tbl-betlist tbody tr:first td:first');
-                this.compactFeedback.setExtraInfo({ refno });
-                this.compactFeedback.toggleShowHide(firstCell.length > 0 && !firstCell.data('noinfo'));
+                this.initCompactFeedback(refno);
             });
         });
 
         setTimeout(() => window.top.indexManager.initFeedbackFunction(3), 1000);
-        this.compactFeedback.init();
     }
 
     updateSubmitButtonStateOnTextChange = () => {
@@ -37,6 +33,17 @@ class SearchTicketView {
         const parlayClickableId = `#r${this.$refNo.val()} a#hidden0`;
         const parlayItem = $(parlayClickableId);
         parlayItem && parlayItem[0] && parlayItem[0].click();
+    }
+
+    initCompactFeedback(refno) {
+        const firstCell = $('#tbl-betlist tbody tr:first td:first');
+        const hasBetListData = firstCell.length > 0 && !firstCell.data('noinfo');
+
+        if (hasBetListData) {
+            this.compactFeedback.init({ refno });
+        }
+
+        this.compactFeedback.toggleShowHide(hasBetListData);
     }
 }
 

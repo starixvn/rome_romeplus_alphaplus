@@ -1,11 +1,15 @@
 :root,
 :root [data-theme='light'] {
+    --filter-bg-ic: #ebeaea;
+    --filter-bg-ic-hover: #dadada;
     .lds-spinner{
         --color-loading: #444;
     }
     
 }
 :root [data-theme='dark'] {
+    --filter-bg-ic: #252525;
+    --filter-bg-ic-hover: #2c2c2c;
     .lds-spinner{
         --color-loading: #ededed;
     }
@@ -87,6 +91,7 @@
 .box-icon-title {
     display: flex;
     align-items: center;
+    gap: 4px;
     &-tab {
         margin-inline: 0;
         padding: 5px;
@@ -99,6 +104,7 @@
     color: #f7931a;
     padding: 3px;
     border-radius: 3px;
+    background: var(--filter-bg-ic);
     &:before {        
         animation: shakeX 12s infinite;
         display: block;
@@ -115,6 +121,7 @@
         }
     }
     &.active {
+        background: var(--filter-bg-ic-hover)!important;
         &:before {
             content: '\e991';
         }
@@ -143,7 +150,7 @@
     cursor: pointer;
     &:hover{        
         .icon-like{            
-          
+            background: var(--filter-bg-ic);
             &:before {        
                 display: block;
                 animation: shakeX-Hover 0.4s infinite;

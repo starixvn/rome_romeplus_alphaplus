@@ -35,8 +35,7 @@ class Forecast {
         this.bindViewForecast();
         this.bindViewBetList();
         this.bindViewAH();
-        this.compactFeedback.init($ddlLeague.length > 0 ? { leagueId: $ddlLeague.val() } : '');
-        this.toggleShowHideCompactFeedback();
+        this.initCompactFeedback($ddlLeague);
     }
 
     private bindLeagueChangeEvent(): JQuery {
@@ -46,8 +45,7 @@ class Forecast {
             $.get(`${$('#hidden-dataUrl').val()}${leagueId}`, (html) => {
                 $('#tblRpt tbody').html(html);
                 this.bindViewForecast();
-                this.compactFeedback.setExtraInfo({ leagueId });
-                this.toggleShowHideCompactFeedback();
+                this.initCompactFeedback($ddlLeague);
             });
         });
 
@@ -84,9 +82,15 @@ class Forecast {
             });
     }
 
-    private toggleShowHideCompactFeedback() {
+    private initCompactFeedback($ddlLeague: JQuery) {
         const firstCell = $('#tblRpt tbody tr:first td:first');
-        this.compactFeedback.toggleShowHide(firstCell.length > 0 && !firstCell.data('noinfo'));
+        const hasData = firstCell.length > 0 && !firstCell.data('noinfo');
+
+        if (hasData) {
+            this.compactFeedback.init($ddlLeague.length > 0 ? { leagueId: $ddlLeague.val() } : '');
+        }
+
+        this.compactFeedback.toggleShowHide(hasData);
     }
 
     init() {

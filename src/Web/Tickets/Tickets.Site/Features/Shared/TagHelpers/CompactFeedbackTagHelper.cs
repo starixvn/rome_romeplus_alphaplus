@@ -1,8 +1,6 @@
 using System.Text;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using AlphaPlus.Shared.AppResources.Common;
-using Microsoft.AspNetCore.Mvc.TagHelpers;
-using System.Text.Encodings.Web;
 
 namespace AlphaPlus.Tickets.Site.Features.Shared.TagHelpers;
 
@@ -15,11 +13,8 @@ public class CompactFeedbackTagHelper : TagHelper
     [HtmlAttributeName("class-name")]
     public string ClassName { get; set; }
 
-    [HtmlAttributeName("bootstrap-tooltip")]
-    public bool IsBootstrapTooltip { get; set; }
-
-    [HtmlAttributeName("like-class")]
-    public string LikeClass { get; set; } = "icon-like";
+    [HtmlAttributeName("like-icon-class")]
+    public string LikeIconClass { get; set; } = "icon-like";
 
     public override void Process(TagHelperContext context, TagHelperOutput output)
     {
@@ -29,16 +24,9 @@ public class CompactFeedbackTagHelper : TagHelper
         output.Attributes.SetAttribute("id", "box-icon-title");
         output.Attributes.SetAttribute("data-fid", FunctionId);
         var sb = new StringBuilder();
-        sb.Append("<div class=\"brust-box\">");
-        if (IsBootstrapTooltip)
-        {
-            sb.Append($"<span class=\"{LikeClass}\" id=\"icon-like\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"{CommonResx.LikeTooltip}\"></span>");
-        }
-        else
-        {
-            sb.Append($"<span class=\"{LikeClass}\" id=\"icon-like\" data-title=\"{CommonResx.LikeTooltip}\"></span>");
-        }
         sb
+            .Append("<div class=\"brust-box\">")
+            .Append($"<span class=\"{LikeIconClass}\" id=\"icon-like\" data-title=\"{CommonResx.LikeTooltip}\"></span>")
             .Append("<ul class=\"bursts\">")
             .Append("<li class=\"deg0\"></li>")
             .Append("<li class=\"deg36\"></li>")
@@ -50,15 +38,8 @@ public class CompactFeedbackTagHelper : TagHelper
             .Append("<li class=\"deg252\"></li>")
             .Append("<li class=\"deg288\"></li>")
             .Append("<li class=\"deg324\"></li>")
-            .Append("</ul></div>");
-        if (IsBootstrapTooltip)
-        {
-            sb.Append($"<span class=\"{LikeClass} {LikeClass}-rotate\" id=\"icon-dislike\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"{CommonResx.DislikeTooltip}\"></span>");
-        }
-        else
-        {
-            sb.Append($"<span class=\"{LikeClass} {LikeClass}-rotate\" id=\"icon-dislike\" data-title=\"{CommonResx.DislikeTooltip}\"></span>");
-        }
+            .Append("</ul></div>")
+            .Append($"<span class=\"{LikeIconClass} {LikeIconClass}-rotate\" id=\"icon-dislike\" data-title=\"{CommonResx.DislikeTooltip}\"></span>");
 
         output.Content.SetHtmlContent(sb.ToString());
     }

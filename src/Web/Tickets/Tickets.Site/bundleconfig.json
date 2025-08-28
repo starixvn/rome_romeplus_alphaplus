@@ -232,6 +232,8 @@
   {
     "outputFileName": "wwwroot/bundles/betlists/casino-details.js",
     "inputFiles": [
+      "assets/scripts/components/compact-feedback.js",
+      "assets/scripts/betlists/betlist-feedback.js",
       "assets/scripts/components/pager.js",
       "assets/scripts/betlists/casino-details/casino-details.js"
     ]

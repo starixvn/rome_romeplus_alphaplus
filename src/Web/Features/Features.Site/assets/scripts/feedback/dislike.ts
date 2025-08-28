@@ -1,8 +1,9 @@
 ﻿'use strict';
 
 declare interface Window {
-    popupManager: any;
-    indexManager: any;
+    CompactFeedbackManager: {
+        closeDislikePopup: () => void;
+    };
     afterDislikeSubmitCallback: () => void;
 }
 
@@ -13,7 +14,7 @@ class CompactFeedback {
             e.preventDefault();
             this.submitFeedback(formFeedback);
         });
-        $('#buttonClose').click(() => window.top.popupManager.close());
+        $('#buttonClose').click(() => window.top.CompactFeedbackManager.closeDislikePopup());
         const btnSubmit = $('#buttonSubmit');
         $('#feedback-msg')
             .keyup(function () {

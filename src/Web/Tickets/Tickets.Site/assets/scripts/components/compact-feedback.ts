@@ -1,11 +1,11 @@
 interface Window {
-    bootboxAlert: (message: string) => void;
-    afterDislikeSubmitCallback: () => void;
+    CompactFeedbackManager: {
+        init: ($like, $dislike, functionId: number, extraInfo: string) => void;
+    };
 }
 
 class CompactFeedbackComponent {
     private readonly boxIconTitleId = '#box-icon-title';
-    private extraInfo = '';
 
     init(currentFormData?: any) {
         const $boxIconTitle = $(this.boxIconTitleId);
@@ -13,37 +13,27 @@ class CompactFeedbackComponent {
             return;
         }
 
-        if (!top.alpha) {
+        if (!top.CompactFeedbackManager) {
             this.toggleShowHide(false);
             return;
         }
 
-        if (currentFormData) {
-            const formData = this.isJQueryForm(currentFormData) ? this.getFormData(currentFormData) : currentFormData;
-            this.setExtraInfo(formData);
-        }
+        currentFormData =
+            currentFormData ??
+            (this.isJQueryForm(currentFormData) ? this.getFormData(currentFormData) : currentFormData);
+        const extraInfo = currentFormData ? JSON.stringify(currentFormData) : '';
 
-        this.registerEvents($boxIconTitle);
+        this.registerEvents($boxIconTitle, extraInfo);
     }
 
-    private registerEvents($boxIconTitle: JQuery) {
-        const $like = $('#icon-like').removeClass('active hide finished');
-        const $dislike = $('#icon-dislike').removeClass('active hide');
-        const isBootstrapTooltip = $like.data('toggle') === 'tooltip';
-        if (isBootstrapTooltip) {
-            $like.tooltip();
-            $dislike.tooltip();
-        } else {
-            // Debounced window events for better performance
-            $(window)
-                .off('load.compactFeedback resize.compactFeedback')
-                .on('load.compactFeedback resize.compactFeedback', () =>
-                    setTimeout(() => this.setBoxIconTitleClass($boxIconTitle), 100)
-                );
-        }
-
-        $like.off('click').one('click', () => this.handleLikeClick($boxIconTitle.data('fid'), $like, $dislike));
-        $dislike.off('click').on('click', () => this.handleDislikeClick($boxIconTitle.data('fid'), $like, $dislike));
+    private registerEvents($boxIconTitle: JQuery, extraInfo: string) {
+        // Debounced window events for better performance
+        $(window)
+            .off('load.compactFeedback resize.compactFeedback')
+            .on('load.compactFeedback resize.compactFeedback', () =>
+                setTimeout(() => this.setBoxIconTitleClass($boxIconTitle), 100)
+            );
+        top.CompactFeedbackManager.init($('#icon-like'), $('#icon-dislike'), $boxIconTitle.data('fid'), extraInfo);
     }
 
     private setBoxIconTitleClass($boxIconTitle: JQuery) {
@@ -51,62 +41,18 @@ class CompactFeedbackComponent {
         const elementWidth = $boxIconTitle.outerWidth() || 0;
         const windowWidth = $(window).width() || 0;
         const scrollLeft = $(window).scrollLeft() || 0;
-
+        const marginRight = 150;
+        const marginLeft = 100;
         const screenLeft = elementOffset.left - scrollLeft;
         const screenRight = windowWidth - (screenLeft + elementWidth);
 
         // Remove existing position classes and add appropriate one
-        $boxIconTitle.removeClass('left right').addClass(screenLeft < 100 ? 'left' : 'right');
-        if (screenLeft < 100) {
+        $boxIconTitle.removeClass('left right').addClass(screenLeft < marginLeft ? 'left' : 'right');
+        if (screenLeft < marginLeft) {
             $boxIconTitle.addClass('left');
-        } else if (screenRight < 100) {
+        } else if (screenRight < marginRight) {
             $boxIconTitle.addClass('right');
         }
-    }
-
-    private handleLikeClick(functionId: number, $like: JQuery, $dislike: JQuery) {
-        $.post(
-            `${top.alpha.urls.messageRootPath}Feedback/Add`,
-            {
-                functionId,
-                rate: 5,
-                extraInfo: this.extraInfo
-            },
-            (result) => {
-                if (result.Code) {
-                    top.bootboxAlert(result.Message);
-                } else {
-                    $like.addClass('active');
-                    setTimeout(() => $like.addClass('finished'), 1000);
-                    $dislike.addClass('hide');
-                }
-            }
-        );
-        top.popupManager.close();
-    }
-
-    private handleDislikeClick(functionId: number, $like: JQuery, $dislike: JQuery) {
-        top.afterDislikeSubmitCallback = () => {
-            $like.addClass('hide');
-            $dislike.addClass('active').off('click');
-            setTimeout(() => top.popupManager.close(), 3000);
-        };
-
-        top.popupManager.open(
-            `${top.alpha.urls.messageRootPath}Feedback/Dislike?id=${functionId}&extraInfo=${this.extraInfo}`,
-            undefined,
-            440,
-            260,
-            null,
-            null,
-            null,
-            null,
-            $like.position().top + 195,
-            null,
-            {
-                customClass: 'feedback-modal'
-            }
-        );
     }
 
     private isJQueryForm(value: JQuery) {
@@ -127,13 +73,7 @@ class CompactFeedbackComponent {
 
     toggleShowHide(isShow: boolean) {
         const $boxIconTitle = $(this.boxIconTitleId);
-        const $target = $boxIconTitle.parent('.form-group').length
-            ? $boxIconTitle.parent('.form-group')
-            : $boxIconTitle;
-        $target.toggleClass('hide', !isShow);
-    }
-
-    setExtraInfo(currentFormData: any) {
-        this.extraInfo = currentFormData ? JSON.stringify(currentFormData) : '';
+        const $parent = $boxIconTitle.parent('.form-group');
+        ($parent.length > 0 ? $parent : $boxIconTitle).toggleClass('hide', !isShow);
     }
 }

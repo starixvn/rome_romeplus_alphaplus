@@ -7,14 +7,20 @@
 }
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/pagination")
-    <script src="~/bundles/betlists/casino-details.js?v=5"></script>
+    @StaticResources.RenderScripts("~/bundles/betlists/casino-details")
 }
 <div class="space-fixed-title"></div>
 <div class="bl_title no-border-bottom fixed-top">
-    <div class="bl-export-excel">
-        <a asp-action="@Model.ExportExcelUrl" asp-all-route-data="@Model.GetExcelParams()" class="icon icon-excel"
-            title="@Resources.ExportToExcel"></a>
-        </a>
+    <div class="right-icon-title">
+        @if (Model.BetListData.Total > 0)
+        {
+            <compact-feedback fid="75" />
+        }
+        <div class="bl-export-excel">
+            <a asp-action="@Model.ExportExcelUrl" asp-all-route-data="@Model.GetExcelParams()" class="icon icon-excel"
+                title="@Resources.ExportToExcel"></a>
+            </a>
+        </div>
     </div>
 </div>
 <div id="table-container" class="combined-fixed-pagination-bottom">

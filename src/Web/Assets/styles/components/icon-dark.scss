@@ -280,7 +280,16 @@
         top: auto;
     }
 }
-
+.right-icon-title{
+    display: flex;
+    justify-content: flex-end;
+    .bl-export-excel{
+        position: relative;
+        top: auto;
+        right: auto;
+        margin-left: 10px;
+    }
+}
 .box-icon-title {
     display: flex;
     align-items: center;
@@ -315,7 +324,7 @@
     &.active {
         background: #2c2c2c;
         &:before {
-            content: '\e99c';
+            content: '\e99e';
         }
         &.finished{
             + .bursts{

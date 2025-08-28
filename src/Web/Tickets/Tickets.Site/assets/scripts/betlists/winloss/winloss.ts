@@ -205,7 +205,7 @@ class WinLossBetListView {
             (html) => {
                 this.globalFormData = formData;
                 this.tableBetList.find('tbody').html(html);
-                this.compactFeedback.setExtraInfo(this.globalFormData);
+                this.compactFeedback.init(this.globalFormData);
             },
             this.tableBetList
         );

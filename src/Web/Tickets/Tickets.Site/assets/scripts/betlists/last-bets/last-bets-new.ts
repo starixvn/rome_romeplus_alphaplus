@@ -50,9 +50,7 @@ class LastBetsNewView {
         }
 
         this.initFeedback();
-        const hasBetListData = this.hasBetListData();
-        this.compactFeedback.init(hasBetListData ? this.getParam() : undefined);
-        hasBetListData && this.compactFeedback.toggleShowHide(hasBetListData);
+        this.initCompactFeedback(this.getParam());
     }
 
     private cacheElements() {
@@ -132,9 +130,11 @@ class LastBetsNewView {
         }, 1000);
     }
 
-    private hasBetListData() {
+    private initCompactFeedback(formData) {
         const firstCell = this.$betListTableContainer.find('tr:first td:first');
-        return firstCell.length > 0 && !firstCell.data('noinfo');
+        const hasBetListData = firstCell.length > 0 && !firstCell.data('noinfo');
+        this.compactFeedback.init(formData);
+        this.compactFeedback.toggleShowHide(hasBetListData);
     }
 
     private setTransIdCacheKeyByFilter(lastTransId, lastestTransId) {
@@ -225,8 +225,7 @@ class LastBetsNewView {
         const latestTransId = this.$betListTableContainer.find('#latest-trans-id').val();
         this.setTransId(lastTransId, latestTransId);
 
-        this.compactFeedback.setExtraInfo(formData);
-        this.compactFeedback.toggleShowHide(this.hasBetListData());
+        this.initCompactFeedback(formData);
 
         this.isCalling = false;
     }

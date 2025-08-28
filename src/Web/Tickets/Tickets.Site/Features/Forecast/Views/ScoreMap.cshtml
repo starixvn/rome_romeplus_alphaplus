@@ -72,13 +72,13 @@
     }
 }
 <partial name="ScoreMapBetTypes" model="Model" />
-<div class="filter mt-10 mb-10">
+<div class="filter mt-10 mb-10 z-index10">
     <button type="button" class="btn-submit@(Model.FromBetList ? string.Empty : " hidden")"
         id="btn-submit">@Resources.Submit</button>
     @{
         RenderLoadingIcon("icon-loadingScoreMapResults");
     }
-    <compact-feedback fid="200" class-name="hide" />
+    <compact-feedback fid="73" class-name="hide" />
 </div>
 <div class="alert error hidden mt-10" id="alert-betTypeError">@Resources.PleaseChooseABetType</div>
 <div id="content" class="list-table-match">

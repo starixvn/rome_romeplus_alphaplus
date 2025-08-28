@@ -6,7 +6,9 @@ interface Window {
     popupManager: {
         open(url: string, title: string, width: number): void;
         open(url: string, title: string, width: number, height: number): void;
-        open(
+        openMultiple(url: string, title: string, width: number): void;
+        openWithHanlder(
+            handler,
             url: string,
             title: string,
             width: number,
@@ -14,18 +16,16 @@ interface Window {
             windowCss,
             titleCss,
             closeBtnCss,
-            left,
-            top,
+            left: number | undefined,
+            top: number,
             iframeAttributes,
             options
         ): void;
-        openMultiple(url: string, title: string, width: number): void;
-        close(): void;
     };
 }
 
 class TotalBets {
-    private compactFeedback: CompactFeedbackComponent = null;
+    private readonly compactFeedback = new CompactFeedbackComponent();
 
     initAutoRefresh($tblRpt: JQuery) {
         const autoRefreshSeconds = $('#hidden-autoRefreshSeconds')
@@ -44,7 +44,6 @@ class TotalBets {
                 $.get(autoRefreshUrl, (html) => {
                     $tblRpt.html(html);
                     this.bindViewForecast($tblRpt);
-                    this.initCompactFeedback($tblRpt);
                 });
             },
             savedSecondKey: $('#hidden-autoRefreshSavedSecondKey').val()
@@ -59,23 +58,25 @@ class TotalBets {
                 e.preventDefault();
                 top.popupManager.open($(e.target).attr('href'), '', 900);
             });
+
+        this.initCompactFeedback($tblRpt);
     }
 
     initCompactFeedback($tblRpt: JQuery) {
-        if (this.compactFeedback === null) {
-            this.compactFeedback = new CompactFeedbackComponent();
+        const firstCell = $tblRpt.find('tr:first td:first');
+        const hasData = firstCell.length > 0 && !firstCell.data('noinfo');
+
+        if (hasData) {
             this.compactFeedback.init();
-        } else {
-            const firstCell = $tblRpt.find('tr:first td:first');
-            this.compactFeedback.toggleShowHide(firstCell.length > 0 && !firstCell.data('noinfo'));
         }
+
+        this.compactFeedback.toggleShowHide(hasData);
     }
 
     init() {
         const $tblRpt = $('#tblRpt').find('tbody');
         this.initAutoRefresh($tblRpt);
         this.bindViewForecast($tblRpt);
-        this.initCompactFeedback($tblRpt);
     }
 }
 
