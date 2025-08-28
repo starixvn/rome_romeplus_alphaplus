@@ -17,7 +17,7 @@ public static class ErrorCodeHandler
             _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain
         };
 
-    public static string MappingAddManualWithdrawalErrCode(int errCode)
+    public static string MappingAddManualWithdrawalErrCode(int errCode, int memberId, int agentId)
         => errCode switch
         {
             400 => CashServicesResx.ModelValidationFailed,
@@ -31,6 +31,7 @@ public static class ErrorCodeHandler
             409 => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain,
             410 => CashServicesResx.ProviderRejectErrorMessage,
             411 => CashServicesResx.PaymentProviderUnavailable,
+            415 => string.Format(CashServicesResx.InvalidMemberErrMsg, memberId, agentId),
             500 => CashServicesResx.AnErrorOccurredWhileProcessingWithdrawalRequest,
             _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain
         };
@@ -52,7 +53,7 @@ public static class ErrorCodeHandler
             _ => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain
         };
 
-    public static string MappingUpdateTransactionStatus(int errCode, string sqlException)
+    public static string MappingUpdateTransactionStatus(int errCode, string sqlException, string transId, int memberId, int agentId)
         => errCode switch
         {
             405 => CashServicesResx.InvalidParameters,
@@ -60,6 +61,8 @@ public static class ErrorCodeHandler
             409 => CashServicesResx.TheTransactionInsertedFailedPleaseTryAgain,
             410 => CashServicesResx.ProviderRejectErrorMessage,
             411 => CashServicesResx.PaymentProviderUnavailable,
+            415 => string.Format(CashServicesResx.InvalidMemberErrMsg, memberId, agentId),
+            416 => string.Format(CashServicesResx.InvalidTransactionErrMsg, transId, memberId),
             499 => $"{CashServicesResx.InternalServerError} {sqlException}",
             _ => sqlException
         };

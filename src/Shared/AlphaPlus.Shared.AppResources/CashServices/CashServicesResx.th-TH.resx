@@ -315,6 +315,15 @@
           <data name="TheAmountMustBeBetween0And1AsPerProviderLimits" xml:space="preserve">
             <value>จำนวนเงินต้องอยู่ระหว่าง {0} และ {1} ตามข้อจำกัดของผู้ให้บริการ</value>
           </data>
+          <data name="InvalidMemberErrMsg" xml:space="preserve">
+            <value>สมาชิกไม่ถูกต้อง [{0}, {1}]</value>
+          </data>
+          <data name="InvalidTransactionErrMsg" xml:space="preserve">
+            <value>ธุรกรรมไม่ถูกต้อง [{0}, {1}]</value>
+          </data>
+          <data name="SelectedBankIsNotSupportedByProvider" xml:space="preserve">
+            <value>ธนาคารที่เลือกไม่ได้รับการสนับสนุนจาก {0} กรุณาเลือกธนาคารอื่น</value>
+          </data>
           <data name="SuperchargeYourCashFlow" xml:space="preserve">
             <value>เพิ่มพลังกระแสเงินสดของคุณ?</value>
           </data>

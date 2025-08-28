@@ -315,6 +315,15 @@
           <data name="TheAmountMustBeBetween0And1AsPerProviderLimits" xml:space="preserve">
             <value>金額必須在{0}和{1}之間，符合提供商限制</value>
           </data>
+          <data name="InvalidMemberErrMsg" xml:space="preserve">
+            <value>無效會員 [{0}, {1}]</value>
+          </data>
+          <data name="InvalidTransactionErrMsg" xml:space="preserve">
+            <value>無效交易 [{0}, {1}]</value>
+          </data>
+          <data name="SelectedBankIsNotSupportedByProvider" xml:space="preserve">
+            <value>所選銀行不被{0}支援。請選擇其他銀行。</value>
+          </data>
           <data name="SuperchargeYourCashFlow" xml:space="preserve">
             <value>增強您的現金流？</value>
           </data>

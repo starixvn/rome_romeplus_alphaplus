@@ -188,7 +188,7 @@ public class TransactionsController(
         result = await httpClientHelper.PostAsync<AddTransactionParams, ResultModel>("/api/withdrawal/create", request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingAddManualWithdrawalErrCode(result.Code);
+            result.Message = ErrorCodeHandler.MappingAddManualWithdrawalErrCode(result.Code, request.CustId, agentId);
         }
         return Json(result);
     }
@@ -350,7 +350,11 @@ public class TransactionsController(
         var result = await httpClientHelper.PostAsync<ProcessDepositTransaction, ResultModel>("/api/deposit/approve", request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code, result.Message);
+            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code,
+                result.Message,
+                request.TransId.ToString(),
+                request.CustId,
+                request.ActorId);
         }
         return Json(result);
     }
@@ -374,7 +378,11 @@ public class TransactionsController(
         var result = await httpClientHelper.PostAsync<ProcessDepositTransaction, ResultModel>("/api/deposit/reject", request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code, result.Message);
+            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code,
+                result.Message,
+                request.TransId.ToString(),
+                request.CustId,
+                request.ActorId);
         }
         return Json(result);
     }
@@ -395,7 +403,11 @@ public class TransactionsController(
         var result = await httpClientHelper.PostAsync<ProcessWithdrawalTransaction, ResultModel>("/api/withdrawal/approve", request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code, result.Message);
+            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code,
+                result.Message,
+                request.TransId.ToString(),
+                request.CustId,
+                request.ActorId);
         }
         return Ok(result);
     }
@@ -416,7 +428,11 @@ public class TransactionsController(
         var result = await httpClientHelper.PostAsync<ProcessWithdrawalTransaction, ResultModel>("/api/withdrawal/reject", request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code, result.Message);
+            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code,
+                result.Message,
+                request.TransId.ToString(),
+                request.CustId,
+                request.ActorId);
         }
         return Ok(result);
     }
