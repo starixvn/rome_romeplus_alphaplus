@@ -76,14 +76,41 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
             return remotingRef.GetProductName(productId);
         }
 
+        public string GetProductNames(string productIds)
+        {
+            var productNames = productIds
+                .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                .Select(productId => GetProductName(int.Parse(productId)));
+
+            return string.Join(", ", productNames);
+        }
+
         public string GetTrackingBankName(string code)
         {
             return ReplaceOldNewValue(code, GetBankName);
         }
 
+        public string GetTrackingYesNo(string status)
+        {
+            return ReplaceOldNewValue(status, GetYesNo);
+        }
+
         private string GetBankName(string code)
         {
             return GetLogResource("BankName_" + code);
+        }
+
+        public string HtmlDecode(string text)
+        {
+            return string.IsNullOrWhiteSpace(text)
+                ? text
+                : System.Web.HttpUtility.HtmlDecode(text);
+        }
+
+        private string GetYesNo(string status)
+        {
+            var key = status == "1" ? "Yes" : "No";
+            return GetLogResource(key);
         }
     }
 }

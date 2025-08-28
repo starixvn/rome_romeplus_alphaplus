@@ -11,6 +11,7 @@ public record TransactionResponse
 public record Transaction
 {
     public string TransId { get; set; }
+    public string ProviderTransId { get; set; }
     public int CustId { get; set; }
     public string Username { get; set; }
     public string Nickname { get; set; }

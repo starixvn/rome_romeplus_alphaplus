@@ -89,7 +89,8 @@
     "memberCashBalance": "会员现金余额",
     "minAmount": "最小",
     "maxAmount": "最大",
-    "invalidFileType": "无效的文件类型。请上传 jpeg、jpg 或 png 文件。"
+    "invalidFileType": "无效的文件类型。请上传 jpeg、jpg 或 png 文件。",
+    "providerSupportedBankError": "{providerName} 不支持此银行。请选择其他银行。"
   },
 
   "updateWithdrawal": {

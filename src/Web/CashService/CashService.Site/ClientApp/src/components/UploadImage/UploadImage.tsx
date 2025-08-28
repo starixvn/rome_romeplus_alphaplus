@@ -11,6 +11,7 @@ interface UploadImageProps {
   removeImage?: () => void;
   image?: File | string | null;
   inputId?: string;
+  acceptFileTypes?: string;
 }
 
 const ACCEPTED_FILE_TYPES = '.jpeg,.jpg,.png';
@@ -24,6 +25,7 @@ const UploadImage: React.FC<UploadImageProps> = ({
   removeImage,
   image,
   inputId,
+  acceptFileTypes = ACCEPTED_FILE_TYPES,
 }) => {
   const { t: tGlobal } = useTranslation('global');
 
@@ -162,7 +164,9 @@ const UploadImage: React.FC<UploadImageProps> = ({
         <br />
         <span className="text-[110%]">{tGlobal('dragAndDrop')}</span>
       </p>
-      <span>{tGlobal('imageFormat')}</span>
+      <span>
+        {tGlobal('imageFormat')} {acceptFileTypes.replace('.', '')}
+      </span>
       <span className="font-[500]">({tGlobal('maxSize').replace('{0}', maxSize.toString())})</span>
     </div>
   );
@@ -181,7 +185,7 @@ const UploadImage: React.FC<UploadImageProps> = ({
       <input
         id={inputId || 'image-upload'}
         type="file"
-        accept={ACCEPTED_FILE_TYPES}
+        accept={acceptFileTypes}
         onChange={handleImageUpload}
         className="hidden"
         disabled={disabled}

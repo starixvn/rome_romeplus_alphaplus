@@ -339,7 +339,7 @@ describe('paymentProviderService', () => {
 
   describe('getBanksByTransactionType', () => {
     it('should successfully fetch banks by transaction type', async () => {
-      const transactionType = 1;
+      const transactionType = 1;  
       const mockBanks: PaymentsInterfaces.Bank[] = [
         { 
           id: 1, 

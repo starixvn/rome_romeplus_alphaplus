@@ -83,7 +83,7 @@
   "TTB": "TMBThanachart Bank",
   "uploadImage": "คลิกเพื่ออัปโหลด",
   "dragAndDrop": "หรือลากและวาง",
-  "imageFormat": "อัปโหลด jpeg, jpg, png",
+  "imageFormat": "อัปโหลด",
   "maxSize": "สูงสุด {0} MB",
   "exportToExcel": "ส่งออกเป็น Excel",
   "copied": "คัดลอกแล้ว",

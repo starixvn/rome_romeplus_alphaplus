@@ -32,5 +32,17 @@ public static class CommonEndpoints
                 Summary = "Get setup checklist",
                 Description = "Returns a setup checklist"
             });
+
+        group.MapGet("banks", async (string site, int providerId, string languageCode, ICommonService service) =>
+        {
+            var banks = await service.GetProviderBanks(site, providerId, languageCode);
+            return Results.Ok(banks);
+        })
+        .WithName("GetProviderBanks")
+        .WithOpenApi(operation => new(operation)
+        {
+            Summary = "Get provider banks",
+            Description = "Returns a list of all available banks for a provider"
+        });
     }
 }

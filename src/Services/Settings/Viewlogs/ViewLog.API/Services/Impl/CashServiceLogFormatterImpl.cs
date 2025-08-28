@@ -61,11 +61,6 @@
             return ReplaceOldNewValue(promotionType, GetPromotionTypeName);
         }
 
-        public string GetTrackingRegisterInfo(string registerInfo)
-        {
-            return ReplaceOldNewValue(registerInfo, GetRegisterInfo);
-        }
-
         private string GetTransactionTypeName(string type)
         {
             return GetLogResource("TransactionType_" + type);
@@ -104,7 +99,7 @@
 
         private string GetProviderName(string providerId)
         {
-            return remotingRef.GetProviderName(int.Parse(providerId));
+            return !string.IsNullOrWhiteSpace(providerId) ? remotingRef.GetProviderName(int.Parse(providerId)) : string.Empty;
         }
 
         private string GetTransactionStatus(string transactionStatus)
@@ -115,11 +110,6 @@
         private string GetPromotionTypeName(string promotionType)
         {
             return GetLogResource("PromotionType_" + promotionType);
-        }
-
-        private string GetRegisterInfo(string registerInfo)
-        {
-            return GetLogResource("CashService_RegisterInfo_" + registerInfo);
         }
     }
 }

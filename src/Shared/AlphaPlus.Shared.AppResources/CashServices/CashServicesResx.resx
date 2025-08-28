@@ -315,4 +315,13 @@
   <data name="AgentCashBalanceIsInsufficient" xml:space="preserve">
     <value>Agent’s cash balance is insufficient.</value>
   </data>
+  <data name="InvalidMemberErrMsg" xml:space="preserve">
+    <value>Invalid Member [{0}, {1}]</value>
+  </data>
+  <data name="InvalidTransactionErrMsg" xml:space="preserve">
+    <value>Invalid Transaction [{0}, {1}]</value>
+  </data>
+  <data name="SelectedBankIsNotSupportedByProvider" xml:space="preserve">
+    <value>Selected bank is not supported by {0}. Please choose another.</value>
+  </data>
 </root>

@@ -1,5 +1,6 @@
 export interface TransactionItem {
   transId: string;
+  providerTransId: string;
   custId: number;
   username: string;
   nickname: string;

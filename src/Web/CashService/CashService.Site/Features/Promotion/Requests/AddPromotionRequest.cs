@@ -1,6 +1,7 @@
 namespace AlphaPlus.CashService.Site.Features.Promotion.Requests;
 
 using AlphaPlus.CashService.Site.Features.Shared.Requests;
+using Helpers;
 using Newtonsoft.Json;
 
 public class AddPromotionRequest : BaseActionRequest
@@ -19,7 +20,7 @@ public class AddPromotionRequest : BaseActionRequest
     public bool IsValid(out string errMsg)
     {
         errMsg = string.Empty;
-        if (FromDate is null || ToDate is null || FromDate >= ToDate)
+        if (FromDate is null || ToDate is null || FromDate > ToDate)
         {
             errMsg = "Promotion period is invalid.";
             return false;
@@ -37,11 +38,18 @@ public class AddPromotionRequest : BaseActionRequest
             errMsg = "English content is required.";
             return false;
         }
-        const int bannerSizeLimit = 20 * 1024 * 1024;
 
-        if (Contents.Any(content => content.Banner.Length > bannerSizeLimit))
+        if (Contents.Exists(content => content.Banner is not null && !ImageUploadHelper.IsValidImageFile(content.Banner)))
         {
-            errMsg = "Banner size maximum is 20MB";
+            errMsg = "Invalid image format";
+            return false;
+        }
+
+        const int bannerSizeLimit = 5 * 1024 * 1024;
+
+        if (Contents.Exists(content => content.Banner is not null && content.Banner.Length > bannerSizeLimit))
+        {
+            errMsg = "Banner size maximum is 5MB";
             return false;
         }
 
@@ -59,7 +67,6 @@ public class PromotionProductSetting
 
     public double Percentage { get; set; }
 
-    [JsonProperty("MinTO")]
     public decimal MinTurnover { get; set; }
 
     public decimal MaxPayout { get; set; }

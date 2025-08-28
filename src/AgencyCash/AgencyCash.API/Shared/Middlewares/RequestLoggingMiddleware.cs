@@ -113,24 +113,26 @@ public class RequestLoggingMiddleware(
 
     private static string RemovePassword(string requestBody)
     {
-        var hasPassword = false;
-        var node = JsonNode.Parse(requestBody)?.AsObject();
-
-        if (node != null)
+        try
         {
-            foreach (var prop in node)
+            var node = JsonNode.Parse(requestBody)?.AsObject();
+            if (node == null)
             {
-                if (prop.Key.Equals("password", StringComparison.OrdinalIgnoreCase))
-                {
-                    hasPassword = true;
-                    node[prop.Key] = "******";
-                }
+                return requestBody;
             }
-        }
 
-        return hasPassword
-            ? node.ToJsonString(new JsonSerializerOptions { WriteIndented = false })
-            : requestBody;
+            if (node.TryGetPropertyValue("password", out _))
+            {
+                node["password"] = "******";
+                return node.ToJsonString(new JsonSerializerOptions { WriteIndented = false });
+            }
+
+            return requestBody;
+        }
+        catch (JsonException)
+        {
+            return requestBody;
+        }
     }
 
     private static (int, int) GetAgentAndCustId(IQueryCollection query)
@@ -143,15 +145,8 @@ public class RequestLoggingMiddleware(
         var agentId = 0;
         var custId = 0;
 
-        if (query.TryGetValue("agentId", out var agentIdValue))
-        {
-            int.TryParse(agentIdValue, out agentId);
-        }
-
-        if (query.TryGetValue("custId", out var custIdValue))
-        {
-            int.TryParse(custIdValue, out custId);
-        }
+        _ = query.TryGetValue("agentId", out var agentIdValue) && int.TryParse(agentIdValue, out agentId);
+        _ = query.TryGetValue("custId", out var custIdValue) && int.TryParse(custIdValue, out custId);
 
         return (agentId, custId);
     }

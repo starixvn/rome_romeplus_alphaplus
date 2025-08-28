@@ -2898,16 +2898,25 @@
   <data name="SettingInfo" xml:space="preserve">
     <value>設定情報</value>
   </data>
-  <data name="CashService_RegisterInfo_3" xml:space="preserve">
-    <value>すべて</value>
+  <data name="system" xml:space="preserve">
+    <value>システム</value>
   </data>
-  <data name="CashService_RegisterInfo_0" xml:space="preserve">
-    <value>なし</value>
+  <data name="Account" xml:space="preserve">
+    <value>アカウント</value>
   </data>
-  <data name="CashService_RegisterInfo_1" xml:space="preserve">
+  <data name="SubDomainPrefix" xml:space="preserve">
+    <value>サブドメインプレフィックス</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>はい</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>いいえ</value>
+  </data>
+  <data name="AllowRegistration" xml:space="preserve">
     <value>会員登録を許可</value>
   </data>
-  <data name="CashService_RegisterInfo_2" xml:space="preserve">
+  <data name="AllowDeposit" xml:space="preserve">
     <value>会員入金を許可</value>
   </data>
 </root>

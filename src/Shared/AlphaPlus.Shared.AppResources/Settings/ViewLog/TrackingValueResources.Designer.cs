@@ -1843,6 +1843,24 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allow member to deposit.
+        /// </summary>
+        public static string AllowDeposit {
+            get {
+                return ResourceManager.GetString("AllowDeposit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allow member to register.
+        /// </summary>
+        public static string AllowRegistration {
+            get {
+                return ResourceManager.GetString("AllowRegistration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allow Update PT.
         /// </summary>
         public static string allowupdpt {
@@ -2658,42 +2676,6 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         public static string Browser {
             get {
                 return ResourceManager.GetString("Browser", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to None.
-        /// </summary>
-        public static string CashService_RegisterInfo_0 {
-            get {
-                return ResourceManager.GetString("CashService_RegisterInfo_0", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Allow member to register.
-        /// </summary>
-        public static string CashService_RegisterInfo_1 {
-            get {
-                return ResourceManager.GetString("CashService_RegisterInfo_1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Allow member to deposit.
-        /// </summary>
-        public static string CashService_RegisterInfo_2 {
-            get {
-                return ResourceManager.GetString("CashService_RegisterInfo_2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to All.
-        /// </summary>
-        public static string CashService_RegisterInfo_3 {
-            get {
-                return ResourceManager.GetString("CashService_RegisterInfo_3", resourceCulture);
             }
         }
         
@@ -8314,6 +8296,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No information is available.
         /// </summary>
         public static string noInfo {
@@ -9295,6 +9286,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sub Domain Prefix.
+        /// </summary>
+        public static string SubDomainPrefix {
+            get {
+                return ResourceManager.GetString("SubDomainPrefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Success.
         /// </summary>
         public static string success {
@@ -9363,6 +9363,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         public static string syncCS {
             get {
                 return ResourceManager.GetString("syncCS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System.
+        /// </summary>
+        public static string system {
+            get {
+                return ResourceManager.GetString("system", resourceCulture);
             }
         }
         
@@ -9484,7 +9493,7 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Title.
         /// </summary>
         public static string Title {
             get {
@@ -11262,6 +11271,15 @@ namespace AlphaPlus.Shared.AppResources.Settings.ViewLog {
         public static string WrongPasswordAlert {
             get {
                 return ResourceManager.GetString("WrongPasswordAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
         

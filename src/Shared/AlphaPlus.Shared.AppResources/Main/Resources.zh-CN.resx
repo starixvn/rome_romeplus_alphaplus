@@ -830,7 +830,7 @@
     <value>输赢资料报告现在包括一个新的奖金栏目。</value>
   </data>
   <data name="CashService" xml:space="preserve">
-    <value>Cash Service</value>
+    <value>现金服务</value>
   </data>
   <data name="HighlightPopupNewFeatureIntro" xml:space="preserve">
     <value>担心高风险玩家或意外的大额赔付？&lt;br/&gt;一旦会员的潜在赢额达到设定阈值，代理即可通过体育博彩潜在赢额上限的功能自动禁止该直系会员继续下注。</value>
@@ -882,5 +882,8 @@
   </data>
   <data name="DeactivateCashServiceNote" xml:space="preserve">
     <value>您账户的现金服务将于明日关闭，相关费用也将同步停止计收。</value>
+  </data>
+  <data name="TotalCashMember" xml:space="preserve">
+    <value>现金会员总数</value>
   </data>
 </root>

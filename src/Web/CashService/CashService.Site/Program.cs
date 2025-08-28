@@ -1,4 +1,5 @@
 using System.Text.Json;
+using AlphaPlus.CashService.Site.Features.Promotion.Models.Configurations;
 using AlphaPlus.CashService.Site.Features.Promotion.Services;
 using AlphaPlus.CashService.Site.Features.Transactions.Services;
 using AlphaPlus.CashService.Site.Helpers;
@@ -74,8 +75,10 @@ builder.Services
         options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
     });
 
+builder.Services.AddHttpClient();
 builder.Services.AddHttpClient<HttpClientHelper>();
-
+builder.Services.Configure<UploadImageSettings>(
+    builder.Configuration.GetSection("UploadPromotionBannerConfig"));
 builder.Services.AddHealthChecks();
 builder.Services.AddSignalR();
 

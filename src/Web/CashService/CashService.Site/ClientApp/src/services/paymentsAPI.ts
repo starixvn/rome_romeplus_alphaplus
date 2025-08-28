@@ -2,6 +2,7 @@ import { api } from './axios';
 import { ResultModel } from './interfaces/ResultModel';
 import { TransactionType } from './interfaces/TransactionType';
 import * as PaymentsInterfaces from './interfaces/Payments';
+import { Bank } from './interfaces/Bank';
 
 // API service for payment providers
 export const paymentProviderService = {
@@ -46,7 +47,7 @@ export const paymentProviderService = {
   },
 
   getBanksByTransactionType: async (transactionType: number): Promise<any> => {
-    return await api.get<PaymentsInterfaces.Bank[]>(`GetBanksByTransactionType?transactionType=${transactionType}`);
+    return await api.get<Bank[]>(`GetBanksByTransactionType?transactionType=${transactionType}`);
   },
 
   updateProvider: async (provider: any): Promise<any> => {
@@ -54,7 +55,7 @@ export const paymentProviderService = {
   },
 
   getBanksByCust: async (): Promise<any> => {
-    return await api.get<PaymentsInterfaces.Bank[]>(`GetBanksByCust`);
+    return await api.get<Bank[]>(`GetBanksByCust`);
   },
 
   getTransactionTypes: async (): Promise<any> => {

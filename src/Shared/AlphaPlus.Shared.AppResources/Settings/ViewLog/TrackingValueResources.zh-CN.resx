@@ -3624,16 +3624,22 @@
   <data name="SettingInfo" xml:space="preserve">
     <value>设置信息</value>
   </data>
-  <data name="CashService_RegisterInfo_3" xml:space="preserve">
-    <value>全部</value>
+  <data name="system" xml:space="preserve">
+    <value>系统</value>
   </data>
-  <data name="CashService_RegisterInfo_0" xml:space="preserve">
-    <value>无</value>
+  <data name="SubDomainPrefix" xml:space="preserve">
+    <value>子域名前缀</value>
   </data>
-  <data name="CashService_RegisterInfo_1" xml:space="preserve">
+  <data name="Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="AllowRegistration" xml:space="preserve">
     <value>允许会员注册</value>
   </data>
-  <data name="CashService_RegisterInfo_2" xml:space="preserve">
+  <data name="AllowDeposit" xml:space="preserve">
     <value>允许会员存款</value>
   </data>
 </root>

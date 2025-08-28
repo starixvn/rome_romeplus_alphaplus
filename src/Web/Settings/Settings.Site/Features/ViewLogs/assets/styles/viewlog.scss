@@ -225,6 +225,12 @@ $height-td: 28px;
     .valueold {
         padding-top: 0;
     }
+
+    .valuechanged,.valueold,.valuecontent  {
+        display: block;
+        max-width: 300px;
+        word-break: break-all;
+    }
 }
 
 .headerSportTypeDetail {

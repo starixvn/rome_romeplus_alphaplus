@@ -1,4 +1,4 @@
-import { DepositMatchingMode } from './DepositMatchingMode';
+import { DepositMatchingMode } from './Payments/DepositMatchingMode';
 
 // Bank interface
 export interface Bank {

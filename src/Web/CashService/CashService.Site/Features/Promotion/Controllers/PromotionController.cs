@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Models.Products;
+using Models.PromotionItems;
 using Requests;
 using Services;
 using Shared;
@@ -113,14 +114,14 @@ public class PromotionController(
     {
         var url = $"/promotions/get?promotionTypeId={promotionType}&statusId={status}&custId={userSession.CustId}&sitedbgroupId={userSession.SiteDBGroupId}&language={userSession.Language}";
 
-        var result = await httpClientHelper.GetAsync<object>(url);
+        var result = await httpClientHelper.GetAsync<List<PromotionDetail>>(url);
 
         return Json(result);
     }
 
     public async Task<ImmutableDictionary<string, string>> GetLanguages(CancellationToken cancellationToken)
     {
-        var fullLanguages = AppSettings.IsSiteLabel789y ? LanguageConstant.CodeNames : LanguageConstant.CodeKeysWithoutCN3;
+        var fullLanguages = AppSettings.IsSiteLabel789y ? LanguageConstant.CodeNames : LanguageConstant.CodeKeysWithoutCn3;
 
         return await Task.FromResult(fullLanguages);
     }
@@ -129,14 +130,14 @@ public class PromotionController(
     {
         var url = $"/promotions/{promotionId}?promotionId={promotionId}&custId={userSession.CustId}&sitedbgroupId={userSession.SiteDBGroupId}&language={userSession.Language}";
 
-        var result = await httpClientHelper.GetAsync<object>(url);
+        var result = await httpClientHelper.GetAsync<PromotionDetail>(url);
 
         return Json(result);
     }
 
     public async Task<IActionResult> GetPromotionProducts()
     {
-        var url = $"/promotions/products?site={userSession.SiteName}&currency={userSession.CurrencyId}&settingstatus=0&language={userSession.Language}";
+        var url = $"/promotions/products?site={userSession.Site}&currency={userSession.CurrencyId}&settingstatus=0&language={userSession.Language}";
         var products = await httpClientHelper.GetAsync<List<Product>>(url);
         var productCategoryList = products.GroupBy(p => p.ProductCategoryId).Select(g
             => new ProductDropdown
@@ -175,6 +176,8 @@ public class PromotionController(
             return Json(result);
         }
 
+        result.Message = errMsg;
+
         return Json(result);
     }
 
@@ -185,7 +188,6 @@ public class PromotionController(
         {
             return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
-
         request.SetUserSession(userSession);
 
         var files = promotionService.ProcessEditPromotionRequest(request);
@@ -321,7 +323,7 @@ public class PromotionController(
         var result = await httpClientHelper.PostAsync<ProcessPromotionTransactionRequest, ResultModel>("/api/promotions/updateTransactionStatus", request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingAddManualWithdrawalErrCode(result.Code);
+            result.Message = ErrorCodeHandler.MappingUpdatePromoteTransactionStatusErrCode(result.Code, request.TransId, request.CustId, request.ActorId);
         }
         return result;
     }

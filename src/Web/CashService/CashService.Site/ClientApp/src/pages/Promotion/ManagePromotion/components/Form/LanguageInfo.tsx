@@ -4,6 +4,7 @@ import { ButtonTabComponent } from '../../../../../components/Buttons/ButtonTabC
 import { TitleComponent } from '../../../../../components/Title';
 import UploadImage from '../../../../../components/UploadImage/UploadImage';
 import CkEditorWrapper from '../../../../../components/CkEditorWrapper/CkEditorWrapper';
+import { PROMOTION_BANNER_SIZE_LIMIT } from '../../../../../constants/promotionConstants';
 const BANNER_LOCATION = `${window.location.origin + window.location.pathname.split('/').slice(0, -2).join('/')}/PromotionImages`;
 
 export interface PromotionLangFields {
@@ -64,6 +65,7 @@ export const TitleField: React.FC<{
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder=""
+        maxLength={66}
       />
     </div>
   );
@@ -96,9 +98,10 @@ export const BannerField: React.FC<{
         prevImage={bannerName ? `${BANNER_LOCATION}/${bannerName}` : ''}
         image={banner ?? null}
         inputId={`image-upload-${lang}`}
-        maxSize={20}
+        maxSize={PROMOTION_BANNER_SIZE_LIMIT}
         customClassName="w-full h-[300px]"
         removeImage={handleRemoveImage}
+        acceptFileTypes=".jpeg,.jpg,.png,.webp"
       />
     </div>
   );

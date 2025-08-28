@@ -1882,16 +1882,25 @@
   <data name="SettingInfo" xml:space="preserve">
     <value>설정 정보</value>
   </data>
-  <data name="CashService_RegisterInfo_3" xml:space="preserve">
-    <value>전체</value>
+  <data name="system" xml:space="preserve">
+    <value>시스템</value>
   </data>
-  <data name="CashService_RegisterInfo_0" xml:space="preserve">
-    <value>없음</value>
+  <data name="Account" xml:space="preserve">
+    <value>계정</value>
   </data>
-  <data name="CashService_RegisterInfo_1" xml:space="preserve">
+  <data name="SubDomainPrefix" xml:space="preserve">
+    <value>서브도메인 접두사</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>예</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>아니오</value>
+  </data>
+  <data name="AllowRegistration" xml:space="preserve">
     <value>회원 등록 허용</value>
   </data>
-  <data name="CashService_RegisterInfo_2" xml:space="preserve">
+  <data name="AllowDeposit" xml:space="preserve">
     <value>회원 입금 허용</value>
   </data>
 </root>

@@ -28,6 +28,8 @@ import { LoadingFullComponent } from '../../../../components/LoadingComponent';
 import ConfirmPopup from '../../../../components/ConfirmPopup';
 import { ResultModel } from '../../../../services/interfaces/ResultModel.ts';
 import { ButtonIconComponent } from '../../../../components/Buttons/ButtonIconComponent.tsx';
+import { baseAPI } from '../../../../services/commonAPI.ts';
+import { Bank } from '../../../../services/interfaces/Bank.ts';
 
 interface PendingWithdrawalModalProps {
   transId: string;
@@ -63,6 +65,7 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
     message: '',
   });
   const [showConfirm, setShowConfirm] = useState<null | 'approve' | 'reject'>(null);
+  const [providerSupportedBank, setProviderSupportedBank] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchWithdrawal = async () => {
@@ -217,7 +220,8 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
     }
   };
 
-  const isValidParams = (isReject: boolean = false) => {
+  // Validation functions
+  const validateBankSelection = (isReject: boolean): boolean => {
     if (!withdrawalFrom && !isReject) {
       setResultMessage({
         type: 'error',
@@ -225,18 +229,61 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
       });
       return false;
     }
+    return true;
+  };
 
+  const validateProviderSupportedBank = (isReject: boolean): boolean => {
+    if (
+      providerSupportedBank.length > 0 &&
+      !providerSupportedBank.includes(withdrawal?.paymentTo.split('-')[0] || '') &&
+      !isReject
+    ) {
+      setResultMessage({
+        type: 'error',
+        message: t('manualWithdrawalForm.providerSupportedBankError').replace(
+          '{providerName}',
+          withdrawalFrom.split('-')[1]
+        ),
+      });
+      return false;
+    }
+    return true;
+  };
+
+  const validateImageSize = (): boolean => {
     if (image && image.size > 1024 * 1024) {
       setResultMessage({ type: 'error', message: t('manualWithdrawalForm.imageSizeError') });
       return false;
     }
+    return true;
+  };
 
+  const validateImageType = (): boolean => {
     const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
     if (image && !allowedTypes.includes(image.type)) {
       setResultMessage({
         type: 'error',
         message: t('manualWithdrawalForm.invalidFileType'),
       });
+      return false;
+    }
+    return true;
+  };
+
+  const isValidParams = (isReject: boolean = false) => {
+    if (!validateBankSelection(isReject)) {
+      return false;
+    }
+
+    if (!validateProviderSupportedBank(isReject)) {
+      return false;
+    }
+
+    if (!validateImageSize()) {
+      return false;
+    }
+
+    if (!validateImageType()) {
       return false;
     }
 
@@ -257,11 +304,42 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
       });
       setMinAmount(limits.minAmt);
       setMaxAmount(limits.maxAmt);
+      const response = await baseAPI.getProviderBanks(providerId);
+      if (response.error) {
+        setResultMessage({
+          type: 'error',
+          message: response.error.message,
+        });
+      } else {
+        const supportedBankCodes = response.data.map((bank: Bank) => bank.code);
+        setProviderSupportedBank(supportedBankCodes);
+      }
     }
   };
 
+  const handleProviderSupportedBank = () => {
+    if (
+      providerSupportedBank.length > 0 &&
+      !providerSupportedBank.includes(withdrawal?.paymentTo.split('-')[0] || '')
+    ) {
+      setResultMessage({
+        type: 'error',
+        message: t('manualWithdrawalForm.providerSupportedBankError').replace(
+          '{providerName}',
+          withdrawalFrom.split('-')[1]
+        ),
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (providerSupportedBank.length > 0) {
+      handleProviderSupportedBank();
+    }
+  }, [providerSupportedBank, withdrawalFrom]);
+
   const renderMinMaxAmount = () => {
-    if (providerId <= 0) {
+    if (providerId <= 0 || isProviderProcessing) {
       return null;
     }
     const displayMaxAmount = maxAmount ? displayAmount(maxAmount) : 'unlimited';

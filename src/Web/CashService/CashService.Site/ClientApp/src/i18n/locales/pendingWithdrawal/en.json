@@ -90,7 +90,8 @@
     "memberCashBalance": "Member Cash Balance",
     "minAmount": "Min",
     "maxAmount": "Max",
-    "invalidFileType": "Invalid file type. Please upload a jpeg, jpg, or png file."
+    "invalidFileType": "Invalid file type. Please upload a jpeg, jpg, or png file.",
+    "providerSupportedBankError": "Selected bank is not supported by {providerName}. Please choose another."
   },
 
   "updateWithdrawal": {

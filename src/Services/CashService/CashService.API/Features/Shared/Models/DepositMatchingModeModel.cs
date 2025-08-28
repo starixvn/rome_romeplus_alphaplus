@@ -1,4 +1,4 @@
-namespace AlphaPlus.CashService.API.Features.Payments.Models
+namespace AlphaPlus.CashService.API.Features.Shared.Models
 {
     public class DepositMatchingModeModel
     {

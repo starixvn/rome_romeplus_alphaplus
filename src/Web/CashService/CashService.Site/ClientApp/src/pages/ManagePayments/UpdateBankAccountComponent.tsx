@@ -15,7 +15,6 @@ import { TitleComponent } from '../../components/Title';
 import { BANK_TRANSACTION_TYPES, bankStatusConstant } from '../../constants/paymentConstants';
 import { baseAPI } from '../../services/commonAPI';
 import {
-  Bank,
   BankAccount,
   createDefaultBankAccount,
   DepositMatchingMode,
@@ -32,6 +31,7 @@ import { isNumberIncludes } from '../../utils/sharedUtils';
 import { createErrorResultModel } from '../../services/interfaces/ResultModel';
 import { StatusComponent } from '../../components/Status';
 import { ButtonIconComponent } from '../../components/Buttons/ButtonIconComponent';
+import { Bank } from '../../services/interfaces/Bank';
 
 interface UpdateBankAccountComponentProps {
   onClose: () => void;

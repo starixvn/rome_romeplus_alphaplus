@@ -23,7 +23,5 @@
         string GetTrackingTransactionStatus(string transactionStatus);
 
         string GetTrackingPromotionTypeName(string promotionType);
-
-        string GetTrackingRegisterInfo(string registerInfo);
     }
 }

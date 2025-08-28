@@ -2,6 +2,8 @@ namespace AlphaPlus.CashService.Site.Features.Promotion.Services;
 
 using Fanex.Logging;
 using Helpers;
+using Microsoft.Extensions.Options;
+using Models.Configurations;
 using Newtonsoft.Json;
 using Requests;
 using Shared.Models;
@@ -15,9 +17,11 @@ public interface IPromotionService
     Task<ResultModel> ProcessBannerUploadedAsync(Dictionary<string, IFormFile> files);
 }
 
-public class PromotionService(ILogger logger) : IPromotionService
+public class PromotionService(ILogger logger, IOptions<UploadImageSettings> options) : IPromotionService
 {
     private const string PromotionUploadFolder = "wwwroot/PromotionImages";
+    private readonly UploadImageSettings uploadBannerSettings = options.Value;
+    private static readonly HttpClient HttpClient = new();
 
     public Dictionary<string, IFormFile> ProcessEditPromotionRequest(EditPromotionRequest request)
     {
@@ -57,7 +61,40 @@ public class PromotionService(ILogger logger) : IPromotionService
         {
             return new ResultModel { Code = 1, Message = "Upload banner failed" };
         }
+
+        if (uploadBannerSettings is not null
+            && uploadBannerSettings.IsHttpClientUpload
+            && uploadBannerSettings.Locations.Count > 0)
+        {
+            var fileNames = files.Keys.ToList();
+            UploadImageThroughApi(fileNames);
+        }
         return new ResultModel(0, string.Empty);
+    }
+
+    private void UploadImageThroughApi(List<string> fileNames)
+    {
+        foreach (var fileName in fileNames)
+        {
+            var localPath = Path.Combine(Directory.GetCurrentDirectory(), PromotionUploadFolder, fileName);
+            var fileBytes = File.ReadAllBytes(localPath);
+            Task.Run(async () =>
+            {
+                try
+                {
+                    await HttpClient.UploadImageToAllDomainsAsync(
+                        logger,
+                        uploadBannerSettings.Locations,
+                        fileBytes,
+                        fileName
+                    );
+                }
+                catch (Exception ex)
+                {
+                    await logger.ErrorAsync($@"Error uploading {fileName} through API: {ex.Message}", ex);
+                }
+            });
+        }
     }
 
     private async Task<ResultModel> UploadBannerResultAsync(IFormFile file, string fileName, string directory)

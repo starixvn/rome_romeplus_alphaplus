@@ -118,15 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="NotifyPendingDeposit" xml:space="preserve">
-    <value>You have a new member deposit request for &lt;b&gt;{0}&lt;/b&gt; from &lt;b&gt;{1}&lt;/b&gt;.</value>
+    <value>&lt;b&gt;{1}&lt;/b&gt;이 &lt;b&gt;{0}&lt;/b&gt;에 대한 신규 회원 보증금을 요청했습니다.</value>
   </data>
   <data name="NotifyPendingWithdrawal" xml:space="preserve">
-    <value>You have a new member withdrawal request for &lt;b&gt;{0}&lt;/b&gt; from &lt;b&gt;{1}&lt;/b&gt;.</value>
+    <value>&lt;b&gt;{1}&lt;/b&gt;님이 &lt;b&gt;{0}&lt;/b&gt;의 신규 회원 출금 요청을 보내왔습니다.</value>
   </data>
   <data name="NotifyPendingWithdrawal_Title" xml:space="preserve">
-    <value>Member Withdrawal Request</value>
+    <value>회원 탈퇴 요청</value>
   </data>
   <data name="NotifyPendingDeposit_Title" xml:space="preserve">
-    <value>Member Deposit Request</value>
+    <value>회원 입금 요청</value>
   </data>
 </root>

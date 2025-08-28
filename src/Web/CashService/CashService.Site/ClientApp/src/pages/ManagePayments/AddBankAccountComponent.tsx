@@ -18,7 +18,7 @@ import {
 } from '../../components/Title';
 import { BANK_TRANSACTION_TYPES } from '../../constants/paymentConstants';
 import { baseAPI } from '../../services/commonAPI';
-import { Bank } from '../../services/interfaces/Payments/Bank';
+import { Bank } from '../../services/interfaces/Bank';
 import { paymentProviderService } from '../../services/paymentsAPI';
 import {
   hasAutoDepositTransactionType,

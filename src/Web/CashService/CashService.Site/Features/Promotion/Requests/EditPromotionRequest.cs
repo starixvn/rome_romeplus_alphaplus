@@ -1,6 +1,6 @@
-using AlphaPlus.CashService.Site.Features.Shared.Requests;
-
 namespace AlphaPlus.CashService.Site.Features.Promotion.Requests;
+
+using AlphaPlus.CashService.Site.Features.Shared.Requests;
 
 public class EditPromotionRequest : BaseActionRequest
 {

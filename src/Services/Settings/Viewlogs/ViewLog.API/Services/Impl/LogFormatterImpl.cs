@@ -9,7 +9,7 @@ using AlphaPlus.Shared.AppResources.Settings.ViewLog;
 namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
 {
     public class LogFormatterImpl : BaseLogFormatterImpl, LogFormatter
-    {   
+    {
         private Dictionary<string, bool> custStatuses;
         private Dictionary<string, int> resourcesByProductCacheRef;
         private Dictionary<string, int> resourcesBySportTypeCacheRef;

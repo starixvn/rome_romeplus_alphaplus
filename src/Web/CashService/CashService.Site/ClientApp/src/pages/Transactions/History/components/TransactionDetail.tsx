@@ -203,12 +203,20 @@ const TransactionDetail: React.FC<TransactionDetailProps> = ({
                       <TitleComponent type="label" text={t('detail.from')} />
                       <div className="flex items-center">
                         {renderBankAccount(detailData.paymentFrom, tGlobal)}
+                        {detailData.transactionTypeId === TransactionType.Deposit &&
+                          detailData.providerTransId && (
+                            <span className="ml-[4px]">({detailData.providerTransId})</span>
+                          )}
                       </div>
                     </div>
                     <div className="w-[48%]">
                       <TitleComponent type="label" text={t('detail.to')} />
                       <div className="flex items-center">
                         {renderBankAccount(detailData.paymentTo, tGlobal)}
+                        {detailData.transactionTypeId === TransactionType.Withdrawal &&
+                          detailData.providerTransId && (
+                            <span className="ml-[4px]">({detailData.providerTransId})</span>
+                          )}
                       </div>
                     </div>
                     <div className="w-[48%]">

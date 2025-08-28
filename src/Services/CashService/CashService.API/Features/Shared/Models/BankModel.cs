@@ -1,7 +1,7 @@
-namespace AlphaPlus.CashService.API.Features.Payments.Models
+namespace AlphaPlus.CashService.API.Features.Shared.Models
 {
     public class BankModel
-    {
+    {   
         public string TransactionTypeID { get; set; }
         public string TransTypeList { get; set; }
 
@@ -13,5 +13,7 @@ namespace AlphaPlus.CashService.API.Features.Payments.Models
         public string Name { get; set; }
         public string TransactionTypes => TransactionTypeID ?? TransTypeList;
         public DepositMatchingModeModel DepositMatchingMode { get; set; }
+        
+        public int ProviderId { get; set; }
     }
 }

@@ -40,6 +40,10 @@
             <Mapping DataField="BankID" ObjectProperty="Id"></Mapping>
             <Mapping DataField="Bankcode" ObjectProperty="Code"></Mapping>
         </Setting>
+        <Setting Key="Age_CashService_ProviderBankList" SpName="Age_CashService_ProviderBankList" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
+            <Mapping DataField="BankID" ObjectProperty="Id"></Mapping>
+            <Mapping DataField="Bankcode" ObjectProperty="Code"></Mapping>
+        </Setting>
         <Setting Key="Age_CashService_PaymentProviderStatus_Upd" SpName="Age_CashService_PaymentProviderStatus_Upd" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
         <Setting Key="Age_CashService_PaymentMethod_Upd" SpName="Age_CashService_PaymentMethod_Upd" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
 

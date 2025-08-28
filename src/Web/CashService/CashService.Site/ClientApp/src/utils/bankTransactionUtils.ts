@@ -1,4 +1,4 @@
-import { Bank } from '../services/interfaces/Payments/Bank';
+import { Bank } from '../services/interfaces/Bank';
 import { BANK_TRANSACTION_TYPES } from '../constants/paymentConstants';
 
 const checkTransactionType = (bankId: string, banks: Bank[], transactionTypeId: number): boolean => {

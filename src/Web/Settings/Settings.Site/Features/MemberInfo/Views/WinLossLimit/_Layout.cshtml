@@ -1,5 +1,6 @@
 @using AlphaPlus.Core.Helpers
 @using AlphaPlus.Core.Configurations
+@using AlphaPlus.Shared.AppResources.Common
 @using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit
 @inject AlphaPlus.Core.Models.IUserSession userSession
 
@@ -41,5 +42,6 @@
                 $(".open-link").unbind().bind('click', function (event) { top.alpha.viewDataURL(event); });
             });
         </script>
+        <input type="hidden" name="NotAuthorizedMessage" value="@CommonResx.NotAuthorized" />
     </body>
 </html>
