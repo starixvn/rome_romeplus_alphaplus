@@ -1,6 +1,6 @@
 ﻿namespace AlphaPlus.CashService.Site.Helpers;
 
-using AlphaPlus.Shared.AppResources.CashServices;
+using Shared.AppResources.CashServices;
 
 public static class ErrorCodeHandler
 {
@@ -36,6 +36,24 @@ public static class ErrorCodeHandler
 
     private static string GetInvalidTransactionMessage(string transId, int memberId) => string.Format(CashServicesResx.InvalidTransactionErrMsg, transId, memberId);
 
+    private static readonly Dictionary<int, Func<int, int, string>> WithdrawalErrorResolvers =
+        new()
+        {
+            { 400, (_, _) => CashServicesResx.ModelValidationFailed },
+            { AccountDisabled, (_, _) => GetAccountDisabledMessage() },
+            { AccountClosed, (_, _) => GetAccountClosedMessage() },
+            { AccountSuspended, (_, _) => GetAccountSuspendedMessage() },
+            { InvalidParameters, (_, _) => GetInvalidParametersMessage() },
+            { InsufficientBalance, (_, _) => CashServicesResx.MemberCashBalanceIsInsufficient },
+            { AmountExceedsLimits, (_, _) => CashServicesResx.TheAmountMustBeBetween0And1AsPerProviderLimits },
+            { DailyLimitExceeded, (_, _) => CashServicesResx.ExceedsTheDailyWithdrawalLimit },
+            { TransactionInsertFailed, (_, _) => GetTransactionInsertFailedMessage() },
+            { ProviderRejected, (_, _) => CashServicesResx.ProviderRejectErrorMessage },
+            { ProviderUnavailable, (_, _) => CashServicesResx.PaymentProviderUnavailable },
+            { InvalidMember, GetInvalidMemberMessage },
+            { ServerError, (_, _) => CashServicesResx.AnErrorOccurredWhileProcessingWithdrawalRequest },
+        };
+
     public static string MappingAddManualDepositErrorCode(int errCode) =>
         errCode switch
         {
@@ -50,23 +68,9 @@ public static class ErrorCodeHandler
         };
 
     public static string MappingAddManualWithdrawalErrCode(int errCode, int memberId, int agentId)
-        => errCode switch
-        {
-            400 => CashServicesResx.ModelValidationFailed,
-            AccountDisabled => GetAccountDisabledMessage(),
-            AccountClosed => GetAccountClosedMessage(),
-            AccountSuspended => GetAccountSuspendedMessage(),
-            InvalidParameters => GetInvalidParametersMessage(),
-            InsufficientBalance => CashServicesResx.MemberCashBalanceIsInsufficient,
-            AmountExceedsLimits => CashServicesResx.TheAmountMustBeBetween0And1AsPerProviderLimits,
-            DailyLimitExceeded => CashServicesResx.ExceedsTheDailyWithdrawalLimit,
-            TransactionInsertFailed => GetTransactionInsertFailedMessage(),
-            ProviderRejected => CashServicesResx.ProviderRejectErrorMessage,
-            ProviderUnavailable => CashServicesResx.PaymentProviderUnavailable,
-            InvalidMember => GetInvalidMemberMessage(memberId, agentId),
-            ServerError => CashServicesResx.AnErrorOccurredWhileProcessingWithdrawalRequest,
-            _ => GetTransactionInsertFailedMessage()
-        };
+        => WithdrawalErrorResolvers.TryGetValue(errCode, out var resolve)
+            ? resolve(memberId, agentId)
+            : GetTransactionInsertFailedMessage();
 
     public static string MappingUpdatePromoteTransactionStatusErrCode(int errCode, string transId, int memberId, int agentId)
         => errCode switch
