@@ -327,7 +327,8 @@ body {
             .badge-number{
                 font-size: calculateScale(12px);
                 min-width: calculateScale(16px);
-                padding: calculateScale(2px) calculateScale(2px);
+                padding: 0 calculateScale(2px);
+                line-height: calculateScale(18px);
             }
         }
     }
