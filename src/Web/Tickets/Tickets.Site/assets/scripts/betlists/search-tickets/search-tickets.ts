@@ -38,12 +38,7 @@ class SearchTicketView {
     initCompactFeedback(refno) {
         const firstCell = $('#tbl-betlist tbody tr:first td:first');
         const hasBetListData = firstCell.length > 0 && !firstCell.data('noinfo');
-
-        if (hasBetListData) {
-            this.compactFeedback.init({ refno });
-        }
-
-        this.compactFeedback.toggleShowHide(hasBetListData);
+        this.compactFeedback.init({ refno }, hasBetListData);
     }
 }
 

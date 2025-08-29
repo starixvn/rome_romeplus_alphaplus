@@ -133,8 +133,7 @@ class LastBetsNewView {
     private initCompactFeedback(formData) {
         const firstCell = this.$betListTableContainer.find('tr:first td:first');
         const hasBetListData = firstCell.length > 0 && !firstCell.data('noinfo');
-        this.compactFeedback.init(formData);
-        this.compactFeedback.toggleShowHide(hasBetListData);
+        this.compactFeedback.init(formData, hasBetListData);
     }
 
     private setTransIdCacheKeyByFilter(lastTransId, lastestTransId) {

@@ -65,12 +65,7 @@ class TotalBets {
     initCompactFeedback($tblRpt: JQuery) {
         const firstCell = $tblRpt.find('tr:first td:first');
         const hasData = firstCell.length > 0 && !firstCell.data('noinfo');
-
-        if (hasData) {
-            this.compactFeedback.init();
-        }
-
-        this.compactFeedback.toggleShowHide(hasData);
+        this.compactFeedback.init(undefined, hasData);
     }
 
     init() {

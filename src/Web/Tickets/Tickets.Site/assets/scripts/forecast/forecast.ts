@@ -85,12 +85,7 @@ class Forecast {
     private initCompactFeedback($ddlLeague: JQuery) {
         const firstCell = $('#tblRpt tbody tr:first td:first');
         const hasData = firstCell.length > 0 && !firstCell.data('noinfo');
-
-        if (hasData) {
-            this.compactFeedback.init($ddlLeague.length > 0 ? { leagueId: $ddlLeague.val() } : '');
-        }
-
-        this.compactFeedback.toggleShowHide(hasData);
+        this.compactFeedback.init($ddlLeague.length > 0 ? { leagueId: $ddlLeague.val() } : undefined, hasData);
     }
 
     init() {

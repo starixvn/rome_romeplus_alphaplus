@@ -31,7 +31,6 @@ class CancelledBetsListView {
         });
         this.pagerComponent.pageList = this.pagerComponent.smallPageList;
         this.pagerComponent.render();
-
         this.compactFeedback.init(this.$betlistForm);
     }
 

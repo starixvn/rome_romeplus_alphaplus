@@ -270,12 +270,7 @@ class ScoreMap {
         this.$content.find('.tbl-score-result').each((_, table) => {
             hasData = hasData || $(table).find('tbody tr').length > 0;
         });
-
-        if (hasData) {
-            this.compactFeedback.init(formData);
-        }
-
-        this.compactFeedback.toggleShowHide(hasData);
+        this.compactFeedback.init(formData, hasData);
     }
 }
 

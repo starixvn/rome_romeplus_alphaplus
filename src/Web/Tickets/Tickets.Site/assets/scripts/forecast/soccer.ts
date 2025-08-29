@@ -173,7 +173,7 @@ const soccer = {
                         }
 
                         soccerRenderer.updateMatchesCached(matchForecasts);
-                        soccer.initCompactFeedback(formData);
+                        soccer.compactFeedback.init(formData, true);
                     }
 
                     soccer.domElements.mainContent.parent().show();
@@ -439,11 +439,6 @@ const soccer = {
                 ].join('');
             }
         }
-    },
-
-    initCompactFeedback(formData) {
-        soccer.compactFeedback.init(formData);
-        soccer.compactFeedback.toggleShowHide(true);
     },
 
     hideCompactFeedbackAndDataGrid: function () {
