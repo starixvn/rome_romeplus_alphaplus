@@ -43,7 +43,7 @@ public class PromotionDetailsReportWorkbook(IWebHostEnvironment webHostEnvironme
             .Body(reportData.PromotionDetails, GetRowMapper())
             .ExportToBytes();
 
-        return new ExcelFileViewModel($"{CashServicesResx.PromotionReport}-{request.Username}-{fromDate}-{toDate}", fileContent);
+        return new ExcelFileViewModel($"PromotionReport{request.PromotionId}-{request.Username}-{fromDate}-{toDate}", fileContent);
     }
 
     private static string BuildTitle(

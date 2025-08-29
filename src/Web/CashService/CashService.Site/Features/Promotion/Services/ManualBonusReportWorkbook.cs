@@ -43,7 +43,7 @@ public class ManualBonusReportWorkbook(IWebHostEnvironment webHostEnvironment) :
             .Body(reportData, GetRowMapper())
             .ExportToBytes();
 
-        return new ExcelFileViewModel($"{CashServicesResx.ManualBonus}-{request.Username}-{fromDate}-{toDate}", fileContent);
+        return new ExcelFileViewModel($"ManualBonus-{request.Username}-{fromDate}-{toDate}", fileContent);
     }
 
     private Mapper<ManualBonus> GetRowMapper()
