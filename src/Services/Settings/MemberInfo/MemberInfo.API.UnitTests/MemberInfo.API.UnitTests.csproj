@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MemberInfo.API\MemberInfo.API.csproj" />
-    <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
