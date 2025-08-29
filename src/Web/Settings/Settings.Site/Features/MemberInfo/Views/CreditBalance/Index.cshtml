@@ -69,6 +69,12 @@
     <div class="form-group">
         <button type="submit" class="btn-submit" id="btn-submit">@Resources.Submit</button>
     </div>
+    @if (pagedCreditBalances.TotalItems > 0)
+    {
+        <div class="form-group">
+            <compact-feedback fid="300" />
+        </div>
+    }
     <input type="hidden" value="@Model.CustId" name="@nameof(Model.CustId)" id="autoSuggestionCustId" />
     <input type="hidden" value="@Model.CustLevelId" name="@nameof(Model.CustLevelId)" />
 }

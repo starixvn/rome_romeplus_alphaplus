@@ -13,6 +13,7 @@ class RewardDetailView {
     private pager: PagerComponentTransfer;
     private pageSize: number;
     private copyHtml: CopyHtmlComponent;
+    private readonly compactFeedback: CompactFeedbackComponent;
 
     constructor(
         filter: FilterComponent,
@@ -23,7 +24,8 @@ class RewardDetailView {
         visibleColumn: VisibleColumnDropdownNewComponent,
         sorter: SortComponent,
         pager: PagerComponentTransfer,
-        copyHtml: CopyHtmlComponent
+        copyHtml: CopyHtmlComponent,
+        compactFeedback: CompactFeedbackComponent
     ) {
         this.filter = filter;
         this.dateRangePicker = dateRangePicker;
@@ -34,11 +36,12 @@ class RewardDetailView {
         this.sorter = sorter;
         this.pager = pager;
         this.copyHtml = copyHtml;
+        this.compactFeedback = compactFeedback;
     }
 
     init() {
         this.initComponents();
-        this.bindTableEvents();
+        this.bindTableEvents(this.getSearchData());
 
         this.pageSize = +$('#PageSize').val();
         $('#rewardDetail').removeAttr('style');
@@ -106,7 +109,7 @@ class RewardDetailView {
             const queryString = $.param(searchData);
             $.get(`GetDetail?${queryString}`, (html) => {
                 $('#tbl-transfer-container').empty().html(html);
-                this.bindTableEvents();
+                this.bindTableEvents(searchData);
                 alphaTransfer.updateCurrentUrl(queryString);
             }).always($.unblockUI);
         }
@@ -144,7 +147,7 @@ class RewardDetailView {
         return searchData;
     }
 
-    private bindTableEvents() {
+    private bindTableEvents(searchData) {
         this.pager.reset();
         this.pager.render(
             new PagerOptionTransfer(
@@ -167,6 +170,7 @@ class RewardDetailView {
         this.sorter.tableSorter({ tableElement: $tblTransfer });
 
         this.showHideColumns($tblTransfer);
+        this.initCompactFeedback(searchData, $tblTransfer);
     }
 
     private showHideColumns($tblTransfer: JQuery, visibleColumn = undefined) {
@@ -209,6 +213,12 @@ class RewardDetailView {
 
         return visible;
     }
+
+    private initCompactFeedback(searchData, $tblTransfer: JQuery) {
+        const firstCell = $tblTransfer.find('tbody tr:first td:first');
+        const hasData = firstCell.length > 0 && !firstCell.is('[colspan]');
+        this.compactFeedback.init(searchData, hasData);
+    }
 }
 
 $(function () {
@@ -221,6 +231,7 @@ $(function () {
         new VisibleColumnDropdownNewComponent(),
         new SortComponent(),
         new PagerComponentTransfer($),
-        new CopyHtmlComponent(Clipboard)
+        new CopyHtmlComponent(Clipboard),
+        new CompactFeedbackComponent()
     ).init();
 });

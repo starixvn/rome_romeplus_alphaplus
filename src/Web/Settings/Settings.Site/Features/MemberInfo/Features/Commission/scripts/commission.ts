@@ -1,4 +1,6 @@
 class CommissionView {
+    private readonly compactFeedback = new CompactFeedbackComponent();
+
     init() {
         const $ddlProduct = $('#ddl-product');
         const $ddlMaster = $('#ddl-master');
@@ -53,12 +55,15 @@ class CommissionView {
                 } else {
                     $.get(this.buildUrl(`GetData?productId=${$ddlProduct.val()}&recommendId=${custId}`), (html) => {
                         $tblContainer.html(html);
-                        this.setStickyTableHeaders();
+                        this.setStickyTableHeadersAndCompactFeedback({
+                            productId: $ddlProduct.val(),
+                            recommendId: custId
+                        });
                     }).always($.unblockUI);
                 }
             });
 
-        this.setStickyTableHeaders();
+        this.setStickyTableHeadersAndCompactFeedback(this.getQueryString());
     }
 
     private buildUrl(action: string): string {
@@ -68,12 +73,27 @@ class CommissionView {
     private getMasterComm(productId, masterId, $tblContainer: JQuery) {
         $.get(this.buildUrl(`GetData?productId=${productId}&masterId=${masterId}`), (html) => {
             $tblContainer.html(html);
-            this.setStickyTableHeaders();
+            this.setStickyTableHeadersAndCompactFeedback({ productId, masterId });
         }).always($.unblockUI);
     }
 
-    private setStickyTableHeaders() {
-        $('#tbl-comm').stickyTableHeaders();
+    private setStickyTableHeadersAndCompactFeedback(formData) {
+        const $table = $('#tbl-comm');
+        const firstCell = $table.find('tbody tr:first td:first');
+        const hasData = firstCell.length > 0 && !firstCell.is('[colspan]');
+        hasData && $table.stickyTableHeaders();
+        this.compactFeedback.init(formData, hasData);
+    }
+
+    private getQueryString() {
+        const formData = {};
+        const params = new URLSearchParams(window.location.search);
+        const entries = params.entries();
+        for (const [key, value] of entries) {
+            formData[key] = value;
+        }
+
+        return formData;
     }
 }
 

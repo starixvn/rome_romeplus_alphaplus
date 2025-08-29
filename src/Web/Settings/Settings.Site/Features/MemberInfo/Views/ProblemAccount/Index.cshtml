@@ -5,7 +5,7 @@
 @using AlphaPlus.Core.Helpers
 @using AlphaPlus.Core.Models
 @using AlphaPlus.Shared.AppResources.Settings.ProductResources
-
+@addTagHelper *, AlphaPlus.Settings.Site
 @{
     Layout = "~/Features/MemberInfo/Views/Shared/_Layout.cshtml";
 }
@@ -40,15 +40,15 @@
         <div class="tab-content">
             @if (Model.Query.CustLevel.IsSuperLevel())
             {
-                RenderContent(UserLevel.Master);
+                await RenderContent(UserLevel.Master);
             }
 
             @if (Model.Query.CustLevel.IsMasterOrSuperLevel())
             {
-                RenderContent(UserLevel.Agent);
+                await RenderContent(UserLevel.Agent);
             }
 
-            @{RenderContent(UserLevel.Member);}
+            @{await RenderContent(UserLevel.Member);}
             <div class="shadow" id="shadow">
                 <div class="output" id="output"></div>
             </div>
@@ -120,10 +120,10 @@
 
 @functions
 {
-    void RenderContent(UserLevel level)
+    async Task RenderContent(UserLevel level)
     {
     <div id="@($"tab{level.DisplayName}")" class="tab-pane fade @(IsActiveTab(level) ? "in active" : string.Empty)" role="tabpanel">
-        @{RenderFilter(level);}
+        @{await RenderFilter(level);}
         @{RenderCheckAll(level);}
         @{RenderContainer(level);}
     </div>
@@ -132,7 +132,7 @@
 
 @functions
 {
-    void RenderFilter(UserLevel level)
+    async Task RenderFilter(UserLevel level)
     {
     var levelName = level.DisplayName.ToLower();
     <div class="">
@@ -151,7 +151,7 @@
                  data-mindate="@Model.DateRangePickerViewModel.MinDate.ToShortDateWithSlash()"
                  data-maxdate="@Model.DateRangePickerViewModel.MaxDate.ToShortDateWithSlash()">
             </div>
-            <div class="form-group  from-date-box">
+            <div class="form-group from-date-box">
                 <label>@Resources.DateNotifiedFrom</label>
 
                 <div class="control date">
@@ -220,6 +220,10 @@
 
             <div class="form-group">
                 <span id="icon-excel-@levelName" class="icon-excel" title="@Resources.ExportToExcel"></span>
+            </div>
+            <div class="form-group hide">
+                @{var elementId = "box-icon-title-" + levelName;}
+                <compact-feedback element-id="@elementId" fid="300" />
             </div>
         </div>
     </div>

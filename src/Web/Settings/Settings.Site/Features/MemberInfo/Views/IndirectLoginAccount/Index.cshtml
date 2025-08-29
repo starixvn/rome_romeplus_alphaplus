@@ -3,12 +3,11 @@
 @using AlphaPlus.Core.Helpers
 @using AlphaPlus.Shared.AppResources.Settings.MemberInfo
 @using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers
-
+@addTagHelper *, AlphaPlus.Settings.Site
 @{
     ViewBag.Title = Resources.IndirectLoginAccount;
 
     var userguideLink = string.Empty;
-
     if (AlphaPlus.Core.Configurations.AppSettings.SupportedNewHandbook)
     {
         userguideLink = MicroSites.FeatureUrl($"~/HandbookDefault/GetBySlug?slug=indirect-login-account");
@@ -16,9 +15,10 @@
     else
     {
         userguideLink = AppSettings.IsSiteLabel789y ?
-           MicroSites.FeatureUrl("~/StaticMessage/Guide?id=132782") :
-           MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=132782");
+        MicroSites.FeatureUrl("~/StaticMessage/Guide?id=132782") :
+        MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=132782");
     }
+    var hasData = Model.Accounts.Any();
 }
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-totalbetsforecast/default")
@@ -33,7 +33,11 @@
     &nbsp;<a href="@userguideLink" target="_blank"><span class="icon icon-information-outline"></span></a>
 </div>
 <div class="content-page">
-    <div class="list-button">
+    <div class="flex justify-right my-10">
+        @if (hasData)
+        {
+            <div class="mr-10"><compact-feedback fid="300" /></div>
+        }
         <input type="button" class="btn-submit" value="@Resources.ConnectToNewAccount" id="btn-connectToNewAccount" />
     </div>
     <table class="tblRpt tblRpt-bordered tblRpt-hover width-100per">
@@ -47,7 +51,7 @@
                 <th>@Resources.Disconnect</th>
             </tr>
         </thead>
-        @if (Model.Accounts.Any())
+        @if (hasData)
         {
             <tbody>
                 @foreach (var account in Model.Accounts)
@@ -64,7 +68,12 @@
                             }
                             else
                             {
-                                @Html.ActionLink(" ", "Redirect", new { custId = account.CustId, subAccId = account.SubAccId, custname = account.Username }, new { @class = "icon icon-indirect-login", target = "_blank" })
+                                @Html.ActionLink(" ", "Redirect", new
+                                    {
+                                        custId = account.CustId,
+                                        subAccId = account.SubAccId,
+                                        custname = account.Username
+                                    }, new { @class = "icon icon-indirect-login", target = "_blank" })
                             }
                         </td>
                         <td class="text-center">

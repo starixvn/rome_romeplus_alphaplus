@@ -7,64 +7,70 @@
     $exportExcelForm: JQuery;
     pager: PagerComponent;
     closedTooltipTitle: string;
+    compactFeedback: CompactFeedbackComponent;
 
     constructor(
         $: JQueryStatic,
         topWindow: any,
         levelComponent: SingleSelectionDropdownComponent,
         statusComponent: SingleSelectionDropdownComponent,
-        pager: PagerComponent) {
+        pager: PagerComponent,
+        compactFeedback: CompactFeedbackComponent
+    ) {
         this.$ = $;
         this.topWindow = topWindow;
         this.levelComponent = levelComponent;
         this.statusComponent = statusComponent;
         this.pager = pager;
+        this.compactFeedback = compactFeedback;
     }
 
     init(): void {
         this.cacheDOMElements();
         this.bindEvents();
 
-        this.levelComponent.render(
-            new SingleSelectionDropdownOption("LevelId", "HiddenLevelId"));
-        this.statusComponent.render(
-            new SingleSelectionDropdownOption("StatusId", "HiddenStatusId"));
+        this.levelComponent.render(new SingleSelectionDropdownOption('LevelId', 'HiddenLevelId'));
+        this.statusComponent.render(new SingleSelectionDropdownOption('StatusId', 'HiddenStatusId'));
 
-        this.pager.render(new PagerOption(
-            () => this.$formFilter.submit(),
-            "report-pager",
-            "form-filter",
-            "PageIndex",
-            "PageSize",
-            [10, 50, 100, 500]));
+        this.pager.render(
+            new PagerOption(
+                () => this.$formFilter.submit(),
+                'report-pager',
+                'form-filter',
+                'PageIndex',
+                'PageSize',
+                [10, 50, 100, 500]
+            )
+        );
 
-        this.$("#tbl-report").stickyTableHeaders();
+        this.$('#tbl-report').stickyTableHeaders();
 
-        this.$("#popup-archiveProcess").css({
-            bottom: "auto",
-            top: this.$("#icon-archiveProcess").position().top + 35
+        this.$('#popup-archiveProcess').css({
+            bottom: 'auto',
+            top: this.$('#icon-archiveProcess').position().top + 35
         });
 
         $('[data-toggle="tooltip"]').tooltip({
-            placement: "right",
+            placement: 'right',
             template: '<div class="tooltip" role="tooltip"><div class="tooltip-inner"></div></div>',
             title: this.closedTooltipTitle
         });
+        this.compactFeedback.init(this.$formFilter);
     }
 
     cacheDOMElements(): void {
-        this.$formFilter = this.$("#form-filter");
-        this.$exportExcelForm = this.$("#export-excel-form");
+        this.$formFilter = this.$('#form-filter');
+        this.$exportExcelForm = this.$('#export-excel-form');
 
-        const $closedTooltip = $("#closed-tooltip-title");
+        const $closedTooltip = $('#closed-tooltip-title');
         this.closedTooltipTitle = $closedTooltip.val();
         $closedTooltip.remove();
     }
 
     bindEvents(): void {
         this.$formFilter.submit(this.submitForm);
-        this.$("#btn-submit").click(() => this.$("#PageIndex").val("1"));
-        this.$("#icon-excel").on("click", this.exportExcel);
+        this.$('#btn-submit').click(() => this.$('#PageIndex').val('1'));
+        this.$('#icon-excel').on('click', this.exportExcel);
     }
 
     submitForm = () => {
@@ -82,5 +88,7 @@ $(() => {
         window.top,
         new SingleSelectionDropdownComponent($),
         new SingleSelectionDropdownComponent($),
-        new PagerComponent($)).init();
+        new PagerComponent($),
+        new CompactFeedbackComponent()
+    ).init();
 });

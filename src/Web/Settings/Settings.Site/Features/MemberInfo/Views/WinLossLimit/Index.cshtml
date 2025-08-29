@@ -10,6 +10,7 @@
 @using AlphaPlus.Settings.MemberInfo.Domain.Extensions
 @using AlphaPlus.Core.Configurations
 @using AlphaPlus.Settings.MemberInfo.Domain.Constants
+@addTagHelper *, AlphaPlus.Settings.Site
 @inject AlphaPlus.Core.Models.IUserSession userSession
 @model WinLossLimitViewModel
 @{
@@ -116,15 +117,17 @@
         <label for="txt-username">@Resources.Username</label>
         <input type="text" id="txt-username" name="Username" placeholder="@Resources.Username" value="@Model.Username" maxlength="50" autocomplete="off" />
     </div>
-    @if (Model.IsBBin)
-    {
-        <p><span class="star">@Html.Raw(Resources.BBINNote)</span></p>
-    }
     @if (Model.IsSabaclub)
     {
         <div class="form-group">
             <label for="txt-player-id">@Resources.PlayerId</label>
-            <input type="text" id="txt-player-id" name="PlayerId" value="@Model.PlayerId" />
+            <input type="text" id="txt-player-id" name="PlayerId" value="@Model.PlayerId" placeholder="@Resources.PlayerId" />
+        </div>
+    }
+    @if (Model.HasData)
+    {
+        <div class="form-group">
+            <compact-feedback fid="300" like-icon-class="ic-like" />
         </div>
     }
     @Html.Hidden("UserSelectedProductId", Model.UserSelectedId)
@@ -133,14 +136,17 @@
     @Html.Hidden("MasterId", Model.MasterId)
     @Html.Hidden("RecommendId", Model.RecommendId)
     @Html.Hidden("AccountType", Model.AccountType)
-    @Html.Hidden("ResetCurrentWinAmountConfirmMessage", Resources.ResetCurrentWinAmountConfirmMessage)
-    @Html.Hidden("ResetCurrentWinAmountErrorMessage", AlphaPlus.Shared.AppResources.Main.Resources.InternalServerError)
-</form> 
-
+</form>
+@if (Model.IsBBin)
+{
+    <div class="note">
+        <span class="star">*</span>@Html.Raw(Resources.BBINNote)
+    </div>
+}
 @if(Model.IsOfferedCashService && Model.ViewerLevel.IsAgentLevel()) {
     <div class="note">
         <span class="star">*</span>@Html.Raw(Resources.ResetCurrentWinAmountNote)
-    </div>    
+    </div>
     <div id="result-msg" class="msg hide"></div>
 }
 <div class="wrapper-table-scrollable">
@@ -183,9 +189,9 @@
                             <div class="row-icon-inline">
                                 <span class="text">
                                     @winLossLimitDetail.Username
-                                </span>                                
+                                </span>
                                 @(winLossLimitDetail.IsCashMember ? Html.Raw("<span class='ic-cashservice'></span>"): string.Empty)
-                          
+
                             </div>
                         </td>
                         <td class="text-left" title="@winLossLimitDetail.Firstname">
@@ -208,14 +214,14 @@
                         <td class="text-center">
                             <div class="col-reset">
                                 @WinLossLimitViewModel.GetCurrentWinAnmout(winLossLimitDetail.CurrentWinAnmout)
-                                @if (winLossLimitDetail.IsCashMember 
+                                @if (winLossLimitDetail.IsCashMember
                                     && Model.ViewerLevel.IsAgentLevel()
-                                    && !winLossLimitDetail.IsAutoReset 
-                                    && winLossLimitDetail.CurrentWinAnmout > 0 
-                                    && winLossLimitDetail.MaxWinLimit > 0)   
+                                    && !winLossLimitDetail.IsAutoReset
+                                    && winLossLimitDetail.CurrentWinAnmout > 0
+                                    && winLossLimitDetail.MaxWinLimit > 0)
                                 {
-                                    <span class="ic-refresh reset-win-amount" 
-                                        data-cust-id="@winLossLimitDetail.CustId" 
+                                    <span class="ic-refresh reset-win-amount"
+                                        data-cust-id="@winLossLimitDetail.CustId"
                                         data-username="@winLossLimitDetail.Username"
                                         title="@Resources.ResetCurrentWinAmount"></span>
                                 }
@@ -249,10 +255,11 @@
                 @NoInformation.Render(Model.NumberOfColumns)
             </tbody>
         }
-        
+
     </table>
 </div>
-
+@Html.Hidden("ResetCurrentWinAmountConfirmMessage", Resources.ResetCurrentWinAmountConfirmMessage)
+@Html.Hidden("ResetCurrentWinAmountErrorMessage", AlphaPlus.Shared.AppResources.Main.Resources.InternalServerError)
 <input type="hidden" name="__RequestVerificationToken" value="@ViewData["RequestVerificationToken"]" />
 @if (Model.ShowPager)
 {
@@ -260,4 +267,4 @@
 }
 @section Scripts {
     @StaticResources.RenderScripts("~/Features/MemberInfo/assets/bundles/win-loss-limit/win-loss-limit")
-} 
+}

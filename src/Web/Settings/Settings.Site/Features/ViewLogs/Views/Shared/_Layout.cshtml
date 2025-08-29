@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-
+    @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
     @StaticResources.AssetStyles.RenderWithDarkMode($"/bundles/site-viewlogs/viewlogs-{Model.UserLevel}")
     @StaticResources.RenderStylesWithDarkMode($"~/Features/ViewLogs/assets/bundles/default")
     @RenderSection("Styles", required: false)

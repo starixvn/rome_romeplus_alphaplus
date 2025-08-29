@@ -1,7 +1,7 @@
 ﻿@using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels.CashService;
 @using AlphaPlus.Shared.AppResources.Settings.ViewLog;
 @using AlphaPlus.Core.Helpers;
-
+@addTagHelper *, AlphaPlus.Settings.Site
 @model IndexViewModel
 @{
     Layout = "~/Features/ViewLogs/Views/Shared/_Layout.cshtml";
@@ -13,19 +13,22 @@
             <form class="form-inline" role="form">
                 <div class="form-group">
                     <input type="text" id="txt-username" placeholder="@Resources.UsernameOrFirstLastName"
-                           value="@(string.IsNullOrWhiteSpace(Model.Username) ? string.Empty : Model.Username)"
-                           autocomplete="off" />
+                        value="@(string.IsNullOrWhiteSpace(Model.Username) ? string.Empty : Model.Username)"
+                        autocomplete="off" />
                 </div>
                 <div class="form-group">
                     <select id="ddl-logactiontype">
                         @foreach (var logActionType in Model.LogActionTypes)
                         {
-                            <option value="@logActionType.Id" @(logActionType.Id.ToString() == Model.ActionTypeId ? "selected" : string.Empty)>@logActionType.Name</option>
+                            <option value="@logActionType.Id" @(logActionType.Id.ToString() == Model.ActionTypeId ?
+                            "selected" : string.Empty)>@logActionType.Name</option>
                         }
                     </select>
                 </div>
                 <div class="form-group">
-                    <div id="monthPickerID"><div id="ddlMonth"></div></div>
+                    <div id="monthPickerID">
+                        <div id="ddlMonth"></div>
+                    </div>
                 </div>
                 <div class="form-group submit-box">
                     <input type="button" class="btn-submit" id="btn-submit" value="@Resources.Submit">
@@ -33,9 +36,16 @@
                 </div>
                 <div class="form-group">
                     <label>
-                        <input id="chk-oldvalues" name="chk-oldvalues" type="checkbox" value="0" @(Model.ShowOldValue ? "checked" : "") />@Resources.ShowOldValues
+                        <input id="chk-oldvalues" name="chk-oldvalues" type="checkbox" value="0" @(Model.ShowOldValue ?
+                            "checked" : "") />@Resources.ShowOldValues
                     </label>
                 </div>
+                @if (Model.HasLogs)
+                {
+                    <div class="form-group">
+                        <compact-feedback fid="300" />
+                    </div>
+                }
             </form>
         </div>
 

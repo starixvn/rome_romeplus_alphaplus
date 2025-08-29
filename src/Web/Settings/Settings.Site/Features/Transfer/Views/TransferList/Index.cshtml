@@ -8,10 +8,10 @@
 }
 @model AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferList.TransferListViewModel
 @section Styles {
-    <link rel="stylesheet" href="~/bundles/transfer/transfer-list.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles/transfer/transfer-list")
 }
 @section Scripts {
-    <script src="~/bundles/transfer/transfer-list.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/transfer/transfer-list")
     <script type="text/javascript">
         const warning = @Convert.ToByte(Model.IsShowWarningMultipleTransfer);
         if (warning) {
@@ -58,6 +58,12 @@
     <div class="form-group">
         <span id="icon-information" class="icon-information-outline"></span>
     </div>
+    @if (Model.ReportData.TotalPages > 0)
+    {
+        <div class="form-group">
+            <compact-feedback fid="300" />
+        </div>
+    }
     <input type="hidden" name="IsPostBack" value="true" />
     <input type="hidden" asp-for="PageIndex" />
     <input type="hidden" asp-for="PageSize" />

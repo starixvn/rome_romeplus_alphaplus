@@ -1,5 +1,5 @@
-﻿declare var initAutoComplete: Function;
-"use strict";
+﻿'use strict';
+declare var initAutoComplete: Function;
 
 class ProblemAccount {
     $: JQueryStatic;
@@ -15,7 +15,8 @@ class ProblemAccount {
         $: JQueryStatic,
         topWindow: any,
         problemAccountPopup: ProblemAccountPopup,
-        viewResources: ViewResources = null) {
+        viewResources: ViewResources = null
+    ) {
         this.$ = $;
         this.viewResources = viewResources === null ? new ViewResources($) : viewResources;
         this.topWindow = topWindow;
@@ -23,13 +24,13 @@ class ProblemAccount {
     }
 
     init = () => {
-        this.ActorLevel = parseInt(this.$("#ActorLevel").val());
+        this.ActorLevel = parseInt(this.$('#ActorLevel').val());
         this.render();
     };
 
     render = () => {
         this.initDownlineLists();
-        const searchAccountRoleId = parseInt(this.$("#SearchRoleId").val());
+        const searchAccountRoleId = parseInt(this.$('#SearchRoleId').val());
         if (searchAccountRoleId > 0) {
             this.$(`#tab${searchAccountRoleId}`).click();
             switch (searchAccountRoleId) {
@@ -50,16 +51,39 @@ class ProblemAccount {
     };
 
     initDownlineLists(): void {
-        this.memberList = new BaseList(this.$, this.topWindow, siteInfrastructure.Role.Member.Id, siteInfrastructure.Role.Member.Name, new DateRangePickerComponent($), null, this.problemAccountPopup);
+        this.memberList = new BaseList(
+            this.$,
+            this.topWindow,
+            siteInfrastructure.Role.Member.Id,
+            siteInfrastructure.Role.Member.Name,
+            new DateRangePickerComponent($),
+            new CompactFeedbackComponent('#box-icon-title-member'),
+            null,
+            this.problemAccountPopup
+        );
         this.memberList.init(this, null);
 
         if (this.ActorLevel >= siteInfrastructure.Role.Master.Id) {
-            this.agentList = new BaseList(this.$, this.topWindow, siteInfrastructure.Role.Agent.Id, siteInfrastructure.Role.Agent.Name, new DateRangePickerComponent($));
+            this.agentList = new BaseList(
+                this.$,
+                this.topWindow,
+                siteInfrastructure.Role.Agent.Id,
+                siteInfrastructure.Role.Agent.Name,
+                new DateRangePickerComponent($),
+                new CompactFeedbackComponent('#box-icon-title-agent')
+            );
             this.agentList.init(this, this.memberList);
         }
 
         if (this.ActorLevel >= siteInfrastructure.Role.Super.Id) {
-            this.masterList = new BaseList(this.$, this.topWindow, siteInfrastructure.Role.Master.Id, siteInfrastructure.Role.Master.Name, new DateRangePickerComponent($));
+            this.masterList = new BaseList(
+                this.$,
+                this.topWindow,
+                siteInfrastructure.Role.Master.Id,
+                siteInfrastructure.Role.Master.Name,
+                new DateRangePickerComponent($),
+                new CompactFeedbackComponent('#box-icon-title-master')
+            );
             this.masterList.init(this, this.agentList);
         }
     }

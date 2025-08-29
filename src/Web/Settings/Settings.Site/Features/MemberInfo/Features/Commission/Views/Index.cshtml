@@ -2,13 +2,14 @@
 @using AlphaPlus.Shared.AppResources.Settings.MemberInfo
 @using AlphaPlus.Settings.Site.Features.MemberInfo.Features.Commission
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AlphaPlus.Settings.Site
 @model CommissionViewModel
 @{
     Layout = "~/Features/MemberInfo/Views/Shared/_Layout.cshtml";
     ViewBag.Title = @Resources.MemberCommission;
 }
 @section Scripts {
-    <script src="~/bundles/commission/commission.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/commission/commission")
 }
 <div class="page-title">
     <span class="pull-left">@Resources.MemberCommission</span>
@@ -63,6 +64,9 @@
                 asp-all-route-data="@Model.GetCommHintParams()" target="_blank"></a>
         </div>
     }
+    <div class="form-group @(Model.ReportData.HasData ? string.Empty : "hide")">
+        <compact-feedback fid="300" />
+    </div>
 </form>
 <div id="tblRpt-container">
     <partial name="CommData" />

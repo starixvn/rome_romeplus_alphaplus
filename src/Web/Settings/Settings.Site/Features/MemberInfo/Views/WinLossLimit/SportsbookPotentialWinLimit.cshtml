@@ -9,6 +9,7 @@
 @using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components
 @using AlphaPlus.Settings.MemberInfo.Domain.Models
 @using AlphaPlus.Settings.MemberInfo.Domain.Extensions
+@addTagHelper *, AlphaPlus.Settings.Site
 @model SportsbookPotentialWinLimitViewModel
 @{
     Layout = "~/Features/MemberInfo/Views/WinLossLimit/_Layout.cshtml";
@@ -42,9 +43,12 @@
         <div class="form-group">
             <label for="dropdown-account-type">@Resources.AccountType</label>
             <select id="dropdown-account-type" name="AccountType">
-                <option value="2" @(Model.AccountType == AccountTypeConstant.All ? "selected" : string.Empty)>@Resources.All</option>
-                <option value="0" @(Model.AccountType == AccountTypeConstant.Credit ? "selected" : string.Empty)>@Resources.Credit</option>
-                <option value="1" @(Model.AccountType == AccountTypeConstant.Cash ? "selected" : string.Empty)>@Resources.Cash</option>
+                <option value="2" @(Model.AccountType == AccountTypeConstant.All ? "selected" : string.Empty)>@Resources.All
+                </option>
+                <option value="0" @(Model.AccountType == AccountTypeConstant.Credit ? "selected" : string.Empty)>
+                    @Resources.Credit</option>
+                <option value="1" @(Model.AccountType == AccountTypeConstant.Cash ? "selected" : string.Empty)>
+                    @Resources.Cash</option>
             </select>
         </div>
     }
@@ -64,7 +68,8 @@
             <div class="note">
                 <span class="star">*</span>@Resources.PotentialWinLimitNote2
             </div>
-            @if(Model.IsOfferedCashService && Model.ViewerLevel.IsAgentLevel()) {
+            @if (Model.IsOfferedCashService && Model.ViewerLevel.IsAgentLevel())
+            {
                 <div class="note has-icon">
                     <span class="star">*</span>@Html.Raw(Resources.ResetAccumulatedWinAmountNote)
                 </div>
@@ -73,6 +78,12 @@
         </div>
         <div class="list-icon">
             <ul>
+                @if (Model.HasData)
+                {
+                    <li>
+                        <compact-feedback fid="300" like-icon-class="ic-like" />
+                    </li>
+                }
                 <li>
                     <a id="icon-excel" class="ic-excel" data-placement="top" data-original-title="Export to Excel"
                         title="@Resources.ExportToExcel" href="/settings/WinLossLimit/potentialexcel"></a>
@@ -128,7 +139,8 @@
                                     <span class="text">
                                         @winLossLimitDetail.Username
                                     </span>
-                                    @(winLossLimitDetail.IsCashMember ? Html.Raw("<span class='ic-cashservice'></span>"): string.Empty)
+                                    @(winLossLimitDetail.IsCashMember ? Html.Raw("<span class='ic-cashservice'></span>") :
+                                        string.Empty)
                                 </div>
                             </td>
                             <td class="text-center">
@@ -139,17 +151,16 @@
                             <td class="text-right">@HtmlHelpers.FormatNumber(winLossLimitDetail.AccumToWin)</td>
                             <td class="text-right">
                                 <div class="col-reset">
-                                @HtmlHelpers.FormatNumber(winLossLimitDetail.AccumWinLoss)
-                                @if (winLossLimitDetail.IsCashMember 
-                                    && Model.ViewerLevel.IsAgentLevel()
-                                    && !winLossLimitDetail.IsAutoReset
-                                    && winLossLimitDetail.AccumWinLoss > 0)   
-                                {
-                                    <span class="ic-refresh reset-win-amount" 
-                                        data-cust-id="@winLossLimitDetail.CustId" 
-                                        data-username="@winLossLimitDetail.Username"
-                                        title="@Resources.ResetCurrentWinAmount"></span>
-                                }
+                                    @HtmlHelpers.FormatNumber(winLossLimitDetail.AccumWinLoss)
+                                    @if (winLossLimitDetail.IsCashMember
+                                   && Model.ViewerLevel.IsAgentLevel()
+                                   && !winLossLimitDetail.IsAutoReset
+                                   && winLossLimitDetail.AccumWinLoss > 0)
+                                    {
+                                        <span class="ic-refresh reset-win-amount" data-cust-id="@winLossLimitDetail.CustId"
+                                            data-username="@winLossLimitDetail.Username"
+                                            title="@Resources.ResetCurrentWinAmount"></span>
+                                    }
                                 </div>
                             </td>
                             <td class="text-right">
@@ -158,13 +169,13 @@
                             <td class="text-right">@Model.GetMaxWinLimit(winLossLimitDetail.PotentialWinLimit)</td>
                             <td class="text-center @(winLossLimitDetail.PotentialWinPercent >= 100 ? "negative-value" : "")">
                                 @Model.GetWinPercent(winLossLimitDetail.PotentialWinPercent,
-                                winLossLimitDetail.PotentialWinLimit)
+                                         winLossLimitDetail.PotentialWinLimit)
                             </td>
                             <td class="text-left" title="@Model.GetLastLoginDate(winLossLimitDetail.LastLogged)">
                                 @Model.GetLastLoginDate(winLossLimitDetail.LastLogged)
                             </td>
                         </tr>
-                        
+
                         index++;
                     }
                 </tbody>

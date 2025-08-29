@@ -12,6 +12,7 @@ class TransferToDownlineHistory extends TransferReport {
 
     dateRangePickerComponent: DateRangePickerComponentTransfer;
     levelTypeComponent: SingleDropdownTransferComponent;
+    compactFeedback: CompactFeedbackComponent;
     showLevelType: boolean;
     directMemberText: string;
     masterAgentText: string;
@@ -19,13 +20,15 @@ class TransferToDownlineHistory extends TransferReport {
     constructor(
         $: JQueryStatic,
         dateRangePickerComponent: DateRangePickerComponentTransfer,
-        levelTypeComponent: SingleDropdownTransferComponent
+        levelTypeComponent: SingleDropdownTransferComponent,
+        compactFeedback: CompactFeedbackComponent
     ) {
         super($);
 
         this.$ = $;
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.levelTypeComponent = levelTypeComponent;
+        this.compactFeedback = compactFeedback;
     }
 
     public init(): void {
@@ -73,7 +76,7 @@ class TransferToDownlineHistory extends TransferReport {
             data: params,
             dataType: 'json',
             beforeSend: this.$.blockUI,
-            success: function (data) {
+            success: (data) => {
                 if (data.IsFailed && data.Code === 6001) {
                     window.top['bootboxAlert'](data.Message, null, window.top['headerNav'].reloadPage);
                     window.location.href = window.top['alpha'].urls.mainRootPath + 'Dashboard/Index';
@@ -83,6 +86,7 @@ class TransferToDownlineHistory extends TransferReport {
                         recordsTotal: data.TotalRecords,
                         recordsFiltered: data.TotalRecords
                     });
+                    this.compactFeedback.init(params, data.TotalRecords > 0);
                 }
             },
             complete: this.$.unblockUI
@@ -154,6 +158,7 @@ $(() => {
     new TransferToDownlineHistory(
         $,
         new DateRangePickerComponentTransfer($),
-        new SingleDropdownTransferComponent()
+        new SingleDropdownTransferComponent(),
+        new CompactFeedbackComponent()
     ).init();
 });

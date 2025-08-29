@@ -18,6 +18,7 @@ class CustomerListDataTable {
     private enableAllDayBalanceTransfer: string;
     private levelType: string;
     private serviceType: number;
+    private compactFeedback: CompactFeedbackComponent;
 
     resources = {
         ThereIsNoData: (<HTMLInputElement>document.getElementById('thereIsNoData')).value,
@@ -35,7 +36,8 @@ class CustomerListDataTable {
         editSingleSetting: EditSingleSetting,
         editMultipleSetting: EditMultipleSetting,
         editStatus: EditStatus,
-        unlock: Unlock
+        unlock: Unlock,
+        compactFeedback: CompactFeedbackComponent
     ) {
         this.$ = $;
         this.topWindow = topWindow;
@@ -48,6 +50,7 @@ class CustomerListDataTable {
         this.unlock = unlock;
         this.serviceType = viewModel.ServiceType;
         this.topWindow.customerListNew = true;
+        this.compactFeedback = compactFeedback;
     }
 
     public bindingEvent = () => {
@@ -76,13 +79,13 @@ class CustomerListDataTable {
     private initDataTable = () => {
         const maxPageSize = this.viewModel.IsMobileView ? 200 : 500;
         const details = {
-            type: 'column',
-            target: -1,
-            minWidth: '100px',
-            auto: false,
-            renderer: (api, rowIdx) => this.renderDetailColumn(api, rowIdx),
-            bindingCallback: this.detailCallBack
-        },
+                type: 'column',
+                target: -1,
+                minWidth: '100px',
+                auto: false,
+                renderer: (api, rowIdx) => this.renderDetailColumn(api, rowIdx),
+                bindingCallback: this.detailCallBack
+            },
             lengthMenu =
                 `${this.resources.PageSize} <select>` +
                 '<option value="10">10</option>' +
@@ -103,7 +106,23 @@ class CustomerListDataTable {
             .DataTable({
                 serverSide: true,
                 ajax: (data, callback) => {
+                    const params = {
+                        CustName: this.viewModel.SearchAccountName,
+                        CustId: this.viewModel.SearchAccountId,
+                        CustLevelId: this.viewModel.SearchAccountRoleId,
+                        PageIndex: data.start / data.length + 1,
+                        PageSize: data.length,
+                        Username: this.username,
+                        Status: this.status,
+                        DoubleComm: this.doubleComm,
+                        AllowAutoTransfer: this.allowAutoTransfer,
+                        EnableAllDayBalanceTransfer: this.enableAllDayBalanceTransfer,
+                        LevelType: this.viewModel.IsDirectMember ? 2 : 1,
+                        ServiceType: this.serviceType
+                    };
+
                     if (this.viewModel.CustomerListData) {
+                        this.compactFeedback.init(params, this.viewModel.CustomerListData.TotalDownlines > 0);
                         callback({
                             data: this.viewModel.CustomerListData.DownlinesList,
                             recordsTotal: this.viewModel.CustomerListData.TotalDownlines,
@@ -111,23 +130,10 @@ class CustomerListDataTable {
                         });
                         delete this.viewModel.CustomerListData;
                     } else {
-                        const params = {
-                            CustName: this.viewModel.SearchAccountName,
-                            CustId: this.viewModel.SearchAccountId,
-                            CustLevelId: this.viewModel.SearchAccountRoleId,
-                            PageIndex: data.start / data.length + 1,
-                            PageSize: data.length,
-                            Username: this.username,
-                            Status: this.status,
-                            DoubleComm: this.doubleComm,
-                            AllowAutoTransfer: this.allowAutoTransfer,
-                            EnableAllDayBalanceTransfer: this.enableAllDayBalanceTransfer,
-                            LevelType: this.viewModel.IsDirectMember ? 2 : 1,
-                            ServiceType: this.serviceType
-                        };
-
                         this.enableAllDayBalanceTransfer = undefined;
-                        this.customerListServices.getCutomerList(params, callback);
+                        this.customerListServices.getCutomerList(params, callback, (isShow) =>
+                            this.compactFeedback.init(params, isShow)
+                        );
                     }
                 },
                 columns: this.buildDataTableColumns(),
@@ -219,7 +225,7 @@ class CustomerListDataTable {
                 className: 'center js-service-type-multiple-show',
                 data: null,
                 render: (item) =>
-                    `<input type="checkbox" class="checkbox" data-custid="${item.CustId}" 
+                    `<input type="checkbox" class="checkbox" data-custid="${item.CustId}"
                     data-username="${item.Username}" data-autotransfer="${item.AutoTransfer ? 1 : 0}"/>`
             });
         }
@@ -253,7 +259,8 @@ class CustomerListDataTable {
             className: 'left',
             data: null,
             render: (item) =>
-                `<div class="${this.viewModel.IsMobileView ? '' : 'break-long-word'}">${item.FirstName || ''} ${item.LastName || ''
+                `<div class="${this.viewModel.IsMobileView ? '' : 'break-long-word'}">${item.FirstName || ''} ${
+                    item.LastName || ''
                 }</div>`
         });
 
@@ -350,17 +357,23 @@ class CustomerListDataTable {
     };
 
     private renderUsernameColumn = (item) => {
-        const cashIcon = item.ServiceType === ServiceType.Cash ? '<span class="icon-cashservice icon-cashservice-common"></span>' : '';
+        const cashIcon =
+            item.ServiceType === ServiceType.Cash
+                ? '<span class="icon-cashservice icon-cashservice-common"></span>'
+                : '';
         if (item.RoleId === CustomerLevel.Member) {
             return item.Locked
-                ? `<div class='col-username'><span>${item.Username}</span>${cashIcon}<br/><span class='grey-color'>${item.UserName2 === '' || item.UserName2 === null ? '--' : item.UserName2
-                }</span>${this.renderLockedIcon(item)}</div>`
-                : `<span>${item.Username}</span>${cashIcon}<br/><span class='grey-color'>${item.UserName2 === '' || item.UserName2 === null ? '--' : item.UserName2
-                }</span>`;
+                ? `<div class='col-username'><span>${item.Username}</span>${cashIcon}<br/><span class='grey-color'>${
+                      item.UserName2 === '' || item.UserName2 === null ? '--' : item.UserName2
+                  }</span>${this.renderLockedIcon(item)}</div>`
+                : `<span>${item.Username}</span>${cashIcon}<br/><span class='grey-color'>${
+                      item.UserName2 === '' || item.UserName2 === null ? '--' : item.UserName2
+                  }</span>`;
         }
 
-        const content = `<span>${item.Username}</span>${cashIcon}<br/><span class='grey-color'>${item.UserName2 === '' || item.UserName2 === null ? '--' : item.UserName2
-            }</span>`;
+        const content = `<span>${item.Username}</span>${cashIcon}<br/><span class='grey-color'>${
+            item.UserName2 === '' || item.UserName2 === null ? '--' : item.UserName2
+        }</span>`;
         const queryString = {
             CustLevelId: item.RoleId,
             CustId: item.CustId,
@@ -371,17 +384,18 @@ class CustomerListDataTable {
             UnconfirmSetting: this.$('#unconfirmSettingFilter').val()
         };
 
-        const viewDownlineLink = `${this.viewModel.MemberInfoUrl}CustomerList/${this.viewModel.DownlineLevelName
-            }?${this.$.param(queryString)}&BreadcrumbLevelJson=${this.viewModel.BreadcrumbLevelJson}`;
+        const viewDownlineLink = `${this.viewModel.MemberInfoUrl}CustomerList/${
+            this.viewModel.DownlineLevelName
+        }?${this.$.param(queryString)}&BreadcrumbLevelJson=${this.viewModel.BreadcrumbLevelJson}`;
         return item.Locked
             ? `<div class='col-username' title='${this.$(
-                '#usernameTooltipText'
-            ).val()}'><a class="view-downline" data-url="${viewDownlineLink}" >${content}</a>${this.renderLockedIcon(
-                item
-            )}</div>`
+                  '#usernameTooltipText'
+              ).val()}'><a class="view-downline" data-url="${viewDownlineLink}" >${content}</a>${this.renderLockedIcon(
+                  item
+              )}</div>`
             : `<div title='${this.$(
-                '#usernameTooltipText'
-            ).val()}'><a class="view-downline" data-url="${viewDownlineLink}" >${content}</a></div>`;
+                  '#usernameTooltipText'
+              ).val()}'><a class="view-downline" data-url="${viewDownlineLink}" >${content}</a></div>`;
     };
 
     private renderLockedIcon = (item) => {
@@ -411,16 +425,16 @@ class CustomerListDataTable {
     };
 
     private renderEditColumn = (item) => {
-            const attrs = {
-                class: 'edit icon-table-edit',
-                id: `setting-${item.CustId}`,
-                'data-custid': item.CustId,
-                'data-username': item.Username,
-                'data-url': this.buildGetAllStatusLink(item),
-                title: this.$('#editSettingText').val()
-            };
+        const attrs = {
+            class: 'edit icon-table-edit',
+            id: `setting-${item.CustId}`,
+            'data-custid': item.CustId,
+            'data-username': item.Username,
+            'data-url': this.buildGetAllStatusLink(item),
+            title: this.$('#editSettingText').val()
+        };
 
-            return `<div ${buildAttributes(attrs)}/>`;
+        return `<div ${buildAttributes(attrs)}/>`;
     };
 
     private renderStatusColumn = (item) => {
@@ -438,17 +452,18 @@ class CustomerListDataTable {
 
     private renderStatementColumn = (item) => {
         const queryString = {
-            CustId: item.CustId,
-            CustName: item.Username,
-            CustLevelId: item.RoleId
-        },
+                CustId: item.CustId,
+                CustName: item.Username,
+                CustLevelId: item.RoleId
+            },
             actionName = item.RoleId === CustomerLevel.Member ? 'MemberStatement' : 'SMAStatement';
 
         const reportDomain =
             this.topWindow.menuBar.domElements.reportDomain ||
             this.viewModel.ReportsUrl.substr(0, this.viewModel.ReportsUrl.length - 1);
-        const viewStatementLink = `${reportDomain}${this.topWindow.menuBar.domElements.cookieless
-            }Statement/${actionName}?${this.$.param(queryString)}`;
+        const viewStatementLink = `${reportDomain}${
+            this.topWindow.menuBar.domElements.cookieless
+        }Statement/${actionName}?${this.$.param(queryString)}`;
         return `<a data-url='${viewStatementLink}' title='${this.$(
             '#statementTooltipText'
         ).val()}' class='icon-statement' />`;
@@ -500,22 +515,22 @@ class CustomerListDataTable {
                 if (header.hasClass('ugroup')) {
                     ugroupColumnsOnAgentLevel.push(
                         `<tr class="${statusCss}" data-dtr-index="${idx.column}">` +
-                        `<td class="dtr-title">${header.text()}</td> ` +
-                        `<td class="dtr-data">${cellData}</td></tr>`
+                            `<td class="dtr-title">${header.text()}</td> ` +
+                            `<td class="dtr-data">${cellData}</td></tr>`
                     );
                 } else if (header.hasClass('commission')) {
                     if (header.hasClass('startGroup')) {
                         commissionColumns.push(
                             `<tr class="${statusCss}"><td class='commission-wrapper' colspan='2'>` +
-                            `<table class='commission-table'><tr class="${statusCss}">` +
-                            `<td class='commission-header' colspan="2">${self.$('#commissionText').val()}</td></tr>`
+                                `<table class='commission-table'><tr class="${statusCss}">` +
+                                `<td class='commission-header' colspan="2">${self.$('#commissionText').val()}</td></tr>`
                         );
                     }
 
                     commissionColumns.push(
                         `<tr class="${statusCss}" data-dtr-index="${idx.column}">` +
-                        `<td class="dtr-title">${header.text()}</td> ` +
-                        `<td class="dtr-data">${cellData}</td></tr>`
+                            `<td class="dtr-title">${header.text()}</td> ` +
+                            `<td class="dtr-data">${cellData}</td></tr>`
                     );
 
                     if (header.hasClass('endGroup')) {
@@ -524,8 +539,8 @@ class CustomerListDataTable {
                 } else {
                     otherColumns.push(
                         `<tr class="${statusCss}" data-dtr-index="${idx.column}">` +
-                        `<td class="dtr-title">${header.text()}</td> ` +
-                        `<td class="dtr-data">${cellData}</td></tr>`
+                            `<td class="dtr-title">${header.text()}</td> ` +
+                            `<td class="dtr-data">${cellData}</td></tr>`
                     );
                 }
             });
@@ -583,8 +598,9 @@ class CustomerListDataTable {
             LevelType: this.$('#dropdown-level-type').val()
         };
 
-        const viewDownlineLink = `${this.viewModel.MemberInfoUrl}CustomerList/${this.viewModel.DownlineLevelName
-            }?${this.$.param(queryString)}&BreadcrumbLevelJson=${this.viewModel.BreadcrumbLevelJson}`;
+        const viewDownlineLink = `${this.viewModel.MemberInfoUrl}CustomerList/${
+            this.viewModel.DownlineLevelName
+        }?${this.$.param(queryString)}&BreadcrumbLevelJson=${this.viewModel.BreadcrumbLevelJson}`;
         const mainFrame = this.topWindow.$('#main');
         if (!this.topWindow.alpha.core.isIe()) {
             mainFrame.contents().find('head').append(this.$('#AssetCommonCssLink').val());
@@ -641,14 +657,15 @@ class CustomerListDataTable {
         });
 
         this.$('thead tr th.control').parent().removeClass('parent');
-        
-        if (this.viewModel.OfferedCashService
-            && this.viewModel.SearchAccountRoleId === CustomerLevel.Agent
-            && this.serviceType === ServiceType.All) {
+
+        if (
+            this.viewModel.OfferedCashService &&
+            this.viewModel.SearchAccountRoleId === CustomerLevel.Agent &&
+            this.serviceType === ServiceType.All
+        ) {
             this.$('.js-service-type-multiple-hide').show();
             this.$('.js-service-type-multiple-show').hide();
-        }
-        else {
+        } else {
             this.$('.js-service-type-multiple-hide').hide();
             this.$('.js-service-type-multiple-show').show();
         }
@@ -677,7 +694,7 @@ class CustomerListDataTable {
             IsDirectMember: this.viewModel.IsDirectMember,
             IsCashMember: item.RoleId === CustomerLevel.Member && item.ServiceType === ServiceType.Cash
         };
-        
+
         return `${this.viewModel.MemberInfoUrl}CustomerList/GetCustomerAllStatus?${this.$.param(queryString)}`;
     };
 }

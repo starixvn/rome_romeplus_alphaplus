@@ -4,7 +4,7 @@
 @using AlphaPlus.Core.Helpers
 @using ViewLogResources = AlphaPlus.Shared.AppResources.Settings.ViewLog.Resources
 @using MemberInfoResources = AlphaPlus.Shared.AppResources.Settings.MemberInfo.Resources
-
+@addTagHelper *, AlphaPlus.Settings.Site
 @model LogViewModel
 @{
     Layout = "~/Features/ViewLogs/Views/Shared/_Layout.cshtml";
@@ -16,17 +16,26 @@
             <form class="form-inline" role="form">
                 <div class="form-group">
                     <input type="text" id="txt-username" placeholder="@ViewLogResources.UsernameOrFirstLastName"
-                           value="@(string.IsNullOrWhiteSpace(Model.Username) ? string.Empty : Model.Username)"
-                           autocomplete="off" />
+                        value="@(string.IsNullOrWhiteSpace(Model.Username) ? string.Empty : Model.Username)"
+                        autocomplete="off" />
                 </div>
                 <div class="form-group">
-                    <div id="monthPickerID"><div id="ddlMonth"></div></div>
+                    <div id="monthPickerID">
+                        <div id="ddlMonth"></div>
+                    </div>
                 </div>
                 <div class="form-group submit-box">
                     <input type="button" class="btn-submit" id="btn-submit" value="@ViewLogResources.Submit">
-                    <span id="icon-excel" class="icon-excel" data-toggle="tooltip" data-placement="top" title="@MemberInfoResources.ExportToExcel"></span>
+                    <span id="icon-excel" class="icon-excel" data-toggle="tooltip" data-placement="top"
+                        title="@MemberInfoResources.ExportToExcel"></span>
                     <span id="icon-loading" class="hide block-icon-small"></span>
                 </div>
+                @if (Model.HasLogs)
+                {
+                    <div class="form-group">
+                        <compact-feedback fid="300" />
+                    </div>
+                }
             </form>
         </div>
 

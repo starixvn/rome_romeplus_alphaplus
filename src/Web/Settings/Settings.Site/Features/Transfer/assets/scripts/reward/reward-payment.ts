@@ -6,6 +6,7 @@
     private levelTypeDropdown: SingleDropdownTransferComponent;
     private usernameSuggestion: UsernameSuggestionComponent;
     private sorter: SortComponent;
+    private readonly compactFeedback: CompactFeedbackComponent;
     private tableContainer: JQuery;
 
     constructor(
@@ -15,7 +16,8 @@
         paymentStatusDropdown: SingleDropdownTransferComponent,
         levelTypeDropdown: SingleDropdownTransferComponent,
         usernameSuggestion: UsernameSuggestionComponent,
-        sorter: SortComponent
+        sorter: SortComponent,
+        compactFeedback: CompactFeedbackComponent
     ) {
         this.filter = filter;
         this.dateRangePicker = dateRangePicker;
@@ -24,6 +26,7 @@
         this.levelTypeDropdown = levelTypeDropdown;
         this.usernameSuggestion = usernameSuggestion;
         this.sorter = sorter;
+        this.compactFeedback = compactFeedback;
     }
 
     init() {
@@ -45,7 +48,7 @@
             })
             .attr('href', 'javascript:;');
 
-        this.bindTableEvents();
+        this.bindTableEvents(this.getSearchData());
         alphaTransfer.showFeedback(10);
     }
 
@@ -87,7 +90,7 @@
             const queryString = $.param(searchData);
             $.get(`GetPayment?${queryString}`, (html) => {
                 this.tableContainer.empty().html(html);
-                this.bindTableEvents();
+                this.bindTableEvents(searchData);
                 alphaTransfer.updateCurrentUrl(queryString);
             }).always($.unblockUI);
         }
@@ -122,7 +125,7 @@
         return searchData;
     }
 
-    private bindTableEvents() {
+    private bindTableEvents(searchData) {
         const $chkAllPaymentStatus = $('#chk-allPaymentStatus');
         const $checkboxUnpaid = $('.checkbox-unpaid');
         const $btnConfirmPayment = $('#btn-confirmPayment');
@@ -168,6 +171,8 @@
         this.sorter.tableSorter({ tableElement: $tblTransfer });
         $tblTransfer.stickyTableHeaders('destroy');
         $tblTransfer.stickyTableHeaders();
+
+        this.initCompactFeedback(searchData, $tblTransfer);
     }
 
     private getUnpaidData($element: JQuery) {
@@ -288,6 +293,12 @@
             setTimeout(() => $msgSuccess.hide().empty(), 3000);
         }
     }
+
+    private initCompactFeedback(searchData, $tblTransfer: JQuery) {
+        const firstCell = $tblTransfer.find('tbody tr:first td:first');
+        const hasData = firstCell.length > 0 && !firstCell.is('[colspan]');
+        this.compactFeedback.init(searchData, hasData);
+    }
 }
 
 $(function () {
@@ -298,6 +309,7 @@ $(function () {
         new SingleDropdownTransferComponent(),
         new SingleDropdownTransferComponent(),
         new UsernameSuggestionComponent(),
-        new SortComponent()
+        new SortComponent(),
+        new CompactFeedbackComponent()
     ).init();
 });

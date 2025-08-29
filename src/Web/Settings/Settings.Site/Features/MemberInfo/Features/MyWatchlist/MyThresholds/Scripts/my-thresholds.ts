@@ -1,6 +1,6 @@
 ﻿/// <reference path="../../Shared/Scripts/my-watchlist-base.ts" />
 
-"use strict";
+'use strict';
 interface Window {
     myThresholdData: any;
 }
@@ -8,6 +8,7 @@ interface Window {
 class MyThresholds extends MyWatchlistBase {
     private topWindow: any;
     private dateRangePickerComponent: DateRangePickerComponent;
+    private readonly compactFeedback: CompactFeedbackComponent;
 
     private $fromDate: JQuery;
     private $toDate: JQuery;
@@ -22,10 +23,13 @@ class MyThresholds extends MyWatchlistBase {
         $: JQueryStatic,
         topWindow: any,
         dateRangePickerComponent: DateRangePickerComponent,
-        myThresholdData: any) {
+        compactFeedback: CompactFeedbackComponent,
+        myThresholdData: any
+    ) {
         super($);
         this.topWindow = topWindow;
         this.dateRangePickerComponent = dateRangePickerComponent;
+        this.compactFeedback = compactFeedback;
         this.myThresholdData = myThresholdData;
     }
 
@@ -37,31 +41,34 @@ class MyThresholds extends MyWatchlistBase {
     }
 
     private cacheDOMElements() {
-        this.$fromDate = this.$("#from-date");
-        this.$toDate = this.$("#to-date");
-        this.myThresholdsUrl = this.$("#my-thresholds-url").val();
-        this.isMobile = this.$("#is-mobile").val() === "1";
+        this.$fromDate = this.$('#from-date');
+        this.$toDate = this.$('#to-date');
+        this.myThresholdsUrl = this.$('#my-thresholds-url').val();
+        this.isMobile = this.$('#is-mobile').val() === '1';
     }
 
     private bindEvents() {
-        const $reportForm = this.$("#report-form");
+        const $reportForm = this.$('#report-form');
 
         this.dateRangePickerComponent.render(new DateRangePickerOption());
         this.$dataTable = DataTableHelper.initDataTable(
-            this.$("#tblRpt"),
-            this.buildDataTableOptions($reportForm.attr("action")));
+            this.$('#tblRpt'),
+            this.buildDataTableOptions($reportForm.attr('action'))
+        );
 
-        $reportForm.submit(event => {
+        $reportForm.submit((event) => {
             event.preventDefault();
             this.$dataTable.ajax.reload();
         });
-        this.$("#btn-my-thresholds").click(() =>
+        this.$('#btn-my-thresholds').click(() =>
             this.topWindow.popupManager.open(
                 `${this.myThresholdsUrl}/Settings`,
                 undefined,
                 600,
                 310,
-                "modal-mobile-friendly"));
+                'modal-mobile-friendly'
+            )
+        );
     }
 
     private buildDataTableOptions(myThresholdsUrl: string) {
@@ -74,25 +81,30 @@ class MyThresholds extends MyWatchlistBase {
 
         return {
             ajax: (data, callback) => {
+                const columnName = data.columns[data.order[0].column].name;
+                const sortType = sortDefinitions[columnName];
+                const formData = {
+                    fromDate: this.$fromDate.val(),
+                    toDate: this.$toDate.val(),
+                    sortType,
+                    isDesc: data.order[0].dir === 'desc'
+                };
+
                 if (this.myThresholdData) {
                     callback({ data: this.myThresholdData });
+                    this.compactFeedback.init(formData, this.myThresholdData.length > 0);
                     delete this.myThresholdData;
                 } else {
-                    const columnName = data.columns[data.order[0].column].name;
-                    const sortType = sortDefinitions[columnName];
-                    const formData = {
-                        fromDate: this.$fromDate.val(),
-                        toDate: this.$toDate.val(),
-                        sortType,
-                        isDesc: data.order[0].dir === "desc"
-                    };
-                    AJAXHelper.postJSON(myThresholdsUrl, formData, jsonData => callback({ data: jsonData }));
+                    AJAXHelper.postJSON(myThresholdsUrl, formData, (jsonData) => {
+                        callback({ data: jsonData });
+                        this.compactFeedback.init(formData, jsonData.length > 0);
+                    });
                 }
             },
             columns: this.buildDataTableColumns(),
-            order: [this.isMobile ? 0 : 1, "desc"],
+            order: [this.isMobile ? 0 : 1, 'desc'],
             language: {
-                zeroRecords: this.$("#no-info").val()
+                zeroRecords: this.$('#no-info').val()
             },
             paging: false
         };
@@ -101,37 +113,37 @@ class MyThresholds extends MyWatchlistBase {
     private buildDataTableColumns() {
         let columns = [];
 
-        !this.isMobile && columns.push({ className: "center", data: "RowNumber", orderable: false });
+        !this.isMobile && columns.push({ className: 'center', data: 'RowNumber', orderable: false });
 
         columns.push(
-            { className: "center", data: "CreatedDateString", name: "CreatedDate" },
+            { className: 'center', data: 'CreatedDateString', name: 'CreatedDate' },
             {
-                className: "right",
-                data: "WinLossAmountString",
-                name: "WinningLosingAmount",
+                className: 'right',
+                data: 'WinLossAmountString',
+                name: 'WinningLosingAmount',
                 render: function (data, type, row) {
-                    return type === "display"
-                        ? `<span class="${row.ReachType === 1 ? "winning-reach" : "losing-reach"}">${data}</span>`
+                    return type === 'display'
+                        ? `<span class="${row.ReachType === 1 ? 'winning-reach' : 'losing-reach'}">${data}</span>`
                         : data;
                 }
             },
             {
-                className: "right",
-                data: "WinningThresholdString",
-                name: "WinningThreshold",
+                className: 'right',
+                data: 'WinningThresholdString',
+                name: 'WinningThreshold',
                 render: function (data, type, row) {
-                    return type === "display"
-                        ? `<span class="${row.ReachType === 1 ? "winning-reach" : ""}">${data}</span>`
+                    return type === 'display'
+                        ? `<span class="${row.ReachType === 1 ? 'winning-reach' : ''}">${data}</span>`
                         : data;
                 }
             },
             {
-                className: "right",
-                data: "LosingThresholdString",
-                name: "LosingThreshold",
+                className: 'right',
+                data: 'LosingThresholdString',
+                name: 'LosingThreshold',
                 render: function (data, type, row) {
-                    return type === "display"
-                        ? `<span class="${row.ReachType === 2 ? "losing-reach" : ""}">${data}</span>`
+                    return type === 'display'
+                        ? `<span class="${row.ReachType === 2 ? 'losing-reach' : ''}">${data}</span>`
                         : data;
                 }
             },
@@ -144,5 +156,11 @@ class MyThresholds extends MyWatchlistBase {
 
 $(function () {
     const dateRangePickerComponent = new DateRangePickerComponent($);
-    new MyThresholds($, window.top, dateRangePickerComponent, window.myThresholdData).init();
-})
+    new MyThresholds(
+        $,
+        window.top,
+        dateRangePickerComponent,
+        new CompactFeedbackComponent(),
+        window.myThresholdData
+    ).init();
+});

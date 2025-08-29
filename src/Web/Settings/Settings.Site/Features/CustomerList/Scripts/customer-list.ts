@@ -55,21 +55,23 @@ class CustomerList {
         );
 
         this.allowAutoTransferDropdown.render(
-            new SingleSelectionDropdownOption('dautoTransferFilter', 'AllowAutoTransfer', () => { }, true, true)
+            new SingleSelectionDropdownOption('dautoTransferFilter', 'AllowAutoTransfer', () => {}, true, true)
         );
 
         this.levelComponent.render(new SingleSelectionDropdownOption('dropdown-level-type', 'HiddenLevelType'));
-        this.serviceTypeComponent.render(new SingleSelectionDropdownOption('serviceType', 'HiddenServiceType', () => {
-            const selectedValue = parseInt(this.serviceTypeComponent.getSelectedItem());
-            if (selectedValue === ServiceType.All || selectedValue === ServiceType.Cash) {
-                this.allowAutoTransferDropdown.disable();
-                this.allowAutoTransferDropdown.changeSelection(2);
-            } else {
-                this.allowAutoTransferDropdown.enable();
-            }
+        this.serviceTypeComponent.render(
+            new SingleSelectionDropdownOption('serviceType', 'HiddenServiceType', () => {
+                const selectedValue = parseInt(this.serviceTypeComponent.getSelectedItem());
+                if (selectedValue === ServiceType.All || selectedValue === ServiceType.Cash) {
+                    this.allowAutoTransferDropdown.disable();
+                    this.allowAutoTransferDropdown.changeSelection(2);
+                } else {
+                    this.allowAutoTransferDropdown.enable();
+                }
 
-            this.serviceTypeComponent.changeSelection(selectedValue);
-        }));
+                this.serviceTypeComponent.changeSelection(selectedValue);
+            })
+        );
         this.serviceTypeComponent.onchange();
         this.bindingTxtUsername();
         this.customerListDataTable.bindingEvent();
@@ -166,7 +168,8 @@ $(function () {
             editSingleSetting,
             editMultipleSetting,
             editStatus,
-            unlock
+            unlock,
+            new CompactFeedbackComponent()
         ),
         customerList = new CustomerList(
             $,

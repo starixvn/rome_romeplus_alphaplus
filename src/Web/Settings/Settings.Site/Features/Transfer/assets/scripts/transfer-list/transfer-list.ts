@@ -6,6 +6,7 @@
     levelTypeComponent: SingleDropdownTransferComponent;
     visibleColumnContextMenu: VisibleColumnContextMenuComponent;
     transferListPaging: TransferListPaging;
+    compactFeedback: CompactFeedbackComponent;
 
     constructor(
         alert: AlertComponent,
@@ -14,7 +15,8 @@
         autoTransferDropdownComponent: SingleDropdownTransferComponent,
         levelTypeComponent: SingleDropdownTransferComponent,
         visibleColumnContextMenu: VisibleColumnContextMenuComponent,
-        transferListPaging: TransferListPaging
+        transferListPaging: TransferListPaging,
+        compactFeedback: CompactFeedbackComponent
     ) {
         this.alert = alert;
         this.usernameSuggestionComponent = usernameSuggestionComponent;
@@ -23,6 +25,7 @@
         this.levelTypeComponent = levelTypeComponent;
         this.visibleColumnContextMenu = visibleColumnContextMenu;
         this.transferListPaging = transferListPaging;
+        this.compactFeedback = compactFeedback;
     }
 
     init() {
@@ -69,6 +72,7 @@
 
         $tableTransfer.removeClass('hide').stickyTableHeaders();
         $('[data-toggle="tooltip"]').tooltip({ html: true, placement: 'right' });
+        this.compactFeedback.init($formTransfer);
     }
 
     private initPrint() {
@@ -329,6 +333,7 @@ $(function () {
         new SingleDropdownTransferComponent(),
         new SingleDropdownTransferComponent(),
         new VisibleColumnContextMenuComponent(),
-        new TransferListPaging()
+        new TransferListPaging(),
+        new CompactFeedbackComponent()
     ).init();
 });
