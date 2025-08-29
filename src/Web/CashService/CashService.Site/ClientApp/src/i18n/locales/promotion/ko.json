@@ -1,8 +1,75 @@
 {
   "promotionReport": "프로모션 보고서",
-  "promotionContent": "프로모션 콘텐츠",
   "pendingPromotion": "대기 중인 프로모션",
   "addBonus": "보너스 추가",
+  "managePromotion": {
+    "addPromotion": "프로모션 추가",
+    "managePromotion": "프로모션 관리"
+  },
+  "addPromotionForm": {
+    "promotionContent": "프로모션 내용",
+    "requiredProductCategory": "최소 한 개의 제품을 선택해 주세요",
+    "requiredTitle": "제목(영문)은 필수입니다",
+    "requiredContent": "내용(영문)은 필수입니다",
+    "requiredBanner": "배너(영문)은 필수입니다",
+    "bannerSizeLimit": "배너 크기는 5 MB 미만이어야 합니다",
+    "promotionSavedSuccessfully": "프로모션이 성공적으로 저장되었습니다",
+    "currentPromotion": "현재 프로모션",
+    "onlyOnePromotionCanBeActiveAtATime": "동시에 하나의 프로모션만 활성화할 수 있습니다.",
+    "promotionConfigureCalculated": "프로모션은 주 단위로 설정 및 정산됩니다.",
+    "promotionSettings": {
+      "title": "프로모션 설정",
+      "description1": "프로모션 기간 동안, 이전 주(월요일~일요일)의 유효 순턴오버를 기준으로 매주 화요일에 보너스 금액이 계산됩니다.",
+      "description2": "보너스는 선택된 제품에서 승/패 베팅 내역(베팅 티켓)을 기준으로 산출되는 유효 순턴오버에 대한 리베이트입니다.",
+      "description3": "유효 순턴오버:",
+      "description4": "스포츠북 & 가상 스포츠: 무승부 베팅 및 캐시아웃 제외.",
+      "description5": "RNG 카지노: 슬롯 게임만 해당.",
+      "description6": "라이브 카지노: 무승부 베팅 포함.",
+      "description7": "참고:",
+      "description8": "라이브 카지노 및 RNG 카지노에서 한 판에 양쪽에 동시 베팅한 경우, 유효 순턴오버 = 총 당첨금 − 총 베팅금으로 계산합니다.",
+      "description9": "예: 바카라에서 플레이어와 뱅커에 각각 100씩 베팅. 뱅커가 승리(배당률 = 1).",
+      "description10": "당첨금 = 200, 베팅금 = 200 → 순턴오버 = 0 (200 - 200)"
+    },
+    "promotionType": "프로모션 유형",
+    "minTurnover": "최소 턴오버",
+    "percentage": "비율",
+    "maxPayout": "최대 지급액",
+    "title": "제목",
+    "banner": "배너",
+    "content": "내용"
+  },
+  "editPromotionForm": {
+    "promotionUpdatedSuccessfully": "프로모션이 성공적으로 업데이트되었습니다",
+    "editPromotion": "프로모션 수정"
+  },
+  "addBonusForm": {
+    "title": "보너스 추가",
+    "accountInformation": "계정 정보",
+    "memberLoginName": "회원 로그인명",
+    "bonusAmount": "보너스 금액",
+    "agentAvailableCredit": "에이전트 사용 가능 한도",
+    "remarks": "비고",
+    "remarksPlaceholder": "비고",
+    "selectMember": "회원 선택",
+    "cancel": "취소",
+    "approve": "승인",
+    "memberLoginNameRequired": "회원 사용자명은 필수입니다.",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "금액은 0보다 크고 에이전트 사용 가능 한도보다 작아야 합니다.",
+    "bonusAddedSuccessfully": "보너스가 성공적으로 추가되었습니다!",
+    "bannerSizeLimit": "배너 크기는 5 MB 미만이어야 합니다"
+  },
+  "editModal": {
+    "title": "대기 중인 프로모션",
+    "message": "승인/거부 후에는 거래를 되돌릴 수 없습니다.",
+    "bonusAmount": "보너스 금액",
+    "agentAvailableCredit": "에이전트 사용 가능 한도",
+    "reject": "거부",
+    "approve": "승인",
+    "rejectedSuccess": "프로모션이 성공적으로 거부되었습니다",
+    "approvedSuccess": "프로모션이 성공적으로 승인되었습니다",
+    "bonusAmountMustBeGreaterThan0AndLessThanAgentAvailableCredit": "보너스 금액은 0보다 크고 에이전트 사용 가능 한도보다 작아야 합니다",
+    "bannerSizeLimit": "배너 크기는 5 MB 미만이어야 합니다"
+  },
   "table": {
     "no": "번호",
     "action": "작업",
@@ -28,22 +95,33 @@
     "totalBonusGiven": "총 지급된 보너스",
     "deleteSuccess": "프로모션이 성공적으로 삭제되었습니다",
     "confirmDeleteTitle": "삭제 확인",
-    "confirmDeleteMessage": "이 프로모션을 삭제하시겠습니까?",
+    "confirmDeleteMessage": "해당 프로모션 하의 모든 대기 중 신청이 거부됩니다. 이 프로모션을 정말 삭제하시겠습니까?",
     "username": "사용자 이름",
     "nickname": "닉네임",
     "name": "이름",
     "title": "제목",
     "amount": "금액",
-    "dateRange": "날짜 범위",
-    "lastName": "성",
-    "firstName": "이름",
+    "firstLastName": "성 & 이름",
     "actions": "작업",
     "loading": "로딩 중...",
-    "rebatePeriod": "Rebate Period"
+    "confirmApproveTitle": "승인 확인",
+    "confirmApproveMessage": "선택한 프로모션을 승인하시겠습니까?",
+    "confirmRejectTitle": "거부 확인",
+    "confirmRejectMessage": "선택한 프로모션을 거부하시겠습니까?",
+    "rebatePeriod": "리베이트 기간",
+    "approveSuccess": "프로모션이 성공적으로 승인되었습니다",
+    "rejectSuccess": "프로모션이 성공적으로 거부되었습니다",
+    "refNo": "참조 번호",
+    "rejectErrorAll": "다음 참조 번호 거부 실패:",
+    "rejectSuccessAll": "모든 프로모션이 성공적으로 거부되었습니다.",
+    "approveErrorAll": "다음 참조 번호 승인 실패:",
+    "approveSuccessAll": "모든 프로모션이 성공적으로 승인되었습니다."
   },
   "promotionType_1": "매출 리베이트",
   "search": {
-    "placeholder": "제목 또는 유형으로 검색..."
+    "placeholder": "제목 또는 유형으로 검색...",
+    "reject": "거부",
+    "approve": "승인"
   },
   "filter": {
     "dateRange": "날짜 범위",
@@ -63,5 +141,5 @@
     "copied": "복사됨!",
     "exportToExcel": "Excel로 내보내기"
   },
-  "manualBonus": "Manual Bonus"
+  "manualBonus": "수동 보너스"
 }
