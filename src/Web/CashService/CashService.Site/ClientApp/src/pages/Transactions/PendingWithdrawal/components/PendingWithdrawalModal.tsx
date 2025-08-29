@@ -314,6 +314,12 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
         const supportedBankCodes = response.data.map((bank: Bank) => bank.code);
         setProviderSupportedBank(supportedBankCodes);
       }
+    } else {
+      setProviderSupportedBank([]);
+      setResultMessage({
+        type: null,
+        message: '',
+      });
     }
   };
 
@@ -328,6 +334,11 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
           '{providerName}',
           withdrawalFrom.split('-')[1]
         ),
+      });
+    } else {
+      setResultMessage({
+        type: null,
+        message: '',
       });
     }
   };
