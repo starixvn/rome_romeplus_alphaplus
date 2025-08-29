@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ViewLog.API\ViewLog.API.csproj" />
-    <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
