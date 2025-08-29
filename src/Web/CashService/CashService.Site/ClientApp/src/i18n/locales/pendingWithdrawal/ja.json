@@ -90,7 +90,8 @@
     "minAmount": "最小",
     "maxAmount": "最大",
     "invalidFileType": "無効なファイル形式です。jpeg、jpg、またはpngファイルをアップロードしてください",
-    "providerSupportedBankError": "{providerName}でサポートされていない銀行が選択されています。別の銀行を選択してください。"
+    "providerSupportedBankError": "{providerName}でサポートされていない銀行が選択されています。別の銀行を選択してください。",
+    "amountRangeMinMaxError": "金額は{0}から{1}の間である必要があります"
   },
 
   "updateWithdrawal": {
