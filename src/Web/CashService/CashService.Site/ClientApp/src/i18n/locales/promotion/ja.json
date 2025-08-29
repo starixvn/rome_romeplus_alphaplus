@@ -36,7 +36,8 @@
     "maxPayout": "最大ペイアウト",
     "title": "タイトル",
     "banner": "バナー",
-    "content": "内容"
+    "content": "内容",
+    "unlimited": "無制限"
   },
   "editPromotionForm": {
     "promotionUpdatedSuccessfully": "プロモーションを更新しました",

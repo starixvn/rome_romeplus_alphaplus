@@ -391,4 +391,16 @@
   <data name="PendingWithdrawal" xml:space="preserve">
     <value>出金処理中</value>
   </data>
+  <data name="promotion" xml:space="preserve">
+    <value>プロモーション</value>
+  </data>
+  <data name="ManagePromotion" xml:space="preserve">
+    <value>プロモーション管理</value>
+  </data>
+  <data name="PendingPromotion" xml:space="preserve">
+    <value>保留中のプロモーション</value>
+  </data>
+  <data name="PromotionReport" xml:space="preserve">
+    <value>プロモーションレポート</value>
+  </data>
 </root>

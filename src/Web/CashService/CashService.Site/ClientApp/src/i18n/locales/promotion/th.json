@@ -36,7 +36,8 @@
     "maxPayout": "ยอดจ่ายสูงสุด",
     "title": "ชื่อเรื่อง",
     "banner": "แบนเนอร์",
-    "content": "เนื้อหา"
+    "content": "เนื้อหา",
+    "unlimited": "ไม่จำกัด"
   },
   "editPromotionForm": {
     "promotionUpdatedSuccessfully": "อัปเดตโปรโมชันสำเร็จ",

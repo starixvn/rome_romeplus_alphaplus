@@ -36,7 +36,8 @@
     "maxPayout": "Max Payout",
     "title": "Title",
     "banner": "Banner",
-    "content": "Content"
+    "content": "Content",
+    "unlimited": "Unlimited"
   },
   "editPromotionForm": {
     "promotionUpdatedSuccessfully": "Promotion updated successfully",

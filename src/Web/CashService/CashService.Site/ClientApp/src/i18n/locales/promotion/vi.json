@@ -36,7 +36,8 @@
     "maxPayout": "Mức trả thưởng tối đa",
     "title": "Tiêu đề",
     "banner": "Banner",
-    "content": "Nội dung"
+    "content": "Nội dung",
+    "unlimited": "Không giới hạn"
   },
   "editPromotionForm": {
     "promotionUpdatedSuccessfully": "Cập nhật khuyến mãi thành công",

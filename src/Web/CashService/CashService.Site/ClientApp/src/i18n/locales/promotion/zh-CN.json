@@ -36,7 +36,8 @@
     "maxPayout": "最高派彩",
     "title": "标题",
     "banner": "横幅",
-    "content": "内容"
+    "content": "内容",
+    "unlimited": "无限制"
   },
   "editPromotionForm": {
     "promotionUpdatedSuccessfully": "优惠更新成功",
