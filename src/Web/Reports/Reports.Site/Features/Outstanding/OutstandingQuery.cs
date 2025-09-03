@@ -7,12 +7,9 @@ namespace AlphaPlus.Reports.Site.Features.Outstanding;
 
 public class OutstandingQuery : BaseQuery, IRequest<OutstandingViewModel>
 {
-    private const string AutoFollowBetIsDummyAgentSessionKey = "AutoFollowBetIsDummyAgent";
-
     public OutstandingQuery()
     {
         MinDate = SystemTime.Today;
-        AutoFollowBetIsDummyAgent = Viewer.GetProperty<bool>(AutoFollowBetIsDummyAgentSessionKey);
     }
 
     public string UserSelectedProductIds { get; set; } = "*";
@@ -23,5 +20,5 @@ public class OutstandingQuery : BaseQuery, IRequest<OutstandingViewModel>
 
     public byte DescendingSort { get; set; }
 
-    public bool AutoFollowBetIsDummyAgent { get; }
+    public bool AutoFollowBetIsDummyAgent => Viewer.AutoFollowBetIsDummyAgent;
 }
