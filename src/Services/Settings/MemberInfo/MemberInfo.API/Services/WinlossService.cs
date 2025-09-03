@@ -8,7 +8,7 @@ namespace AlphaPlus.Settings.MemberInfo.API.Services
 {
     public interface IWinlossService
     {
-        EnteredSportResult GetEnteredSportResults();
+        Task<EnteredSportResult> GetEnteredSportResults();
 
         Task<EnteredSportResult> GetEnteredSportResultsAsync();
     }
@@ -25,8 +25,8 @@ namespace AlphaPlus.Settings.MemberInfo.API.Services
             this.cacheService = cacheService;
         }
 
-        public EnteredSportResult GetEnteredSportResults()
-            => GetEnteredSportResultsAsync().GetAwaiter().GetResult();
+        public Task<EnteredSportResult> GetEnteredSportResults()
+            => GetEnteredSportResultsAsync();
 
         public async Task<EnteredSportResult> GetEnteredSportResultsAsync()
         {

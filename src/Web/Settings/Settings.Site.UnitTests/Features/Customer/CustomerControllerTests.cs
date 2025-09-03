@@ -1,20 +1,16 @@
-using Microsoft.AspNetCore.Mvc;
-using AlphaPlus.Settings.Site.Features.Customer;
 using AlphaPlus.Core;
+using AlphaPlus.Settings.Site.Features.Customer;
 
 namespace AlphaPlus.Settings.Site.UnitTests.Features.Customer;
 
 public class CustomerControllerTests : IClassFixture<TestFixture>
 {
-    private readonly CustomerController _controller;
     private readonly Fixture _fixture;
 
     public CustomerControllerTests(TestFixture testFixture)
     {
         _fixture = new Fixture();
         TestFixture.ConfigureGlobalAutoFixture(_fixture);
-        // Don't create controller instance due to complex dependencies
-        _controller = null;
     }
 
     [Fact]
