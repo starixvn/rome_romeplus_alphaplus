@@ -474,16 +474,13 @@
   <data name="newCashMember" xml:space="preserve">
     <value>สมาชิกเงินสดใหม</value>
   </data>
-  <data name="promotion" xml:space="preserve">
-    <value>โปรโมชัน</value>
-  </data>
   <data name="ManagePromotion" xml:space="preserve">
     <value>จัดการโปรโมชัน</value>
   </data>
   <data name="PendingPromotion" xml:space="preserve">
     <value>โปรโมชันที่รอดำเนินการ</value>
   </data>
-  <data name="PromotionReport" xml:space="preserve">
-    <value>รายงานโปรโมชัน</value>
+  <data name="dashboard" xml:space="preserve">
+    <value>แดชบอร์ด</value>
   </data>
 </root>

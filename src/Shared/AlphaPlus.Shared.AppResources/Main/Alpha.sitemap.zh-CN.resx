@@ -474,16 +474,13 @@
   <data name="newCashMember" xml:space="preserve">
     <value>新现金用户</value>
   </data>
-  <data name="promotion" xml:space="preserve">
-    <value>优惠</value>
-  </data>
   <data name="ManagePromotion" xml:space="preserve">
     <value>管理优惠</value>
   </data>
   <data name="PendingPromotion" xml:space="preserve">
     <value>待处理优惠</value>
   </data>
-  <data name="PromotionReport" xml:space="preserve">
-    <value>优惠报告</value>
+  <data name="dashboard" xml:space="preserve">
+    <value>总览</value>
   </data>
 </root>
