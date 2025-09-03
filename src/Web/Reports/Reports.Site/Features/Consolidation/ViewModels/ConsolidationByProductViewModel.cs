@@ -22,4 +22,6 @@ public class ConsolidationByProductViewModel(
 
     public string BuildBetListUrl(int custId, string custName, string productId)
         => BuildBaseBetListParams(custId, custName, productIds: productId);
+    
+    public bool IsNegative(decimal? cellValue) => cellValue.HasValue && cellValue.Value < 0;
 }

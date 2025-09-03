@@ -67,8 +67,8 @@
                         {
                             <tr>
                                 <td>@Model.ToShortMonthNameAndYear(data.WinLossDate)</td>
-                                <td>@data.WinLoss.FormatNumber()</td>
-                                <td>@data.Turnover.FormatNumber()</td>
+                                <td class="@(Model.IsNegative(data.WinLoss) ? "format-negative" : string.Empty)">@data.WinLoss.FormatNumber()</td>
+                                <td class="@(Model.IsNegative(data.Turnover) ? "format-negative" : string.Empty)">@data.Turnover.FormatNumber()</td>
                             </tr>
                         }
                     }

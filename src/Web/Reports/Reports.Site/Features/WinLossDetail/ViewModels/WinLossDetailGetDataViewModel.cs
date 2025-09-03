@@ -26,4 +26,6 @@ public class WinLossDetailGetDataViewModel(
     public ReportData<WinLossDetailModel> ReportData { get; } = reportData;
 
     public IEnumerable<Reports.Features.Shared.Models.Breadcrumb> Breadcrumbs { get; } = breadcrumbs;
+
+    public bool IsNegative(decimal? cellValue) => cellValue.HasValue && cellValue.Value < 0;
 }

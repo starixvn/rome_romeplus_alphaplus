@@ -342,3 +342,29 @@ ul.gross-comm {
         max-width: 70%;
     }
 }
+
+.combinedcell {
+    &.col-member-owner-turnover-combined{
+        ul{
+            li{
+                &:nth-child(2){
+                    &.stack-mode-negative{
+                        color: var(--color-negative);
+                    }
+                   
+                }
+            }
+        }
+    }
+    &.col-member-winloss-combined, &.col-agent-winloss-combined, &.col-master-winloss-combined, &.col-super-winloss-combined{
+        ul{
+            li{
+                &:nth-child(1){
+                    &.stack-mode-negative{
+                        color: var(--color-negative);
+                    }
+                }
+            }
+        }
+    }
+}

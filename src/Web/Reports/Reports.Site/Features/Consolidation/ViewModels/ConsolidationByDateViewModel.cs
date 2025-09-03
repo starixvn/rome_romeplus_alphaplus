@@ -27,4 +27,7 @@ public class ConsolidationByDateViewModel(
 
     public string BuildBetListUrl(int custId, string custName, string date)
         => BuildBaseBetListParams(custId, custName, fromDate: date, toDate: date);
+
+    public bool IsNegative(decimal? cellValue) => cellValue.HasValue && cellValue.Value < 0;
+    
 }

@@ -21,4 +21,7 @@ public class ConsolidationByUsernameViewModel(
         => BuildBaseDrillDownParams(custId, custName, custLevelId);
 
     public string BuildBetListUrl(int custId, string custName) => BuildBaseBetListParams(custId, custName);
+
+    public bool IsNegative(decimal? cellValue) => cellValue.HasValue && cellValue.Value < 0;
+    
 }

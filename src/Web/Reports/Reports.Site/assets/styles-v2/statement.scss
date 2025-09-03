@@ -1,13 +1,15 @@
 ﻿:root, :root [data-theme='light'] {
     --note-opening-balance-background: #f6a4a4;
-    --statement-term-color: #b50000;
+    --statement-term-color: #CC0000;
     --border-title-statement: #A4A4A4;
+    --color-negative: #CC0000;
 }
 
 :root [data-theme='dark'] {
     --note-opening-balance-background: #573538;
-    --statement-term-color: #ff4f50;
+    --statement-term-color: #F23D3D;
     --border-title-statement: #696969;
+    --color-negative: #F23D3D;
 }
 @media only screen and (min-width:769px){
     .tbl-statement-report,.control-pager {
@@ -33,7 +35,7 @@
             }
 
             .format-negative {
-                color: #E54748;
+                color: var(--color-negative)!important;
             }
 
             .col-win-loss, .col-outstanding, .column-transfer-amount {

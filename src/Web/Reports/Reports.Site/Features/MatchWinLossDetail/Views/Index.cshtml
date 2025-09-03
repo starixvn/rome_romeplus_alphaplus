@@ -11,8 +11,8 @@
         {
             <td class="visible-stack-mode combinedcell col-turnover-combined">
                 <ul>
-                    <li>@data.Turnover.FormatNumber()</li>
-                    <li>@data.GrossComm.FormatNumber()</li>
+                    <li class="@(Model.IsNegative(data.Turnover) ? "format-negative" : string.Empty)">@data.Turnover.FormatNumber()</li>
+                    <li class="@(Model.IsNegative(data.GrossComm) ? "format-negative" : string.Empty)">@data.GrossComm.FormatNumber()</li>
                 </ul>
             </td>
             RenderStackNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
@@ -27,15 +27,15 @@
             }
             <td class="visible-stack-mode combinedcell col-company-winloss-combined">
                 <ul>
-                    <li>@data.CompanyComm.FormatNumber()</li>
-                    <li>@data.Company.FormatNumber()</li>
+                    <li class="@(Model.IsNegative(data.CompanyComm) ? "format-negative" : string.Empty)">@data.CompanyComm.FormatNumber()</li>
+                    <li class="@(Model.IsNegative(data.Company) ? "format-negative" : string.Empty)">@data.Company.FormatNumber()</li>
                 </ul>
             </td>
         }
         else
         {
-            <td class="hidden-stack-mode col-turnover">@data.Turnover.FormatNumber()</td>
-            <td class="hidden-stack-mode">@data.GrossComm.FormatNumber()</td>
+            <td class="hidden-stack-mode col-turnover @(Model.IsNegative(data.Turnover) ? "format-negative" : string.Empty)">@data.Turnover.FormatNumber()</td>
+            <td class="hidden-stack-mode @(Model.IsNegative(data.GrossComm) ? "format-negative" : string.Empty)">@data.GrossComm.FormatNumber()</td>
             RenderNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
             RenderNetWinLoss("agent", data.AgWinLoss, data.AgComm, data.AgTotal, "altercol");
             if (isMasterOrSuperLevel)
@@ -46,20 +46,20 @@
             {
                 RenderNetWinLoss("super", data.SAgWinLoss, data.SAgComm, data.SAgTotal, "altercol");
             }
-            <td class="hidden-stack-mode col-company-winloss">@data.CompanyComm.FormatNumber()</td>
-            <td class="hidden-stack-mode">@data.Company.FormatNumber()</td>
+            <td class="hidden-stack-mode col-company-winloss @(Model.IsNegative(data.CompanyComm) ? "format-negative" : string.Empty)">@data.CompanyComm.FormatNumber()</td>
+            <td class="hidden-stack-mode @(Model.IsNegative(data.Company) ? "format-negative" : string.Empty)">@data.Company.FormatNumber()</td>
         }
     }
 
     void RenderNetWinLoss(string level, decimal winloss, decimal comm, decimal total, string highlightClass = "")
     {
-        <td class="hidden-stack-mode col-@level-winloss @highlightClass">
+        <td class="hidden-stack-mode col-@level-winloss @highlightClass @(Model.IsNegative(winloss) ? "format-negative" : string.Empty)">
             @winloss.FormatNumber()
         </td>
-        <td class="hidden-stack-mode @highlightClass">
+        <td class="hidden-stack-mode @highlightClass @(Model.IsNegative(comm) ? "format-negative" : string.Empty)">
             @comm.FormatNumber()
         </td>
-        <td class="hidden-stack-mode bold @highlightClass">
+        <td class="hidden-stack-mode bold @highlightClass @(Model.IsNegative(total) ? "format-negative" : string.Empty)">
             @total.FormatNumber()
         </td>
     }
@@ -68,9 +68,9 @@
     {
         <td class="visible-stack-mode combinedcell col-@level-winloss-combined @highlightClass">
             <ul>
-                <li>@winloss.FormatNumber()</li>
-                <li>@comm.FormatNumber()</li>
-                <li>@total.FormatNumber()</li>
+                <li class="@(Model.IsNegative(winloss) ? "format-negative" : string.Empty)">@winloss.FormatNumber()</li>
+                <li class="@(Model.IsNegative(comm) ? "format-negative" : string.Empty)">@comm.FormatNumber()</li>
+                <li class="@(Model.IsNegative(total) ? "format-negative" : string.Empty)">@total.FormatNumber()</li>
             </ul>
         </td>
     }

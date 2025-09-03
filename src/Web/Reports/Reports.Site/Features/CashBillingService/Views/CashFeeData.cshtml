@@ -20,9 +20,9 @@
 		<tr class="total-row">
 			<td class="text-left">@item.DisplayType</td>
 			<td></td>
-			<td>@item.Count.FormatNumber()</td>
-			<td>@item.Agent.FormatNumber()</td>
-			<td>@item.Company.FormatNumber()</td>
+			<td class="@(Model.IsNegative(item.Count) ? "format-negative" : string.Empty)">@item.Count.FormatNumber()</td>
+			<td class="@(Model.IsNegative(item.Agent) ? "format-negative" : string.Empty)">@item.Agent.FormatNumber()</td>
+			<td class="@(Model.IsNegative(item.Company) ? "format-negative" : string.Empty)">@item.Company.FormatNumber()</td>
 		</tr>
 	}
 
@@ -30,10 +30,10 @@
 	{
 		<tr>
 			<td class="text-left feeitem">@item.DisplayType</td>
-			<td>@item.Fee.FormatNumber()</td>
-			<td>@item.Count.FormatNumber()</td>
-			<td>@item.Agent.FormatNumber()</td>
-			<td>@item.Company.FormatNumber()</td>
+			<td class="@(Model.IsNegative(item.Fee) ? "format-negative" : string.Empty)">@item.Fee.FormatNumber()</td>
+			<td class="@(Model.IsNegative(item.Count) ? "format-negative" : string.Empty)">@item.Count.FormatNumber()</td>
+			<td class="@(Model.IsNegative(item.Agent) ? "format-negative" : string.Empty)">@item.Agent.FormatNumber()</td>
+			<td class="@(Model.IsNegative(item.Company) ? "format-negative" : string.Empty)">@item.Company.FormatNumber()</td>
 		</tr>
 	}
 }
@@ -61,8 +61,8 @@
 		<tfoot>
 			<tr class="tbl-footer">
 				<td colspan="3">@Resources.Total</td>
-				<td>@Model.GrandTotal.Agent.FormatNumber()</td>
-				<td>@Model.GrandTotal.Company.FormatNumber()</td>
+				<td class="@(Model.IsNegative(Model.GrandTotal.Agent) ? "format-negative" : string.Empty)">@Model.GrandTotal.Agent.FormatNumber()</td>
+				<td class="@(Model.IsNegative(Model.GrandTotal.Company) ? "format-negative" : string.Empty)">@Model.GrandTotal.Company.FormatNumber()</td>
 			</tr>
 		</tfoot>
 	}

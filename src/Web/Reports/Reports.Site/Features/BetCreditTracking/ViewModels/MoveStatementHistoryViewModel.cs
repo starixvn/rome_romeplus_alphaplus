@@ -72,4 +72,6 @@ public class MoveStatementHistoryViewModel(MoveStatementHistoryQuery message, Mo
     }
 
     private static string BetListPath = MicroSites.TicketUrl("~/MoveStatementHistory/Index");
+
+    public bool IsNegative(decimal? cellValue) => cellValue.HasValue && cellValue.Value < 0;
 }

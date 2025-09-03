@@ -10,6 +10,7 @@
     --color-text-error: #FE0000;
     --color-note-star: #ff0101;
     --color-like: #f7931a;
+    --color-negative: #CC0000;
 }
 
 :root [data-theme='dark'] {
@@ -21,6 +22,7 @@
     --color-text-error: #CC7070;
     --color-note-star: #e54748;
     --color-like: #f7931a;
+    --color-negative: #F23D3D;
 }
 
 ::-webkit-scrollbar {
@@ -428,4 +430,7 @@ a, a:focus, a:active, a:target, a:hover {
     50% { transform: rotate(0deg); }
     75% { transform: rotate(-10deg); }  
     100% { transform: rotate(0deg); }  
+}
+.format-negative {
+    color: var(--color-negative)!important;
 }

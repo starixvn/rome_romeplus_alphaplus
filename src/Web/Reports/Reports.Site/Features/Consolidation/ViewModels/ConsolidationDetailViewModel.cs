@@ -98,4 +98,6 @@ public class ConsolidationDetailViewModel(
 
         return $"{CashFeePath}{queryString}";
     }
+
+    public bool IsNegative(decimal? cellValue) => cellValue.HasValue && cellValue.Value < 0;
 }
