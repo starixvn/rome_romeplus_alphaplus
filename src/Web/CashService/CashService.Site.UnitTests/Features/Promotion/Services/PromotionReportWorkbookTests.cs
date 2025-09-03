@@ -66,7 +66,7 @@ public class PromotionReportWorkbookTests
         // Arrange
         var fromDate = _request.FromDate.ToString("MMddyyyy");
         var toDate = _request.ToDate.ToString("MMddyyyy");
-        var expectedFileName = $"{CashServicesResx.PromotionReport}-{_request.Username}-{fromDate}-{toDate}.xls";
+        var expectedFileName = $"PromotionReport-{_request.Username}-{fromDate}-{toDate}.xls";
 
         // Act
         var result = _reportWorkbook.BuildExcelFile(_request, _reportData);
