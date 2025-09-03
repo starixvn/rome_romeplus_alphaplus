@@ -1,5 +1,6 @@
 ﻿namespace AlphaPlus.CashService.API.Features.PendingDeposit.Criteria;
 
+using Fanex.Data;
 using Fanex.Data.Repository;
 
 public class CreateManualDepositCommand : CriteriaBase
@@ -33,6 +34,9 @@ public class CreateManualDepositCommand : CriteriaBase
     public string ErrMsg { get; set; }
 
     public int SiteDbGroupId { get; set; }
+
+    [SpParam(AllowNull = true)]
+    public decimal? AgentAvailableCredit { get; set; }
 
     public override string GetSettingKey() => $"SiteDb_{SiteDbGroupId}_Age_CashDeposit_ManualAdd";
 

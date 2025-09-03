@@ -26,6 +26,12 @@ public class RevertWithdrawalTransactionToPendingCommand : INonQueryCommand
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }
 
+    [SpParam(AllowNull = true)]
+    public decimal? AgentAvailableCredit { get; set; }
+
+    [SpParam(AllowNull = true)]
+    public decimal? CashBalance { get; set; }
+
     public string GetSettingKey() => $"SiteDb_{SiteDbGroupId}_Age_CashTransaction_RevertWithdrawal_Upd";
 
     public bool IsValid() => TransId > 0;

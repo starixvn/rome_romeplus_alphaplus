@@ -10,7 +10,7 @@ public class ResultModel
     public ResultModel()
     {
     }
-    
+
     public ResultModel(int code, string message)
     {
         Code = code;
@@ -22,5 +22,20 @@ public class ResultModel
         Code = code;
         Message = message;
         Data = data;
+    }
+}
+
+public static class ResultModelExtensions
+{
+    public static string GetDataValue(this ResultModel result, string key)
+    {
+        if (result.Data is IDictionary<string, object> dict)
+        {
+            if (dict.TryGetValue(key, out var value))
+            {
+                return value?.ToString() ?? string.Empty;
+            }
+        }
+        return string.Empty;
     }
 }

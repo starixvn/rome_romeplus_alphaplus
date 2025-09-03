@@ -19,10 +19,6 @@ public interface ITransactionService
 
     Task<TransactionModel> GetTransactionByIdAsync(long transactionId, int custId, short siteDbGroupId);
 
-    Task<ResultModel> RevertDepositTransactionToPending(RevertTransaction model);
-
-    Task<ResultModel> RevertWithdrawalTransactionToPending(RevertTransaction model);
-
     Task<IEnumerable<MemberInfo>> GetMembersAsync(int agentId, short custDbGroupId);
 
     void OnAfterUpdateTransaction(string cashAccumCreditTbl, short siteDbGroupId, short custDbGroupId, List<WriteLogDBCommandModel> logs);
@@ -69,56 +65,6 @@ public class TransactionService(IDynamicRepository dynamicRepository, ICommonSer
         };
         var transaction = await dynamicRepository.GetAsync<TransactionModel>(criteria);
         return transaction;
-    }
-
-    public async Task<ResultModel> RevertDepositTransactionToPending(RevertTransaction model)
-    {
-        var command = new RevertDepositTransactionToPendingCommand
-        {
-            TransId = model.TransId,
-            Remark = model.Remark,
-            AgentId = model.UserId,
-            UserId = model.UserId,
-            SubAccId = model.SubAccId,
-            CustId = model.CustId,
-            Ip = model.IP,
-            SiteDbGroupId = model.SiteDBGroupId,
-            CustDbGroupId = model.CustDBGroupId,
-        };
-        var logs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command);
-        OnAfterUpdateTransaction(command.CashAccumCreditTbl, command.SiteDbGroupId, command.CustDbGroupId, logs.ToList());
-
-        return new ResultModel
-        {
-            Code = command.ErrCode,
-            Message = command.ErrMsg
-        };
-    }
-
-    public async Task<ResultModel> RevertWithdrawalTransactionToPending(RevertTransaction model)
-    {
-        var memberSettings = await GetMemberSettingDepositAsync(model.CustId, model.CustDBGroupId);
-        var command = new RevertWithdrawalTransactionToPendingCommand
-        {
-            TransId = model.TransId,
-            AgentId = model.UserId,
-            Remark = model.Remark,
-            UserId = model.UserId,
-            CustId = model.CustId,
-            SubAccId = model.SubAccId,
-            Ip = model.IP,
-            SiteDbGroupId = model.SiteDBGroupId,
-            CustDbGroupId = model.CustDBGroupId,
-            AgentGivenCredit = memberSettings.AgentGivenCredit,
-            CreditMembersGivenCredit = memberSettings.CreditMembers_GivenCredit
-        };
-        var logs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command);
-        OnAfterUpdateTransaction(command.CashAccumCreditTbl, command.SiteDbGroupId, command.CustDbGroupId, logs.ToList());
-        return new ResultModel
-        {
-            Code = command.ErrCode,
-            Message = command.ErrMsg
-        };
     }
 
     public async Task<IEnumerable<MemberInfo>> GetMembersAsync(int agentId, short custDbGroupId)

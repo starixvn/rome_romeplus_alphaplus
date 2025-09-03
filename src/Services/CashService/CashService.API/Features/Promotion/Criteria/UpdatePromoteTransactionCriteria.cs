@@ -28,6 +28,7 @@ public class UpdatePromoteTransactionCriteria : CriteriaBase
 
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }
+    public decimal? AgentAvailableCredit { get; set; }
 
     public override string GetSettingKey() => $"SiteDb_{SiteDbGroupId}_Age_CashPromotion_UpdateTransStatus";
 

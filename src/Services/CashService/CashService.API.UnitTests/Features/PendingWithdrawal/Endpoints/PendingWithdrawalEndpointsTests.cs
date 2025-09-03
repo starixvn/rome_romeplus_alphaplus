@@ -105,6 +105,23 @@ public class PendingWithdrawalEndpointsTests
     }
 
     [Fact]
+    public async Task RevertWithdrawalTransactionToPending_ShouldReturnOkResultWithResultModel()
+    {
+        // Arrange
+        var model = new RevertTransaction { TransId = 1 };
+        var expectedResultModel = new ResultModel { Code = 0, Message = "Success" };
+        mockService.Setup(s => s.RevertWithdrawalTransactionToPending(model)).ReturnsAsync(expectedResultModel);
+
+        // Act
+        var result = await mockService.Object.RevertWithdrawalTransactionToPending(model);
+
+        // Assert
+        var okResult = Assert.IsType<Ok<ResultModel>>(result);
+        Assert.Equal(expectedResultModel, okResult.Value);
+        mockService.Verify(s => s.RevertWithdrawalTransactionToPending(model), Times.Once);
+    }
+
+    [Fact]
     public async Task CreateManualWithdraw_Logic_ShouldReturnCorrectResult()
     {
         // Arrange
@@ -203,5 +220,11 @@ public class PendingWithdrawalEndpointsTests
         Assert.Equal(expectedResult.Message, okResult.Value?.Message);
         mockService.Verify(x => x.ProcessWithdrawAsync(It.Is<ProcessWithdrawalTransaction>(m =>
             m.StatusId == (int)TransactionStatus.Rejected)), Times.Once);
+    }
+
+    public static async Task<IResult> RevertWithdrawalTransactionToPendingHandler(IPendingWithdrawalService service, RevertTransaction command)
+    {
+        var result = await service.RevertWithdrawalTransactionToPending(command);
+        return Results.Ok(result);
     }
 }

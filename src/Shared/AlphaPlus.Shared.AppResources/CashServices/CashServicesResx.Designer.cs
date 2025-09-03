@@ -484,6 +484,24 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The amount must not exceed agent available credit {0}.
+        /// </summary>
+        public static string TheAmountMustNotExceedAgentAvailableCredit {
+            get {
+                return ResourceManager.GetString("TheAmountMustNotExceedAgentAvailableCredit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The amount must not exceed member cash balance {0}.
+        /// </summary>
+        public static string TheAmountMustNotExceedMemberCashBalance {
+            get {
+                return ResourceManager.GetString("TheAmountMustNotExceedMemberCashBalance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The transaction inserted failed. Please try again..
         /// </summary>
         public static string TheTransactionInsertedFailedPleaseTryAgain {

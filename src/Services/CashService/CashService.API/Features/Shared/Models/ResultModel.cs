@@ -9,6 +9,6 @@ public class ResultModel(int code, string message)
     public int Code { get; set; } = code;
     public string Message { get; set; } = message;
     public bool IsSuccessful => Code == 0;
-
     public string ErrExtraInfo { get; set; }
+    public object? Data { get; set; }
 }
