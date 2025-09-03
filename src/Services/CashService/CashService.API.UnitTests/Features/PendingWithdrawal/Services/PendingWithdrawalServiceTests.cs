@@ -336,15 +336,9 @@ public class PendingWithdrawalServiceTests
         var memberSettings = new MemberSettingDeposit { AgentGivenCredit = 500m, CreditMembers_GivenCredit = 300m };
         var command = new RevertWithdrawalTransactionToPendingCommand { TransId = 1, ErrCode = 0, ErrMsg = "Success" };
 
-        mockDynamicRepository
-            .Setup(repo => repo.GetAsync<MemberSettingDeposit>(It.IsAny<GetMemberSettingDepositCriteria>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))
-            .Callback((ICriteria criteria, string s, CancellationToken ct) =>
-            {
-                var c = (GetMemberSettingDepositCriteria)criteria;
-                c.AgentGivenCredit = memberSettings.AgentGivenCredit;
-                c.CreditMembers_GivenCredit = memberSettings.CreditMembers_GivenCredit;
-            })
-            .ReturnsAsync(new MemberSettingDeposit());
+        mockTransactionService
+            .Setup(s => s.GetMemberSettingDepositAsync(model.CustId, model.CustDBGroupId))
+            .ReturnsAsync(memberSettings);
 
         mockDynamicRepository
             .Setup(repo => repo.FetchAsync<WriteLogDBCommandModel>(It.IsAny<RevertWithdrawalTransactionToPendingCommand>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))

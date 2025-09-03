@@ -9,7 +9,6 @@ using Xunit;
 namespace AlphaPlus.CashService.API.UnitTests.Features.PendingDeposit.Endpoints
 {
     using AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints;
-    using AlphaPlus.CashService.API.Features.Transactions.Endpoints;
     using API.Features.Transactions.Models;
     using API.Features.Transactions.Services;
 
@@ -81,7 +80,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.PendingDeposit.Endpoints
             mockPendingDepositService.Setup(s => s.RevertDepositTransactionToPending(model)).ReturnsAsync(expectedResultModel);
 
             // Act
-            var result = await TransactionsEndpoints.RevertDepositTransactionToPendingHandler(mockTransactionService.Object, model);
+            var result = await PendingDepositEndpoints.RevertDepositTransactionToPendingHandler(mockPendingDepositService.Object, model);
 
             // Assert
             var okResult = Assert.IsType<Microsoft.AspNetCore.Http.HttpResults.Ok<ResultModel>>(result);

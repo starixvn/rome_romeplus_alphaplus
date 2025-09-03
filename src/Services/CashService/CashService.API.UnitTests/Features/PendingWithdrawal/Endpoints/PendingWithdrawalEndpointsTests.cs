@@ -113,7 +113,8 @@ public class PendingWithdrawalEndpointsTests
         mockService.Setup(s => s.RevertWithdrawalTransactionToPending(model)).ReturnsAsync(expectedResultModel);
 
         // Act
-        var result = await mockService.Object.RevertWithdrawalTransactionToPending(model);
+        var commandResult = await mockService.Object.RevertWithdrawalTransactionToPending(model);
+        var result = Results.Ok(commandResult);
 
         // Assert
         var okResult = Assert.IsType<Ok<ResultModel>>(result);
