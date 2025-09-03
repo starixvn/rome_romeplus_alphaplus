@@ -315,4 +315,13 @@
   <data name="AgentCashBalanceIsInsufficient" xml:space="preserve">
     <value>Số dư tiền mặt của đại lý không đủ.</value>
   </data>
+  <data name="InvalidMemberErrMsg" xml:space="preserve">
+    <value>Thành viên không hợp lệ [{0}, {1}]</value>
+  </data>
+  <data name="InvalidTransactionErrMsg" xml:space="preserve">
+    <value>Giao dịch không hợp lệ [{0}, {1}]</value>
+  </data>
+  <data name="SelectedBankIsNotSupportedByProvider" xml:space="preserve">
+    <value>Ngân hàng đã chọn không được hỗ trợ bởi {0}. Vui lòng chọn ngân hàng khác.</value>
+  </data>
 </root>

@@ -30,27 +30,30 @@ public class TransactionsController(
 
     public IActionResult Index() => Ok("Transactions");
 
-    public async Task<IActionResult> Deposit()
+    private async Task<IActionResult> RenderCashServiceViewAsync()
     {
         var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
         return View(new SiteBaseViewModel { IsCashServiceEnabled = isCashServiceEnabled });
+    }
+
+    public async Task<IActionResult> Deposit()
+    {
+        return await RenderCashServiceViewAsync();
     }
 
     public async Task<IActionResult> Withdrawal()
     {
-        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
-        return View(new SiteBaseViewModel { IsCashServiceEnabled = isCashServiceEnabled });
+        return await RenderCashServiceViewAsync();
     }
 
     public async Task<IActionResult> History()
     {
-        var isCashServiceEnabled = await _customerService.GetCashServiceStatus(_userSession.CustId);
-        return View(new SiteBaseViewModel { IsCashServiceEnabled = isCashServiceEnabled });
+        return await RenderCashServiceViewAsync();
     }
 
     public async Task<IActionResult> GetHistory([FromQuery] GetTransactionFilter filter)
     {
-        var url = "/transactions/history";
+        const string url = "/transactions/history";
         filter.CustId = agentId;
         filter.SiteDbGroupId = siteDbGroupId;
         var result = await httpClientHelper.GetAsync<TransactionResponse>(url, ObjectConverter.ToDictionary(filter));
@@ -70,7 +73,7 @@ public class TransactionsController(
             CustId = agentId,
             Account = param.Account
         };
-        param.Username = userSession.UserName;
+        param.Username = _userSession.UserName;
         var response = await httpClientHelper.GetAsync<TransactionResponse>("/transactions/history", ObjectConverter.ToDictionary(filter));
         var excelFileViewModel = transactionHistoryWorkbook.BuildExcelFile(param, response.Items);
         return File(excelFileViewModel.Content, excelFileViewModel.ContentType, excelFileViewModel.Name);
@@ -85,14 +88,14 @@ public class TransactionsController(
 
     public async Task<IActionResult> GetDepositTransactionTypes()
     {
-        var url = "/deposit/transaction-types";
+        const string url = "/deposit/transaction-types";
         var transactionTypes = await httpClientHelper.GetAsync<object>(url);
         return Json(transactionTypes);
     }
 
     public async Task<IActionResult> GetMemberBankAccounts()
     {
-        var url = "/deposit/member-bank-accounts";
+        const string url = "/deposit/member-bank-accounts";
         var memberAccounts = await httpClientHelper.GetAsync<object>(url);
         return Json(memberAccounts);
     }
@@ -128,7 +131,7 @@ public class TransactionsController(
     [HttpPost]
     public async Task<IActionResult> AddManualDeposit([FromForm] AddTransactionParams request)
     {
-        if (userSession.IsInternal)
+        if (_userSession.IsInternal)
         {
             return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
@@ -140,8 +143,8 @@ public class TransactionsController(
         }
 
         request.UplineId = agentId;
-        request.SubAccId = userSession.SubAccId;
-        request.Ip = userSession.UserLoginIp;
+        request.SubAccId = _userSession.SubAccId;
+        request.Ip = _userSession.UserLoginIp;
         request.SiteDbGroupId = siteDbGroupId;
         request.CustDbGroupId = custDbGroupId;
         request.PaySlip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
@@ -156,7 +159,7 @@ public class TransactionsController(
     [HttpPost]
     public async Task<IActionResult> AddManualWithdrawal([FromForm] AddTransactionParams request)
     {
-        if (userSession.IsInternal)
+        if (_userSession.IsInternal)
         {
             return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
@@ -180,15 +183,15 @@ public class TransactionsController(
         }
 
         request.UplineId = agentId;
-        request.SubAccId = userSession.SubAccId;
-        request.Ip = userSession.UserLoginIp;
+        request.SubAccId = _userSession.SubAccId;
+        request.Ip = _userSession.UserLoginIp;
         request.SiteDbGroupId = siteDbGroupId;
         request.CustDbGroupId = custDbGroupId;
         request.PaySlip = request.Image != null ? await FileHelper.CompressAndConvertToBase64Async(request.Image) : null;
         result = await httpClientHelper.PostAsync<AddTransactionParams, ResultModel>("/api/withdrawal/create", request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingAddManualWithdrawalErrCode(result.Code);
+            result.Message = ErrorCodeHandler.MappingAddManualWithdrawalErrCode(result.Code, request.CustId, agentId);
         }
         return Json(result);
     }
@@ -253,7 +256,7 @@ public class TransactionsController(
 
     public async Task<IActionResult> GetBankWithdrawalAccounts()
     {
-        var url = "/withdrawal/bank-withdrawal-accounts";
+        const string url = "/withdrawal/bank-withdrawal-accounts";
         var withdrawalAccounts = await httpClientHelper.GetAsync<object>(url);
         return Json(withdrawalAccounts);
     }
@@ -289,7 +292,7 @@ public class TransactionsController(
     [HttpPost]
     public async Task<IActionResult> RevertDepositTransactionToPending([FromBody] RevertTransaction request)
     {
-        if (userSession.IsInternal)
+        if (_userSession.IsInternal)
         {
             return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
@@ -299,11 +302,11 @@ public class TransactionsController(
         {
             return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
         }
-        request.SetUserSession(userSession);
+        request.SetUserSession(_userSession);
         var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending-deposit", request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingRevertTransactionErrCode(result.Code, 1);
+            result.Message = ErrorCodeHandler.MappingRevertTransactionErrCode(result.Code, 1, request.TransId.ToString(), request.CustId, request.ActorId);
         }
 
         return Ok(result);
@@ -312,7 +315,7 @@ public class TransactionsController(
     [HttpPost]
     public async Task<IActionResult> RevertWithdrawalTransactionToPending([FromBody] RevertTransaction request)
     {
-        if (userSession.IsInternal)
+        if (_userSession.IsInternal)
         {
             return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
@@ -323,11 +326,11 @@ public class TransactionsController(
             return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
         }
 
-        request.SetUserSession(userSession);
+        request.SetUserSession(_userSession);
         var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/transactions/revert-pending-withdrawal", request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingRevertTransactionErrCode(result.Code, 2);
+            result.Message = ErrorCodeHandler.MappingRevertTransactionErrCode(result.Code, 2, request.TransId.ToString(), request.CustId, request.ActorId);
         }
         return Ok(result);
     }
@@ -335,7 +338,7 @@ public class TransactionsController(
     [HttpPost]
     public async Task<IActionResult> ApproveDeposit([FromBody] ProcessDepositTransaction request)
     {
-        if (userSession.IsInternal)
+        if (_userSession.IsInternal)
         {
             return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
@@ -346,11 +349,15 @@ public class TransactionsController(
             return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
         }
 
-        request.SetUserSession(userSession);
+        request.SetUserSession(_userSession);
         var result = await httpClientHelper.PostAsync<ProcessDepositTransaction, ResultModel>("/api/deposit/approve", request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code, result.Message);
+            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code,
+                result.Message,
+                request.TransId.ToString(),
+                request.CustId,
+                request.ActorId);
         }
         return Json(result);
     }
@@ -358,7 +365,7 @@ public class TransactionsController(
     [HttpPost]
     public async Task<IActionResult> RejectDeposit([FromBody] ProcessDepositTransaction request)
     {
-        if (userSession.IsInternal)
+        if (_userSession.IsInternal)
         {
             return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
@@ -369,12 +376,16 @@ public class TransactionsController(
             return Json(new ResultModel(401, Messages.CashServiceIsDisabled));
         }
 
-        request.SetUserSession(userSession);
+        request.SetUserSession(_userSession);
 
         var result = await httpClientHelper.PostAsync<ProcessDepositTransaction, ResultModel>("/api/deposit/reject", request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code, result.Message);
+            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code,
+                result.Message,
+                request.TransId.ToString(),
+                request.CustId,
+                request.ActorId);
         }
         return Json(result);
     }
@@ -382,11 +393,11 @@ public class TransactionsController(
     [HttpPost]
     public async Task<IActionResult> ApproveWithdrawal([FromForm] ProcessWithdrawalTransaction request)
     {
-        if (userSession.IsInternal)
+        if (_userSession.IsInternal)
         {
             return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
-        request.SetUserSession(userSession);
+        request.SetUserSession(_userSession);
 
         if (request.Image != null)
         {
@@ -395,7 +406,11 @@ public class TransactionsController(
         var result = await httpClientHelper.PostAsync<ProcessWithdrawalTransaction, ResultModel>("/api/withdrawal/approve", request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code, result.Message);
+            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code,
+                result.Message,
+                request.TransId.ToString(),
+                request.CustId,
+                request.ActorId);
         }
         return Ok(result);
     }
@@ -403,11 +418,11 @@ public class TransactionsController(
     [HttpPost]
     public async Task<IActionResult> RejectWithdrawal([FromForm] ProcessWithdrawalTransaction request)
     {
-        if (userSession.IsInternal)
+        if (_userSession.IsInternal)
         {
             return Json(new ResultModel(401, AlphaPlus.Shared.AppResources.Betlist.Services.Resources.NotAuthorized));
         }
-        request.SetUserSession(userSession);
+        request.SetUserSession(_userSession);
 
         if (request.Image != null)
         {
@@ -416,7 +431,11 @@ public class TransactionsController(
         var result = await httpClientHelper.PostAsync<ProcessWithdrawalTransaction, ResultModel>("/api/withdrawal/reject", request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code, result.Message);
+            result.Message = ErrorCodeHandler.MappingUpdateTransactionStatus(result.Code,
+                result.Message,
+                request.TransId.ToString(),
+                request.CustId,
+                request.ActorId);
         }
         return Ok(result);
     }

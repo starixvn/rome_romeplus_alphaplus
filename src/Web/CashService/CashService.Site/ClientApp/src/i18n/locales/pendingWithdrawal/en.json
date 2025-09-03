@@ -91,7 +91,8 @@
     "minAmount": "Min",
     "maxAmount": "Max",
     "invalidFileType": "Invalid file type. Please upload a jpeg, jpg, or png file.",
-    "providerSupportedBankError": "Selected bank is not supported by {providerName}. Please choose another."
+    "providerSupportedBankError": "Selected bank is not supported by {providerName}. Please choose another.",
+    "amountRangeMinMaxError": "The amount must be between {0} and {1}"
   },
 
   "updateWithdrawal": {

@@ -146,6 +146,20 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({
       return false;
     }
 
+    if (
+      minAmount >= 0 &&
+      maxAmount &&
+      (withdrawalAmount < minAmount || withdrawalAmount > maxAmount)
+    ) {
+      setResultMessage({
+        type: 'error',
+        message: t('manualWithdrawalForm.amountRangeMinMaxError')
+          .replace('{0}', displayAmount(minAmount))
+          .replace('{1}', displayAmount(maxAmount)),
+      });
+      return false;
+    }
+
     if (image && image.size > 1024 * 1024) {
       setResultMessage({ type: 'error', message: t('manualWithdrawalForm.imageSizeError') });
       return false;
@@ -257,6 +271,8 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({
 
   const handleUpdateLimitWithdrawalAmt = async (memberCustId: number | null) => {
     if (!memberCustId || providerId <= 0) {
+      setMinAmount(0);
+      setMaxAmount(null);
       return;
     }
     const limits = await getSettingLimitAmtWithdrawal({

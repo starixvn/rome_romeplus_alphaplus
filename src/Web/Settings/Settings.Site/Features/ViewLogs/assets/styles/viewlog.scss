@@ -1,7 +1,7 @@
 ﻿@import "_mixins.scss";
 
 body {
-    background: #f4f4f4;
+    background: transparent;
     font-size: 13px;
 }
 
@@ -18,7 +18,7 @@ $height-td: 28px;
 }
 
 .nav.nav-tabs {
-    background: #f4f4f4;
+    background: transparent;
     position: fixed;
     left: 0;
     right: 0;

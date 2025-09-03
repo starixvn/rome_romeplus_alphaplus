@@ -1,19 +1,89 @@
 {
   "promotionReport": "รายงานโปรโมชัน",
-  "promotionContent": "เนื้อหาโปรโมชัน",
+  "pendingPromotion": "โปรโมชันที่รอดำเนินการ",
+  "addBonus": "เพิ่มโบนัส",
+  "managePromotion": {
+    "addPromotion": "เพิ่มโปรโมชัน",
+    "managePromotion": "จัดการโปรโมชัน"
+  },
+  "addPromotionForm": {
+    "promotionContent": "เนื้อหาโปรโมชัน",
+    "requiredProductCategory": "โปรดเลือกอย่างน้อยหนึ่งผลิตภัณฑ์",
+    "requiredTitle": "ต้องกรอกชื่อเรื่อง (ภาษาอังกฤษ)",
+    "requiredContent": "ต้องกรอกเนื้อหา (ภาษาอังกฤษ)",
+    "requiredBanner": "ต้องอัปโหลดแบนเนอร์ (ภาษาอังกฤษ)",
+    "bannerSizeLimit": "ขนาดแบนเนอร์ต้องน้อยกว่า 5 MB",
+    "promotionSavedSuccessfully": "บันทึกโปรโมชันสำเร็จ",
+    "currentPromotion": "โปรโมชันปัจจุบัน",
+    "onlyOnePromotionCanBeActiveAtATime": "สามารถเปิดใช้งานได้ครั้งละหนึ่งโปรโมชันเท่านั้น",
+    "promotionConfigureCalculated": "โปรโมชันถูกกำหนดและคำนวณแบบรายสัปดาห์",
+    "promotionSettings": {
+      "title": "การตั้งค่าโปรโมชัน",
+      "description1": "ระหว่างช่วงโปรโมชัน จะคำนวณจำนวนโบนัสทุกวันอังคาร โดยอ้างอิงจากยอดหมุนเวียนสุทธิที่เข้าเงื่อนไขของสัปดาห์ก่อนหน้า (จันทร์ถึงอาทิตย์)",
+      "description2": "โบนัสเป็นการคืนเงินตามยอดหมุนเวียนสุทธิที่เข้าเงื่อนไข โดยคำนวณจากบิลเดิมพันที่ชนะและแพ้ในผลิตภัณฑ์ที่กำหนด",
+      "description3": "ยอดหมุนเวียนสุทธิที่เข้าเงื่อนไข:",
+      "description4": "สปอร์ตบุ๊ก & กีฬาเสมือน: ไม่รวมบิลเสมอ และ Cash Out",
+      "description5": "RNG คาสิโน: เฉพาะเกมสล็อต",
+      "description6": "คาสิโนสด: รวมบิลเสมอ",
+      "description7": "หมายเหตุ:",
+      "description8": "สำหรับคาสิโนสดและ RNG คาสิโน หากสมาชิกเดิมพันทั้งสองฝั่งของเกมเดียวกัน ยอดหมุนเวียนสุทธิที่เข้าเงื่อนไข = ยอดจ่ายรางวัลทั้งหมด − ยอดเดิมพันทั้งหมด",
+      "description9": "ตัวอย่าง: สมาชิกเดิมพันฝั่งผู้เล่นและเจ้ามือฝั่งละ 100 ในเกมบาคาร่า เจ้ามือชนะด้วยอัตราต่อรอง = 1",
+      "description10": "ยอดจ่าย = 200, ยอดเดิมพัน = 200 → ยอดหมุนเวียนสุทธิ = 0 (200 - 200)"
+    },
+    "promotionType": "ประเภทโปรโมชัน",
+    "minTurnover": "ยอดหมุนเวียนขั้นต่ำ",
+    "percentage": "เปอร์เซ็นต์",
+    "maxPayout": "ยอดจ่ายสูงสุด",
+    "title": "ชื่อเรื่อง",
+    "banner": "แบนเนอร์",
+    "content": "เนื้อหา",
+    "unlimited": "ไม่จำกัด"
+  },
+  "editPromotionForm": {
+    "promotionUpdatedSuccessfully": "อัปเดตโปรโมชันสำเร็จ",
+    "editPromotion": "แก้ไขโปรโมชัน"
+  },
+  "addBonusForm": {
+    "title": "เพิ่มโบนัส",
+    "accountInformation": "ข้อมูลบัญชี",
+    "memberLoginName": "ชื่อเข้าสู่ระบบสมาชิก",
+    "bonusAmount": "จำนวนโบนัส",
+    "agentAvailableCredit": "เครดิตที่ใช้ได้ของเอเย่นต์",
+    "remarks": "หมายเหตุ",
+    "remarksPlaceholder": "หมายเหตุ",
+    "selectMember": "เลือกสมาชิก",
+    "cancel": "ยกเลิก",
+    "approve": "อนุมัติ",
+    "memberLoginNameRequired": "ต้องกรอกชื่อผู้ใช้ของสมาชิก",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "จำนวนเงินต้องมากกว่า 0 และน้อยกว่ายอดเครดิตที่ใช้ได้ของเอเย่นต์",
+    "bonusAddedSuccessfully": "เพิ่มโบนัสสำเร็จ!",
+    "bannerSizeLimit": "ขนาดแบนเนอร์ต้องน้อยกว่า 5 MB"
+  },
+  "editModal": {
+    "title": "โปรโมชันที่รอดำเนินการ",
+    "message": "เมื่ออนุมัติ/ปฏิเสธแล้ว จะไม่สามารถย้อนกลับธุรกรรมได้",
+    "bonusAmount": "จำนวนโบนัส",
+    "agentAvailableCredit": "เครดิตที่ใช้ได้ของเอเย่นต์",
+    "reject": "ปฏิเสธ",
+    "approve": "อนุมัติ",
+    "rejectedSuccess": "ปฏิเสธโปรโมชันสำเร็จ",
+    "approvedSuccess": "อนุมัติโปรโมชันสำเร็จ",
+    "bonusAmountMustBeGreaterThan0AndLessThanAgentAvailableCredit": "จำนวนโบนัสต้องมากกว่า 0 และน้อยกว่ายอดเครดิตที่ใช้ได้ของเอเย่นต์",
+    "bannerSizeLimit": "ขนาดแบนเนอร์ต้องน้อยกว่า 5 MB"
+  },
   "table": {
     "no": "ลำดับ",
     "action": "การดำเนินการ",
     "promotionTitle": "ชื่อโปรโมชัน",
     "promotionType": "ประเภทโปรโมชัน",
     "percentage": "เปอร์เซ็นต์ (%)",
-    "maxPayout": "การจ่ายเงินสูงสุด",
+    "maxPayout": "ยอดจ่ายสูงสุด",
     "sports": "กีฬา",
     "virtualSports": "กีฬาเสมือน",
     "liveCasino": "คาสิโนสด",
     "games": "เกม",
     "period": "ระยะเวลา",
-    "provider": "ผู้ให้บริการ",
+    "Product": "ผลิตภัณฑ์",
     "status": "สถานะ",
     "edit": "แก้ไข",
     "delete": "ลบ",
@@ -21,14 +91,56 @@
     "noRecords": "ไม่พบข้อมูล",
     "bonusAmount": "จำนวนโบนัส",
     "totalRequest": "จำนวนคำขอทั้งหมด",
-    "totalApproved": "จำนวนคำขอที่ได้รับอนุมัติทั้งหมด",
-    "totalRejected": "จำนวนคำขอที่ถูกปฏิเสธทั้งหมด",
-    "totalBonusGiven": "โบนัสที่มอบให้ทั้งหมด",
-    "rebatePeriod": "Rebate Period"
-  },
-  "search": {
-    "placeholder": "ค้นหาตามชื่อหรือประเภท..."
+    "totalApproved": "จำนวนที่อนุมัติทั้งหมด",
+    "totalRejected": "จำนวนที่ปฏิเสธทั้งหมด",
+    "totalBonusGiven": "ยอดโบนัสที่มอบทั้งหมด",
+    "deleteSuccess": "ลบโปรโมชันสำเร็จ",
+    "confirmDeleteTitle": "ยืนยันการลบ",
+    "confirmDeleteMessage": "คำขอโปรโมชันที่รอดำเนินการทั้งหมดภายใต้โปรโมชันนี้จะถูกปฏิเสธ คุณแน่ใจหรือไม่ว่าต้องการลบโปรโมชันนี้?",
+    "username": "ชื่อผู้ใช้",
+    "nickname": "ชื่อเล่น",
+    "name": "ชื่อ",
+    "title": "ชื่อเรื่อง",
+    "amount": "จำนวนเงิน",
+    "firstLastName": "ชื่อ-นามสกุล",
+    "actions": "การดำเนินการ",
+    "loading": "กำลังโหลด...",
+    "confirmApproveTitle": "ยืนยันการอนุมัติ",
+    "confirmApproveMessage": "คุณแน่ใจหรือไม่ว่าต้องการอนุมัติโปรโมชันที่เลือก?",
+    "confirmRejectTitle": "ยืนยันการปฏิเสธ",
+    "confirmRejectMessage": "คุณแน่ใจหรือไม่ว่าต้องการปฏิเสธโปรโมชันที่เลือก?",
+    "rebatePeriod": "รอบการคืนเงิน",
+    "approveSuccess": "อนุมัติโปรโมชันสำเร็จ",
+    "rejectSuccess": "ปฏิเสธโปรโมชันสำเร็จ",
+    "refNo": "เลขที่อ้างอิง",
+    "rejectErrorAll": "ปฏิเสธโปรโมชันไม่สำเร็จสำหรับเลขที่อ้างอิงต่อไปนี้:",
+    "rejectSuccessAll": "ปฏิเสธโปรโมชันทั้งหมดสำเร็จ",
+    "approveErrorAll": "อนุมัติโปรโมชันไม่สำเร็จสำหรับเลขที่อ้างอิงต่อไปนี้:",
+    "approveSuccessAll": "อนุมัติโปรโมชันทั้งหมดสำเร็จ"
   },
   "promotionType_1": "การคืนเงินจากยอดหมุนเวียน",
-  "manualBonus": "Manual Bonus"
+  "search": {
+    "placeholder": "ค้นหาตามชื่อหรือประเภท...",
+    "reject": "ปฏิเสธ",
+    "approve": "อนุมัติ"
+  },
+  "filter": {
+    "dateRange": "ช่วงวันที่",
+    "promotionType": "ประเภทโปรโมชัน",
+    "all": "ทั้งหมด",
+    "maxRecords": "สูงสุด 1000 รายการ",
+    "searchPlaceholder": "ชื่อผู้ใช้/ชื่อ/ชื่อเรื่อง"
+  },
+  "promotionType": {
+    "welcome": "ต้อนรับ",
+    "reload": "เติมเงิน",
+    "cashback": "แคชแบ็ก",
+    "freebet": "เดิมพันฟรี"
+  },
+  "messages": {
+    "copy": "คัดลอก",
+    "copied": "คัดลอกแล้ว!",
+    "exportToExcel": "ส่งออกเป็น Excel"
+  },
+  "manualBonus": "โบนัสด้วยตนเอง"
 }

@@ -108,7 +108,7 @@ const ProductSettings: React.FC<ProductSettingsProps> = ({
                     htmlFor={`${product.productCategoryId}-unlimited`}
                     className="text-[var(--text-link-color)]"
                   >
-                    Unlimited
+                    {t('addPromotionForm.unlimited')}
                   </label>
                 </div>
               </div>

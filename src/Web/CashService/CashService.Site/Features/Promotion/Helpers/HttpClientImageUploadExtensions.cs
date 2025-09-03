@@ -3,6 +3,7 @@
 using System.Net.Http.Headers;
 using System.Text;
 using Fanex.Logging;
+using Microsoft.Extensions.Caching.Memory;
 using Models.Configurations;
 using Newtonsoft.Json;
 using Site.Helpers;
@@ -13,6 +14,7 @@ public static class HttpClientImageUploadExtensions
     public static async Task UploadImageToAllDomainsAsync(
         this HttpClient client,
         ILogger logger,
+        IMemoryCache memCache,
         List<UploadApiSettings> settings,
         byte[] fileBytes,
         string fileName,
@@ -22,7 +24,7 @@ public static class HttpClientImageUploadExtensions
         {
             try
             {
-                await UploadToDomainAsync(client, logger, setting, fileBytes, fileName, cancellationToken);
+                await UploadToDomainAsync(client, logger, memCache, setting, fileBytes, fileName, cancellationToken);
             }
             catch (Exception ex)
             {
@@ -36,12 +38,13 @@ public static class HttpClientImageUploadExtensions
     private static async Task UploadToDomainAsync(
         HttpClient client,
         ILogger logger,
+        IMemoryCache memCache,
         UploadApiSettings setting,
         byte[] fileBytes,
         string fileName,
         CancellationToken cancellationToken)
     {
-        var token = await GetTokenAsync(client, setting, cancellationToken);
+        var token = await GetTokenAsync(client, memCache, setting, cancellationToken);
         if (string.IsNullOrWhiteSpace(token))
         {
             throw new InvalidOperationException(@$"Upload to {setting.BaseUrl} failed Token is empty or invalid.");
@@ -131,8 +134,14 @@ public static class HttpClientImageUploadExtensions
         return Task.CompletedTask;
     }
 
-    private static async Task<string> GetTokenAsync(HttpClient client, UploadApiSettings setting, CancellationToken cancellationToken)
+    private static async Task<string> GetTokenAsync(HttpClient client, IMemoryCache memCache, UploadApiSettings setting, CancellationToken cancellationToken)
     {
+        var cacheKey = $@"UPLOAD_BANNER_CACHE_KEY_ON_SERVER_{setting.BaseUrl}";
+        if (memCache.TryGetValue(cacheKey, out string cachedToken))
+        {
+            return cachedToken;
+        }
+
         var loginUrl = $"{setting.BaseUrl.TrimEnd('/')}/api/login";
         var loginPayload = new
         {
@@ -145,6 +154,8 @@ public static class HttpClientImageUploadExtensions
         resp.EnsureSuccessStatusCode();
 
         var token = await resp.Content.ReadAsStringAsync(cancellationToken);
+
+        memCache.Set(cacheKey, token, TimeSpan.FromHours(1.5));
         return token.Trim('"');
     }
 }

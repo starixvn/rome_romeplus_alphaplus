@@ -315,6 +315,15 @@
           <data name="TheAmountMustBeBetween0And1AsPerProviderLimits" xml:space="preserve">
             <value>金額はプロバイダーの制限に従って{0}と{1}の間である必要があります</value>
           </data>
+          <data name="InvalidMemberErrMsg" xml:space="preserve">
+            <value>無効なメンバー [{0}, {1}]</value>
+          </data>
+          <data name="InvalidTransactionErrMsg" xml:space="preserve">
+            <value>無効な取引 [{0}, {1}]</value>
+          </data>
+          <data name="SelectedBankIsNotSupportedByProvider" xml:space="preserve">
+            <value>選択された銀行は{0}によってサポートされていません。別の銀行を選択してください。</value>
+          </data>
           <data name="SuperchargeYourCashFlow" xml:space="preserve">
             <value>キャッシュフローを強化しますか？</value>
           </data>

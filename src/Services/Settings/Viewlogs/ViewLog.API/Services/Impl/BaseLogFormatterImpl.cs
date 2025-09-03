@@ -29,7 +29,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
             }
 
             // Case 1: Pattern to match: <span class="valuechanged">{newValue}</span><span class="valueold">({oldValue})</span>
-            var pattern1 = @"<span class=""valuechanged"">([^<]*)</span><span class=""valueold"">\(([^)]*)\)</span>";
+            const string pattern1 = @"<span class=""valuechanged"">([^<]*)</span><span class=""valueold"">\(([^)]*)\)</span>";
             var match1 = Regex.Match(trackingValue, pattern1);
 
             if (match1.Success)
@@ -40,7 +40,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
             }
 
             // Case 2: Pattern to match: <span class="valuechanged" title="{oldValue} --> {newValue}">{newValue}</span>
-            var pattern2 = @"<span class=""valuechanged"" title=""([^""]*) --> ([^""]*)"">([^<]*)</span>";
+            const string pattern2 = @"<span class=""valuechanged"" title=""([^""]*) --> ([^""]*)"">([^<]*)</span>";
             var match2 = Regex.Match(trackingValue, pattern2);
 
             if (match2.Success)

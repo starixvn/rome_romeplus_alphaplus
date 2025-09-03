@@ -45,7 +45,7 @@ public class PendingPromotionReportWorkbook(IWebHostEnvironment webHostEnvironme
             .Sheet(AlphaPlus.Shared.AppResources.Report.Resources.DefaultSheetName)
             .ExportToBytes();
 
-        return new ExcelFileViewModel($"{CashServicesResx.PendingPromotion}-{request.Username}-{request.FromDate.ToShortDateWithSlash()}-{request.ToDate.ToShortDateWithSlash()}", fileContent);
+        return new ExcelFileViewModel($"PendingPromotion-{request.Username}-{request.FromDate.ToShortDateWithSlash()}-{request.ToDate.ToShortDateWithSlash()}", fileContent);
     }
 
     protected override void FillHeader(Sheet sheet)

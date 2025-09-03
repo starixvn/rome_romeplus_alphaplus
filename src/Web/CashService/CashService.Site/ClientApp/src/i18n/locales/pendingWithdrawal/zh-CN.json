@@ -90,7 +90,8 @@
     "minAmount": "最小",
     "maxAmount": "最大",
     "invalidFileType": "无效的文件类型。请上传 jpeg、jpg 或 png 文件。",
-    "providerSupportedBankError": "{providerName} 不支持此银行。请选择其他银行。"
+    "providerSupportedBankError": "{providerName} 不支持此银行。请选择其他银行。",
+    "amountRangeMinMaxError": "金额必须在 {0} 和 {1} 之间"
   },
 
   "updateWithdrawal": {

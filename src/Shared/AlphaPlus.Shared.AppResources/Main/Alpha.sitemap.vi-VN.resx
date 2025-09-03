@@ -468,4 +468,16 @@
   <data name="PendingWithdrawal" xml:space="preserve">
     <value>Rút tiền đang chờ</value>
   </data>
+  <data name="promotion" xml:space="preserve">
+    <value>Khuyến mãi</value>
+  </data>
+  <data name="ManagePromotion" xml:space="preserve">
+    <value>Quản lý khuyến mãi</value>
+  </data>
+  <data name="PendingPromotion" xml:space="preserve">
+    <value>Khuyến mãi chờ duyệt</value>
+  </data>
+  <data name="PromotionReport" xml:space="preserve">
+    <value>Báo cáo khuyến mãi</value>
+  </data>
 </root>

@@ -38,7 +38,7 @@
                   <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('Percentage')" /></td>
                   <td class="colW2"><xsl:value-of select="@percentage" /></td>
                   <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('MinTO')" /></td>
-                  <td class="colW2"><xsl:value-of select="@minto" /></td>
+                  <td class="colW2"><xsl:value-of select="@minturnover" /></td>
                   <td class="colW1"><xsl:value-of select="xslLogFormat:GetLogResource('MaxPayout')" /></td>
                   <td class="colW2"><xsl:value-of select="@maxpayout" /></td>
                 </tr>

@@ -42,7 +42,7 @@ public class PromotionReportWorkbook(IWebHostEnvironment webHostEnvironment) :
             .Body(reportData, GetRowMapper())
             .ExportToBytes();
 
-        return new ExcelFileViewModel($"{CashServicesResx.PromotionReport}-{request.Username}-{fromDate}-{toDate}", fileContent);
+        return new ExcelFileViewModel($"PromotionReport-{request.Username}-{fromDate}-{toDate}", fileContent);
     }
 
     private Mapper<PromotionReport> GetRowMapper()
