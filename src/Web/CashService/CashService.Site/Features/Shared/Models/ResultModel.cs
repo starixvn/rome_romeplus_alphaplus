@@ -23,18 +23,12 @@ public class ResultModel
         Message = message;
         Data = data;
     }
-}
 
-public static class ResultModelExtensions
-{
-    public static string GetDataValue(this ResultModel result, string key)
+    public string GetDataValue(string key)
     {
-        if (result.Data is IDictionary<string, object> dict)
+        if (Data is IDictionary<string, object> dict && dict.TryGetValue(key, out var value))
         {
-            if (dict.TryGetValue(key, out var value))
-            {
-                return value?.ToString() ?? string.Empty;
-            }
+            return value?.ToString() ?? string.Empty;
         }
         return string.Empty;
     }

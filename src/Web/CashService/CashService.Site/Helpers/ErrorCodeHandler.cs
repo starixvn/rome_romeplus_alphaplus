@@ -6,7 +6,6 @@ using Shared.AppResources.CashServices;
 public static class ErrorCodeHandler
 {
     private const int AccountDisabled = 401;
-
     private const int AccountClosed = 402;
     private const int AccountSuspended = 404;
     private const int InvalidParameters = 405;
@@ -54,8 +53,51 @@ public static class ErrorCodeHandler
             { ProviderRejected, (_, _, _) => CashServicesResx.ProviderRejectErrorMessage },
             { ProviderUnavailable, (_, _, _) => CashServicesResx.PaymentProviderUnavailable },
             { InvalidMember, (memberId, agentId, _) => GetInvalidMemberMessage(memberId, agentId) },
-            { OutRangeMinMaxAmount, (_, _, result) => string.Format(CashServicesResx.TheAmountMustBeBetween0And1AsPerProviderLimits, result.GetDataValue("MinAmount"), result.GetDataValue("MaxAmount") )  },
+            { OutRangeMinMaxAmount, (_, _, result) => string.Format(
+                CashServicesResx.TheAmountMustBeBetween0And1AsPerProviderLimits,
+                result.GetDataValue("MinAmount"),
+                result.GetDataValue("MaxAmount") )
+            },
             { ServerError, (_, _, _) => CashServicesResx.AnErrorOccurredWhileProcessingWithdrawalRequest },
+        };
+
+    private static readonly Dictionary<int, Func<string, int, int, string>> PromotionStatusErrorResolvers =
+        new()
+        {
+            { 400, (_, _, _) => CashServicesResx.ModelValidationFailed },
+            { AccountDisabled, (_, _, _) => GetAccountDisabledMessage() },
+            { AccountClosed, (_, _, _) => GetAccountClosedMessage() },
+            { AccountSuspended, (_, _, _) => GetAccountSuspendedMessage() },
+            { InvalidParameters, (_, _, _) => GetInvalidParametersMessage() },
+            { InsufficientBalance, (_, _, _) => CashServicesResx.MemberCashBalanceIsInsufficient },
+            { DailyLimitExceeded, (_, _, _) => CashServicesResx.ExceedsTheDailyWithdrawalLimit },
+            { TransactionInsertFailed, (_, _, _) => GetTransactionInsertFailedMessage() },
+            { InvalidMember, (_, memberId, agentId) => GetInvalidMemberMessage(memberId, agentId) },
+            { InvalidTransaction, (transId, memberId, _) => GetInvalidTransactionMessage(transId, memberId) },
+            { ServerError, (_, _, _) => CashServicesResx.AnErrorOccurredWhileProcessingWithdrawalRequest },
+        };
+
+    private static readonly Dictionary<int, Func<ResultModel, string, int, int, string>> UpdateTransactionStatusResolvers =
+        new()
+        {
+            { InvalidParameters, (_, _, _, _) => GetInvalidParametersMessage() },
+            { AmountExceedsLimits, (_, _, _, _) => GetAmountExceedsLimitsMessage() },
+            { TransactionInsertFailed, (_, _, _, _) => GetTransactionInsertFailedMessage() },
+            { ProviderRejected, (_, _, _, _) => CashServicesResx.ProviderRejectErrorMessage },
+            { ProviderUnavailable, (_, _, _, _) => CashServicesResx.PaymentProviderUnavailable },
+            { InvalidMember, (_, _, memberId, agentId) => GetInvalidMemberMessage(memberId, agentId) },
+            { InsufficientBalance, (result, _, _, _) => string.Format(CashServicesResx.TheAmountMustNotExceedMemberCashBalance,
+                result.GetDataValue("MemberCashBalance")) },
+            { ExceedAgentAvailableCredit, (result, _, _, _) => string.Format(CashServicesResx.TheAmountMustNotExceedAgentAvailableCredit,
+                result.GetDataValue("AgentAvailableCredit"))
+            },
+            { OutRangeMinMaxAmount, (result, _, _, _) => string.Format(
+                            CashServicesResx.TheAmountMustBeBetween0And1AsPerProviderLimits,
+                            result.GetDataValue("MinAmount"),
+                            result.GetDataValue("MaxAmount"))
+            },
+            { InvalidTransaction, (_, transId, memberId, _) => GetInvalidTransactionMessage(transId, memberId) },
+            { InternalServerError, (result, _, _, _) => $"{CashServicesResx.InternalServerError} {result.Message}" },
         };
 
     public static string MappingAddManualDepositErrorCode(ResultModel result) =>
@@ -78,38 +120,14 @@ public static class ErrorCodeHandler
             : GetTransactionInsertFailedMessage();
 
     public static string MappingUpdatePromotionTransactionStatusErrCode(int errCode, string transId, int memberId, int agentId)
-        => errCode switch
-        {
-            400 => CashServicesResx.ModelValidationFailed,
-            AccountDisabled => GetAccountDisabledMessage(),
-            AccountClosed => GetAccountClosedMessage(),
-            AccountSuspended => GetAccountSuspendedMessage(),
-            InvalidParameters => GetInvalidParametersMessage(),
-            InsufficientBalance => CashServicesResx.MemberCashBalanceIsInsufficient,
-            DailyLimitExceeded => CashServicesResx.ExceedsTheDailyWithdrawalLimit,
-            TransactionInsertFailed => GetTransactionInsertFailedMessage(),
-            InvalidMember => GetInvalidMemberMessage(memberId, agentId),
-            InvalidTransaction => GetInvalidTransactionMessage(transId, memberId),
-            ServerError => CashServicesResx.AnErrorOccurredWhileProcessingWithdrawalRequest,
-            _ => GetTransactionInsertFailedMessage()
-        };
+        => PromotionStatusErrorResolvers.TryGetValue(errCode, out var resolve)
+            ? resolve(transId, memberId, agentId)
+            : GetTransactionInsertFailedMessage();
 
     public static string MappingUpdateTransactionStatus(ResultModel result, string transId, int memberId, int agentId)
-        => result.Code switch
-        {
-            InvalidParameters => GetInvalidParametersMessage(),
-            AmountExceedsLimits => GetAmountExceedsLimitsMessage(),
-            TransactionInsertFailed => GetTransactionInsertFailedMessage(),
-            ProviderRejected => CashServicesResx.ProviderRejectErrorMessage,
-            ProviderUnavailable => CashServicesResx.PaymentProviderUnavailable,
-            InvalidMember => GetInvalidMemberMessage(memberId, agentId),
-            InsufficientBalance => string.Format(CashServicesResx.TheAmountMustNotExceedMemberCashBalance, result.GetDataValue("MemberCashBalance")),
-            ExceedAgentAvailableCredit => string.Format(CashServicesResx.TheAmountMustNotExceedAgentAvailableCredit, result.GetDataValue("AgentAvailableCredit")),
-            OutRangeMinMaxAmount => string.Format(CashServicesResx.TheAmountMustBeBetween0And1AsPerProviderLimits, result.GetDataValue("MinAmount"), result.GetDataValue("MaxAmount")),
-            InvalidTransaction => GetInvalidTransactionMessage(transId, memberId),
-            InternalServerError => $"{CashServicesResx.InternalServerError} {result.Message}",
-            _ => result.Message
-        };
+        => UpdateTransactionStatusResolvers.TryGetValue(result.Code, out var resolve)
+            ? resolve(result, transId, memberId, agentId)
+            : result.Message;
 
     public static string MappingRevertTransactionErrCode(ResultModel result, string transId, int memberId, int agentId)
         => result.Code switch
