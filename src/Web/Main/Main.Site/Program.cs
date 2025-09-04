@@ -28,6 +28,7 @@ configuration
     .AddJsonFile($"authorization.json", optional: false, reloadOnChange: false)
     .AddJsonFile($"securitycode.json", optional: false, reloadOnChange: false)
     .AddJsonFile($"bannerconfig.json", optional: false, reloadOnChange: false)
+    .AddJsonFile("Domains/domainmappings.json", optional: true, reloadOnChange: false)
     //.AddEnvironmentVariables()
     .AddCommandLine(args);
 
