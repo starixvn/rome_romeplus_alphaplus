@@ -333,4 +333,10 @@
           <data name="DateRange" xml:space="preserve">
             <value>日期范围</value>
           </data>
+          <data name="TheAmountMustNotExceedAgentAvailableCredit" xml:space="preserve">
+            <value>金额不得超过代理可用信用额度 {0}</value>
+          </data>
+          <data name="TheAmountMustNotExceedMemberCashBalance" xml:space="preserve">
+            <value>金额不得超过会员现金余额 {0}</value>
+          </data>
         </root>

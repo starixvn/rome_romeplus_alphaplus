@@ -333,4 +333,10 @@
           <data name="DateRange" xml:space="preserve">
             <value>日付範囲</value>
           </data>
+          <data name="TheAmountMustNotExceedAgentAvailableCredit" xml:space="preserve">
+            <value>金額はエージェントの利用可能なクレジット枠{0}を超えてはなりません。</value>
+          </data>
+          <data name="TheAmountMustNotExceedMemberCashBalance" xml:space="preserve">
+            <value>金額はメンバーの現金残高{0}を超えてはなりません。</value>
+          </data>
         </root>

@@ -336,4 +336,10 @@
           <data name="DateRange" xml:space="preserve">
             <value>날짜 범위</value>
           </data>
+          <data name="TheAmountMustNotExceedAgentAvailableCredit" xml:space="preserve">
+            <value>금액은 에이전트의 사용 가능한 신용 한도 {0}를 초과할 수 없습니다.</value>
+          </data>
+          <data name="TheAmountMustNotExceedMemberCashBalance" xml:space="preserve">
+            <value>금액은 회원의 현금 잔액 {0}을 초과할 수 없습니다.</value>
+          </data>
         </root>

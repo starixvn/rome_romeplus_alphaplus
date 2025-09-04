@@ -324,4 +324,10 @@
   <data name="SelectedBankIsNotSupportedByProvider" xml:space="preserve">
     <value>Ngân hàng đã chọn không được hỗ trợ bởi {0}. Vui lòng chọn ngân hàng khác.</value>
   </data>
+  <data name="TheAmountMustNotExceedAgentAvailableCredit" xml:space="preserve">
+    <value>Số tiền không được vượt quá hạn mức tín dụng khả dụng của đại lý {0}</value>
+  </data>
+  <data name="TheAmountMustNotExceedMemberCashBalance" xml:space="preserve">
+    <value>Số tiền không được vượt quá số dư tiền mặt của thành viên {0}</value>
+  </data>
 </root>

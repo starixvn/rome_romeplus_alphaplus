@@ -36,7 +36,8 @@ public static class ErrorCodeHandler
 
     private static string GetInvalidMemberMessage(int memberId, int agentId) => string.Format(CashServicesResx.InvalidMemberErrMsg, memberId, agentId);
 
-    private static string GetInvalidTransactionMessage(string transId, int memberId) => string.Format(CashServicesResx.InvalidTransactionErrMsg, transId, memberId);
+    private static string GetInvalidTransactionMessage(string transId, int memberId)
+        => string.Format(CashServicesResx.InvalidTransactionErrMsg, transId, memberId);
 
     private static readonly Dictionary<int, Func<int, int, ResultModel, string>> WithdrawalErrorResolvers =
         new()
@@ -46,7 +47,9 @@ public static class ErrorCodeHandler
             { AccountClosed, (_, _, _) => GetAccountClosedMessage() },
             { AccountSuspended, (_, _, _) => GetAccountSuspendedMessage() },
             { InvalidParameters, (_, _, _) => GetInvalidParametersMessage() },
-            { InsufficientBalance, (_, _, result) => string.Format(CashServicesResx.TheAmountMustNotExceedMemberCashBalance, result.GetDataValue("MemberCashBalance")) },
+            { InsufficientBalance, (_, _, result) => string.Format(
+                CashServicesResx.TheAmountMustNotExceedMemberCashBalance,
+                result.GetDataValue("MemberCashBalance")) },
             { AmountExceedsLimits, (_, _, _) => CashServicesResx.TheAmountMustBeBetween0And1AsPerProviderLimits },
             { DailyLimitExceeded, (_, _, _) => CashServicesResx.ExceedsTheDailyWithdrawalLimit },
             { TransactionInsertFailed, (_, _, _) => GetTransactionInsertFailedMessage() },

@@ -333,4 +333,10 @@
           <data name="DateRange" xml:space="preserve">
             <value>ช่วงวันที่</value>
           </data>
+          <data name="TheAmountMustNotExceedAgentAvailableCredit" xml:space="preserve">
+            <value>จำนวนเงินต้องไม่เกินวงเงินเครดิตที่ใช้งานได้ของเอเจนต์ {0}</value>
+          </data>
+          <data name="TheAmountMustNotExceedMemberCashBalance" xml:space="preserve">
+            <value>จำนวนเงินต้องไม่เกินยอดเงินสดของสมาชิก {0}</value>
+          </data>
         </root>
