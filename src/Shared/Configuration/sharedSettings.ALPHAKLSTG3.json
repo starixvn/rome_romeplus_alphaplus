@@ -286,9 +286,5 @@
     "CashService": {
         "OfferedSites": "755555,222227",
         "APIUrl": "http://alphaplus_staging_api_cash_ALPHAKLPROD:5000/api"
-    },
-    "IndirectLogin": {
-        "AllowSuperIds": "*",
-        "URL": "https://idp3.alpha-stag-kl.gatonic.com/auth/Account/IndirectLogin"
     }
 }
