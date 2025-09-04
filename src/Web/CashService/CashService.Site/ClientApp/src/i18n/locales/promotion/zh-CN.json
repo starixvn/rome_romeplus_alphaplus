@@ -25,6 +25,8 @@
       "description4": "体育与虚拟体育：不包含和局投注及提前结算（Cash Out）。",
       "description5": "RNG 赌场：仅限老虎机游戏。",
       "description6": "真人赌场：包含和局投注。",
+      "descriptionBonusTitle": "依照产品类别计算奖金的公式：",
+      "descriptionBonusContent": "奖金金额 = 最小值（百分比 * 合格净营业额，最高派彩）",
       "description7": "注意：",
       "description8": "对于真人赌场与 RNG 赌场，如会员在同一局同时投注双方，有效净流水计算公式为：总派彩 − 总下注额。",
       "description9": "示例：会员在百家乐同时投注闲与庄各 100。庄家以赔率 = 1 获胜。",

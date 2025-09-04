@@ -25,6 +25,8 @@
       "description4": "Sportsbook & Virtual Sports: Excludes Draw bets and Cash Out.",
       "description5": "RNG Casino: Slot games only.",
       "description6": "Live Casino: Includes Draw bets.",
+      "descriptionBonusTitle": "Bonus calculation formula per Product Category :",
+      "descriptionBonusContent": "Bonus amount = MIN (Percentage * Qualified Net Turnover , Max Payout)",
       "description7": "Note:",
       "description8": "For Live Casino and RNG Casino, if a member bets on both sides of a game, the qualified net turnover is calculated as: Total payout – Total stake.",
       "description9": "Example: A member bets 100 on both Player and Banker in a Baccarat game. Banker wins with odds = 1.",
