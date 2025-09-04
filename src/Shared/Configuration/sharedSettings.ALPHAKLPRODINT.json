@@ -150,6 +150,7 @@
         "SystemId": 3
     },
     "SystemId": 2,
+    "IdentityUrl": "http://alphaplus_api_identity_alphaklprod:5000/",
     "AssetAppPath": "/stcdn",
     "JsVersion": "2025082804",
     "AssetsApp:StaticResourcesVersion": "2025082804",
@@ -239,7 +240,7 @@
         "EnableUnscheduledUM": false,
         "UMFrom": "3:00",
         "UMTo": "4:00",
-        "UMPageUrl": "/main/Account/Offline",
+        "UMPageUrl": "/auth/Account/Offline",
         "ResultCacheDuration": 15,
         "UMLoggingCategory": "ONEbook-UM"
     },
@@ -254,7 +255,7 @@
         },
         "ApplicationName": "Alpha.After.MBC.PROD"
     },
-    "MarketsSupportedNewHandbook": "IBC,MBC",
+    "MarketsSupportedNewHandbook": "*",
     "GoogleAnalyticId": "G-Y9E8EEDTFF",
     "OfferAutoTransfer.Currencies": "*",
     "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo",
@@ -263,7 +264,7 @@
         "cachedExpireTime": 30,
         "EnableCheckBelonging": true,
         "DisabledCheckDuplicationLogin": false,
-        "KickOutUrl": "~/default/kickout"
+        "KickOutUrl": "~/account/kickout"
     },
     "DisableMessages": false,
     "Message": {

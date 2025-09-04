@@ -16,7 +16,7 @@ namespace AlphaPlus.Main.Site
 
         public static bool DisabledVietnamese => IsMBCSite;
 
-        public static bool ShowHelpLink => IsMBCSite;
+        public static bool ShowHelpLink => true;
 
         public static int[] TrackingConnectionCustIds => GetSectionValue<int[]>("TrackingConnectionCustIds", []);
 

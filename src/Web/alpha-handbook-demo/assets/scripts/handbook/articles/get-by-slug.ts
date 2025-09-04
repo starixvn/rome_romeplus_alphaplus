@@ -32,10 +32,12 @@ class ArticleGetBySlug {
             var newH = this.$('<div>' + t + '</div>');
             newH.find('a').remove();
 
+            var newHtml = newH.html();
+
             hs.forEach(h => {
                 if ($e.is(h)) {
-                    html += '<li><' + h + '><a href="#' + $e.find('a').attr('id') + '">' +
-                        newH.html() +
+                    html += '<li><' + h + '><a href="#' + $e.find('a').attr('id') + '" title="' + newHtml + '">' +
+                        newHtml +
                         '</a></' + h + '></li>';
                     return;
                 }

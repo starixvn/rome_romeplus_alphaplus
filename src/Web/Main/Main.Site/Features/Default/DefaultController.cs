@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using AlphaPlus.Main.Site.Helpers;
 using AlphaPlus.Core.Models;
-using AlphaPlus.Shared.AppResources.Main;
 using MediatR;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using AlphaPlus.SecurityCode.Services;
 using Microsoft.AspNetCore.Http.Extensions;
 using AlphaPlus.Core;
@@ -14,7 +11,6 @@ using Microsoft.Extensions.Options;
 using AlphaPlus.Core.Configurations;
 using AlphaPlus.Main.Site.Features.OTP;
 using AlphaPlus.Main.Site.Features.Default.MenuBar;
-using System.Net;
 using AlphaPlus.Main.Site.Features.Dashboard.CashService;
 
 namespace AlphaPlus.Main.Site.Features.Default
@@ -76,23 +72,6 @@ namespace AlphaPlus.Main.Site.Features.Default
             return PartialView(viewModel);
         }
 
-        [AllowProtectedMode]
-        public async Task<IActionResult> KickOut(string reason)
-        {
-            var message = MapKickOutReasonToUserMessage(reason);
-
-            await mediator.Send(new KickOutQuery(userSession));
-            ClearSession();
-
-            return RedirectToAction("Login", "Account", new { r = WebUtility.UrlEncode(message) });
-        }
-
-        private void ClearSession()
-        {
-            AlphaContext.Current.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            AlphaContext.Current.Session.Clear();
-        }
-
         private bool IsRedirectToNicknamePage(string action)
         {
             if (nicknameChecker.IsForceLoginByNickname)
@@ -104,19 +83,6 @@ namespace AlphaPlus.Main.Site.Features.Default
             }
 
             return false;
-        }
-
-        private static string MapKickOutReasonToUserMessage(string reason)
-        {
-            return reason switch
-            {
-                "DuplicationLogin" => Security.stringSessionLogged,
-                "AccountClosed" => Security.lblConfirmClosed,
-                "AccountLocked" => Security.lblConfirmLocked,
-                "KickoutByForceChangePassword" => Security.KickoutMessageByForceChangePassword,
-                "KickoutByProtectedMode" => Security.KickoutMessageByProtectedMode,
-                _ => Resources.NoPermissionAccessPage,
-            };
         }
 
         [AllowProtectedMode]

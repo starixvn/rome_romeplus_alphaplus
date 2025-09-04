@@ -240,7 +240,7 @@
         "EnableUnscheduledUM": false,
         "UMFrom": "3:00",
         "UMTo": "4:00",
-        "UMPageUrl": "/main/Account/Offline",
+        "UMPageUrl": "/auth/Account/Offline",
         "ResultCacheDuration": 15,
         "UMLoggingCategory": "ONEbook-UM"
     },
@@ -255,20 +255,20 @@
         },
         "ApplicationName": "Alpha.After.LOCAL"
     },
-    "MarketsSupportedNewHandbook": "IBC,MBC",
+    "MarketsSupportedNewHandbook": "*",
     "GoogleAnalyticId": "UA-93265717-1",
     "OfferAutoTransfer.Currencies": "*",
     "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo,BEST-ODDS",
     "OfferClearGivenCredit:Sites": "*",
     "IndirectLogin": {
         "AllowSuperIds": "*",
-        "URL": "https://idp1.playonesit.com/main/Account/IndirectLogin"
+        "URL": "https://idp1.playonesit.com/auth/Account/IndirectLogin"
     },
     "Authorization": {
         "cachedExpireTime": 30,
         "EnableCheckBelonging": true,
         "DisabledCheckDuplicationLogin": false,
-        "KickOutUrl": "~/default/kickout"
+        "KickOutUrl": "~/account/kickout"
     },
     "DisableMessages": false,
     "Message": {

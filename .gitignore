@@ -43,6 +43,7 @@ wwwroot/
 coverage
 coverage/**
 .nyc_output
-coverage-report/**
+/**/coverage-report/**
 
 *.css
+/**/TestResults/**

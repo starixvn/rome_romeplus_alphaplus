@@ -226,7 +226,7 @@
     "EnableUnscheduledUM": false,
     "UMFrom": "3:00",
     "UMTo": "4:00",
-    "UMPageUrl": "/main/Account/Offline",
+    "UMPageUrl": "/auth/Account/Offline",
     "ResultCacheDuration": 15,
     "UMLoggingCategory": "ONEbook-UM"
   },
@@ -241,14 +241,14 @@
     },
     "ApplicationName": "Alpha.After.789y.UAT"
   },
-  "MarketsSupportedNewHandbook": "IBC,MBC",
+  "MarketsSupportedNewHandbook": "*",
   "GoogleAnalyticId": "G-5LBSPVVKVJ",
   "OfferAutoTransfer.Currencies": "",
   "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo",
   "OfferClearGivenCredit:Sites": "KORIBC,INDO",
   "IndirectLogin": {
     "AllowSuperIds": "*",
-    "URL": "https://idp2.starixuat.com/main/Account/IndirectLogin"
+    "URL": "https://idp2.starixuat.com/auth/Account/IndirectLogin"
   },
   "ProtectedMode": {
     "OfferSites": "*"
@@ -257,7 +257,7 @@
     "cachedExpireTime": 30,
     "EnableCheckBelonging": true,
     "DisabledCheckDuplicationLogin": false,
-    "KickOutUrl": "~/default/kickout"
+    "KickOutUrl": "~/account/kickout"
   },
   "DisableMessages": false,
   "Message": {

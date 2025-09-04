@@ -25,6 +25,7 @@ class DefaultPage {
 
     init = () => {
         this.registerEvents();
+        this.scrollToTop();
 
         this.autoSuggestion.init({
             elmSearch: this.$('#txt-search'),
@@ -143,7 +144,7 @@ class DefaultPage {
 
         this.$.ajax({
             type: "POST",
-            url: this.$("#MainRootPath").val() + 'Account/ReCheckIn',
+            url: this.$("#AuthRootPath").val() + 'Account/ReCheckIn',
             data: { onid: this.$("#OnUserId").val() },
             success: (result) => {
                 try { 
@@ -221,6 +222,19 @@ class DefaultPage {
                 });
 
             feedbackFunction.removeClass("hidden");
+        });
+    };
+
+    scrollToTop = () => {
+        this.$("#back-to-top").click(function () {
+            document.querySelector('.center-container').scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            }); 
+            document.querySelector('.right-container').scrollTo({
+            top: 0,
+            behavior: 'smooth'
+            }); 
         });
     };
 };

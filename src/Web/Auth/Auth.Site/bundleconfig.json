@@ -1,0 +1,14 @@
+[
+  {
+    "outputFileName": "wwwroot/assets/bundles/error.css",
+    "inputFiles": [
+      "assets/styles/error/error.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/assets/bundles/error-dark.css",
+    "inputFiles": [
+      "assets/styles/error/error-dark.css"
+    ]
+  }
+] 

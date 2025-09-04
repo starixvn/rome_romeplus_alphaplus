@@ -95,14 +95,14 @@ public class CheckBelongingFilterAttribute : TypeFilterAttribute
 
                 if (!currentUrl.Equals("Account/Login", StringComparison.OrdinalIgnoreCase))
                 {
-                    context.Result = new RedirectResult(MicroSites.MainUrl("~/Account/Login?r=You are not authorized on this function!"));
+                    context.Result = new RedirectResult(MicroSites.AuthUrl("~/Account/Login?r=You are not authorized on this function!"));
                 }
             }
         }
 
         private Task KickOutUser(AuthorizationFilterContext context, string message)
         {
-            var kickOutPageAbsoluteUrl = MicroSites.MainUrl($"{options.KickOutUrl}");
+            var kickOutPageAbsoluteUrl = MicroSites.AuthUrl($"{options.KickOutUrl}");
             var currentPageAbsoluteUrl = context.HttpContext.Request.GetDisplayUrl();
             if (currentPageAbsoluteUrl.Contains(kickOutPageAbsoluteUrl, StringComparison.OrdinalIgnoreCase))
             {

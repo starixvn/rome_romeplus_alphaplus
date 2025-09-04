@@ -31,11 +31,12 @@ class ArticleGetBySlug {
             var t = $e.html();
             var newH = this.$('<div>' + t + '</div>');
             newH.find('a').remove();
+            var newHtml = newH.html(); 
 
             hs.forEach(h => {
                 if ($e.is(h)) {
-                    html += '<li><' + h + '><a href="#' + $e.find('a').attr('id') + '">' +
-                        newH.html() +
+                    html += '<li><' + h + '><a href="#' + $e.find('a').attr('id') + '" title="' + newHtml + '">' +
+                        newHtml +
                         '</a></' + h + '></li>';
                     return;
                 }
@@ -57,7 +58,7 @@ class ArticleGetBySlug {
             var c = $this.clone();
             var w = c.width() * 2;
             var h = c.height() * 2;
-            var mw = self.$('body').width();
+            var mw = self.$('body').width(); 
 
             c.css({
                 width: 'unset',

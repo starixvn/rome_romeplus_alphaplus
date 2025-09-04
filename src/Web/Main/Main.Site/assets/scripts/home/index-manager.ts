@@ -48,7 +48,7 @@ var indexManager = {
     },
 
     urls: {
-        reCheckinUrl: alpha.urls.mainRootPath + 'Account/ReCheckIn',
+        reCheckinUrl: alpha.urls.authRootPath + 'Account/ReCheckIn',
         feedback: alpha.urls.messageRootPath + 'Feedback/Index',
         checkExistFeedback: alpha.urls.messageRootPath + 'Feedback/CheckExist?id=',
         feedbackFunction: alpha.urls.messageRootPath + 'Feedback/Function?id=',

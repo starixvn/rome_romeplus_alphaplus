@@ -61,14 +61,14 @@
 
 .container {
     flex: 1;
-    padding: 0 20px;
+    padding: 0 11px 0 20px;
     display: flex;
     justify-content: space-between;
 }
 
 .center-container {
     max-width: 840px;
-    padding: 0 20px;
+    padding: 0 20px 30px;
     flex: 1;
 }
 
@@ -82,12 +82,13 @@
 }
 
 .right-container {
-    width: 284px;
-
-    .inner {
-        position: sticky;
-        top: 0;
-    }
+    width: 300px;
+    padding-right: 12px;
+    height: 100vh;
+    overflow: auto;
+    padding-bottom: 70px;
+    position: sticky;
+    top: 0;
 }
 
 
@@ -644,11 +645,6 @@
     }
 }
 
-.container {
-    padding-bottom: 30px;
-}
-
-
 .helpful {
     text-align: center;
     font-size: 12px;
@@ -802,6 +798,10 @@
             line-height: 16px;
             display: inline-block;
             font-weight: 500 !important;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
 
             * {
                 font-weight: 500 !important;
@@ -951,14 +951,14 @@
 .icon-back-to-top {
     position: fixed;
     bottom: 65px;
-    right: 0;
+    right: 30px;
     font-size: 24px;
     width: 42px;
     height: 42px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(222, 233, 239,0.5);
+    background-color: rgba(222, 233, 239,1);
     border-radius: 50px;
     cursor: pointer;
 }

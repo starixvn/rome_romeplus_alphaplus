@@ -42,7 +42,11 @@ var alpha = {
         cashServiceRootPath:
             top.document.getElementById('cashServiceRootPath') != null
                 ? (<HTMLInputElement>top.document.getElementById('cashServiceRootPath')).value
-                : '/cash-service/'
+                : '/site-cash-service/',
+        authRootPath:
+            top.document.getElementById('authRootPath') != null
+                ? (<HTMLInputElement>top.document.getElementById('authRootPath')).value
+                : '/auth/'
     },
     user: {
         onUserId:
@@ -88,7 +92,7 @@ var alpha = {
 
             var isInternal = index.$('#isInternal').val();
             isInternal = isInternal || '0';
-            var signOutUrl = alpha.urls.mainRootPath + 'Account/Logout?r=' + errMsg;
+            var signOutUrl = alpha.urls.authRootPath + 'Account/Logout?r=' + errMsg;
 
             if (isInternal && isInternal.toString() !== '0') {
                 $.ajax(signOutUrl, {
@@ -113,7 +117,7 @@ var alpha = {
 
             var isInternal = index.$('#isInternal').val();
             isInternal = isInternal || '0';
-            var signOutUrl = alpha.urls.mainRootPath + 'Account/Logout2';
+            var signOutUrl = alpha.urls.authRootPath + 'Account/Logout2';
 
             if (isInternal && isInternal.toString() !== '0') {
                 $.ajax(signOutUrl, {

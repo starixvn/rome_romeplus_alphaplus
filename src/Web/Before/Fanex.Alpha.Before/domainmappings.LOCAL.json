@@ -1,56 +1,57 @@
 {
-  "DomainMappings": [
+  "DomainMappings":
+  [
     {
       "Before": "alp1.nexdev.net",
-      "After": "https://mbp1.nexdev.net/main"
+      "After": "https://mbp1.nexdev.net/auth"
     },
     {
       "Before": "alp2.nexdev.net",
-      "After": "https://mbp2.nexdev.net/main"
+      "After": "https://mbp2.nexdev.net/auth"
     },
     {
       "Before": "alp3.nexdev.net",
-      "After": "https://mbp3.nexdev.net/main"
+      "After": "https://mbp3.nexdev.net/auth"
     },
     {
       "Before": "alp4.nexdev.net",
-      "After": "https://mbp4.nexdev.net/main"
+      "After": "https://mbp4.nexdev.net/auth"
     },
     {
       "Before": "alp5.nexdev.net",
-      "After": "https://mbp5.nexdev.net/main"
+      "After": "https://mbp5.nexdev.net/auth"
     },
     {
       "Before": "alp6.nexdev.net",
-      "After": "https://mbp6.nexdev.net/main"
+      "After": "https://mbp6.nexdev.net/auth"
     },
     {
       "Before": "alp7.nexdev.net",
-      "After": "https://mbp7.nexdev.net/main"
+      "After": "https://mbp7.nexdev.net/auth"
     },
     {
       "Before": "alp8.nexdev.net",
-      "After": "https://mbp8.nexdev.net/main"
+      "After": "https://mbp8.nexdev.net/auth"
     },
     {
       "Before": "alp9.nexdev.net",
-      "After": "https://mbp9.nexdev.net/main"
+      "After": "https://mbp9.nexdev.net/auth"
     },
     {
       "Before": "alp10.nexdev.net",
-      "After": "https://mbp10.nexdev.net/main"
+      "After": "https://mbp10.nexdev.net/auth"
     },
     {
       "Before": "alp11.nexdev.net",
-      "After": "https://mbp11.nexdev.net/main"
+      "After": "https://mbp11.nexdev.net/auth"
     },
     {
       "Before": "alp12.nexdev.net",
-      "After": "https://mbp12.nexdev.net/main"
+      "After": "https://mbp12.nexdev.net/auth"
     },
     {
       "Before": "alp21.nexdev.net",
-      "After": "https://mbp1.nexdev.net/main"
+      "After": "https://mbp11.nexdev.net/auth"
     }
   ]
 }

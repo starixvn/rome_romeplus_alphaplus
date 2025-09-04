@@ -121,6 +121,7 @@
     @Html.Hidden("RootPath", "../")
     @Html.Hidden("NoRecords", Resources.NoRecords)
     @Html.Hidden("SetCurrentURL", 1)
+    @Html.Hidden("AuthRootPath", Model.AuthRootPath)
     @StaticResources.AssetScripts.RenderCommon("/bundles/common/common")
     @StaticResources.AssetScripts.Render("/bundles/site-handbook/common")
     @StaticResources.RenderScripts("~/assets/bundles/handbook/default")

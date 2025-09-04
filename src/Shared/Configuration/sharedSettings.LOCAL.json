@@ -240,7 +240,7 @@
         "EnableUnscheduledUM": false,
         "UMFrom": "3:00",
         "UMTo": "4:00",
-        "UMPageUrl": "/main/Account/Offline",
+        "UMPageUrl": "/auth/Account/Offline",
         "ResultCacheDuration": 15,
         "UMLoggingCategory": "ONEbook-UM"
     },
@@ -255,20 +255,20 @@
         },
         "ApplicationName": "Alpha.After.MBC.LOCAL"
     },
-    "MarketsSupportedNewHandbook": "IBC,MBC",
+    "MarketsSupportedNewHandbook": "*",
     "GoogleAnalyticId": "UA-93265717-1",
     "OfferAutoTransfer.Currencies": "*",
     "TransferToDownlineHistory:OfferSites": "76666B,IBCIndo,BEST-ODDS",
     "OfferClearGivenCredit:Sites": "*",
     "IndirectLogin": {
         "AllowSuperIds": "*",
-        "URL": "https://indp1.nexdev.net/main/Account/IndirectLogin"
+        "URL": "https://indp1.nexdev.net/auth/Account/IndirectLogin"
     },
     "Authorization": {
         "cachedExpireTime": 30,
         "EnableCheckBelonging": true,
-        "DisabledCheckDuplicationLogin": true,
-        "KickOutUrl": "~/default/kickout"
+        "DisabledCheckDuplicationLogin": false,
+        "KickOutUrl": "~/account/kickout"
     },
     "DisableMessages": false,
     "Message": {

@@ -2,7 +2,6 @@ using System.Net;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Utils;
-using AlphaPlus.Main.Site.Features.Account;
 using AlphaPlus.Main.Site.Features.ApiKey;
 using AlphaPlus.Main.Site.Features.CustomerProfile;
 using AlphaPlus.Main.Site.Features.Dashboard.BalanceInfo;
@@ -52,7 +51,6 @@ public static class Extensions
 
         services.AddSingleton<IMenuItemBuilder, MenuItemBuilder>();
         services.AddSingleton<IAesService, AesService>();
-        services.AddSingleton<IUserSessionService, UserSessionService>();
 
         services.AddSingleton<ISiteMenuService, SiteMenuService>();
         services.AddScoped<ISessionManager, SessionManager>();
@@ -81,12 +79,7 @@ public static class Extensions
         services.AddScoped<INovaCasinoService, NovaCasinoService>();
 
         services.AddHttpClient<IApiKeyService, ApiKeyService>(httpClient => httpClient.BaseAddress = new Uri(configuration["ApiKey:ServiceUrl"]));
-        services.AddHttpClient<IAccountService, AccountService>(httpClient => httpClient.BaseAddress = new Uri(configuration.GetValue<string>("IdentityUrl")))
-            .ConfigurePrimaryHttpMessageHandler(_ => new HttpClientHandler
-            {
-                AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip
-            });
-
+        
         var customerServiceUri = new Uri(configuration.GetValue<string>("Fanex.Customer:ServiceUri"));
         services.AddHttpClient<IPasswordService, PasswordService>(httpClient => httpClient.BaseAddress = customerServiceUri);
         services.AddHttpClient<ISecurityCodeService, SecurityCodeService>(httpClient => httpClient.BaseAddress = customerServiceUri);

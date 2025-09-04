@@ -534,14 +534,14 @@ hr {
 .icon-back-to-top {
     position: fixed;
     bottom: 65px;
-    right: 0;
+    right: 30px;
     font-size: 24px;
     width: 42px;
     height: 42px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(222, 233, 239, 0.5);
+    background-color: rgba(222, 233, 239, 1);
     border-radius: 50px;
     cursor: pointer;
 }

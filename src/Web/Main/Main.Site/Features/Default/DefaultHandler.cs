@@ -1,7 +1,6 @@
 ﻿using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Core.Utils;
-using AlphaPlus.Main.Site.Features.Account;
 using AlphaPlus.Main.Site.Features.CustomerProfile;
 using AlphaPlus.Main.Site.Features.Default.MenuBar;
 using AlphaPlus.Main.Site.Features.Tour;
@@ -15,8 +14,7 @@ namespace AlphaPlus.Main.Site.Features.Default
 {
     public class DefaultHandler :
         IRequestHandler<IndexQuery, IndexViewModel>,
-        IRequestHandler<BrowserQuery, BrowserViewModel>,
-        IRequestHandler<KickOutQuery, bool>
+        IRequestHandler<BrowserQuery, BrowserViewModel>
     {
         /// <summary>
         /// Please do not change this value, because it was shared with old main site.
@@ -29,7 +27,6 @@ namespace AlphaPlus.Main.Site.Features.Default
         private readonly IBrowserHelper browserHelper;
         private readonly Func<string> getDefaultUrl;
         private readonly IProfilePictureService customerProfileService;
-        private readonly IAccountService accountService;
         private readonly ISettingService telegramSettingService;
         private readonly IEncryption encryption;
         private readonly Fanex.Logging.ILogger logger;
@@ -37,20 +34,18 @@ namespace AlphaPlus.Main.Site.Features.Default
 
         public DefaultHandler(ISessionManager sessionManager,
             IBrowserHelper browserHelper,
-            IAccountService accountService,
             IProfilePictureService customerProfileService,
             ISettingService telegramSettingService,
             IEncryption encryption,
             Fanex.Logging.ILogger logger,
             IRewardTourService rewardTourService)
-            : this(sessionManager, browserHelper, accountService, null, customerProfileService, telegramSettingService, encryption, logger, rewardTourService)
+            : this(sessionManager, browserHelper, null, customerProfileService, telegramSettingService, encryption, logger, rewardTourService)
         {
         }
 
         internal DefaultHandler(
             ISessionManager sessionManager,
             IBrowserHelper browserHelper,
-            IAccountService accountService,
             Func<string> getDefaultUrl,
             IProfilePictureService customerProfileService,
             ISettingService telegramSettingService,
@@ -60,7 +55,6 @@ namespace AlphaPlus.Main.Site.Features.Default
         {
             this.sessionManager = sessionManager;
             this.browserHelper = browserHelper;
-            this.accountService = accountService;
 
             this.getDefaultUrl = getDefaultUrl ?? FunctionRegistry.GetDefaultUrl;
             this.customerProfileService = customerProfileService;
@@ -123,21 +117,6 @@ namespace AlphaPlus.Main.Site.Features.Default
                 await logger.ErrorAsync(ex.Message, ex);
                 return null;
             }
-        }
-
-        public async Task<bool> Handle(KickOutQuery request, CancellationToken cancellationToken)
-        {
-            try
-            {
-                await accountService.CheckOut(" Kicked out: Session Changed");
-            }
-            catch (Exception ex)
-            {
-                await logger.ErrorAsync(ex.Message, ex);
-                return false;
-            }
-
-            return true;
         }
     }
 }
