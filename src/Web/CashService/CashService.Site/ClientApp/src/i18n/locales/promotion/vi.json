@@ -25,6 +25,8 @@
       "description4": "Thể thao & Thể thao ảo: Loại trừ kèo Hòa và Cash Out.",
       "description5": "RNG Casino: Chỉ áp dụng cho trò chơi Slot.",
       "description6": "Live Casino: Bao gồm kèo Hòa.",
+      "descriptionBonusTitle": "Công thức tính thưởng theo từng loại sản phẩm:",
+      "descriptionBonusContent": "Số tiền thưởng = MIN (Tỷ lệ * Doanh thu ròng đủ điều kiện, Mức trả thưởng tối đa)",
       "description7": "Lưu ý:",
       "description8": "Đối với Live Casino và RNG Casino, nếu thành viên cược hai bên của một ván, doanh thu ròng đủ điều kiện được tính như sau: Tổng trả thưởng – Tổng tiền cược.",
       "description9": "Ví dụ: Thành viên cược 100 cho cả Player và Banker trong trò Baccarat. Banker thắng với tỷ lệ = 1.",

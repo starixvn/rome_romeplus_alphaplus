@@ -25,6 +25,8 @@
       "description4": "體育與虛擬體育：不含和局投注與提前結算（Cash Out）。",
       "description5": "RNG 電子：僅限老虎機遊戲。",
       "description6": "真人娛樂場：包含和局投注。",
+      "descriptionBonusTitle": "依照產品類別計算獎金的公式：",
+      "descriptionBonusContent": "獎金金額 = 最小值（百分比 * 合格淨營業額，最高派彩）",
       "description7": "注意：",
       "description8": "對於真人娛樂與 RNG 電子，若會員同局投注雙方，有效淨流水計算為：總派彩 − 總下注額。",
       "description9": "範例：會員在百家樂同時投注閒與莊各 100。莊家以賠率 = 1 獲勝。",

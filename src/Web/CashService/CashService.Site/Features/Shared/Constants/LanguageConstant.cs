@@ -5,8 +5,8 @@ using System.Collections.Immutable;
 public static class LanguageConstant
 {
     public const string English = "en";
-    public const string ChineseTraditional = "zh-tW";
-    public const string ChineseSimplified = "zh-ch";
+    public const string ChineseTraditional = "ch";
+    public const string ChineseSimplified = "cn";
     public const string Japanese = "jp";
     public const string Thai = "th";
     public const string Korean = "ko";

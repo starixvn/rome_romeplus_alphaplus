@@ -63,7 +63,7 @@ const Information: React.FC<InformationProps> = ({
         <EnableButtonComponent isActive={isActive} onClick={() => setIsActive(true)} />
         <DisableButtonComponent isActive={!isActive} onClick={() => setIsActive(false)} />
       </div>
-    <div className='max-w-[620px]  flex flex-wrap items-center pb-[5px] border-b border-[var(--border-control)] mb-[10px]'>
+      <div className="max-w-[620px]  flex flex-wrap items-center pb-[5px] border-b border-[var(--border-control)] mb-[10px]">
         <div className="inline-block mr-[10px]">
           <TitleComponent
             text={t('addPromotionForm.promotionSettings.title')}
@@ -82,6 +82,10 @@ const Information: React.FC<InformationProps> = ({
               <div>• {t('addPromotionForm.promotionSettings.description4')}</div>
               <div>• {t('addPromotionForm.promotionSettings.description5')}</div>
               <div>• {t('addPromotionForm.promotionSettings.description6')}</div>
+              <div>
+                <b>{t('addPromotionForm.promotionSettings.descriptionBonusTitle')}</b>
+              </div>
+              <div>• {t('addPromotionForm.promotionSettings.descriptionBonusContent')}</div>
               <div>
                 <b>{t('addPromotionForm.promotionSettings.description7')}</b>
               </div>

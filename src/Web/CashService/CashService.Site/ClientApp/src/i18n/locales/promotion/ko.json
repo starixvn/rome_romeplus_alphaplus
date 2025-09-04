@@ -25,6 +25,8 @@
       "description4": "스포츠북 & 가상 스포츠: 무승부 베팅 및 캐시아웃 제외.",
       "description5": "RNG 카지노: 슬롯 게임만 해당.",
       "description6": "라이브 카지노: 무승부 베팅 포함.",
+      "descriptionBonusTitle": "각 제품 카테고리별 보너스 계산 공식:",
+      "descriptionBonusContent": "보너스 금액 = MIN (비율 * 유효 순턴오버, 최대 지급액)",
       "description7": "참고:",
       "description8": "라이브 카지노 및 RNG 카지노에서 한 판에 양쪽에 동시 베팅한 경우, 유효 순턴오버 = 총 당첨금 − 총 베팅금으로 계산합니다.",
       "description9": "예: 바카라에서 플레이어와 뱅커에 각각 100씩 베팅. 뱅커가 승리(배당률 = 1).",
