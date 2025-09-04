@@ -114,11 +114,11 @@ services:
     ports:
       - 5302:5000
 
-    auth-site:
-        image: ${REGISTRY:-alphaplus}/auth.site:${PLATFORM:-linux}-${TAG:-latest}
-        build:
-            context: .
-            dockerfile: src/Web/Auth/Auth.Site/Dockerfile
-        restart: always
-        ports:
-            - 5303:5000
+  auth-site:
+      image: ${REGISTRY:-alphaplus}/auth.site:${PLATFORM:-linux}-${TAG:-latest}
+      build:
+          context: .
+          dockerfile: src/Web/Auth/Auth.Site/Dockerfile
+      restart: always
+      ports:
+          - 5303:5000
