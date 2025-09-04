@@ -147,6 +147,7 @@ const ManualAddWithdrawalForm: React.FC<ManualAddWithdrawalFormProps> = ({
     }
 
     if (
+      providerId > 0 &&
       minAmount >= 0 &&
       maxAmount &&
       (withdrawalAmount < minAmount || withdrawalAmount > maxAmount)
