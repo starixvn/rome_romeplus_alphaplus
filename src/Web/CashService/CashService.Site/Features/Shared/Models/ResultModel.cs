@@ -5,7 +5,7 @@ public class ResultModel
     public int Code { get; set; } = 1;
     public string Message { get; set; } = string.Empty;
     public bool IsSuccessful => Code == 0;
-    public object? Data { get; set; }
+    public Dictionary<string, string> Data { get; set; }
 
     public ResultModel()
     {
@@ -17,18 +17,11 @@ public class ResultModel
         Message = message;
     }
 
-    public ResultModel(int code, string message, object? data)
-    {
-        Code = code;
-        Message = message;
-        Data = data;
-    }
-
     public string GetDataValue(string key)
     {
-        if (Data is IDictionary<string, object> dict && dict.TryGetValue(key, out var value))
+        if (Data is IDictionary<string, string> dict && dict.TryGetValue(key, out var value))
         {
-            return value?.ToString() ?? string.Empty;
+            return value ?? string.Empty;
         }
         return string.Empty;
     }

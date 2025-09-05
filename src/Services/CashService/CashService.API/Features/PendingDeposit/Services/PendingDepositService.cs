@@ -88,7 +88,6 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
 
         var logs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command);
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
-
         TransactionErrorHandlers.OutputErrorMessageParams(result, agentAvailableCredit: command.AgentAvailableCredit);
 
         transactionService.OnAfterUpdateTransaction(command.CashAccumCreditTbl, param.SiteDbGroupId, param.CustDbGroupId, logs.ToList());

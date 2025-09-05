@@ -484,7 +484,7 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The amount must not exceed agent available credit {0}.
+        ///   Looks up a localized string similar to The amount must not exceed the agent&apos;s available credit {0}.
         /// </summary>
         public static string TheAmountMustNotExceedAgentAvailableCredit {
             get {
@@ -493,7 +493,7 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The amount must not exceed member cash balance {0}.
+        ///   Looks up a localized string similar to The amount must not exceed the member&apos;s cash balance {0}.
         /// </summary>
         public static string TheAmountMustNotExceedMemberCashBalance {
             get {

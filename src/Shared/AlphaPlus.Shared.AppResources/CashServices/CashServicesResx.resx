@@ -325,9 +325,9 @@
     <value>Selected bank is not supported by {0}. Please choose another.</value>
   </data>
   <data name="TheAmountMustNotExceedAgentAvailableCredit" xml:space="preserve">
-    <value>The amount must not exceed agent available credit {0}</value>
+    <value>The amount must not exceed the agent's available credit {0}</value>
   </data>
   <data name="TheAmountMustNotExceedMemberCashBalance" xml:space="preserve">
-    <value>The amount must not exceed member cash balance {0}</value>
+    <value>The amount must not exceed the member's cash balance {0}</value>
   </data>
 </root>

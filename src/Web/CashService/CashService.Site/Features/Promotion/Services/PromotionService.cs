@@ -109,7 +109,7 @@ public class PromotionService(ILogger logger, IMemoryCache memCache, IOptions<Up
         catch (Exception e)
         {
             result.Code = 1;
-            result.Data = fileName;
+            result.Data = new Dictionary<string, string> { ["FileName"] = fileName };
             result.Message = e.Message;
             await logger.ErrorAsync($"Upload {file.FileName} to {directory} failed. Error message: {e.Message}", e);
         }

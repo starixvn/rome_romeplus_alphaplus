@@ -328,6 +328,7 @@ public class TransactionsController(
 
         request.SetUserSession(_userSession);
         var result = await httpClientHelper.PostAsync<RevertTransaction, ResultModel>("/api/withdrawal/revert-pending", request);
+
         if (result.Code != 0)
         {
             result.Message = ErrorCodeHandler.MappingRevertTransactionErrCode(result, request.TransId.ToString(), request.CustId, request.ActorId);
