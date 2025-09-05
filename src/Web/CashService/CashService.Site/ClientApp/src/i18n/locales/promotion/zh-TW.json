@@ -70,7 +70,7 @@
     "approve": "批准",
     "rejectedSuccess": "優惠拒絕成功",
     "approvedSuccess": "優惠批准成功",
-    "bonusAmountMustBeGreaterThan0AndLessThanAgentAvailableCredit": "紅利金額必須大於 0 且小於代理可用額度",
+    "bonusAmountMustBeGreaterThan0AndLessThanAgentAvailableCredit": "金額不得超過代理的可用信用額度 {0}",
     "bannerSizeLimit": "橫幅大小必須小於 5 MB"
   },
   "table": {

@@ -502,7 +502,7 @@ namespace AlphaPlus.Shared.AppResources.CashServices {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The transaction inserted failed. Please try again..
+        ///   Looks up a localized string similar to The transaction does not match our records. Please check and try again..
         /// </summary>
         public static string TheTransactionInsertedFailedPleaseTryAgain {
             get {

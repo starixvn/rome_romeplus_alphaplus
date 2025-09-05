@@ -70,7 +70,7 @@
     "approve": "批准",
     "rejectedSuccess": "优惠已成功拒绝",
     "approvedSuccess": "优惠已成功批准",
-    "bonusAmountMustBeGreaterThan0AndLessThanAgentAvailableCredit": "红利金额必须大于 0 且小于代理可用额度",
+    "bonusAmountMustBeGreaterThan0AndLessThanAgentAvailableCredit": "金额不得超过代理的可用信用额度 {0}",
     "bannerSizeLimit": "横幅大小必须小于 5 MB"
   },
   "table": {

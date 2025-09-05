@@ -83,7 +83,7 @@
     "memberLoginNameRequired": "ชื่อเข้าสู่ระบบสมาชิกเป็นสิ่งจำเป็น",
     "agentBankSelectionRequired": "จากเป็นสิ่งจำเป็น",
     "memberBankSelectionRequired": "ถึงเป็นสิ่งจำเป็น",
-    "amountRangeError": "จำนวนเงินต้องมากกว่า 0 และน้อยกว่าหรือเท่ากับยอดเงินสดของสมาชิก {memberCashBalance}",
+    "amountRangeError": "จำนวนเงินต้องไม่เกินยอดเงินสดคงเหลือของสมาชิก {memberCashBalance}",
     "imageSizeError": "ขนาดรูปภาพต้องน้อยกว่า 1 MB",
     "addWithdrawalSuccess": "เพิ่มการถอนเงินสำเร็จ",
     "memberCashBalance": "ยอดเงินสดของสมาชิก",
@@ -91,7 +91,7 @@
     "maxAmount": "สูงสุด",
     "invalidFileType": "ประเภทไฟล์ไม่ถูกต้อง กรุณาอัปโหลดไฟล์ jpeg, jpg หรือ png",
     "providerSupportedBankError": "{providerName} ไม่สนับสนุนธนาคารนี้ กรุณาเลือกธนาคารอื่น",
-    "amountRangeMinMaxError": "จำนวนเงินต้องอยู่ระหว่าง {0} และ {1} ตามขีดจำกัดของผู้ให้บริการ"
+    "amountRangeMinMaxError": "จำนวนเงินต้องอยู่ระหว่าง {0} ถึง {1} ตามข้อกำหนดของผู้ให้บริการ"
   },
 
   "updateWithdrawal": {

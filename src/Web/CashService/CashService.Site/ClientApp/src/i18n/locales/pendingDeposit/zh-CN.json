@@ -82,7 +82,7 @@
     "approve": "批准",
     "approving": "批准中...",
     "agentAvailableCredit": "代理可用额度",
-    "amountMustBeGreaterThan0AndLessThanMaxLimit": "金额必须大于0且小于代理的可用信用 {0}。",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "金额不得超过代理的可用信用额度 {0}",
     "imageSizeError": "图片必须小于1MB",
     "memberLoginNameRequired": "会员登录名是必需的。",
     "agentBankSelectionRequired": "从是必需的。",
