@@ -91,7 +91,7 @@
     "maxAmount": "最大",
     "invalidFileType": "無效的文件類型。請上傳 jpeg、jpg 或 png 文件。",
     "providerSupportedBankError": "{providerName} 不支持此銀行。請選擇其他銀行。",
-    "amountRangeMinMaxError": "金額必須在 {0} 和 {1} 之間"
+    "amountRangeMinMaxError": "金額必須在 {0} 和 {1} 之間作為提供商的限制"
   },
 
   "updateWithdrawal": {

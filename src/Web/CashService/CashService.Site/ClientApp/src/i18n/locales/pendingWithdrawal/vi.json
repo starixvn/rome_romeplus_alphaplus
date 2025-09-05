@@ -83,7 +83,7 @@
     "memberLoginNameRequired": "Tên đăng nhập thành viên là bắt buộc",
     "agentBankSelectionRequired": "Từ là bắt buộc",
     "memberBankSelectionRequired": "Đến là bắt buộc",
-    "amountRangeError": "Số tiền phải lớn hơn 0 và nhỏ hơn hoặc bằng số dư tiền mặt của thành viên",
+    "amountRangeError": "Số tiền phải nhỏ hơn hoặc bằng số dư tiền mặt của thành viên {memberCashBalance}",
     "imageSizeError": "Kích thước hình ảnh phải nhỏ hơn 1 MB",
     "addWithdrawalSuccess": "Thêm rút tiền thành công",
     "memberCashBalance": "Số dư tiền mặt thành viên",
@@ -91,7 +91,7 @@
     "maxAmount": "Tối đa",
     "invalidFileType": "Định dạng tệp không hợp lệ. Vui lòng tải lên tệp jpeg, jpg, hoặc png.",
     "providerSupportedBankError": "{providerName} không hỗ trợ ngân hàng này. Vui lòng chọn ngân hàng khác.",
-    "amountRangeMinMaxError": "Số tiền phải nằm trong khoảng {0} và {1}"
+    "amountRangeMinMaxError": "Số tiền phải nằm trong khoảng {0} và {1} theo giới hạn của nhà cung cấp"
   },
 
   "updateWithdrawal": {

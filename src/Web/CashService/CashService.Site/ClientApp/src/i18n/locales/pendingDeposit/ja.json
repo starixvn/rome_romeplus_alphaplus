@@ -82,7 +82,7 @@
     "approve": "承認",
     "approving": "承認中...",
     "agentAvailableCredit": "エージェント利用可能クレジット",
-    "amountMustBeGreaterThan0AndLessThanMaxLimit": "金額は0より大きく、{0}未満である必要があります。",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "金額は0より大きく、エージェントの利用可能クレジット {0} 未満である必要があります。",
     "imageSizeError": "画像サイズは1MB未満である必要があります",
     "memberLoginNameRequired": "メンバーログイン名は必須です。",
     "agentBankSelectionRequired": "からは必須です。",

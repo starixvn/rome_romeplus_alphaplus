@@ -140,6 +140,8 @@ public static class ErrorCodeHandler
             TransactionInsertFailed => GetTransactionInsertFailedMessage(),
             InvalidMember => GetInvalidMemberMessage(memberId, agentId),
             InvalidTransaction => GetInvalidTransactionMessage(transId, memberId),
+            ExceedAgentAvailableCredit => string.Format(CashServicesResx.TheAmountMustNotExceedAgentAvailableCredit, result.GetDataValue("AgentAvailableCredit")),
+
             _ => GetTransactionInsertFailedMessage()
         };
 }

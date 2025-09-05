@@ -84,7 +84,7 @@
     "memberLoginNameRequired": "Member username is required",
     "agentBankSelectionRequired": "From is required",
     "memberBankSelectionRequired": "To is required",
-    "amountRangeError": "The amount must not exceed member cash balance {memberCashBalance}",
+    "amountRangeError": "The amount must not exceed the member's cash balance {memberCashBalance}",
     "imageSizeError": "Image size must be less than 1MB",
     "addWithdrawalSuccess": "Add withdrawal successfully",
     "memberCashBalance": "Member Cash Balance",
@@ -92,7 +92,7 @@
     "maxAmount": "Max",
     "invalidFileType": "Invalid file type. Please upload a jpeg, jpg, or png file.",
     "providerSupportedBankError": "Selected bank is not supported by {providerName}. Please choose another.",
-    "amountRangeMinMaxError": "The amount must be between {0} and {1}"
+    "amountRangeMinMaxError": "The amount must be between {0} and {1} as per provider limits"
   },
 
   "updateWithdrawal": {

@@ -83,7 +83,7 @@
     "memberLoginNameRequired": "メンバーログイン名は必須です",
     "agentBankSelectionRequired": "からは必須です",
     "memberBankSelectionRequired": "までは必須です",
-    "amountRangeError": "金額は0より大きく、メンバーのキャッシュ残高以下である必要があります",
+    "amountRangeError": "金額は0より大きく、メンバーのキャッシュ残高 {memberCashBalance} 以下である必要があります",
     "imageSizeError": "画像サイズは1MB未満である必要があります",
     "addWithdrawalSuccess": "出金の追加に成功しました",
     "memberCashBalance": "メンバーのキャッシュ残高",
@@ -91,7 +91,7 @@
     "maxAmount": "最大",
     "invalidFileType": "無効なファイル形式です。jpeg、jpg、またはpngファイルをアップロードしてください",
     "providerSupportedBankError": "{providerName}でサポートされていない銀行が選択されています。別の銀行を選択してください。",
-    "amountRangeMinMaxError": "金額は{0}から{1}の間である必要があります"
+    "amountRangeMinMaxError": "金額は{0}から{1}の間である必要があります 提供者の制限に従って"
   },
 
   "updateWithdrawal": {
