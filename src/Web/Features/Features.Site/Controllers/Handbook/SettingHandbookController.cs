@@ -15,7 +15,7 @@ namespace AlphaPlus.Features.Site.Handbook.Controllers
 
         public ActionResult SportBookInformation(SportBookInformationRequest request)
         {
-            var url = MicroSites.SettingUrl() + "Customer/SportBookInformation?tabindex=" + request.TabIndex
+            var url = MicroSites.SettingUrl() + "Customer/SportBookInformation?tabName=" + request.TabName
                 + "&custId=" + request.CustId
                 + "&roleId=" + request.RoleId
                 + "&site=" + request.Site
