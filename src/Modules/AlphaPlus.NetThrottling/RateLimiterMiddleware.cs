@@ -263,11 +263,6 @@ namespace AlphaPlus.NetThrottling
         }
     }
 
-    // Marker interface for disabling rate limiting (compatibility with existing code)
-    public interface IDisableNetThrottling
-    {
-    }
-
     // Attribute for disabling rate limiting
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class DisableRateLimitingAttribute : Attribute, IDisableNetThrottling
