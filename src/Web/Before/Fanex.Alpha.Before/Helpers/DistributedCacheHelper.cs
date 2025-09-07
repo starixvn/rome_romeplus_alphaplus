@@ -42,16 +42,16 @@ public class DistributedCacheHelper : IDistributedCacheHelper
         if (_enabledResilience)
         {
             containBuilder
-                // .AddFallback(new FallbackStrategyOptions<bool>
-                // {
-                //     ShouldHandle = new PredicateBuilder<bool>().Handle<Exception>(),
-                //     FallbackAction = async args =>
-                //     {
-                //         await _logger.WarnAsync($"Fallback triggered for Contain: {args.Outcome.Exception?.Message}");
-                //         return Outcome.FromResult(false);
-                //     }
-                // })
-                // .AddTimeout(TimeSpan.FromSeconds(1))
+                .AddFallback(new FallbackStrategyOptions<bool>
+                {
+                    ShouldHandle = new PredicateBuilder<bool>().Handle<Exception>(),
+                    FallbackAction = async args =>
+                    {
+                        await _logger.WarnAsync($"Fallback triggered for Contain: {args.Outcome.Exception?.Message}");
+                        return Outcome.FromResult(false);
+                    }
+                })
+                .AddTimeout(TimeSpan.FromSeconds(1))
                 .AddChaosLatency(new ChaosLatencyStrategyOptions
                 {
                     Latency = TimeSpan.FromSeconds(_chaosLatencySeconds),
@@ -68,7 +68,7 @@ public class DistributedCacheHelper : IDistributedCacheHelper
         if (_enabledResilience)
         {
             voidBuilder
-                // .AddTimeout(TimeSpan.FromSeconds(1))
+                .AddTimeout(TimeSpan.FromSeconds(1))
                 .AddChaosLatency(new ChaosLatencyStrategyOptions
                 {
                     Latency = TimeSpan.FromSeconds(_chaosLatencySeconds),
@@ -87,16 +87,16 @@ public class DistributedCacheHelper : IDistributedCacheHelper
         if (_enabledResilience)
         {
             getBuilder
-                // .AddFallback(new FallbackStrategyOptions<T>
-                // {
-                //     ShouldHandle = new PredicateBuilder<T>().Handle<Exception>(),
-                //     FallbackAction = async args =>
-                //     {
-                //         await _logger.WarnAsync($"Fallback triggered for Get<{typeof(T).Name}>: {args.Outcome.Exception?.Message}");
-                //         return Outcome.FromResult(defaultValue);
-                //     }
-                // })
-                // .AddTimeout(TimeSpan.FromSeconds(1))
+                .AddFallback(new FallbackStrategyOptions<T>
+                {
+                    ShouldHandle = new PredicateBuilder<T>().Handle<Exception>(),
+                    FallbackAction = async args =>
+                    {
+                        await _logger.WarnAsync($"Fallback triggered for Get<{typeof(T).Name}>: {args.Outcome.Exception?.Message}");
+                        return Outcome.FromResult(defaultValue);
+                    }
+                })
+                .AddTimeout(TimeSpan.FromSeconds(1))
                 .AddChaosLatency(new ChaosLatencyStrategyOptions
                 {
                     Latency = TimeSpan.FromSeconds(_chaosLatencySeconds),
