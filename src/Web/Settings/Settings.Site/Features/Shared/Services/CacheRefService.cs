@@ -1,4 +1,6 @@
 using Fanex.RemotingRef;
+using Polly;
+using Polly.Simmy;
 
 namespace AlphaPlus.Settings.Site.Features.Shared.Services
 {
@@ -21,38 +23,60 @@ namespace AlphaPlus.Settings.Site.Features.Shared.Services
     {
         private readonly IRemotingRefService remotingRefService = remotingRefService;
 
+        // 🎲 Chaos Engineering - 50% chance of 10s delay (only when NOT Development)
+        private static readonly ResiliencePipeline chaosStrategy = new ResiliencePipelineBuilder()
+            .AddChaosLatency(new Polly.Simmy.Latency.ChaosLatencyStrategyOptions
+            {
+                EnabledGenerator = args => ValueTask.FromResult(!IsDevelopment), // Enabled when NOT Dev
+                InjectionRateGenerator = args => ValueTask.FromResult(0.5), // 50% chance
+                LatencyGenerator = args => ValueTask.FromResult(TimeSpan.FromSeconds(10)) // 10 seconds delay
+            })
+            .Build();
+
         public string GetBetTypeName(int betTypeId)
-            => remotingRefService.GetBetTypeName(betTypeId.ToString(), LanguageCode);
+            => chaosStrategy.Execute(() => 
+                remotingRefService.GetBetTypeName(betTypeId.ToString(), LanguageCode));
 
         public string GetProductName(int productId)
-            => GetProductName(productId, LanguageCode);
+            => chaosStrategy.Execute(() => 
+                GetProductName(productId, LanguageCode));
 
         public string GetProductName(int productId, string languageCode)
-            => remotingRefService.GetResourceDataByRefIdAndResourceId(
-                "Product",
-                productId.ToString(),
-                languageCode,
-                string.Empty);
+            => chaosStrategy.Execute(() => 
+                remotingRefService.GetResourceDataByRefIdAndResourceId(
+                    "Product",
+                    productId.ToString(),
+                    languageCode,
+                    string.Empty));
 
         public string GetSportTypeName(int sportTypeId, string languageCode)
-            => remotingRefService.GetSportName(sportTypeId.ToString(), languageCode, null) ?? remotingRefService.GetResourceDataByRefIdAndResourceId(
-                "DummySport",
-                sportTypeId.ToString(),
-                languageCode,
-                string.Empty);
+            => chaosStrategy.Execute(() => 
+                remotingRefService.GetSportName(sportTypeId.ToString(), languageCode, null) ?? 
+                remotingRefService.GetResourceDataByRefIdAndResourceId(
+                    "DummySport",
+                    sportTypeId.ToString(),
+                    languageCode,
+                    string.Empty));
 
         public string GetSportTypeName(int sportTypeId)
-            => remotingRefService.GetSportName(sportTypeId.ToString(), LanguageCode, null) ?? remotingRefService.GetResourceDataByRefIdAndResourceId(
-                "DummySport",
-                sportTypeId.ToString(),
-                LanguageCode,
-                string.Empty);
+            => chaosStrategy.Execute(() => 
+                remotingRefService.GetSportName(sportTypeId.ToString(), LanguageCode, null) ?? 
+                remotingRefService.GetResourceDataByRefIdAndResourceId(
+                    "DummySport",
+                    sportTypeId.ToString(),
+                    LanguageCode,
+                    string.Empty));
 
         public string GetProductGroupName(int productGroupId)
-         => remotingRefService.GetResourceDataByRefIdAndResourceId("ProductGroup", productGroupId.ToString(),
-                LanguageCode, productGroupId.ToString());
+            => chaosStrategy.Execute(() => 
+                remotingRefService.GetResourceDataByRefIdAndResourceId("ProductGroup", productGroupId.ToString(),
+                    LanguageCode, productGroupId.ToString()));
 
         private static string LanguageCode
             => Thread.CurrentThread.CurrentCulture.Name;
+
+        // Check if current environment is Development
+        private static bool IsDevelopment
+            => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT")?.Equals("Development", StringComparison.OrdinalIgnoreCase) == true;
     }
 }
