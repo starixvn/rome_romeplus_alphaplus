@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Functions>
     <Function Name="Login">
-        <Setting Key="Age_LoginClaimDownline" SpName="Age_LoginClaimDownline" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_LoginVerifyDownline" SpName="Age_LoginVerifyDownline" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_LoginDownline" SpName="Age_LoginDownline" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_LoginDownline_Sub" SpName="Age_LoginDownline_Sub" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_LoginDownline_Admin" SpName="Age_LoginDownline_Admin" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_LoginDownline_CheckSubUsername" SpName="Age_LoginDownline_CheckSubUsername" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_LoginCheckUsername" SpName="Age_LoginCheckUsername" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_LoginClaimDownline" SpName="Age_LoginClaimDownline" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_LoginVerifyDownline" SpName="Age_LoginVerifyDownline" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_LoginDownline" SpName="Age_LoginDownline" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_LoginDownline_Sub" SpName="Age_LoginDownline_Sub" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_LoginDownline_Admin" SpName="Age_LoginDownline_Admin" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_LoginDownline_CheckSubUsername" SpName="Age_LoginDownline_CheckSubUsername" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_LoginCheckUsername" SpName="Age_LoginCheckUsername" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
 
         <Setting Key="Age_Msg_SetMessage" SpName="Age_Msg_SetMessage" DbName="DBMSG.bodb_Message.wsv_alp" />
         <Setting Key="Age_Msg_SetUsrMessage" SpName="Age_Msg_SetUsrMessage" DbName="DBMSG.bodb_Message.wsv_alp" />
         <Setting Key="Age_ToastMessage_Ins" SpName="Age_ToastMessage_Ins" DbName="DBMSG.bodb_Message.wsv_alp" />
     </Function>
     <Function Name="IP">
-        <Setting Key="Age_IPRangesByCountrySel" SpName="Age_IPRangesByCountrySel" DbName="DBCust.IPDB.wsv_alp" Plain="0">
+        <Setting Key="Age_IPRangesByCountrySel" SpName="Age_IPRangesByCountrySel" DbName="DBCUST.IPDB.wsv_alp" Plain="0">
             <Mappings>
                 <Mapping DataField="CountryShort" ObjectProperty="CountryCode" />
             </Mappings>
         </Setting>
-        <Setting Key="Age_AllowedAccessIPsSel" SpName="Age_AllowedAccessIPsSel" DbName="DBCust.IPDB.wsv_alp" Plain="0" />
-        <Setting Key="Acc_GetIPInfo_Full" SpName="Acc_GetIPInfo_Full" DbName="DBCust.IPDB.wsv_alp" Plain="0"/>
+        <Setting Key="Age_AllowedAccessIPsSel" SpName="Age_AllowedAccessIPsSel" DbName="DBCUST.IPDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_GetIPInfo_Full" SpName="Acc_GetIPInfo_Full" DbName="DBCUST.IPDB.wsv_alp" Plain="0"/>
     </Function>
     <Function Name="Kickout">
         <Setting Key="Age_OnUser_ForceKickedout" SpName="Age_OnUser_ForceKickedout" DbName="DBONUSER.ON_USER.wsv_alp" Plain="0" />
@@ -28,6 +28,6 @@
     <Function Name="Profile Picture">
         <Setting Key="Age_CustomerProfilePictureLibrarySel" SpName="Age_CustomerProfilePictureLibrarySel" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
         <Setting Key="Age_CustomerSelProfilePicture" SpName="Age_CustomerSelProfilePicture" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
-        <Setting Key="Age_CustomerUpdProfilePicture" SpName="Age_CustomerUpdProfilePicture" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_CustomerUpdProfilePicture" SpName="Age_CustomerUpdProfilePicture" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
     </Function>
 </Functions>
