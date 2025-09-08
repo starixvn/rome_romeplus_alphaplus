@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Http;
 using AlphaPlus.Core.Services;
+using System.Web;
 
 namespace AlphaPlus.Core.Middlewares;
 
@@ -21,7 +22,7 @@ public class SessionCookieComparisonMiddleware
         try
         {
             var originalFromHeader = context.Request.Headers["X-Original-Session"].ToString();
-            var fromCookie = context.Request.Cookies[".AspNetCore.Session"];
+            var fromCookie = HttpUtility.UrlEncode(context.Request.Cookies[".AspNetCore.Session"]);
             
             if (!string.IsNullOrWhiteSpace(originalFromHeader) && !string.IsNullOrWhiteSpace(fromCookie))
             {
