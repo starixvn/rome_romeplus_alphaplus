@@ -2,9 +2,11 @@
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
 @using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers
 @using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferAllAndClearCredit
+@addTagHelper *, AlphaPlus.Settings.Site
 @model CalculationViewModel
 @{
     ViewBag.Title = "Transfer All And Clear Credit";
+    var canTransfer = Model.CanTransfer();
 }
 @section Styles {
     @StaticResources.RenderStylesWithDarkMode("~/Features/Transfer/assets/bundles/transfer-all-clear-credit")
@@ -21,6 +23,12 @@
         <div class="form-group">
             <button type="submit" class="btn-submit">@Resources.Calculate</button>
         </div>
+        @if (Model.IsShowCalculation && (Model.TransferSteps.Any() || Model.ClearCreditSteps.Any()))
+        {
+            <div class="form-group">
+                <compact-feedback fid="300" />
+            </div>
+        }
     </form>
 </div>
 @if (Model.Conditions.Any())
@@ -106,7 +114,7 @@
                 @Html.Hidden("TransferSteps", Model.TransferStepsJson)
                 @Html.Hidden("ClearCreditSteps", Model.ClearCreditStepsJson)
             </form>
-            <input id="btn-submit" type="button" class="btn-submit" value="@Resources.Submit" @(Model.CanTransfer() ? string.Empty : "disabled=disabled") />
+            <input id="btn-submit" type="button" class="btn-submit" value="@Resources.Submit" @(canTransfer ? string.Empty : "disabled=disabled") />
         </div>
         <div class="note">
             <span class="star">*</span>@Resources.TransferAllAndClearCreditNote
@@ -117,7 +125,7 @@
     @Html.Hidden("usernameAutoSuggestionPath", TransferAllAndClearCreditViewModel.UsernameAutoSuggestionPath)
     @Html.Hidden("ClearCreditConfirm", Resources.ClearCreditConfirm)
     @Html.Hidden("TransferAllConfirm", Resources.TransferAllConfirm)
-    @Html.Hidden("CanTransfer", Model.CanTransfer() ? "1" : "0")
+    @Html.Hidden("CanTransfer", canTransfer ? "1" : "0")
     @Html.Hidden("CanClearCredit", Model.CanClearCredit() ? "1" : "0")
 </div>
 @section Scripts {

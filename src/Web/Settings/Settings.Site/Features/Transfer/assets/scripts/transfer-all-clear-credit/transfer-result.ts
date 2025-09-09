@@ -1,4 +1,4 @@
-﻿"use strict";
+﻿'use strict';
 declare var initAutoComplete: Function;
 interface Window {
     bootboxConfirm(message: string, handleElement: object, acceptCallback: Function, cancelCallback: Function): void;
@@ -18,53 +18,62 @@ class TransferResult {
     topWindow: Window;
     clearCreditConfirm: string;
     transferAllConfirm: string;
+    compactFeedback: CompactFeedbackComponent;
 
-    constructor($: JQueryStatic, topWindow: Window) {
+    constructor($: JQueryStatic, topWindow: Window, compactFeedback: CompactFeedbackComponent) {
         this.$ = $;
         this.topWindow = topWindow;
+        this.compactFeedback = compactFeedback;
     }
 
     init = () => {
         this.cacheElements();
 
-        const queryUsernameURL = `${this.$usernameAutoSuggestionPath.val()}?${this.$.param({ directDownlines: true, isAccInfo: false })}`;
+        const queryUsernameURL = `${this.$usernameAutoSuggestionPath.val()}?${this.$.param({
+            directDownlines: true,
+            isAccInfo: false
+        })}`;
 
         initAutoComplete(this.$username[0], queryUsernameURL);
 
         const positionTop = 30;
-        this.$output.css("top", this.$username.offset().top + positionTop);
+        this.$output.css('top', this.$username.offset().top + positionTop);
         this.$submit.click(this.submitTransferAndClearCredit);
-        this.$("#transfer-clear-credit-form").submit((e) => {
-            if (this.$username.val().trim() === "") {
+
+        const $transferClearCreditForm = this.$('#transfer-clear-credit-form');
+        $transferClearCreditForm.submit((e) => {
+            if (this.$username.val().trim() === '') {
                 e.preventDefault();
             }
         });
 
         this.$username.keyup(() => {
-            if (this.$username.val().trim() === "") {
-                this.$username.addClass("text-italic");
+            if (this.$username.val().trim() === '') {
+                this.$username.addClass('text-italic');
             } else {
-                this.$username.removeClass("text-italic");
+                this.$username.removeClass('text-italic');
             }
         });
+
+        this.compactFeedback.init($transferClearCreditForm);
     };
 
     cacheElements = () => {
-        this.$username = this.$("#txt-username");
-        this.$usernameAutoSuggestionPath = this.$("#usernameAutoSuggestionPath");
-        this.$output = this.$("#output");
-        this.$submit = this.$("#btn-submit");
+        this.$username = this.$('#txt-username');
+        this.$usernameAutoSuggestionPath = this.$('#usernameAutoSuggestionPath');
+        this.$output = this.$('#output');
+        this.$submit = this.$('#btn-submit');
 
-        this.$transferResultForm = this.$("#transfer-result-form");
-        this.$IsClearCredit = this.$("#IsClearCredit");
-        this.$chkClearCredit = this.$("#chk-clear-credit");
-        this.$usernameTransfer = this.$("#txt-username-transfer");
+        this.$transferResultForm = this.$('#transfer-result-form');
+        this.$IsClearCredit = this.$('#IsClearCredit');
+        this.$chkClearCredit = this.$('#chk-clear-credit');
+        this.$usernameTransfer = this.$('#txt-username-transfer');
 
-        this.clearCreditConfirm = this.$("#ClearCreditConfirm").val();
-        this.transferAllConfirm = this.$("#TransferAllConfirm").val();
+        this.clearCreditConfirm = this.$('#ClearCreditConfirm').val();
+        this.transferAllConfirm = this.$('#TransferAllConfirm').val();
     };
     submitTransferAndClearCredit = () => {
-        const isClearCredit = this.$chkClearCredit.is(":checked");
+        const isClearCredit = this.$chkClearCredit.is(':checked');
         const message = isClearCredit ? this.clearCreditConfirm : this.transferAllConfirm;
         this.topWindow.bootboxConfirm(message, null, () => {
             this.$.blockUI();
@@ -74,7 +83,7 @@ class TransferResult {
     };
 }
 
-const transferResult = new TransferResult($, top);
+const transferResult = new TransferResult($, top, new CompactFeedbackComponent());
 
 $(() => {
     transferResult.init();

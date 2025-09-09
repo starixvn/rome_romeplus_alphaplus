@@ -2,13 +2,14 @@
 @using AlphaPlus.Core.Helpers
 @using AlphaPlus.Features.Site.Messages.ViewModels
 @using AlphaPlus.Shared.AppResources.Features.Messages
-
+@addTagHelper *, AlphaPlus.Features.Site
 @{
     Layout = null;
 }
 @model BackupDomainsViewModel
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -22,10 +23,11 @@
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-      @StaticResources.AssetScripts.RenderCommon("/bundles/common/support-IE8")
+    @StaticResources.AssetScripts.RenderCommon("/bundles/common/support-IE8")
     <![endif]-->
     @GoogleAnalyticHelper.GtagScript()
 </head>
+
 <body>
     <div class="scroll-tabs">
         <ul class="nav nav-tabs" role="tablist">
@@ -39,10 +41,24 @@
     </div>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="agency">
-            @{RenderDomainTable(Model.AgencyDomains, "agency");}
+            @if (Model.AgencyDomains.Any())
+            {
+                <compact-feedback fid="300" element-id="box-icon-title-agency" />
+                <div class="clearfix"></div>
+            }
+            @{
+                RenderDomainTable(Model.AgencyDomains, "agency");
+            }
         </div>
         <div role="tabpanel" class="tab-pane" id="member">
-            @{RenderDomainTable(Model.MemberDomains, "member");}
+            @if (Model.MemberDomains.Any())
+            {
+                <compact-feedback fid="300" element-id="box-icon-title-member" />
+                <div class="clearfix"></div>
+            }
+            @{
+                RenderDomainTable(Model.MemberDomains, "member");
+            }
         </div>
     </div>
     @Html.Hidden("copyAll", Resources.CopyAll)
@@ -55,16 +71,17 @@
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-messages/backup-domains")
     @StaticResources.RenderScripts("~/assets/bundles/backupdomains/backupdomains")
 </body>
+
 </html>
 
 @functions {
-    void  RenderDomainTable(IEnumerable<string> domains, string id)
+    void RenderDomainTable(IEnumerable<string> domains, string id)
     {
         <table class="tblRpt tblRpt-bordered alternative-row-table tablesorter tblRpt-hover" id="tbl-@id">
             <thead>
                 <tr>
                     <th class="col-no">#</th>
-                    <th class="col-domain">@Resources.Domain</th>
+                    <th>@Resources.Domain</th>
                     <th class="col-copy-domain">
                         @Resources.CopyDomain
                         <span class="icon icon-content-copy copy-all" id="icon-copy-all-@id" title="@Resources.CopyAll"></span>
@@ -83,14 +100,17 @@
                                 <a href="javascript:;" target="_blank" class="domain-url">@item</a>
                             </td>
                             <td class="center" data-domain="@item">
-                                <span class="icon icon-content-copy" id="icon-content-copy-@id-@index" title="@Resources.CopyDomain"></span>
+                                <span class="icon icon-content-copy" id="icon-content-copy-@id-@index"
+                                    title="@Resources.CopyDomain"></span>
                             </td>
                         </tr>
                     }
                 }
                 else
                 {
-                    <tr><td colspan="3" class="center">@Resources.NoInformationIsAvailable</td></tr>
+                    <tr>
+                        <td colspan="3" class="center">@Resources.NoInformationIsAvailable</td>
+                    </tr>
                 }
             </tbody>
         </table>

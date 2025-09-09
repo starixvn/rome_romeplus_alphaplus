@@ -27,10 +27,12 @@ class TransferAllAndClearCredit {
     transferAllConfirm: string;
     canTransfer: boolean;
     canClearCredit: boolean;
+    compactFeedback: CompactFeedbackComponent;
 
-    constructor($: JQueryStatic, topWindow: Window) {
+    constructor($: JQueryStatic, topWindow: Window, compactFeedback: CompactFeedbackComponent) {
         this.$ = $;
         this.topWindow = topWindow;
+        this.compactFeedback = compactFeedback;
     }
 
     init = () => {
@@ -66,6 +68,7 @@ class TransferAllAndClearCredit {
         } else {
             this.$submit.click(this.submitTransferAndClearCredit);
         }
+        this.compactFeedback.init(this.$('#transfer-clear-credit-form'));
     };
 
     cacheElements = () => {
@@ -101,7 +104,7 @@ class TransferAllAndClearCredit {
     };
 }
 
-const transferAllAndClearCredit = new TransferAllAndClearCredit($, top);
+const transferAllAndClearCredit = new TransferAllAndClearCredit($, top, new CompactFeedbackComponent());
 
 $(() => {
     transferAllAndClearCredit.init();

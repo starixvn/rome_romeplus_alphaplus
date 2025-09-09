@@ -1,14 +1,22 @@
-﻿declare const Clipboard: any;
+﻿'use strict';
 
-"use strict";
-
+declare const Clipboard: any;
 class BackupDomainsView {
     $: JQueryStatic;
     clipboard: any;
+    compactFeedbackAgent: CompactFeedbackComponent;
+    compactFeedbackMember: CompactFeedbackComponent;
 
-    constructor($: JQueryStatic, clipboard: any) {
+    constructor(
+        $: JQueryStatic,
+        clipboard,
+        compactFeedbackAgent: CompactFeedbackComponent,
+        compactFeedbackMember: CompactFeedbackComponent
+    ) {
         this.$ = $;
         this.clipboard = clipboard;
+        this.compactFeedbackAgent = compactFeedbackAgent;
+        this.compactFeedbackMember = compactFeedbackMember;
     }
 
     public init() {
@@ -18,6 +26,8 @@ class BackupDomainsView {
             e.preventDefault();
             window.open('//' + this.innerText);
         });
+        this.compactFeedbackAgent.init();
+        this.compactFeedbackMember.init();
     }
 
     private bindCopyDomain(id) {
@@ -57,19 +67,21 @@ class BackupDomainsView {
 
     private completeCopyDomain(clipboard, copyText: string) {
         if (window.document.queryCommandSupported && window.document.queryCommandSupported('copy')) {
-            clipboard.on('success', (e) => {
-                const $element = this.$(e.trigger)
-                $element.attr('data-original-title', this.$('#copied').val());
-                $element.tooltip('show');
-                setTimeout(() => {
-                    $element.tooltip('hide');
-                    $element.attr('data-original-title', copyText);
-                }, 3000);
-            }).on('error', (e) => {
-                this.$(e.trigger).remove();
-                window.console.error('Action:', e.action);
-                window.console.error('Trigger:', e.trigger);
-            });
+            clipboard
+                .on('success', (e) => {
+                    const $element = this.$(e.trigger);
+                    $element.attr('data-original-title', this.$('#copied').val());
+                    $element.tooltip('show');
+                    setTimeout(() => {
+                        $element.tooltip('hide');
+                        $element.attr('data-original-title', copyText);
+                    }, 3000);
+                })
+                .on('error', (e) => {
+                    this.$(e.trigger).remove();
+                    window.console.error('Action:', e.action);
+                    window.console.error('Trigger:', e.trigger);
+                });
         }
     }
 
@@ -89,5 +101,10 @@ class BackupDomainsView {
 }
 
 $(function () {
-    new BackupDomainsView($, Clipboard).init();
+    new BackupDomainsView(
+        $,
+        Clipboard,
+        new CompactFeedbackComponent('#box-icon-title-agency'),
+        new CompactFeedbackComponent('#box-icon-title-member')
+    ).init();
 });

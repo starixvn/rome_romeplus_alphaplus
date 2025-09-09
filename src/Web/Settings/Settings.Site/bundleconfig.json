@@ -626,12 +626,14 @@
   {
     "outputFileName": "wwwroot/Features/Transfer/assets/bundles/transfer-all-clear-credit/calculation.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/Transfer/assets/scripts/transfer-all-clear-credit/calculation.js"
     ]
   },
   {
     "outputFileName": "wwwroot/Features/Transfer/assets/bundles/transfer-all-clear-credit/transfer-result.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/Transfer/assets/scripts/transfer-all-clear-credit/transfer-result.js"
     ]
   },
