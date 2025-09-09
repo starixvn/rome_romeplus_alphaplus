@@ -19,19 +19,17 @@
 
     registerEvents = () => {
         const this$ = this.$;
-        const $reportForm = this.$('#report-form');
-        this.$('.nav-tabs > li').on('click', function () {
+        const $reportForm = this$('#report-form');
+        this$('.nav-tabs > li').on('click', function () {
             this$(this).find('span').val('');
         });
-        this.$('.btn-submit').on('click', () => {
-            this.$.blockUI();
-        });
+        this$('.btn-submit').on('click', () => this$.blockUI());
         this.dateRangePickerComponent.render(
             new DateRangePickerOption('daterange-picker', 'report-form', this.constraintFromTo)
         );
         this.pagerComponent.render();
         $reportForm.on('click', this.resetPaging);
-        this.$('#icon-information').on('click', this.showGuidelines);
+        this$('#icon-information').on('click', this.showGuidelines);
         this.compactFeedback.init($reportForm);
     };
 

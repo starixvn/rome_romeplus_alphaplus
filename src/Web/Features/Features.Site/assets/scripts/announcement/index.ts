@@ -22,18 +22,16 @@
     registerEvents = () => {
         const this$ = this.$;
 
-        this.$('.nav-tabs > li').on('click', function () {
+        this$('.nav-tabs > li').on('click', function () {
             this$(this).find('span').val('');
         });
-        this.$('.btn-submit').on('click', () => {
-            this.$.blockUI();
-        });
+        this$('.btn-submit').on('click', () => this$.blockUI());
 
         this.dateRangePickerComponent.render(
             new DateRangePickerOption('daterange-picker', 'report-form', this.constraintFromTo)
         );
 
-        this.$('#icon-information').on('click', this.showGuidelines);
+        this$('#icon-information').on('click', this.showGuidelines);
     };
 
     showGuidelines = () => {

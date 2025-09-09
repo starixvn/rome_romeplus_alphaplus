@@ -13,7 +13,7 @@ public class RewardDetailViewModel(
         programs,
         excelAction: "DetailExcel",
         showColumns: true,
-        feedbackFunctionId: 300);
+        feedbackFunctionId: 89);
 
     public string VisibleColumnKey { get; } = $"RewardDetail_{message.ViewerId}_{message.SubAccId}:Columns";
 }
