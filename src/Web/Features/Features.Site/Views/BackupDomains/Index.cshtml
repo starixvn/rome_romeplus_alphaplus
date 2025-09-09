@@ -43,8 +43,9 @@
         <div role="tabpanel" class="tab-pane active" id="agency">
             @if (Model.AgencyDomains.Any())
             {
-                <compact-feedback fid="104" element-id="box-icon-title-agency" />
-                <div class="clearfix"></div>
+                <div class="flex justify-right relative z-index40">
+                    <compact-feedback fid="300" element-id="box-icon-title-agency" />
+                </div>                
             }
             @{
                 RenderDomainTable(Model.AgencyDomains, "agency");
@@ -53,8 +54,9 @@
         <div role="tabpanel" class="tab-pane" id="member">
             @if (Model.MemberDomains.Any())
             {
-                <compact-feedback fid="105" element-id="box-icon-title-member" />
-                <div class="clearfix"></div>
+                <div class="flex justify-right relative z-index40">
+                    <compact-feedback fid="300" element-id="box-icon-title-member" />
+                </div>
             }
             @{
                 RenderDomainTable(Model.MemberDomains, "member");
