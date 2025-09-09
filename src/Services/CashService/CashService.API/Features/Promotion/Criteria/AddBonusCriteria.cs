@@ -23,6 +23,9 @@ public class AddBonusCriteria : CriteriaBase
     public int ErrCode { get; set; }
     public string ErrMsg { get; set; }
 
+    [SpParam(AllowNull = true)]
+    public decimal? AgentAvailableCredit { get; set; }
+
     public override string GetSettingKey() => $"SiteDb_{SiteDbGroupId}_Age_CashPromotion_ManualAddBonus";
 
     public override bool IsValid() => true;

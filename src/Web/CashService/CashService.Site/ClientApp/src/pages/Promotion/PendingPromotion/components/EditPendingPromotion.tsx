@@ -40,7 +40,9 @@ const EditPendingPromotion: React.FC<EditPendingPromotionProps> = ({ isOpen, onC
     if (bonusAmount <= 0 || bonusAmount > agentAvailableCredit) {
       setResultMessage({
         type: 'error',
-        message: t('editModal.bonusAmountMustBeGreaterThan0AndLessThanAgentAvailableCredit'),
+        message: t(
+          'editModal.bonusAmountMustBeGreaterThan0AndLessThanAgentAvailableCredit'
+        ).replace('{0}', displayAmount(agentAvailableCredit)),
       });
       return;
     }

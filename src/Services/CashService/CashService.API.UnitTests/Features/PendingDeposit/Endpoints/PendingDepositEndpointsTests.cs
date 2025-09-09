@@ -9,6 +9,7 @@ using Xunit;
 namespace AlphaPlus.CashService.API.UnitTests.Features.PendingDeposit.Endpoints
 {
     using AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints;
+    using API.Features.Transactions.Models;
     using API.Features.Transactions.Services;
 
     public class PendingDepositEndpointsTests
@@ -71,6 +72,23 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.PendingDeposit.Endpoints
         }
 
         [Fact]
+        public async Task RevertDepositTransactionToPending_ShouldReturnOkResultWithResultModel()
+        {
+            // Arrange
+            var model = new RevertTransaction { TransId = 1 };
+            var expectedResultModel = new ResultModel { Code = 0, Message = "Success" };
+            mockPendingDepositService.Setup(s => s.RevertDepositTransactionToPending(model)).ReturnsAsync(expectedResultModel);
+
+            // Act
+            var result = await PendingDepositEndpoints.RevertDepositTransactionToPendingHandler(mockPendingDepositService.Object, model);
+
+            // Assert
+            var okResult = Assert.IsType<Microsoft.AspNetCore.Http.HttpResults.Ok<ResultModel>>(result);
+            Assert.Equal(expectedResultModel, okResult.Value);
+            mockPendingDepositService.Verify(s => s.RevertDepositTransactionToPending(model), Times.Once);
+        }
+
+        [Fact]
         public async Task ProcessApproveDepositAsync_ShouldSetStatusToCompletedAndReturnOkResult()
         {
             // Arrange
@@ -110,6 +128,7 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.PendingDeposit.Endpoints
 
 namespace AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints
 {
+    using Transactions.Models;
     using Transactions.Services;
 
     public static class PendingDepositEndpoints
@@ -143,6 +162,12 @@ namespace AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints
         {
             model.StatusId = (int)TransactionStatus.Rejected;
             var result = await service.ProcessDepositAsync(model);
+            return Results.Ok(result);
+        }
+
+        public static async Task<IResult> RevertDepositTransactionToPendingHandler(IPendingDepositService service, RevertTransaction command)
+        {
+            var result = await service.RevertDepositTransactionToPending(command);
             return Results.Ok(result);
         }
     }

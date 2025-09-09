@@ -70,7 +70,7 @@
     "approve": "อนุมัติ",
     "rejectedSuccess": "ปฏิเสธโปรโมชันสำเร็จ",
     "approvedSuccess": "อนุมัติโปรโมชันสำเร็จ",
-    "bonusAmountMustBeGreaterThan0AndLessThanAgentAvailableCredit": "จำนวนโบนัสต้องมากกว่า 0 และน้อยกว่ายอดเครดิตที่ใช้ได้ของเอเย่นต์",
+    "bonusAmountMustBeGreaterThan0AndLessThanAgentAvailableCredit": "จำนวนเงินต้องไม่เกินเครดิตที่เอเย่นต์มีอยู่ {0}",
     "bannerSizeLimit": "ขนาดแบนเนอร์ต้องน้อยกว่า 5 MB"
   },
   "table": {

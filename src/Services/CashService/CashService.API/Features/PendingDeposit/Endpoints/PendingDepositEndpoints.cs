@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AlphaPlus.CashService.API.Features.PendingDeposit.Endpoints;
 
+using Microsoft.OpenApi.Models;
+using Transactions.Models;
 using Transactions.Services;
 
 public static class PendingDepositEndpoints
@@ -54,6 +56,18 @@ public static class PendingDepositEndpoints
             Summary = "Create manual deposit",
             Description = "Adding manual deposit transaction on Agency site"
         });
+
+        group.MapPost("/revert-pending", async (IPendingDepositService service, [FromBody] RevertTransaction model) =>
+            {
+                var result = await service.RevertDepositTransactionToPending(model);
+                return Results.Ok(result);
+            })
+            .WithName("RevertDepositTransactionToPending")
+            .WithOpenApi(operation => new OpenApiOperation(operation)
+            {
+                Summary = "Revert transaction to pending",
+                Description = "Revert transaction to pending"
+            });
 
         group.MapPost("/approve", async ([FromBody] ProcessDepositTransaction model, IPendingDepositService service) =>
         {

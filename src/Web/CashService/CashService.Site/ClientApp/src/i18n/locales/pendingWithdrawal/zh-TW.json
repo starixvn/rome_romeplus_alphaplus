@@ -83,7 +83,7 @@
     "memberLoginNameRequired": "會員登入名稱是必需的",
     "agentBankSelectionRequired": "從是必需的",
     "memberBankSelectionRequired": "至是必需的",
-    "amountRangeError": "金額必須大於0且小於或等於會員現金餘額",
+    "amountRangeError": "金額不得超過會員的現金餘額 {memberCashBalance}",
     "imageSizeError": "圖片大小必須小於1 MB",
     "addWithdrawalSuccess": "新增提款成功",
     "memberCashBalance": "會員現金餘額",
@@ -91,7 +91,7 @@
     "maxAmount": "最大",
     "invalidFileType": "無效的文件類型。請上傳 jpeg、jpg 或 png 文件。",
     "providerSupportedBankError": "{providerName} 不支持此銀行。請選擇其他銀行。",
-    "amountRangeMinMaxError": "金額必須在 {0} 和 {1} 之間"
+    "amountRangeMinMaxError": "根據服務商的限制，金額必須在 {0} 和 {1} 之間"
   },
 
   "updateWithdrawal": {

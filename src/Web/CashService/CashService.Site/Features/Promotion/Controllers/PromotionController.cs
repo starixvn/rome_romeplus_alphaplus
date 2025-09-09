@@ -272,7 +272,7 @@ public class PromotionController(
         var result = await httpClientHelper.PostAsync<AddBonusRequest, ResultModel>(url, request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingAddManualWithdrawalErrCode(result.Code, request.CustId, request.ActorId);
+            result.Message = ErrorCodeHandler.MappingAddManualWithdrawalErrCode(result, request.CustId, request.ActorId);
         }
         return Json(result);
     }
@@ -323,7 +323,7 @@ public class PromotionController(
         var result = await httpClientHelper.PostAsync<ProcessPromotionTransactionRequest, ResultModel>("/api/promotions/updateTransactionStatus", request);
         if (result.Code != 0)
         {
-            result.Message = ErrorCodeHandler.MappingUpdatePromoteTransactionStatusErrCode(result.Code, request.TransId, request.CustId, request.ActorId);
+            result.Message = ErrorCodeHandler.MappingUpdatePromotionTransactionStatusErrCode(result.Code, request.TransId, request.CustId, request.ActorId);
         }
         return result;
     }

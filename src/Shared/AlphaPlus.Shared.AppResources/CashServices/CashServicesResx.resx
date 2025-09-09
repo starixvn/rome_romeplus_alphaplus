@@ -136,7 +136,7 @@
     <value>The amount exceeds the allowed minimum or maximum value.</value>
   </data>
   <data name="TheTransactionInsertedFailedPleaseTryAgain" xml:space="preserve">
-    <value>The transaction inserted failed. Please try again.</value>
+    <value>The transaction does not match our records. Please check and try again.</value>
   </data>
   <data name="ModelValidationFailed" xml:space="preserve">
     <value>Model validation failed.</value>
@@ -323,5 +323,11 @@
   </data>
   <data name="SelectedBankIsNotSupportedByProvider" xml:space="preserve">
     <value>Selected bank is not supported by {0}. Please choose another.</value>
+  </data>
+  <data name="TheAmountMustNotExceedAgentAvailableCredit" xml:space="preserve">
+    <value>The amount must not exceed the agent's available credit {0}</value>
+  </data>
+  <data name="TheAmountMustNotExceedMemberCashBalance" xml:space="preserve">
+    <value>The amount must not exceed the member's cash balance {0}</value>
   </data>
 </root>

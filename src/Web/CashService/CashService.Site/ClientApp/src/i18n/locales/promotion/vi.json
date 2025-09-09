@@ -70,7 +70,7 @@
     "approve": "Phê duyệt",
     "rejectedSuccess": "Từ chối khuyến mãi thành công",
     "approvedSuccess": "Phê duyệt khuyến mãi thành công",
-    "bonusAmountMustBeGreaterThan0AndLessThanAgentAvailableCredit": "Số tiền thưởng phải lớn hơn 0 và nhỏ hơn hạn mức khả dụng của đại lý",
+    "bonusAmountMustBeGreaterThan0AndLessThanAgentAvailableCredit": "Số tiền phải nhỏ hơn tín dụng có sẵn của đại lý {0}.",
     "bannerSizeLimit": "Kích thước banner phải nhỏ hơn 5 MB"
   },
   "table": {

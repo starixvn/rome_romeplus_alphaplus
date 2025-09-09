@@ -20,6 +20,9 @@ public class RevertDepositTransactionToPendingCommand : ICriteria
     [SpParam(Ignored = true)]
     public short CustDbGroupId { get; set; }
 
+    [SpParam(AllowNull = true)]
+    public decimal? CashBalance { get; set; }
+
     public string GetSettingKey() => $"SiteDb_{SiteDbGroupId}_Age_CashTransaction_RevertDeposit_Upd";
 
     public bool IsValid() => TransId > 0;

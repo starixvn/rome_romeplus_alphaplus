@@ -2,6 +2,7 @@ using AlphaPlus.CashService.API.Features.PendingDeposit.Criteria;
 using AlphaPlus.CashService.API.Features.PendingDeposit.Models;
 using AlphaPlus.CashService.API.Features.PendingDeposit.Services;
 using AlphaPlus.CashService.API.Features.Shared.Models;
+using AlphaPlus.CashService.API.Features.Transactions.Criteria;
 using AlphaPlus.CashService.API.Features.Transactions.Models;
 using AlphaPlus.CashService.API.Features.Transactions.Services;
 using Fanex.Data.Repository;
@@ -119,7 +120,7 @@ public class PendingDepositServiceTests
         mockTransactionService
             .Setup(ts => ts.GetMemberSettingDepositAsync(param.CustId, param.CustDbGroupId))
             .ReturnsAsync(new MemberSettingDeposit
-            { 
+            {
                 AgentGivenCredit = memberAgentCredit,
                 CreditMembers_GivenCredit = memberCreditMemberCredit
             });
@@ -152,6 +153,46 @@ public class PendingDepositServiceTests
             It.IsAny<string>(),
             It.IsAny<CancellationToken>()), Times.Once);
         mockTransactionService.Verify(ts => ts.OnAfterUpdateTransaction(cashAccumTbl, param.SiteDbGroupId, param.CustDbGroupId, expectedLogs), Times.Once);
+    }
+
+    [Fact]
+    public async Task RevertDepositTransactionToPending_ShouldReturnResultModel()
+    {
+        // Arrange
+        var model = new RevertTransaction
+        {
+            TransId = 1,
+            Remark = "Test revert",
+            CustId = 100,
+            UserId = 200,
+            SubAccId = 300,
+            IP = "127.0.0.1",
+            SiteDBGroupId = 1,
+            CustDBGroupId = 2
+        };
+
+        var command = new RevertDepositTransactionToPendingCommand { TransId = 1, ErrCode = 0, ErrMsg = "Success" };
+        mockDynamicRepository
+            .Setup(repo => repo.FetchAsync<WriteLogDBCommandModel>(It.IsAny<RevertDepositTransactionToPendingCommand>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .Callback((ICriteria cmd, string s, CancellationToken ct) =>
+            {
+                var revertCmd = (RevertDepositTransactionToPendingCommand)cmd;
+                revertCmd.ErrCode = 0;
+                revertCmd.ErrMsg = "Success";
+            })
+            .ReturnsAsync(new List<WriteLogDBCommandModel>());
+
+        // Act
+        var result = await pendingDepositService.RevertDepositTransactionToPending(model);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(0, result.Code);
+        Assert.Equal("Success", result.Message);
+        mockDynamicRepository.Verify(repo => repo.FetchAsync<WriteLogDBCommandModel>(
+            It.Is<RevertDepositTransactionToPendingCommand>(c => c.TransId == model.TransId),
+            It.IsAny<string>(),
+            It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]

@@ -3,14 +3,17 @@ namespace AlphaPlus.CashService.API.UnitTests.Features.PendingWithdrawal.Service
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using AlphaPlus.CashService.API.Features.PendingDeposit.Models;
 using AlphaPlus.CashService.API.Features.PendingWithdrawal.Criteria;
 using AlphaPlus.CashService.API.Features.PendingWithdrawal.Models;
 using AlphaPlus.CashService.API.Features.PendingWithdrawal.Services;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Requests.PaymentGateway;
 using AlphaPlus.CashService.API.Features.Shared.Services;
+using AlphaPlus.CashService.API.Features.Transactions.Criteria;
 using AlphaPlus.CashService.API.Features.Transactions.Models;
 using AlphaPlus.CashService.API.Features.Transactions.Services;
+using API.Features.PendingDeposit.Criteria;
 using Fanex.Data.Repository;
 using Moq;
 using Xunit;
@@ -312,6 +315,52 @@ public class PendingWithdrawalServiceTests
         Assert.Equal(1, result.Code);
         Assert.Equal("Error occurred", result.Message);
         mockTransactionService.Verify(s => s.OnAfterUpdateTransaction(It.IsAny<string>(), It.IsAny<short>(), It.IsAny<short>(), It.IsAny<List<WriteLogDBCommandModel>>()), Times.Once);
+    }
+
+    [Fact]
+    public async Task RevertWithdrawalTransactionToPending_ShouldReturnResultModel()
+    {
+        // Arrange
+        var model = new RevertTransaction
+        {
+            TransId = 1,
+            Remark = "Test revert",
+            CustId = 100,
+            UserId = 200,
+            SubAccId = 300,
+            IP = "127.0.0.1",
+            SiteDBGroupId = 1,
+            CustDBGroupId = 2
+        };
+
+        var memberSettings = new MemberSettingDeposit { AgentGivenCredit = 500m, CreditMembers_GivenCredit = 300m };
+        var command = new RevertWithdrawalTransactionToPendingCommand { TransId = 1, ErrCode = 0, ErrMsg = "Success" };
+
+        mockTransactionService
+            .Setup(s => s.GetMemberSettingDepositAsync(model.CustId, model.CustDBGroupId))
+            .ReturnsAsync(memberSettings);
+
+        mockDynamicRepository
+            .Setup(repo => repo.FetchAsync<WriteLogDBCommandModel>(It.IsAny<RevertWithdrawalTransactionToPendingCommand>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))
+            .Callback((ICriteria cmd, string s, CancellationToken ct) =>
+            {
+                var revertCmd = (RevertWithdrawalTransactionToPendingCommand)cmd;
+                revertCmd.ErrCode = 0;
+                revertCmd.ErrMsg = "Success";
+            })
+            .ReturnsAsync(new List<WriteLogDBCommandModel>());
+
+        // Act
+        var result = await service.RevertWithdrawalTransactionToPending(model);
+
+        // Assert
+        Assert.NotNull(result);
+        Assert.Equal(0, result.Code);
+        Assert.Equal("Success", result.Message);
+        mockDynamicRepository.Verify(repo => repo.FetchAsync<WriteLogDBCommandModel>(
+            It.Is<RevertWithdrawalTransactionToPendingCommand>(c => c.TransId == model.TransId),
+            It.IsAny<string>(),
+            It.IsAny<CancellationToken>()), Times.Once);
     }
 
     [Fact]

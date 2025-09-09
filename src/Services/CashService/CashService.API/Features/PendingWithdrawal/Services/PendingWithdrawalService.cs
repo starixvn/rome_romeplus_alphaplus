@@ -3,6 +3,8 @@ namespace AlphaPlus.CashService.API.Features.PendingWithdrawal.Services;
 using AlphaPlus.CashService.API.Features.Shared.Models;
 using AlphaPlus.CashService.API.Features.Shared.Models.PaymentGateway;
 using AlphaPlus.CashService.API.Features.Shared.Services;
+using AlphaPlus.CashService.API.Features.Transactions.Criteria;
+using AlphaPlus.CashService.API.Features.Transactions.Extensions;
 using AlphaPlus.CashService.API.Features.Transactions.Models;
 using AlphaPlus.CashService.API.Features.Transactions.Services;
 using Criteria;
@@ -24,6 +26,8 @@ public interface IPendingWithdrawalService
     Task<ResultModel> ApproveByPaymentGatewayAsync(ProcessWithdrawalTransaction command);
 
     Task<ResultModel> ProcessWithdrawAsync(ProcessWithdrawalTransaction param);
+
+    Task<ResultModel> RevertWithdrawalTransactionToPending(RevertTransaction model);
 }
 
 public class PendingWithdrawalService(
@@ -110,6 +114,11 @@ public class PendingWithdrawalService(
         var responseLogs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command) ?? [];
 
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
+
+        TransactionErrorHandlers.OutputErrorMessageParams(result,
+            memberCashBalance: command.CashBalance,
+            minAmount: command.MinLimitAmt,
+            maxAmount: command.MaxLimitAmt);
 
         transactionService.OnAfterUpdateTransaction(command.CashAccumCreditTbl, param.SiteDbGroupId, param.CustDbGroupId, responseLogs.ToList());
 
@@ -226,6 +235,10 @@ public class PendingWithdrawalService(
 
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
 
+        TransactionErrorHandlers.OutputErrorMessageParams(result,
+            minAmount: command.MinLimitAmt,
+            maxAmount: command.MaxLimitAmt);
+
         transactionService.OnAfterUpdateTransaction(command.CashAccumCreditTbl, param.SiteDBGroupId, param.CustDBGroupId, responseLogs.ToList());
 
         return result;
@@ -247,5 +260,33 @@ public class PendingWithdrawalService(
         {
             transactionService.OnAfterUpdateTransaction(string.Empty, param.SiteDBGroupId, param.CustDBGroupId, responseLogs.ToList());
         }
+    }
+
+    public async Task<ResultModel> RevertWithdrawalTransactionToPending(RevertTransaction model)
+    {
+        var memberSettings = await transactionService.GetMemberSettingDepositAsync(model.CustId, model.CustDBGroupId);
+        var command = new RevertWithdrawalTransactionToPendingCommand
+        {
+            TransId = model.TransId,
+            AgentId = model.UserId,
+            Remark = model.Remark,
+            UserId = model.UserId,
+            CustId = model.CustId,
+            SubAccId = model.SubAccId,
+            Ip = model.IP,
+            SiteDbGroupId = model.SiteDBGroupId,
+            CustDbGroupId = model.CustDBGroupId,
+            AgentGivenCredit = memberSettings.AgentGivenCredit,
+            CreditMembersGivenCredit = memberSettings.CreditMembers_GivenCredit
+        };
+        var logs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command);
+
+        var result = new ResultModel(command.ErrCode, command.ErrMsg);
+
+        TransactionErrorHandlers.OutputErrorMessageParams(result, agentAvailableCredit: command.AgentAvailableCredit, memberCashBalance: command.CashBalance);
+
+        transactionService.OnAfterUpdateTransaction(command.CashAccumCreditTbl, command.SiteDbGroupId, command.CustDbGroupId, logs.ToList());
+
+        return result;
     }
 }

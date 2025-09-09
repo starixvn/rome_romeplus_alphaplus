@@ -1,11 +1,13 @@
 namespace AlphaPlus.CashService.API.Features.PendingDeposit.Services;
 
 using AlphaPlus.CashService.API.Features.Shared.Models;
+using AlphaPlus.CashService.API.Features.Transactions.Criteria;
 using AlphaPlus.CashService.API.Features.Transactions.Models;
 using AlphaPlus.CashService.API.Features.Transactions.Services;
 using Criteria;
 using Fanex.Data.Repository;
 using Models;
+using Transactions.Extensions;
 
 public interface IPendingDepositService
 {
@@ -17,6 +19,8 @@ public interface IPendingDepositService
     Task<ResultModel> AddManualDepositAsync(CreateManualDepositModel param);
 
     Task<ResultModel> ProcessDepositAsync(ProcessDepositTransaction param);
+
+    Task<ResultModel> RevertDepositTransactionToPending(RevertTransaction model);
 }
 
 public class PendingDepositService(IDynamicRepository dynamicRepository,
@@ -84,6 +88,7 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
 
         var logs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command);
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
+        TransactionErrorHandlers.OutputErrorMessageParams(result, agentAvailableCredit: command.AgentAvailableCredit);
 
         transactionService.OnAfterUpdateTransaction(command.CashAccumCreditTbl, param.SiteDbGroupId, param.CustDbGroupId, logs.ToList());
 
@@ -108,8 +113,31 @@ public class PendingDepositService(IDynamicRepository dynamicRepository,
         };
         var logs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command);
         var result = new ResultModel(command.ErrCode, command.ErrMsg);
-
+        TransactionErrorHandlers.OutputErrorMessageParams(result, agentAvailableCredit: command.AgentAvailableCredit);
         transactionService.OnAfterUpdateTransaction(command.CashAccumCreditTbl, param.SiteDbGroupId, param.CustDbGroupId, logs.ToList());
+
+        return result;
+    }
+
+    public async Task<ResultModel> RevertDepositTransactionToPending(RevertTransaction model)
+    {
+        var command = new RevertDepositTransactionToPendingCommand
+        {
+            TransId = model.TransId,
+            Remark = model.Remark,
+            AgentId = model.UserId,
+            UserId = model.UserId,
+            SubAccId = model.SubAccId,
+            CustId = model.CustId,
+            Ip = model.IP,
+            SiteDbGroupId = model.SiteDBGroupId,
+            CustDbGroupId = model.CustDBGroupId,
+        };
+        var logs = await dynamicRepository.FetchAsync<WriteLogDBCommandModel>(command);
+        var result = new ResultModel(command.ErrCode, command.ErrMsg);
+        TransactionErrorHandlers.OutputErrorMessageParams(result, memberCashBalance: command.CashBalance);
+
+        transactionService.OnAfterUpdateTransaction(command.CashAccumCreditTbl, command.SiteDbGroupId, command.CustDbGroupId, logs.ToList());
 
         return result;
     }

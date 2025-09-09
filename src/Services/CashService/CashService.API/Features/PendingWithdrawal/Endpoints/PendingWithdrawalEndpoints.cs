@@ -3,6 +3,7 @@ namespace AlphaPlus.CashService.API.Features.PendingWithdrawal.Endpoints;
 using AlphaPlus.CashService.API.Features.Transactions.Enum;
 using AlphaPlus.CashService.API.Features.Transactions.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Models;
 using Models;
 using Services;
 
@@ -67,6 +68,18 @@ public static class PendingWithdrawalEndpoints
             Summary = "Create manual withdrawal",
             Description = "Adding manual withdrawal transaction on Agency site"
         });
+
+        group.MapPost("/revert-pending", async (IPendingWithdrawalService service, [FromBody] RevertTransaction model) =>
+            {
+                var result = await service.RevertWithdrawalTransactionToPending(model);
+                return Results.Ok(result);
+            })
+            .WithName("RevertWithdrawalTransactionToPending")
+            .WithOpenApi(operation => new OpenApiOperation(operation)
+            {
+                Summary = "Revert transaction to pending",
+                Description = "Revert transaction to pending"
+            });
 
         group.MapPost("/approve", async ([FromBody] ProcessWithdrawalTransaction model, IPendingWithdrawalService service) =>
             {

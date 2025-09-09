@@ -30,6 +30,9 @@ public class ProcessDepositCommand : CriteriaBase
     public string CashAccumCreditTbl { get; set; }
     public string Remark { get; set; }
 
+    [SpParam(AllowNull = true)]
+    public decimal? AgentAvailableCredit { get; set; }
+
     public override string GetSettingKey() => $"SiteDb_{SiteDbGroupId}_Age_CashDeposit_UpdateTransStatus";
 
     public override bool IsValid() => CustId > 0 && AgentId > 0 && StatusId > 0 && TransId > 0;

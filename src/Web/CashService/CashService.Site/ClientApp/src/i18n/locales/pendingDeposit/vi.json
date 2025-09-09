@@ -82,7 +82,7 @@
     "approve": "Phê duyệt",
     "approving": "Đang phê duyệt...",
     "agentAvailableCredit": "Tín dụng có sẵn của đại lý",
-    "amountMustBeGreaterThan0AndLessThanMaxLimit": "Số tiền phải lớn hơn 0 và nhỏ hơn {0}.",
+    "amountMustBeGreaterThan0AndLessThanMaxLimit": "Số tiền phải nhỏ hơn tín dụng có sẵn của đại lý {0}.",
     "imageSizeError": "Hình ảnh phải nhỏ hơn 1MB",
     "memberLoginNameRequired": "Tên đăng nhập thành viên là bắt buộc.",
     "agentBankSelectionRequired": "Từ là bắt buộc.",

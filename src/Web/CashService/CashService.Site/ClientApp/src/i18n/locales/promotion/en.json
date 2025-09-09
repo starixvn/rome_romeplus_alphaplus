@@ -70,7 +70,7 @@
     "approve": "Approve",
     "rejectedSuccess": "Promotion rejected successfully",
     "approvedSuccess": "Promotion approved successfully",
-    "bonusAmountMustBeGreaterThan0AndLessThanAgentAvailableCredit": "Bonus amount must be greater than 0 and less than agent available credit",
+    "bonusAmountMustBeGreaterThan0AndLessThanAgentAvailableCredit": "The amount must not exceed the agent's available credit {0}",
     "bannerSizeLimit": "Banner size must be less than 5 MB"
   },
   "table": {

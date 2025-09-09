@@ -1,6 +1,7 @@
 ﻿namespace AlphaPlus.CashService.API.Features.Promotion.Services;
 
 using AlphaPlus.CashService.API.Features.Shared.Services;
+using AlphaPlus.CashService.API.Features.Transactions.Extensions;
 using Criteria;
 using Fanex.Data.Repository;
 using Models;
@@ -270,6 +271,9 @@ public class PromotionService(IDynamicRepository repository,
         };
         var logs = await repository.FetchAsync<WriteLogDBCommandModel>(criteria);
         var result = new ResultModel(criteria.ErrCode, criteria.ErrMsg);
+
+        TransactionErrorHandlers.OutputErrorMessageParams(result, agentAvailableCredit: criteria.AgentAvailableCredit);
+
         transactionService.OnAfterUpdateTransaction(criteria.CashAccumCreditTbl, request.SiteDBGroupId, request.CustDBGroupId, logs.ToList());
         return result;
     }
@@ -293,6 +297,9 @@ public class PromotionService(IDynamicRepository repository,
         };
         var logs = await repository.FetchAsync<WriteLogDBCommandModel>(criteria);
         var result = new ResultModel(criteria.ErrCode, criteria.ErrMsg);
+
+        TransactionErrorHandlers.OutputErrorMessageParams(result, agentAvailableCredit: criteria.AgentAvailableCredit);
+
         transactionService.OnAfterUpdateTransaction(criteria.CashAccumCreditTbl, request.SiteDBGroupId, request.CustDBGroupId, logs.ToList());
         return result;
     }

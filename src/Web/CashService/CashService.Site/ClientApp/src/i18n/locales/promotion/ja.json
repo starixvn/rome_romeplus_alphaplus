@@ -70,7 +70,7 @@
     "approve": "承認",
     "rejectedSuccess": "プロモーションを拒否しました",
     "approvedSuccess": "プロモーションを承認しました",
-    "bonusAmountMustBeGreaterThan0AndLessThanAgentAvailableCredit": "ボーナス額は0より大きく、代理店の利用可能与信より小さい必要があります",
+    "bonusAmountMustBeGreaterThan0AndLessThanAgentAvailableCredit": "金額は0より大きく、エージェントの利用可能クレジット {0} 未満である必要があります。",
     "bannerSizeLimit": "バナーサイズは5 MB未満である必要があります"
   },
   "table": {

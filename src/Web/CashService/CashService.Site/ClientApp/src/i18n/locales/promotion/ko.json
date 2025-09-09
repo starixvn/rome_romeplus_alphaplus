@@ -70,7 +70,7 @@
     "approve": "승인",
     "rejectedSuccess": "프로모션이 성공적으로 거부되었습니다",
     "approvedSuccess": "프로모션이 성공적으로 승인되었습니다",
-    "bonusAmountMustBeGreaterThan0AndLessThanAgentAvailableCredit": "보너스 금액은 0보다 크고 에이전트 사용 가능 한도보다 작아야 합니다",
+    "bonusAmountMustBeGreaterThan0AndLessThanAgentAvailableCredit": "금액은 0보다 크고 에이전트의 사용 가능 크레딧 {0} 보다 작아야 합니다.",
     "bannerSizeLimit": "배너 크기는 5 MB 미만이어야 합니다"
   },
   "table": {

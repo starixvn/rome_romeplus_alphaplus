@@ -15,6 +15,9 @@ public class CreateManualWithdrawCommand : CriteriaBase
     [SpParam(AllowNull = true)]
     public decimal? MaxLimitAmt { get; set; }
 
+    [SpParam(AllowNull = true)]
+    public decimal? CashBalance { get; set; }
+
     public string PaymentFrom { get; set; }
     public string PaymentTo { get; set; }
     public decimal Amount { get; set; }
