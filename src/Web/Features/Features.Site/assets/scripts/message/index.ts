@@ -30,7 +30,7 @@
         this.pagerComponent.render();
         $reportForm.on('click', this.resetPaging);
         this$('#icon-information').on('click', this.showGuidelines);
-        this.compactFeedback.init($reportForm);
+        this.compactFeedback.init($reportForm.length ? $reportForm : undefined);
     };
 
     resetPaging = () => {

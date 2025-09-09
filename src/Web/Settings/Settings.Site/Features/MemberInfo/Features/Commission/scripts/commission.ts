@@ -63,7 +63,7 @@ class CommissionView {
                 }
             });
 
-        this.setStickyTableHeadersAndCompactFeedback(this.getQueryString());
+        this.setStickyTableHeadersAndCompactFeedback(this.getQueryString($ddlProduct, $ddlMaster, $ddlAgent));
     }
 
     private buildUrl(action: string): string {
@@ -85,12 +85,18 @@ class CommissionView {
         this.compactFeedback.init(formData, hasData);
     }
 
-    private getQueryString() {
-        const formData = {};
-        const params = new URLSearchParams(window.location.search);
-        const entries = params.entries();
-        for (const [key, value] of entries) {
-            formData[key] = value;
+    private getQueryString($ddlProduct, $ddlMaster, $ddlAgent) {
+        const formData = { productId: $ddlProduct.val() };
+
+        if ($ddlMaster.length) {
+            formData['masterId'] = $ddlMaster.val();
+        }
+
+        if ($ddlAgent.length) {
+            const recommendId = $ddlAgent.val();
+            if (recommendId !== 'undefined') {
+                formData['recommendId'] = recommendId;
+            }
         }
 
         return formData;

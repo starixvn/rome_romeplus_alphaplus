@@ -27,7 +27,6 @@
 </div>
 
 <div role="tabpanel" class="tab-pane active">
-
     @if (Model.MessageType != MessageType.Special)
     {
         <div class="filter">
@@ -78,6 +77,12 @@
                     </div>
                 }
             }
+        </div>
+    }
+    else
+    {
+        <div class="flex justify-right relative" style="margin-bottom: 8px;">
+            <compact-feedback fid="104" />
         </div>
     }
     @Html.Hidden("GuidelineUrl", @MicroSites.FeatureUrl("GuideNote"))
@@ -139,9 +144,8 @@
     {
         return msgType switch
         {
-            MessageType.Normal => 101,
-            MessageType.Special => 102,
-            MessageType.Personal => 104,
+            MessageType.Normal => 103,
+            MessageType.Personal => 106,
             _ => 0
         };
     }

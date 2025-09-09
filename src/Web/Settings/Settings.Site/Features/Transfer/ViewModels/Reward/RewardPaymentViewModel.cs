@@ -16,7 +16,7 @@ public class RewardPaymentViewModel(
         programs,
         excelAction: "PaymentExcel",
         showLevelType: message.ActorLevel.IsMasterOrSuperLevel(),
-        feedbackFunctionId: 88);
+        feedbackFunctionId: 90);
 
     public RewardPayment ReportData { get; } = reportData;
 }
