@@ -135,6 +135,14 @@
     ],
     "StoredProcedurePath": "~/App_Data/SPNames.MAIN.xml",
     "FanexDataServiceApi": "http://alpha_data_service_UAT:5000",
+    "VaultOptions": {
+        "Address": "http://vn-nex-vault-uat.nebula.prod",
+        "Role": "81fd2b50-2136-45d1-4b6b-1d620f38af3f",
+        "SecretId": "93711120-3a5b-ce8d-f8e5-fb10b54797db",
+        "MountPath": "pontus",
+        "Enable": true,
+        "MinutesPolling": 1
+    },
     "LogLibs": "Rabbit",
     "Fanex.Logging": {
         "DefaultCategory": "Alpha-MBC-AF-UAT-Linux",
@@ -156,29 +164,11 @@
     "AssetsApp:StaticResourcesVersion": "20250903",
     "LocalTest": false,
     "SettingStatus": 1,
-    "ProductOfferProductDetail": [
-        1,
-        21,
-        32,
-        36,
-        45,
-        73,
-        79,
-        87,
-        66,
-        89,
-        103,
-        102,
-        95,
-        107,
-        108
-    ],
+    "ProductOfferProductDetail": [1, 21, 32, 36, 45, 73, 79, 87, 66, 89, 103, 102, 95, 107, 108],
     "ForcedHideProductIds": "25",
     "SiteLabel": "MBC",
     "SiteLabel789y": "789y",
-    "AllowedSitesToViewBonusDetail": [
-        "IBCINDO"
-    ],
+    "AllowedSitesToViewBonusDetail": ["IBCINDO"],
     "AllowedSitesToShareLoad": {
         "10.40.40.94": "y889,y789,yut,yOther"
     },
@@ -214,23 +204,8 @@
             }
         ],
         "WhiteListCustIds": [
-            17996464,
-            21984259,
-            20269385,
-            15323100,
-            14771858,
-            24338704,
-            19000014,
-            19562449,
-            19562472,
-            27973467,
-            26912753,
-            23003140,
-            14521687,
-            39061067,
-            27783723,
-            26369026,
-            4664545
+            17996464, 21984259, 20269385, 15323100, 14771858, 24338704, 19000014, 19562449, 19562472, 27973467,
+            26912753, 23003140, 14521687, 39061067, 27783723, 26369026, 4664545
         ]
     },
     "ONEbook.UM": {
@@ -246,9 +221,7 @@
     },
     "Fanex.Caching.Redis": {
         "ConnectionOptions": {
-            "EndPoints": [
-                "vn-alpha-cache380.tcp-kluat.gamora.prod:16380"
-            ],
+            "EndPoints": ["vn-alpha-cache380.tcp-kluat.gamora.prod:16380"],
             "Password": "foo1@bared",
             "AbortOnConnectFail": false,
             "ConnectRetry": 5

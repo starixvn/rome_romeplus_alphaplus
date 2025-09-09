@@ -135,6 +135,14 @@
     ],
     "StoredProcedurePath": "~/App_Data/SPNames.INTERNAL.xml",
     "FanexDataServiceApi": "http://alpha_data_service_ALPHAKLPROD_2:5000",
+    "VaultOptions": {
+        "Address": "http://vault-stx.ops-klprod.gamora.prod",
+        "Role": "4d685c4f-6bf6-8067-aba7-6e23529d0248",
+        "SecretId": "b93f02d4-e535-85d5-edb7-410e3a83512e",
+        "MountPath": "pontus",
+        "Enable": true,
+        "MinutesPolling": 1
+    },
     "LogLibs": "Rabbit",
     "Fanex.Logging": {
         "DefaultCategory": "Alpha-789y-Internal-Linux",
@@ -156,15 +164,11 @@
     "AssetsApp:StaticResourcesVersion": "20250604002",
     "LocalTest": false,
     "SettingStatus": 0,
-    "ProductOfferProductDetail": [
-        1
-    ],
+    "ProductOfferProductDetail": [1],
     "ForcedHideProductIds": "25",
     "SiteLabel": "789y",
     "SiteLabel789y": "789y",
-    "AllowedSitesToViewBonusDetail": [
-        "IBCINDO"
-    ],
+    "AllowedSitesToViewBonusDetail": ["IBCINDO"],
     "AllowedSitesToShareLoad": {
         "db052.gamora.prod": "y889,y789,yut,yOther"
     },
@@ -200,23 +204,8 @@
             }
         ],
         "WhiteListCustIds": [
-            17996464,
-            21984259,
-            20269385,
-            15323100,
-            14771858,
-            24338704,
-            19000014,
-            19562449,
-            19562472,
-            27973467,
-            26912753,
-            23003140,
-            14521687,
-            39061067,
-            27783723,
-            26369026,
-            4664545
+            17996464, 21984259, 20269385, 15323100, 14771858, 24338704, 19000014, 19562449, 19562472, 27973467,
+            26912753, 23003140, 14521687, 39061067, 27783723, 26369026, 4664545
         ]
     },
     "ONEbook.UM": {
@@ -232,9 +221,7 @@
     },
     "Fanex.Caching.Redis": {
         "ConnectionOptions": {
-            "EndPoints": [
-                "vn-alpha-cache380.gamora.prod:16380"
-            ],
+            "EndPoints": ["vn-alpha-cache380.gamora.prod:16380"],
             "Password": "foo1@bared",
             "AbortOnConnectFail": false,
             "ConnectRetry": 5
