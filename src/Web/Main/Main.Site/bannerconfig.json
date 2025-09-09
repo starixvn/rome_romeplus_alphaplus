@@ -27,8 +27,8 @@
         "i7": [
             {
                 "Name": "Viva2",
-                "ImageSource_en-US": "~/assets/images/DashboardBanner/i7/viva/desktop/en-US.png",
-                "ImageMobileSource_en-US": "~/assets/images/DashboardBanner/i7/viva/mobile/en-US.jpg",
+                "ImageSource_en-US": "~/assets/images/DashboardBanner/i7/viva2/desktop/en-US.jpg",
+                "ImageMobileSource_en-US": "~/assets/images/DashboardBanner/i7/viva2/mobile/en-US.jpg",
                 "Url": "https://www.youtube.com/embed/Z8KO-Gnw2MA?si=T8cEmViVG9M3v50k&autoplay=1&loop=1&playlist=Z8KO-Gnw2MA&enablejsapi=1&rel=0&modestbranding=1&showinfo=0",
                 "IsVideo": true,
                 "LogClick": true
