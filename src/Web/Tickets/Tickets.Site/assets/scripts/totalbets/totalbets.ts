@@ -7,10 +7,26 @@ interface Window {
         open(url: string, title: string, width: number): void;
         open(url: string, title: string, width: number, height: number): void;
         openMultiple(url: string, title: string, width: number): void;
+        openWithHanlder(
+            handler,
+            url: string,
+            title: string,
+            width: number,
+            height: number,
+            windowCss,
+            titleCss,
+            closeBtnCss,
+            left: number | undefined,
+            top: number,
+            iframeAttributes,
+            options
+        ): void;
     };
 }
 
 class TotalBets {
+    private readonly compactFeedback = new CompactFeedbackComponent();
+
     initAutoRefresh($tblRpt: JQuery) {
         const autoRefreshSeconds = $('#hidden-autoRefreshSeconds')
             .val()
@@ -42,6 +58,14 @@ class TotalBets {
                 e.preventDefault();
                 top.popupManager.open($(e.target).attr('href'), '', 900);
             });
+
+        this.initCompactFeedback($tblRpt);
+    }
+
+    initCompactFeedback($tblRpt: JQuery) {
+        const firstCell = $tblRpt.find('tr:first td:first');
+        const hasData = firstCell.length > 0 && !firstCell.data('noinfo');
+        this.compactFeedback.init(undefined, hasData);
     }
 
     init() {

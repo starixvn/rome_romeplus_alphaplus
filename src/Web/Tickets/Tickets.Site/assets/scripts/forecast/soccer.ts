@@ -16,6 +16,7 @@ interface Window {
     alpha: {
         urls: {
             mainRootPath: string;
+            messageRootPath: string;
         };
     };
 }
@@ -29,6 +30,7 @@ const soccer = {
     loadingMatches: [],
     maxNumOfEvents: null,
     currentRequest: null,
+    compactFeedback: new CompactFeedbackComponent(),
 
     urls: {
         getLeagues: 'GetSoccerLeagues',
@@ -91,7 +93,7 @@ const soccer = {
         soccer.domElements.ddlDeadBall
             .off('change.forecast')
             .on('change.forecast', function () {
-                soccer.domElements.mainContent.parent().hide().find('tbody').remove();
+                soccer.hideCompactFeedbackAndDataGrid();
                 const statusValue = soccer.domElements.ddlDeadBall.val();
                 const isLive = statusValue === 'true';
 
@@ -128,22 +130,23 @@ const soccer = {
             soccer.domElements.btnMatchSelect
                 .attr('title', soccer.domElements.ddlMatch.data('select-at-least'))
                 .tooltip('show');
-            soccer.domElements.mainContent.parent().hide().find('tbody').remove();
+            soccer.hideCompactFeedbackAndDataGrid();
             return;
         }
         soccer.domElements.blockIconSmall.show();
 
+        const formData = {
+            matchIds: matchIds.join(','),
+            leagueId: soccer.domElements.ddlLeague.val(),
+            isLive: soccer.domElements.ddlDeadBall.val() === 'true'
+        };
         soccer.currentRequest = $.ajax({
             url: soccer.urls.getMatchForecasts,
             type: 'GET',
             cache: false,
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
-            data: {
-                matchIds: matchIds.join(','),
-                leagueId: soccer.domElements.ddlLeague.val(),
-                isLive: soccer.domElements.ddlDeadBall.val() === 'true'
-            }
+            data: formData
         })
             .done(function (matchForecasts) {
                 if (matchForecasts) {
@@ -152,6 +155,7 @@ const soccer = {
                     if (matchForecasts.length === 0) {
                         const noInfoHtml = soccerRenderer.renderNoInfo('no-info-body');
                         soccer.addNoInfoRow(noInfoHtml);
+                        soccer.compactFeedback.toggleShowHide(false);
                     } else {
                         for (let i = 0; i < matchForecasts.length; i++) {
                             const matchForecast = matchForecasts[i];
@@ -169,6 +173,7 @@ const soccer = {
                         }
 
                         soccerRenderer.updateMatchesCached(matchForecasts);
+                        soccer.compactFeedback.init(formData, true);
                     }
 
                     soccer.domElements.mainContent.parent().show();
@@ -251,7 +256,7 @@ const soccer = {
                 .start();
         } else {
             soccer.stopCountdown();
-            soccer.domElements.mainContent.parent().hide().find('tbody').remove();
+            soccer.hideCompactFeedbackAndDataGrid();
         }
     },
 
@@ -303,7 +308,7 @@ const soccer = {
             nonSelectedText: $('#hidden-noDataText').val(),
             onChange: function (option, checked) {
                 soccer.loadMatches();
-                soccer.domElements.mainContent.parent().hide().find('tbody').remove();
+                soccer.hideCompactFeedbackAndDataGrid();
                 soccer.stopCountdown();
 
                 $.cookie(soccer.cookies.league, soccer.domElements.ddlLeague.val(), {
@@ -434,6 +439,11 @@ const soccer = {
                 ].join('');
             }
         }
+    },
+
+    hideCompactFeedbackAndDataGrid: function () {
+        soccer.compactFeedback.toggleShowHide(false);
+        soccer.domElements.mainContent.parent().hide().find('tbody').remove();
     }
 };
 

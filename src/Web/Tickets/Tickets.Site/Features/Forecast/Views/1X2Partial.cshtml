@@ -2,12 +2,15 @@
     Layout = null;
 }
 @model ForecastViewModel<Forecast1X2>
-<div class="dropdown-league">
-    @if (Model.Leagues.Any())
-    {
-        <label for="ddlLeague">@Resources.League</label>
-        <select asp-items="Model.Leagues" id="ddlLeague"></select>
-    }
+<div class="flex">
+    <div class="dropdown-league">
+        @if (Model.Leagues.Any())
+        {
+            <label for="ddlLeague">@Resources.League</label>
+            <select asp-items="Model.Leagues" id="ddlLeague"></select>
+        }
+    </div>
+    <compact-feedback fid="72" class-name="@(Model.Forecast.Any() ? string.Empty : "hide")" />
 </div>
 <div class="clearfix"></div>
 <table class="tblRpt tblRpt-bordered tbl-1X2 text-center" id="tblRpt">

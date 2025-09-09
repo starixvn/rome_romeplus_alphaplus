@@ -5,6 +5,7 @@ class LastBetsNewView {
     private autoRefreshComponent: AutoRefreshComponent;
     private lastBetsCopyHtml: LastBetsCopyHtml;
     private saveFilterView: SaveFilterView;
+    private compactFeedback: CompactFeedbackComponent;
 
     $msgError: JQuery;
     $betListTableContainer: JQuery;
@@ -18,11 +19,13 @@ class LastBetsNewView {
     constructor(
         autoRefreshComponent: AutoRefreshComponent,
         lastBetsCopyHtml: LastBetsCopyHtml,
-        saveFilter: SaveFilterView
+        saveFilter: SaveFilterView,
+        compactFeedback: CompactFeedbackComponent
     ) {
         this.autoRefreshComponent = autoRefreshComponent;
         this.lastBetsCopyHtml = lastBetsCopyHtml;
         this.saveFilterView = saveFilter;
+        this.compactFeedback = compactFeedback;
     }
 
     init() {
@@ -47,6 +50,7 @@ class LastBetsNewView {
         }
 
         this.initFeedback();
+        this.initCompactFeedback(this.getParam());
     }
 
     private cacheElements() {
@@ -126,6 +130,12 @@ class LastBetsNewView {
         }, 1000);
     }
 
+    private initCompactFeedback(formData) {
+        const firstCell = this.$betListTableContainer.find('tr:first td:first');
+        const hasBetListData = firstCell.length > 0 && !firstCell.data('noinfo');
+        this.compactFeedback.init(formData, hasBetListData);
+    }
+
     private setTransIdCacheKeyByFilter(lastTransId, lastestTransId) {
         this.lastTransIdCacheKeyByFilter = lastTransId;
         this.latestTransIdCacheKeyByFilter = lastestTransId;
@@ -145,7 +155,13 @@ class LastBetsNewView {
 
         this.isCalling = true;
         const url = AJAXHelper.buildURL('LastBets/BetsDataNew');
-        this.ajaxRequest = AJAXHelper.post(url, this.getParam(), this.successGetLastBets, this.completeGetLastBets);
+        const formData = this.getParam();
+        this.ajaxRequest = AJAXHelper.post(
+            url,
+            formData,
+            (html) => this.successGetLastBets(html, formData),
+            this.completeGetLastBets
+        );
     };
 
     private getParam() {
@@ -182,7 +198,7 @@ class LastBetsNewView {
         this.ajaxRequest && this.ajaxRequest.abort();
     }
 
-    private successGetLastBets = (responseHtml: any) => {
+    private successGetLastBets(responseHtml: any, formData: any) {
         if (
             (responseHtml.ErrorCode && responseHtml.ErrorCode !== 0) ||
             (responseHtml.Code && responseHtml.Code !== 0)
@@ -208,8 +224,10 @@ class LastBetsNewView {
         const latestTransId = this.$betListTableContainer.find('#latest-trans-id').val();
         this.setTransId(lastTransId, latestTransId);
 
+        this.initCompactFeedback(formData);
+
         this.isCalling = false;
-    };
+    }
 
     private showError() {
         this.$msgError.removeClass('hide');
@@ -228,5 +246,10 @@ class LastBetsNewView {
 }
 
 $(function () {
-    new LastBetsNewView(new AutoRefreshComponent(), new LastBetsCopyHtml(Clipboard), new SaveFilterView()).init();
+    new LastBetsNewView(
+        new AutoRefreshComponent(),
+        new LastBetsCopyHtml(Clipboard),
+        new SaveFilterView(),
+        new CompactFeedbackComponent()
+    ).init();
 });

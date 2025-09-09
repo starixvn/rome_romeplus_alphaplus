@@ -6,10 +6,10 @@
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/common/common")
     @StaticResources.AssetStyles.Render("/bundles-v2/site-betlists/search-tickets")
-    <link rel="stylesheet" href="~/bundles/betlists/search-tickets.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles/betlists/search-tickets")
 }
 @section Scripts {
-    <script src="~/bundles/betlists/search-tickets.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/betlists/search-tickets")
 }
 <div class="bl_title">
     <div class="box">
@@ -27,6 +27,9 @@
     </div>
     <div class="form-group">
         <input type="submit" value="@Resources.Submit" class="btn-submit" id="btn-submit" disabled />
+    </div>
+    <div class="form-group hide">
+        <compact-feedback fid="43" like-icon-class="ic-like" />
     </div>
 </form>
 <div id="tbl-betlist-box">

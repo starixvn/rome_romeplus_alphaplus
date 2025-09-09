@@ -9,6 +9,7 @@ class WinLossBetListView {
     private productComponent: ProductDropdownComponent;
     private weekComponent: WeekComponent;
     private breadcrumbLevelComponent: BreadcrumbLevelComponent;
+    private compactFeedback: CompactFeedbackComponent;
     private productList: any;
     private productDetailList: any;
     private globalFormData: any;
@@ -22,6 +23,7 @@ class WinLossBetListView {
         productComponent: ProductDropdownComponent,
         weekComponent: WeekComponent,
         breadcrumbLevelComponent: BreadcrumbLevelComponent,
+        compactFeedback: CompactFeedbackComponent,
         productList: any,
         productDetailList: any,
         previousSelectedProductIds: any
@@ -30,6 +32,7 @@ class WinLossBetListView {
         this.productComponent = productComponent;
         this.weekComponent = weekComponent;
         this.breadcrumbLevelComponent = breadcrumbLevelComponent;
+        this.compactFeedback = compactFeedback;
         this.productList = productList;
         this.productDetailList = productDetailList;
         this.previousSelectedProductIds = previousSelectedProductIds;
@@ -40,9 +43,7 @@ class WinLossBetListView {
         this.bindShowHideFilterEvent();
         this.bindExportExcelEvent();
         this.renderComponents();
-
-        // make fadeOut effect shorter
-        //$.blockUI.defaults.fadeOut = 0;
+        this.compactFeedback.init(this.globalFormData);
     }
 
     private cacheDOMElements() {
@@ -144,9 +145,12 @@ class WinLossBetListView {
     }
 
     private buildWinLossReportUrl(reportFormData) {
-        const prevSelectedProductIds = this.previousSelectedProductIds.split(',').map(item => item.trim()).filter(Boolean);
-        
-        if(prevSelectedProductIds.includes('111')) {
+        const prevSelectedProductIds = this.previousSelectedProductIds
+            .split(',')
+            .map((item) => item.trim())
+            .filter(Boolean);
+
+        if (prevSelectedProductIds.includes('111')) {
             reportFormData.productIds += ',111';
         }
         reportFormData = this.changeObjectKey(reportFormData, 'productIds', 'userSelectedProductIds');
@@ -182,6 +186,7 @@ class WinLossBetListView {
                 this.tableBetList = this.betListWeekSelection.find('#tbl-betlist');
                 this.breadcrumbLevelComponent.bindEvents();
                 this.bindExportExcelEvent();
+                this.compactFeedback.init(this.globalFormData);
 
                 this.updateCurrentUrl(queryString);
             },
@@ -200,6 +205,7 @@ class WinLossBetListView {
             (html) => {
                 this.globalFormData = formData;
                 this.tableBetList.find('tbody').html(html);
+                this.compactFeedback.init(this.globalFormData);
             },
             this.tableBetList
         );
@@ -259,6 +265,7 @@ $(function () {
         new ProductDropdownComponent(),
         new WeekComponent(),
         new BreadcrumbLevelComponent(),
+        new CompactFeedbackComponent(),
         window.productList,
         window.productDetailList,
         window.previousSelectedProductIds

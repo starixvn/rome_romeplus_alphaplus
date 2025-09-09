@@ -45,5 +45,5 @@ public class FeedbackController : SiteBaseController
         return View(viewModel);
     }
 
-    public ViewResult Dislike(DislikeQuery message) => View(message);
+    public ActionResult Dislike(DislikeQuery message) => View(message);
 }

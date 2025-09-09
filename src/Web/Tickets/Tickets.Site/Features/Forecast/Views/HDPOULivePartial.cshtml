@@ -2,12 +2,15 @@
     Layout = null;
 }
 @model ForecastViewModel<ForecastHDPOULive>
-<div class="dropdown-league">
-    @if (Model.Leagues.Any())
-    {
-        <label for="ddlLeague">@Resources.League</label>
-        <select asp-items="Model.Leagues" id="ddlLeague"></select>
-    }
+<div class="flex">
+    <div class="dropdown-league">
+        @if (Model.Leagues.Any())
+        {
+            <label for="ddlLeague">@Resources.League</label>
+            <select asp-items="Model.Leagues" id="ddlLeague"></select>
+        }
+    </div>
+    <compact-feedback fid="63" class-name="@(Model.Forecast.Any() ? string.Empty : "hide")" />
 </div>
 <div class="clearfix"></div>
 <table class="tblRpt tblRpt-bordered tbl-hdpoulive text-center" id="tblRpt">

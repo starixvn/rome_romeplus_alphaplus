@@ -5,6 +5,7 @@
       "assets/scripts/home/assetsCDNHealthcheck.js",
       "assets/scripts/core.js",
       "assets/scripts/home/toast-message.js",
+      "assets/scripts/home/compact-feedback.js",
       "assets/scripts/home/index-manager.js",
       "assets/scripts/old-main.js",
       "assets/scripts/home/header-nav.js",

@@ -139,7 +139,6 @@ class WinLossDetailView extends BaseReportNew {
                     });
                     betListParams = this.changeObjectKey(betListParams, 'userSelectedProductIds', 'productIds');
                     betListParams = this.changeObjectKey(betListParams, 'userSelectedResourceIds', 'resourceIds');
-                    console.log(betListParams);
                     $this.attr('href', `${$('#hidden-betListUrl').val()}?${$.param(betListParams)}`);
                 } else {
                     e.preventDefault();

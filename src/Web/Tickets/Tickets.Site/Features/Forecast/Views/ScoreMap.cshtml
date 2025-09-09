@@ -11,21 +11,21 @@
     }
 }
 @section Styles {
-    <link rel="stylesheet" href="~/bundles/forecast/scoremap.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles/forecast/scoremap")
 }
 @section Scripts {
-    <script src="~/bundles/forecast/scoremap.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/forecast/scoremap")
 }
 @model ScoreMapViewModel
 @{
     if (Model.FromBetList)
     {
         <div style="padding-top: 1px;">
-        <div class="text-right mt-10 mb-10">
-            <a asp-action="ScoreMapInformation" class="icon-information-outline hover-effect-rip font-size-icon"
-                target="_blank"></a>
-            <input type="hidden" id="hidden-matchIds" value="@Model.MatchIds" />
-        </div>
+            <div class="text-right mt-10 mb-10">
+                <a asp-action="ScoreMapInformation" class="icon-information-outline hover-effect-rip font-size-icon"
+                    target="_blank"></a>
+                <input type="hidden" id="hidden-matchIds" value="@Model.MatchIds" />
+            </div>
         </div>
     }
     else
@@ -72,12 +72,14 @@
     }
 }
 <partial name="ScoreMapBetTypes" model="Model" />
-<div class="filter mt-10 mb-10">
-    <button type="button" class="btn-submit@(Model.FromBetList ? string.Empty : " hidden")"
+<div class="filter mt-10 mb-10 z-index10">
+    <button type="button" class="mr-10 btn-submit@(Model.FromBetList ? string.Empty : " hidden")"
         id="btn-submit">@Resources.Submit</button>
     @{
         RenderLoadingIcon("icon-loadingScoreMapResults");
     }
+
+    <compact-feedback fid="73" class-name="hide" />
 </div>
 <div class="alert error hidden mt-10" id="alert-betTypeError">@Resources.PleaseChooseABetType</div>
 <div id="content" class="list-table-match">

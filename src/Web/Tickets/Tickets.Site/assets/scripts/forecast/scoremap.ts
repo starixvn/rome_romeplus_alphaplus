@@ -18,6 +18,7 @@ class ScoreMap {
     isLeagueChanged = true;
     globalFormData = null;
     cacheMatchIds = null;
+    compactFeedback = new CompactFeedbackComponent();
 
     constructor() {
         this.$ddlLeague = $('#ddlLeague');
@@ -73,6 +74,7 @@ class ScoreMap {
             this.bindEventsAfterRenderScoreMapSucessfully(this.$content);
             this.handleBetTypeChanged($allLiveBetTypeCheckbox, $liveBetTypeCheckboxes);
             this.handleBetTypeChanged($allDeadBetTypeCheckbox, $deadBetTypeCheckboxes);
+            this.initCompactFeedback(this.globalFormData);
         }
         $('.icon-information-outline').click(function (e) {
             e.preventDefault();
@@ -87,6 +89,7 @@ class ScoreMap {
         this.$content.html('');
         this.$btnSubmit.addClass('hidden');
         this.$tblLiveDeadBetType.addClass('hidden');
+        this.compactFeedback.toggleShowHide(false);
     }
 
     refreshLeagues() {
@@ -183,6 +186,7 @@ class ScoreMap {
             $.get('ScoreMapResults?' + $.param(this.globalFormData), (resultHtml) => {
                 this.$content.html(resultHtml);
                 this.bindEventsAfterRenderScoreMapSucessfully(this.$content);
+                this.initCompactFeedback(this.globalFormData);
             }).always(() => {
                 this.$iconLoadingScoreMapResults.addClass('hidden');
             });
@@ -259,6 +263,14 @@ class ScoreMap {
             $scoreMapResult.html(resultHtml);
             this.bindEventsAfterRenderScoreMapSucessfully($scoreMapResult);
         }).always(() => iconLoading.addClass('hidden'));
+    }
+
+    initCompactFeedback(formData) {
+        let hasData = false;
+        this.$content.find('.tbl-score-result').each((_, table) => {
+            hasData = hasData || $(table).find('tbody tr').length > 0;
+        });
+        this.compactFeedback.init(formData, hasData);
     }
 }
 

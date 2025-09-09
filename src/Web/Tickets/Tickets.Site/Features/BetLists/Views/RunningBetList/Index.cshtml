@@ -4,11 +4,11 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter")
-    <link rel="stylesheet" href="~/bundles/betlists/filter.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles/betlists/filter")
 }
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter")
-    <script src="~/bundles/betlists/member-betlist.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/betlists/member-betlist")
 }
 @model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.RunningBetList.RunningBetListViewModel
 <div class="bl_title">
@@ -16,7 +16,7 @@
         <div>@Model.Title</div>
         <div>
             <partial name="IconInformation"
-                     model="new[] { Resources.ipnote, Model.ViewDataInstructionMessage,  CommonResx.MemberWinNote }" />
+                model="new[] { Resources.ipnote, Model.ViewDataInstructionMessage,  CommonResx.MemberWinNote }" />
         </div>
         <div class="push">
             <div class="list-icon" id="betlist-filter">
@@ -49,6 +49,12 @@
         </label>
     </div>
     <daterange-picker model="Model.DateRangePicker" />
+    @if (Model.BetListData.Total > 0)
+    {
+        <div class="form-group">
+            <compact-feedback fid="53" />
+        </div>
+    }
 </form>
 <table class="tblRpt tblRpt-bordered tblRpt-striped width-100per tblRpt-hover tbl-betlist">
     <thead>
@@ -121,8 +127,3 @@
         }
     </tbody>
 </table>
-@* @Html.Hidden("betlist-path",
-Response.ApplyAppPathModifier($"~/{Alpha.BetLists.Configurations.AppSettings.BetlistRouting}"))
-@Html.Hidden("old-main-path", Model.OldMainPath)
-@Html.Hidden("results-path", Model.ResultsPath)
-@Html.Hidden("totalbets-forecast-path", Model.TotalBetsForecastPath) *@

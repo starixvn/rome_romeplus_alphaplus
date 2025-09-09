@@ -2,15 +2,16 @@
     ViewData["Title"] = Resources.HTSlashFT;
 }
 @section Styles {
-    <link rel="stylesheet" href="~/bundles/totalbets/totalbets.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles/totalbets/totalbets")
 }
 @section Scripts {
-    <script src="~/bundles/totalbets/totalbets.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/totalbets/totalbets")
 }
 @model IEnumerable<HalfTimeFullTime>
 <div class="page-title">@Resources.HTSlashFT</div>
 <div class="filter">
     <div class="auto-refresh"></div>
+    <compact-feedback fid="68" class-name="@(Model.Any() ? string.Empty : "hide")" />
 </div>
 <table class="tblRpt tblRpt-bordered" id="tblRpt">
     <thead>

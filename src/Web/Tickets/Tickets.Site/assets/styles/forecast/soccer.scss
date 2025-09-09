@@ -101,10 +101,10 @@ body {
         &.last-filter {
             margin-right: 8px;
         }
-        &.loading{
+        &.loading {
             margin: 0;
         }
-        .lds-spinner{
+        .lds-spinner {
             position: relative;
             top: 3px;
         }
@@ -227,14 +227,13 @@ table * {
         }
     }
 
-    
     .offer-live,
     .live-status,
     .positive,
     .live-match {
         color: var(--color-positive);
     }
-    .home-name{
+    .home-name {
         color: var(--color-home-name);
     }
 
@@ -397,4 +396,9 @@ a:hover {
     .note-browser .textnote-box {
         padding-left: 10px;
     }
+}
+
+.form-group.hide,
+.form-group .hide {
+    display: none;
 }

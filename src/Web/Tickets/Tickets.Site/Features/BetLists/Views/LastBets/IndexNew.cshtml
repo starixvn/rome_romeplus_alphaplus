@@ -4,11 +4,11 @@
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/common/common")
     @StaticResources.AssetStyles.Render("/bundles-v2/site-betlists/monitoring-bets")
-    <link rel="stylesheet" href="~/bundles/betlists/last-bets-new.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles/betlists/last-bets-new")
 }
 @section Scripts {
     @StaticResources.AssetScripts.RenderCommon("/bundles-v2/site-betlists/monitoring-bets")
-    <script src="~/bundles/betlists/last-bets-new.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/betlists/last-bets-new")
 }
 @model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.LastBets.LastBetsNewViewModel
 <div class="flex">
@@ -68,7 +68,10 @@
             <a class="button-link navigation" target="main" asp-action="FilterConfiguration"
                 asp-controller="MonitoringBets">@Resources.FilterConfiguration</a>
         </div>
-        <div class="form-group col-item">
+        <div class="form-group hide col-tooltip">
+            <compact-feedback fid="42" like-icon-class="ic-like" />
+        </div>
+        <div class="form-group col-item col-tooltip">
             <span class="ic-copy" title="@Resources.Copy" id="icon-copy"></span>
         </div>
     </div>
@@ -107,10 +110,9 @@
             </tbody>
         </table>
     </div>
-    <partial name="~/Features/BetLists/Views/MonitoringBets/SaveFilterConfirmPopup.cshtml" model="@((false, Model.ViewerLevel.IsAgentLevel()))" />
+    <partial name="~/Features/BetLists/Views/MonitoringBets/SaveFilterConfirmPopup.cshtml"
+        model="@((false, Model.ViewerLevel.IsAgentLevel()))" />
 </div>
-@* @Html.Hidden("betlist-path", Response.ApplyAppPathModifier($"~/{AppSettings.BetlistRouting}"))
-@Html.Hidden("old-main-path", Model.OldMainPath) *@
 <input type="hidden" id="last-trans-id" value="@Model.LastTransId.ToString()" />
 <input type="hidden" id="latest-trans-id" value="@Model.LatestTransId.ToString()" />
 <input type="hidden" id="last-trans-id-cache-key-by-filter" value="@Model.LastTransIdCacheKeyByFilter" />

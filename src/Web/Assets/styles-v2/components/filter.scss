@@ -107,6 +107,9 @@
               z-index: (25 - $i);
             }
         }
+        &.col-tooltip {
+            z-index: 30!important;
+        }   
 
         &.from-date-box, &.to-date-box {
             input[type='text'], input[type='datetime'] {

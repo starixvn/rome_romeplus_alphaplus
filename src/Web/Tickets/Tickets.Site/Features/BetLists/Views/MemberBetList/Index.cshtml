@@ -10,11 +10,11 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/filter")
-    <link rel="stylesheet" href="~/bundles/betlists/filter.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles/betlists/filter")
 }
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/filter")
-    <script src="~/bundles/betlists/member-betlist.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/betlists/member-betlist")
 }
 @model AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.MemberBetList.MemberBetListViewModel
 <div class="bl_title">
@@ -48,5 +48,11 @@
     </div>
     <product model="@Model.ProductViewModel" />
     <daterange-picker model="Model.DateRangePicker" />
+    @if (Model.BetListData.Total > 0)
+    {
+        <div class="form-group">
+            <compact-feedback fid="52" />
+        </div>
+    }
 </form>
 <partial name="WinLossTable" model="Model" />

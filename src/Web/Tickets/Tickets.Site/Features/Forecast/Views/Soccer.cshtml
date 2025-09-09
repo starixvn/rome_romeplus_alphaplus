@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@Resources.BetsAndForecast</title>
     @StaticResources.AssetStyles.RenderCommon("/bundles3/site-totalbetsforecast/soccer")
-    <link rel="stylesheet" href="~/bundles/forecast/soccer.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/bundles/forecast/soccer")
 </head>
 
 <body data-theme="@(string.IsNullOrWhiteSpace(userSession.DarkModeName) ? "light" : "dark")">
@@ -66,6 +66,9 @@
                         </ul>
                     </div>
                 </div>
+                <div class="form-group hide">
+                    <compact-feedback fid="61" />
+                </div>
                 <div class="form-group loading">
                     <span class="lds-spinner" id="blockIconSmall" style="display:none">
                         <span></span>
@@ -116,7 +119,7 @@
     <input type="hidden" id="hidden-liveText" value="@Resources.Live" />
     <input type="hidden" id="hidden-totalText" value="@Resources.Total" />
     @StaticResources.AssetScripts.Render("/bundles/site-totalbetsforecast/default")
-    <script src="~/bundles/forecast/soccer.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/forecast/soccer")
 </body>
 
 </html>
