@@ -73,6 +73,9 @@ var indexManager = {
 
         indexManager.initCashServiceChecklist();
         indexManager.bindCashServiceChecklistEvents();
+        
+        // Initialize session cookie comparison
+        indexManager.sessionCookieComparison.initialize();
     },
 
     initAfterCheckSurvey: function () {
@@ -698,6 +701,121 @@ var indexManager = {
                 indexManager.toggleCashServiceChecklist(false);
             }
         });
+    },
+
+    sessionCookieComparison: {
+        currentSessionId: null,
+        isEnabled: false,
+        monitoredPaths: [],
+        xResponseSessionCookie: 'X-Response-Session',
+        firstAuthSessionCookie: 'AspNetCoreSessionCookie',
+
+        initialize: function() {
+            this.currentSessionId = this.getSessionCookie();
+            this.isEnabled = $('#IsEnabledSessionCookieComparison').val() === '1';
+            this.monitoredPaths = $('#MonitoredPaths').val().split(',');
+
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden && this.isCurrentPathMonitored()) {
+                    this.checkSessionConsistency();
+                }
+            });
+
+            this.setupMainFrameListener();
+        },
+
+        getSessionCookie: function() {
+            let sessionCookie = localStorage.getItem(this.firstAuthSessionCookie);
+            if(!sessionCookie) {
+                sessionCookie = $.cookie(this.xResponseSessionCookie);
+                if(sessionCookie) {
+                    localStorage.setItem(this.firstAuthSessionCookie, sessionCookie);
+                }
+            }
+            return sessionCookie;
+        },
+
+        setupMainFrameListener: function() {
+            const mainFrame = $('#main');
+            if (mainFrame.length > 0) {
+                mainFrame.on('load', () => {
+                    this.getSessionCookie();
+                    this.handleMainFrameLoad();
+                });
+            }
+        },
+
+        handleMainFrameLoad: function() {
+            const mainFrame = $('#main');
+            if (mainFrame.length > 0) {
+                const src = mainFrame.attr('src');
+                if (src && this.isMonitoredPath(src)) {
+                    this.checkSessionConsistency();
+                }
+            }
+        },
+
+        isMonitoredPath: function(url) {
+            return this.monitoredPaths.some(path => url.indexOf(path) !== -1);
+        },
+
+        checkSessionConsistency: function() {
+            if (!this.isEnabled) {
+                return;
+            }
+
+            const currentCookie = $.cookie(this.xResponseSessionCookie) || '';
+
+            if (!currentCookie) {
+                return;
+            }
+
+            this.currentSessionId = localStorage.getItem(this.firstAuthSessionCookie);
+            if (this.currentSessionId && currentCookie !== this.currentSessionId) {
+                this.handleSessionMismatch(currentCookie);
+            } else if (!this.currentSessionId) {
+                this.currentSessionId = currentCookie;
+            }
+        },
+
+        handleSessionMismatch: function(newSessionId) {
+            this.logSessionMismatch(newSessionId);
+
+            localStorage.setItem(this.firstAuthSessionCookie, $.cookie(this.xResponseSessionCookie));
+            this.refreshPage();
+        },
+
+        logSessionMismatch: function(newSessionId) {
+            const logData = {
+                event: 'session_cookie_mismatch: from Client/CDN',
+                originalSessionId: this.currentSessionId,
+                newSessionId: newSessionId,
+                timestamp: new Date().toString(),
+                url: $('#main').attr('src'),
+                referrer: document.referrer,
+                userAgent: navigator.userAgent
+            };
+
+            this.sendLogToServer(logData);
+        },
+
+        sendLogToServer: function(logData) {
+            $.ajax({
+                url: '/main/api/session/log',
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(logData)
+            });
+        },
+
+        refreshPage: function() {
+            window.location.reload();
+        },
+
+        isCurrentPathMonitored: function() {
+            const currentPath = window.location.pathname;
+            return this.monitoredPaths.some(path => currentPath.indexOf(path) !== -1);
+        }   
     }
 };
 

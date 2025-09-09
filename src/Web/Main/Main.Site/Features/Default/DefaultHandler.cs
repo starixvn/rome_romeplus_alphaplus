@@ -1,4 +1,5 @@
-﻿using AlphaPlus.Core.Helpers;
+﻿using AlphaPlus.Core.Configurations;
+using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Main.Site.Features.CustomerProfile;
@@ -6,6 +7,7 @@ using AlphaPlus.Main.Site.Features.Default.MenuBar;
 using AlphaPlus.Main.Site.Features.Tour;
 using AlphaPlus.SecurityCode.Web;
 using MediatR;
+using Microsoft.Extensions.Options;
 using TelegramBot.Client.Models;
 using TelegramBot.Client.Services;
 using TelegramBot.Constants;
@@ -31,15 +33,16 @@ namespace AlphaPlus.Main.Site.Features.Default
         private readonly IEncryption encryption;
         private readonly Fanex.Logging.ILogger logger;
         private readonly IRewardTourService rewardTourService;
-
+        private readonly IOptions<SessionCookieComparisonOptions> sessionCookieComparisonOptions;
         public DefaultHandler(ISessionManager sessionManager,
             IBrowserHelper browserHelper,
             IProfilePictureService customerProfileService,
             ISettingService telegramSettingService,
             IEncryption encryption,
             Fanex.Logging.ILogger logger,
-            IRewardTourService rewardTourService)
-            : this(sessionManager, browserHelper, null, customerProfileService, telegramSettingService, encryption, logger, rewardTourService)
+            IRewardTourService rewardTourService,
+            IOptions<SessionCookieComparisonOptions> sessionCookieComparisonOptions)
+            : this(sessionManager, browserHelper, null, customerProfileService, telegramSettingService, encryption, logger, rewardTourService, sessionCookieComparisonOptions)
         {
         }
 
@@ -51,7 +54,8 @@ namespace AlphaPlus.Main.Site.Features.Default
             ISettingService telegramSettingService,
             IEncryption encryption,
             Fanex.Logging.ILogger logger,
-            IRewardTourService rewardTourService)
+            IRewardTourService rewardTourService,
+            IOptions<SessionCookieComparisonOptions> sessionCookieComparisonOptions)
         {
             this.sessionManager = sessionManager;
             this.browserHelper = browserHelper;
@@ -62,6 +66,7 @@ namespace AlphaPlus.Main.Site.Features.Default
             this.encryption = encryption;
             this.logger = logger;
             this.rewardTourService = rewardTourService;
+            this.sessionCookieComparisonOptions = sessionCookieComparisonOptions;
         }
 
         public Task<BrowserViewModel> Handle(BrowserQuery request, CancellationToken cancellationToken)
@@ -82,10 +87,10 @@ namespace AlphaPlus.Main.Site.Features.Default
         public async Task<IndexViewModel> Handle(IndexQuery message, CancellationToken cancellationToken)
         {
             var profile = await customerProfileService.GetActorProfilePicture(message.CustId);
-            var isShowRewardTour = ((PageAccess)message.SubPageAccess).Transfer && await rewardTourService.IsShow(message.CustId);
+            var isShowRewardTour = ((Core.Models.PageAccess)message.SubPageAccess).Transfer && await rewardTourService.IsShow(message.CustId);
 
             var viewModel = new IndexViewModel(
-                message, encryption.RandomString(4), getDefaultUrl, browserHelper, profile, isShowRewardTour);
+                message, encryption.RandomString(4), getDefaultUrl, browserHelper, profile, isShowRewardTour, sessionCookieComparisonOptions);
 
             var custBotMessenger = await GetCustBotMessenger(message.CustId, message.SubAccId, message.Language);
             if (custBotMessenger == null)

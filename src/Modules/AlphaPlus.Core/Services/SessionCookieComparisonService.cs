@@ -1,0 +1,130 @@
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
+using Fanex.Logging;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Core.Configurations;
+using System.Text.Json;
+using Microsoft.AspNetCore.Http.Extensions;
+
+namespace AlphaPlus.Core.Services;
+
+public class SessionCookieComparisonService : ISessionCookieComparisonService
+{
+    private readonly ILogger _logger;
+    private readonly IUserSession _userSession;
+    private readonly SessionCookieComparisonOptions _options;
+
+    public SessionCookieComparisonService(
+        ILogger logger, 
+        IUserSession userSession,
+        IOptions<SessionCookieComparisonOptions> options)
+    {
+        _logger = logger;
+        _userSession = userSession;
+        _options = options.Value;
+    }
+
+    public async Task CompareAndLogSessionCookiesAsync(HttpContext context, string requestCookie, string responseCookie, string messageTitle)
+    {
+        if (!_options.EnableSessionCookieComparison)
+        {   
+            return;
+        }
+
+        if (!IsMonitoredPage($"{context.Request.PathBase}{context.Request.Path}"))
+        {
+            return;
+        }
+
+        if (!string.Equals(requestCookie, responseCookie, StringComparison.OrdinalIgnoreCase))
+        {
+            var logMessage = BuildLogMessage(context, requestCookie, responseCookie, messageTitle);
+
+            switch (_options.LogLevel.ToLowerInvariant())
+            {
+                case "error":
+                    await _logger.ErrorAsync(logMessage);
+                    break;
+                case "info":
+                    await _logger.InfoAsync(logMessage);
+                    break;
+                case "debug":
+                    await _logger.DebugAsync(logMessage);
+                    break;
+                default:
+                    await _logger.WarnAsync(logMessage);
+                    break;
+            }
+        }
+    }
+
+    public bool IsMonitoredPage(string path)
+    {
+        var pathString = path.ToLowerInvariant();
+        var allPatterns = _options.MonitoredPaths;
+
+        return allPatterns.Any(pattern => pathString.Contains(pattern.ToLowerInvariant()));
+    }
+
+    public string ExtractSessionCookieFromRequest(HttpRequest request)
+    {
+        return request.Cookies[".AspNetCore.Session"];
+    }
+
+    public string ExtractSessionCookieFromResponse(HttpResponse response)
+    {
+        var setCookieHeaders = response.Headers["Set-Cookie"];
+        
+        foreach (var setCookieHeader in setCookieHeaders)
+        {
+            if (string.IsNullOrEmpty(setCookieHeader))
+                continue;
+
+            var sessionCookie = ParseSessionCookieFromSetCookieHeader(setCookieHeader);
+            if (!string.IsNullOrEmpty(sessionCookie))
+                return sessionCookie;
+        }
+
+        return null;
+    }
+
+    private static string ParseSessionCookieFromSetCookieHeader(string setCookieHeader)
+    {
+        if (setCookieHeader.Contains(".AspNetCore.Session="))
+        {
+            var startIndex = setCookieHeader.IndexOf(".AspNetCore.Session=", StringComparison.OrdinalIgnoreCase);
+            var valueStart = startIndex + ".AspNetCore.Session=".Length;
+            var endIndex = setCookieHeader.IndexOf(';', valueStart);
+            
+            if (endIndex == -1)
+                endIndex = setCookieHeader.Length;
+            
+            return setCookieHeader.Substring(valueStart, endIndex - valueStart);
+        }
+
+        return null;
+    }
+
+    private string BuildLogMessage(HttpContext context, string requestCookie, string responseCookie, string messageTitle)
+    {
+        var logData = new
+        {
+            Event = messageTitle,
+            OriginalSessionId = requestCookie,
+            NewSessionId = responseCookie,
+            Timestamp = DateTime.UtcNow,
+            Url = context.Request.GetDisplayUrl(),
+            Referer = context.Request.Headers["Referer"].ToString(),
+            UserAgent = context.Request.Headers["User-Agent"].ToString(),
+            CustId = _userSession.CustId,
+            Username = _userSession.UserName,
+            SubAccId = _userSession.SubAccId,
+            AdminId = _userSession.AdminId,
+            AdminName = _userSession.AdminName,
+            RoleId = _userSession.RoleId,
+            IpAddress = _userSession.UserLoginIp
+        };
+
+        return $"Server Side Comparison: Session Cookie Mismatch:{Environment.NewLine}{JsonSerializer.Serialize(logData, new JsonSerializerOptions { WriteIndented = true })}";
+    }
+}

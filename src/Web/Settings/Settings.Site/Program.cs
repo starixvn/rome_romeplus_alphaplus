@@ -1,3 +1,4 @@
+using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
 using AlphaPlus.NetThrottling;
@@ -71,9 +72,12 @@ app.Use(async (context, next) =>
     if (context.Request.Cookies.ContainsKey(".AspNetCore.Session"))
     {
         context.Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
+        context.Response.Cookies.Append("X-Response-Session", context.Request.Cookies[".AspNetCore.Session"]);
     }
 
     await next(context);
 });
+
+app.UseSessionCookieComparison();
 
 app.Run();
