@@ -4,10 +4,21 @@ using AlphaPlus.NetThrottling;
 using AlphaPlus.Settings.Site.Features.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 ThreadPool.SetMinThreads(100, 100);
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Configure Kestrel server limits
+builder.WebHost.ConfigureKestrel(serverOptions =>
+{
+    serverOptions.Limits.MaxConcurrentConnections = 5; // Max 5 concurrent connections -> 503 if exceeded
+    serverOptions.Limits.MaxConcurrentUpgradedConnections = 5; // Max 5 upgraded connections
+    serverOptions.Limits.RequestHeadersTimeout = TimeSpan.FromSeconds(30);
+    serverOptions.Limits.MaxRequestBodySize = 10 * 1024 * 1024; // 10MB max request size
+});
+
 const string PathBase = "/settings";
 const string SharedSettings = "sharedSettings.json";
 var sharedSettingsPath = Path.Combine(Environment.CurrentDirectory, "../../../", "Shared/Configuration/", SharedSettings);

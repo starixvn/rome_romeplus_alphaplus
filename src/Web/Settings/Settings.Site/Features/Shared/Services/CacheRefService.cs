@@ -27,8 +27,8 @@ namespace AlphaPlus.Settings.Site.Features.Shared.Services
         private static readonly ResiliencePipeline chaosStrategy = new ResiliencePipelineBuilder()
             .AddChaosLatency(new Polly.Simmy.Latency.ChaosLatencyStrategyOptions
             {
-                EnabledGenerator = args => ValueTask.FromResult(!IsDevelopment), // Enabled when NOT Dev
-                InjectionRateGenerator = args => ValueTask.FromResult(0.5), // 50% chance
+                EnabledGenerator = args => ValueTask.FromResult(true), // Enabled when NOT Dev
+                InjectionRateGenerator = args => ValueTask.FromResult(1d), // 50% chance
                 LatencyGenerator = args => ValueTask.FromResult(TimeSpan.FromSeconds(10)) // 10 seconds delay
             })
             .Build();
