@@ -480,7 +480,7 @@ namespace AlphaPlus.Settings.ViewLogs.API.Services.Impl
 
         public static string CovertSchedule(string schedule)
         {
-            var dates = schedule.Trim().ToCharArray();
+            var dates = schedule.Trim().Replace(",", string.Empty).ToCharArray();
             if (schedule == "_" || !dates.Any())
             {
                 return "-";
