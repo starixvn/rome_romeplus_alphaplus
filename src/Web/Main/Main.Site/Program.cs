@@ -102,7 +102,11 @@ app.Use(async (context, next) =>
     if (context.Request.Cookies.ContainsKey(".AspNetCore.Session"))
     {
         context.Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
-        context.Response.Cookies.Append("X-Response-Session", context.Request.Cookies[".AspNetCore.Session"]);
+        
+        if (context.User.Identity?.IsAuthenticated == true)
+        {
+            context.Response.Cookies.Append("X-Response-Session", context.Session.Id);
+        }
     }
 
     await next(context);
