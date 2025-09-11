@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using AlphaPlus.Core.Models;
 using Microsoft.AspNetCore.Authorization;
 using AlphaPlus.NetThrottling;
-using System.Web;
 
 namespace Main.Site.Features.Account;
 
@@ -26,6 +25,11 @@ public class SessionController : ControllerBase
     {
         try
         {
+            if (!Guid.TryParse(logData.OriginalSessionId, out _) || string.IsNullOrWhiteSpace(logData.OriginalSessionId))
+            {
+                return Ok(new { success = true, message = "OK" });
+            }
+
             logData.CustId = _userSession.CustId;
             logData.Username = _userSession.UserName;
             logData.SubAccId = _userSession.SubAccId;
@@ -33,7 +37,6 @@ public class SessionController : ControllerBase
             logData.AdminName = _userSession.AdminName;
             logData.IpAddress = _userSession.UserLoginIp;
             logData.RoleId = _userSession.RoleId;
-            logData.NewSessionId = HttpUtility.UrlEncode(logData.NewSessionId);
 
             await _logger.ErrorAsync($"Client Side Comparison: Session Cookie Mismatch:{Environment.NewLine}{System.Text.Json.JsonSerializer.Serialize(logData,
                 new System.Text.Json.JsonSerializerOptions { WriteIndented = true })}");

@@ -14,7 +14,7 @@ public static class SessionControllerTestHelpers
         return new SessionMismatchLogModel
         {
             Event = "session_mismatch",
-            OriginalSessionId = "original_session_id",
+            OriginalSessionId = "6068dc73-687b-01c9-bde4-a5a99058a8b3",
             NewSessionId = "new_session_id",
             Timestamp = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"),
             Url = "https://example.com/test",
@@ -24,7 +24,7 @@ public static class SessionControllerTestHelpers
 
     public static SessionMismatchLogModel CreateLogDataWithCustomValues(
         string eventName = "session_mismatch",
-        string originalSessionId = "original_session_id",
+        string originalSessionId = "6068dc73-687b-01c9-bde4-a5a99058a8b3",
         string newSessionId = "new_session_id",
         string timestamp = null!,
         string url = "https://example.com/test",
