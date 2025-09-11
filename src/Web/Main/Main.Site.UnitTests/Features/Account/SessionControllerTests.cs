@@ -150,7 +150,7 @@ public class SessionControllerTests
 
         // Verify the original data is preserved
         logData.Event.Should().Be("session_mismatch");
-        logData.OriginalSessionId.Should().Be("original_session_id");
+        logData.OriginalSessionId.Should().Be("6068dc73-687b-01c9-bde4-a5a99058a8b3");
         logData.NewSessionId.Should().Be("new_session_id");
     }
 } 

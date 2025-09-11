@@ -7,6 +7,7 @@ using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Filters;
 using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Middlewares;
+using AlphaPlus.Core.Models;
 using AlphaPlus.NetThrottling;
 using AlphaPlus.Reports.Site.Features.Shared.Extensions;
 using AlphaPlus.RequestInfo;
@@ -114,7 +115,7 @@ app.Use(async (context, next) =>
     {
         context.Response.Headers["Cache-Control"] = "no-cache, no-store, must-revalidate";
         
-        if (context.User.Identity?.IsAuthenticated == true)
+        if (context.User.Identity?.IsAuthenticated == true && context.RequestServices.GetRequiredService<IUserSession>().IsLogged)
         {
             context.Response.Cookies.Append("X-Response-Session", context.Session.Id);
         }
