@@ -48,7 +48,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
             if (account != null)
             {
                 var balanceInfo = BuildBalanceInfoViewModel(request, account, await searchAccountService.GetCreditInfo(account.CustId),
-                                    await searchAccountService.GetBalanceInfo(account.CustId, account.RoleId, request.AGIP),
+                                    await searchAccountService.GetBalanceInfo(account.CustId, account.RoleId, request.SiteDbGroupId),
                                     await searchAccountService.IsAllDayBalanceTransfer(request.ViewerId));
 
                 var formatedIP = ipService.FormatIP(account.LastLoginIP, request.IsAdminCanViewVNIP);
@@ -110,7 +110,8 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
             decimal memberCreditMin = 0;
             if (Enumeration.FromValue<UserLevel>(request.SearchAccountRoleId).IsMemberLevel())
             {
-                var balanceInfo = await searchAccountService.GetBalanceInfo(request.SearchAccountId, request.SearchAccountRoleId, request.AGIP);
+                var balanceInfo = (MemberBalanceInfoModel)await searchAccountService.GetBalanceInfo(request.SearchAccountId,
+                    request.SearchAccountRoleId, request.SiteDbGroupId);
 
                 memberCreditMin = Math.Max(0, balanceInfo.CustomerOutstanding - balanceInfo.CustomerCash + balanceInfo.PendingTransfer3rd);
             }
@@ -146,7 +147,6 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
             }
 
             return result;
-
         }
 
         public async Task<IBalanceInfoViewModel> Handle(MemberBalanceInfoQuery message, CancellationToken cancellationToken)
@@ -163,7 +163,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
             if (customerInfo != null && Enumeration.FromValue<UserLevel>(customerInfo.RoleId).IsMemberLevel())
             {
                 var creditInfoTask = searchAccountService.GetCreditInfo(customerInfo.CustId);
-                var balanceInfoTask = searchAccountService.GetBalanceInfo(customerInfo.CustId, UserLevel.Member.Value, message.AGIP);
+                var balanceInfoTask = searchAccountService.GetBalanceInfo(customerInfo.CustId, UserLevel.Member.Value, message.SiteDbGroupId);
                 var isAllDayBalanceTransferTask = searchAccountService.IsAllDayBalanceTransfer(customerInfoQuery.ActorId);
                 await Task.WhenAll(creditInfoTask, balanceInfoTask, isAllDayBalanceTransferTask);
 
@@ -182,7 +182,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
                    message.IP,
                    message.StatusValue,
                    message.Currency,
-                   message.AGIP));
+                   message.SiteDbGroupId));
 
         internal static IBalanceInfoViewModel BuildMemberBalanceInfoViewModel(
             CustomerInfoQuery message,

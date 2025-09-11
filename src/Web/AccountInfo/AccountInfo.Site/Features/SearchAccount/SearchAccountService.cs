@@ -30,7 +30,7 @@ public interface ISearchAccountService
 
     Task<CreditInfo> GetCreditInfo(int custId);
 
-    Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId, string agIP);
+    Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId, int siteDbGroupId);
 
     Task<bool> IsAllDayBalanceTransfer(int custId);
 
@@ -57,7 +57,6 @@ public interface ISearchAccountService
     Task<Result> UpdateRemarkInfo(UpdateRemarkInfoQuery param);
 }
 
-
 public class SearchAccountService(
     IDynamicRepository dynamicRepository,
     IPService ipService,
@@ -66,8 +65,10 @@ public class SearchAccountService(
     private readonly IDynamicRepository dynamicRepository = dynamicRepository;
     private readonly IPService ipService = ipService;
     private readonly HttpClient httpClient = httpClient;
+
     //private readonly IIdentityClient identityClient = identityClient;
     private const string English = "en-US";
+
     private const string ChineseTraditional = "zh-TW";
     private const string ChineseSimplified = "zh-CN";
     private const string Thai = "th-TH";
@@ -96,7 +97,7 @@ public class SearchAccountService(
     public Task<CreditInfo> GetCreditInfo(int custId)
         => dynamicRepository.GetAsync<CreditInfo>(new SelectCreditInfoCriteria(custId));
 
-    public Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId, string agIP)
+    public Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId, int siteDbGroupId)
     {
         var userLevel = Enumeration.FromValue<UserLevel>(roleId);
         var criteria = new SelectBalanceInfoCriteria(custId, roleId);
@@ -113,7 +114,7 @@ public class SearchAccountService(
 
         if (userLevel.IsMemberLevel())
         {
-            return GetMemberBalanceInfoModel(criteria, agIP);
+            return GetMemberBalanceInfoModel(criteria, siteDbGroupId);
         }
 
         return Task.FromResult<IBalanceInfoModel>(null);
@@ -125,16 +126,16 @@ public class SearchAccountService(
     internal async Task<IBalanceInfoModel> GetAgentBalanceInfoModel(SelectBalanceInfoCriteria criteria)
       => await dynamicRepository.GetAsync<AgentBalanceInfoModel>(criteria);
 
-    internal async Task<IBalanceInfoModel> GetMemberBalanceInfoModel(SelectBalanceInfoCriteria criteria, string agIP)
+    internal async Task<IBalanceInfoModel> GetMemberBalanceInfoModel(SelectBalanceInfoCriteria criteria, int siteDbGroupId)
     {
         var tasks = new List<Task>();
 
         var memberOutstandingCriteria = new SelectMemberOutstandingCriteria(criteria.CustId);
-        var memberBalanceCriteria = new SelectMemberBalanceCriteria(criteria.CustId);
+        var memberBalanceCriteria = new SelectMemberBalanceCriteria(criteria.CustId) { SiteDbGroupId = siteDbGroupId };
         var memberBalanceInfoDTOTask = dynamicRepository.GetAsync<MemberBalanceInfoDTO>(criteria);
 
         tasks.Add(dynamicRepository.ExecuteAsync(memberOutstandingCriteria));
-        tasks.Add(dynamicRepository.ExecuteAsync(memberBalanceCriteria, agIP));
+        tasks.Add(dynamicRepository.ExecuteAsync(memberBalanceCriteria));
         tasks.Add(memberBalanceInfoDTOTask);
 
         await Task.WhenAll(tasks);
@@ -195,13 +196,16 @@ public class SearchAccountService(
 
     public async Task<Result> UpdateGivenCredit(GivenCreditCommand param)
     {
-        decimal accumCreditAllCashMember = await GetAccumCreditAllCashMember(param.SearchAccountRoleId, param.SearchAccountId);
+        var accumCreditAllCashMember = await GetAccumCreditAllCashMember(param.SearchAccountRoleId, param.SearchAccountId);
 
         UpdateMasterGivenCreditCommand command;
         if (param.SearchAccountRoleId == UserLevel.Member.Value)
         {
-            var totalAmtCommand = new GetTotalAmtCommand(param.SearchAccountId);
-            await dynamicRepository.ExecuteAsync(totalAmtCommand, param.AGIP);
+            var totalAmtCommand = new GetTotalAmtCommand(param.SearchAccountId)
+            {
+                SiteDbGroupId = param.SiteDbGroupId
+            };
+            await dynamicRepository.ExecuteAsync(totalAmtCommand);
             command = new UpdateMemberGivenCreditCommand(
                 param.SearchAccountId,
                 param.CreditAmount,
@@ -362,7 +366,7 @@ public class SearchAccountService(
 
         if (IsAutoTransferAffect(param.Currency))
         {
-            var autoTransferStatus = await GetAutoTransferJobStatus(param.AGIP);
+            var autoTransferStatus = await GetAutoTransferJobStatus(param.SiteDbGroupId);
             if (autoTransferStatus)
             {
                 return Result.CreateErrorResult(AlphaPlus.Shared.AppResources.Settings.Resources.ADBTChangeFailed_AutoJobRunning, 1);
@@ -454,19 +458,19 @@ public class SearchAccountService(
         return JsonConvert.SerializeObject(content, Formatting.None);
     }
 
-    private static string GetPersonalMessage(ResourceManager rm, string languae, string downlines)
+    private static string GetPersonalMessage(ResourceManager rm, string language, string downLines)
     {
-        var culture = CultureInfo.GetCultureInfo(languae);
+        var culture = CultureInfo.GetCultureInfo(language);
 
         return string.Format(
             rm.GetString("ADBTConditionChange_PersonalMessage", culture),
-            downlines);
+            downLines);
     }
 
-    private async Task<bool> GetAutoTransferJobStatus(string agIP)
+    private async Task<bool> GetAutoTransferJobStatus(int siteDbGroupId)
     {
-        var criteria = new GetAutoTransferJobStatusCriteria();
-        await dynamicRepository.ExecuteAsync(criteria, agIP);
+        var criteria = new GetAutoTransferJobStatusCriteria { SiteDbGroupId = siteDbGroupId };
+        await dynamicRepository.ExecuteAsync(criteria);
 
         return criteria.IsAutoJobRunning;
     }
@@ -484,7 +488,7 @@ public class SearchAccountService(
             return true;
         }
 
-        return s.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)
+        return s.Split([',', ';'], StringSplitOptions.RemoveEmptyEntries)
             .Any(c => string.Equals(currency, c.Trim(), StringComparison.OrdinalIgnoreCase));
     }
 

@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Functions>
     <Function Name="Account Info">
-        <Setting Key="SiteDB_Acc_CustomerTotalAmountSel" SpName="Acc_CustomerTotalAmountSel" DbName="SiteDB.bodb02.wsv_alp" Plain="0" />
-        <Setting Key="SiteDB_Acc_BalanceMemberSel" SpName="Acc_BalanceMemberSel" DbName="SiteDB.bodb02.wsv_alp" Plain="0" />
+        <Setting Key="SiteDB_1_Acc_CustomerTotalAmountSel" SpName="Acc_CustomerTotalAmountSel" DbName="DBSITE01.bodb02.wsv_alp" Plain="0" />
+        <Setting Key="SiteDB_2_Acc_CustomerTotalAmountSel" SpName="Acc_CustomerTotalAmountSel" DbName="DBSITE02.bodb02.wsv_alp" Plain="0" />
+        <Setting Key="SiteDB_3_Acc_CustomerTotalAmountSel" SpName="Acc_CustomerTotalAmountSel" DbName="DBSITE03.bodb02.wsv_alp" Plain="0" />
+        <Setting Key="SiteDB_1_Acc_BalanceMemberSel" SpName="Acc_BalanceMemberSel" DbName="DBSITE01.bodb02.wsv_alp" Plain="0" />
+        <Setting Key="SiteDB_2_Acc_BalanceMemberSel" SpName="Acc_BalanceMemberSel" DbName="DBSITE02.bodb02.wsv_alp" Plain="0" />
+        <Setting Key="SiteDB_3_Acc_BalanceMemberSel" SpName="Acc_BalanceMemberSel" DbName="DBSITE03.bodb02.wsv_alp" Plain="0" />
     </Function>
     <Function Name="Auto Transfer">
-        <Setting Key="SiteDB_Age_ClearBalanceCust_Job_StatusCheck" SpName="Age_ClearBalanceCust_Job_StatusCheck" DbName="SiteDB.bodb02.wsv_alp" Plain="0" />
-    </Function>
-    <Function Name="Account Info">
-        <Setting Key="Acc_OutstandingMemberSel" SpName="Acc_OutstandingMemberSel" DbName="DBBOF.bodb02.wsv_alp" Plain="0" />
+        <Setting Key="SiteDB_1_Age_ClearBalanceCust_Job_StatusCheck" SpName="Age_ClearBalanceCust_Job_StatusCheck" DbName="DBSITE01.bodb02.wsv_alp" Plain="0" />
+        <Setting Key="SiteDB_2_Age_ClearBalanceCust_Job_StatusCheck" SpName="Age_ClearBalanceCust_Job_StatusCheck" DbName="DBSITE02.bodb02.wsv_alp" Plain="0" />
+        <Setting Key="SiteDB_3_Age_ClearBalanceCust_Job_StatusCheck" SpName="Age_ClearBalanceCust_Job_StatusCheck" DbName="DBSITE03.bodb02.wsv_alp" Plain="0" />
     </Function>
     <Function Name="Online List">
         <Setting Key="Acc_CustomerSelOnline" SpName="Acc_CustomerSelOnline" DbName="DBONUSER.ON_USER.wsv_alp" Plain="0">
@@ -143,6 +146,9 @@
     <Function Name="Account Info">
         <Setting Key="Age_CustomerSelListByStatus" SpName="Age_CustomerSelListByStatus" DbName="DBACC.bodb02.wsv_alp" Plain="0" />
         <Setting Key="Age_ClosedReasonSelByCust" SpName="Age_ClosedReasonSelByCust" DbName="DBACC.bodb02.wsv_alp" Plain="0" />
+    </Function>
+    <Function Name="Account Info">
+        <Setting Key="Acc_OutstandingMemberSel" SpName="Acc_OutstandingMemberSel" DbName="DBBOF.bodb02.wsv_alp" Plain="0" />
     </Function>
     <Function Name="Check Belonging">
         <Setting Key="Age_ReCheckin" SpName="Age_ReCheckin" DbName="DBONUSER.ON_USER.wsv_alp" Plain="0" />

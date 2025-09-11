@@ -88,7 +88,17 @@
             "ProviderName": "System.Data.SqlClient"
         },
         {
-            "Name": "SiteDB.bodb02.wsv_alp",
+            "Name": "DBSITE01.bodb02.wsv_alp",
+            "ConnectionString": "packet size=4096;Initial Catalog=bodb02;integrated security=false; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==; TrustServerCertificate=True;",
+            "ProviderName": "System.Data.SqlClient"
+        },
+        {
+            "Name": "DBSITE02.bodb02.wsv_alp",
+            "ConnectionString": "packet size=4096;Initial Catalog=bodb02;integrated security=false; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==; TrustServerCertificate=True;",
+            "ProviderName": "System.Data.SqlClient"
+        },
+        {
+            "Name": "DBSITE03.bodb02.wsv_alp",
             "ConnectionString": "packet size=4096;Initial Catalog=bodb02;integrated security=false; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==; TrustServerCertificate=True;",
             "ProviderName": "System.Data.SqlClient"
         },
@@ -118,7 +128,7 @@
             "ProviderName": "System.Data.SqlClient"
         },
         {
-            "Name": "SiteDB.CustDB.wsv_alp",
+            "Name": "DBSITE03.CustDB.wsv_alp",
             "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
@@ -266,9 +276,6 @@
     "SessionCookieComparison": {
         "EnableSessionCookieComparison": true,
         "LogLevel": "Error",
-        "MonitoredPaths": [
-            "/reports/winlossdetail",
-            "/settings/CreditBalance"
-        ]
+        "MonitoredPaths": ["/reports/winlossdetail", "/settings/CreditBalance"]
     }
 }

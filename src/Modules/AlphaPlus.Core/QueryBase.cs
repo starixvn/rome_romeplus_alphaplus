@@ -6,7 +6,9 @@ namespace AlphaPlus.Core
     {
         protected readonly IUserSession userSession;
 
-        public QueryBase() : this(new UserSessionExt()) { }
+        public QueryBase() : this(new UserSessionExt())
+        {
+        }
 
         protected QueryBase(IUserSession userSession)
         {
@@ -44,6 +46,8 @@ namespace AlphaPlus.Core
             => !userSession.IsSubAcc || (userSession.IsSubAcc && userSession.SubPageAccess.UpdateAccount);
 
         public string AGIP => userSession.AGIP;
+
+        public int SiteDbGroupId => userSession.SiteDBGroupId;
 
         public bool IsAdminCanViewVNIP => userSession.IsAdminCanViewVNIP;
 

@@ -88,7 +88,17 @@
             "ProviderName": "System.Data.SqlClient"
         },
         {
-            "Name": "SiteDB.bodb02.wsv_alpv",
+            "Name": "DBSITE01.bodb02.wsv_alp",
+            "ConnectionString": "packet size=4096;Initial Catalog=bodb02;integrated security=false; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==; TrustServerCertificate=True;",
+            "ProviderName": "System.Data.SqlClient"
+        },
+        {
+            "Name": "DBSITE02.bodb02.wsv_alp",
+            "ConnectionString": "packet size=4096;Initial Catalog=bodb02;integrated security=false; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==; TrustServerCertificate=True;",
+            "ProviderName": "System.Data.SqlClient"
+        },
+        {
+            "Name": "DBSITE03.bodb02.wsv_alpv",
             "ConnectionString": "packet size=4096;Initial Catalog=bodb02;integrated security=false; user id=wsv_alpv; password=PXf2SBfRUQy8FX4nLKHkrJ9Y9GtDtpJCaj335Qs3Yws==; TrustServerCertificate=True;",
             "ProviderName": "System.Data.SqlClient"
         },
@@ -118,7 +128,7 @@
             "ProviderName": "System.Data.SqlClient"
         },
         {
-            "Name": "SiteDB.CustDB.wsv_alpv",
+            "Name": "DBSITE03.CustDB.wsv_alpv",
             "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alpv; password=PXf2SBfRUQy8FX4nLKHkrJ9Y9GtDtpJCaj335Qs3Yws==",
             "ProviderName": "System.Data.SqlClient"
         },
@@ -260,13 +270,10 @@
     "CashService": {
         "OfferedSites": "755555,222227",
         "APIUrl": "http://alphaplus_api_cashservice_alphaklprod_3:5000/api"
-            },
-            "SessionCookieComparison": {
-                "EnableSessionCookieComparison": true,
-                "LogLevel": "Error",
-                "MonitoredPaths": [
-                    "/reports/winlossdetail",
-                    "/settings/CreditBalance"
-                ]
+    },
+    "SessionCookieComparison": {
+        "EnableSessionCookieComparison": true,
+        "LogLevel": "Error",
+        "MonitoredPaths": ["/reports/winlossdetail", "/settings/CreditBalance"]
     }
 }
