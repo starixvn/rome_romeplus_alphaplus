@@ -21,12 +21,12 @@ public class SessionCookieComparisonMiddleware
 
         try
         {
-            var originalFromHeader = context.Request.Headers["X-Original-Session"].ToString();
-            var fromCookie = HttpUtility.UrlEncode(context.Request.Cookies[".AspNetCore.Session"]);
+            var fromServer = context.Session.Id;
+            var fromRequestCookie = HttpUtility.UrlEncode(context.Request.Cookies["X-Response-Session"]);
             
-            if (!string.IsNullOrWhiteSpace(originalFromHeader) && !string.IsNullOrWhiteSpace(fromCookie))
+            if (!string.IsNullOrWhiteSpace(fromServer) && !string.IsNullOrWhiteSpace(fromRequestCookie))
             {
-                await _sessionCookieComparisonService.CompareAndLogSessionCookiesAsync(context, originalFromHeader, fromCookie, "session_cookie_mismatch: from LB/HAProxy");
+                await _sessionCookieComparisonService.CompareAndLogSessionCookiesAsync(context, fromServer, fromRequestCookie, "session_cookie_mismatch: from LB/HAProxy");
             }
 
             await _next(context);

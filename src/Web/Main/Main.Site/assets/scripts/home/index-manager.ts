@@ -708,7 +708,7 @@ var indexManager = {
         isEnabled: false,
         monitoredPaths: [],
         xResponseSessionCookie: 'X-Response-Session',
-        firstAuthSessionCookie: 'AspNetCoreSessionCookie',
+        firstAuthSessionCookie: 'AspNetCoreSessionId',
 
         initialize: function() {
             this.currentSessionId = this.getSessionCookie();

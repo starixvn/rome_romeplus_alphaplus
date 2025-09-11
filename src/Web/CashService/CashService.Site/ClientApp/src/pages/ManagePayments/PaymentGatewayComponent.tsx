@@ -96,7 +96,9 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
   };
 
   React.useEffect(() => {
-    top?.indexManager.hideFloatingFeedbackIcon();
+    setTimeout(function () {
+      top?.indexManager && top.indexManager.initFeedbackFunction(33);
+    }, 1000);
   }, []);
 
   return (
