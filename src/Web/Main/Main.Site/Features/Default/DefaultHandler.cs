@@ -1,5 +1,4 @@
-﻿using AlphaPlus.Core.Configurations;
-using AlphaPlus.Core.Helpers;
+﻿using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Core.Utils;
 using AlphaPlus.Main.Site.Features.CustomerProfile;
@@ -7,7 +6,6 @@ using AlphaPlus.Main.Site.Features.Default.MenuBar;
 using AlphaPlus.Main.Site.Features.Tour;
 using AlphaPlus.SecurityCode.Web;
 using MediatR;
-using Microsoft.Extensions.Options;
 using TelegramBot.Client.Models;
 using TelegramBot.Client.Services;
 using TelegramBot.Constants;
@@ -33,16 +31,14 @@ namespace AlphaPlus.Main.Site.Features.Default
         private readonly IEncryption encryption;
         private readonly Fanex.Logging.ILogger logger;
         private readonly IRewardTourService rewardTourService;
-        private readonly IOptions<SessionCookieComparisonOptions> sessionCookieComparisonOptions;
         public DefaultHandler(ISessionManager sessionManager,
             IBrowserHelper browserHelper,
             IProfilePictureService customerProfileService,
             ISettingService telegramSettingService,
             IEncryption encryption,
             Fanex.Logging.ILogger logger,
-            IRewardTourService rewardTourService,
-            IOptions<SessionCookieComparisonOptions> sessionCookieComparisonOptions)
-            : this(sessionManager, browserHelper, null, customerProfileService, telegramSettingService, encryption, logger, rewardTourService, sessionCookieComparisonOptions)
+            IRewardTourService rewardTourService)
+            : this(sessionManager, browserHelper, null, customerProfileService, telegramSettingService, encryption, logger, rewardTourService)
         {
         }
 
@@ -54,8 +50,7 @@ namespace AlphaPlus.Main.Site.Features.Default
             ISettingService telegramSettingService,
             IEncryption encryption,
             Fanex.Logging.ILogger logger,
-            IRewardTourService rewardTourService,
-            IOptions<SessionCookieComparisonOptions> sessionCookieComparisonOptions)
+            IRewardTourService rewardTourService)
         {
             this.sessionManager = sessionManager;
             this.browserHelper = browserHelper;
@@ -66,7 +61,6 @@ namespace AlphaPlus.Main.Site.Features.Default
             this.encryption = encryption;
             this.logger = logger;
             this.rewardTourService = rewardTourService;
-            this.sessionCookieComparisonOptions = sessionCookieComparisonOptions;
         }
 
         public Task<BrowserViewModel> Handle(BrowserQuery request, CancellationToken cancellationToken)
@@ -90,7 +84,7 @@ namespace AlphaPlus.Main.Site.Features.Default
             var isShowRewardTour = ((Core.Models.PageAccess)message.SubPageAccess).Transfer && await rewardTourService.IsShow(message.CustId);
 
             var viewModel = new IndexViewModel(
-                message, encryption.RandomString(4), getDefaultUrl, browserHelper, profile, isShowRewardTour, sessionCookieComparisonOptions);
+                message, encryption.RandomString(4), getDefaultUrl, browserHelper, profile, isShowRewardTour);
 
             var custBotMessenger = await GetCustBotMessenger(message.CustId, message.SubAccId, message.Language);
             if (custBotMessenger == null)
