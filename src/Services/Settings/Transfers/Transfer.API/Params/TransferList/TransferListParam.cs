@@ -11,4 +11,5 @@ public record TransferListParam(
     bool AllowTotalBalanceTransfer,
     int PageIndex,
     int PageSize,
-    string AGIP);
+    string AGIP,
+    int SiteDbGroupId);

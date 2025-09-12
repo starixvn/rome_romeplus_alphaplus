@@ -25,6 +25,7 @@ public class TransferBaseQuery
         ViewerLevelId = this.viewer.LevelId;
         ActorLevel = Enumeration.FromValue<UserLevel>(ViewerLevelId);
         AGIP = this.viewer.AGIP;
+        SiteDbGroupId = this.viewer.SiteDbGroupId;
     }
 
     public int CustId { get; set; }
@@ -41,6 +42,7 @@ public class TransferBaseQuery
 
     public virtual UserLevel ActorLevel { get; }
 
+    public int SiteDbGroupId { get; }
     public string AGIP { get; }
 
     public virtual bool IsValid() => CustId > 0 && ActorLevel.IsEqualOrUplineOf(CustLevel);

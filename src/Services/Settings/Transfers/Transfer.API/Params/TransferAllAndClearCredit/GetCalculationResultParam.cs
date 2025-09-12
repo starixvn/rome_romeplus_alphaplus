@@ -1,29 +1,22 @@
 ﻿namespace AlphaPlus.Settings.Transfer.API.Params.TransferAllAndClearCredit
 {
-    public class GetCalculationResultParam
+    public class GetCalculationResultParam(
+        int custId,
+        string username,
+        string language,
+        bool isAllDayBalanceTransfer,
+        string agIp,
+        int siteDbGroupId)
     {
-        public GetCalculationResultParam(
-            int custId,
-            string username,
-            string language,
-            bool isAllDayBalanceTransfer,
-            string agIP)
-        {
-            CustId = custId;
-            Username = username;
-            Language = language;
-            IsAllDayBalanceTransfer = isAllDayBalanceTransfer;
-            AGIP = agIP;
-        }
+        public int CustId { get; set; } = custId;
 
-        public int CustId { get; set; }
+        public string Username { get; set; } = username;
 
-        public string Username { get; set; }
+        public string Language { get; set; } = language;
 
-        public string Language { get; set; }
+        public bool IsAllDayBalanceTransfer { get; set; } = isAllDayBalanceTransfer;
 
-        public bool IsAllDayBalanceTransfer { get; set; }
-
-        public string AGIP { get; set; }
+        public string AGIP { get; set; } = agIp;
+        public int SiteDbGroupId { get; set; } = siteDbGroupId;
     }
 }

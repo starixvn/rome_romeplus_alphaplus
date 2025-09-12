@@ -1,25 +1,17 @@
-﻿using Fanex.Data.Repository;
+﻿namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferAllAndClearCredit;
 
-namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferAllAndClearCredit
+using Core.Criteria;
+using Core.Helpers;
+
+public class GetNetPositionCriteria(int custId, byte roleId, int siteDbGroupId) : SiteDbBaseCriteria(siteDbGroupId)
 {
-    public class GetNetPositionCriteria : CriteriaBase
-    {
-        public GetNetPositionCriteria(
-            int custId,
-            byte roleId)
-        {
-            CustId = custId;
-            RoleId = roleId;
-        }
+    public int CustId { get; set; } = custId;
 
-        public int CustId { get; set; }
+    public byte RoleId { get; set; } = roleId;
 
-        public byte RoleId { get; set; }
+    public override string GetSettingKey()
+        => SpNameHelpers.SiteDbPrefix("Age_GetCustomerNetPosition", SiteDbGroupId);
 
-        public override string GetSettingKey()
-            => "SiteDB_Age_GetCustomerNetPosition";
-
-        public override bool IsValid()
-            => RoleId > 0 && CustId > 0;
-    }
+    public override bool IsValid()
+        => RoleId > 0 && CustId > 0;
 }

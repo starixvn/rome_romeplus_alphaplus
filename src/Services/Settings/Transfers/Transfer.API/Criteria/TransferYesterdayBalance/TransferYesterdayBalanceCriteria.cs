@@ -1,13 +1,13 @@
-
-using Fanex.Data.Repository;
-
 namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferYesterdayBalance;
+
+using Core.Criteria;
 
 public abstract class TransferYesterdayBalanceCriteria(
     string language,
     string ip,
     int creator,
-    int subAccId) : NonQueryCommand
+    int subAccId,
+    int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
 {
     public string Language { get; } = language;
 

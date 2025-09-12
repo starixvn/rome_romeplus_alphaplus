@@ -3,7 +3,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance.C
 using Core.Criteria;
 using Core.Helpers;
 
-public class GetAutoTransferJobStatusCriteria : SiteDbBaseCommand
+public class GetAutoTransferJobStatusCriteria(int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
 {
     public int FromCustId { get; } = 0;
 

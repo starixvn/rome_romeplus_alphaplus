@@ -1,22 +1,20 @@
+using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit;
+using AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit;
+using AlphaPlus.Settings.MemberInfo.Domain.Params;
+using AlphaPlus.Settings.Site.Features.MemberInfo.Excel;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.WinLossLimit;
 using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit;
-using AlphaPlus.Settings.Site.Features.MemberInfo.Excel;
-using MediatR;
-using AlphaPlus.Core.Models;
-using AlphaPlus.Settings.MemberInfo.Domain.Params;
 using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+using MediatR;
 using ONEbook.SpreadSheets;
 using static ONEbook.SpreadSheets.Column;
-using AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers;
 
 public class SportsbookPotentialWinLimitExcelHandler(
-    IPotentialWinLimitService potentialWinLimitService) :ExcelBaseHandler, IRequestHandler<ExcelSportsbookPotentialWinLimitQuery, ExcelFileViewModel>
+    IPotentialWinLimitService potentialWinLimitService) : ExcelBaseHandler, IRequestHandler<ExcelSportsbookPotentialWinLimitQuery, ExcelFileViewModel>
 {
-    private readonly IPotentialWinLimitService potentialWinLimitService = potentialWinLimitService;
-
     public async Task<ExcelFileViewModel> Handle(ExcelSportsbookPotentialWinLimitQuery request, CancellationToken cancellationToken)
     {
         var param = new PotentialWinLimitParam(
@@ -27,13 +25,13 @@ public class SportsbookPotentialWinLimitExcelHandler(
             request.ProblemAccount,
             request.PageSize,
             request.PageIndex,
-            request.AGIP,
+            request.SiteDbGroupId,
             request.BetType,
             request.SportType,
             request.AccountType);
         var potentialWinLimitPage = await potentialWinLimitService.GetPotentialWinLimitPage(param, true);
 
-        var isOfferedCashService = AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(request.Site);
+        var isOfferedCashService = Core.Configurations.AppSettings.IsOfferedCashService(request.Site);
         var viewModel = new SportsbookPotentialWinLimitViewModel(isOfferedCashService, request, potentialWinLimitPage, param);
         var workbook = new PotentialWinLimitWorkbook();
         var fileName = $"{Resources.SportsbookPotentialWinLimit}";
@@ -46,13 +44,13 @@ public class SportsbookPotentialWinLimitExcelHandler(
                 .Sheet("Sheet1")
                 .Header(Resources.ResourceManager.GetString)
                 .ExportToBytes();
-        
+
         return new ExcelFileViewModel("SportsbookPotentialWinLimit", fileContent);
     }
-        protected override string GetExcelTemplateDir() => $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/ExcelTemplates/WinLossLimit";
 
+    protected override string GetExcelTemplateDir() => $"{AppDomain.CurrentDomain.BaseDirectory}/App_Data/ExcelTemplates/WinLossLimit";
 
-    private static Mapper<PotentialWinLimitDetail> GetNormalRowMapper(Func<DateTime?,string> getLastLoginDate, Func<decimal, string> getMaxWinLimit, Func<decimal?, decimal, string> getWinPercent, Func<string, string> getStatusText)
+    private static Mapper<PotentialWinLimitDetail> GetNormalRowMapper(Func<DateTime?, string> getLastLoginDate, Func<decimal, string> getMaxWinLimit, Func<decimal?, decimal, string> getWinPercent, Func<string, string> getStatusText)
     => new Mapper<PotentialWinLimitDetail>()
             .Map(A, potentialWinLimitDetail => potentialWinLimitDetail.Username)
             .Map(B, potentialWinLimitDetail => getStatusText(potentialWinLimitDetail.Status))
@@ -66,8 +64,6 @@ public class SportsbookPotentialWinLimitExcelHandler(
             .Map(J, potentialWinLimitDetail => getWinPercent(potentialWinLimitDetail.PotentialWinPercent, potentialWinLimitDetail.PotentialWinLimit))
             .Map(K, potentialWinLimitDetail => getLastLoginDate(potentialWinLimitDetail.LastLogged));
 
-
-
-        private TemplateInfo GetTemplateInfo()
-            => new(GetExcelTemplatePath("SportsbookPotentialWinLimit"), Resources.NoInformationIsAvailable, headerStartIndex: 2, bodyStartIndex: 3);
-} 
+    private TemplateInfo GetTemplateInfo()
+        => new(GetExcelTemplatePath("SportsbookPotentialWinLimit"), Resources.NoInformationIsAvailable, headerStartIndex: 2, bodyStartIndex: 3);
+}

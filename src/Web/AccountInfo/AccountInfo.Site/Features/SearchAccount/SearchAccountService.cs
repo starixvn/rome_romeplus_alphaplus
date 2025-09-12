@@ -131,7 +131,7 @@ public class SearchAccountService(
         var tasks = new List<Task>();
 
         var memberOutstandingCriteria = new SelectMemberOutstandingCriteria(criteria.CustId);
-        var memberBalanceCriteria = new SelectMemberBalanceCriteria(criteria.CustId) { SiteDbGroupId = siteDbGroupId };
+        var memberBalanceCriteria = new SelectMemberBalanceCriteria(criteria.CustId, siteDbGroupId);
         var memberBalanceInfoDTOTask = dynamicRepository.GetAsync<MemberBalanceInfoDTO>(criteria);
 
         tasks.Add(dynamicRepository.ExecuteAsync(memberOutstandingCriteria));
@@ -201,10 +201,7 @@ public class SearchAccountService(
         UpdateMasterGivenCreditCommand command;
         if (param.SearchAccountRoleId == UserLevel.Member.Value)
         {
-            var totalAmtCommand = new GetTotalAmtCommand(param.SearchAccountId)
-            {
-                SiteDbGroupId = param.SiteDbGroupId
-            };
+            var totalAmtCommand = new GetTotalAmtCommand(param.SearchAccountId, param.SiteDbGroupId);
             await dynamicRepository.ExecuteAsync(totalAmtCommand);
             command = new UpdateMemberGivenCreditCommand(
                 param.SearchAccountId,
@@ -469,7 +466,7 @@ public class SearchAccountService(
 
     private async Task<bool> GetAutoTransferJobStatus(int siteDbGroupId)
     {
-        var criteria = new GetAutoTransferJobStatusCriteria { SiteDbGroupId = siteDbGroupId };
+        var criteria = new GetAutoTransferJobStatusCriteria(siteDbGroupId);
         await dynamicRepository.ExecuteAsync(criteria);
 
         return criteria.IsAutoJobRunning;

@@ -27,10 +27,6 @@ public class TransferYesterdayBalanceHandler(
 {
     private const string AgentTransferMemberListCache = "AgentMultipleTransfer.{0}.{1}";
     private const string ConcurrentSingleTransferResultMessage = "<span style=\"color: red\">The transfer has been proceeding by {0}<br/>";
-    private readonly ITransferService transferService = transferService;
-    private readonly ITransferListService transferListService = transferListService;
-    private readonly IYesterdayBalanceTransferService yesterdayBalanceTransferService = yesterdayBalanceTransferService;
-    private readonly ITransferCacheService transferCacheService = transferCacheService;
 
     public async Task<SingleViewModel> Handle(SingleQuery message, CancellationToken cancellationToken)
     {
@@ -45,7 +41,8 @@ public class TransferYesterdayBalanceHandler(
             message.AllowTotalBalanceTransfer,
             1,
             1,
-            message.AGIP);
+            message.AGIP,
+            message.SiteDbGroupId);
         var customerTransfer = await transferListService.GetCustomerTransfer(param);
         var balance = 0M;
 
@@ -77,7 +74,8 @@ public class TransferYesterdayBalanceHandler(
             message.LangKey,
             message.IP,
             message.SubAccId,
-            message.AGIP);
+            message.AGIP,
+            message.SiteDbGroupId);
         var result = await yesterdayBalanceTransferService.Transfer(param);
 
         if (result.IsSuccessful)
@@ -104,7 +102,8 @@ public class TransferYesterdayBalanceHandler(
                 message.AllowTotalBalanceTransfer,
                 1,
                 int.MaxValue - 1,
-                message.ActorLevel.IsAgentLevel() ? message.AGIP : string.Empty);
+                message.ActorLevel.IsAgentLevel() ? message.AGIP : string.Empty,
+                message.ActorLevel.IsAgentLevel() ? message.SiteDbGroupId : 0);
             var reportData = await transferListService.GetTransferList(transferListParam);
             custIds = reportData.Customers.Select(c => c.CustId);
         }
@@ -133,7 +132,8 @@ public class TransferYesterdayBalanceHandler(
                 message.LangKey,
                 message.IP,
                 message.SubAccId,
-                message.AGIP);
+                message.AGIP,
+                message.SiteDbGroupId);
             var result = await yesterdayBalanceTransferService.Transfer(param);
 
             if (!result.IsSuccessful)
@@ -149,7 +149,7 @@ public class TransferYesterdayBalanceHandler(
 
     public async Task<MemberViewModel> Handle(MemberQuery message, CancellationToken cancellationToken)
     {
-        var member = await yesterdayBalanceTransferService.GetMemberTransfer(message.CustId, message.AllowTotalBalanceTransfer, message.AGIP);
+        var member = await yesterdayBalanceTransferService.GetMemberTransfer(message.CustId, message.AllowTotalBalanceTransfer, message.SiteDbGroupId);
 
         return new MemberViewModel(message.ActorName, member);
     }
@@ -182,7 +182,8 @@ public class TransferYesterdayBalanceHandler(
             message.LangKey,
             message.IP,
             message.SubAccId,
-            message.AGIP);
+            message.AGIP,
+            message.SiteDbGroupId);
 
         var result = message.ActorLevel.IsAgentLevel()
                    ? await yesterdayBalanceTransferService.MemberTransfer(param)
@@ -192,7 +193,7 @@ public class TransferYesterdayBalanceHandler(
         if (result.IsSuccessful)
         {
             result.Message = Resources.TransferSuccessfully;
-            var resultReset = await yesterdayBalanceTransferService.ResetPotentialWinLimit(message.CustId, message.AGIP);
+            var resultReset = await yesterdayBalanceTransferService.ResetPotentialWinLimit(message.CustId, message.SiteDbGroupId);
             if (!resultReset.IsSuccessful)
             {
                 result = Result.CreateErrorResult(resultReset.Message, resultReset.Code);
@@ -224,13 +225,14 @@ public class TransferYesterdayBalanceHandler(
             message.SubAccId,
             message.AGIP,
             message.AdminId,
-            message.AdminName);
+            message.AdminName,
+            message.SiteDbGroupId);
         var service = new AgentTransferMultipleYesterdayBalanceService(param, transferCacheService, transferService, transferListService, yesterdayBalanceTransferService);
 
         var result = await service.ProcessTransfer();
         if (result.IsSuccessful)
         {
-            var resultReset = await yesterdayBalanceTransferService.ResetPotentialWinLimit(message.CustIds, message.AGIP);
+            var resultReset = await yesterdayBalanceTransferService.ResetPotentialWinLimit(message.CustIds, message.SiteDbGroupId);
             if (!resultReset.IsSuccessful)
             {
                 return Result.CreateErrorResult(resultReset.Message, resultReset.Code);

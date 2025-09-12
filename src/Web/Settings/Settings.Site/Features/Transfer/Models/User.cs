@@ -3,15 +3,8 @@ using AlphaPlus.Settings.Transfer.API.Models;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Models
 {
-    public class User : IUser
+    public class User(IUserSession userSession) : IUser
     {
-        private readonly IUserSession userSession;
-
-        public User(IUserSession userSession)
-        {
-            this.userSession = userSession;
-        }
-
         public int Id => userSession.CustId;
 
         public string Name => userSession.UserName;
@@ -44,5 +37,6 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Models
         public PageAccess SubPageAccess => userSession.SubPageAccess;
 
         public string AGIP => userSession.AGIP;
+        public int SiteDbGroupId => userSession.SiteDBGroupId;
     }
 }

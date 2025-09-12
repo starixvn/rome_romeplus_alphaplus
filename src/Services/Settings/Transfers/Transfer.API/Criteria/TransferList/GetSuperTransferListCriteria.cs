@@ -2,6 +2,8 @@ using Fanex.Data;
 
 namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferList;
 
+using Core.Helpers;
+
 public class GetSuperTransferListCriteria(
     int custId,
     string downlineName,
@@ -11,14 +13,16 @@ public class GetSuperTransferListCriteria(
     byte autoTransfer,
     byte levelType,
     int pageIndex,
-    int pageSize) : GetTransferListCriteria(
+    int pageSize,
+    int siteDbGroupId) : GetTransferListCriteria(
         downlineName,
         status,
         allYesterdayBalance,
         allowTotalBalanceTransfer,
         autoTransfer,
         pageIndex,
-        pageSize)
+        pageSize,
+        siteDbGroupId)
 {
     [SpParam(SqlParamName = "sagid")]
     public int SuperId { get; } = custId;
@@ -41,7 +45,7 @@ public class GetSuperTransferListCriteria(
 
     public decimal? TotalPendingTransfer3rd { get; set; }
 
-    public override string GetSettingKey() => "SiteDB_Age_Transfer_SelList_SAg";
+    public override string GetSettingKey() => SpNameHelpers.SiteDbPrefix("Age_Transfer_SelList_SAg", SiteDbGroupId);
 
     public override bool IsValid() => SuperId > 0;
 }

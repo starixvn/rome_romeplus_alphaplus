@@ -1,11 +1,11 @@
-﻿using AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferAllAndClearCredit;
-using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferAllAndClearCredit;
+﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers;
+
 using AlphaPlus.Settings.Transfer.API.Models.TransferAllAndClearCredit;
 using AlphaPlus.Settings.Transfer.API.Params.TransferAllAndClearCredit;
 using AlphaPlus.Settings.Transfer.API.Services;
 using MediatR;
-
-namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers;
+using Requests.TransferAllAndClearCredit;
+using ViewModels.TransferAllAndClearCredit;
 
 public class TransferAllAndClearCreditHandler(
     TransferAllAndClearCreditService transferAllAndClearCreditService,
@@ -13,9 +13,6 @@ public class TransferAllAndClearCreditHandler(
         IRequestHandler<CalculationQuery, CalculationViewModel>,
         IRequestHandler<TransferResultQuery, TransferResultViewModel>
 {
-    private readonly TransferAllAndClearCreditService transferAllAndClearCreditService = transferAllAndClearCreditService;
-    private readonly ITransferService transferService = transferService;
-
     public async Task<CalculationViewModel> Handle(CalculationQuery message, CancellationToken cancellation)
     {
         var calculationResult = new TransferResult();
@@ -28,7 +25,8 @@ public class TransferAllAndClearCreditHandler(
                 message.Username,
                 message.LanguageKey,
                 isAllDayBalanceTransfer,
-                message.AGIP);
+                message.AGIP,
+                message.SiteDbGroupId);
             calculationResult = transferAllAndClearCreditService.GetCalculateResult(param);
         }
 
@@ -49,7 +47,8 @@ public class TransferAllAndClearCreditHandler(
             message.TransferSteps,
             message.ClearCreditSteps,
             isAllDayBalanceTransfer,
-            message.AGIP);
+            message.AGIP,
+            message.SiteDbGroupId);
 
         var transferResult = message.IsInternal ? null : transferAllAndClearCreditService.GetTransferResult(param);
 

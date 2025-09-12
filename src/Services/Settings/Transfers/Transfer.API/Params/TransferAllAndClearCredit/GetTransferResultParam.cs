@@ -16,7 +16,8 @@ namespace AlphaPlus.Settings.Transfer.API.Params.TransferAllAndClearCredit
             string transferSteps,
             string clearCreditSteps,
             bool isAllDayBalanceTransfer,
-            string agIP)
+            string agIP,
+            int siteDbGroupId)
         {
             CustId = custId;
             UserId = userId;
@@ -28,10 +29,11 @@ namespace AlphaPlus.Settings.Transfer.API.Params.TransferAllAndClearCredit
             IsClearCredit = isClearCredit;
             IsAllDayBalanceTransfer = isAllDayBalanceTransfer;
             TransferSteps = JsonConvert.DeserializeObject<IEnumerable<TransferStep>>(transferSteps.Replace("'", "\""))
-                ?? Enumerable.Empty<TransferStep>();
+                ?? [];
             ClearCreditSteps = JsonConvert.DeserializeObject<IEnumerable<ClearCreditStep>>(clearCreditSteps.Replace("'", "\""))
-                ?? Enumerable.Empty<ClearCreditStep>();
+                ?? [];
             AGIP = agIP;
+            SiteDbGroupId = siteDbGroupId;
         }
 
         public int CustId { get; }
@@ -54,8 +56,9 @@ namespace AlphaPlus.Settings.Transfer.API.Params.TransferAllAndClearCredit
 
         public IEnumerable<ClearCreditStep> ClearCreditSteps { get; }
 
-        public bool SkipTransfer() => !TransferSteps.Any(s => s.TransferableAmount != 0);
+        public bool SkipTransfer() => TransferSteps.All(s => s.TransferableAmount == 0);
 
         public string AGIP { get; }
+        public int SiteDbGroupId { get; }
     }
 }

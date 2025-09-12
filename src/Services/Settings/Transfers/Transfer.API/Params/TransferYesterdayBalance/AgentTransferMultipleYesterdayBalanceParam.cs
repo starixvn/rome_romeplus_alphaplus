@@ -17,4 +17,5 @@ public record AgentTransferMultipleYesterdayBalanceParam(
     int SubAccId,
     string AGIP,
     int AdminId,
-    string AdminName);
+    string AdminName,
+    int SiteDbGroupId);
