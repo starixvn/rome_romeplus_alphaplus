@@ -32,10 +32,10 @@
   <ItemGroup>
     <ProjectReference Include="..\Settings.Site\Settings.Site.csproj" />
     <ProjectReference Include="..\..\..\Modules\AlphaPlus.Core\AlphaPlus.Core.csproj" />
-    <ProjectReference Include="..\..\..\Modules\MemberInfo.Domain\MemberInfo.Domain.csproj" />
-    <ProjectReference Include="..\..\..\Modules\MemberInfo.API\MemberInfo.API.csproj" />
-    <ProjectReference Include="..\..\..\Modules\Transfer.API\Transfer.API.csproj" />
-    <ProjectReference Include="..\..\..\Modules\ViewLog.API\ViewLog.API.csproj" />
+    <!--<ProjectReference Include="..\..\..\Modules\MemberInfo.Domain\MemberInfo.Domain.csproj" />
+    <ProjectReference Include="..\..\..\Modules\MemberInfo.API\MemberInfo.API.csproj" />-->
+    <!--<ProjectReference Include="..\..\..\Modules\Transfer.API\Transfer.API.csproj" />
+    <ProjectReference Include="..\..\..\Modules\ViewLog.API\ViewLog.API.csproj" />-->
   </ItemGroup>
 
   <ItemGroup>

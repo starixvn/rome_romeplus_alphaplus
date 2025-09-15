@@ -10,6 +10,7 @@ using AlphaPlus.Settings.Transfer.API.Services;
 using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers;
+
 public class RewardHandler(
     IRewardService rewardService,
     ICustomerService customerService,
@@ -25,6 +26,7 @@ public class RewardHandler(
     private readonly UsernameSuggestionService usernameSuggestionService = usernameSuggestionService;
 
     #region Reward Payment
+
     public async Task<RewardPaymentViewModel> Handle(RewardPaymentQuery message, CancellationToken cancellation)
     {
         var programs = await rewardService.GetRewardPrograms();
@@ -93,7 +95,8 @@ public class RewardHandler(
                 message.SubAccName,
                 message.IP,
                 message.LanguageKey,
-                message.AGIP))
+                message.AGIP,
+                message.SiteDbGroupId))
             : new RewardResult(isKickout: true);
     }
 
@@ -124,9 +127,11 @@ public class RewardHandler(
 
         return await belongingNormalCustTask && await belongingDirectMemberTask;
     }
-    #endregion
+
+    #endregion Reward Payment
 
     #region Reward Detail
+
     public async Task<RewardDetailViewModel> Handle(RewardDetailQuery message, CancellationToken cancellation)
     {
         var programs = await rewardService.GetRewardPrograms();
@@ -174,7 +179,8 @@ public class RewardHandler(
             }
         });
     }
-    #endregion
+
+    #endregion Reward Detail
 
     internal static RewardParam GetRewardParam(RewardBaseQuery message)
         => new RewardParam(

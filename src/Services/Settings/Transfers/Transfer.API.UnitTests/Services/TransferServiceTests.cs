@@ -1,5 +1,3 @@
-using AlphaPlus.Core.Models;
-using AlphaPlus.Settings.Transfer.API.Models;
 using AlphaPlus.Settings.Transfer.API.Params.TransferCondition;
 using AlphaPlus.Settings.Transfer.API.Services;
 using Fanex.Data.Repository;
@@ -133,7 +131,8 @@ public class TransferServiceTests
             SubAccId: 789,
             IP: "192.168.1.1",
             Language: "en",
-            AGIP: "agip"
+            AGIP: "agip",
+            SiteDbGroupId: 1
         );
 
         // Act
@@ -173,7 +172,8 @@ public class TransferServiceTests
             SubAccId: 789,
             IP: "192.168.1.1",
             Language: "en",
-            AGIP: "agip"
+            AGIP: "agip",
+            SiteDbGroupId: 1
         );
 
         // Act
@@ -196,7 +196,8 @@ public class TransferServiceTests
             SubAccId: 789,
             IP: "192.168.1.1",
             Language: "en",
-            AGIP: "agip"
+            AGIP: "agip",
+            SiteDbGroupId: 1
         );
 
         // Act
@@ -219,7 +220,8 @@ public class TransferServiceTests
             SubAccId: 789,
             IP: "192.168.1.1",
             Language: "en",
-            AGIP: "agip"
+            AGIP: "agip",
+            SiteDbGroupId: 1
         );
 
         // Act
@@ -246,7 +248,8 @@ public class TransferServiceTests
             SubAccId: 789,
             IP: "192.168.1.1",
             Language: "en",
-            AGIP: "agip"
+            AGIP: "agip",
+            SiteDbGroupId: 1
         );
 
         // Act
@@ -316,7 +319,8 @@ public class TransferServiceTests
             SubAccId: 789,
             IP: "192.168.1.1",
             Language: "en",
-            AGIP: "agip"
+            AGIP: "agip",
+            SiteDbGroupId: 1
         );
 
         // Act

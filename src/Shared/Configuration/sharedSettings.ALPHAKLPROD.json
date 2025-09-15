@@ -38,12 +38,12 @@
             "ProviderName": "System.Data.SqlClient"
         },
         {
-            "Name": "DBCust.CustDB.wsv_alp",
+            "Name": "DBCUST.CustDB.wsv_alp",
             "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
-            "Name": "DBCust.IPDB.wsv_alp",
+            "Name": "DBCUST.IPDB.wsv_alp",
             "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=IPDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
@@ -113,7 +113,7 @@
             "ProviderName": "System.Data.SqlClient"
         },
         {
-            "Name": "DBCust.bodb_Credit.wsv_alp",
+            "Name": "DBCUST.bodb_Credit.wsv_alp",
             "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=bodb_Credit;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },

@@ -1,11 +1,11 @@
-using AlphaPlus.Shared.AppResources.Settings.Transfer;
+using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferCondition;
 using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferCondition;
-using AlphaPlus.Settings.Transfer.API.Services;
-using MediatR;
 using AlphaPlus.Settings.Transfer.API.Configurations;
-using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Transfer.API.Params.TransferCondition;
+using AlphaPlus.Settings.Transfer.API.Services;
+using AlphaPlus.Shared.AppResources.Settings.Transfer;
+using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers;
 
@@ -46,5 +46,6 @@ public class TransferConditionHandler(ITransferService transferService) :
             message.SubAccId,
             message.IP,
             message.LangKey,
-            message.AGIP));
+            message.AGIP,
+            message.SiteDbGroupId));
 }

@@ -1,4 +1,3 @@
-using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Transfer.API.Models.Reward;
 using AlphaPlus.Settings.Transfer.API.Params.Reward;
 using AlphaPlus.Settings.Transfer.API.Services;
@@ -130,7 +129,8 @@ public class RewardServiceTests
             SubAccName: "TestSubAcc",
             IP: "192.168.1.1",
             Language: "en",
-            AGIP: "agip"
+            AGIP: "agip",
+            SiteDbGroupId: 1
         );
 
         // Act
@@ -260,13 +260,14 @@ public class RewardServiceTests
         var param = new UpdateRewardPaymentStatusParam(
             FromDate: DateTime.Now.AddDays(-30),
             ToDate: DateTime.Now,
-            Data: new RewardPaymentStatus[0],
+            Data: [],
             ActorId: 789,
             SubAccId: 101112,
             SubAccName: "TestSubAcc",
             IP: "192.168.1.1",
             Language: "en",
-            AGIP: "agip"
+            AGIP: "agip",
+            SiteDbGroupId: 1
         );
 
         // Act
@@ -301,7 +302,8 @@ public class RewardServiceTests
             SubAccName: null,
             IP: "192.168.1.1",
             Language: "en",
-            AGIP: "agip"
+            AGIP: "agip",
+            SiteDbGroupId: 1
         );
 
         // Act
@@ -410,7 +412,8 @@ public class RewardServiceTests
             SubAccName: "TestSubAcc",
             IP: "192.168.1.1",
             Language: language,
-            AGIP: "agip"
+            AGIP: "agip",
+            SiteDbGroupId: 1
         );
 
         // Act

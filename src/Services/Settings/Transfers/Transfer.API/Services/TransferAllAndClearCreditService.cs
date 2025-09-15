@@ -68,7 +68,8 @@ public class TransferAllAndClearCreditServiceImpl(IDynamicRepository dynamicRepo
                 param.Username,
                 param.IP,
                 param.Language,
-                param.IsAllDayBalanceTransfer);
+                param.IsAllDayBalanceTransfer,
+                param.SiteDbGroupId);
             var (conditionSteps, transferSteps) = dynamicRepository.FetchMultiple<ConditionStep, TransferStep>(criteria, param.AGIP);
 
             transferResult = new TransferAllResult(transferSteps, criteria.ErrCode, criteria.ErrMsg ?? string.Empty, conditionSteps.Select(c => c.Content));

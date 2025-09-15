@@ -12,26 +12,25 @@ namespace AlphaPlus.Settings.Transfer.API.Services
     public interface AutoTransferService
     {
         Task<Result> UpdateAsync(UpdateSingleParam param);
+
         Task<AutoTransferMonitoringPageModel> GetTodayTransfersAsync(GetTodayTransfersParam param);
+
         Task<AutoTransferMonitoringPageModel> GetHistoryTransfersAsync(GetHistoryTransfersParam param);
+
         Task<Result> CancelJobAsync(CancelJobParam param);
+
         Task<Result> CancelAllJobAsync(CancelAllJobParam param);
+
         Task<Result> UpdateScheduleAsync(UpdateScheduleParam param);
+
         Task<UpdateMultipleAutoTransferResultModel> UpdateMultipleAutoTransferAsync(UpdateMultipleAutoTransferParam param);
     }
 
-    public class AutoTransferServiceImpl : AutoTransferService
+    public class AutoTransferServiceImpl(IDynamicRepository repository) : AutoTransferService
     {
-        private readonly IDynamicRepository repository;
-
-        public AutoTransferServiceImpl(IDynamicRepository dynamicRepository)
-        {
-            repository = dynamicRepository;
-        }
-
         public async Task<Result> UpdateAsync(UpdateSingleParam param)
         {
-            var isAutoJobRunning = await GetJobStatus(param.CustId, param.UplineId, param.State ?? string.Empty, param.AGIP ?? string.Empty);
+            var isAutoJobRunning = await GetJobStatus(param.CustId, param.UplineId, param.State ?? string.Empty, param.AGIP ?? string.Empty, param.SiteDbGroupId);
             var criteria = new UpdateStatusCriteria(
                 param.UplineId,
                 param.CustId,
@@ -54,7 +53,7 @@ namespace AlphaPlus.Settings.Transfer.API.Services
 
         public async Task<AutoTransferMonitoringPageModel> GetTodayTransfersAsync(GetTodayTransfersParam param)
         {
-            var criteria = new GetTodayTransfersCriteria
+            var criteria = new GetTodayTransfersCriteria(param.SiteDbGroupId)
             {
                 FromCustId = param.CustId,
                 Language = param.Language,
@@ -118,8 +117,8 @@ namespace AlphaPlus.Settings.Transfer.API.Services
         public async Task<Result> CancelJobAsync(CancelJobParam param)
         {
             var criteria = new CancelJobCriteria(
-                param.FromCustId, param.ToCustId, param.ViewStatus ?? string.Empty, param.Language ?? string.Empty, param.IP ?? string.Empty);
-            await repository.ExecuteAsync(criteria, param.AGIP);
+                param.FromCustId, param.ToCustId, param.ViewStatus ?? string.Empty, param.Language ?? string.Empty, param.IP ?? string.Empty, param.SiteDbGroupId);
+            await repository.ExecuteAsync(criteria);
 
             return new Result
             {
@@ -130,8 +129,8 @@ namespace AlphaPlus.Settings.Transfer.API.Services
 
         public async Task<Result> CancelAllJobAsync(CancelAllJobParam param)
         {
-            var criteria = new CancelAllJobCriteria(param.FromCustId, param.Language, param.IP);
-            await repository.ExecuteAsync(criteria, param.AGIP);
+            var criteria = new CancelAllJobCriteria(param.FromCustId, param.Language, param.IP, param.SiteDbGroupId);
+            await repository.ExecuteAsync(criteria);
 
             return new Result
             {
@@ -140,20 +139,21 @@ namespace AlphaPlus.Settings.Transfer.API.Services
             };
         }
 
-        private async Task<bool> GetJobStatus(int custId, int creator, string state, string agIP)
+        private async Task<bool> GetJobStatus(int custId, int creator, string state, string agIP, int siteDbGroupId)
         {
             var criteria = new GetJobStatusCriteria(
                 creator,
                 custId,
-                string.Equals(AutoTransferConstant.On, state, StringComparison.InvariantCultureIgnoreCase));
-            await repository.ExecuteAsync(criteria, agIP);
+                string.Equals(AutoTransferConstant.On, state, StringComparison.InvariantCultureIgnoreCase),
+                siteDbGroupId);
+            await repository.ExecuteAsync(criteria);
 
             return criteria.IsAutoJobRunning;
         }
 
         public async Task<Result> UpdateScheduleAsync(UpdateScheduleParam param)
         {
-            var isAutoJobRunning = await GetJobStatus(param.CustId, param.UplineId, "on", param.AGIP ?? string.Empty);
+            var isAutoJobRunning = await GetJobStatus(param.CustId, param.UplineId, "on", param.AGIP ?? string.Empty, param.SiteDbGroupId);
             var criteria = new UpdateScheduleCriteria(
                 param.CustId,
                 param.CustName ?? string.Empty,
@@ -197,9 +197,9 @@ namespace AlphaPlus.Settings.Transfer.API.Services
             UpdateMultipleAutoTransferResultModel result)
         {
             var stopCodes = new[] { 105, 108 };
-            var ids = (pIds ?? string.Empty).Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            var names = (pNames ?? string.Empty).Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-            var dates = (schedule ?? string.Empty).Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            var ids = (pIds ?? string.Empty).Split([','], StringSplitOptions.RemoveEmptyEntries);
+            var names = (pNames ?? string.Empty).Split([','], StringSplitOptions.RemoveEmptyEntries);
+            var dates = (schedule ?? string.Empty).Split([','], StringSplitOptions.RemoveEmptyEntries);
 
             for (var i = 0; i < ids.Length; i++)
             {
@@ -216,7 +216,8 @@ namespace AlphaPlus.Settings.Transfer.API.Services
                     SubAccId = param.SubAccId,
                     Schedule = dates,
                     Old_TransferOption = param.Old_TransferOption ?? string.Empty,
-                    AGIP = param.AGIP ?? string.Empty
+                    AGIP = param.AGIP ?? string.Empty,
+                    SiteDbGroupId = param.SiteDbGroupId
                 };
 
                 var singleResult = await UpdateAsync(updateSingleParam);
@@ -246,7 +247,7 @@ namespace AlphaPlus.Settings.Transfer.API.Services
                 }
 
                 result.ErrMessages.Add(code, singleResult.Message ?? string.Empty);
-                result.ErrCusts.Add(code, new List<string> { name });
+                result.ErrCusts.Add(code, [name]);
             }
         }
     }

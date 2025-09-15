@@ -1,5 +1,3 @@
-using AlphaPlus.Core.Models;
-using AlphaPlus.Settings.Transfer.API.Constants;
 using AlphaPlus.Settings.Transfer.API.Models.AutoTransfer;
 using AlphaPlus.Settings.Transfer.API.Params.AutoTransfer;
 using AlphaPlus.Settings.Transfer.API.Services;
@@ -69,7 +67,8 @@ public class AutoTransferServiceTests
             PageIndex = 1,
             SortedBy = 1,
             Direction = 1,
-            LevelType = 1
+            LevelType = 1,
+            SiteDbGroupId = 1
         };
 
         // Act

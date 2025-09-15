@@ -1,21 +1,24 @@
-﻿using AlphaPlus.Settings.Transfer.API.Models.AutoTransfer;
-using MediatR;
-using AlphaPlus.Settings.Transfer.API.Models;
+﻿using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.Transfer.Models;
-using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Transfer.API.Models;
+using AlphaPlus.Settings.Transfer.API.Models.AutoTransfer;
+using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
 {
     public class GetTodayTransfersQuery : IRequest<AutoTransferMonitoringPageModel>
     {
-        public GetTodayTransfersQuery() : this(null) { }
+        public GetTodayTransfersQuery() : this(null)
+        {
+        }
 
         public GetTodayTransfersQuery(IUser user)
         {
-            user = user ?? new User(UserSession.Current);
+            user ??= new User(UserSession.Current);
             CustId = user.Id;
             Language = user.LanguageKey;
             AGIP = user.AGIP;
+            SiteDbGroupId = user.SiteDbGroupId;
         }
 
         public int CustId { get; }
@@ -37,6 +40,7 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
         public byte LevelType { get; set; }
 
         public string AGIP { get; }
+        public int SiteDbGroupId { get; }
 
         public bool IsValid() => CustId > 0;
     }

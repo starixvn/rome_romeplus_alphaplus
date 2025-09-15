@@ -1,6 +1,4 @@
 using AlphaPlus.Core.Models;
-using AlphaPlus.Settings.MemberInfo.Domain.Constants;
-using AlphaPlus.Settings.MemberInfo.Domain.Params;
 
 namespace AlphaPlus.Settings.MemberInfo.Domain.UnitTests.Params;
 
@@ -19,11 +17,12 @@ public class CreditBalanceParamTests
         var pageSize = 10;
         var isAdminCanViewVNIP = true;
         var agIP = "192.168.1.1";
+        var siteDbGroupId = 1;
 
         // Act
         var param = new CreditBalanceParam(
-            custId, custLevel, userName, statusId, levelType, 
-            pageIndex, pageSize, isAdminCanViewVNIP, agIP);
+            custId, custLevel, userName, statusId, levelType,
+            pageIndex, pageSize, isAdminCanViewVNIP, agIP, siteDbGroupId);
 
         // Assert
         Assert.Equal(custId, param.CustId);
@@ -134,7 +133,7 @@ public class CreditBalanceParamTests
 
         // Act
         var param = new CreditBalanceParam(
-            123, UserLevel.Agent, userName, StatusIdentity.Open, 1, 
+            123, UserLevel.Agent, userName, StatusIdentity.Open, 1,
             0, 10, true, "192.168.1.1");
 
         // Assert
@@ -149,7 +148,7 @@ public class CreditBalanceParamTests
 
         // Act
         var param = new CreditBalanceParam(
-            123, UserLevel.Agent, userName, StatusIdentity.Open, 1, 
+            123, UserLevel.Agent, userName, StatusIdentity.Open, 1,
             0, 10, true, "192.168.1.1");
 
         // Assert
@@ -164,9 +163,9 @@ public class CreditBalanceParamTests
 
         // Assert
         var properties = type.GetProperties();
-        
+
         // These should be read-only
-        var readOnlyProperties = new[] { 
+        var readOnlyProperties = new[] {
             nameof(CreditBalanceParam.CustId),
             nameof(CreditBalanceParam.CustLevel),
             nameof(CreditBalanceParam.UserName),
@@ -185,7 +184,7 @@ public class CreditBalanceParamTests
         }
 
         // These are status properties that are set internally by the constructor
-        var statusProperties = new[] { 
+        var statusProperties = new[] {
             nameof(CreditBalanceParam.Enabled),
             nameof(CreditBalanceParam.Closed),
             nameof(CreditBalanceParam.Suspended)
@@ -222,7 +221,7 @@ public class CreditBalanceParamTests
     {
         // Act
         var param = new CreditBalanceParam(
-            123, UserLevel.Agent, "test", StatusIdentity.Open, 1, 
+            123, UserLevel.Agent, "test", StatusIdentity.Open, 1,
             0, 0, true, "192.168.1.1");
 
         // Assert
@@ -234,7 +233,7 @@ public class CreditBalanceParamTests
     {
         // Act
         var param = new CreditBalanceParam(
-            -1, UserLevel.Agent, "test", StatusIdentity.Open, 1, 
+            -1, UserLevel.Agent, "test", StatusIdentity.Open, 1,
             -1, -1, false, "192.168.1.1");
 
         // Assert
@@ -246,7 +245,7 @@ public class CreditBalanceParamTests
     private static CreditBalanceParam CreateCreditBalanceParam(byte statusId)
     {
         return new CreditBalanceParam(
-            123, UserLevel.Agent, "testuser", statusId, 1, 
+            123, UserLevel.Agent, "testuser", statusId, 1,
             0, 10, true, "192.168.1.1");
     }
 }

@@ -1,5 +1,3 @@
-using AlphaPlus.Settings.MemberInfo.Domain.Params;
-
 namespace AlphaPlus.Settings.MemberInfo.Domain.UnitTests.Params;
 
 public class PotentialWinLimitParamTests
@@ -23,7 +21,7 @@ public class PotentialWinLimitParamTests
 
         // Act
         var param = new PotentialWinLimitParam(
-            custId, roleId, username, status, problemAccount, 
+            custId, roleId, username, status, problemAccount,
             pageSize, pageIndex, agIP, betType, sportType, accountType, settingStatus);
 
         // Assert
@@ -34,7 +32,7 @@ public class PotentialWinLimitParamTests
         Assert.Equal(problemAccount, param.ProblemAccount);
         Assert.Equal(pageSize, param.PageSize);
         Assert.Equal(pageIndex, param.PageIndex);
-        Assert.Equal(agIP, param.AGIP);
+        Assert.Equal(siteDbGroupId, param.SiteDbGroupId);
         Assert.Equal(betType, param.BetType);
         Assert.Equal(sportType, param.SportType);
         Assert.Equal(accountType, param.AccountType);
@@ -247,7 +245,7 @@ public class PotentialWinLimitParamTests
         string agIP = "192.168.1.1")
     {
         return new PotentialWinLimitParam(
-            custId, roleId, username, status, problemAccount, 
+            custId, roleId, username, status, problemAccount,
             pageSize, pageIndex, agIP);
     }
 }
