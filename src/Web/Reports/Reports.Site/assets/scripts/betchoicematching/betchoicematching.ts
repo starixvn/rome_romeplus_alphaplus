@@ -304,7 +304,7 @@ class BetChoiceMatching {
     activeUplinesTooltip: SimpleTooltip;
     activeIPTooltip: SimpleTooltip;
     queryIPGroup: QueryIPGroup = {};
-    compactFeedback = new CompactFeebackView();
+    compactFeedback = new CompactFeebackComponent();
 
     init = () => {
         $.blockUI();
@@ -382,7 +382,7 @@ class BetChoiceMatching {
                 this.data = data;
                 this.groupIPs(data.IPs);
                 this.filterAndRender();
-                this.compactFeedback.initCompactFeedback(data.Events.length > 0, false, this.getCurrentFormData());
+                this.compactFeedback.init(this.getCurrentFormData(), data.Events.length > 0);
                 alphaReports.updateQueryString(this.queryParam);
             })
             .fail((jqXHR) => {

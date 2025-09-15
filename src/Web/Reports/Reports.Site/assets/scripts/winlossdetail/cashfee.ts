@@ -28,7 +28,7 @@ class CashFeeView extends BaseReportNew {
 
     init() {
         super.initShowHideFilter();
-        this.compactFeeback.initCompactFeedback(true, true, winlossDetailFromData);
+        this.compactFeeback.init(winlossDetailFromData);
         this.$tblReportContainer = $('#tbl-report-container');
         this.globalFormData = winlossDetailFromData;
 
@@ -82,7 +82,11 @@ class CashFeeView extends BaseReportNew {
             this.$tblReportContainer.html(html);
             const $tblReport = $(this.tableId);
             this.cashFeeCopyHtml.bindEvent($tblReport);
-            this.compactFeeback.initCompactFeedback($tblReport.find('tbody tr').length > 0, true, queryStringObject);
+
+            const firstCell = $tblReport.find('tbody tr:first td:first');
+            const hasData = firstCell.length > 0 && !firstCell.is('[colspan]');
+            this.compactFeeback.init(queryStringObject, hasData);
+
             this.$tblReportContainer.unblock();
         }).fail((jqXHR) => {
             alphaReports.ajaxFail(jqXHR);

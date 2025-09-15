@@ -1,6 +1,6 @@
 class CashFeeReport {
     init() {
-        new CompactFeebackView().initCompactFeedback(true, false, this.getCurrentFormData());
+        new CompactFeebackComponent().init(this.getCurrentFormData());
     }
 
     private getCurrentFormData() {

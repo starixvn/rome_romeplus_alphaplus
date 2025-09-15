@@ -159,8 +159,8 @@ class BaseReport {
     }
 
     private initCompactFeedback() {
-        const compactFeeback = new CompactFeebackView();
-        compactFeeback.initCompactFeedback(true, false, this.getCurrentFormData());
+        const compactFeeback = new CompactFeebackComponent();
+        compactFeeback.init(this.getCurrentFormData());
     }
 
     protected getCurrentFormData(sortInfo = undefined) {

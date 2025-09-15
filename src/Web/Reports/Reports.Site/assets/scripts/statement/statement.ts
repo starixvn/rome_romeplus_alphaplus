@@ -54,7 +54,7 @@ class StatementView extends BaseReport {
     }
 
     registerEvents() {
-        this.statementDetailView = new StatementDetailView(this.popupStatementDetails);
+        this.statementDetailView = new StatementDetailView(this.popupStatementDetails, new CompactFeebackComponent());
         $('.column-transfer-amount').on('click', (e) => this.loadStatementDetail($(e.target).data('transfer-date')));
         this.popupStatementDetails.draggable({ handle: '.modal-header' });
         $('#btn-submit').click(() => $('#PageIndex').val(1));

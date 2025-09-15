@@ -21,6 +21,7 @@
 <form class="form-inline filter statement-details-filter" role="form" id="report-form">
     <div class="form-group statement-detail-title">
         @Resources.TransferDetails (@Model.CustName): @transferDate
+        <compact-feedback fid="109" />
         <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="StatementDetailExcel"
             asp-all-route-data="Model.GetExcelParams()"></a>
     </div>
