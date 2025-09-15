@@ -20,10 +20,14 @@
 @model StatementDetailViewModel
 <form class="form-inline filter statement-details-filter" role="form" id="report-form">
     <div class="form-group statement-detail-title">
-        @Resources.TransferDetails (@Model.CustName): @transferDate
-        <compact-feedback fid="109" />
-        <a class="ic-excel" title="@Resources.ExportToExcel" asp-action="StatementDetailExcel"
-            asp-all-route-data="Model.GetExcelParams()"></a>
+        <div class="flex justify-content-space-between w-full item-center">
+            <div>@Resources.TransferDetails (@Model.CustName): @transferDate</div>
+            <div class="flex">
+                <compact-feedback fid="109" />
+                <a class="ic-excel ml-10" title="@Resources.ExportToExcel" asp-action="StatementDetailExcel"
+                    asp-all-route-data="Model.GetExcelParams()"></a>
+            </div>
+        </div>
     </div>
 </form>
 <table class="tb tb-bordered tb-hover tbl-report-statement-detail w-full text-right" id="tbl-report">

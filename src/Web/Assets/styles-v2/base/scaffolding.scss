@@ -190,6 +190,21 @@ a, a:focus, a:active, a:target, a:hover {
 .text-nowrap {
     white-space: nowrap;
 }
+.flex{
+    display: flex;
+}
+.w-full{
+    width: 100%;
+}
+.ml-10{
+    margin-left: 10px;
+}
+.justify-content-space-between {
+    justify-content: space-between;
+}
+.item-center{
+    align-items: center;
+}
 .link {
     color: var(--link-color);
 
