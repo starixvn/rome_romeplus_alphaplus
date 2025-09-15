@@ -8,7 +8,7 @@ export default function MaxPayoutSettingInformationNote() {
   const theme = useNewAccountStore((state) => state.theme);
   const generalInfo = useNewAccountStore((state) => state.generalInfo);
 
-  const url = `${customerSettingInfoRootUrl}?tabindex=1&theme=${theme}&custId=${generalInfo.uplineCustId}&roleId=${
+  const url = `${customerSettingInfoRootUrl}?tabName=MaxPayoutSettingTab&theme=${theme}&custId=${generalInfo.uplineCustId}&roleId=${
     generalInfo?.uplineRoleId - 1
   }&site=${generalInfo.site}&siteLabel=${generalInfo.siteLabel}`;
 
