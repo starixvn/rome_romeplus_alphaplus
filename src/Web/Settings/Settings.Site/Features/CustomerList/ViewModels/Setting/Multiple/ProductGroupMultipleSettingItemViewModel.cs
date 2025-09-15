@@ -13,7 +13,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Multi
             {
                 case 1:
                     ShowGuideLine = true;
-                    GuideLineUrl = $"{MicroSites.SettingUrl("~/CustomerList/GuideLine")}";
+                    GuideLineUrl = $"{MicroSites.FeatureUrl($"~/HandbookDefault/GetBySlug?slug=edit-multiple-customer-settings")}";
                     break;
 
                 default:
@@ -22,7 +22,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting.Multi
                     break;
             }
         }
-
+        //https://mbp4.starixuat.com/features/HandbookDefault/GetBySlug?slug=edit-multiple-customer-settings
         public override Dictionary<string, string> QueryStringParameters
        => new()
        {
