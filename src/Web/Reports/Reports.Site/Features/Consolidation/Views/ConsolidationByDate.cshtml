@@ -84,35 +84,35 @@
                             }
                         </td>
                         <td class="text-center">@data.CurrencyName</td>
-                        <td class="@(Model.IsNegative(data.Turnover) ? "format-negative" : string.Empty)">@data.Turnover.FormatNumber()</td>
-                        <td>@data.GrossComm.FormatNumber()</td>
+                        <td class="@(Model.IsNegative(data.Turnover.RoundTo2()) ? "format-negative" : string.Empty)">@data.Turnover.FormatNumber()</td>
+                        <td class="@(Model.IsNegative(data.GrossComm.RoundTo2()) ? "format-negative" : string.Empty)">@data.GrossComm.FormatNumber()</td>
                         @if (Model.PageHeader.IsStackMode)
                         {
                             <td class="visible-stack-mode combinedcell col-member-winloss-combined">
                                 <ul>
-                                    <li class="@(Model.IsNegative(data.MemberWinLoss) ? "format-negative" : string.Empty)">@data.MemberWinLoss.FormatNumber()</li>
-                                    <li class="@(Model.IsNegative(data.MemberComm) ? "format-negative" : string.Empty)">@data.MemberComm.FormatNumber()</li>
-                                    <li class="@(Model.IsNegative(data.MemberTotal) ? "format-negative" : string.Empty)">@data.MemberTotal.FormatNumber()</li>
+                                    <li class="@(Model.IsNegative(data.MemberWinLoss.RoundTo2()) ? "format-negative" : string.Empty)">@data.MemberWinLoss.FormatNumber()</li>
+                                    <li class="@(Model.IsNegative(data.MemberComm.RoundTo2()) ? "format-negative" : string.Empty)">@data.MemberComm.FormatNumber()</li>
+                                    <li class="@(Model.IsNegative(data.MemberTotal.RoundTo2()) ? "format-negative" : string.Empty)">@data.MemberTotal.FormatNumber()</li>
                                 </ul>
                             </td>
                             <td class="visible-stack-mode combinedcell col-owner-turnover-combined">
                                 <ul>
-                                    <li class="@(Model.IsNegative(data.OwnerTurnover) ? "format-negative" : string.Empty)">@data.OwnerTurnover.FormatNumber()</li>
-                                    <li class="@(Model.IsNegative(data.OwnerWinLoss) ? "format-negative" : string.Empty)">@data.OwnerWinLoss.FormatNumber()</li>
-                                    <li class="@(Model.IsNegative(data.OwnerComm) ? "format-negative" : string.Empty)">@data.OwnerComm.FormatNumber()</li>
-                                    <li class="@(Model.IsNegative(data.OwnerTotal) ? "format-negative" : string.Empty)">@data.OwnerTotal.FormatNumber()</li>
+                                    <li class="@(Model.IsNegative(data.OwnerTurnover.RoundTo2()) ? "format-negative" : string.Empty)">@data.OwnerTurnover.FormatNumber()</li>
+                                    <li class="@(Model.IsNegative(data.OwnerWinLoss.RoundTo2()) ? "format-negative" : string.Empty)">@data.OwnerWinLoss.FormatNumber()</li>
+                                    <li class="@(Model.IsNegative(data.OwnerComm.RoundTo2()) ? "format-negative" : string.Empty)">@data.OwnerComm.FormatNumber()</li>
+                                    <li class="@(Model.IsNegative(data.OwnerTotal.RoundTo2()) ? "format-negative" : string.Empty)">@data.OwnerTotal.FormatNumber()</li>
                                 </ul>
                             </td>
                         }
                         else
                         {
-                            <td class="hidden-stack-mode col-member-winloss @(Model.IsNegative(data.MemberWinLoss) ? "format-negative" : string.Empty)">@data.MemberWinLoss.FormatNumber()</td>
-                            <td class="hidden-stack-mode @(Model.IsNegative(data.MemberComm) ? "format-negative" : string.Empty)">@data.MemberComm.FormatNumber()</td>
-                            <td class="hidden-stack-mode bold @(Model.IsNegative(data.MemberTotal) ? "format-negative" : string.Empty)">@data.MemberTotal.FormatNumber()</td>
+                            <td class="hidden-stack-mode col-member-winloss @(Model.IsNegative(data.MemberWinLoss.RoundTo2()) ? "format-negative" : string.Empty)">@data.MemberWinLoss.FormatNumber()</td>
+                            <td class="hidden-stack-mode @(Model.IsNegative(data.MemberComm.RoundTo2()) ? "format-negative" : string.Empty)">@data.MemberComm.FormatNumber()</td>
+                            <td class="hidden-stack-mode bold @(Model.IsNegative(data.MemberTotal.RoundTo2()) ? "format-negative" : string.Empty)">@data.MemberTotal.FormatNumber()</td>
                             <td class="hidden-stack-mode col-owner-turnover">@data.OwnerTurnover.FormatNumber()</td>
-                            <td class="hidden-stack-mode @(Model.IsNegative(data.OwnerWinLoss) ? "format-negative" : string.Empty)">@data.OwnerWinLoss.FormatNumber()</td>
-                            <td class="hidden-stack-mode @(Model.IsNegative(data.OwnerComm) ? "format-negative" : string.Empty)">@data.OwnerComm.FormatNumber()</td>
-                            <td class="hidden-stack-mode bold @(Model.IsNegative(data.OwnerTotal) ? "format-negative" : string.Empty)">@data.OwnerTotal.FormatNumber()</td>
+                            <td class="hidden-stack-mode @(Model.IsNegative(data.OwnerWinLoss.RoundTo2()) ? "format-negative" : string.Empty)">@data.OwnerWinLoss.FormatNumber() </td>
+                            <td class="hidden-stack-mode @(Model.IsNegative(data.OwnerComm.RoundTo2()) ? "format-negative" : string.Empty)">@data.OwnerComm.FormatNumber()</td>
+                            <td class="hidden-stack-mode bold @(Model.IsNegative(data.OwnerTotal.RoundTo2()) ? "format-negative" : string.Empty)">@data.OwnerTotal.FormatNumber()</td>
                         }
                         <td class="@(Model.IsNegative(data.Company) ? "format-negative" : string.Empty)">@data.Company.FormatNumber()</td>
                         <td class="@(Model.IsNegative(data.BetCount) ? "format-negative" : string.Empty)">@data.BetCount.FormatNumber()</td>

@@ -26,4 +26,6 @@ public static class NumberExtensions
 
     public static string FormatNumber(this decimal? numberValue)
     => numberValue.HasValue ? FormatNumber(numberValue.Value) : NotAvailable;
+
+    public static decimal RoundTo2(this decimal value) => Math.Round(value, 2);
 }

@@ -37,7 +37,7 @@
     {
         foreach (var level in Model.DisplayOutstandingLevels)
         {
-            <td class="@(Model.IsNegative(data.GetValueByLevel(level.Value)) ? "format-negative" : string.Empty)">@data.GetValueByLevel(level.Value).FormatNumber()</td>
+            <td class="@(Model.IsNegative(data.GetValueByLevel(level.Value).RoundTo2()) ? "format-negative" : string.Empty)">@data.GetValueByLevel(level.Value).FormatNumber()</td>
         }
     }
 
@@ -171,7 +171,7 @@
                     }
                     @for (var i = 0; i < length; i++)
                     {
-                        <td class="@(Model.IsNegative(Model.ReportData.Total.GetValueByLevel(Model.DisplayOutstandingLevels[i].Value)) ? "format-negative" : string.Empty)">
+                        <td class="@(Model.IsNegative(Model.ReportData.Total.GetValueByLevel(Model.DisplayOutstandingLevels[i].Value).RoundTo2()) ? "format-negative" : string.Empty)">
                             @Model.ReportData.Total.GetValueByLevel(Model.DisplayOutstandingLevels[i].Value).FormatNumber()
                         </td>
                     }

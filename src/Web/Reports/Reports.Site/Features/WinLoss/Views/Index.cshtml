@@ -207,11 +207,11 @@
 			{
 				<td class="visible-stack-mode combinedcell col-turnover-combined">
 					<ul>
-						<li class="@(Model.IsNegative(data.Turnover) ? "format-negative" : string.Empty)">@data.Turnover.FormatNumber()</li>
-						<li class="@(Model.IsNegative(data.GrossComm) ? "format-negative" : string.Empty)">@data.GrossComm.FormatNumber()</li>
+						<li class="@(Model.IsNegative(data.Turnover.RoundTo2()) ? "format-negative" : string.Empty)">@data.Turnover.FormatNumber()</li>
+						<li class="@(Model.IsNegative(data.GrossComm.RoundTo2()) ? "format-negative" : string.Empty)">@data.GrossComm.FormatNumber()</li>
 						@if (!isAgentLevel)
 						{
-							<li class="@(Model.IsNegative(data.DownlineTotal) ? "format-negative" : string.Empty)">@data.DownlineTotal.FormatNumber()</li>
+							<li class="@(Model.IsNegative(data.DownlineTotal.RoundTo2()) ? "format-negative" : string.Empty)">@data.DownlineTotal.FormatNumber()</li>
 						}
 					</ul>
 				</td>
@@ -232,15 +232,15 @@
 			else
 			{
 				<td class="hidden-stack-mode col-turnover @(Model.IsNegative(data.Turnover) ? "format-negative" : string.Empty)">@data.Turnover.FormatNumber()</td>
-				<td class="hidden-stack-mode col-gross-com @(Model.IsNegative(data.GrossComm) ? "format-negative" : string.Empty)">@data.GrossComm.FormatNumber()</td>
+				<td class="hidden-stack-mode col-gross-com @(Model.IsNegative(data.GrossComm.RoundTo2()) ? "format-negative" : string.Empty)">@data.GrossComm.FormatNumber()</td>
 				if (isSuperLevel)
 				{
-					<td class="hidden-stack-mode bold col-cust-total @(Model.IsNegative(data.DownlineTotal) ? "format-negative" : string.Empty)">@data.DownlineTotal.FormatNumber()</td>
+					<td class="hidden-stack-mode bold col-cust-total @(Model.IsNegative(data.DownlineTotal.RoundTo2()) ? "format-negative" : string.Empty)">@data.DownlineTotal.FormatNumber()</td>
 					RenderNetWinLoss("super", data.WinLoss, data.Comm, data.Total, "altercol");
 				}
 				else if (isMasterLevel)
 				{
-					<td class="hidden-stack-mode bold col-cust-total @(Model.IsNegative(data.DownlineTotal) ? "format-negative" : string.Empty)">@data.DownlineTotal.FormatNumber()</td>
+					<td class="hidden-stack-mode bold col-cust-total @(Model.IsNegative(data.DownlineTotal.RoundTo2()) ? "format-negative" : string.Empty)">@data.DownlineTotal.FormatNumber()</td>
 					RenderNetWinLoss("master", data.WinLoss, data.Comm, data.Total, "altercol");
 				}
 				else
@@ -249,7 +249,7 @@
 					RenderNetWinLoss("agent", data.WinLoss, data.Comm, data.Total, "altercol");
 				}
 			}
-			<td class="text-right col-company @(Model.IsNegative(data.Company) ? "format-negative" : string.Empty)">@data.Company.FormatNumber()</td>
+			<td class="text-right col-company @(Model.IsNegative(data.Company.RoundTo2()) ? "format-negative" : string.Empty)">@data.Company.FormatNumber()</td>
 			<td class="text-right col-reward-amount">@data.RewardAmount.FormatNumber()</td>
 		</tr>
 	}
@@ -258,22 +258,22 @@
 	{
 		<td class="visible-stack-mode combinedcell col-@level-winloss-combined @highlightClass">
 			<ul>
-				<li class="@(Model.IsNegative(winloss) ? "format-negative" : string.Empty)">@winloss.FormatNumber()</li>
-				<li class="@(Model.IsNegative(comm) ? "format-negative" : string.Empty)">@comm.FormatNumber()</li>
-				<li class="@(Model.IsNegative(total) ? "format-negative" : string.Empty)">@total.FormatNumber()</li>
+				<li class="@(Model.IsNegative(winloss.RoundTo2()) ? "format-negative" : string.Empty)">@winloss.FormatNumber()</li>
+				<li class="@(Model.IsNegative(comm.RoundTo2()) ? "format-negative" : string.Empty)">@comm.FormatNumber()</li>
+				<li class="@(Model.IsNegative(total.RoundTo2()) ? "format-negative" : string.Empty)">@total.FormatNumber()</li>
 			</ul>
 		</td>
 	}
 
 	void RenderNetWinLoss(string level, decimal winloss, decimal comm, decimal total, string highlightClass = "")
 	{
-		<td class="hidden-stack-mode col-@level-winloss @highlightClass @(Model.IsNegative(winloss) ? "format-negative" : string.Empty)">
+		<td class="hidden-stack-mode col-@level-winloss @highlightClass @(Model.IsNegative(winloss.RoundTo2()) ? "format-negative" : string.Empty)">
 			@winloss.FormatNumber()
 		</td>
-		<td class="hidden-stack-mode @highlightClass @(Model.IsNegative(comm) ? "format-negative" : string.Empty)">
+		<td class="hidden-stack-mode @highlightClass @(Model.IsNegative(comm.RoundTo2()) ? "format-negative" : string.Empty)">
 			@comm.FormatNumber()
 		</td>
-		<td class="hidden-stack-mode bold @highlightClass col-cust-total @(Model.IsNegative(total) ? "format-negative" : string.Empty)">
+		<td class="hidden-stack-mode bold @highlightClass col-cust-total @(Model.IsNegative(total.RoundTo2()) ? "format-negative" : string.Empty)">
 			@total.FormatNumber()
 		</td>
 	}
