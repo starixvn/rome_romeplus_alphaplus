@@ -111,7 +111,6 @@ public class PotentialWinLimitParamTests
             problemAccount: 0,
             pageSize: 10,
             pageIndex: 0,
-            agIP: "192.168.1.1",
             betType: 5,
             sportType: 6,
             accountType: 7,
