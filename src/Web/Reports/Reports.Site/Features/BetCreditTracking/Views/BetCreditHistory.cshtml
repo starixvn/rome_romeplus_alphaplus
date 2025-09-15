@@ -20,7 +20,7 @@
             <td class="@(Model.IsNegative(item.BalanceChanged) ? "format-negative" : string.Empty)">@FormatNullableNumber(item.BalanceChanged)</td>
             <td class="@(Model.IsNegative(item.NewBalance) ? "format-negative" : string.Empty)">@FormatNullableNumber(item.NewBalance)</td>
             <td class="@(Model.IsNegative(item.GivenCredit) ? "format-negative" : string.Empty)">@item.GivenCredit.FormatNumber()</td>
-            <td class="@(item.BetCredit < 0M ? "red-cell" : string.Empty)">
+            <td class="@(item.BetCredit < 0M ? "red-cell" : string.Empty) @(Model.IsNegative(item.BetCredit) ? "format-negative" : string.Empty)">
                 @FormatNullableNumber(item.BetCredit)
             </td>
             <td class="text-left">@item.Action</td>
