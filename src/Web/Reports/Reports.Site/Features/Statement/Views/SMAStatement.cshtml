@@ -4,7 +4,7 @@
 
     void RenderNegativeNumberCell(decimal? cellValue)
     {
-        <span class="@(cellValue.HasValue && cellValue.Value < 0 ? "format-negative" : string.Empty)">
+        <span class="@(Model.IsNegative(cellValue) ? "format-negative" : string.Empty)">
             @(cellValue.HasValue ? cellValue.Value.FormatNumber() : Resources.Symbol_NoDataNumber)
         </span>
     }
@@ -85,7 +85,7 @@
                             }</td>
                         <td>
                             <span
-                                class="@(data.TransferAmount.HasValue ? "column-transfer-amount" : string.Empty) @(data.TransferAmount.HasValue && data.TransferAmount.Value < 0 ? "format-negative" : string.Empty)"
+                                class="@(data.TransferAmount.HasValue ? "column-transfer-amount" : string.Empty) @(Model.IsNegative(data.TransferAmount) ? "format-negative" : string.Empty)"
                                 data-transfer-date="@winLossDateString">@(data.TransferAmount.HasValue ?
                         data.TransferAmount.Value.FormatNumber() : Resources.Symbol_NoDataNumber)
                             </span>

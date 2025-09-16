@@ -19,7 +19,7 @@
             <td></td>
             <td class="@(Model.IsNegative(item.MemberRow.MemberWinLoss) ? "format-negative" : string.Empty)">@item.MemberRow.MemberWinLoss.FormatNumber()</td>
             <td class="@(Model.IsNegative(item.MemberRow.MemberComm) ? "format-negative" : string.Empty)">@item.MemberRow.MemberComm.FormatNumber()</td>
-            <td class="@(Model.IsNegative(item.MemberRow.MemberTotal) ? "format-negative" : string.Empty)">@item.MemberRow.MemberTotal.FormatNumber()</td>
+            <td class="@(Model.IsNegative(item.MemberRow.MemberTotal)) ? "format-negative" : string.Empty)">@item.MemberRow.MemberTotal.FormatNumber()</td>
         </tr>
         foreach (var row in item.RefNoRow)
         {

@@ -58,5 +58,13 @@ public class BetCreditHistoryViewModel(BetCreditHistoryQuery message, BetCreditH
             ? MicroSites.FeatureUrl("~/StaticMessage/Guide?id=167296")
             : MicroSites.FeatureUrl("~/Index.aspx?linktomessagesite=167296");
     }
-    public bool IsNegative(decimal? cellValue) => cellValue.HasValue && cellValue.Value < 0;
+    public bool IsNegative(decimal? cellValue) 
+    {
+        if (!cellValue.HasValue) 
+        {
+            return false;
+        }
+        var rounded = Math.Round(cellValue.Value, 2, MidpointRounding.AwayFromZero);
+        return rounded < 0;
+    }
 }

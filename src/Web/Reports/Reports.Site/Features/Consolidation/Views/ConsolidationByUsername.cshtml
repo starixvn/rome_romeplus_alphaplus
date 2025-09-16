@@ -4,51 +4,51 @@
 
 	void RenderConsolidateRow(ConsolidationEntity consolidation, bool isRenderedDetail = false)
 	{
-		<td class="@(Model.IsNegative(consolidation.Turnover.RoundTo2()) ? "format-negative" : string.Empty)">@consolidation.Turnover.FormatNumber()</td>
-		<td class="@(Model.IsNegative(consolidation.GrossComm.RoundTo2()) ? "format-negative" : string.Empty)">@consolidation.GrossComm.FormatNumber()</td>
+		<td class="@(Model.IsNegative(consolidation.Turnover) ? "format-negative" : string.Empty)">@consolidation.Turnover.FormatNumber()</td>
+		<td class="@(Model.IsNegative(consolidation.GrossComm) ? "format-negative" : string.Empty)">@consolidation.GrossComm.FormatNumber()</td>
 		if (Model.PageHeader.IsStackMode)
 		{
 			<td class="visible-stack-mode combinedcell col-member-winloss-combined">
 				<ul>
-					<li class="@(Model.IsNegative(consolidation.MemberWinLoss.RoundTo2()) ? "format-negative" : string.Empty)">@consolidation.MemberWinLoss.FormatNumber()</li>
-					<li class="@(Model.IsNegative(consolidation.MemberComm.RoundTo2()) ? "format-negative" : string.Empty)">@consolidation.MemberComm.FormatNumber()</li>
-					<li class="@(Model.IsNegative(consolidation.MemberTotal.RoundTo2()) ? "format-negative" : string.Empty)">@consolidation.MemberTotal.FormatNumber()</li>
+					<li class="@(Model.IsNegative(consolidation.MemberWinLoss) ? "format-negative" : string.Empty)">@consolidation.MemberWinLoss.FormatNumber()</li>
+					<li class="@(Model.IsNegative(consolidation.MemberComm) ? "format-negative" : string.Empty)">@consolidation.MemberComm.FormatNumber()</li>
+					<li class="@(Model.IsNegative(consolidation.MemberTotal) ? "format-negative" : string.Empty)">@consolidation.MemberTotal.FormatNumber()</li>
 				</ul>
 			</td>
 			<td class="visible-stack-mode combinedcell col-owner-turnover-combined">
 				<ul>
-					<li class="@(Model.IsNegative(consolidation.OwnerTurnover.RoundTo2()) ? "format-negative" : string.Empty)">@consolidation.OwnerTurnover.FormatNumber()</li>
-					<li class="@(Model.IsNegative(consolidation.OwnerWinLoss.RoundTo2()) ? "format-negative" : string.Empty)">@consolidation.OwnerWinLoss.FormatNumber()</li>
-					<li class="@(Model.IsNegative(consolidation.OwnerComm.RoundTo2()) ? "format-negative" : string.Empty)">@consolidation.OwnerComm.FormatNumber()</li>
-					<li class="@(Model.IsNegative(consolidation.OwnerTotal.RoundTo2()) ? "format-negative" : string.Empty)">@consolidation.OwnerTotal.FormatNumber()</li>
+					<li class="@(Model.IsNegative(consolidation.OwnerTurnover) ? "format-negative" : string.Empty)">@consolidation.OwnerTurnover.FormatNumber()</li>
+					<li class="@(Model.IsNegative(consolidation.OwnerWinLoss) ? "format-negative" : string.Empty)">@consolidation.OwnerWinLoss.FormatNumber()</li>
+					<li class="@(Model.IsNegative(consolidation.OwnerComm) ? "format-negative" : string.Empty)">@consolidation.OwnerComm.FormatNumber()</li>
+					<li class="@(Model.IsNegative(consolidation.OwnerTotal) ? "format-negative" : string.Empty)">@consolidation.OwnerTotal.FormatNumber()</li>
 				</ul>
 			</td>
 		}
 		else
 		{
-			<td class="hidden-stack-mode col-member-winloss @(Model.IsNegative(consolidation.MemberWinLoss.RoundTo2()) ? "format-negative" : string.Empty)">
+			<td class="hidden-stack-mode col-member-winloss @(Model.IsNegative(consolidation.MemberWinLoss) ? "format-negative" : string.Empty)">
 				@consolidation.MemberWinLoss.FormatNumber()
 			</td>
-			<td class="hidden-stack-mode @(Model.IsNegative(consolidation.MemberComm.RoundTo2()) ? "format-negative" : string.Empty)">
+			<td class="hidden-stack-mode @(Model.IsNegative(consolidation.MemberComm) ? "format-negative" : string.Empty)">
 				@consolidation.MemberComm.FormatNumber()
 			</td>
-			<td class="hidden-stack-mode bold @(Model.IsNegative(consolidation.MemberTotal.RoundTo2()) ? "format-negative" : string.Empty)">
+			<td class="hidden-stack-mode bold @(Model.IsNegative(consolidation.MemberTotal) ? "format-negative" : string.Empty)">
 				@consolidation.MemberTotal.FormatNumber()
 			</td>
-			<td class="hidden-stack-mode col-owner-turnover @(Model.IsNegative(consolidation.OwnerTurnover.RoundTo2()) ? "format-negative" : string.Empty)">
+			<td class="hidden-stack-mode col-owner-turnover @(Model.IsNegative(consolidation.OwnerTurnover) ? "format-negative" : string.Empty)">
 				@consolidation.OwnerTurnover.FormatNumber()
 			</td>
-			<td class="hidden-stack-mode @(Model.IsNegative(consolidation.OwnerWinLoss.RoundTo2()) ? "format-negative" : string.Empty)">
+			<td class="hidden-stack-mode @(Model.IsNegative(consolidation.OwnerWinLoss) ? "format-negative" : string.Empty)">
 				@consolidation.OwnerWinLoss.FormatNumber()
 			</td>
-			<td class="hidden-stack-mode @(Model.IsNegative(consolidation.OwnerComm.RoundTo2()) ? "format-negative" : string.Empty)">
+			<td class="hidden-stack-mode @(Model.IsNegative(consolidation.OwnerComm) ? "format-negative" : string.Empty)">
 				@consolidation.OwnerComm.FormatNumber()
 			</td>
-			<td class="hidden-stack-mode bold @(Model.IsNegative(consolidation.OwnerTotal.RoundTo2()) ? "format-negative" : string.Empty)">
+			<td class="hidden-stack-mode bold @(Model.IsNegative(consolidation.OwnerTotal) ? "format-negative" : string.Empty)">
 				@consolidation.OwnerTotal.FormatNumber()
 			</td>
 		}
-		<td class="@(Model.IsNegative(consolidation.Company.RoundTo2()) ? "format-negative" : string.Empty)">@consolidation.Company.FormatNumber()</td>
+		<td class="@(Model.IsNegative(consolidation.Company) ? "format-negative" : string.Empty)">@consolidation.Company.FormatNumber()</td>
 		<td>@consolidation.BetCount.FormatNumber()</td>
 		@if (isRenderedDetail)
 		{
