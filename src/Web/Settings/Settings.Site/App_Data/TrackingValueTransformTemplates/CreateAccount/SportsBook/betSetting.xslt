@@ -25,7 +25,14 @@
                 <xsl:value-of select="xslLogFormat:GetLogResource('MaxPerMatch')" />
               </td>
               <td>
-                <xsl:value-of select="xslLogFormat:GetLogResource('MaxPayoutPerMatch')" />
+                <xsl:choose>
+                  <xsl:when test="r/@maxpayout">
+                    <xsl:value-of select="xslLogFormat:GetLogResource('MaxPayoutPerMatch')" />
+                  </xsl:when>
+                  <xsl:otherwise>
+                    <xsl:value-of select="xslLogFormat:GetLogResource('MaxWinPerMatch')" />
+                  </xsl:otherwise>
+                </xsl:choose>
               </td>
             </tr>
             <xsl:for-each select="r">
@@ -43,7 +50,14 @@
                   <xsl:value-of select="@mpm" />
                 </td>
                 <td class="colW2">
-                  <xsl:value-of select="@maxpayout" />
+                  <xsl:choose>
+                    <xsl:when test="@maxpayout">
+                      <xsl:value-of select="@maxpayout" />
+                    </xsl:when>
+                    <xsl:otherwise>
+                      <xsl:value-of select="@maxwin" />
+                    </xsl:otherwise>
+                  </xsl:choose>
                 </td>
               </tr>
             </xsl:for-each>
