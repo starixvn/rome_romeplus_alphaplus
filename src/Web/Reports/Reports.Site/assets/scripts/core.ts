@@ -26,7 +26,9 @@ interface Window {
 // Helper function to check if a value is negative
 function IsNegative(value: string | number): boolean {
     const numValue = typeof value === 'string' ? parseFloat(value) : value;
-    return !isNaN(numValue) && numValue < 0;
+    if (isNaN(numValue)) { return false;}
+    const rounded = Number(numValue.toFixed(2));
+    return rounded < 0;
 }
 
 declare var TipsyHelper;
