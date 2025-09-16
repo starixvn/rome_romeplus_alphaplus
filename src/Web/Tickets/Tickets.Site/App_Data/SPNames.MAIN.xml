@@ -1101,35 +1101,35 @@
         <Setting Key="Age_Chatbot_StatusCheck" SpName="Age_Chatbot_StatusCheck" DbName="DBBOT.bodb_Chatbot.wsv_alp" />
     </Function>
     <Function Name="Smart Punter">
-        <Setting Key="Age_CustomerSelCheckSmartPunterSMA" SpName="Age_CustomerSelCheckSmartPunterSMA" DbName="DBCust.CustDB.wsv_alp" />
-        <Setting Key="Age_CustomerSelCheckListSmartPunter" SpName="Age_CustomerSelCheckListSmartPunter" DbName="DBCust.CustDB.wsv_alp" />
+        <Setting Key="Age_CustomerSelCheckSmartPunterSMA" SpName="Age_CustomerSelCheckSmartPunterSMA" DbName="DBCUST.CustDB.wsv_alp" />
+        <Setting Key="Age_CustomerSelCheckListSmartPunter" SpName="Age_CustomerSelCheckListSmartPunter" DbName="DBCUST.CustDB.wsv_alp" />
     </Function>
     <Function Name="Progressive Jackpot">
         <Setting Key="Acc_GameLaunchSel" SpName="Acc_GameLaunchSel" DbName="DBGLOB.GlobCustDB.wsv_alp" />
     </Function>
     <Function Name="Partial UM">
-        <Setting Key="Acc_CheckUM_ByReport" SpName="Acc_CheckUM_ByReport" DbName="DBCust.CustDB.wsv_alp" />
+        <Setting Key="Acc_CheckUM_ByReport" SpName="Acc_CheckUM_ByReport" DbName="DBCUST.CustDB.wsv_alp" />
     </Function>
     <Function Name="Auto Follow Bet">
-        <Setting Key="Age_Customer_FollowBetAccountListSelByAgent" SpName="Age_Customer_FollowBetAccountListSelByAgent" DbName="DBCust.CustDB.wsv_alp" />
+        <Setting Key="Age_Customer_FollowBetAccountListSelByAgent" SpName="Age_Customer_FollowBetAccountListSelByAgent" DbName="DBCUST.CustDB.wsv_alp" />
     </Function>
     <Function Name="Last Bets Monitoring">
-        <Setting Key="Age_CustLastBetFilter_Sel" SpName="Age_CustLastBetFilter_Sel" DbName="DBCust.CustDB.wsv_alp" />
-        <Setting Key="Age_CustLastBetFilter_Ins" SpName="Age_CustLastBetFilter_Ins" DbName="DBCust.CustDB.wsv_alp" />
-        <Setting Key="Age_CustLastBetFilter_Upd" SpName="Age_CustLastBetFilter_Upd" DbName="DBCust.CustDB.wsv_alp" />
-        <Setting Key="Age_CustLastBetFilter_Del" SpName="Age_CustLastBetFilter_Del" DbName="DBCust.CustDB.wsv_alp" />
-        <Setting Key="Acc_WLMonitored_Player_WatchList_Sel" SpName="Acc_WLMonitored_Player_WatchList_Sel" DbName="DBCust.CustDB.wsv_alp" />
-        <Setting Key="Age_CustLastBetFilter_Check" SpName="Age_CustLastBetFilter_Check" DbName="DBCust.CustDB.wsv_alp" />
-        <Setting Key="Acc_CustomerUpdUserSearch" SpName="Acc_CustomerUpdUserSearch" DbName="DBCust.CustDB.wsv_alp" />
+        <Setting Key="Age_CustLastBetFilter_Sel" SpName="Age_CustLastBetFilter_Sel" DbName="DBCUST.CustDB.wsv_alp" />
+        <Setting Key="Age_CustLastBetFilter_Ins" SpName="Age_CustLastBetFilter_Ins" DbName="DBCUST.CustDB.wsv_alp" />
+        <Setting Key="Age_CustLastBetFilter_Upd" SpName="Age_CustLastBetFilter_Upd" DbName="DBCUST.CustDB.wsv_alp" />
+        <Setting Key="Age_CustLastBetFilter_Del" SpName="Age_CustLastBetFilter_Del" DbName="DBCUST.CustDB.wsv_alp" />
+        <Setting Key="Acc_WLMonitored_Player_WatchList_Sel" SpName="Acc_WLMonitored_Player_WatchList_Sel" DbName="DBCUST.CustDB.wsv_alp" />
+        <Setting Key="Age_CustLastBetFilter_Check" SpName="Age_CustLastBetFilter_Check" DbName="DBCUST.CustDB.wsv_alp" />
+        <Setting Key="Acc_CustomerUpdUserSearch" SpName="Acc_CustomerUpdUserSearch" DbName="DBCUST.CustDB.wsv_alp" />
     </Function>
     <Function Name="IP">
-        <Setting Key="GetIPVN" SpName="GetIPVN" DbName="DBCust.IPDB.wsv_alp">
+        <Setting Key="GetIPVN" SpName="GetIPVN" DbName="DBCUST.IPDB.wsv_alp">
             <Mapping DataField="ipfrom" ObjectProperty="From" />
             <Mapping DataField="ipto" ObjectProperty="To" />
         </Setting>
-        <Setting Key="Age_IPRangesByCountrySel" SpName="Age_IPRangesByCountrySel" DbName="DBCust.IPDB.wsv_alp" />
-        <Setting Key="Age_IPRangesByCountrySelByIPList" SpName="Age_IPRangesByCountrySelByIPList" DbName="DBCust.IPDB.wsv_alp" />
-        <Setting Key="Age_IPRangesByCountrySelByIPV6List" SpName="Age_IPRangesByCountrySelByIPV6List" DbName="DBCust.IPDB.wsv_alp" />
+        <Setting Key="Age_IPRangesByCountrySel" SpName="Age_IPRangesByCountrySel" DbName="DBCUST.IPDB.wsv_alp" />
+        <Setting Key="Age_IPRangesByCountrySelByIPList" SpName="Age_IPRangesByCountrySelByIPList" DbName="DBCUST.IPDB.wsv_alp" />
+        <Setting Key="Age_IPRangesByCountrySelByIPV6List" SpName="Age_IPRangesByCountrySelByIPV6List" DbName="DBCUST.IPDB.wsv_alp" />
     </Function>
     <Function Name="Write/View Logs">
         <Setting Key="IS_UpdFunctionUsage" SpName="IS_UpdFunctionUsage" DbName="DBLOG.bodb_CustomerLog.wsv_alp" />
@@ -1142,7 +1142,7 @@
         <Setting Key="Acc_Con_FileNameSelByCustID" SpName="Acc_Con_FileNameSelByCustID" DbName="DBPOL.NAP_UserControl.wsv_alp">
             <Mapping DataField="actual_policy" ObjectProperty="ActualPolicy" />
         </Setting>
-        <Setting Key="Acc_CustomerIsInternalAdmin" SpName="Acc_CustomerIsInternalAdmin" DbName="DBCust.CustDB.wsv_alp" />
+        <Setting Key="Acc_CustomerIsInternalAdmin" SpName="Acc_CustomerIsInternalAdmin" DbName="DBCUST.CustDB.wsv_alp" />
     </Function>
     <Function Name="Check Belonging">
         <Setting Key="Age_ReCheckin" SpName="Age_ReCheckin" DbName="DBONUSER.ON_USER.wsv_alp" Plain="0" />

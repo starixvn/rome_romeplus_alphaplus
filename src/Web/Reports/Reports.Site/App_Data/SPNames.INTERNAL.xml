@@ -36,7 +36,7 @@
         <Setting Key="Age_Bonus_ConfirmPayment" SpName="Age_Bonus_ConfirmPayment" DbName="DBTXN.bodb02.wsv_alpv" />
     </Function>
     <Function Name="Super Win Loss Detail By PT">
-        <Setting Key="EAS_GetPTProductBySuper" SpName="EAS_GetPTProductBySuper" DbName="DBCust.CustDB.wsv_alpv">
+        <Setting Key="EAS_GetPTProductBySuper" SpName="EAS_GetPTProductBySuper" DbName="DBCUST.CustDB.wsv_alpv">
             <Mapping DataField="SuperPT" ObjectProperty="ValuePT" />
         </Setting>
         <Setting Key="Age_Rpt_WinLossDetailByPT_Super" SpName="Age_Rpt_WinLossDetailByPT_Super" DbName="DBAGE.bodb02.wsv_alpv">
@@ -49,7 +49,7 @@
         </Setting>
     </Function>
     <Function Name="Consolidation Report by Username">
-        <Setting Key="EAS_GetPTProductBySMA" SpName="EAS_GetPTProductBySMA" DbName="DBCust.CustDB.wsv_alpv" />
+        <Setting Key="EAS_GetPTProductBySMA" SpName="EAS_GetPTProductBySMA" DbName="DBCUST.CustDB.wsv_alpv" />
     </Function>
     <Function Name="Write/View Logs">
         <Setting Key="IS_UpdFunctionUsage" SpName="IS_UpdFunctionUsage" DbName="DBLOG.bodb_CustomerLog.wsv_alpv" />
@@ -70,19 +70,19 @@
         </Setting>
     </Function>
     <Function Name="IP">
-        <Setting Key="GetIPVN" SpName="GetIPVN" DbName="DBCust.IPDB.wsv_alp">
+        <Setting Key="GetIPVN" SpName="GetIPVN" DbName="DBCUST.IPDB.wsv_alp">
             <Mapping DataField="ipfrom" ObjectProperty="From" />
             <Mapping DataField="ipto" ObjectProperty="To" />
         </Setting>
     </Function>
     <Function Name="Account Info">
-        <Setting Key="Acc_CustomerUpdUserSearch" SpName="Acc_CustomerUpdUserSearch" DbName="DBCust.CustDB.wsv_alpv" />
+        <Setting Key="Acc_CustomerUpdUserSearch" SpName="Acc_CustomerUpdUserSearch" DbName="DBCUST.CustDB.wsv_alpv" />
     </Function>
     <Function Name="Partial UM">
-        <Setting Key="Acc_CheckUM_ByReport" SpName="Acc_CheckUM_ByReport" DbName="DBCust.CustDB.wsv_alpv" />
+        <Setting Key="Acc_CheckUM_ByReport" SpName="Acc_CheckUM_ByReport" DbName="DBCUST.CustDB.wsv_alpv" />
     </Function>
     <Function Name="Auto Follow Bet">
-        <Setting Key="Age_Customer_FollowBetAccountListSelByAgent" SpName="Age_Customer_FollowBetAccountListSelByAgent" DbName="DBCust.CustDB.wsv_alpv" />
+        <Setting Key="Age_Customer_FollowBetAccountListSelByAgent" SpName="Age_Customer_FollowBetAccountListSelByAgent" DbName="DBCUST.CustDB.wsv_alpv" />
     </Function>
     <Function Name="Outstanding">
         <Setting Key="Age_Rpt_Outstanding_Master" SpName="Age_Rpt_Outstanding_Master" DbName="DBBOF.bodb02.wsv_alpv" />
