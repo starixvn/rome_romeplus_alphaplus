@@ -41,11 +41,13 @@ export function getOtherGamesValue(otherGamesItem: OtherGamesBetSettingItem): Ot
 }
 
 export function getGreaterErrorMessage(prop: string, value: number | string) {
-  return `${prop}-mustBeGreaterThanOrEqualTo${typeof value === 'string' ? `-${value}` : `#${value}`}`;
+  const valueStr = typeof value === 'string' ? `-${value}` : `#${value}`;
+  return `${prop}-mustBeGreaterThanOrEqualTo${valueStr}`;
 } 
 
 export function getLessErrorMessage(prop: string, value: number | string) {
-  return `${prop}-mustBeLessThanOrEqualTo${typeof value === 'string' ? `-${value}` : `#${value}`}`;
+  const valueStr = typeof value === 'string' ? `-${value}` : `#${value}`;
+  return `${prop}-mustBeLessThanOrEqualTo${valueStr}`;
 }
 
 export function isViolateBetSettingConfig(current: BetSettingProp, config: BetSettingConfigProp) {
