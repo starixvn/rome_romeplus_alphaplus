@@ -5,8 +5,8 @@
 
     void RenderNegativeNumberCell(decimal? cellValue)
     {
-        <span class="@(cellValue.HasValue && cellValue.Value < 0 ? "format-negative" : string.Empty)">
-            @(cellValue.HasValue ? cellValue.Value.FormatNumber() : Resources.Symbol_NoDataNumber)
+        <span class="@(Model.IsNegative(cellValue) ? "format-negative" : string.Empty)">
+            @(cellValue.HasValue ? cellValue.Value.FormatNumber() : Resources.Symbol_NoDataNumber)  
         </span>
     }
 }

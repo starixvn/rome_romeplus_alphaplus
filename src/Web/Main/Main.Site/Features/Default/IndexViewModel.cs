@@ -7,8 +7,6 @@ using AlphaPlus.Core.Helpers;
 using AlphaPlus.Main.Site.Features.Default.MenuBar;
 using AlphaPlus.Main.Site.Features.CustomerProfile;
 using AlphaPlus.Main.Site.Features.Dashboard.CashService;
-using AlphaPlus.Core.Configurations;
-using Microsoft.Extensions.Options;
 namespace AlphaPlus.Main.Site.Features.Default;
 
 public class IndexViewModel
@@ -17,7 +15,6 @@ public class IndexViewModel
     private readonly Func<string> getDefaultUrl;
     private readonly IBrowserHelper browserHelper;
     private readonly ActorProfilePictureModel profilePicture;
-    private readonly IOptions<SessionCookieComparisonOptions> sessionCookieComparisonOptions;
 
     public IndexViewModel(
         IndexQuery message,
@@ -25,8 +22,7 @@ public class IndexViewModel
         Func<string> getDefaultUrl,
         IBrowserHelper browserHelper,
         ActorProfilePictureModel profilePicture,
-        bool isShowRewardTour,
-        IOptions<SessionCookieComparisonOptions> sessionCookieComparisonOptions)
+        bool isShowRewardTour)
     {
         this.message = message;
         PasswordHash = passwordHash;
@@ -38,7 +34,6 @@ public class IndexViewModel
         IsProtectedMode = message.IsProtectedMode;
         AssetAppPath = message.AssetAppPath;
         IsShowRewardTour = isShowRewardTour;
-        this.sessionCookieComparisonOptions = sessionCookieComparisonOptions;
     }
 
     public bool EnableSecurityCode => message.EnableSecurityCode;
@@ -214,8 +209,4 @@ public class IndexViewModel
     }
 
     public CashServiceInfoViewModel CashServiceInfoViewModel { get; set; }
-
-    public bool IsEnabledSessionCookieComparison => sessionCookieComparisonOptions.Value.EnableSessionCookieComparison;
-
-    public string[] MonitoredPaths => sessionCookieComparisonOptions.Value.MonitoredPaths;
 }

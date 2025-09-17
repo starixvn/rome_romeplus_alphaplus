@@ -17,9 +17,9 @@
             </td>
             <td></td>
             <td></td>
-            <td>@item.MemberRow.MemberWinLoss.FormatNumber()</td>
-            <td>@item.MemberRow.MemberComm.FormatNumber()</td>
-            <td>@item.MemberRow.MemberTotal.FormatNumber()</td>
+            <td class="@(Model.IsNegative(item.MemberRow.MemberWinLoss) ? "format-negative" : string.Empty)">@item.MemberRow.MemberWinLoss.FormatNumber()</td>
+            <td class="@(Model.IsNegative(item.MemberRow.MemberComm) ? "format-negative" : string.Empty)">@item.MemberRow.MemberComm.FormatNumber()</td>
+            <td class="@(Model.IsNegative(item.MemberRow.MemberTotal)) ? "format-negative" : string.Empty)">@item.MemberRow.MemberTotal.FormatNumber()</td>
         </tr>
         foreach (var row in item.RefNoRow)
         {
@@ -38,9 +38,9 @@
                 </td>
                 <td>@row.OldEventDate.ToShortDateWithSlash()</td>
                 <td>@row.NewEventDate.ToShortDateWithSlash()</td>
-                <td>@row.MemberWinLoss.FormatNumber()</td>
-                <td>@row.MemberComm.FormatNumber()</td>
-                <td class="total">@row.MemberTotal.FormatNumber()</td>
+                <td class="@(Model.IsNegative(row.MemberWinLoss) ? "format-negative" : string.Empty)">@row.MemberWinLoss.FormatNumber()</td>
+                <td class="@(Model.IsNegative(row.MemberComm) ? "format-negative" : string.Empty)">@row.MemberComm.FormatNumber()</td>
+                <td class="total @(Model.IsNegative(row.MemberTotal) ? "format-negative" : string.Empty)">@row.MemberTotal.FormatNumber()</td>
             </tr>
         }
     }

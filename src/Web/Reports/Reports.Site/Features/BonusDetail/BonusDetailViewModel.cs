@@ -50,4 +50,6 @@ public class BonusDetailViewModel(BonusDetailQuery message, PagedReportData<Grou
 
     private static SelectListItem GetSelectListItem(string text, string value, bool selected)
         => new SelectListItem(text, value, selected);
+
+    public bool IsNegative(decimal? cellValue) => cellValue.HasValue && cellValue.Value < 0;
 }

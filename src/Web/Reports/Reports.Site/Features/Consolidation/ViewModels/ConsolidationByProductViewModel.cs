@@ -22,4 +22,14 @@ public class ConsolidationByProductViewModel(
 
     public string BuildBetListUrl(int custId, string custName, string productId)
         => BuildBaseBetListParams(custId, custName, productIds: productId);
+    
+    public bool IsNegative(decimal? cellValue) 
+    {
+        if (!cellValue.HasValue) 
+        {
+            return false;
+        }
+        var rounded = Math.Round(cellValue.Value, 2, MidpointRounding.AwayFromZero);
+        return rounded < 0;
+    }
 }

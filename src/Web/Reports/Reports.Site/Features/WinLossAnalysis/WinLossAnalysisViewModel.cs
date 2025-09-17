@@ -73,4 +73,6 @@ public class WinLossAnalysisViewModel(
             [nameof(DateRangePicker.FromDate)] = DateRangePicker.FromDate,
             [nameof(DateRangePicker.ToDate)] = DateRangePicker.ToDate
         };
+
+    public bool IsNegative(decimal? cellValue) => cellValue.HasValue && cellValue.Value < 0;
 }

@@ -37,7 +37,7 @@
     {
         foreach (var level in Model.DisplayOutstandingLevels)
         {
-            <td>@data.GetValueByLevel(level.Value).FormatNumber()</td>
+            <td class="@(Model.IsNegative(data.GetValueByLevel(level.Value).RoundTo2()) ? "format-negative" : string.Empty)">@data.GetValueByLevel(level.Value).FormatNumber()</td>
         }
     }
 
@@ -158,8 +158,8 @@
                             RenderOutstandingCells(outstanding);
                         }
 
-                        <td>@outstanding.ToWin.FormatNumber()</td>
-                        <td>@outstanding.GetSMARiskValueByLevel(Model.ViewerLevel).FormatNumber()</td>
+                        <td class="@(Model.IsNegative(outstanding.ToWin) ? "format-negative" : string.Empty)">@outstanding.ToWin.FormatNumber()</td>
+                        <td class="@(Model.IsNegative(outstanding.GetSMARiskValueByLevel(Model.ViewerLevel)) ? "format-negative" : string.Empty)">@outstanding.GetSMARiskValueByLevel(Model.ViewerLevel).FormatNumber()</td>
                         <td></td>
                     </tr>
                 }
@@ -171,14 +171,16 @@
                     }
                     @for (var i = 0; i < length; i++)
                     {
-                        <td>
+                        <td class="@(Model.IsNegative(Model.ReportData.Total.GetValueByLevel(Model.DisplayOutstandingLevels[i].Value).RoundTo2()) ? "format-negative" : string.Empty)">
                             @Model.ReportData.Total.GetValueByLevel(Model.DisplayOutstandingLevels[i].Value).FormatNumber()
                         </td>
                     }
                     <td>
                         @if(Model.TotalHasToWinValue)
                         {
-                           @Model.ReportData.Total.ToWin.FormatNumber()
+                            <span class="@(Model.IsNegative(Model.ReportData.Total.ToWin) ? "format-negative" : string.Empty)">
+                               @Model.ReportData.Total.ToWin.FormatNumber()
+                            </span>                           
                         }
                         else
                         {
@@ -188,7 +190,9 @@
                     <td>
                         @if (Model.TotalHasToWinValue)
                         {
-                            @Model.ReportData.Total.GetSMARiskValueByLevel(Model.ViewerLevel).FormatNumber()
+                            <span class="@(Model.IsNegative(Model.ReportData.Total.GetSMARiskValueByLevel(Model.ViewerLevel)) ? "format-negative" : string.Empty)">
+                                @Model.ReportData.Total.GetSMARiskValueByLevel(Model.ViewerLevel).FormatNumber()
+                            </span>
                         }
                         else
                         {

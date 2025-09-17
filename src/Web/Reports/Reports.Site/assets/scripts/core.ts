@@ -23,6 +23,14 @@ interface Window {
     bootboxAlert: (message: string) => void;
 }
 
+// Helper function to check if a value is negative
+function IsNegative(value: string | number): boolean {
+    const numValue = typeof value === 'string' ? parseFloat(value) : value;
+    if (isNaN(numValue)) { return false;}
+    const rounded = Number(numValue.toFixed(2));
+    return rounded < 0;
+}
+
 declare var TipsyHelper;
 declare var store: StoreJSStatic;
 
@@ -54,9 +62,14 @@ class AlphaReports {
             const oldCells = [];
 
             for (let i = 0, lastCellIndex = cellsLength - 1; i < cellsLength; i++) {
+                let formatNegative = '';
+                if (IsNegative($(oldValues[i]).html())) {
+                    formatNegative = ' format-negative';
+                }
                 oldCells.push(
-                    '<td class="hidden-stack-mode ',
-                    cellClass,
+                    '<td class="hidden-stack-mode ',  
+                    cellClass,                            
+                    formatNegative,
                     i === lastCellIndex ? ' ' + lastCellStyle : '',
                     '">',
                     $(oldValues[i]).html(),
@@ -89,7 +102,8 @@ class AlphaReports {
             let currentCell = $(firstCells[index]);
             let isLastCell = false;
             for (let i = 0; i < numberOfCombinedCells; i++) {
-                newCell.push('<li>', currentCell.html(), '</li>');
+                const negative = IsNegative(currentCell.html()) ? "format-negative" : "";
+                newCell.push('<li class="' + ( negative ) + '">', currentCell.html(), '</li>');
 
                 if (currentCell.next().length) {
                     currentCell = currentCell.next();

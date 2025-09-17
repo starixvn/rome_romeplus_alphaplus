@@ -109,4 +109,7 @@ public class WinLossViewModel : DrillDownableViewModel<WinLossModel>
 
         return queryParams;
     }
+
+    public bool IsNegative(decimal? cellValue) => cellValue.HasValue && cellValue.Value < 0;
+
 }

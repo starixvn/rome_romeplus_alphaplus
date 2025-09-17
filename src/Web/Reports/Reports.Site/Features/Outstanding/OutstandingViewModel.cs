@@ -65,4 +65,6 @@ public class OutstandingViewModel(
 
         return queryParams;
     }
+
+    public bool IsNegative(decimal? cellValue) => cellValue.HasValue && cellValue.Value < 0;
 }

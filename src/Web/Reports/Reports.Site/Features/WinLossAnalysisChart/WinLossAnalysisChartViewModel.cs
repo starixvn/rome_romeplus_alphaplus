@@ -50,4 +50,6 @@ public class WinLossAnalysisChartViewModel(
     }
 
     public bool IsDarkMode { get; } = !string.IsNullOrWhiteSpace(message.DarkModeName);
+
+    public bool IsNegative(decimal? cellValue) => cellValue.HasValue && cellValue.Value < 0;
 }

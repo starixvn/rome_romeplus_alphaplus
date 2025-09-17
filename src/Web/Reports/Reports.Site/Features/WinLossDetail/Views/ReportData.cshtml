@@ -22,29 +22,29 @@
                 RenderUsernameColumn(data, isTotalRow, isDormantAccounts);
             }
             <td data-colname="betcount">@data.NumberOfTickets.FormatNumber()</td>
-            <td data-colname="turnover">@data.Turnover.FormatNumber()</td>
-            <td data-colname="netturnover">@data.NetTurnover.FormatNumber()</td>
-            <td data-colname="grosscomm">@data.GrossComm.FormatNumber()</td>
-            <td data-colname="pwinloss">@data.MemberWinLoss.FormatNumber()</td>
-            <td data-colname="pcomm">@data.MemberComm.FormatNumber()</td>
-            <td data-colname="ptotal" class="bold">@data.MemberTotal.FormatNumber()</td>
-            <td data-colname="awinloss">@data.AgWinLoss.FormatNumber()</td>
-            <td data-colname="acomm">@data.AgComm.FormatNumber()</td>
-            <td data-colname="atotal" class="bold">@data.AgTotal.FormatNumber()</td>
+            <td data-colname="turnover" class="@(Model.IsNegative(data.Turnover.RoundTo2()) ? "format-negative" : string.Empty)">@data.Turnover.FormatNumber()</td>
+            <td data-colname="netturnover" class="@(Model.IsNegative(data.NetTurnover.RoundTo2()) ? "format-negative" : string.Empty)">@data.NetTurnover.FormatNumber()</td>
+            <td data-colname="grosscomm" class="@(Model.IsNegative(data.GrossComm.RoundTo2()) ? "format-negative" : string.Empty)">@data.GrossComm.FormatNumber()</td>
+            <td data-colname="pwinloss" class="@(Model.IsNegative(data.MemberWinLoss.RoundTo2()) ? "format-negative" : string.Empty)">@data.MemberWinLoss.FormatNumber()</td>
+            <td data-colname="pcomm" class="@(Model.IsNegative(data.MemberComm.RoundTo2()) ? "format-negative" : string.Empty)">@data.MemberComm.FormatNumber()</td>
+            <td data-colname="ptotal" class="bold @(Model.IsNegative(data.MemberTotal.RoundTo2()) ? "format-negative" : string.Empty)">@data.MemberTotal.FormatNumber()</td>
+            <td data-colname="awinloss" class="@(Model.IsNegative(data.AgWinLoss.RoundTo2()) ? "format-negative" : string.Empty)">@data.AgWinLoss.FormatNumber()</td>
+            <td data-colname="acomm" class="@(Model.IsNegative(data.AgComm.RoundTo2()) ? "format-negative" : string.Empty)">@data.AgComm.FormatNumber()</td>
+            <td data-colname="atotal" class="bold @(Model.IsNegative(data.AgTotal.RoundTo2()) ? "format-negative" : string.Empty)">@data.AgTotal.FormatNumber()</td>
             @if (isMasterOrSuperLevel)
             {
-                <td data-colname="mwinloss">@data.MAgWinLoss.FormatNumber()</td>
-                <td data-colname="mcomm">@data.MAgComm.FormatNumber()</td>
-                <td data-colname="mtotal" class="bold">@data.MAgTotal.FormatNumber()</td>
+                <td data-colname="mwinloss" class="@(Model.IsNegative(data.MAgWinLoss.RoundTo2()) ? "format-negative" : string.Empty)">@data.MAgWinLoss.FormatNumber()</td>
+                <td data-colname="mcomm" class="@(Model.IsNegative(data.MAgComm.RoundTo2()) ? "format-negative" : string.Empty)">@data.MAgComm.FormatNumber()</td>
+                <td data-colname="mtotal" class="bold @(Model.IsNegative(data.MAgTotal.RoundTo2()) ? "format-negative" : string.Empty)">@data.MAgTotal.FormatNumber()</td>
             }
             @if (isSuperLevel)
             {
-                <td data-colname="swinloss">@data.SAgWinLoss.FormatNumber()</td>
-                <td data-colname="scomm">@data.SAgComm.FormatNumber()</td>
-                <td data-colname="stotal" class="bold">@data.SAgTotal.FormatNumber()</td>
+                <td data-colname="swinloss" class="@(Model.IsNegative(data.SAgWinLoss.RoundTo2()) ? "format-negative" : string.Empty)">@data.SAgWinLoss.FormatNumber()</td>
+                <td data-colname="scomm" class="@(Model.IsNegative(data.SAgComm.RoundTo2()) ? "format-negative" : string.Empty)">@data.SAgComm.FormatNumber()</td>
+                <td data-colname="stotal" class="bold @(Model.IsNegative(data.SAgTotal.RoundTo2()) ? "format-negative" : string.Empty)">@data.SAgTotal.FormatNumber()</td>
             }
-            <td data-colname="company">@data.Company.FormatNumber()</td>
-            <td data-colname="reward">@data.RewardAmount.FormatNumber()</td>
+            <td data-colname="company" class="@(Model.IsNegative(data.Company.RoundTo2()) ? "format-negative" : string.Empty)">@data.Company.FormatNumber()</td>
+            <td data-colname="reward" class="@(Model.IsNegative(data.RewardAmount.RoundTo2()) ? "format-negative" : string.Empty)">@data.RewardAmount.FormatNumber()</td>
         </tr>
     }
 
@@ -59,17 +59,17 @@
                 <div class="fullname" data-toggle="tooltip" data-placement="bottom" title="@data.FullName">@data.FullName</div>
             </td>
             <td data-colname="betcount">@data.NumberOfTickets.FormatNumber()</td>
-            <td data-colname="turnover">@data.Turnover.FormatNumber()</td>
-            <td data-colname="netturnover">@data.NetTurnover.FormatNumber()</td>
-            <td data-colname="grosscomm">@data.GrossComm.FormatNumber()</td>
-            <td data-colname="pwinloss">@data.MemberWinLoss.FormatNumber()</td>
-            <td data-colname="pcomm">@data.MemberComm.FormatNumber()</td>
-            <td data-colname="ptotal" class="bold">@data.MemberTotal.FormatNumber()</td>
-            <td data-colname="awinloss">@data.AgWinLoss.FormatNumber()</td>
-            <td data-colname="acomm">@data.AgComm.FormatNumber()</td>
-            <td data-colname="atotal" class="bold">@data.AgTotal.FormatNumber()</td>
-            <td data-colname="company">@data.Company.FormatNumber()</td>
-            <td data-colname="reward">@data.RewardAmount.FormatNumber()</td>
+            <td class="@(Model.IsNegative(data.Turnover.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="turnover">@data.Turnover.FormatNumber()</td>
+            <td class="@(Model.IsNegative(data.NetTurnover.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="netturnover">@data.NetTurnover.FormatNumber()</td>
+            <td class="@(Model.IsNegative(data.GrossComm.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="grosscomm">@data.GrossComm.FormatNumber()</td>
+            <td class="@(Model.IsNegative(data.MemberWinLoss.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="pwinloss">@data.MemberWinLoss.FormatNumber()</td>
+            <td class="@(Model.IsNegative(data.MemberComm.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="pcomm">@data.MemberComm.FormatNumber()</td>
+            <td class="@(Model.IsNegative(data.MemberTotal.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="ptotal" class="bold">@data.MemberTotal.FormatNumber()</td>
+            <td class="@(Model.IsNegative(data.AgWinLoss.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="awinloss">@data.AgWinLoss.FormatNumber()</td>
+            <td class="@(Model.IsNegative(data.AgComm.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="acomm">@data.AgComm.FormatNumber()</td>
+            <td data-colname="atotal" class="bold @(Model.IsNegative(data.AgTotal.RoundTo2()) ? "format-negative" : string.Empty)">@data.AgTotal.FormatNumber()</td>
+            <td data-colname="company" class="@(Model.IsNegative(data.Company.RoundTo2()) ? "format-negative" : string.Empty)">@data.Company.FormatNumber()</td>
+            <td data-colname="reward" class="@(Model.IsNegative(data.RewardAmount.RoundTo2()) ? "format-negative" : string.Empty)">@data.RewardAmount.FormatNumber()</td>
         </tr>
     }
     void RenderUsernameColumn(WinLossDetailModel data, bool isTotalRow, bool isDormantAccounts)
