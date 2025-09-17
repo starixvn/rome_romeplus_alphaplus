@@ -160,7 +160,7 @@ public class ConsolidationByUsernameWorkbook(IWebHostEnvironment webHostEnvironm
 
             foreach (var dataByPT in dataByUsername.ConsolidationByPTs)
             {
-                if (dataByPT.Total.BetCount == 0)
+                if (IsExcludeFromExcel(dataByPT.Total))
                 {
                     continue;
                 }
@@ -170,7 +170,7 @@ public class ConsolidationByUsernameWorkbook(IWebHostEnvironment webHostEnvironm
 
                 foreach (var data in dataByPT.WinLoss)
                 {
-                    if (data.BetCount == 0)
+                    if (IsExcludeFromExcel(data))
                     {
                         continue;
                     }

@@ -1,3 +1,5 @@
+using AlphaPlus.Core.Models;
+using AlphaPlus.Reports.Features.Consolidation;
 using ONEbook.SpreadSheets.BetListNPOI;
 
 namespace AlphaPlus.Reports.Site.Features.Shared;
@@ -35,5 +37,15 @@ public class ReportNpoiWorkbook<T>(IWebHostEnvironment webHostEnvironment) : Npo
         }
 
         return reportNamespace.Substring(lastIndexOfDot);
+    }
+
+    protected bool IsExcludeFromExcel(ConsolidationEntity entity)
+    {
+        return entity.BetCount == 0 && entity.BreakDown != ProductIdConstants.CashServiceBilling.ToString();
+    }
+
+    protected bool IsCashServiceBilling(string breakDown)
+    {
+        return breakDown == ProductIdConstants.CashServiceBilling.ToString();
     }
 }
