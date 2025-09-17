@@ -3736,6 +3736,6 @@
     <value>อนุญาตการฝากเงินสมาชิก</value>
   </data>
   <data name="MaxWinPerMatch" xml:space="preserve">
-      <value>Max Win Per Match</value>
+      <value>การชนะสูงสุดต่อการแข่งขัน </value>
   </data>
 </root>
