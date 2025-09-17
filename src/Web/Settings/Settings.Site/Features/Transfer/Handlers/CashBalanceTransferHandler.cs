@@ -40,7 +40,6 @@ public class CashBalanceTransferHandler(
             message.SubAccId,
             message.IP,
             message.LanguageKey,
-            message.AGIP,
             message.IsDirectMember,
             message.SiteDbGroupId);
 

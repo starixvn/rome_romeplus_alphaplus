@@ -1,7 +1,7 @@
+namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferYesterdayBalance;
+
 using AlphaPlus.Core.Models;
 using MediatR;
-
-namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferYesterdayBalance;
 
 public class MemberCommand : TransferBaseQuery, IRequest<Result>
 {

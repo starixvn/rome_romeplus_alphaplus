@@ -25,7 +25,6 @@ public class TransferAllAndClearCreditHandler(
                 message.Username,
                 message.LanguageKey,
                 isAllDayBalanceTransfer,
-                message.AGIP,
                 message.SiteDbGroupId);
             calculationResult = transferAllAndClearCreditService.GetCalculateResult(param);
         }
@@ -47,7 +46,6 @@ public class TransferAllAndClearCreditHandler(
             message.TransferSteps,
             message.ClearCreditSteps,
             isAllDayBalanceTransfer,
-            message.AGIP,
             message.SiteDbGroupId);
 
         var transferResult = message.IsInternal ? null : transferAllAndClearCreditService.GetTransferResult(param);

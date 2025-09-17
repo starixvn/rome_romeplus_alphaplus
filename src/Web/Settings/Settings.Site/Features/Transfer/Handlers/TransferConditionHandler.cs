@@ -46,6 +46,5 @@ public class TransferConditionHandler(ITransferService transferService) :
             message.SubAccId,
             message.IP,
             message.LangKey,
-            message.AGIP,
             message.SiteDbGroupId));
 }

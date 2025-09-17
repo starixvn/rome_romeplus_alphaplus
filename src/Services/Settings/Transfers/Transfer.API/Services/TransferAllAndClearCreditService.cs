@@ -22,7 +22,7 @@ public class TransferAllAndClearCreditServiceImpl(IDynamicRepository dynamicRepo
         dynamicRepository.Execute(getDownlineCriteria);
 
         var getNetPositionCriteria = new GetNetPositionCriteria(getDownlineCriteria.DownlineCustId, getDownlineCriteria.DownlineRoleId);
-        var netPositionModels = dynamicRepository.Fetch<NetPositionModel>(getNetPositionCriteria, param.AGIP);
+        var netPositionModels = dynamicRepository.Fetch<NetPositionModel>(getNetPositionCriteria);
 
         var criteria = new GetCalculateResultCriteria(
             param.CustId,
@@ -70,7 +70,7 @@ public class TransferAllAndClearCreditServiceImpl(IDynamicRepository dynamicRepo
                 param.Language,
                 param.IsAllDayBalanceTransfer,
                 param.SiteDbGroupId);
-            var (conditionSteps, transferSteps) = dynamicRepository.FetchMultiple<ConditionStep, TransferStep>(criteria, param.AGIP);
+            var (conditionSteps, transferSteps) = dynamicRepository.FetchMultiple<ConditionStep, TransferStep>(criteria);
 
             transferResult = new TransferAllResult(transferSteps, criteria.ErrCode, criteria.ErrMsg ?? string.Empty, conditionSteps.Select(c => c.Content));
         }

@@ -95,7 +95,6 @@ public class RewardHandler(
                 message.SubAccName,
                 message.IP,
                 message.LanguageKey,
-                message.AGIP,
                 message.SiteDbGroupId))
             : new RewardResult(isKickout: true);
     }

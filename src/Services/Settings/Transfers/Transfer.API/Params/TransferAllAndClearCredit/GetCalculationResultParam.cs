@@ -5,7 +5,6 @@
         string username,
         string language,
         bool isAllDayBalanceTransfer,
-        string agIp,
         int siteDbGroupId)
     {
         public int CustId { get; set; } = custId;
@@ -16,7 +15,6 @@
 
         public bool IsAllDayBalanceTransfer { get; set; } = isAllDayBalanceTransfer;
 
-        public string AGIP { get; set; } = agIp;
         public int SiteDbGroupId { get; set; } = siteDbGroupId;
     }
 }

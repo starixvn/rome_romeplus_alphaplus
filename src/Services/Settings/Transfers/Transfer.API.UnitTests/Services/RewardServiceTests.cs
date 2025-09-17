@@ -129,7 +129,6 @@ public class RewardServiceTests
             SubAccName: "TestSubAcc",
             IP: "192.168.1.1",
             Language: "en",
-            AGIP: "agip",
             SiteDbGroupId: 1
         );
 
@@ -266,7 +265,6 @@ public class RewardServiceTests
             SubAccName: "TestSubAcc",
             IP: "192.168.1.1",
             Language: "en",
-            AGIP: "agip",
             SiteDbGroupId: 1
         );
 
@@ -302,7 +300,6 @@ public class RewardServiceTests
             SubAccName: null,
             IP: "192.168.1.1",
             Language: "en",
-            AGIP: "agip",
             SiteDbGroupId: 1
         );
 
@@ -412,7 +409,6 @@ public class RewardServiceTests
             SubAccName: "TestSubAcc",
             IP: "192.168.1.1",
             Language: language,
-            AGIP: "agip",
             SiteDbGroupId: 1
         );
 

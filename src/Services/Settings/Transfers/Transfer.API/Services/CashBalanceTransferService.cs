@@ -1,7 +1,6 @@
 ﻿using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Transfer.API.Configurations;
 using AlphaPlus.Settings.Transfer.API.Criteria.CashBalanceTransfer;
-using AlphaPlus.Settings.Transfer.API.Models;
 using AlphaPlus.Settings.Transfer.API.Models.CashBalanceTransfer;
 using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using Fanex.Data.Repository;
@@ -21,7 +20,6 @@ public interface ICashBalanceTransferService
         int subAccId,
         string ip,
         string languageKey,
-        string agIP,
         bool isDirectMember,
         int siteDbGroupId);
 }
@@ -47,12 +45,11 @@ public class CashBalanceTransferService(IDynamicRepository repository, ITransfer
         int subAccId,
         string ip,
         string languageKey,
-        string agIP,
         bool isDirectMember,
         int siteDbGroupId)
     {
         var cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, creator);
-        var custIdCache = transferCacheService.Get(cacheKey) ?? new List<TransferCacheModel>();
+        var custIdCache = transferCacheService.Get(cacheKey) ?? [];
         var concurrentTransfer = transferCacheService.CacheContains(custIdCache, toCustId);
 
         if (concurrentTransfer != null)

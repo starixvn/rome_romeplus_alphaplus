@@ -4,7 +4,6 @@ using AlphaPlus.Settings.Site.Features.Transfer.Constants;
 using AlphaPlus.Settings.Site.Features.Transfer.Requests.TransferYesterdayBalance;
 using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferYesterdayBalance;
 using AlphaPlus.Settings.Transfer.API.Configurations;
-using AlphaPlus.Settings.Transfer.API.Models;
 using AlphaPlus.Settings.Transfer.API.Params.TransferList;
 using AlphaPlus.Settings.Transfer.API.Params.TransferYesterdayBalance;
 using AlphaPlus.Settings.Transfer.API.Services;
@@ -164,7 +163,7 @@ public class TransferYesterdayBalanceHandler(
         }
 
         var cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, message.ViewerId);
-        var custIdCache = transferCacheService.Get(cacheKey) ?? new List<TransferCacheModel>();
+        var custIdCache = transferCacheService.Get(cacheKey) ?? [];
         var concurrentTransfer = transferCacheService.CacheContains(custIdCache, message.CustId);
         if (concurrentTransfer != null)
         {
@@ -182,7 +181,6 @@ public class TransferYesterdayBalanceHandler(
             message.LangKey,
             message.IP,
             message.SubAccId,
-            message.AGIP,
             message.SiteDbGroupId);
 
         var result = message.ActorLevel.IsAgentLevel()

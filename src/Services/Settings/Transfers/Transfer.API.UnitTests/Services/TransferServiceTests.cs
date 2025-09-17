@@ -131,7 +131,6 @@ public class TransferServiceTests
             SubAccId: 789,
             IP: "192.168.1.1",
             Language: "en",
-            AGIP: "agip",
             SiteDbGroupId: 1
         );
 
@@ -172,7 +171,6 @@ public class TransferServiceTests
             SubAccId: 789,
             IP: "192.168.1.1",
             Language: "en",
-            AGIP: "agip",
             SiteDbGroupId: 1
         );
 
@@ -196,7 +194,6 @@ public class TransferServiceTests
             SubAccId: 789,
             IP: "192.168.1.1",
             Language: "en",
-            AGIP: "agip",
             SiteDbGroupId: 1
         );
 
@@ -220,7 +217,6 @@ public class TransferServiceTests
             SubAccId: 789,
             IP: "192.168.1.1",
             Language: "en",
-            AGIP: "agip",
             SiteDbGroupId: 1
         );
 
@@ -248,7 +244,6 @@ public class TransferServiceTests
             SubAccId: 789,
             IP: "192.168.1.1",
             Language: "en",
-            AGIP: "agip",
             SiteDbGroupId: 1
         );
 
@@ -319,7 +314,6 @@ public class TransferServiceTests
             SubAccId: 789,
             IP: "192.168.1.1",
             Language: "en",
-            AGIP: "agip",
             SiteDbGroupId: 1
         );
 
