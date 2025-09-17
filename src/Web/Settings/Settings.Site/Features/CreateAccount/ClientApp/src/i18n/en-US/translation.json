@@ -73,6 +73,7 @@
   "MaxWinSettingTab":"Click to view Max Win Setting Information",
   "PTInfoTitle": "Click to view PT Info",
   "ProductSettingInfoTitle": "Click to view Product Setting Information",
+  "BetSettingInfoTitle": "Click to view Bet Setting Information",
   "TransferConditionByCompany": "The Daily Transfer setting has been applied to you via the company automated transfer process. You are not allowed to adjust the Weekly Transfer Condition.",
   "TransferConditionByUpline": "The Daily Transfer setting has been applied to you by the upline. You are not allowed to adjust the Weekly Transfer Condition",
   "ClickToCollapse": "Click to Collapse",
