@@ -21,7 +21,7 @@ public class TransferAllAndClearCreditServiceImpl(IDynamicRepository dynamicRepo
         var getDownlineCriteria = new GetDownlineTransferCriteria(param.CustId, param.Username);
         dynamicRepository.Execute(getDownlineCriteria);
 
-        var getNetPositionCriteria = new GetNetPositionCriteria(getDownlineCriteria.DownlineCustId, getDownlineCriteria.DownlineRoleId);
+        var getNetPositionCriteria = new GetNetPositionCriteria(getDownlineCriteria.DownlineCustId, getDownlineCriteria.DownlineRoleId, param.SiteDbGroupId);
         var netPositionModels = dynamicRepository.Fetch<NetPositionModel>(getNetPositionCriteria);
 
         var criteria = new GetCalculateResultCriteria(

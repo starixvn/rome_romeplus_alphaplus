@@ -134,7 +134,7 @@ public class CreditBalanceParamTests
         // Act
         var param = new CreditBalanceParam(
             123, UserLevel.Agent, userName, StatusIdentity.Open, 1,
-            0, 10, true, "192.168.1.1");
+            0, 10, true, "192.168.1.1", 0);
 
         // Assert
         Assert.Null(param.UserName);
@@ -149,7 +149,7 @@ public class CreditBalanceParamTests
         // Act
         var param = new CreditBalanceParam(
             123, UserLevel.Agent, userName, StatusIdentity.Open, 1,
-            0, 10, true, "192.168.1.1");
+            0, 10, true, "192.168.1.1", 0);
 
         // Assert
         Assert.Equal(string.Empty, param.UserName);
@@ -222,7 +222,7 @@ public class CreditBalanceParamTests
         // Act
         var param = new CreditBalanceParam(
             123, UserLevel.Agent, "test", StatusIdentity.Open, 1,
-            0, 0, true, "192.168.1.1");
+            0, 0, true, "192.168.1.1", 0);
 
         // Assert
         Assert.Equal(0, param.PageSize);
@@ -234,7 +234,7 @@ public class CreditBalanceParamTests
         // Act
         var param = new CreditBalanceParam(
             -1, UserLevel.Agent, "test", StatusIdentity.Open, 1,
-            -1, -1, false, "192.168.1.1");
+            -1, -1, false, "192.168.1.1", 0);
 
         // Assert
         Assert.Equal(-1, param.CustId);
@@ -246,6 +246,6 @@ public class CreditBalanceParamTests
     {
         return new CreditBalanceParam(
             123, UserLevel.Agent, "testuser", statusId, 1,
-            0, 10, true, "192.168.1.1");
+            0, 10, true, "192.168.1.1", 0);
     }
 }

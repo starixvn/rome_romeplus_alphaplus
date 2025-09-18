@@ -13,7 +13,6 @@ public class PotentialWinLimitParamTests
         var problemAccount = (byte)0;
         var pageSize = 10;
         var pageIndex = 0;
-        var agIP = "192.168.1.1";
         var betType = 1;
         var sportType = 2;
         var accountType = 3;
@@ -22,7 +21,7 @@ public class PotentialWinLimitParamTests
         // Act
         var param = new PotentialWinLimitParam(
             custId, roleId, username, status, problemAccount,
-            pageSize, pageIndex, agIP, betType, sportType, accountType, settingStatus);
+            pageSize, pageIndex, 0, betType, sportType, accountType, settingStatus);
 
         // Assert
         Assert.Equal(custId, param.CustId);
@@ -32,7 +31,7 @@ public class PotentialWinLimitParamTests
         Assert.Equal(problemAccount, param.ProblemAccount);
         Assert.Equal(pageSize, param.PageSize);
         Assert.Equal(pageIndex, param.PageIndex);
-        Assert.Equal(siteDbGroupId, param.SiteDbGroupId);
+        Assert.Equal(0, param.SiteDbGroupId);
         Assert.Equal(betType, param.BetType);
         Assert.Equal(sportType, param.SportType);
         Assert.Equal(accountType, param.AccountType);
@@ -90,7 +89,7 @@ public class PotentialWinLimitParamTests
             problemAccount: 0,
             pageSize: 10,
             pageIndex: 0,
-            agIP: "192.168.1.1");
+            siteDbGroupId: 0);
 
         // Assert
         Assert.Equal(0, param.BetType);
@@ -114,31 +113,14 @@ public class PotentialWinLimitParamTests
             betType: 5,
             sportType: 6,
             accountType: 7,
-            settingStatus: 8);
+            settingStatus: 8,
+            siteDbGroupId: 0);
 
         // Assert
         Assert.Equal(5, param.BetType);
         Assert.Equal(6, param.SportType);
         Assert.Equal(7, param.AccountType);
         Assert.Equal(8, param.SettingStatus);
-    }
-
-    [Fact]
-    public void AGIP_Property_Should_Be_ReadOnly()
-    {
-        // Arrange
-        var agIP = "192.168.1.1";
-
-        // Act
-        var param = CreatePotentialWinLimitParam(agIP: agIP);
-
-        // Assert
-        Assert.Equal(agIP, param.AGIP);
-        
-        // Verify property is read-only
-        var agIPProperty = typeof(PotentialWinLimitParam).GetProperty(nameof(PotentialWinLimitParam.AGIP));
-        Assert.True(agIPProperty.CanRead);
-        Assert.False(agIPProperty.CanWrite);
     }
 
     [Fact]
@@ -203,19 +185,6 @@ public class PotentialWinLimitParamTests
         Assert.Null(param.Username);
     }
 
-    [Fact]
-    public void Constructor_With_Null_AGIP_Should_Work()
-    {
-        // Arrange
-        string agIP = null;
-
-        // Act
-        var param = CreatePotentialWinLimitParam(agIP: agIP);
-
-        // Assert
-        Assert.Null(param.AGIP);
-    }
-
     [Theory]
     [InlineData(-1, 0, -5, 100)]
     [InlineData(0, 255, 0, 0)]
@@ -224,7 +193,7 @@ public class PotentialWinLimitParamTests
     {
         // Act
         var param = new PotentialWinLimitParam(
-            custId, roleId, "test", "Open", 0, pageSize, pageIndex, "192.168.1.1");
+            custId, roleId, "test", "Open", 0, pageSize, pageIndex, 0, 0, 0, 0);
 
         // Assert
         Assert.Equal(custId, param.CustId);
@@ -240,11 +209,10 @@ public class PotentialWinLimitParamTests
         string status = "Open",
         byte problemAccount = 0,
         int pageSize = 10,
-        int pageIndex = 0,
-        string agIP = "192.168.1.1")
+        int pageIndex = 0)
     {
         return new PotentialWinLimitParam(
             custId, roleId, username, status, problemAccount,
-            pageSize, pageIndex, agIP);
+            pageSize, pageIndex, 0, 0, 0, 0);
     }
 }
