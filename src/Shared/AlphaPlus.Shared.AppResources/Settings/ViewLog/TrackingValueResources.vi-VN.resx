@@ -3382,6 +3382,6 @@
     <value>Cho phép nạp tiền thành viên</value>
   </data>
   <data name="MaxWinPerMatch" xml:space="preserve">
-    <value>Max Win Per Match</value>
+    <value>Thắng Tối Đa Mỗi Trận</value>
   </data>
 </root>
