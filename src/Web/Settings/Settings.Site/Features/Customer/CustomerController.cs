@@ -209,6 +209,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             var generalInfo = request.GeneralInfo;
             var rawPassword = aesService.Decrypt(generalInfo.Password, sessionManager.Get<string>(HashKeySessionKey));
             generalInfo.Password = rawPassword;
+            generalInfo.UplineCustId = request.ViewerId;
+            generalInfo.UplineUserName = request.ViewerUsername;
             generalInfo.UpLineRoleId = request.ViewerLevelId;
             generalInfo.Site = request.Site;
             generalInfo.SiteLabel = AppSettings.SiteLabel;
@@ -244,6 +246,8 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             var generalInfo = request.GeneralInfo;
             var rawPassword = aesService.Decrypt(generalInfo.Password, sessionManager.Get<string>(HashKeySessionKey));
             generalInfo.Password = rawPassword;
+            generalInfo.UplineCustId = request.ViewerId;
+            generalInfo.UplineUserName = request.ViewerUsername;
             generalInfo.UpLineRoleId = request.ViewerLevelId;
             generalInfo.Site = request.Site;
             generalInfo.SiteLabel = AppSettings.SiteLabel;

@@ -91,6 +91,8 @@ namespace AlphaPlus.Settings.Site.Features.CreateAccount
             var generalInfo = request.GeneralInfo;
             var rawPassword = aesService.Decrypt(generalInfo.Password, sessionManager.Get<string>(HashKeySessionKey));
             generalInfo.Password = rawPassword;
+            generalInfo.UplineCustId = request.ViewerId;
+            generalInfo.UplineUserName = request.ViewerUsername;
             generalInfo.UpLineRoleId = viewer.LevelId;
             generalInfo.Site = viewer.Site;
             generalInfo.SiteLabel = AppSettings.SiteLabel;
