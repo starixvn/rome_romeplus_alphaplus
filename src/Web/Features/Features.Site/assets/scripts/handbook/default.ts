@@ -37,8 +37,8 @@ class DefaultPage {
         var setCurrentURL = this.$("#SetCurrentURL").val() === '1';
         if (setCurrentURL) {
             var currentUrl = this.getCurrentUrl();
-            var mainSrc = currentUrl && currentUrl.indexOf("_Authorization/SignIn.aspx") === -1
-                ? currentUrl : "Home";
+            var mainSrc = currentUrl && currentUrl.indexOf("auth/Account/Login") === -1
+                ? currentUrl : this.$("#RootPath").val() + "HandbookHome/Index";
             this.$("#ifr-main").attr("src", mainSrc);
         }
 
