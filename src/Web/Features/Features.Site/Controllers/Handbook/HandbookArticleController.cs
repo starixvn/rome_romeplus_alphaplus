@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using AlphaPlus.Features.Site.Handbook.Requests;
 using AlphaPlus.Features.Site.Messages.Controllers;
 using AlphaPlus.Features.Site.Handbook.Filters;
+using AlphaPlus.NetThrottling;
 
 namespace AlphaPlus.Features.Site.Handbook.Controllers
 {
@@ -20,7 +21,7 @@ namespace AlphaPlus.Features.Site.Handbook.Controllers
         public async Task<ActionResult> GetBySlug(GetArticleBySlugRequest request)
             => await View(request);
 
-        [HttpGet]
+        [HttpGet, DisableNetThrottling]
         public async Task<ActionResult> Suggest(SuggestArticleRequest request)
             => await JsonAsync(request);
 
