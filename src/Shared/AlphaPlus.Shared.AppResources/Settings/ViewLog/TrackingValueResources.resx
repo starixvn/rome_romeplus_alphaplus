@@ -3893,4 +3893,7 @@
   <data name="AllowDeposit" xml:space="preserve">
     <value>Allow member to deposit</value>
   </data>
+  <data name="MaxWinPerMatch" xml:space="preserve">
+    <value>Max Win Per Match</value>
+  </data>
 </root>

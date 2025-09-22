@@ -7,7 +7,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
     public class SportBookInformationQuery : BaseQuery
     {
         public byte RoleId { get; set; }
-        public int TabIndex { get; set; }
+        public string TabName { get; set; }
         public string SiteLabel { get; set; }
 
         public bool IsCashMember { get; set; }
@@ -27,6 +27,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
             {
                 BetSettingTab,
                 MaxPayoutSettingTab,
+                MaxWinSettingTab,
                 PTSettingTab,
                 PTCommissionSettingTab,
                 ProductCategorySettingTab,
@@ -41,7 +42,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
         {
             name = "BetSetting",
             id = "BetSettingTab",
-            isActive = TabIndex == 0,
+            isActive = TabName == "BetSettingTab",
             url = MicroSites.SettingUrl("~/Customer/GetBetLimitInformation?site=" + Site + "&siteLabel=" + SiteLabel),
         };
 
@@ -50,7 +51,15 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
             name = "MaxPayout",
             id = "MaxPayoutSettingTab",
             url = MicroSites.SettingUrl("~/Customer/GetMaxPayoutSettingInformation?site=" + Site + "&siteLabel=" + SiteLabel),
-            isActive = TabIndex == 1,
+            isActive = TabName == "MaxPayoutSettingTab",
+        };
+
+        private object MaxWinSettingTab => new
+        {
+            name = "MaxWinSettingTabTitle",
+            id = "MaxWinSettingTab",
+            url = MicroSites.SettingUrl("~/Customer/GetMaxWinSettingInformation?site=" + Site + "&siteLabel=" + SiteLabel),
+            isActive = TabName == "MaxWinSettingTab",
         };
 
         private object PTSettingTab => new
@@ -58,7 +67,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
             name = "PositionTaking",
             id = "PTSettingTab",
             url = MicroSites.SettingUrl("~/Customer/GetPTSettingInformation?custId=" + CustId + "&site=" + Site),
-            isActive = TabIndex == 2,
+            isActive = TabName == "PTSettingTab",
         };
 
         private object PTCommissionSettingTab => new
@@ -66,7 +75,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
             name = "Commission",
             id = "CommissionHintTab",
             url = MicroSites.SettingUrl("~/Customer/GetCommissionHint?custId=" + CustId + "&site=" + Site),
-            isActive = TabIndex == 3,
+            isActive = TabName == "CommissionHintTab",
         };
 
         private object ProductCategorySettingTab => new
@@ -74,21 +83,21 @@ namespace AlphaPlus.Settings.Site.Features.Customer.Requests
             name = "ProductCategories",
             id = "ProductCategorySettingTab",
             url = MicroSites.SettingUrl("~/Customer/GetProductCategories?custId=" + CustId + "&site=" + Site + "&currency=" + Currency),
-            isActive = TabIndex == 4,
+            isActive = TabName == "ProductCategorySettingTab",
         };
 
         private object WinLossLimitTab => new
         {
             name = "WinLossLimit",
             id = "WinLossLimitTab",
-            isActive = TabIndex == 5,
+            isActive = TabName == "WinLossLimitTab",
         };
 
         private object PotentialWinLimitTab => new
         {
             name = "PotentialWinLimit",
             id = "PotentialWinLimitSettingTab",
-            isActive = TabIndex == 6,
+            isActive = TabName == "PotentialWinLimitSettingTab",
         };
     }
 }

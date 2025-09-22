@@ -17,4 +17,5 @@ public static class ProductIdConstants
     public const int SabaVirtualSports = 54;
     public const int SportsLottery = 63;
     public const int Bitcoin = 69;
+    public const int CashServiceBilling = 111;
 }

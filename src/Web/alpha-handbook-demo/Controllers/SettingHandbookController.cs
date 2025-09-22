@@ -12,7 +12,7 @@ namespace Alpha.Handbook.Demo.Controllers
 
         public ActionResult SportBookInformation(SportBookInformationRequest request)
         {
-            var url = "~/setting/Customer/SportBookInformation?tabindex=" + request.TabIndex
+            var url = "~/setting/Customer/SportBookInformation?tabName=" + request.TabName
                 + "&custId=" + request.CustId
                 + "&roleId=" + request.RoleId
                 + "&site=" + request.SiteLabel

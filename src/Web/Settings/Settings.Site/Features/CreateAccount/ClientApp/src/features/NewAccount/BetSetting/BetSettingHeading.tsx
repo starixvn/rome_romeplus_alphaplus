@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { BlockColumn, BlockRow } from '@/features/Shared/Block';
 
-import MaxPayoutSettingInformationNote from './MaxPayoutSettingInformationNote';
+import MaxWinSettingInformationNote from './MaxWinSettingInformationNote';
 
 export default function BetSettingHeading({ properties }: { properties: string[] }) {
   const { t } = useTranslation();
@@ -11,7 +11,7 @@ export default function BetSettingHeading({ properties }: { properties: string[]
       {[...properties].map((property) => {
         return (
           <BlockColumn key={property}>
-            {t(property)} {property === 'maxPayoutPerMatch' && <MaxPayoutSettingInformationNote />}
+            {t(property === 'maxPayoutPerMatch' ? 'maxWinPerMatch' : property)} {property === 'maxPayoutPerMatch' && <MaxWinSettingInformationNote />}
           </BlockColumn>
         );
       })}

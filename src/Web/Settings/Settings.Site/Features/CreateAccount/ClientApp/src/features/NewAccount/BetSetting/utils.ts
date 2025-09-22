@@ -41,14 +41,32 @@ export function getOtherGamesValue(otherGamesItem: OtherGamesBetSettingItem): Ot
 }
 
 export function getGreaterErrorMessage(prop: string, value: number | string) {
-  const valueStr = typeof value === 'string' ? `-${value}` : `#${value}`;
-  return `${prop}-mustBeGreaterThanOrEqualTo${valueStr}`;
+  const valueKey = typeof value === 'string' ? `-${value}` : `#${value}`;
+  const errorMessage = `${prop}-mustBeGreaterThanOrEqualTo${valueKey}`;
+  const mappedErrorMessage = mapSpecificErrorMessage(errorMessage, typeof value);
+  return mappedErrorMessage;
 } 
 
 export function getLessErrorMessage(prop: string, value: number | string) {
-  const valueStr = typeof value === 'string' ? `-${value}` : `#${value}`;
-  return `${prop}-mustBeLessThanOrEqualTo${valueStr}`;
+  const valueKey = typeof value === 'string' ? `-${value}` : `#${value}`;
+  const errorMessage = `${prop}-mustBeLessThanOrEqualTo${valueKey}`;
+  const mappedErrorMessage = mapSpecificErrorMessage(errorMessage, typeof value);
+  return mappedErrorMessage;
 }
+
+function mapSpecificErrorMessage(messageKey: string, valueType: string) {
+  if(messageKey === 'maxPerMatch-mustBeLessThanOrEqualTo-maxPayoutPerMatch') {
+    return 'maxPerMatch-mustBeLessThanOrEqualTo-maxWinPerMatch';
+  }
+  if(messageKey === 'maxPayoutPerMatch-mustBeGreaterThanOrEqualTo-maxPerMatch') {
+    return 'maxWinPerMatch-mustBeGreaterThanOrEqualTo-maxPerMatch';
+  }
+  if(valueType === 'number' && messageKey.includes('maxPayoutPerMatch-mustBeLessThanOrEqualTo')) {
+    return messageKey.replace('maxPayoutPerMatch-mustBeLessThanOrEqualTo', 'maxWinPerMatch-mustBeLessThanOrEqualTo');
+  }
+  return messageKey;
+}
+
 
 export function isViolateBetSettingConfig(current: BetSettingProp, config: BetSettingConfigProp) {
   if (config.operator === Operator.LessEqual && !isUnlimitedBetSetting(config.value) && current.value < config.value)

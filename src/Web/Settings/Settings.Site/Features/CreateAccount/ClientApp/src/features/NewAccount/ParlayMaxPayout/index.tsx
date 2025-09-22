@@ -6,6 +6,7 @@ import useNewAccountStore from '@/store/newAccountStore';
 import { GroupItem, ParlayMaxPayoutItem } from '@/types/new-account';
 
 import ParlayMaxPayoutRowBlock from './ParlayMaxPayoutRowBlock';
+import ParlayMaxPayoutNote from './ParlayMaxPayoutNote';
 
 const ParlayHeadingNames: ReadonlyArray<keyof ParlayMaxPayoutItem> = [
   'singleMatchParlay',
@@ -22,9 +23,13 @@ type ParlayMaxPayoutProps<T extends GroupItem> = {
 export default function ParlayMaxPayout({ groupTypeId, groupItems }: ParlayMaxPayoutProps<ParlayMaxPayoutItem>) {
   const { t } = useTranslation();
   const [error, submitCount] = useNewAccountStore((state) => [state.parlayMaxPayoutErrors, state.submitCount], shallow);
-
+  const BlockTitle = (
+    <>
+      {t('ParlayMaxPayoutPerBet')} <ParlayMaxPayoutNote />
+    </>
+  );
   return (
-    <Block title={t('ParlayMaxPayoutPerBet')} isCollapse={{ collapse: error.length === 0, resetCollapse: submitCount }}>
+    <Block title={BlockTitle} isCollapse={{ collapse: error.length === 0, resetCollapse: submitCount }}>
       <BlockRow isHeaderRow>
         {ParlayHeadingNames.map((header) => (
           <BlockColumn key={header}>{t(header)}</BlockColumn>

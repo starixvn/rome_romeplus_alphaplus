@@ -95,7 +95,7 @@ public class ArticleModel
         switch (ReferenceURL)
         {
             case ReferenceURLConsts.CustomerSettingInformation:
-                return "../features/" + cookieless + "SettingHandbook/SportBookInformation?tabindex=0";
+                return "../features/" + cookieless + "SettingHandbook/SportBookInformation?tabName=BetSettingTab";
             default:
                 return $"{relativePath}HandbookArticle/GetBySlug?slug=" + Slug;
         }
