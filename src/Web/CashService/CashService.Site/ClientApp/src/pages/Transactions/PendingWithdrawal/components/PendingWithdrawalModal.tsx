@@ -90,6 +90,10 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
   }, [transId, custId]);
 
   useEffect(() => {
+    if (!withdrawal) {
+      return;
+    }
+
     const fetchBankOptions = async () => {
       try {
         const [providers, bankInfo] = await Promise.all([
@@ -114,18 +118,18 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
             paymentMethodId: provider.paymentMethodId,
           },
         }));
-
-        setBankOptions([...bankInfoOptions, ...mappedProviderInfo]);
+        const combinedOptions = [...bankInfoOptions, ...mappedProviderInfo];
+        setBankOptions(combinedOptions);
 
         if (
           withdrawal?.paymentFrom &&
-          bankOptions.find((option) => option.value === withdrawal.paymentFrom)
+          combinedOptions.find((option) => option.value === withdrawal.paymentFrom)
         ) {
           let providerId =
-            bankOptions.find((option) => option.value === withdrawal.paymentFrom)?.attributes
+            combinedOptions.find((option) => option.value === withdrawal.paymentFrom)?.attributes
               ?.providerId || 0;
           let paymentMethodId =
-            bankOptions.find((option) => option.value === withdrawal.paymentFrom)?.attributes
+            combinedOptions.find((option) => option.value === withdrawal.paymentFrom)?.attributes
               ?.paymentMethodId || 0;
           setProviderId(providerId);
           setPaymentMethodId(paymentMethodId);
@@ -220,7 +224,6 @@ const PendingWithdrawalModal: React.FC<PendingWithdrawalModalProps> = ({
     }
   };
 
-  // Validation functions
   const validateBankSelection = (isReject: boolean): boolean => {
     if (!withdrawalFrom && !isReject) {
       setResultMessage({
