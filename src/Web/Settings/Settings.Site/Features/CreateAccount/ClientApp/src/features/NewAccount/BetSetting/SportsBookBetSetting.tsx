@@ -13,6 +13,7 @@ import SportsBookValidator from './sportsBookValidator';
 import { BetSettingProps } from './type';
 import { useCopyBetSetting } from './useCopyBetSetting';
 import { getErrorMessageTranslate } from './utils';
+import { SportBookInfomationPage } from '@/features/Shared/SportBookInfomationPage';
 
 const SportsBookBetSettingProps: ReadonlyArray<keyof SportsBookBetSettingItem> = [
   'minBet',
@@ -75,7 +76,12 @@ export default function SportsBookBetSetting({
   };
 
   return (
-    <Block title={t('BetSetting')} isCollapse={{ collapse: error.length === 0, resetCollapse: submitCount }}>
+    <Block title={
+      <>
+        {t('BetSetting')}
+        <SportBookInfomationPage tabName="BetSettingTab" tooltipContentI18nKey="BetSettingInfoTitle" />
+      </>
+    } isCollapse={{ collapse: error.length === 0, resetCollapse: submitCount }}>
       <BetSettingHeading properties={[...SportsBookBetSettingProps]} />
       {groupItems.map((groupItem, index) => (
         <BetSettingRow

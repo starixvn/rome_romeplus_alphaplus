@@ -148,6 +148,21 @@ a, a:focus, a:active, a:target, a:hover {
         color: #045ace;        
     }
 }
+.relative{
+    position: relative;
+}
 .z-index40 {
     z-index: 40!important; 
+}
+.flex{
+    display: flex;
+}
+.mr-10{
+    margin-right: 10px;
+}
+.justify-right{
+    justify-content: flex-end;
+}
+.my-10{
+    margin-block: 10px;
 }

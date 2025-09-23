@@ -2,6 +2,7 @@
 @using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers
 @using AlphaPlus.Shared.AppResources.Settings.Transfer
 @using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.TransferAllAndClearCredit
+@addTagHelper *, AlphaPlus.Settings.Site
 @model TransferResultViewModel
 @{
     ViewBag.Title = "Transfer All And Clear Credit";
@@ -54,6 +55,12 @@
         <div class="form-group">
             <button type="submit" class="btn-submit">@Resources.Calculate</button>
         </div>
+        @if (Model.TransferSteps.Any() || Model.ClearCreditSteps.Any())
+        {
+            <div class="form-group">
+                <compact-feedback fid="88" />
+            </div>
+        }
     </form>
 </div>
 <div id="box-content">

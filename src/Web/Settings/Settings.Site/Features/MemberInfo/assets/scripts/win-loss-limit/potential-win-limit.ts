@@ -17,6 +17,7 @@ class PotentialWinLimit {
     problemAccountComponent: SingleSelectionDropdownComponent;
     accountTypeComponent: SingleSelectionDropdownComponent;
     pager: PagerComponent;
+    compactFeedback: CompactFeedbackComponent;
 
     $status: JQuery;
     $problemAccount: JQuery;
@@ -25,7 +26,7 @@ class PotentialWinLimit {
 
     $username: JQuery;
     $tableReport: JQuery;
-    $iconExcel: JQuery; 
+    $iconExcel: JQuery;
     $resultMsg: JQuery;
     $notAuthorizedMessage: JQuery;
 
@@ -34,13 +35,15 @@ class PotentialWinLimit {
         statusComponent: SingleSelectionDropdownComponent,
         problemAccountComponent: SingleSelectionDropdownComponent,
         accountTypeComponent: SingleSelectionDropdownComponent,
-        pager: PagerComponent
+        pager: PagerComponent,
+        compactFeedback: CompactFeedbackComponent
     ) {
         this.$ = $;
         this.statusComponent = statusComponent;
         this.problemAccountComponent = problemAccountComponent;
         this.accountTypeComponent = accountTypeComponent;
         this.pager = pager;
+        this.compactFeedback = compactFeedback;
     }
 
     init = () => {
@@ -64,15 +67,12 @@ class PotentialWinLimit {
 
         if (this.$accountType.length) {
             this.accountTypeComponent.render(
-                new SingleSelectionDropdownOption(
-                    'dropdown-account-type',
-                    'AccountType',
-                    this.changeAccountType
-                )
+                new SingleSelectionDropdownOption('dropdown-account-type', 'AccountType', this.changeAccountType)
             );
         }
         this.$tableReport.stickyTableHeaders();
         this.pager.render(new PagerOption(this.submitForm, 'report-pager', 'potential-win-limit-form'));
+        this.compactFeedback.init(this.$potentialWinLimitForm);
     };
 
     cacheDOMElements = () => {
@@ -112,7 +112,7 @@ class PotentialWinLimit {
             })
             .tooltip()
             .attr('href', 'javascript:;');
-        
+
         // Bind reset win amount icon click event
         this.$tableReport.on('click', '.reset-win-amount', this.resetWinAmount);
     };
@@ -151,21 +151,21 @@ class PotentialWinLimit {
 
     resetWinAmount = (event: any) => {
         event.preventDefault();
-        
+
         var $resetIcon = this.$(event.currentTarget);
         var custId = $resetIcon.data('cust-id');
         var username = $resetIcon.data('username');
-        
+
         if (!custId || !username) {
             return;
         }
-        
+
         var confirmMessage = this.$('#ResetCurrentWinAmountConfirmMessage').val();
         confirmMessage = confirmMessage.replace('{0}', username);
-        
+
         window.top.bootboxConfirm(confirmMessage, null, (result: any) => {
             this.$.blockUI();
-            
+
             const errorMessage = this.$('#ResetCurrentWinAmountErrorMessage').val();
             this.$.ajax({
                 url: '/settings/WinLossLimit/ResetCurrentSportsbookWinAmount',
@@ -178,7 +178,7 @@ class PotentialWinLimit {
                     custId: custId,
                     username: username
                 },
-                success: (response: any) => {   
+                success: (response: any) => {
                     this.$resultMsg.html(response.Message || errorMessage);
                     this.$resultMsg.removeClass('msg-success msg-error msg-warning');
 
@@ -219,7 +219,8 @@ const potentialWinLimit = new PotentialWinLimit(
     new SingleSelectionDropdownComponent($),
     new SingleSelectionDropdownComponent($),
     new SingleSelectionDropdownComponent($),
-    new PagerComponent($)
+    new PagerComponent($),
+    new CompactFeedbackComponent()
 );
 
 $(() => {

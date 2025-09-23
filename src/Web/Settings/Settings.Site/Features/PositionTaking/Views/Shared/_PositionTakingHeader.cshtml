@@ -46,8 +46,11 @@
     {
         <div class="pull-left">
             <a class="infoIco"
-                href="@(string.Format("/settings/Customer/SportBookInformation?tabindex=2&theme={0}&custId={1}&roleId={2}&site={3}&siteLabel={4}&lng={5}", theme, UserSession.Current.CustId, UserSession.Current.RoleId - 1, UserSession.Current.Site, Model["SiteLabel"], UserSession.Current.Language))"
+                href="@(string.Format("/settings/Customer/SportBookInformation?tabName=PTSettingTab&theme={0}&custId={1}&roleId={2}&site={3}&siteLabel={4}&lng={5}", theme, UserSession.Current.CustId, UserSession.Current.RoleId - 1, UserSession.Current.Site, Model["SiteLabel"], UserSession.Current.Language))"
                 target="_blank" title="Click to view PT Info"></a>
         </div>
     }
+    <div class="pull-left">
+        <compact-feedback fid="81" class-name"hide" />
+    </div>
 </div>

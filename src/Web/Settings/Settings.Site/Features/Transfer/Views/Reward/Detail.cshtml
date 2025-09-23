@@ -9,7 +9,7 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-transfer/reward")
-    <link rel="stylesheet" href="~/Features/Transfer/assets/bundles/reward/reward.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/Features/Transfer/assets/bundles/reward/reward")
 }
 @section Scripts {
     <script type="text/javascript">
@@ -30,11 +30,11 @@
             @:{ value: "11", text: '@string.Format("{0} - {1}", Resources.Master, Resources.PaymentStatus)' },
             @:{ value: "12", text: '@string.Format("{0} - {1}", Resources.Master, Resources.PaymentDate)' }
         }
-    ];
+            ];
     </script>
     @StaticResources.AssetScripts.Render("/bundles/site-transfer/filter")
     @StaticResources.AssetScripts.Render("/bundles/site-transfer/pagination")
-    <script src="~/Features/Transfer/assets/bundles/reward/reward-detail.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/Features/Transfer/assets/bundles/reward/reward-detail")
 }
 <div class="page-title tabs @level">
     <ul class="nav nav-tabs" role="tablist">

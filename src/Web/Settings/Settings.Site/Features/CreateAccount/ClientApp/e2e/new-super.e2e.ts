@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 
 test('CreateNewSuper', async ({ page }) => {
-  await page.goto('http://localhost:8081/ex-main/_Authorization/SignIn.aspx?ReturnUrl=%2fsite-main%2f');
+  await page.goto('http://localhost:8081/auth/Account/Login');
   await page.locator('#txtUserName').fill('s789y1Name');
   await page.locator('#txtUserName').press('Tab');
   await page.locator('#txtPassWord').fill('1234ggGG');

@@ -2,6 +2,7 @@
 
 declare interface Window {
     CompactFeedbackManager: {
+        init: (window, $boxIconTitle, $like, $dislike, formData) => void;
         closeDislikePopup: () => void;
     };
     afterDislikeSubmitCallback: () => void;

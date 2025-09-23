@@ -5,7 +5,7 @@
 @using AlphaPlus.Core.Helpers
 @using AlphaPlus.Core.Models
 @using AlphaPlus.Shared.AppResources.Settings.ProductResources
-
+@addTagHelper *, AlphaPlus.Settings.Site
 @{
     Layout = "~/Features/MemberInfo/Views/Shared/_Layout.cshtml";
 }
@@ -40,15 +40,15 @@
         <div class="tab-content">
             @if (Model.Query.CustLevel.IsSuperLevel())
             {
-                RenderContent(UserLevel.Master);
+                await RenderContent(UserLevel.Master, 77);
             }
 
             @if (Model.Query.CustLevel.IsMasterOrSuperLevel())
             {
-                RenderContent(UserLevel.Agent);
+                await RenderContent(UserLevel.Agent, 78);
             }
 
-            @{RenderContent(UserLevel.Member);}
+            @{await RenderContent(UserLevel.Member, 79);}
             <div class="shadow" id="shadow">
                 <div class="output" id="output"></div>
             </div>
@@ -120,109 +120,113 @@
 
 @functions
 {
-    void RenderContent(UserLevel level)
+    async Task RenderContent(UserLevel level, int feedbackFunctionId)
     {
-    <div id="@($"tab{level.DisplayName}")" class="tab-pane fade @(IsActiveTab(level) ? "in active" : string.Empty)" role="tabpanel">
-        @{RenderFilter(level);}
-        @{RenderCheckAll(level);}
-        @{RenderContainer(level);}
-    </div>
+        <div id="@($"tab{level.DisplayName}")" class="tab-pane fade @(IsActiveTab(level) ? "in active" : string.Empty)" role="tabpanel">
+            @{await RenderFilter(level, feedbackFunctionId);}
+            @{RenderCheckAll(level);}
+            @{RenderContainer(level);}
+        </div>
     }
 }
 
 @functions
 {
-    void RenderFilter(UserLevel level)
+    async Task RenderFilter(UserLevel level, int feedbackFunctionId)
     {
-    var levelName = level.DisplayName.ToLower();
-    <div class="">
-        <div id="@($"form-{levelName}")" class="form-inline demo-form-inline filter" role="form">
-            @if (Model.IsShowUplineUsername(level.Value))
-            {
+        var levelName = level.DisplayName.ToLower();
+        <div class="">
+            <div id="@($"form-{levelName}")" class="form-inline demo-form-inline filter" role="form">
+                @if (Model.IsShowUplineUsername(level.Value))
+                {
+                    <div class="form-group">
+                        <label>@level.GetDirectUplineLevel().DisplayName</label>
+                        <input id="@($"txt-uplinename-{level.GetDirectUplineLevel().DisplayName.ToLower()}")" class="control txt-username-nickname" type="text" value="" autocomplete="off" />
+                    </div>
+                }
+                @{RenderDateRangePicker(level, levelName);}
                 <div class="form-group">
-                    <label>@level.GetDirectUplineLevel().DisplayName</label>
-                    <input id="@($"txt-uplinename-{level.GetDirectUplineLevel().DisplayName.ToLower()}")" class="control txt-username-nickname" type="text" value="" autocomplete="off" />
+                    <label for="dropdown-reviewstatus">@Resources.ReviewStatus</label>
+                    <select id="dropdown-reviewstatus-@levelName">
+                        @foreach (var status in Model.ReviewedStatusSelectionViewModel.Statuses)
+                        {
+                            <option value="@status.Value" @(status.Selected ? " selected=\"selected\"" : string.Empty)>
+                                @status.Text
+                            </option>
+                        }
+                    </select>
+                    <input type="hidden" name="UserSelectedReviewedStatusId" id="UserSelectedReviewedStatusId-@levelName" value="@Model.ReviewedStatusSelectionViewModel.UserSelectedReviewedStatusId" />
                 </div>
-            }
-
-            <div id="daterange-picker-@levelName"
-                 class="daterange-picker"
-                 data-currentdate="@DateTime.Now"
-                 data-mindate="@Model.DateRangePickerViewModel.MinDate.ToShortDateWithSlash()"
-                 data-maxdate="@Model.DateRangePickerViewModel.MaxDate.ToShortDateWithSlash()">
-            </div>
-            <div class="form-group  from-date-box">
-                <label>@Resources.DateNotifiedFrom</label>
-
-                <div class="control date">
-                    <div id="from-date-container"
-                         class="input-group date fromdate">
-                        <input type="text"
-                               id="from-date-@levelName"
-                               name="FromDate"
-                               readonly="readonly"
-                               autocomplete="off"
-                               class="ui_nexdatepicker_datetextbox ui_nexdatepicker_fromdate form-control"
-                               value="@Model.DateRangePickerViewModel.FromDate.ToShortDateWithSlash()" />
-                        <span class="input-group-addon">
-                            <span class="icon-calendar" id="fdate_trigger"></span>
-                        </span>
-                    </div>
+                <div class="form-group">
+                    <input type="text"
+                        id="@($"txt-username-{levelName}")"
+                        name="@($"username-{levelName}")"
+                        class="typeahead"
+                        autocomplete="off"
+                        value="@Model.Query.UserName"
+                        placeholder="@Resources.EnterAccount" />
                 </div>
-            </div>
-            <div class="form-group">
-                <label>@Resources.To</label>
-
-                <div class="control date">
-                    <div id="to-date-container"
-                         class="input-group date todate">
-                        <input type="text"
-                               id="to-date-@levelName"
-                               name="ToDate"
-                               readonly="readonly"
-                               autocomplete="off"
-                               class="ui_nexdatepicker_datetextbox ui_nexdatepicker_todate form-control"
-                               value="@Model.DateRangePickerViewModel.ToDate.ToShortDateWithSlash()" />
-                        <span class="input-group-addon">
-                            <span class="icon-calendar" id="tdate_trigger"></span>
-                        </span>
-                    </div>
+                <div class="form-group">
+                    <input id="@($"btn-submit-{levelName}")" class="btn-submit" type="button" value="@Resources.Submit" />
                 </div>
-            </div>
-
-            <div class="form-group">
-                <label for="dropdown-reviewstatus">@Resources.ReviewStatus</label>
-                <select id="dropdown-reviewstatus-@levelName">
-                    @foreach (var status in Model.ReviewedStatusSelectionViewModel.Statuses)
-                    {
-                        <option value="@status.Value" @(status.Selected ? " selected=\"selected\"" : string.Empty)>
-                            @status.Text
-                        </option>
-                    }
-                </select>
-                <input type="hidden" name="UserSelectedReviewedStatusId" id="UserSelectedReviewedStatusId-@levelName" value="@Model.ReviewedStatusSelectionViewModel.UserSelectedReviewedStatusId" />
-            </div>
-
-            <div class="form-group">
-                <input type="text"
-                       id="@($"txt-username-{levelName}")"
-                       name="@($"username-{levelName}")"
-                       class="typeahead"
-                       autocomplete="off"
-                       value="@Model.Query.UserName"
-                       placeholder="@Resources.EnterAccount" />
-
-            </div>
-
-            <div class="form-group">
-                <input id="@($"btn-submit-{levelName}")" class="btn-submit" type="button" value="@Resources.Submit" />
-            </div>
-
-            <div class="form-group">
-                <span id="icon-excel-@levelName" class="icon-excel" title="@Resources.ExportToExcel"></span>
+                <div class="form-group">
+                    <span id="icon-excel-@levelName" class="icon-excel" title="@Resources.ExportToExcel"></span>
+                </div>
+                <div class="form-group hide">
+                    @{var elementId = "box-icon-title-" + levelName;}
+                    <compact-feedback element-id="@elementId" fid="@feedbackFunctionId" />
+                </div>
             </div>
         </div>
-    </div>
+    }
+}
+
+@functions
+{
+    void RenderDateRangePicker(UserLevel level, string lowerLevelName)
+    {
+        <div id="daterange-picker-@lowerLevelName"
+            class="daterange-picker"
+            data-currentdate="@DateTime.Now"
+            data-mindate="@Model.DateRangePickerViewModel.MinDate.ToShortDateWithSlash()"
+            data-maxdate="@Model.DateRangePickerViewModel.MaxDate.ToShortDateWithSlash()">
+        </div>
+        <div class="form-group from-date-box">
+            <label>@Resources.DateNotifiedFrom</label>
+            <div class="control date">
+                <div id="from-date-container"
+                    class="input-group date fromdate">
+                    <input type="text"
+                        id="from-date-@lowerLevelName"
+                        name="FromDate"
+                        readonly="readonly"
+                        autocomplete="off"
+                        class="ui_nexdatepicker_datetextbox ui_nexdatepicker_fromdate form-control"
+                        value="@Model.DateRangePickerViewModel.FromDate.ToShortDateWithSlash()" />
+                    <span class="input-group-addon">
+                        <span class="icon-calendar" id="fdate_trigger"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>@Resources.To</label>
+            <div class="control date">
+                <div id="to-date-container"
+                    class="input-group date todate">
+                    <input type="text"
+                        id="to-date-@lowerLevelName"
+                        name="ToDate"
+                        readonly="readonly"
+                        autocomplete="off"
+                        class="ui_nexdatepicker_datetextbox ui_nexdatepicker_todate form-control"
+                        value="@Model.DateRangePickerViewModel.ToDate.ToShortDateWithSlash()" />
+                    <span class="input-group-addon">
+                        <span class="icon-calendar" id="tdate_trigger"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
     }
 }
 
@@ -258,25 +262,24 @@
             new { Text = Resources.ReviewStatus, ClassName = string.Empty, Show = true }
         };
 
-
-    <div id="@($"container-{levelName}")">
-        <table id="@($"tbl-{levelName}")" class="tblRpt tblRpt-bordered alternative-row-table width-100per tablesorter tblRpt-hover @($"level-{levelName}")">
-            <thead>
-                <tr>
-                    @foreach (var column in columns)
-                    {
-                        if (column.Show)
+        <div id="@($"container-{levelName}")">
+            <table id="@($"tbl-{levelName}")" class="tblRpt tblRpt-bordered alternative-row-table width-100per tablesorter tblRpt-hover @($"level-{levelName}")">
+                <thead>
+                    <tr>
+                        @foreach (var column in columns)
                         {
-                            <th class="@column.ClassName">@Html.Raw(column.Text)</th>
+                            if (column.Show)
+                            {
+                                <th class="@column.ClassName">@Html.Raw(column.Text)</th>
+                            }
                         }
-                    }
-                </tr>
-            </thead>
-            <tbody></tbody>
-            <tfoot></tfoot>
-        </table>
-    </div>
-}
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+    }
 }
 
 @functions
@@ -289,7 +292,8 @@
     }
 }
 
-@functions{
+@functions
+{
     public bool IsActiveTab(UserLevel userLevel)
     {
         return Model.Query.SearchRoleId == userLevel.Value;

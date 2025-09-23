@@ -36,6 +36,7 @@ class AutoTransferMonitoring {
     autoRefreshComponent: AutoRefreshComponent;
     $statusComponent: MultipleSelectionDropdownComponent;
     levelTypeComponent: SingleDropdownTransferComponent;
+    compactFeedback: CompactFeedbackComponent;
     showLevelType: boolean;
     directMemberText: string;
     masterAgentText: string;
@@ -56,7 +57,8 @@ class AutoTransferMonitoring {
         visibleColumnDropdownComponent: VisibleColumnDropdownComponent,
         autoRefreshComponent: AutoRefreshComponent,
         statusComponent: MultipleSelectionDropdownComponent,
-        levelTypeComponent: SingleDropdownTransferComponent
+        levelTypeComponent: SingleDropdownTransferComponent,
+        compactFeedback: CompactFeedbackComponent
     ) {
         this.$ = $;
         this.topWindow = topWindow;
@@ -66,6 +68,7 @@ class AutoTransferMonitoring {
         this.autoRefreshComponent = autoRefreshComponent;
         this.$statusComponent = statusComponent;
         this.levelTypeComponent = levelTypeComponent;
+        this.compactFeedback = compactFeedback;
     }
 
     init = () => {
@@ -162,7 +165,10 @@ class AutoTransferMonitoring {
             data: this.reportParam,
             dataType: 'json',
             url: 'GetTodayTransfers',
-            success: (results) => this.showTransfers(results),
+            success: (results) => {
+                this.showTransfers(results);
+                this.compactFeedback.init(this.reportParam, results.Transfers && results.Transfers.length > 0);
+            },
             complete: this.$.unblockUI
         });
     };
@@ -432,7 +438,8 @@ $(() => {
         new VisibleColumnDropdownComponent($),
         new AutoRefreshComponent($),
         new MultipleSelectionDropdownComponent($),
-        new SingleDropdownTransferComponent()
+        new SingleDropdownTransferComponent(),
+        new CompactFeedbackComponent()
     );
     handler.init();
 });

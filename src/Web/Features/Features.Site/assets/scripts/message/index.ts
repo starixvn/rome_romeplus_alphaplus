@@ -3,49 +3,59 @@
     dateRangePickerComponent: DateRangePickerComponent;
     constraintFromTo = 6;
     pagerComponent: PagerComponent;
+    compactFeedback: CompactFeedbackComponent;
 
     constructor(
         $: JQueryStatic,
         dateRangePickerComponent: DateRangePickerComponent,
-        pagerComponent: PagerComponent) {
+        pagerComponent: PagerComponent,
+        compactFeedback: CompactFeedbackComponent
+    ) {
         this.dateRangePickerComponent = dateRangePickerComponent;
         this.pagerComponent = pagerComponent;
         this.$ = $;
+        this.compactFeedback = compactFeedback;
     }
 
     registerEvents = () => {
-        var self = this;
-        this.$('.nav-tabs > li').on('click', function () {
-            self.$(this).find('span').val('');
+        const this$ = this.$;
+        const $reportForm = this$('#report-form');
+        this$('.nav-tabs > li').on('click', function () {
+            this$(this).find('span').val('');
         });
-        this.$('.btn-submit').on('click', () => {
-            this.$.blockUI();
-        });
-        this.dateRangePickerComponent.render(new DateRangePickerOption("daterange-picker", "report-form", this.constraintFromTo));
+        this$('.btn-submit').on('click', () => this$.blockUI());
+        this.dateRangePickerComponent.render(
+            new DateRangePickerOption('daterange-picker', 'report-form', this.constraintFromTo)
+        );
         this.pagerComponent.render();
-        this.$("#report-form").on("click", this.resetPaging);
-        this.$("#icon-information").on("click", this.showGuidelines);
-    }
+        $reportForm.on('click', this.resetPaging);
+        this$('#icon-information').on('click', this.showGuidelines);
+        this.compactFeedback.init($reportForm.length ? $reportForm : undefined);
+    };
 
     resetPaging = () => {
-        this.$("#PageIndex").val(1);
+        this.$('#PageIndex').val(1);
     };
 
     showGuidelines = () => {
-        const iconInformation = this.$("#icon-information");
-        const guideNote = this.$("#guide-note");
+        const iconInformation = this.$('#icon-information');
+        const guideNote = this.$('#guide-note');
         guideNote.modal({ show: true, backdrop: false });
         const iconHelpPosition = iconInformation.position();
+        const paddingTop = 40;
         guideNote.css({
-            bottom: "auto",
-            top: iconHelpPosition.top + 40,
+            bottom: 'auto',
+            top: iconHelpPosition.top + paddingTop
         });
     };
 }
 
 $(() => {
-    const message = new Message($,
+    const message = new Message(
+        $,
         new DateRangePickerComponent($),
-        new PagerComponent($));
+        new PagerComponent($),
+        new CompactFeedbackComponent()
+    );
     message.registerEvents();
 });

@@ -16,7 +16,8 @@ public class RewardFilterViewModel
         IEnumerable<RewardProgram> programs,
         string excelAction,
         bool showColumns = false,
-        bool showLevelType = false)
+        bool showLevelType = false,
+        int feedbackFunctionId = 0)
     {
         ActorLevel = message.ActorLevel;
         DateRangePicker = new DateRangePickerJQueryViewModel(
@@ -33,6 +34,7 @@ public class RewardFilterViewModel
         ShowColumns = showColumns;
         LevelType = message.LevelType;
         ShowLevelType = showLevelType;
+        FeedbackFunctionId = feedbackFunctionId;
     }
 
     public UserLevel ActorLevel { get; }
@@ -50,6 +52,8 @@ public class RewardFilterViewModel
     public byte LevelType { get; }
 
     public bool ShowLevelType { get; }
+
+    public int FeedbackFunctionId { get; }
 
     public string ExcelAction { get; }
 

@@ -2,7 +2,7 @@
 {
     public class SportBookInformationRequest : BaseHandbookRequest
     {
-        public int TabIndex { get; set; }
+        public string TabName { get; set; }
         public int Currency { get; set; }
         public string SiteLabel { get; set; }
     }

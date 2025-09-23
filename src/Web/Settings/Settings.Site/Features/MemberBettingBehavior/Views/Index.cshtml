@@ -1,5 +1,5 @@
 @model MemberBettingBehaviorViewModel
-
+@addTagHelper *, AlphaPlus.Settings.Site
 @{
     Layout = "~/Features/Shared/Views/_Layout.cshtml"; ;
     ViewBag.Title = "Member Betting Behavior";
@@ -30,10 +30,13 @@
 }
 
 <div class="filter">
-    <div class="form" id="form-id">
-        <input type="text" name="username" id="txt-username" autocomplete="off" maxlength="50"
-            placeholder="@Resources.UsernamePlaceHolder" autofocus />
-        <button class="btn-search" id="btn-submit"><span class="icon-search"></span></button>
+    <div class="flex">
+        <div class="form mr-10" id="form-id">
+            <input type="text" name="username" id="txt-username" autocomplete="off" maxlength="50"
+                placeholder="@Resources.UsernamePlaceHolder" autofocus />
+            <button class="btn-search" id="btn-submit"><span class="icon-search"></span></button>
+        </div>
+        <compact-feedback fid="102" class-name="hide" like-icon-class="icon-like" />
     </div>
 </div>
 

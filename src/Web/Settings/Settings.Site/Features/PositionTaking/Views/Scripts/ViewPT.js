@@ -45,6 +45,18 @@
             .bind('click', function (event) {
                 self.viewDownlinePTList(event);
             });
+
+        const formData = {
+            ProductId: self.cachedData.positionTakingInfo.product.id,
+            CustId: self.cachedData.positionTakingInfo
+                ? self.cachedData.positionTakingInfo.viewedCustomerInfo.custId
+                : 0,
+            RoleId: self.cachedData.positionTakingInfo
+                ? self.cachedData.positionTakingInfo.viewedCustomerInfo.roleId
+                : 0,
+            LevelType: self.cachedData.positionTakingInfo.levelType
+        };
+        new CompactFeedbackComponent().init(formData, self.positionTakingInfo.customerList.length > 0);
     };
     self.cacheElement = function () {
         self.domElements.pagingControl = $('#tblHeader .pagingcontrol');
@@ -77,7 +89,7 @@
         });
     };
     self.getPositionTakingInfo = function (pageSize, pageIndex) {
-        var criteria = {
+        const criteria = {
             ProductId: self.cachedData.positionTakingInfo.product.id,
             PageSize: pageSize,
             PageIndex: pageIndex,
@@ -105,6 +117,7 @@
                     .bind('click', function (event) {
                         self.viewDownlinePTList(event);
                     });
+                new CompactFeedbackComponent().init(criteria, rs.customerList.length > 0);
             }
         });
     };
@@ -368,7 +381,9 @@
                 MergeRowNumber: uplineLength + 1
             });
 
-            var icon = custPt.customerInfo.isCashMember ? '<span class="icon-cashservice icon-cashservice-common"></span>' : '';
+            var icon = custPt.customerInfo.isCashMember
+                ? '<span class="icon-cashservice icon-cashservice-common"></span>'
+                : '';
 
             columns.push({
                 Name: 'ColUsername',
@@ -419,7 +434,9 @@
                 Value: custPt.groupIndex
             });
 
-            var icon = custPt.customerInfo.isCashMember ? '<span class="icon-cashservice icon-cashservice-common"></span>' : '';
+            var icon = custPt.customerInfo.isCashMember
+                ? '<span class="icon-cashservice icon-cashservice-common"></span>'
+                : '';
             columns.push({
                 Name: 'ColUsername',
                 Value: self.drilldownLink(positionTakingInfo, custPt.customerInfo) + icon

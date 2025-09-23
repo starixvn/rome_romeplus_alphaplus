@@ -17,11 +17,18 @@ class MemberBettingBehavior {
     private turnoverBySportChart: TurnoverBySportChart;
     private turnoverByBetTypeChart: TurnoverByBetTypeChart;
     private turnoverWinLossByDateChart: TurnoverWinLossByDateChart;
+    private readonly compactFeedback: CompactFeedbackComponent;
 
-    constructor($: JQueryStatic, dataRange: SingleSelectionDropdownComponent, topWindow: any) {
+    constructor(
+        $: JQueryStatic,
+        dataRange: SingleSelectionDropdownComponent,
+        topWindow: any,
+        compactFeedback: CompactFeedbackComponent
+    ) {
         this.$ = $;
         this.dateRange = dataRange;
         this.topWindow = topWindow;
+        this.compactFeedback = compactFeedback;
     }
 
     init() {
@@ -85,6 +92,7 @@ class MemberBettingBehavior {
     checkMemberUsername = () => {
         const username = this.$.trim(this.$('#txt-username').val());
         if (!username.length) {
+            this.compactFeedback.toggleShowHide(false);
             const mustEnterUsernameText = this.$('#mustEnterUserNameText').val();
             TipsyHelper.showError(this.txtUsername, mustEnterUsernameText, 'w', false);
             return '';
@@ -115,67 +123,55 @@ class MemberBettingBehavior {
 
     getMemberProfile(username: string) {
         const url = this.$('#member-info-url').val() + 'MemberBettingBehavior/MemberProfile';
-        AJAXHelper.callAjax(
-            url,
-            'GET',
-            {
-                username: encodeURIComponent(username)
-            },
-            (memberProfile) => {
-                if (memberProfile.IsFailed) {
-                    this.customerProfile.hide();
-                    const memberUsernameInvalidText = this.$('#memberUserNameIsInvalidText').val();
-                    TipsyHelper.showError(this.txtUsername, memberUsernameInvalidText, 'w', false);
-                    this.$.unblockUI();
-                    return;
-                }
-                this.renderCustomerProfile(memberProfile);
+        AJAXHelper.callAjax(url, 'GET', { username: encodeURIComponent(username) }, (memberProfile) => {
+            if (memberProfile.IsFailed) {
+                this.customerProfile.hide();
+                const memberUsernameInvalidText = this.$('#memberUserNameIsInvalidText').val();
+                TipsyHelper.showError(this.txtUsername, memberUsernameInvalidText, 'w', false);
                 this.$.unblockUI();
+                return;
             }
-        );
+            this.renderCustomerProfile(memberProfile);
+            this.$.unblockUI();
+        });
     }
 
-    getMemberStatistic(username: string, dateRange?: number) {
+    getMemberStatistic(username: string, dateRange: number) {
         const url = this.$('#member-info-url').val() + 'MemberBettingBehavior/MemberBettingStatistic';
-        AJAXHelper.callAjax(
-            url,
-            'GET',
-            {
-                username: encodeURIComponent(username),
-                dateRange
-            },
-            (memberStatistic) => {
-                if (memberStatistic.IsFailed) {
-                    this.statisticBlock.hide();
-                    const memberUsernameInvalidText = this.$('#memberUserNameIsInvalidText').val();
-                    TipsyHelper.showError(this.txtUsername, memberUsernameInvalidText, 'w', false);
-                    this.$.unblockUI();
-                    return;
-                }
-
-                if (
-                    !memberStatistic.SummaryStatistic ||
-                    (memberStatistic.SummaryStatistic.Turnover === 0 &&
-                        memberStatistic.SummaryStatistic.Margin === 0 &&
-                        memberStatistic.SummaryStatistic.WinLoss === 0)
-                ) {
-                    this.statisticBlock.show();
-                    this.$('#no-infomation').show();
-                    this.$('#statistic-chart-id').hide();
-                    this.$.unblockUI();
-                    return;
-                }
-
-                this.statisticBlock.show();
-                this.$('#no-infomation').hide();
-                this.$('#statistic-chart-id').show();
-                this.renderSummaryStatistic(memberStatistic.SummaryStatistic);
-                this.renderTurnoverBySportChart(memberStatistic.TurnOverBySports);
-                this.renderTurnoverByBettypeChart(memberStatistic.TurnoverByBettypes);
-                this.renderTurnoverWinLossByDatesChart(memberStatistic.TurnoverWinLossByDates);
+        const params = { username: encodeURIComponent(username), dateRange };
+        AJAXHelper.callAjax(url, 'GET', params, (memberStatistic) => {
+            if (memberStatistic.IsFailed) {
+                this.compactFeedback.toggleShowHide(false);
+                this.statisticBlock.hide();
+                const memberUsernameInvalidText = this.$('#memberUserNameIsInvalidText').val();
+                TipsyHelper.showError(this.txtUsername, memberUsernameInvalidText, 'w', false);
                 this.$.unblockUI();
+                return;
             }
-        );
+
+            this.compactFeedback.init(params, true);
+            if (
+                !memberStatistic.SummaryStatistic ||
+                (memberStatistic.SummaryStatistic.Turnover === 0 &&
+                    memberStatistic.SummaryStatistic.Margin === 0 &&
+                    memberStatistic.SummaryStatistic.WinLoss === 0)
+            ) {
+                this.statisticBlock.show();
+                this.$('#no-infomation').show();
+                this.$('#statistic-chart-id').hide();
+                this.$.unblockUI();
+                return;
+            }
+
+            this.statisticBlock.show();
+            this.$('#no-infomation').hide();
+            this.$('#statistic-chart-id').show();
+            this.renderSummaryStatistic(memberStatistic.SummaryStatistic);
+            this.renderTurnoverBySportChart(memberStatistic.TurnOverBySports);
+            this.renderTurnoverByBettypeChart(memberStatistic.TurnoverByBettypes);
+            this.renderTurnoverWinLossByDatesChart(memberStatistic.TurnoverWinLossByDates);
+            this.$.unblockUI();
+        });
     }
 
     renderCustomerProfile(memberProfile) {
@@ -354,6 +350,11 @@ class MemberBettingBehavior {
 }
 
 $(function () {
-    const memberBettingBehavior = new MemberBettingBehavior($, new SingleSelectionDropdownComponent($), window.top);
+    const memberBettingBehavior = new MemberBettingBehavior(
+        $,
+        new SingleSelectionDropdownComponent($),
+        window.top,
+        new CompactFeedbackComponent()
+    );
     memberBettingBehavior.init();
 });

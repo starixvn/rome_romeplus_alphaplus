@@ -15,6 +15,7 @@ class CreditBalance {
     columnsControl: ColumnsControlComponent;
     statusComponent: SingleSelectionDropdownComponent;
     levelTypeComponent: SingleSelectionDropdownComponent;
+    compactFeedback: CompactFeedbackComponent;
     submitButton: JQuery;
 
     constructor(
@@ -23,7 +24,8 @@ class CreditBalance {
         pager: PagerComponent,
         columnsControl: ColumnsControlComponent,
         statusComponent: SingleSelectionDropdownComponent,
-        levelTypeComponent: SingleSelectionDropdownComponent
+        levelTypeComponent: SingleSelectionDropdownComponent,
+        compactFeedback: CompactFeedbackComponent
     ) {
         this.$ = $;
         this.topWindow = topWindow;
@@ -31,6 +33,7 @@ class CreditBalance {
         this.columnsControl = columnsControl;
         this.statusComponent = statusComponent;
         this.levelTypeComponent = levelTypeComponent;
+        this.compactFeedback = compactFeedback;
     }
 
     init = () => {
@@ -68,6 +71,7 @@ class CreditBalance {
             .bind('click', (event) => {
                 this.viewDataURL(event);
             });
+        this.compactFeedback.init(this.creditBalanceForm, true);
     };
 
     viewDataURL = (event) => {
@@ -209,7 +213,8 @@ $(() => {
         new PagerComponent($),
         new ColumnsControlComponent($, window.document),
         new SingleSelectionDropdownComponent($),
-        new SingleSelectionDropdownComponent($)
+        new SingleSelectionDropdownComponent($),
+        new CompactFeedbackComponent()
     );
     creditBalance.init();
 });

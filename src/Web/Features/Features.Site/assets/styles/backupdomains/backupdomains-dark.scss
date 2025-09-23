@@ -1,6 +1,13 @@
-﻿.tblRpt {
+﻿.tab-pane {
+    max-width: 500px;
+
+    .box-icon-title {
+        float: right;
+    }
+}
+
+.tblRpt {
     margin-top: 6px;
-    width: auto;
 
     tr td {
         height: 36px;
@@ -9,11 +16,7 @@
 }
 
 .col-no {
-    width: 60px;
-}
-
-.col-domain {
-    width: 250px;
+    width: 40px;
 }
 
 .col-copy-domain {

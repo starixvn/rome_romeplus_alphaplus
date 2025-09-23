@@ -14,6 +14,7 @@
   {
     "outputFileName": "wwwroot/assets/bundles/announcement.js",
     "inputFiles": [
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/core.js",
       "assets/scripts/announcement/index.js",
       "assets/scripts/components/daterangepicker.js"
@@ -34,6 +35,7 @@
   {
     "outputFileName": "wwwroot/assets/bundles/message.js",
     "inputFiles": [
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/core.js",
       "assets/scripts/message/index.js",
       "assets/scripts/components/daterangepicker.js",
@@ -121,6 +123,7 @@
   {
     "outputFileName": "wwwroot/assets/bundles/backupdomains/backupdomains.js",
     "inputFiles": [
+      "assets/scripts/compact-feedback.js",
       "assets/scripts/core.js",
       "assets/scripts/backupdomains/index.js"
     ]

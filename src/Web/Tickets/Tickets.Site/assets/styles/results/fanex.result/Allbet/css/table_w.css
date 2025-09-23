@@ -1,3 +1,10 @@
+:root,
+:root [data-theme='light'] {
+  --popWTableArea: #f5f3f2;  
+}
+:root [data-theme='dark'] {
+  --popWTableArea: #1e1e1e;
+}
 /*Odds Table list*/
 .oddsTable {
   font-size: 11px;
@@ -13,7 +20,7 @@
   background-position: right bottom;
   background-color: #6787bb;
   font-weight: normal;
-  color: #ffffff;
+  /*color: #ffffff;*/
   height: 18px;
   border-color: #476596;
   border-bottom: #3b598d 1px solid;
@@ -51,10 +58,10 @@
   border-right-style: solid;
 }
 
-.oddsTable td:first-child {
+/* .oddsTable td:first-child {
   border-left-width: 1px;
   border-left-style: solid;
-}
+} */
 
 .oddsTable td.tabtitle {
   background-color: #b1b1b1;
@@ -75,13 +82,13 @@
 
 .popWTableArea {
   padding: 10px;
-  border: 1px solid #ffffff;
+  border: 1px solid var(--table-border);
   border-radius: 0 0 2px 2px;
-  background: #f5f3f2;
+  background: var(--popWTableArea);
 }
 
 .popWTableArea td{
-  color: #000!important;
+  /* color: #000!important; */
 }
 .popWTitleContain {
   float: left;

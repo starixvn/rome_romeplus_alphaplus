@@ -1,79 +1,90 @@
-﻿"use strict";
+﻿'use strict';
 
 class ManageAccount {
     $: JQueryStatic;
     topWindow: any;
     rootURL: string;
+    compactFeedback: CompactFeedbackComponent;
 
-    constructor(
-        $: JQueryStatic,
-        topWindow: any) {
+    constructor($: JQueryStatic, topWindow: any, compactFeedback: CompactFeedbackComponent) {
         this.$ = $;
         this.topWindow = topWindow;
+        this.compactFeedback = compactFeedback;
     }
 
     public init() {
         this.cacheDOMElements();
         this.registerEvents();
+        this.compactFeedback.init();
     }
 
     public cacheDOMElements() {
-        this.rootURL = this.$("#txt-rootURL").val();
+        this.rootURL = this.$('#txt-rootURL').val();
     }
 
     public registerEvents() {
         const self = this;
 
-        this.$("#btn-connectToNewAccount").click(function () {
-            self.topWindow.alpha.detectResponsiveInformation()
-            const url = self.rootURL + "NewAccount";
+        this.$('#btn-connectToNewAccount').click(function () {
+            self.topWindow.alpha.detectResponsiveInformation();
+            const url = self.rootURL + 'NewAccount';
             self.topWindow.popupManager.open(url, undefined, 630, self.topWindow.alpha.isMobile ? 430 : 350);
         });
 
-        this.$(".icon-indirect-login").not(".disabled").click(function (e) {
-            self.$.blockUI();
-            let isRedirect = false;
-            const $this = self.$(this);
-            const redirectURL = $this.attr("href");
-            const parent = $this.closest("tr");
-            const queryString = self.$.param({
-                custId: parent.data("custid"),
-                subAccId: parent.data("subaccid"),
-                custname: parent.data("custname"),
+        this.$('.icon-indirect-login')
+            .not('.disabled')
+            .click(function (e) {
+                self.$.blockUI();
+                let isRedirect = false;
+                const $this = self.$(this);
+                const redirectURL = $this.attr('href');
+                const parent = $this.closest('tr');
+                const queryString = self.$.param({
+                    custId: parent.data('custid'),
+                    subAccId: parent.data('subaccid'),
+                    custname: parent.data('custname')
+                });
+                self.$.ajax({
+                    type: 'GET',
+                    url: self.rootURL + 'ValidateAccount?' + queryString,
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    async: false,
+                    success: function (data) {
+                        if (data.IsOk) {
+                            if (redirectURL.indexOf('browserSize=') === -1) {
+                                $this.attr('href', redirectURL + '&browserSize=' + self.getBrowserSize());
+                            }
+
+                            isRedirect = true;
+                        } else if (data.Code === 5001) {
+                            self.topWindow.popupManager.open(
+                                self.rootURL + 'UpdatePassword?' + queryString,
+                                undefined,
+                                530,
+                                280
+                            );
+                        } else {
+                            self.topWindow.bootboxAlert(data.Message);
+                        }
+                    },
+                    complete: self.$.unblockUI
+                });
+
+                return isRedirect;
             });
-            self.$.ajax({
-                type: "GET",
-                url: self.rootURL + "ValidateAccount?" + queryString,
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                async: false,
-                success: function (data) {
-                    if (data.IsOk) {
-                        if (redirectURL.indexOf("browserSize=") === -1) {
-                            $this.attr("href", redirectURL + "&browserSize=" + self.getBrowserSize());
-                        } 
 
-                        isRedirect = true;
-                    } else if (data.Code === 5001) {
-                        self.topWindow.popupManager.open(self.rootURL + "UpdatePassword?" + queryString, undefined, 530, 280);
-                    } else {
-                        self.topWindow.bootboxAlert(data.Message);
-                    }
-                },
-                complete: self.$.unblockUI
-            });
-
-            return isRedirect;
-        });
-
-        this.$(".icon-disconnect").click(function () {
-            const parent = self.$(this).closest("tr");
+        this.$('.icon-disconnect').click(function () {
+            const parent = self.$(this).closest('tr');
             const url = [
                 self.rootURL,
-                "DisconnectPopup?custid=", parent.data("custid"),
-                "&subaccid=", parent.data("subaccid"),
-                "&custname=", parent.data("custname")
-            ].join("");
+                'DisconnectPopup?custid=',
+                parent.data('custid'),
+                '&subaccid=',
+                parent.data('subaccid'),
+                '&custname=',
+                parent.data('custname')
+            ].join('');
             self.topWindow.popupManager.open(url, undefined, 630, 330);
         });
     }
@@ -82,15 +93,15 @@ class ManageAccount {
         var w = this.topWindow.window,
             d = this.topWindow.document,
             e = d.documentElement,
-            g = d.getElementsByTagName("body")[0],
+            g = d.getElementsByTagName('body')[0],
             x = w.innerWidth || e.clientWidth || g.clientWidth,
             y = w.innerHeight || e.clientHeight || g.clientHeight;
 
-        return x + "x" + y;
+        return x + 'x' + y;
     }
 }
 
 $(() => {
-    const manageAccount = new ManageAccount($, window.top);
+    const manageAccount = new ManageAccount($, window.top, new CompactFeedbackComponent());
     manageAccount.init();
 });

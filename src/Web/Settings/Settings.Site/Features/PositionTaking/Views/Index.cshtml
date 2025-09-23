@@ -26,14 +26,14 @@
                 <tr>
                     <td>
                         @await Html.PartialAsync("~/Features/PositionTaking/Views/Shared/_PositionTakingHeader.cshtml",
-                        new Dictionary<string, object>() {
-                                                { "ProductId", productId },
-                                                { "ShowPTIcon", Model.pt.product.showPTIcon },
-                                                { "SiteLabel", AppSettings.SiteLabel},
-                                                { "Products", products},
-                                                { "LevelType", Model.pt.levelType },
-                                                { "RoleId", Model.pt.viewedCustomerInfo.roleId },
-                                                { "CustId", Model.pt.viewedCustomerInfo.custId } })
+                                 new Dictionary<string, object>() {
+                        { "ProductId", productId },
+                        { "ShowPTIcon", Model.pt.product.showPTIcon },
+                        { "SiteLabel", AppSettings.SiteLabel},
+                        { "Products", products},
+                        { "LevelType", Model.pt.levelType },
+                        { "RoleId", Model.pt.viewedCustomerInfo.roleId },
+                        { "CustId", Model.pt.viewedCustomerInfo.custId } })
                     </td>
                 </tr>
                 <tr>
@@ -84,7 +84,6 @@
 
             var bootstrapData = @Html.Raw(JsonConvert.SerializeObject(Model.pt));
         </script>
-        <script type="text/javascript" src="@Url.Content("~/bundles/position-taking/index.js")"
-            asp-append-version="true"></script>
+        @StaticResources.RenderScripts("~/bundles/position-taking/index")
     }
 </body>

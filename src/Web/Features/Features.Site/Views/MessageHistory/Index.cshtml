@@ -2,11 +2,10 @@
 @using AlphaPlus.Core.Helpers
 @using AlphaPlus.Shared.AppResources.Features.Messages
 @using AlphaPlus.Features.Messages.API.Constants
-
+@addTagHelper *, AlphaPlus.Features.Site
 @model AlphaPlus.Features.Site.Messages.ViewModels.MessagesHistoryViewModel
 
-
-@section Styles{
+@section Styles {
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-betlists/pagination")
 }
 
@@ -14,7 +13,8 @@
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label=""><span aria-hidden="true"></span></button>
+                <button type="button" class="icon icon-close close" data-dismiss="modal" aria-label=""><span
+                        aria-hidden="true"></span></button>
                 <h4 class="modal-title"></h4>
             </div>
             <div class="modal-body">
@@ -27,29 +27,24 @@
 </div>
 
 <div role="tabpanel" class="tab-pane active">
-
     @if (Model.MessageType != MessageType.Special)
     {
         <div class="filter">
-            @using (Html.BeginForm("Messages", "MessageHistory", new { messageType = Model.MessageType }, FormMethod.Post, antiforgery: false, new { id = "report-form" }))
+            @using (Html.BeginForm("Messages", "MessageHistory", new { messageType = Model.MessageType }, FormMethod.Post,
+           antiforgery: false, new { id = "report-form" }))
             {
-                <div id="daterange-picker"
-                     class="daterange-picker"
-                     data-mindate="@DateTime.Now.AddMonths(-3).ToShortDateWithSlash()"
-                     data-maxdate="@DateTime.Now.ToShortDateWithSlash()">
+                <div id="daterange-picker" class="daterange-picker"
+                    data-mindate="@DateTime.Now.AddMonths(-3).ToShortDateWithSlash()"
+                    data-maxdate="@DateTime.Now.ToShortDateWithSlash()">
                 </div>
 
                 <div class="form-group">
                     <label class="txt">@Resources.from</label>
                     <div class="control date">
                         <div class="input-group date fromdate" id="from-date-container">
-                            <input type="text"
-                                   id="FromDate"
-                                   name="FromDate"
-                                   readonly="readonly"
-                                   autocomplete="off"
-                                   class="ui_nexdatepicker_datetextbox ui_nexdatepicker_fromdate form-control"
-                                   value="@Model.FromDate.ToShortDateWithSlash()" />
+                            <input type="text" id="FromDate" name="FromDate" readonly="readonly" autocomplete="off"
+                                class="ui_nexdatepicker_datetextbox ui_nexdatepicker_fromdate form-control"
+                                value="@Model.FromDate.ToShortDateWithSlash()" />
                             <span class="input-group-addon">
                                 <span class="icon-calendar" id="fdate_trigger"></span>
                             </span>
@@ -59,15 +54,10 @@
                 <div class="form-group">
                     <label class="txt">@Resources.to</label>
                     <div class="control date">
-                        <div id="to-date-container"
-                             class="input-group date todate">
-                            <input type="text"
-                                   id="ToDate"
-                                   name="ToDate"
-                                   readonly="readonly"
-                                   autocomplete="off"
-                                   class="ui_nexdatepicker_datetextbox ui_nexdatepicker_todate form-control"
-                                   value="@Model.ToDate.ToShortDateWithSlash()" />
+                        <div id="to-date-container" class="input-group date todate">
+                            <input type="text" id="ToDate" name="ToDate" readonly="readonly" autocomplete="off"
+                                class="ui_nexdatepicker_datetextbox ui_nexdatepicker_todate form-control"
+                                value="@Model.ToDate.ToShortDateWithSlash()" />
                             <span class="input-group-addon">
                                 <span class="icon-calendar" id="tdate_trigger"></span>
                             </span>
@@ -80,8 +70,19 @@
                 <div class="form-group icon">
                     <span id="icon-information" class="icon icon-information-outline"></span>
                 </div>
-
+                if (Model.ReportData.Any())
+                {
+                    <div class="form-group">
+                        <compact-feedback fid="GetFeedbackFunctionId(Model.MessageType)" />
+                    </div>
+                }
             }
+        </div>
+    }
+    else
+    {
+        <div class="flex justify-right relative" style="margin-bottom: 8px;">
+            <compact-feedback fid="104" />
         </div>
     }
     @Html.Hidden("GuidelineUrl", @MicroSites.FeatureUrl("GuideNote"))
@@ -134,7 +135,18 @@
     }
 </div>
 
-@section Scripts{
+@section Scripts {
     @StaticResources.RenderScripts("~/assets/bundles/message")
     @StaticResources.AssetScripts.Render("/bundles/site-betlists/pagination")
+}
+@{
+    int GetFeedbackFunctionId(int msgType)
+    {
+        return msgType switch
+        {
+            MessageType.Normal => 103,
+            MessageType.Personal => 106,
+            _ => 0
+        };
+    }
 }

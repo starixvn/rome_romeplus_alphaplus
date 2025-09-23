@@ -60,7 +60,7 @@
                             {
                                 <li>
                                     <a class="breadcrumb-link view-downline"
-                                       data-url="@(viewModel.BuildBreadcrumbLink(custinfo, AlphaContext.Current.Request.GetEncodedPathAndQuery(), null, linkIndex))">
+                                        data-url="@(viewModel.BuildBreadcrumbLink(custinfo, AlphaContext.Current.Request.GetEncodedPathAndQuery(), null, linkIndex))">
                                         @(custinfo.CustName)
                                     </a>
                                 </li>
@@ -78,7 +78,7 @@
         <div class="form-group username-box">
             <label>@CustomerListResources.Username</label>
             <input type="text" class="txt-search" id="txt-username" value="@Model.Username"
-                   placeholder="@CustomerListResources.UsernamePlaceHolder" />
+                placeholder="@CustomerListResources.UsernamePlaceHolder" />
         </div>
         <div class="form-group status-box">
             <label>@CustomerListResources.Status</label>
@@ -100,16 +100,18 @@
         </div>
 
         @if (Model.SearchAccountLevel.IsAgentLevel()
-                && AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(UserSession.Current.Site))
+        && AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(UserSession.Current.Site))
         {
             <div class="form-group comm-box">
                 <label>
                     @CashServicesResx.AccountType
                 </label>
-                <span class="icon icon-information-outline" title="@CashServicesResx.MemberListNoteEditMultipleNotAvailable"></span>
+                <span class="icon icon-information-outline"
+                    title="@CashServicesResx.MemberListNoteEditMultipleNotAvailable"></span>
                 <select id="serviceType" name="serviceType">
                     <option value="2" selected="@(Model.ServiceType == ServiceTypeConstants.All)">@Resources.All</option>
-                    <option value="0" selected="@(Model.ServiceType == ServiceTypeConstants.Credit)">@Resources.Credit</option>
+                    <option value="0" selected="@(Model.ServiceType == ServiceTypeConstants.Credit)">@Resources.Credit
+                    </option>
                     <option value="1" selected="@(Model.ServiceType == ServiceTypeConstants.Cash)">@Resources.Cash</option>
                 </select>
             </div>
@@ -135,6 +137,9 @@
         }
         <div class="form-group btn-box">
             <input type="submit" value="@Resources.Submit" class="btn-submit" />
+        </div>
+        <div class="form-group hide">
+            <compact-feedback fid="76" />
         </div>
     </div>
     <table id="tbl-customer-list" class="hidden tblRpt tblRpt-bordered tblRpt-hover display nowrap">
@@ -189,11 +194,11 @@
                     </th>
                 }
                 <th rowspan="2" class="header all padding-icon">
-                    @*  @if (!Model.HideEditMultiple)
+                    @* @if (!Model.HideEditMultiple)
                     { *@
                     <div class="edit-multiple icon-table-edit js-service-type-multiple-show" data-url=""
-                         title="@CustomerListResources.EditMultipleSetting"></div>
-                    @*} 
+                        title="@CustomerListResources.EditMultipleSetting"></div>
+                    @*}
                     else
                     { *@
                     <span class="js-service-type-multiple-hide">@CustomerListResources.Edit</span>
@@ -353,7 +358,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                            id="close-product-popup">
+                        id="close-product-popup">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
@@ -372,7 +377,8 @@
     @Html.Hidden("AllowAutoTransfer", Model.AllowAutoTransfer)
     @Html.Hidden("UnconfirmSettingId", Model.UnconfirmSetting)
     @Html.Hidden("enableAllDayBalanceTransfer", Model.EnableAllDayBalanceTransfer)
-    @Html.Hidden("OfferedCashService", AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(UserSession.Current.Site) ? "true" : "false")
+    @Html.Hidden("OfferedCashService",
+            AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(UserSession.Current.Site) ? "true" : "false")
     <input type="hidden" id="searchAccountId" value="@Model.SearchAccountId">
     <input type="hidden" id="searchAccountName" value="@Model.SearchAccountName">
     <input type="hidden" id="searchAccountRoleId" value="@Model.SearchAccountRoleId">
@@ -406,9 +412,9 @@
     <input type="hidden" id="expandAllText" value='@CustomerListResources.ExpandAll'>
     <input type="hidden" id="unlockTooltipText" value='@CustomerListResources.UnlockTooltip'>
     <input type="hidden" id="confirmUnlockInCaseFalseOTPSC"
-           value='@ProductResources.ConfirmUnlockAccessViewModelInCaseFalseOTPSC'>
+        value='@ProductResources.ConfirmUnlockAccessViewModelInCaseFalseOTPSC'>
     <input type="hidden" id="confirmUnlockInCaseFalsePassword"
-           value='@ProductResources.ConfirmUnlockAccessViewModelInCaseFalsePassword'>
+        value='@ProductResources.ConfirmUnlockAccessViewModelInCaseFalsePassword'>
     <input type="hidden" id="page" value='@CustomerListResources.Page'>
     <input type="hidden" id="of" value='@CustomerListResources.Of'>
     <input type="hidden" id="pageSize" value='@CustomerListResources.PageSize'>
@@ -421,5 +427,5 @@
     </script>
     @StaticResources.AssetScripts.RenderCommon("/bundles/site-memberinfo/data-table")
     @StaticResources.RenderScripts("~/Features/MemberInfo/Features/QRCodeMemberSignIn/Scripts/EasyAutocomplete/jquery.easy-autocomplete")
-    <script src="~/bundles/Features/CustomerList/customer-list.js" type="text/javascript" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/bundles/Features/CustomerList/customer-list")
 }

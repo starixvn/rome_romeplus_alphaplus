@@ -6,7 +6,7 @@
 @using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components
 @using AlphaPlus.Settings.MemberInfo.Domain.Features.DormantAccountList.Models
 @using AlphaPlus.Settings.MemberInfo.Domain.Extensions
-
+@addTagHelper *, AlphaPlus.Settings.Site
 @model DormantAccountViewModel
 
 @{
@@ -52,6 +52,12 @@
         <button id="btn-submit" type="submit" class="btn-submit">@Resources.Submit</button>
         <span id="icon-excel" class="icon-excel" title="@Resources.ExportToExcel"></span>
     </div>
+    @if (Model.Report.HasData)
+    {
+        <div class="form-group">
+            <compact-feedback fid="84" />
+        </div>
+    }
 }
 
 @using (Html.BeginForm("Excel", "DormantAccount", FormMethod.Get, new
@@ -140,7 +146,8 @@
             </div>
             <div class="modal-body">
                 @{
-                    await Html.RenderPartialAsync($"~/Features/MemberInfo/Features/DormantAccountList/Views/ArchiveProcess_{Model.GetArchiveProcessViewLang()}.cshtml");
+                    await
+                    Html.RenderPartialAsync($"~/Features/MemberInfo/Features/DormantAccountList/Views/ArchiveProcess_{Model.GetArchiveProcessViewLang()}.cshtml");
                 }
             </div>
         </div>
@@ -181,7 +188,7 @@
                     @Html.Raw(HtmlHelpers.FormatNumber(item.ClearedGivenCredit.Value))
                 }
             </td>
-        <td class="text-right">@Html.Raw(HtmlHelpers.FormatNumber(item.YesterdayBalance))</td>
+            <td class="text-right">@Html.Raw(HtmlHelpers.FormatNumber(item.YesterdayBalance))</td>
             @if (Model.IsShowDateTimeColumn)
             {
                 <td class="text-center @(isRedDateTime ? "text-danger" : string.Empty)">@item.LastLogged.ToLongDateTime12h()</td>

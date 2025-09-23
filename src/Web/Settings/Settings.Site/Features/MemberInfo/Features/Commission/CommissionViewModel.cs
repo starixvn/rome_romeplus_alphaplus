@@ -27,7 +27,7 @@ public class CommissionViewModel(
     public IDictionary<string, string> GetCommHintParams()
         => new Dictionary<string, string>
         {
-            ["tabindex"] = "3",
+            ["tabname"] = "CommissionHintTab",
             ["theme"] = string.IsNullOrWhiteSpace(message.DarkModeName) ? string.Empty : "dark",
             ["cusId"] = message.ViewerId.ToString(),
             ["roleId"] = message.ViewerLevelId.ToString(),

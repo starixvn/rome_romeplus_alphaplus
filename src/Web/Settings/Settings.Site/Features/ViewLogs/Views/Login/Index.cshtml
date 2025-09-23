@@ -1,7 +1,7 @@
 ﻿@using AlphaPlus.Settings.Site.Features.ViewLogs.ViewModels.Login;
 @using AlphaPlus.Shared.AppResources.Settings.ViewLog;
 @using AlphaPlus.Core.Helpers;
-
+@addTagHelper *, AlphaPlus.Settings.Site
 @model IndexViewModel
 @{
     Layout = "~/Features/ViewLogs/Views/Shared/_Layout.cshtml";
@@ -13,16 +13,24 @@
             <form class="form-inline" role="form">
                 <div class="form-group">
                     <input type="text" id="txt-username" placeholder="@Resources.UsernameOrFirstLastName"
-                           value="@(string.IsNullOrWhiteSpace(Model.Username) ? string.Empty : Model.Username)"
-                           autocomplete="off" />
+                        value="@(string.IsNullOrWhiteSpace(Model.Username) ? string.Empty : Model.Username)"
+                        autocomplete="off" />
                 </div>
                 <div class="form-group">
-                    <div id="monthPickerID"><div id="ddlMonth"></div></div>
+                    <div id="monthPickerID">
+                        <div id="ddlMonth"></div>
+                    </div>
                 </div>
                 <div class="form-group submit-box">
                     <input type="button" class="btn-submit" id="btn-submit" value="@Resources.Submit">
                     <span id="icon-loading" class="hide block-icon-small"></span>
                 </div>
+                @if (Model.HasLogs)
+                {
+                    <div class="form-group">
+                        <compact-feedback fid="95" />
+                    </div>
+                }
             </form>
             <div class="warning">
                 <span class="txt-red">*</span>

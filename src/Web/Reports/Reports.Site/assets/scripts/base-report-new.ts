@@ -2,7 +2,7 @@
     protected sortColumnName: string;
     protected sortColumnIndex = 0;
     protected sortIndicator = 0; // asc: 0, desc: 1
-    protected compactFeeback = new CompactFeebackView();
+    protected compactFeeback = new CompactFeebackComponent();
 
     protected initReportLegend() {
         const $loadLegendURL = $('#LoadLegendURL');

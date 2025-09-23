@@ -6,6 +6,7 @@ class BaseList {
     reviewStatusComponent: SingleSelectionDropdownComponent;
     problemAccountPopup: ProblemAccountPopup;
     dateRangePickerComponent: DateRangePickerComponent;
+    compactFeedback: CompactFeedbackComponent;
 
     $fromDate: JQuery;
     $toDate: JQuery;
@@ -41,6 +42,7 @@ class BaseList {
         levelId: number,
         levelName: string,
         dateRangePickerComponent: DateRangePickerComponent,
+        compactFeedback: CompactFeedbackComponent,
         reviewStatusComponent: SingleSelectionDropdownComponent = null,
         problemAccountPopup: ProblemAccountPopup = null
     ) {
@@ -52,6 +54,7 @@ class BaseList {
         this.levelNameLowerCase = levelName.toLowerCase();
         this.levelId = levelId;
         this.dateRangePickerComponent = dateRangePickerComponent;
+        this.compactFeedback = compactFeedback;
         this.problemAccountPopup = problemAccountPopup;
         this.topWindow.customerListNew = true;
     }
@@ -169,6 +172,7 @@ class BaseList {
             cache: false,
             success: (rs) => {
                 this.renderCustomerList(rs);
+                this.compactFeedback.init(this.reportParam, rs && rs.length > 0);
             },
             complete: this.$.unblockUI
         });

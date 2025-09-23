@@ -6,6 +6,7 @@
       "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
       "Features/Shared/Scripts/site-helper.js",
       "Features/Shared/Scripts/ajax-helper.js",
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/MemberBettingBehavior/Scripts/turnover-by-sport-chart.js",
       "Features/MemberBettingBehavior/Scripts/turnover-by-bettype-chart.js",
       "Features/MemberBettingBehavior/Scripts/turnover-winloss-by-date-chart.js",
@@ -140,6 +141,7 @@
   {
     "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/win-loss-limit/win-loss-limit.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
       "Features/MemberInfo/assets/scripts/components/pager.js",
       "Features/MemberInfo/assets/scripts/win-loss-limit/win-loss-limit.js"
@@ -148,6 +150,7 @@
   {
     "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/win-loss-limit/potential-win-limit.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
       "Features/MemberInfo/assets/scripts/components/pager.js",
       "Features/MemberInfo/assets/scripts/win-loss-limit/potential-win-limit.js"
@@ -156,6 +159,7 @@
   {
     "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/credit-balance/credit-balance.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
       "Features/MemberInfo/assets/scripts/components/pager.js",
       "Features/MemberInfo/assets/scripts/credit-balance/columns-control.js",
@@ -165,6 +169,7 @@
   {
     "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/problem-account/index.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/MemberInfo/assets/scripts/components/html-wrapper.js",
       "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
       "Features/MemberInfo/assets/scripts/components/daterangepicker.js",
@@ -224,6 +229,7 @@
   {
     "outputFileName": "wwwroot/Features/MemberInfo/assets/bundles/indirect-login-account/manage-account.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/MemberInfo/assets/scripts/indirect-login-account/manage-account.js",
       "Features/MemberInfo/assets/scripts/indirect-login-account/quick-introduction.js"
     ]
@@ -264,6 +270,7 @@
   {
     "outputFileName": "wwwroot/Features/MemberInfo/Features/DormantAccountList/bundles/dormant-account-list.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
       "Features/MemberInfo/assets/scripts/components/pager.js",
       "Features/MemberInfo/Features/DormantAccountList/Scripts/dormant-account-list.js"
@@ -272,6 +279,7 @@
   {
     "outputFileName": "wwwroot/bundles/Features/CustomerList/customer-list.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
       "Features/CustomerList/Scripts/customer-list-popup.js",
       "Features/CustomerList/Scripts/customer-list-services.js",
@@ -322,6 +330,7 @@
   {
     "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/ReachedThreshold/bundles/reached-threshold.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/MemberInfo/assets/scripts/components/daterangepicker.js",
       "Features/MemberInfo/assets/scripts/components/single-selection-dropdown.js",
       "Features/MemberInfo/assets/scripts/shared/datatable-helper.js",
@@ -362,6 +371,7 @@
   {
     "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/MyWatchlistAccounts/bundles/my-watchlist-accounts.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/Shared/Scripts/ajax-helper.js",
       "Features/MemberInfo/assets/scripts/shared/datatable-helper.js",
       "Features/MemberInfo/assets/scripts/components/daterangepicker-jquery.js",
@@ -407,6 +417,7 @@
   {
     "outputFileName": "wwwroot/Features/MemberInfo/Features/MyWatchlist/MyThresholds/bundles/my-thresholds.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/MemberInfo/assets/scripts/components/daterangepicker.js",
       "Features/MemberInfo/assets/scripts/shared/datatable-helper.js",
       "Features/Shared/Scripts/ajax-helper.js",
@@ -542,6 +553,7 @@
   {
     "outputFileName": "wwwroot/Features/ViewLogs/assets/bundles/setting.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/ViewLogs/assets/scripts/old-main.js",
       "Features/ViewLogs/assets/scripts/core.js",
       "Features/ViewLogs/assets/scripts/tab/index.js",
@@ -552,6 +564,7 @@
   {
     "outputFileName": "wwwroot/Features/ViewLogs/assets/bundles/status.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/ViewLogs/assets/scripts/old-main.js",
       "Features/ViewLogs/assets/scripts/core.js",
       "Features/ViewLogs/assets/scripts/tab/index.js",
@@ -562,6 +575,7 @@
   {
     "outputFileName": "wwwroot/Features/ViewLogs/assets/bundles/credit.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/ViewLogs/assets/scripts/old-main.js",
       "Features/ViewLogs/assets/scripts/core.js",
       "Features/ViewLogs/assets/scripts/tab/index.js",
@@ -572,6 +586,7 @@
   {
     "outputFileName": "wwwroot/Features/ViewLogs/assets/bundles/login.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/ViewLogs/assets/scripts/old-main.js",
       "Features/ViewLogs/assets/scripts/core.js",
       "Features/ViewLogs/assets/scripts/login/index-view.js",
@@ -582,6 +597,7 @@
   {
     "outputFileName": "wwwroot/Features/ViewLogs/assets/bundles/cashservice.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/ViewLogs/assets/scripts/old-main.js",
       "Features/ViewLogs/assets/scripts/core.js",
       "Features/ViewLogs/assets/scripts/tab/index.js",
@@ -610,12 +626,14 @@
   {
     "outputFileName": "wwwroot/Features/Transfer/assets/bundles/transfer-all-clear-credit/calculation.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/Transfer/assets/scripts/transfer-all-clear-credit/calculation.js"
     ]
   },
   {
     "outputFileName": "wwwroot/Features/Transfer/assets/bundles/transfer-all-clear-credit/transfer-result.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/Transfer/assets/scripts/transfer-all-clear-credit/transfer-result.js"
     ]
   },
@@ -640,6 +658,7 @@
       "Features/Transfer/assets/scripts/components/username-suggestion.js",
       "Features/Transfer/assets/scripts/components/single-dropdown-transfer.js",
       "Features/Transfer/assets/scripts/components/visible-columns-contextmenu.js",
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/Transfer/assets/scripts/transfer-list/transfer-list-paging.js",
       "Features/Transfer/assets/scripts/transfer-list/transfer-list.js"
     ]
@@ -669,6 +688,7 @@
   {
     "outputFileName": "wwwroot/Features/Transfer/assets/bundles/transfer-to-downline-history/index.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/Transfer/assets/scripts/components/daterangepicker.js",
       "Features/Transfer/assets/scripts/components/single-dropdown-transfer.js",
       "Features/Transfer/assets/scripts/transfer-to-downline-history/utils.js",
@@ -693,6 +713,7 @@
       "Features/Transfer/assets/scripts/components/auto-refresh.js",
       "Features/Transfer/assets/scripts/components/multiple-selection-dropdown.js",
       "Features/Transfer/assets/scripts/components/single-dropdown-transfer.js",
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/Transfer/assets/scripts/auto-transfer/monitoring.js"
     ]
   },
@@ -706,6 +727,7 @@
       "Features/Transfer/assets/scripts/components/auto-refresh.js",
       "Features/Transfer/assets/scripts/components/multiple-selection-dropdown.js",
       "Features/Transfer/assets/scripts/components/single-dropdown-transfer.js",
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/Transfer/assets/scripts/auto-transfer/history.js"
     ]
   },
@@ -828,6 +850,7 @@
       "Features/Transfer/assets/scripts/components/single-dropdown-transfer.js",
       "Features/Transfer/assets/scripts/components/username-suggestion.js",
       "Features/Transfer/assets/scripts/components/sort.js",
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/Transfer/assets/scripts/reward/reward-payment.js"
     ]
   },
@@ -844,6 +867,7 @@
       "Features/Transfer/assets/scripts/components/sort.js",
       "Features/Transfer/assets/scripts/components/pager.js",
       "Features/Transfer/assets/scripts/components/copy-html.js",
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/Transfer/assets/scripts/reward/reward-detail.js"
     ]
   },
@@ -884,12 +908,14 @@
       "Features/PositionTaking/assets/scripts/Fanex.Grid.js",
       "Features/PositionTaking/assets/scripts/moment.js",
       "Features/PositionTaking/assets/scripts/numeral.js",
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/PositionTaking/Views/Scripts/ViewPT.js"
     ]
   },
   {
     "outputFileName": "wwwroot/bundles/commission/commission.js",
     "inputFiles": [
+      "Features/Shared/Scripts/compact-feedback.js",
       "Features/MemberInfo/Features/Commission/scripts/commission.js"
     ]
   },

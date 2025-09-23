@@ -3642,4 +3642,7 @@
   <data name="AllowDeposit" xml:space="preserve">
     <value>允许会员存款</value>
   </data>
+  <data name="MaxWinPerMatch" xml:space="preserve">
+    <value>单场最高赢额</value>
+  </data>
 </root>

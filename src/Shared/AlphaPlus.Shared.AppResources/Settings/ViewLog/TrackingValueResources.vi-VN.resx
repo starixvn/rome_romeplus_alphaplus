@@ -3381,4 +3381,7 @@
   <data name="AllowDeposit" xml:space="preserve">
     <value>Cho phép nạp tiền thành viên</value>
   </data>
+  <data name="MaxWinPerMatch" xml:space="preserve">
+    <value>Thắng Tối Đa Mỗi Trận</value>
+  </data>
 </root>

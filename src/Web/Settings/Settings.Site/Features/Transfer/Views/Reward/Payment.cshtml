@@ -9,11 +9,11 @@
 }
 @section Styles {
     @StaticResources.AssetStyles.Render("/bundles-v2/site-transfer/reward")
-    <link rel="stylesheet" href="~/Features/Transfer/assets/bundles/reward/reward.css" asp-append-version="true" />
+    @StaticResources.RenderStyles("~/Features/Transfer/assets/bundles/reward/reward")
 }
 @section Scripts {
     @StaticResources.AssetScripts.Render("/bundles/site-transfer/filter")
-    <script src="~/Features/Transfer/assets/bundles/reward/reward-payment.js" asp-append-version="true"></script>
+    @StaticResources.RenderScripts("~/Features/Transfer/assets/bundles/reward/reward-payment")
 }
 <div class="page-title tabs @level">
     <ul class="nav nav-tabs" role="tablist">
