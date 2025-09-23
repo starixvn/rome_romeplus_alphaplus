@@ -23,7 +23,8 @@ export default defineConfig({
                 suspendMultipleConfirm: '/src/suspend-multiple-confirm.tsx',
                 openSingle: '/src/open-single.tsx',
                 openMultiple: '/src/open-multiple.tsx',
-                protectedMultiple: '/src/protected-multiple.tsx'
+                protectedMultiple: '/src/protected-multiple.tsx',
+                remarkInfo: '/src/remark-info.tsx'
             }
         }
     }

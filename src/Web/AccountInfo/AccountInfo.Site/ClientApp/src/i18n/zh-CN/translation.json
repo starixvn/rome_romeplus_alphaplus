@@ -51,6 +51,7 @@
   "LoginTime": "登入时间",
   "Update": "更改",
   "UpdateGivenCredit": "更新信用额度",
+  "UpdateRemark": "更新备注",
   "CurrentGivenCredit": "目前信用额度",
   "Back": "退回",
   "FirstLoginQRCode": "首次登入二维码",

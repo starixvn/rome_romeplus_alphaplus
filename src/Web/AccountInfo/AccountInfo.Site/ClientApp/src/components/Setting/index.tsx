@@ -15,9 +15,11 @@ export default function Setting({ settingItems }: Props) {
         return mobileView ? <NoInformation /> : null;
     }
 
+    const filteredSettingItems = settingItems.filter((value) => !value.Url.includes('RemarkInfo'));
+
     return (
         <div className={styles.setting}>
-            {settingItems.map((value, index) => {
+            {filteredSettingItems.map((value, index) => {
                 return (
                     <div className="col-xs-6" key={index}>
                         <CustomAnchorTag href={value.Url}>{value.Text}</CustomAnchorTag>

@@ -445,4 +445,7 @@
   <data name="Members" xml:space="preserve">
     <value>회원 (활성/비활성/일시정지)</value>
   </data>
+  <data name="EditRemarkInfoViewModelText" xml:space="preserve">
+    <value>Remark</value>
+  </data>
 </root>

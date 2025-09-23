@@ -5,6 +5,8 @@ using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.G
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.Update;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.OnlineList;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Transfer.Requests;
+using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.RemarkInfo.Get;
+using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.RemarkInfo.Update;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Transfer.Requests;
 using AlphaPlus.AccountInfo.Site.Features.Shared;
 using AlphaPlus.Shared.AppResources.Common;
@@ -55,5 +57,12 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
         [HttpPost, ValidateAntiForgeryToken]
         public Task<ActionResult> UpdateAllDayBalanceTransfer([FromBody] UpdateAllDayBalanceTransferRequest command)
            => Json(command);
+
+
+        public Task<ActionResult> RemarkInfo(RemarkInfoQuery message)
+        => View(message);
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public Task<ActionResult> UpdateRemark([FromBody] UpdateRemarkInfoQuery command) => Json(command);
     }
 }

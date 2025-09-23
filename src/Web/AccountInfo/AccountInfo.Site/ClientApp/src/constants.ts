@@ -25,6 +25,13 @@ interface GivenCreditParams {
     availableCredit: number;
 }
 
+interface RemarkParams {
+    searchAccountName: string;
+    searchAccountId: number;
+    searchAccountRoleId: number;
+    currentRemark: string;
+}
+
 interface UnsuspendParams {
     searchAccountName: string;
     searchAccountId: number;
@@ -41,6 +48,7 @@ interface ProfilePictureParams {
 declare global {
     const params: Params;
     const givenCreditParams: GivenCreditParams;
+    const remarkParams: RemarkParams;
     const profilePictureParams: ProfilePictureParams;
     const unsuspendParams: UnsuspendParams;
     interface Window {
@@ -58,6 +66,7 @@ declare global {
         bootboxAlert: any;
         updateProductStatusPopup: any;
         updateGivenCreditPopup: any;
+        updateRemarkPopup: unknown;
         renderUnsuspendSingle: any;
         customerListNew: any;
         successfulUpdatingCallbackAndReloadMainFrame: any;

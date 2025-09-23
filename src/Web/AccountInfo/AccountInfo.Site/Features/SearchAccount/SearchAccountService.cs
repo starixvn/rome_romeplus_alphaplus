@@ -10,6 +10,8 @@ using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.U
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.LoginInfo;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Models;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.OnlineList;
+using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.RemarkInfo.Get;
+using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.RemarkInfo.Update;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Update.Balance;
 using AlphaPlus.AccountInfo.Site.Features.Shared;
 using AlphaPlus.Core.Models;
@@ -47,6 +49,10 @@ public interface ISearchAccountService
     Task<bool> CheckMultipleCustomersBelonging(int actorId, int subAccountId, string custIds);
 
     Task<Result> UpdateAllDayBalanceTransfer(UpdateAllDayBalanceTransferParam param);
+
+    Task<RemarkInfoModel> GetRemarkInfo(int searchAccountId, int actorId);
+
+    Task<Result> UpdateRemarkInfo(UpdateRemarkInfoQuery param);
 }
 
 
@@ -478,5 +484,21 @@ public class SearchAccountService(
 
         return s.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)
             .Any(c => string.Equals(currency, c.Trim(), StringComparison.OrdinalIgnoreCase));
+    }
+
+    public async Task<RemarkInfoModel> GetRemarkInfo(int searchAccountId, int actorId)
+    {
+        var remarkInfo = await dynamicRepository.GetAsync<RemarkInfoModel>(new GetRemarkInfoCriteria(searchAccountId, actorId));
+        return remarkInfo ?? new RemarkInfoModel{
+            CustId = searchAccountId,
+            Remark = string.Empty
+        };
+    }
+
+    public async Task<Result> UpdateRemarkInfo(UpdateRemarkInfoQuery param)
+    {
+        var command = new UpdateRemarkInfoCommand(param.SearchAccountId, param.Remark, param.ViewerId, param.SubAccountId);
+        await dynamicRepository.ExecuteAsync(command);
+        return new Result(command.ErrCode, command.ErrMsg);
     }
 }

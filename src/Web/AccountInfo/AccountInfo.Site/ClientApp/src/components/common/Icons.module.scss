@@ -1,0 +1,57 @@
+@import '../../styles/_mixins.scss';
+
+.icon-edited {
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    top: 9px;
+    cursor: pointer;
+    color: var(--icon-color);
+    font-size: 16px;
+    display: inline-block;
+    vertical-align: middle;
+    &:after {
+        position: relative;
+        content: '';
+        display: block;
+    }
+    &:hover:after {
+        position: absolute;
+        left: 0;
+        top: 2px;
+        width: 26px;
+        height: 26px;
+        margin-left: -5px;
+        margin-top: -8px;
+        background: #b1aea3;
+        border-radius: 100%;
+        opacity: 1;
+        @include transform(scale(0));
+        -moz-animation: ripple 1s ease-out;
+        -o-animation: ripple 1s ease-out;
+        -webkit-animation: ripple 1s ease-out;
+        animation: ripple 1s ease-out;
+    }
+    .icon-edited:hover:after {
+        margin-top: -17px;
+    }
+    .icon-information-outline {
+        margin: 0 0 2px 5px;
+        float: none;
+        font-size: 16px;
+    }
+}
+@include keyframes(ripple) {
+    0% {
+        @include transform(scale(0));
+    }
+
+    20% {
+        @include transform(scale(1));
+    }
+
+    100% {
+        opacity:0;
+        @include transform(scale(1));
+    }
+}

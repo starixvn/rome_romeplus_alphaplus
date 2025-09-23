@@ -63,3 +63,4 @@ export const closeLeftPanelOnMobile = () => {
         closeIconElement.click();
     }
 };
+

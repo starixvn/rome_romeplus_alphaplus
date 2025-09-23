@@ -516,4 +516,10 @@
   <data name="String" xml:space="preserve">
     <value>暂停</value>
   </data>
+  <data name="Remark" xml:space="preserve">
+    <value>謝謝</value>
+  </data>
+  <data name="EditRemarkInfoViewModelText" xml:space="preserve">
+    <value>備註</value>
+  </data>
 </root>

@@ -40,4 +40,5 @@ export default interface Customer {
     IsDirectMember: boolean;
     IsDirectMemberOfSuper: boolean;
     IsCashMember: boolean;
+    Remark: string;
 }

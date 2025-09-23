@@ -3,10 +3,11 @@ import { Tooltip } from 'react-tippy';
 
 import { useGlobalContext } from '../../context/global-context';
 import NoInformation from '../common/NoInformation';
+import { RemarkInfo as RemarkInfoRow } from './RemarkInfoRow';
 
 const ContactInfoRow = ({ title, value }: { title: string; value: string }) => {
     const maxLength = 15;
-    const isTruncated = value.length > maxLength;
+    const isTruncated = value?.length > maxLength;
     const content = () => <div>{isTruncated ? `${value.substring(0, maxLength)}...` : value}</div>;
 
     const contentWithTooltip = () => (
@@ -21,6 +22,8 @@ const ContactInfoRow = ({ title, value }: { title: string; value: string }) => {
     );
 };
 
+
+
 export default function ContactInfo() {
     const { t } = useTranslation();
     const { customer } = useGlobalContext();
@@ -33,30 +36,40 @@ export default function ContactInfo() {
         {
             title: t('Nickname'),
             value: customer.NickName,
-            visible: customer.ShowNickName
+            visible: customer.ShowNickName,
+            component: ContactInfoRow
         },
         {
             title: t('Name'),
             value: customer.FullName,
-            visible: true
+            visible: true,
+            component: ContactInfoRow
         },
         {
             title: customer.IsCashMember ? t('Mobile') : t('Phone'),
             value: customer.IsCashMember ? customer.MobilePhone : customer.Phone,
-            visible: true
+            visible: true,
+            component: ContactInfoRow
         },
         {
             title: t('Fax'),
             value: customer.Fax,
-            visible: true
+            visible: true,
+            component: ContactInfoRow
+        },
+        {
+            title: t('Remark'),
+            value: customer.Remark,
+            visible: true,
+            component: RemarkInfoRow
         }
     ];
 
     return (
         <>
             {contactInfoPropsArray.map(
-                ({ title, value, visible }, index) =>
-                    visible && <ContactInfoRow key={index} title={title} value={value} />
+                ({ title, value, visible, component: Component }, index) =>
+                    visible && <Component key={index} title={title} value={value} />
             )}
         </>
     );
