@@ -3,7 +3,6 @@ import { mobileScale, resizePopupOnMobile } from '../../helpers';
 import { useTranslation } from 'react-i18next';
 import { Tooltip } from 'react-tippy';
 import { IconEdit } from '../common/IconEdit';
-import styles from './RemarkInfo.module.scss';
 
 export const RemarkInfo = ({ title, value }: { title: string; value: string }) => {
     const { t } = useTranslation();
@@ -75,7 +74,7 @@ export const RemarkInfo = ({ title, value }: { title: string; value: string }) =
         <div className="col-xs-12 row-info">
             <div className="col-xs-5">{title}</div>
             <div className="col-xs-7 col-right">
-                <div className={styles['remark-info-row']}>
+                <div style={{position: 'relative', float: 'right', paddingLeft: '24px'}}>
                     <IconEdit onClick={handleOpenRemarkPopup} />
                     {isTruncated ? contentWithTooltip() : content()}
                 </div>
