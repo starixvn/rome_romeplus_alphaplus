@@ -6,7 +6,7 @@ class ManageAccount {
     rootURL: string;
     compactFeedback: CompactFeedbackComponent;
 
-    constructor($: JQueryStatic, topWindow: any, compactFeedback: CompactFeedbackComponent) {
+    constructor($: JQueryStatic, topWindow: unknown, compactFeedback: CompactFeedbackComponent) {
         this.$ = $;
         this.topWindow = topWindow;
         this.compactFeedback = compactFeedback;
@@ -58,11 +58,13 @@ class ManageAccount {
 
                             isRedirect = true;
                         } else if (data.Code === 5001) {
+                            const width = 530;
+                            const height = 280;
                             self.topWindow.popupManager.open(
                                 self.rootURL + 'UpdatePassword?' + queryString,
                                 undefined,
-                                530,
-                                280
+                                width,
+                                height
                             );
                         } else {
                             self.topWindow.bootboxAlert(data.Message);

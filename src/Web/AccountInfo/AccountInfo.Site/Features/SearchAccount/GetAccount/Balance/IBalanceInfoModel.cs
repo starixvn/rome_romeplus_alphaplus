@@ -9,5 +9,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance
         decimal YesterdayCustomerCash { get; }
 
         decimal PendingTransfer3rd { get; }
+
+        decimal CustomerOutstanding { get; }
     }
 }

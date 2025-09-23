@@ -22,7 +22,7 @@ class MyWatchlistAccountsDataTable {
         $: JQueryStatic,
         editSettingPopup: EditSettingPopup,
         compactFeedback: CompactFeedbackComponent,
-        myWatchlistAccountData: any
+        myWatchlistAccountData: unknown
     ) {
         this.$ = $;
         this.editSettingPopup = editSettingPopup;
@@ -210,7 +210,7 @@ class MyWatchlistAccountsDataTable {
         return `<div ${this.buildAttributes(attrs)}/>`;
     }
 
-    private buildAttributes = (attrs) => this.$.map(attrs, (value, key) => `${key}='${value}'`).join(' ');
+    private readonly buildAttributes = (attrs: Record<string, string>) => this.$.map(attrs, (value, key) => `${key}='${value}'`).join(' ');
 
     private buildDataTablePagingOptions() {
         return {

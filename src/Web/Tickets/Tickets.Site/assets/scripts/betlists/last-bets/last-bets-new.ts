@@ -198,7 +198,7 @@ class LastBetsNewView {
         this.ajaxRequest && this.ajaxRequest.abort();
     }
 
-    private successGetLastBets(responseHtml: any, formData: any) {
+    private successGetLastBets(responseHtml: unknown, formData: unknown) {
         if (
             (responseHtml.ErrorCode && responseHtml.ErrorCode !== 0) ||
             (responseHtml.Code && responseHtml.Code !== 0)

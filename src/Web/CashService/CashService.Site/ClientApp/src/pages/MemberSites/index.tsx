@@ -46,11 +46,9 @@ const MemberSiteManagement: React.FC = () => {
 
   useEffect(() => {
     fetchData();
-    const isCashServiceEnabled = document
-      .getElementById('IsCashServiceEnabled')
-      ?.getAttribute('value');
+    const value = document.getElementById('IsCashServiceEnabled')?.getAttribute('value');
 
-    const enabled = isCashServiceEnabled === '1';
+    const enabled = value === '1';
     setIsCashServiceEnabled(enabled);
 
     if (enabled) {

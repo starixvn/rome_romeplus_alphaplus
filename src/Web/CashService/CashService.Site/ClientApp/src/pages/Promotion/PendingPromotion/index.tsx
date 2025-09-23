@@ -30,10 +30,8 @@ const PendingPromotion: React.FC = () => {
     document.getElementById('HideUpcomingPromotion')?.getAttribute('value') === 'false';
 
   React.useEffect(() => {
-    const isCashServiceEnabled = document
-      .getElementById('IsCashServiceEnabled')
-      ?.getAttribute('value');
-    setIsCashServiceEnabled(isCashServiceEnabled === '1');
+    const value = document.getElementById('IsCashServiceEnabled')?.getAttribute('value');
+    setIsCashServiceEnabled(value === '1');
   }, []);
 
   React.useEffect(() => {

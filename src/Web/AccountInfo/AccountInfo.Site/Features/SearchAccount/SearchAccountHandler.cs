@@ -106,7 +106,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
             decimal memberCreditMin = 0;
             if (Enumeration.FromValue<UserLevel>(request.SearchAccountRoleId).IsMemberLevel())
             {
-                var balanceInfo = (MemberBalanceInfoModel)await searchAccountService.GetBalanceInfo(request.SearchAccountId, request.SearchAccountRoleId, request.AGIP);
+                var balanceInfo = await searchAccountService.GetBalanceInfo(request.SearchAccountId, request.SearchAccountRoleId, request.AGIP);
 
                 memberCreditMin = Math.Max(0, balanceInfo.CustomerOutstanding - balanceInfo.CustomerCash + balanceInfo.PendingTransfer3rd);
             }

@@ -1,6 +1,6 @@
 ﻿class DormantAccountList {
     $: JQueryStatic;
-    topWindow: any;
+    topWindow: unknown;
     $formFilter: JQuery;
     levelComponent: SingleSelectionDropdownComponent;
     statusComponent: SingleSelectionDropdownComponent;
@@ -11,7 +11,7 @@
 
     constructor(
         $: JQueryStatic,
-        topWindow: any,
+        topWindow: unknown,
         levelComponent: SingleSelectionDropdownComponent,
         statusComponent: SingleSelectionDropdownComponent,
         pager: PagerComponent,
@@ -31,7 +31,7 @@
 
         this.levelComponent.render(new SingleSelectionDropdownOption('LevelId', 'HiddenLevelId'));
         this.statusComponent.render(new SingleSelectionDropdownOption('StatusId', 'HiddenStatusId'));
-
+        const pageSizeOptions = [10, 50, 100, 500];
         this.pager.render(
             new PagerOption(
                 () => this.$formFilter.submit(),
@@ -39,7 +39,7 @@
                 'form-filter',
                 'PageIndex',
                 'PageSize',
-                [10, 50, 100, 500]
+                pageSizeOptions
             )
         );
 

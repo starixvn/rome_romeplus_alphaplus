@@ -25,7 +25,7 @@ var creditController = {
         var viewLogsParams = creditView.getParams();
         tabController.viewLogsParams = viewLogsParams;
 
-        var url = creditController.urls.index + '?' + $.param(viewLogsParams);
+        const url = creditController.urls.index + '?' + $.param(viewLogsParams);
         window.location.href = url;
     },
     pageLogs: function () {
@@ -35,13 +35,13 @@ var creditController = {
         tabController.viewLogsParams.PageIndex = creditView.pageNumber;
         tabController.viewLogsParams.PageSize = creditView.pageSize;
 
-        var url = creditController.urls.index + '?' + $.param(tabController.viewLogsParams);
+        const url = creditController.urls.index + '?' + $.param(tabController.viewLogsParams);
         window.location.href = url;
     },
     exportExcel: function () {
         var viewLogsParams = creditView.getParams();
-        var exportExcelPath = (<HTMLInputElement>document.getElementById('exportExcelPath')).value;
-        var url = exportExcelPath + '?' + $.param(viewLogsParams);
+        var exportExcelPath = (document.getElementById('exportExcelPath') as HTMLInputElement).value;
+        const url = exportExcelPath + '?' + $.param(viewLogsParams);
         window.location.href = url;
     }
 };

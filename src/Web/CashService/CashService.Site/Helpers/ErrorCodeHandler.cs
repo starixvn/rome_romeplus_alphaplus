@@ -47,9 +47,7 @@ public static class ErrorCodeHandler
             { AccountClosed, (_, _, _) => GetAccountClosedMessage() },
             { AccountSuspended, (_, _, _) => GetAccountSuspendedMessage() },
             { InvalidParameters, (_, _, _) => GetInvalidParametersMessage() },
-            { InsufficientBalance, (_, _, result) => string.Format(
-                CashServicesResx.TheAmountMustNotExceedMemberCashBalance,
-                result.GetDataValue("MemberCashBalance")) },
+            { InsufficientBalance, (_, _, result) => string.Format(CashServicesResx.TheAmountMustNotExceedMemberCashBalance,result.GetDataValue("MemberCashBalance")) },
             { AmountExceedsLimits, (_, _, _) => CashServicesResx.TheAmountMustBeBetween0And1AsPerProviderLimits },
             { DailyLimitExceeded, (_, _, _) => CashServicesResx.ExceedsTheDailyWithdrawalLimit },
             { TransactionInsertFailed, (_, _, _) => GetTransactionInsertFailedMessage() },
@@ -89,11 +87,8 @@ public static class ErrorCodeHandler
             { ProviderRejected, (_, _, _, _) => CashServicesResx.ProviderRejectErrorMessage },
             { ProviderUnavailable, (_, _, _, _) => CashServicesResx.PaymentProviderUnavailable },
             { InvalidMember, (_, _, memberId, agentId) => GetInvalidMemberMessage(memberId, agentId) },
-            { InsufficientBalance, (result, _, _, _) => string.Format(CashServicesResx.TheAmountMustNotExceedMemberCashBalance,
-                result.GetDataValue("MemberCashBalance")) },
-            { ExceedAgentAvailableCredit, (result, _, _, _) => string.Format(CashServicesResx.TheAmountMustNotExceedAgentAvailableCredit,
-                result.GetDataValue("AgentAvailableCredit"))
-            },
+            { InsufficientBalance, (result, _, _, _) => string.Format(CashServicesResx.TheAmountMustNotExceedMemberCashBalance, result.GetDataValue("MemberCashBalance")) },
+            { ExceedAgentAvailableCredit, (result, _, _, _) => string.Format(CashServicesResx.TheAmountMustNotExceedAgentAvailableCredit, result.GetDataValue("AgentAvailableCredit"))},
             { OutRangeMinMaxAmount, (result, _, _, _) => string.Format(
                             CashServicesResx.TheAmountMustBeBetween0And1AsPerProviderLimits,
                             result.GetDataValue("MinAmount"),

@@ -24,7 +24,7 @@ var loginController = {
         var viewLogsParams = loginView.getParams();
         tabController.viewLogsParams = viewLogsParams;
 
-        var url = loginController.urls.index + '?' + $.param(viewLogsParams);
+        const url = loginController.urls.index + '?' + $.param(viewLogsParams);
         window.location.href = url;
     },
     pageLogs: function () {
@@ -34,7 +34,7 @@ var loginController = {
         tabController.viewLogsParams.PageIndex = loginView.pageNumber;
         tabController.viewLogsParams.PageSize = loginView.pageSize;
 
-        var url = loginController.urls.index + '?' + $.param(tabController.viewLogsParams);
+        const url = loginController.urls.index + '?' + $.param(tabController.viewLogsParams);
         window.location.href = url;
     }
 };

@@ -24,7 +24,7 @@ var cashserviceController = {
         var viewLogsParams = cashserviceView.getParams();
         tabController.viewLogsParams = viewLogsParams;
 
-        var url = cashserviceController.urls.index + '?' + $.param(viewLogsParams);
+        const url = cashserviceController.urls.index + '?' + $.param(viewLogsParams);
         window.location.href = url;
     },
     pageLogs: function () {
@@ -34,7 +34,7 @@ var cashserviceController = {
         tabController.viewLogsParams.PageIndex = cashserviceView.pageNumber;
         tabController.viewLogsParams.PageSize = cashserviceView.pageSize;
 
-        var url = cashserviceController.urls.index + '?' + $.param(tabController.viewLogsParams);
+        const url = cashserviceController.urls.index + '?' + $.param(tabController.viewLogsParams);
         window.location.href = url;
     }
 };
