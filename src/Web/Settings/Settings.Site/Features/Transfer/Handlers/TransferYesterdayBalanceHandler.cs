@@ -40,7 +40,6 @@ public class TransferYesterdayBalanceHandler(
             message.AllowTotalBalanceTransfer,
             1,
             1,
-            message.AGIP,
             message.SiteDbGroupId);
         var customerTransfer = await transferListService.GetCustomerTransfer(param);
         var balance = 0M;
@@ -73,7 +72,6 @@ public class TransferYesterdayBalanceHandler(
             message.LangKey,
             message.IP,
             message.SubAccId,
-            message.AGIP,
             message.SiteDbGroupId);
         var result = await yesterdayBalanceTransferService.Transfer(param);
 
@@ -101,7 +99,6 @@ public class TransferYesterdayBalanceHandler(
                 message.AllowTotalBalanceTransfer,
                 1,
                 int.MaxValue - 1,
-                message.ActorLevel.IsAgentLevel() ? message.AGIP : string.Empty,
                 message.ActorLevel.IsAgentLevel() ? message.SiteDbGroupId : 0);
             var reportData = await transferListService.GetTransferList(transferListParam);
             custIds = reportData.Customers.Select(c => c.CustId);
@@ -131,7 +128,6 @@ public class TransferYesterdayBalanceHandler(
                 message.LangKey,
                 message.IP,
                 message.SubAccId,
-                message.AGIP,
                 message.SiteDbGroupId);
             var result = await yesterdayBalanceTransferService.Transfer(param);
 

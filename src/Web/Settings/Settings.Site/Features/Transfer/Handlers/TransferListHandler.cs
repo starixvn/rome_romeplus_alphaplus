@@ -34,7 +34,6 @@ public class TransferListHandler(
             message.AllowTotalBalanceTransfer,
             message.PageIndex,
             message.PageSize,
-            message.AGIP,
             message.SiteDbGroupId);
 
         var enteredSportResultTask = winlossService.GetEnteredSportResultsAsync();

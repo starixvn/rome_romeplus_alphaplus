@@ -64,7 +64,6 @@ public class AgentTransferMultipleYesterdayBalanceService(
             request.AllowTotalBalanceTransfer,
             1,
             int.MaxValue - 1,
-            request.AGIP,
             request.SiteDbGroupId);
         var transferReport = await transferListService.GetTransferList(param);
 

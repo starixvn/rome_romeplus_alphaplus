@@ -173,8 +173,7 @@ namespace AlphaPlus.Features.Handbook.API.UnitTests.Models
             var result = article.GetUrl();
 
             // Assert
-            Assert.Contains("SettingHandbook/SportBookInformation?tabindex=0", result);
-            Assert.Contains("(S(test-session-123))", result);
+            Assert.Contains("/features/(S(test-session-123))/SettingHandbook/SportBookInform", result);
         }
 
         [Fact]
@@ -191,7 +190,7 @@ namespace AlphaPlus.Features.Handbook.API.UnitTests.Models
             var result = article.GetUrl();
 
             // Assert
-            Assert.Contains("SettingHandbook/SportBookInformation?tabindex=0", result);
+            Assert.Contains("/features/SettingHandbook/SportBookInform", result);
             Assert.DoesNotContain("(S(", result);
         }
 
