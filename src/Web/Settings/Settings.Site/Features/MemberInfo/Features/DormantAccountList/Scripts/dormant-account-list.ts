@@ -31,7 +31,11 @@
 
         this.levelComponent.render(new SingleSelectionDropdownOption('LevelId', 'HiddenLevelId'));
         this.statusComponent.render(new SingleSelectionDropdownOption('StatusId', 'HiddenStatusId'));
-        const pageSizeOptions = [10, 50, 100, 500];
+        const pageSizeFirst = 10;
+        const pageSizeSecond = 50;
+        const pageSizeThird = 100;
+        const pageSizeLast = 500;
+        const pageSizeOptions = [pageSizeFirst, pageSizeSecond, pageSizeThird, pageSizeLast];
         this.pager.render(
             new PagerOption(
                 () => this.$formFilter.submit(),
@@ -44,10 +48,10 @@
         );
 
         this.$('#tbl-report').stickyTableHeaders();
-
+        const topPadding = 35;
         this.$('#popup-archiveProcess').css({
             bottom: 'auto',
-            top: this.$('#icon-archiveProcess').position().top + 35
+            top: this.$('#icon-archiveProcess').position().top + topPadding
         });
 
         $('[data-toggle="tooltip"]').tooltip({

@@ -144,34 +144,9 @@
                         <input id="@($"txt-uplinename-{level.GetDirectUplineLevel().DisplayName.ToLower()}")" class="control txt-username-nickname" type="text" value="" autocomplete="off" />
                     </div>
                 }
-                @{RenderDateRangePicker(level, levelName);}
-                <div class="form-group">
-                    <label for="dropdown-reviewstatus">@Resources.ReviewStatus</label>
-                    <select id="dropdown-reviewstatus-@levelName">
-                        @foreach (var status in Model.ReviewedStatusSelectionViewModel.Statuses)
-                        {
-                            <option value="@status.Value" @(status.Selected ? " selected=\"selected\"" : string.Empty)>
-                                @status.Text
-                            </option>
-                        }
-                    </select>
-                    <input type="hidden" name="UserSelectedReviewedStatusId" id="UserSelectedReviewedStatusId-@levelName" value="@Model.ReviewedStatusSelectionViewModel.UserSelectedReviewedStatusId" />
-                </div>
-                <div class="form-group">
-                    <input type="text"
-                        id="@($"txt-username-{levelName}")"
-                        name="@($"username-{levelName}")"
-                        class="typeahead"
-                        autocomplete="off"
-                        value="@Model.Query.UserName"
-                        placeholder="@Resources.EnterAccount" />
-                </div>
-                <div class="form-group">
-                    <input id="@($"btn-submit-{levelName}")" class="btn-submit" type="button" value="@Resources.Submit" />
-                </div>
-                <div class="form-group">
-                    <span id="icon-excel-@levelName" class="icon-excel" title="@Resources.ExportToExcel"></span>
-                </div>
+                @{RenderDateRangePicker(levelName);}
+                @{RenderFilterFormGroups(levelName);}
+                @{RenderFormGroupTextbox(levelName);}
                 <div class="form-group hide">
                     @{var elementId = "box-icon-title-" + levelName;}
                     <compact-feedback element-id="@elementId" fid="@feedbackFunctionId" />
@@ -183,7 +158,40 @@
 
 @functions
 {
-    void RenderDateRangePicker(UserLevel level, string lowerLevelName)
+    void RenderFilterFormGroups(string levelName)
+    {
+        <div class="form-group">
+            <label for="dropdown-reviewstatus">@Resources.ReviewStatus</label>
+            <select id="dropdown-reviewstatus-@levelName">
+                @foreach (var status in Model.ReviewedStatusSelectionViewModel.Statuses)
+                {
+                    <option value="@status.Value" @(status.Selected ? " selected=\"selected\"" : string.Empty)>
+                        @status.Text
+                    </option>
+                }
+            </select>
+            <input type="hidden" name="UserSelectedReviewedStatusId" id="UserSelectedReviewedStatusId-@levelName" value="@Model.ReviewedStatusSelectionViewModel.UserSelectedReviewedStatusId" />
+        </div>        
+    }
+    void RenderFormGroupTextbox(string levelName)
+    {
+        <div class="form-group">
+            <input type="text"
+                id="@($"txt-username-{levelName}")"
+                name="@($"username-{levelName}")"
+                class="typeahead"
+                autocomplete="off"
+                value="@Model.Query.UserName"
+                placeholder="@Resources.EnterAccount" />
+        </div>
+        <div class="form-group">
+            <input id="@($"btn-submit-{levelName}")" class="btn-submit" type="button" value="@Resources.Submit" />
+        </div>
+        <div class="form-group">
+            <span id="icon-excel-@levelName" class="icon-excel" title="@Resources.ExportToExcel"></span>
+        </div>
+    }
+    void RenderDateRangePicker(string lowerLevelName)
     {
         <div id="daterange-picker-@lowerLevelName"
             class="daterange-picker"
