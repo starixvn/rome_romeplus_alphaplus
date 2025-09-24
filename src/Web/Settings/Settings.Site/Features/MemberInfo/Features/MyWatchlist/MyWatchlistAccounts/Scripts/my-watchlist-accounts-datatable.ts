@@ -16,13 +16,13 @@ class MyWatchlistAccountsDataTable {
 
     private $tableReport: JQuery;
     private $dataTable: JQuery;
-    private myWatchlistAccountData: any;
+    private myWatchlistAccountData: MyWatchlistAccountPagingData | undefined;
 
     constructor(
         $: JQueryStatic,
         editSettingPopup: EditSettingPopup,
         compactFeedback: CompactFeedbackComponent,
-        myWatchlistAccountData: unknown
+        myWatchlistAccountData: MyWatchlistAccountPagingData | undefined
     ) {
         this.$ = $;
         this.editSettingPopup = editSettingPopup;

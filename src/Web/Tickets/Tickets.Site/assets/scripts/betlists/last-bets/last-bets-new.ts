@@ -1,3 +1,24 @@
+interface LastBetsErrorResponse {
+	ErrorCode?: number;
+	Code?: number;
+}
+
+type LastBetsResponseHtml = string | LastBetsErrorResponse;
+
+interface LastBetsRequestParams {
+	FilterId: string;
+	TransId: string | number;
+	MemberList: string;
+	BetTypeList: string;
+	SportTypeList: string;
+	LeagueList: string;
+	EvenStatus: string;
+	MinStake: string;
+	LimitRowCount: string;
+	FilterByMembers: string;
+	LatestTransId: string | number;
+}
+
 class LastBetsNewView {
     private iconSaveFilter: JQuery;
     private dropdownFilter: JQuery;
@@ -130,7 +151,7 @@ class LastBetsNewView {
         }, 1000);
     }
 
-    private initCompactFeedback(formData) {
+	private initCompactFeedback(formData: LastBetsRequestParams) {
         const firstCell = this.$betListTableContainer.find('tr:first td:first');
         const hasBetListData = firstCell.length > 0 && !firstCell.data('noinfo');
         this.compactFeedback.init(formData, hasBetListData);
@@ -164,7 +185,7 @@ class LastBetsNewView {
         );
     };
 
-    private getParam() {
+	private getParam(): LastBetsRequestParams {
         let lastTransId = alphaBetLists.localStorage.get(this.lastTransIdCacheKeyByFilter);
         let latestTransId = alphaBetLists.localStorage.get(this.latestTransIdCacheKeyByFilter);
         const selectedFilter = this.dropdownFilter.find(':selected');
@@ -179,7 +200,7 @@ class LastBetsNewView {
         const FilterByMembers = selectedFilter.data('filter-by-member');
         const LimitRowCount = this.dropdownMostRecentTicket.find(':selected').val();
 
-        return {
+		return {
             FilterId,
             TransId: lastTransId ? lastTransId : 0,
             MemberList,
@@ -198,11 +219,12 @@ class LastBetsNewView {
         this.ajaxRequest && this.ajaxRequest.abort();
     }
 
-    private successGetLastBets(responseHtml: unknown, formData: unknown) {
-        if (
-            (responseHtml.ErrorCode && responseHtml.ErrorCode !== 0) ||
-            (responseHtml.Code && responseHtml.Code !== 0)
-        ) {
+	private successGetLastBets(responseHtml: LastBetsResponseHtml, formData: LastBetsRequestParams) {
+		if (
+			typeof responseHtml !== 'string' &&
+			((responseHtml.ErrorCode && responseHtml.ErrorCode !== 0) ||
+				(responseHtml.Code && responseHtml.Code !== 0))
+		) {
             this.showError();
             return;
         }
@@ -213,7 +235,7 @@ class LastBetsNewView {
             return;
         }
 
-        this.$betListTableContainer.html(responseHtml);
+		this.$betListTableContainer.html(responseHtml as string);
         this.$betListTableContainer.find('[data-toggle="tooltip"]').tooltip();
 
         const lastTransIdCacheKeyByFilter = this.$betListTableContainer.find('#new-last-trans-id-by-filter').val();

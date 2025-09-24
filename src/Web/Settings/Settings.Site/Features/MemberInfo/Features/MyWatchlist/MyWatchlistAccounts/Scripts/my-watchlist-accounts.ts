@@ -1,14 +1,14 @@
 ﻿interface Window {
-    watchlistAccountData: any;
+    watchlistAccountData?: MyWatchlistAccountPagingData;
     reloadMyWatchlistDataTable: Function;
     openAddMultiplePopup: Function;
 }
 
 class MyWatchlistAccounts extends MyWatchlistBase {
-    private topWindow: any;
+    private topWindow: Window;
     private dataTable: MyWatchlistAccountsDataTable;
 
-    constructor($: JQueryStatic, topWindow: unknown, dataTable: MyWatchlistAccountsDataTable) {
+    constructor($: JQueryStatic, topWindow: Window, dataTable: MyWatchlistAccountsDataTable) {
         super($);
         this.topWindow = topWindow;
         this.dataTable = dataTable;

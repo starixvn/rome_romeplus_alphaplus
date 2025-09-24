@@ -1,6 +1,6 @@
 ﻿class DormantAccountList {
     $: JQueryStatic;
-    topWindow: unknown;
+    topWindow: Window;
     $formFilter: JQuery;
     levelComponent: SingleSelectionDropdownComponent;
     statusComponent: SingleSelectionDropdownComponent;
@@ -11,7 +11,7 @@
 
     constructor(
         $: JQueryStatic,
-        topWindow: unknown,
+        topWindow: Window,
         levelComponent: SingleSelectionDropdownComponent,
         statusComponent: SingleSelectionDropdownComponent,
         pager: PagerComponent,
