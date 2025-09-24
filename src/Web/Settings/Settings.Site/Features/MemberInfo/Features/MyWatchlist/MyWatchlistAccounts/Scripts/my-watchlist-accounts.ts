@@ -8,7 +8,7 @@ class MyWatchlistAccounts extends MyWatchlistBase {
     private topWindow: any;
     private dataTable: MyWatchlistAccountsDataTable;
 
-    constructor($: JQueryStatic, topWindow: any, dataTable: MyWatchlistAccountsDataTable) {
+    constructor($: JQueryStatic, topWindow: unknown, dataTable: MyWatchlistAccountsDataTable) {
         super($);
         this.topWindow = topWindow;
         this.dataTable = dataTable;
@@ -17,7 +17,7 @@ class MyWatchlistAccounts extends MyWatchlistBase {
     public init() {
         this.initInfoLegend();
         const baseUrl = this.$('#member-info-url').val();
-
+        const mobileFriendly = 'modal-mobile-friendly';
         this.initUsernameAutoSuggestion(baseUrl, this.$('#search-account-id').val());
         this.$('#btn-global-threshold').click((_) =>
             this.topWindow.popupManager.open(
@@ -25,7 +25,7 @@ class MyWatchlistAccounts extends MyWatchlistBase {
                 undefined,
                 620,
                 320,
-                'modal-mobile-friendly'
+                mobileFriendly
             )
         );
         this.$('#btn-manage-preset').click((_) =>
@@ -34,7 +34,7 @@ class MyWatchlistAccounts extends MyWatchlistBase {
                 undefined,
                 795,
                 520,
-                'modal-mobile-friendly'
+                mobileFriendly
             )
         );
         this.$('#btn-add-members').click((_) =>
@@ -43,7 +43,7 @@ class MyWatchlistAccounts extends MyWatchlistBase {
                 undefined,
                 820,
                 550,
-                'modal-mobile-friendly'
+                mobileFriendly
             )
         );
 

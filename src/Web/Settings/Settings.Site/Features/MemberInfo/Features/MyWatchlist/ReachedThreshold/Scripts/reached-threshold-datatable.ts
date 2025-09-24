@@ -20,7 +20,7 @@ class ReachedThresholdDataTable {
 
     private $table: JQuery;
 
-    constructor($: JQueryStatic, topWindow: any, compactFeedback: CompactFeedbackComponent, reachedThresholdData: any) {
+    constructor($: JQueryStatic, topWindow: unknown, compactFeedback: CompactFeedbackComponent, reachedThresholdData: unknown) {
         this.$ = $;
         this.topWindow = topWindow;
         this.compactFeedback = compactFeedback;

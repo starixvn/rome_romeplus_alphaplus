@@ -18,7 +18,7 @@ class CustomerListDataTable {
     private enableAllDayBalanceTransfer: string;
     private levelType: string;
     private serviceType: number;
-    private compactFeedback: CompactFeedbackComponent;
+    private readonly compactFeedback: CompactFeedbackComponent;
 
     resources = {
         ThereIsNoData: (<HTMLInputElement>document.getElementById('thereIsNoData')).value,

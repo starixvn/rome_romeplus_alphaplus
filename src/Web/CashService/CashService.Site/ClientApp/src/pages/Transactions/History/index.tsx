@@ -16,10 +16,8 @@ const History: React.FC = () => {
   const [isCashServiceEnabled, setIsCashServiceEnabled] = useState(false);
 
   React.useEffect(() => {
-    const isCashServiceEnabled = document
-      .getElementById('IsCashServiceEnabled')
-      ?.getAttribute('value');
-    setIsCashServiceEnabled(isCashServiceEnabled === '1');
+    const value = document.getElementById('IsCashServiceEnabled')?.getAttribute('value');
+    setIsCashServiceEnabled(value === '1');
   }, []);
 
   const handleTabChange = (tab: number) => {

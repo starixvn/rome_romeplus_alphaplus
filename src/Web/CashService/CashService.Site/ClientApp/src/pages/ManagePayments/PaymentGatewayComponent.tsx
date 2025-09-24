@@ -97,7 +97,8 @@ const PaymentGatewayComponent: React.FC<PaymentGatewayComponentProps> = ({
 
   React.useEffect(() => {
     setTimeout(function () {
-      top?.indexManager && top.indexManager.initFeedbackFunction(33);
+      const feadBackFunctionId = 33;
+      top?.indexManager && top.indexManager.initFeedbackFunction(feadBackFunctionId);
     }, 1000);
   }, []);
 

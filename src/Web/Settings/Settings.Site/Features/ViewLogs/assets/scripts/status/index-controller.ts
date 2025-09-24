@@ -24,7 +24,7 @@ var statusController = {
         var viewLogsParams = statusView.getParams();
         tabController.viewLogsParams = viewLogsParams;
 
-        var url = statusController.urls.index + '?' + $.param(viewLogsParams);
+        const url = statusController.urls.index + '?' + $.param(viewLogsParams);
         window.location.href = url;
     },
     pageLogs: function () {
@@ -34,7 +34,7 @@ var statusController = {
         tabController.viewLogsParams.PageIndex = statusView.pageNumber;
         tabController.viewLogsParams.PageSize = statusView.pageSize;
 
-        var url = statusController.urls.index + '?' + $.param(tabController.viewLogsParams);
+        const url = statusController.urls.index + '?' + $.param(tabController.viewLogsParams);
         window.location.href = url;
     }
 };

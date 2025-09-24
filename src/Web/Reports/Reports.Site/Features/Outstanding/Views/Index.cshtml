@@ -35,9 +35,9 @@
 
     void RenderOutstandingCells(OutstandingModel data)
     {
-        foreach (var level in Model.DisplayOutstandingLevels)
+        foreach (var level in Model.DisplayOutstandingLevels.Select(level => level.Value))
         {
-            <td class="@(Model.IsNegative(data.GetValueByLevel(level.Value).RoundTo2()) ? "format-negative" : string.Empty)">@data.GetValueByLevel(level.Value).FormatNumber()</td>
+            <td class="@(Model.IsNegative(data.GetValueByLevel(level).RoundTo2()) ? "format-negative" : string.Empty)">@data.GetValueByLevel(level).FormatNumber()</td>
         }
     }
 

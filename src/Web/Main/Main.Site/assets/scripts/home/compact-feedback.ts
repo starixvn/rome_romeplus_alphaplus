@@ -124,6 +124,7 @@ window.CompactFeedbackManager = (function () {
             window.ageWndDislikePopup.close();
             return true;
         }
+        return false;
     }
 
     function setAfterDislikeSubmitCallback(value: Function | null) {

@@ -108,7 +108,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
                 return UnAuthorized();
             }
 
-            var limitedRulesResult = await customerService.CheckAllLimitedRules(query.ViewerId, query.ViewerLevelId, query.ActorUsername, false, true, query.Language);
+            var limitedRulesResult = await customerService.CheckAllLimitedRules(query.ViewerId, query.ViewerLevelId, query.ActorUsername, isCashMember: true, language: query.Language);
 
             var viewModel = limitedRulesResult.IsFailed
                 ? new CreateCustomerViewModel(query, true, limitedRulesResult.Message)
@@ -126,7 +126,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
 
         public async Task<ActionResult> Create(CreateCustomerQuery query)
         {
-            var limitedRulesResult = await customerService.CheckAllLimitedRules(query.ViewerId, query.ViewerLevelId, query.ActorUsername, false, false, query.Language);
+            var limitedRulesResult = await customerService.CheckAllLimitedRules(query.ViewerId, query.ViewerLevelId, query.ActorUsername, language: query.Language);
 
             var viewModel = limitedRulesResult.IsFailed
                 ? new CreateCustomerViewModel(query, true, limitedRulesResult.Message)
