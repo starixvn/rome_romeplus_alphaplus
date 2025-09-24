@@ -49,10 +49,8 @@ export const RemarkInfo = ({ title, value }: { title: string; value: string }) =
             height = mobileScale(height);
         }
 
-        if (window.top?.updateRemarkPopup === null || window.top?.updateRemarkPopup === undefined) {
-            if (window.top?.ageWnd) {
-                window.top.updateRemarkPopup = window.top.ageWnd.createInstance();
-            }
+        if ((window.top?.updateRemarkPopup === null || window.top?.updateRemarkPopup === undefined) && window.top?.ageWnd) {
+            window.top.updateRemarkPopup = window.top.ageWnd.createInstance();
         }
 
         if (window.top?.updateRemarkPopup) {

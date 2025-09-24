@@ -66,7 +66,10 @@ declare global {
         bootboxAlert: any;
         updateProductStatusPopup: any;
         updateGivenCreditPopup: any;
-        updateRemarkPopup: unknown;
+        updateRemarkPopup: {
+            close: Function;
+            onClosing: Function;
+        };
         renderUnsuspendSingle: any;
         customerListNew: any;
         successfulUpdatingCallbackAndReloadMainFrame: any;
