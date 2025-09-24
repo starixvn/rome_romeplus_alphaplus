@@ -1,6 +1,4 @@
-﻿var showSoccer5Result;
-
-class NormalResultView {
+﻿class NormalResultView {
     init() {
         const ua = window.navigator.userAgent;
         const msie = ua.indexOf('MSIE ');
@@ -91,19 +89,6 @@ class NormalResultView {
                 $resultDetails.find('.modal-dialog').width(bodyWidth - 100);
             }
         });
-
-        showSoccer5Result = function (matchId, balls) {
-            const params = {
-                SportTypeId: 164, // Happy 5
-                BetTypeId: 3604, // Soccer 5
-                MatchId: matchId,
-                Balls: balls
-            };
-
-            const url = `${$('#hidden-resultSoccer5Url').attr('href')}?${$.param(params)}`;
-            $frmDetailsResult.attr('src', url);
-            $resultDetails.modal({});
-        };
     }
 
     parseDate(dateString) {
