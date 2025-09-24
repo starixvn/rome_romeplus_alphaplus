@@ -1,7 +1,7 @@
 ﻿'use strict';
 
 interface Window {
-    reachlistAccountData: any;
+    reachlistAccountData?: ReachedThresholdPagingData;
 }
 
 class ReachedThreshold extends MyWatchlistBase {

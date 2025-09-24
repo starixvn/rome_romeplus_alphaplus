@@ -1,12 +1,12 @@
 ﻿"use strict";
 
 class ManageWatchlistAccounts extends ThresholdInputsBase {
-    private topWindow: any;
+    private topWindow: Window;
     private presetDropdown: SingleSelectionDropdownComponent;
     private $txtAreaUsernames: JQuery;
     private baseUrl: string;
 
-    constructor($: JQueryStatic, topWindow: any) {
+    constructor($: JQueryStatic, topWindow: Window) {
         super($);
         this.topWindow = topWindow;
     }

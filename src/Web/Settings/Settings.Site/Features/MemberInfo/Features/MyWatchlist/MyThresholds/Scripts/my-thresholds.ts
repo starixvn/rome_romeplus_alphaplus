@@ -2,11 +2,11 @@
 
 'use strict';
 interface Window {
-    myThresholdData: unknown;
+    myThresholdData?: MyThresholdHistoryItem[];
 }
 
 class MyThresholds extends MyWatchlistBase {
-    private topWindow: unknown;
+    private topWindow: Window;
     private dateRangePickerComponent: DateRangePickerComponent;
     private readonly compactFeedback: CompactFeedbackComponent;
 
@@ -14,17 +14,17 @@ class MyThresholds extends MyWatchlistBase {
     private $toDate: JQuery;
 
     private $dataTable: JQuery;
-    private myThresholdData: unknown;
+    private myThresholdData?: MyThresholdHistoryItem[];
 
     private myThresholdsUrl: string;
     private isMobile: boolean;
 
     constructor(
         $: JQueryStatic,
-        topWindow: unknown,
+        topWindow: Window,
         dateRangePickerComponent: DateRangePickerComponent,
         compactFeedback: CompactFeedbackComponent,
-        myThresholdData: unknown
+        myThresholdData?: MyThresholdHistoryItem[]
     ) {
         super($);
         this.topWindow = topWindow;

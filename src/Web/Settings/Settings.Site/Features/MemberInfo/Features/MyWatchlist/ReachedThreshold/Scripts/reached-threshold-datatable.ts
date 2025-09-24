@@ -2,9 +2,9 @@
 
 class ReachedThresholdDataTable {
     private $: JQueryStatic;
-    private topWindow: any;
+    private topWindow: Window;
     private readonly compactFeedback: CompactFeedbackComponent;
-    private reachedThresholdData: any;
+    private reachedThresholdData?: ReachedThresholdPagingData;
 
     private isMobile: boolean;
     private isShowLastLoginColumn: boolean;
@@ -20,7 +20,7 @@ class ReachedThresholdDataTable {
 
     private $table: JQuery;
 
-    constructor($: JQueryStatic, topWindow: unknown, compactFeedback: CompactFeedbackComponent, reachedThresholdData: unknown) {
+    constructor($: JQueryStatic, topWindow: Window, compactFeedback: CompactFeedbackComponent, reachedThresholdData?: ReachedThresholdPagingData) {
         this.$ = $;
         this.topWindow = topWindow;
         this.compactFeedback = compactFeedback;

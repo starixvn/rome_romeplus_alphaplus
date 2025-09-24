@@ -6,7 +6,7 @@ declare var TipsyHelper;
 
 class MemberBettingBehavior {
     private $: JQueryStatic;
-    private topWindow: unknown;
+    private topWindow: Window;
     private customerProfile: JQuery;
     private statisticBlock: JQuery;
     private summaryStatistic: JQuery;
@@ -22,7 +22,7 @@ class MemberBettingBehavior {
     constructor(
         $: JQueryStatic,
         dataRange: SingleSelectionDropdownComponent,
-        topWindow: unknown,
+        topWindow: Window,
         compactFeedback: CompactFeedbackComponent
     ) {
         this.$ = $;

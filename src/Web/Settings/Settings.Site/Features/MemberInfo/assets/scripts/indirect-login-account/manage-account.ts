@@ -2,11 +2,11 @@
 
 class ManageAccount {
     $: JQueryStatic;
-    topWindow: any;
+    topWindow: Window;
     rootURL: string;
     compactFeedback: CompactFeedbackComponent;
 
-    constructor($: JQueryStatic, topWindow: unknown, compactFeedback: CompactFeedbackComponent) {
+    constructor($: JQueryStatic, topWindow: Window, compactFeedback: CompactFeedbackComponent) {
         this.$ = $;
         this.topWindow = topWindow;
         this.compactFeedback = compactFeedback;
