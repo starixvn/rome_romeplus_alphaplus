@@ -217,7 +217,6 @@ public class TransferYesterdayBalanceHandler(
             message.LangKey,
             message.IP,
             message.SubAccId,
-            message.AGIP,
             message.AdminId,
             message.AdminName,
             message.SiteDbGroupId);

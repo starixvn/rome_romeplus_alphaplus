@@ -5,15 +5,15 @@ using Core.Helpers;
 
 public class GetAutoTransferJobStatusCriteria(int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
 {
-    public int FromCustId { get; } = 0;
+    public int FromCustId { get; }
 
-    public int ToCustId { get; } = 0;
+    public int ToCustId { get; }
 
-    public bool IsAllowAutoTransfer { get; } = true;
+    public bool IsAllowAutoTransfer => true;
 
     public bool IsAutoJobRunning { get; set; }
 
-    public int ErrCode { get; set; } = 0;
+    public int ErrCode { get; set; }
 
     public string ErrMsg { get; set; } = string.Empty;
 

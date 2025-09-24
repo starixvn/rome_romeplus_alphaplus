@@ -12,7 +12,7 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers;
 public class TransferListHandler(
     ITransferListService transferListService,
     ITransferService transferService,
-    IWinlossService winlossService) : IRequestHandler<TransferListQuery, TransferListViewModel>
+    IWinlossService winLossService) : IRequestHandler<TransferListQuery, TransferListViewModel>
 {
     public async Task<TransferListViewModel> Handle(TransferListQuery message, CancellationToken cancellation)
     {
@@ -36,11 +36,24 @@ public class TransferListHandler(
             message.PageSize,
             message.SiteDbGroupId);
 
-        var enteredSportResultTask = winlossService.GetEnteredSportResultsAsync();
+        var enteredSportResultTask = winLossService.GetEnteredSportResultsAsync();
         var reportDataTask = transferListService.GetTransferList(param);
         var transferOptionTask = transferService.GetTransferOption(message.ViewerId);
         await Task.WhenAll(enteredSportResultTask, reportDataTask, transferOptionTask);
         var transferOption = await transferOptionTask;
+
+        var isAdbtChangeToOn = !prevADBT && currentADBT;
+        var isAdbtChangeToOff = prevADBT && !currentADBT;
+        var messageReload = string.Empty;
+        if (isAdbtChangeToOn)
+        {
+            messageReload = AlphaPlus.Shared.AppResources.Settings.Transfer.Resources.ADBTOnError;
+        }
+
+        if (isAdbtChangeToOff)
+        {
+            messageReload = AlphaPlus.Shared.AppResources.Settings.Transfer.Resources.ADBTOffError;
+        }
 
         var viewModel = new TransferListViewModel(
             message,
@@ -51,10 +64,8 @@ public class TransferListHandler(
             transferOption,
             string.Join(',', TransferConditionHelper.GetAutoTransferScheduleFromTransferOption(transferOption, message.ViewerLevelId)))
         {
-            IsReloadTopPage = (!prevADBT && currentADBT) || (prevADBT && !currentADBT),
-            MessageForReloadSite = (!prevADBT && currentADBT) ? AlphaPlus.Shared.AppResources.Settings.Transfer.Resources.ADBTOnError :
-                    (prevADBT && !currentADBT) ? AlphaPlus.Shared.AppResources.Settings.Transfer.Resources.ADBTOffError :
-                    string.Empty
+            IsReloadTopPage = isAdbtChangeToOn || isAdbtChangeToOff,
+            MessageForReloadSite = messageReload
         };
 
         return viewModel;

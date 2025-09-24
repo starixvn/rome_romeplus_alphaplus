@@ -172,20 +172,23 @@ namespace AlphaPlus.Features.Messages.API.UnitTests.Utils
 
             var thread1Time = new DateTime(2024, 1, 1);
             var thread2Time = new DateTime(2024, 6, 1);
-            DateTime thread1Result = DateTime.MinValue;
-            DateTime thread2Result = DateTime.MinValue;
+            var thread1Result = DateTime.MinValue;
+            var thread2Result = DateTime.MinValue;
+
+            var mre1 = new ManualResetEvent(false);
+            var mre2 = new ManualResetEvent(false);
 
             var thread1 = new Thread(() =>
             {
                 SetSystemTime(thread1Time);
-                Thread.Sleep(50); // Give time for other thread to set its value
+                mre1.WaitOne(50); // Give time for other thread to set its value
                 thread1Result = SystemTime.Now;
             });
 
             var thread2 = new Thread(() =>
             {
                 SetSystemTime(thread2Time);
-                Thread.Sleep(50); // Give time for other thread to set its value
+                mre2.WaitOne(50); // Give time for other thread to set its value
                 thread2Result = SystemTime.Now;
             });
 
@@ -252,7 +255,7 @@ namespace AlphaPlus.Features.Messages.API.UnitTests.Utils
             var property = typeof(SystemTime).GetProperty(nameof(SystemTime.Now));
             Assert.NotNull(property);
             Assert.True(property.CanRead);
-            
+
             var setter = property.GetSetMethod();
             Assert.Null(setter); // Public setter should be null since it's internal
         }

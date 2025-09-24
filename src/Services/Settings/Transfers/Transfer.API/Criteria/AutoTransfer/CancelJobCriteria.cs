@@ -24,7 +24,7 @@ public class CancelJobCriteria(
 
     public string IP { get; set; } = ip;
 
-    public int ErrCode { get; set; } = 0;
+    public int ErrCode { get; set; }
 
     public string ErrMsg { get; set; } = string.Empty;
 
