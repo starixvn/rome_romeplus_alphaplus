@@ -1,5 +1,8 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Params;
 
+using System.Diagnostics.CodeAnalysis;
+
+[SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "Constructor by design, no refactor planned")]
 public class WinLossLimitParam(
     int productId,
     int custId,
