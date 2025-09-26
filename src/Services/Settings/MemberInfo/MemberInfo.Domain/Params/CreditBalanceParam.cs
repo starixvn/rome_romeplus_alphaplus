@@ -14,7 +14,6 @@ public class CreditBalanceParam
         int pageIndex,
         int pageSize,
         bool isAdminCanViewVNIP,
-        string agIP,
         int siteDbGroupId)
     {
         CustId = custId;
@@ -25,7 +24,6 @@ public class CreditBalanceParam
         PageIndex = pageIndex;
         PageSize = pageSize;
         IsAdminCanViewVNIP = isAdminCanViewVNIP;
-        AGIP = agIP;
         SiteDbGroupId = siteDbGroupId;
     }
 
@@ -49,7 +47,6 @@ public class CreditBalanceParam
 
     public bool IsAdminCanViewVNIP { get; }
 
-    public string AGIP { get; }
     public int SiteDbGroupId { get; }
 
     private void MapStatusIdToParam(byte statusId)

@@ -16,13 +16,12 @@ public class CreditBalanceParamTests
         var pageIndex = 0;
         var pageSize = 10;
         var isAdminCanViewVNIP = true;
-        var agIP = "192.168.1.1";
         var siteDbGroupId = 1;
 
         // Act
         var param = new CreditBalanceParam(
             custId, custLevel, userName, statusId, levelType,
-            pageIndex, pageSize, isAdminCanViewVNIP, agIP, siteDbGroupId);
+            pageIndex, pageSize, isAdminCanViewVNIP, siteDbGroupId);
 
         // Assert
         Assert.Equal(custId, param.CustId);
@@ -32,7 +31,6 @@ public class CreditBalanceParamTests
         Assert.Equal(pageIndex, param.PageIndex);
         Assert.Equal(pageSize, param.PageSize);
         Assert.Equal(isAdminCanViewVNIP, param.IsAdminCanViewVNIP);
-        Assert.Equal(agIP, param.AGIP);
     }
 
     [Fact]
@@ -134,7 +132,7 @@ public class CreditBalanceParamTests
         // Act
         var param = new CreditBalanceParam(
             123, UserLevel.Agent, userName, StatusIdentity.Open, 1,
-            0, 10, true, "192.168.1.1", 0);
+            0, 10, true, 0);
 
         // Assert
         Assert.Null(param.UserName);
@@ -149,7 +147,7 @@ public class CreditBalanceParamTests
         // Act
         var param = new CreditBalanceParam(
             123, UserLevel.Agent, userName, StatusIdentity.Open, 1,
-            0, 10, true, "192.168.1.1", 0);
+            0, 10, true, 0);
 
         // Assert
         Assert.Equal(string.Empty, param.UserName);
@@ -172,8 +170,7 @@ public class CreditBalanceParamTests
             nameof(CreditBalanceParam.LevelType),
             nameof(CreditBalanceParam.PageIndex),
             nameof(CreditBalanceParam.PageSize),
-            nameof(CreditBalanceParam.IsAdminCanViewVNIP),
-            nameof(CreditBalanceParam.AGIP)
+            nameof(CreditBalanceParam.IsAdminCanViewVNIP)
         };
 
         foreach (var propName in readOnlyProperties)
@@ -222,7 +219,7 @@ public class CreditBalanceParamTests
         // Act
         var param = new CreditBalanceParam(
             123, UserLevel.Agent, "test", StatusIdentity.Open, 1,
-            0, 0, true, "192.168.1.1", 0);
+            0, 0, true, 0);
 
         // Assert
         Assert.Equal(0, param.PageSize);
@@ -234,7 +231,7 @@ public class CreditBalanceParamTests
         // Act
         var param = new CreditBalanceParam(
             -1, UserLevel.Agent, "test", StatusIdentity.Open, 1,
-            -1, -1, false, "192.168.1.1", 0);
+            -1, -1, false, 0);
 
         // Assert
         Assert.Equal(-1, param.CustId);
@@ -246,6 +243,6 @@ public class CreditBalanceParamTests
     {
         return new CreditBalanceParam(
             123, UserLevel.Agent, "testuser", statusId, 1,
-            0, 10, true, "192.168.1.1", 0);
+            0, 10, true, 0);
     }
 }

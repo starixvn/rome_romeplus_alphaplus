@@ -1,5 +1,3 @@
-using AlphaPlus.Settings.MemberInfo.Domain.Params;
-
 namespace AlphaPlus.Settings.MemberInfo.Domain.UnitTests.Params;
 
 public class WinLossLimitParamTests
@@ -21,13 +19,13 @@ public class WinLossLimitParamTests
         var pageSize = 10;
         var pageIndex = 0;
         var isDirectMember = true;
-        var agIP = "192.168.1.1";
         var accountType = 3;
+        var siteDbGroupId = 1;
 
         // Act
         var param = new WinLossLimitParam(
             productId, custId, betType, sportType, username, playerId,
-            masterId, agentId, pageSize, pageIndex, isDirectMember, agIP, accountType);
+            masterId, agentId, pageSize, pageIndex, isDirectMember, accountType, siteDbGroupId);
 
         // Assert
         Assert.Equal(productId, param.ProductId);
@@ -37,11 +35,11 @@ public class WinLossLimitParamTests
         Assert.Equal(username, param.Username);
         Assert.Equal(playerId, param.PlayerId);
         Assert.Equal(masterId, param.MasterId);
+        Assert.Equal(siteDbGroupId, param.SiteDbGroupId);
         Assert.Equal(agentId, param.AgentId);
         Assert.Equal(pageSize, param.PageSize);
         Assert.Equal(pageIndex, param.PageIndex);
         Assert.Equal(isDirectMember, param.IsDirectMember);
-        Assert.Equal(agIP, param.AGIP);
         Assert.Equal(accountType, param.AccountType);
     }
 
@@ -87,16 +85,14 @@ public class WinLossLimitParamTests
         // Arrange
         string username = null;
         string playerId = null;
-        string agIP = null;
 
         // Act
         var param = new WinLossLimitParam(
-            1, 2, 3, 4, username, playerId, 5, 6, 10, 0, true, agIP, 7);
+            1, 2, 3, 4, username, playerId, 5, 6, 10, 0, true, 7, 1);
 
         // Assert
         Assert.Null(param.Username);
         Assert.Null(param.PlayerId);
-        Assert.Null(param.AGIP);
     }
 
     [Fact]
@@ -105,16 +101,14 @@ public class WinLossLimitParamTests
         // Arrange
         var username = string.Empty;
         var playerId = string.Empty;
-        var agIP = string.Empty;
 
         // Act
         var param = new WinLossLimitParam(
-            1, 2, 3, 4, username, playerId, 5, 6, 10, 0, true, agIP, 7);
+            1, 2, 3, 4, username, playerId, 5, 6, 10, 0, true, 7, 1);
 
         // Assert
         Assert.Equal(string.Empty, param.Username);
         Assert.Equal(string.Empty, param.PlayerId);
-        Assert.Equal(string.Empty, param.AGIP);
     }
 
     [Fact]
@@ -122,9 +116,8 @@ public class WinLossLimitParamTests
     {
         // Arrange
         var type = typeof(WinLossLimitParam);
-        var readOnlyProperties = new[] { 
+        var readOnlyProperties = new[] {
             nameof(WinLossLimitParam.IsDirectMember),
-            nameof(WinLossLimitParam.AGIP),
             nameof(WinLossLimitParam.IsSabaclub)
         };
 
@@ -189,7 +182,7 @@ public class WinLossLimitParamTests
     {
         // Act
         var param = new WinLossLimitParam(
-            0, 0, 0, 0, "test", "player", 0, 0, 0, 0, false, "192.168.1.1", 0);
+            0, 0, 0, 0, "test", "player", 0, 0, 0, 0, false, 0, 0);
 
         // Assert
         Assert.Equal(0, param.ProductId);
@@ -202,6 +195,7 @@ public class WinLossLimitParamTests
         Assert.Equal(0, param.PageIndex);
         Assert.Equal(0, param.AccountType);
         Assert.False(param.IsDirectMember);
+        Assert.Equal(0, param.SiteDbGroupId);
     }
 
     [Fact]
@@ -209,7 +203,7 @@ public class WinLossLimitParamTests
     {
         // Act
         var param = new WinLossLimitParam(
-            -1, -2, -3, -4, "test", "player", -5, -6, -7, -8, false, "192.168.1.1", -9);
+            -1, -2, -3, -4, "test", "player", -5, -6, -7, -8, false, -9, -1);
 
         // Assert
         Assert.Equal(-1, param.ProductId);
@@ -221,6 +215,7 @@ public class WinLossLimitParamTests
         Assert.Equal(-7, param.PageSize);
         Assert.Equal(-8, param.PageIndex);
         Assert.Equal(-9, param.AccountType);
+        Assert.Equal(-1, param.SiteDbGroupId);
     }
 
     [Fact]
@@ -228,9 +223,9 @@ public class WinLossLimitParamTests
     {
         // Act
         var param = new WinLossLimitParam(
-            int.MaxValue, int.MaxValue, int.MaxValue, int.MaxValue, 
-            "test", "player", int.MaxValue, int.MaxValue, int.MaxValue, 
-            int.MaxValue, true, "192.168.1.1", int.MaxValue);
+            int.MaxValue, int.MaxValue, int.MaxValue, int.MaxValue,
+            "test", "player", int.MaxValue, int.MaxValue, int.MaxValue,
+            int.MaxValue, true, int.MaxValue, int.MaxValue);
 
         // Assert
         Assert.Equal(int.MaxValue, param.ProductId);
@@ -242,6 +237,7 @@ public class WinLossLimitParamTests
         Assert.Equal(int.MaxValue, param.PageSize);
         Assert.Equal(int.MaxValue, param.PageIndex);
         Assert.Equal(int.MaxValue, param.AccountType);
+        Assert.Equal(int.MaxValue, param.SiteDbGroupId);
         Assert.True(param.IsDirectMember);
     }
 
@@ -283,11 +279,11 @@ public class WinLossLimitParamTests
         int pageSize = 10,
         int pageIndex = 0,
         bool isDirectMember = true,
-        string agIP = "192.168.1.1",
-        int accountType = 1)
+        int accountType = 1,
+        int siteDbGroupId = 1)
     {
         return new WinLossLimitParam(
             productId, custId, betType, sportType, username, playerId,
-            masterId, agentId, pageSize, pageIndex, isDirectMember, agIP, accountType);
+            masterId, agentId, pageSize, pageIndex, isDirectMember, accountType, siteDbGroupId);
     }
 }

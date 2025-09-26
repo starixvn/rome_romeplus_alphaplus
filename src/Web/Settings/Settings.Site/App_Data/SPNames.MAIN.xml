@@ -658,7 +658,9 @@
         <Setting Key="SiteDb3_Acc_RewardPayment_Confirm" SpName="Acc_RewardPayment_Confirm" DbName="DBSITE03.bodb02.wsv_alp" />
     </Function>
     <Function Name="Win Loss Limit">
-        <Setting Key="SiteDB_Age_CustomerSelWinlimitInfo" SpName="Age_CustomerSelWinlimitInfo" DbName="DBSITE03.CustDB.wsv_alp" />
+        <Setting Key="SiteDb1_Age_CustomerSelWinlimitInfo" SpName="Age_CustomerSelWinlimitInfo" DbName="DBSITE01.CustDB.wsv_alp" />
+        <Setting Key="SiteDb2_Age_CustomerSelWinlimitInfo" SpName="Age_CustomerSelWinlimitInfo" DbName="DBSITE02.CustDB.wsv_alp" />
+        <Setting Key="SiteDb3_Age_CustomerSelWinlimitInfo" SpName="Age_CustomerSelWinlimitInfo" DbName="DBSITE03.CustDB.wsv_alp" />
     </Function>
     <Function Name="Check Belonging">
         <Setting Key="Age_ReCheckin" SpName="Age_ReCheckin" DbName="DBONUSER.ON_USER.wsv_alp" Plain="0" />

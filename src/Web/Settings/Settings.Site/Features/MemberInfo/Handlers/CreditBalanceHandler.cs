@@ -24,7 +24,6 @@ public class CreditBalanceHandler(
             message.PageIndex,
             message.PageSize,
             message.IsAdminCanViewVNIP,
-            message.AGIP,
             message.SiteDbGroupId);
 
         var pagedCreditBalancesTask = creditBalanceService.GetPagedCreditBalancesAsync(param);

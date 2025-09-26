@@ -76,7 +76,7 @@ public class CreditBalanceServiceImpl(IDynamicRepository dynamicRepository, IPSe
                 []);
         }
 
-        var creditBalances = await dynamicRepository.FetchAsync<CreditBalanceItem>(criteria, param.AGIP);
+        var creditBalances = await dynamicRepository.FetchAsync<CreditBalanceItem>(criteria);
 
         return new PagedCreditBalance(
             criteria.PageIndex,
@@ -188,7 +188,7 @@ public class CreditBalanceServiceImpl(IDynamicRepository dynamicRepository, IPSe
         }
 
         var criteria = GetAgentNetPositionCriteria(param);
-        var agentNetPositions = await dynamicRepository.FetchAsync<AgentNetPosition>(criteria, param.AGIP);
+        var agentNetPositions = await dynamicRepository.FetchAsync<AgentNetPosition>(criteria);
 
         return agentNetPositions.ToDictionary(kvp => kvp.CustId, kvp => kvp.NetPosition);
     }

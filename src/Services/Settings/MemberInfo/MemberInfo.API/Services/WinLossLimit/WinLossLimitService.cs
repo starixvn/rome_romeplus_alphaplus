@@ -18,7 +18,6 @@ public interface WinLossLimitService
 
 public class WinLossLimitServiceImpl(IDynamicRepository repository, CacheRefService cacheRefService) : WinLossLimitService
 {
-    private readonly IDynamicRepository repository = repository;
     private readonly Func<int, string> getProductName = cacheRefService.GetProductName;
     private readonly Func<int, string> getSportTypeName = cacheRefService.GetSportTypeName;
 
@@ -99,8 +98,9 @@ public class WinLossLimitServiceImpl(IDynamicRepository repository, CacheRefServ
             param.PageIndex,
             param.PageSize,
             param.IsDirectMember,
-            param.AccountType), param.AGIP);
-        var outstandings = Enumerable.Empty<WinLossLimitDetail>();
+            param.AccountType,
+            param.SiteDbGroupId));
+        var outStandings = Enumerable.Empty<WinLossLimitDetail>();
 
         foreach (var custWinLossLimit in result.WinLossLimitDetail)
         {
@@ -113,7 +113,7 @@ public class WinLossLimitServiceImpl(IDynamicRepository repository, CacheRefServ
                 custWinLossLimit.Transfer3rd = balance.Transfer3rd;
             }
 
-            var outstanding = outstandings.FirstOrDefault(item => item.CustId == custWinLossLimit.CustId);
+            var outstanding = outStandings.FirstOrDefault(item => item.CustId == custWinLossLimit.CustId);
             if (outstanding != null)
             {
                 custWinLossLimit.Outstanding = outstanding.Outstanding;
