@@ -18,6 +18,5 @@ public class UpdateSingleParam
 
     public string Old_TransferOption { get; set; }
 
-    public string AGIP { get; set; }
     public int SiteDbGroupId { get; set; }
 }

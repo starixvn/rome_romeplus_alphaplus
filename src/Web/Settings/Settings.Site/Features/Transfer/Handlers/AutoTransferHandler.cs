@@ -47,7 +47,6 @@ public class AutoTransferHandler(
             Schedule = message.DateSchedule,
             SubAccId = message.SubAccId,
             Old_TransferOption = message.Old_TransferOption,
-            AGIP = message.AGIP,
             SiteDbGroupId = message.SiteDbGroupId
         };
 
@@ -79,7 +78,6 @@ public class AutoTransferHandler(
             PageIndex = message.PageIndex,
             SortedBy = message.SortedBy,
             Direction = message.Direction,
-            AGIP = message.AGIP,
             LevelType = message.LevelType,
             SiteDbGroupId = message.SiteDbGroupId
         };
@@ -117,7 +115,6 @@ public class AutoTransferHandler(
             ViewStatus = message.ViewStatus,
             Language = message.LanguageKey,
             IP = message.IP,
-            AGIP = message.AGIP,
             SiteDbGroupId = message.SiteDbGroupId
         };
 
@@ -131,7 +128,6 @@ public class AutoTransferHandler(
             FromCustId = message.UplineId,
             Language = message.LanguageKey,
             IP = message.IP,
-            AGIP = message.AGIP,
             SiteDbGroupId = message.SiteDbGroupId
         };
 
@@ -157,7 +153,7 @@ public class AutoTransferHandler(
             IP = message.IP,
             Language = message.Language,
             Old_TransferOption = message.Old_TransferOption,
-            AGIP = message.AGIP
+            SiteDbGroupId = message.SiteDbGroupId
         };
 
         var result = await service.UpdateScheduleAsync(param);

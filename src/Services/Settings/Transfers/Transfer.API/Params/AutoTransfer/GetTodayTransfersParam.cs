@@ -18,7 +18,6 @@ public class GetTodayTransfersParam
 
     public int PageIndex { get; set; }
 
-    public string AGIP { get; set; }
     public int SiteDbGroupId { get; set; }
 
     public byte LevelType { get; set; }

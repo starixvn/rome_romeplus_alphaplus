@@ -12,6 +12,5 @@ public class CancelJobParam
 
     public string IP { get; set; }
 
-    public string AGIP { get; set; }
     public int SiteDbGroupId { get; set; }
 }

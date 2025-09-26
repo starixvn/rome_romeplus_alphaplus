@@ -647,11 +647,6 @@
         <Setting Key="SiteDb2_Age_ClearBalanceCust_ProcessCancel_All" SpName="Age_ClearBalanceCust_ProcessCancel_All" DbName="DBSITE02.bodb02.wsv_alp" Plain="0" />
         <Setting Key="SiteDb3_Age_ClearBalanceCust_ProcessCancel_All" SpName="Age_ClearBalanceCust_ProcessCancel_All" DbName="DBSITE03.bodb02.wsv_alp" Plain="0" />
     </Function>
-    <Function Name="Auto Transfer">
-        <Setting Key="SiteDb1_Age_ClearBalanceCust_Job_StatusCheck" SpName="Age_ClearBalanceCust_Job_StatusCheck" DbName="DBSITE01.bodb02.wsv_alp" Plain="0" />
-        <Setting Key="SiteDb2_Age_ClearBalanceCust_Job_StatusCheck" SpName="Age_ClearBalanceCust_Job_StatusCheck" DbName="DBSITE02.bodb02.wsv_alp" Plain="0" />
-        <Setting Key="SiteDb3_Age_ClearBalanceCust_Job_StatusCheck" SpName="Age_ClearBalanceCust_Job_StatusCheck" DbName="DBSITE03.bodb02.wsv_alp" Plain="0" />
-    </Function>
     <Function Name="Reward">
         <Setting Key="SiteDb1_Acc_RewardPayment_Confirm" SpName="Acc_RewardPayment_Confirm" DbName="DBSITE01.bodb02.wsv_alp" />
         <Setting Key="SiteDb2_Acc_RewardPayment_Confirm" SpName="Acc_RewardPayment_Confirm" DbName="DBSITE02.bodb02.wsv_alp" />

@@ -45,8 +45,6 @@ namespace AlphaPlus.Core
         public bool CanUpdateAccount
             => !userSession.IsSubAcc || (userSession.IsSubAcc && userSession.SubPageAccess.UpdateAccount);
 
-        public string AGIP => userSession.AGIP;
-
         public int SiteDbGroupId => userSession.SiteDBGroupId;
 
         public bool IsAdminCanViewVNIP => userSession.IsAdminCanViewVNIP;

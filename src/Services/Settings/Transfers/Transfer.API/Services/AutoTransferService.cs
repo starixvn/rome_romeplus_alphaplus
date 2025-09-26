@@ -66,7 +66,7 @@ public class AutoTransferServiceImpl(IDynamicRepository repository) : AutoTransf
             LevelType = param.LevelType
         };
 
-        var transfers = await repository.FetchAsync<AutoTransferMonitoringModel>(criteria, param.AGIP);
+        var transfers = await repository.FetchAsync<AutoTransferMonitoringModel>(criteria);
 
         return new AutoTransferMonitoringPageModel
         {
@@ -216,7 +216,6 @@ public class AutoTransferServiceImpl(IDynamicRepository repository) : AutoTransf
                 SubAccId = param.SubAccId,
                 Schedule = dates,
                 Old_TransferOption = param.Old_TransferOption ?? string.Empty,
-                AGIP = param.AGIP ?? string.Empty,
                 SiteDbGroupId = param.SiteDbGroupId
             };
 

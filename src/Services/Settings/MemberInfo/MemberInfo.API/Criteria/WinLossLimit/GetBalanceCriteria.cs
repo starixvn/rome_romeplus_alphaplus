@@ -1,9 +1,8 @@
-﻿using Fanex.Data;
-
-namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit;
+﻿namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit;
 
 using Core.Criteria;
 using Core.Helpers;
+using Fanex.Data;
 
 public class GetBalanceCriteria(
     int custId,
