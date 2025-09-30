@@ -5,7 +5,6 @@ using Fanex.Result.Core.ConfigurationHelper;
 using Fanex.Result.Core.GTCasino;
 using Fanex.Result.Core.KenoLotteryTG;
 using Fanex.Result.Core.RemotingRef;
-using Fanex.Result.Core.SabaClub;
 using Fanex.Result.Core.SAGaming;
 using Fanex.Result.Core.SportsLottery;
 using Fanex.Result.Core.WCasino;
@@ -32,6 +31,5 @@ public static class ResultsDIExtensions
             .AddScoped<ITableGamesResult>(_ => new TableGamesResult(configuration.GetSection("TableGameResultConfigs").Get<KenoLotteryTGConfigs>()))
             .AddScoped<ISportsLotteryResult>(_ => new SportsLotteryResult(configuration.GetSection("SportsLotteryResultConfigs").Get<SportsLotteryConfigs>()))
             .AddScoped<IVirtualGamesResult>(_ => new VirtualGamesResult(configuration.GetSection("VirtualGamesResultConfigs").Get<KenoLotteryTGConfigs>()))
-            .AddScoped<ISabaClubResult>(_ => new SabaClubResult(configuration.GetSection("SabaClubConfigs").Get<SabaClubConfigs>()));
     }
 }

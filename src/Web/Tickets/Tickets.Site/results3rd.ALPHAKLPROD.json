@@ -1,6 +1,12 @@
 {
   "Result3rdConfig": [
     {
+      "Name": "Saba.games",
+      "SportTypeId": 200,
+      "Url": "http://sabagames.gamora.prod/api/SabaClubInternal/GetBetHistoryUrl",
+      "Debug": 0
+    },
+    {
       "Name": "Smart Soft",
       "SportTypeId": 135,
       "Url": "http://saba-wallet-group-004.3rd-party.klt2p.gamora.prod:32280/api/SmartSoftGamingInternal/GetBetHistoryUrl",

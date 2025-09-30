@@ -68,9 +68,9 @@
     <PackageReference Include="Fanex.BetList.PP" Version="2.0.0.4" />
     <PackageReference Include="Fanex.BetList.PragmaticLiveCasino" Version="2.0.0.1" />
     <PackageReference Include="Fanex.BetList.RnGCasino" Version="2.0.0.2" />
-    <PackageReference Include="Fanex.BetList.RNGCore" Version="1.0.9.3" />
+    <PackageReference Include="Fanex.BetList.RNGCore" Version="1.0.9.5-sabaclub-01" />
     <PackageReference Include="Fanex.BetList.RNGWar" Version="2.0.0.1" />
-    <PackageReference Include="Fanex.BetList.SabaClub" Version="2.0.0.4" />
+    <PackageReference Include="Fanex.BetList.SabaClub" Version="2.0.0.5-beta-03" />
     <PackageReference Include="Fanex.BetList.SABAKeno" Version="1.0.0" />
     <PackageReference Include="Fanex.BetList.SABAxD" Version="1.0.0" />
     <PackageReference Include="Fanex.BetList.SAGaming" Version="2.0.0.1" />
@@ -102,7 +102,6 @@
     <PackageReference Include="Fanex.Result.Core.Happy5" Version="2.0.0.4" />
     <PackageReference Include="Fanex.Result.Core.KenoLotteryTG" Version="3.0.1-upgrade-01" />
     <PackageReference Include="Fanex.Result.Core.RemotingRef" Version="2.0.0.4" />
-    <PackageReference Include="Fanex.Result.Core.SabaClub" Version="2.0.1-upgrade-01" />
     <PackageReference Include="Fanex.Result.Core.SAGaming" Version="3.0.0-upgrade-01" />
     <PackageReference Include="Fanex.Result.Core.SportsLottery" Version="2.0.0-beta-02" />
     <PackageReference Include="Fanex.Result.Core.ThirdPartyResult" Version="2.0.1.2" />
