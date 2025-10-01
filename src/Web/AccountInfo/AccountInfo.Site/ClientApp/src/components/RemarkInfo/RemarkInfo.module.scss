@@ -5,7 +5,7 @@ body{
 }
 .remark-info {
     padding: 20px 0;
-
+    max-width: 500px;
     .msg {
         margin-top: 0;
         padding-left: 36px;
@@ -94,7 +94,7 @@ body{
 
     
 
-    .given-credit {
+    .remark-info {
         .msg {
             padding: calculateScale(8px) calculateScale(8px) calculateScale(8px) calculateScale(36px);
             margin: calculateScale(12px) 0;
@@ -124,7 +124,7 @@ body{
     }
  
 
-    .given-credit .list-button {
+    .remark-info .list-button {
         padding: calculateScale(12px) 0 calculateScale(20px);
     }
 

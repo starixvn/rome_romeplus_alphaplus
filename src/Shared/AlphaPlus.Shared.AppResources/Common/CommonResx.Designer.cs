@@ -654,6 +654,15 @@ namespace AlphaPlus.Shared.AppResources.Common {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid parameter value..
+        /// </summary>
+        public static string InvalidParameterValue {
+            get {
+                return ResourceManager.GetString("InvalidParameterValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IP.
         /// </summary>
         public static string IP {

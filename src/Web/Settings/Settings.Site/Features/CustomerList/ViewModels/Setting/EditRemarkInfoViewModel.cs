@@ -19,5 +19,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting
                 ["searchAccountId"] = SearchAccount.Id.ToString(),
                 ["searchAccountName"] = SearchAccount.Username,
             };
+
+        public override bool Visible => true;
     }
 }

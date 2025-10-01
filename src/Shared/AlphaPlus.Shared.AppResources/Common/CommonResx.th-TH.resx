@@ -519,4 +519,7 @@
   <data name="EditRemarkInfoViewModelText" xml:space="preserve">
     <value>หมายเหตุ</value>
   </data>
+  <data name="InvalidParameterValue" xml:space="preserve">
+    <value>ค่าพารามิเตอร์ไม่ถูกต้อง</value>
+  </data>
 </root>

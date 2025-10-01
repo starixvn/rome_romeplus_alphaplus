@@ -146,5 +146,6 @@
   "EditMultiplePartialSuccessfully": "다음 계정을 제외하고 선택한 계정의 보호 상태가 성공적으로 업데이트되었습니다:",
   "Protected": "보호됨",
   "ProtectionStatus": "보호 상태",
-  "Unprotected": "미보호"
+  "Unprotected": "미보호",
+  "Remark": "비고"
 }

@@ -211,10 +211,22 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
         public async Task<RemarkInfoViewModel> Handle(RemarkInfoQuery request, CancellationToken cancellationToken)
         {
             var remarkInfo = await searchAccountService.GetRemarkInfo(request.SearchAccountId, request.ActorId);
+            
+            if (remarkInfo == null)
+            {
+                return new RemarkInfoViewModel(
+                    request.SearchAccountId,
+                    request.SearchAccountName,
+                    string.Empty,
+                    request.IsShowCancelButton
+                );
+            }
+
             return new RemarkInfoViewModel(
                 request.SearchAccountId,
                 request.SearchAccountName,
-                remarkInfo.Remark
+                remarkInfo.Remark,
+                request.IsShowCancelButton
             );
         }
 

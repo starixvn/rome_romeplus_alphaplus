@@ -146,5 +146,6 @@
   "EditMultiplePartialSuccessfully": "The selected accounts' protection status has been updated successfully except the following account(s):",
   "Protected": "Protected",
   "ProtectionStatus": "Protection Status",
-  "Unprotected": "Unprotected"
+  "Unprotected": "Unprotected",
+  "Remark": "Remark"
 }

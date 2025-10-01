@@ -519,4 +519,7 @@
   <data name="EditRemarkInfoViewModelText" xml:space="preserve">
     <value>Remark</value>
   </data>
+  <data name="InvalidParameterValue" xml:space="preserve">
+    <value>잘못된 매개변수 값입니다.</value>
+  </data>
 </root>

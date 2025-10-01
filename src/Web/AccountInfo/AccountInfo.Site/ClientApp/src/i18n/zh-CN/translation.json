@@ -146,5 +146,6 @@
   "EditMultiplePartialSuccessfully": "除了以下账户外，所选账户的保护状态已成功更新：",
   "Protected": "受保护",
   "ProtectionStatus": "保护状态",
-  "Unprotected": "未受保护"
+  "Unprotected": "未受保护",
+  "Remark": "备注"
 }

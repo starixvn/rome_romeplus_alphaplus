@@ -14,7 +14,9 @@ using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.RemarkInfo.Ge
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.RemarkInfo.Update;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Update.Balance;
 using AlphaPlus.AccountInfo.Site.Features.Shared;
+using AlphaPlus.AccountInfo.Site.Features.Shared.Helpers;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Shared.AppResources.Common;
 using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using AlphaPlus.Utilities.IP;
 using Fanex.Data.Repository;
@@ -496,8 +498,15 @@ public class SearchAccountService(
     }
 
     public async Task<Result> UpdateRemarkInfo(UpdateRemarkInfoQuery param)
-    {
-        var command = new UpdateRemarkInfoCommand(param.SearchAccountId, param.Remark, param.ViewerId, param.SubAccountId);
+    {            
+        if (!param.IsValidRemark())
+        {
+            return Result.CreateErrorResult(CommonResx.InvalidParameterValue);
+        }
+        
+        var sanitizedRemark = InputCleaner.CleanRemark(param.Remark);
+        
+        var command = new UpdateRemarkInfoCommand(param.SearchAccountId, sanitizedRemark, param.ViewerId, param.SubAccountId);
         await dynamicRepository.ExecuteAsync(command);
         return new Result(command.ErrCode, command.ErrMsg);
     }

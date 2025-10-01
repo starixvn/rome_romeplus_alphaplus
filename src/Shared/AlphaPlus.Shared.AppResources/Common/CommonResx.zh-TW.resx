@@ -517,9 +517,12 @@
     <value>暂停</value>
   </data>
   <data name="Remark" xml:space="preserve">
-    <value>謝謝</value>
+    <value>備註</value>
   </data>
   <data name="EditRemarkInfoViewModelText" xml:space="preserve">
     <value>備註</value>
+  </data>
+  <data name="InvalidParameterValue" xml:space="preserve">
+    <value>參數值無效。</value>
   </data>
 </root>

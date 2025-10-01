@@ -12,4 +12,6 @@ public class RemarkInfoQuery : QueryBase, IRequest<RemarkInfoViewModel>
     public virtual int SearchAccountId { get; set; }
 
     public int ActorId => userSession.CustId;
+
+    public bool IsShowCancelButton { get; set; }
 }

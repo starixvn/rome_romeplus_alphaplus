@@ -30,6 +30,7 @@ interface RemarkParams {
     searchAccountId: number;
     searchAccountRoleId: number;
     currentRemark: string;
+    isShowCancelButton: boolean;
 }
 
 interface UnsuspendParams {

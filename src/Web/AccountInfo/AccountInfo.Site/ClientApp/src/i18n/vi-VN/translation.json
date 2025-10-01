@@ -146,5 +146,6 @@
   "EditMultiplePartialSuccessfully": "Trạng thái bảo vệ của các tài khoản được chọn đã được cập nhật thành công trừ (các) tài khoản sau:",
   "Protected": "Được bảo vệ",
   "ProtectionStatus": "Trạng Thái Bảo Vệ",
-  "Unprotected": "Không được bảo vệ"
+  "Unprotected": "Không được bảo vệ",
+  "Remark": "Ghi chú" 
 }

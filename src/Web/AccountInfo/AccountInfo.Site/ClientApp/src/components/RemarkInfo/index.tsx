@@ -11,13 +11,15 @@ export default function RemarkInfo() {
         searchAccountId,
         searchAccountName,
         searchAccountRoleId,
-        currentRemark
+        currentRemark,
+        isShowCancelButton
     } = remarkParams;
-
     const [hideMessages, setHideMessages] = useState(true);
     const [updateSuccess, setUpdateSuccess] = useState(true);
     const [message, setMessage] = useState('');
     const [newRemark, setNewRemark] = useState(currentRemark);
+    const remarkMaxLength = 200;
+    const durationShowMessage = 1500;
     const showErrorMessage = (msg: string) => {
         setHideMessages(false);
         setMessage(msg);
@@ -31,6 +33,9 @@ export default function RemarkInfo() {
         $.blockUI?.();
         updateRemark(searchAccountId, searchAccountRoleId, newRemark);
     };
+
+
+
     const handleClose = (updateSuccessfully = false) => {
         if (
             window.top?.updateRemarkPopup &&
@@ -43,6 +48,10 @@ export default function RemarkInfo() {
                 newRemark,
                 searchAccountId
             );
+            setTimeout(() => {
+                setHideMessages(true);
+                setMessage('');
+            }, durationShowMessage);
         }
     };
 
@@ -52,7 +61,7 @@ export default function RemarkInfo() {
                 `${window.top?.alpha.urls['accountInfoRootPath']}SearchAccount/UpdateRemark`,
                 {
                     searchAccountId: searchAccountID,
-                    searchAccountRoleId: searchAccountRoleId,
+                    searchAccountRoleId: searchAccountRoleID,
                     remark: remark
                 },
                 {
@@ -70,6 +79,7 @@ export default function RemarkInfo() {
 
                 if (data.IsSuccessful) {
                     handleClose(data.IsSuccessful);
+                  
                 }
 
                 $.unblockUI?.();
@@ -92,13 +102,21 @@ export default function RemarkInfo() {
             </div>
             <div>
                 <label htmlFor="remark">{t('Remark')}</label>
-                <textarea value={newRemark} onChange={handleChangeRemark} name="remark" id="remark" style={{ width: '100%', height: '100px' }} />
+                <textarea
+                    maxLength={remarkMaxLength}
+                    onBlur={(e) => {
+                        const trimValue = e.target.value.trim();
+                        setNewRemark(trimValue);
+                    }}
+                    onChange={(e) => handleChangeRemark(e)}
+                    value={newRemark} name="remark" id="remark" 
+                    style={{ width: '100%', height: '100px' }} />
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
-                <button className="btn-cancel" onClick={() => handleClose()} >
+                {(isShowCancelButton.toString().toLowerCase() === 'true') && <button className="btn-cancel" onClick={() => handleClose()} >
                     {t('Cancel')}
-                </button>
+                </button>}
                 <button className="btn-submit" onClick={handleSubmit} style={{ marginRight: '0' }}>
                     {t('Update')}
                 </button>

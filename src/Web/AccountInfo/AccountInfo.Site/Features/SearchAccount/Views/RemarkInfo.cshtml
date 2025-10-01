@@ -15,11 +15,14 @@
 
 @section Scripts {
     <script type="text/javascript">
-        const remarkParams = {
-            searchAccountId: @Model.SearchAccountId,
-            searchAccountName: '@Model.SearchAccountName',
-            currentRemark: '@Model.CurrentRemark'
-        };
+        const remarkParams = @Html.Raw(Json.Serialize(
+            new {
+                searchAccountId = Model.SearchAccountId,
+                searchAccountName = Model.SearchAccountName,
+                currentRemark = Model.CurrentRemark,
+                isShowCancelButton = Model.IsShowCancelButton,
+            }
+        ));
     </script>
     <script type="module" asp-src-include="/remarkInfo-*.js"></script>
     @* <script type="module">
