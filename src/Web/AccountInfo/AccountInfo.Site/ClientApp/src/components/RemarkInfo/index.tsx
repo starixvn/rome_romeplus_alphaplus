@@ -5,6 +5,8 @@ import Result from '../../models/result';
 import { handleError } from '../../services/axios-helper';
 import styles from './RemarkInfo.module.scss';
 
+const ERROR_UNAUTHORIZED = 401;
+
 export default function RemarkInfo() {
     const { t } = useTranslation();
     const {
@@ -17,7 +19,7 @@ export default function RemarkInfo() {
     const [hideMessages, setHideMessages] = useState(true);
     const [updateSuccess, setUpdateSuccess] = useState(true);
     const [message, setMessage] = useState('');
-    const [newRemark, setNewRemark] = useState(currentRemark);
+    const [newRemark, setNewRemark] = useState<string>(currentRemark || '');
     const remarkMaxLength = 200;
     const durationShowMessage = 1500;
     const showErrorMessage = (msg: string) => {
@@ -84,7 +86,11 @@ export default function RemarkInfo() {
 
                 $.unblockUI?.();
             })
-            .catch(handleError)
+            .catch((err) => {
+                if((err.response?.status === ERROR_UNAUTHORIZED || err.Code === ERROR_UNAUTHORIZED) && err.response?.data?.message === 'NoPermission') {
+                    showErrorMessage(t('NotAuthorized'));
+                }
+            })
             .finally(() => {
                 $.unblockUI?.();
             });

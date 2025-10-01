@@ -71,7 +71,9 @@ export const RemarkInfo = ({ title, value, key }: ContactInfoRowProps) => {
             <div className="col-xs-7 col-right">
                 <div style={{position: 'relative', float: 'right', paddingLeft: '24px'}}>
                     <IconEdit onClick={handleOpenRemarkPopup} />
-                    {value}
+                    <div style={{ whiteSpace: 'nowrap' }}>
+                        {value}
+                    </div>
                 </div>
             </div>
         </div>

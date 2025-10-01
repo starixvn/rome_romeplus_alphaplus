@@ -3,6 +3,7 @@ using MediatR;
 using AlphaPlus.Core.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.RemarkInfo.Update
 {

@@ -264,7 +264,7 @@ public class SearchAccountService(
     {
         var getUplineByCustIdCommand = new GetUplineByCustIdCommand(searchAccountId);
         await dynamicRepository.ExecuteAsync(getUplineByCustIdCommand);
-        
+
         return await GetAccumCredit(getUplineByCustIdCommand.UplineId);
     }
 
@@ -272,7 +272,7 @@ public class SearchAccountService(
     {
         var accumCreditCommand = new GetAccumCreditCommand(searchAccountId);
         await dynamicRepository.ExecuteAsync(accumCreditCommand);
-        
+
         return accumCreditCommand.AccumCreditReturn;
     }
 
@@ -491,21 +491,27 @@ public class SearchAccountService(
     public async Task<RemarkInfoModel> GetRemarkInfo(int searchAccountId, int actorId)
     {
         var remarkInfo = await dynamicRepository.GetAsync<RemarkInfoModel>(new GetRemarkInfoCriteria(searchAccountId, actorId));
-        return remarkInfo ?? new RemarkInfoModel{
+        return remarkInfo ?? new RemarkInfoModel
+        {
             CustId = searchAccountId,
             Remark = string.Empty
         };
     }
 
     public async Task<Result> UpdateRemarkInfo(UpdateRemarkInfoQuery param)
-    {            
+    {
+        if (param.IsInternal)
+        {
+            return Result.CreateErrorResult(CommonResx.NotAuthorized);
+        }
+        
         if (!param.IsValidRemark())
         {
             return Result.CreateErrorResult(CommonResx.InvalidParameterValue);
         }
-        
+
         var sanitizedRemark = InputCleaner.CleanRemark(param.Remark);
-        
+
         var command = new UpdateRemarkInfoCommand(param.SearchAccountId, sanitizedRemark, param.ViewerId, param.SubAccountId);
         await dynamicRepository.ExecuteAsync(command);
         return new Result(command.ErrCode, command.ErrMsg);
