@@ -5,6 +5,7 @@
     levelTypeComponent: SingleDropdownComponent;
     sortComponent: SortComponent;
     reportTooltip: ReportTooltip;
+    winLossColumns: WinLossColumns;
 
     isAgentLevel: boolean;
     isFirstSwitchMode = true;
@@ -15,7 +16,8 @@
         monthPickerComponent: MonthPickerComponent,
         levelTypeComponent: SingleDropdownComponent,
         sortComponent: SortComponent,
-        reportTooltip: ReportTooltip
+        reportTooltip: ReportTooltip,
+        winLossColumns: WinLossColumns
     ) {
         super();
 
@@ -25,6 +27,7 @@
         this.levelTypeComponent = levelTypeComponent;
         this.sortComponent = sortComponent;
         this.reportTooltip = reportTooltip;
+        this.winLossColumns = winLossColumns;
     }
 
     init() {
@@ -47,10 +50,20 @@
             this.dateRangePickerComponent.render();
         }
 
+        this.winLossColumns.init();
+
         if ($('#IsSetDefaultStackMode').val().toLowerCase() === 'true' && alphaReports.screenSmallThan768()) {
             this.setStackMode();
             this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'winloss'));
             super.hideFilter();
+            this.winLossColumns.hideInStackMode();
+            this.showAllColumnsInStackMode();
+        } else {
+            // Only apply column visibility if component exists (not in historic mode)
+            if ($('#dropdown-visible-column').length > 0) {
+                this.winLossColumns.showHideColumns(this.$tableReport);
+                this.winLossColumns.showInNormalMode();
+            }
         }
 
         const sortHeaders = this.levelTypeComponent.$dropdown.length
@@ -63,6 +76,7 @@
         // remove style="visibility:hidden"
         // TableSorter cannot run with style="display:none"
         this.$tableReport.removeAttr('style');
+        this.winLossColumns.showHideColumns(this.$tableReport);
     }
 
     registerEvents() {
@@ -77,6 +91,12 @@
             return;
         }
 
+        // Update VisibleColumns hidden input before submit (only if component exists)
+        if ($('#dropdown-visible-column').length > 0) {
+            const visibleColumns = this.winLossColumns.getShowColumns().join(',');
+            $('#VisibleColumns').val(visibleColumns);
+        }
+
         super.onSubmitReport(event);
     };
 
@@ -87,6 +107,20 @@
             this.renderAtFirstSwitchMode(isStackMode);
             this.isFirstSwitchMode = false;
         }
+        
+        // Show/hide visible column component based on mode (only if component exists)
+        if ($('#dropdown-visible-column').length > 0) {
+            if (isStackMode) {
+                // Switching to normal mode - show column selector and apply column visibility
+                this.winLossColumns.showInNormalMode();
+                this.winLossColumns.showHideColumns(this.$tableReport);
+            } else {
+                // Switching to stack mode - hide column selector and show all columns
+                this.winLossColumns.hideInStackMode();
+                this.showAllColumnsInStackMode();
+            }
+        }
+        
         this.sortComponent.bindTableSorter(this.getSortedColumnName());
     };
 
@@ -178,6 +212,14 @@
         this.sortComponent.handleDormantAccountsAfterSort();
         this.sortComponent.handleCashFeeDataAfterSort();
     }
+
+    private showAllColumnsInStackMode() {
+        // Show all columns when switching to stack mode
+        this.$tableReport.find('[data-colname]').removeClass('hide');
+        // Hide normal mode group headers (col-level) and show stack mode headers (visible-stack-mode)
+        this.$tableReport.find('th.col-level').addClass('hide');
+        this.$tableReport.find('th.visible-stack-mode').removeClass('hide');
+    }
 }
 
 $(function () {
@@ -187,6 +229,7 @@ $(function () {
         new MonthPickerComponent(),
         new SingleDropdownComponent(),
         new SortComponent(),
-        new ReportTooltip()
+        new ReportTooltip(),
+        new WinLossColumns(new VisibleColumnComponent())
     ).init();
 });

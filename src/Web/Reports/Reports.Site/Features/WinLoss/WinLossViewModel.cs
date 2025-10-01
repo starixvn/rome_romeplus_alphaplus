@@ -37,6 +37,7 @@ public class WinLossViewModel : DrillDownableViewModel<WinLossModel>
         IsSetDefaultStackMode = message.IsSetDefaultStackMode;
         ProductViewModel = productViewModel;
         IsHistoricReport = message.IsHistoricReport;
+        VisibleColumns = message.VisibleColumns;
         if (IsHistoricReport)
         {
             MonthPicker = new MonthPickerViewModel(message.MinDate, message.FromDate, message.ToDate);
@@ -72,6 +73,8 @@ public class WinLossViewModel : DrillDownableViewModel<WinLossModel>
     public string FromDate { get; }
 
     public string ToDate { get; }
+
+    public string VisibleColumns { get; set; }
 
     private static string GetTitle(UserLevel custLevel)
         => custLevel.IsSuperLevel()
