@@ -9,6 +9,8 @@
 
     isAgentLevel: boolean;
     isFirstSwitchMode = true;
+    subAccId = $('#SubAccId').val() || 0;
+    custId = $('#UserId').val() || 0;
 
     constructor(
         productComponent: ProductMultiSelectionComponent,
@@ -94,7 +96,8 @@
         // Update VisibleColumns hidden input before submit (only if component exists)
         if ($('#dropdown-visible-column').length > 0) {
             const visibleColumns = this.winLossColumns.getShowColumns().join(',');
-            $('#VisibleColumns').val(visibleColumns);
+            const userLevel = this.winLossColumns.getUserLevel();
+            localStorage.setItem(userLevel + 'Columns_' + this.custId + '_' + this.subAccId, visibleColumns);
         }
 
         super.onSubmitReport(event);

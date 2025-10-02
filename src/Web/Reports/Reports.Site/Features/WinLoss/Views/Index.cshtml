@@ -365,7 +365,6 @@
 	<input type="hidden" id="CustLevelId" name="CustLevelId" value="@Model.CustLevel.Value.ToString()" />
 	<input type="hidden" name="BreadcrumbsJson" value="@Model.PageHeader.BreadcrumbLevel.BreadcrumbsJson" />
 	<input type="hidden" asp-for="IsHistoricReport" />
-	<input type="hidden" asp-for="VisibleColumns" />
 </form>
 <table class="tb tb-bordered tb-hover tablesorter w-full @(Model.PageHeader.IsStackMode ? " stack-mode" : string.Empty)"
 	data-cansort="@Model.ReportData.MoreThanOne" data-sortedcolumn="@Model.SortPropertyName"
@@ -410,3 +409,5 @@
 <input type="hidden" id="query-todate" value="@Model.ToDate" />
 <input type="hidden" id="IsSuperLevel" value="@isSuperLevel.ToString()" />
 <input type="hidden" id="IsMasterLevel" value="@isMasterLevel.ToString()" />
+<input type="hidden" id="SubAccId" value="@Model.SubAccId" />
+<input type="hidden" id="UserId" value="@Model.UserId" />

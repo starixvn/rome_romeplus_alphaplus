@@ -17,6 +17,12 @@ class WinLossColumns {
     private readonly masterLevelColumns = ['turnover', 'grosscomm', 'downlinetotal', 'winloss', 'comm', 'total', 'company', 'reward'];
     private readonly superLevelColumns = ['turnover', 'grosscomm', 'downlinetotal', 'winloss', 'comm', 'total', 'company', 'reward'];
 
+    private readonly subAccId = $('#SubAccId').val() || 0;
+    private readonly custId = $('#UserId').val() || 0;  
+    private readonly agentColumnsFromStorage = localStorage.getItem('agentColumns_' + this.custId + '_' + this.subAccId) || this.agentLevelColumns.join(',');
+    private readonly masterColumnsFromStorage = localStorage.getItem('masterColumns_' + this.custId + '_' + this.subAccId) || this.masterLevelColumns.join(',');
+    private readonly superColumnsFromStorage = localStorage.getItem('superColumns_' + this.custId + '_' + this.subAccId) || this.superLevelColumns.join(',');
+
     constructor(visibleColumnComponent: VisibleColumnComponent) {
         this.visibleColumnComponent = visibleColumnComponent;
         this.$visibleColumnContainer = $('#dropdown-visible-column').closest('.form-group');
@@ -28,15 +34,11 @@ class WinLossColumns {
             return;
         }
 
-        const visibleColumnsInput = $('#VisibleColumns').val() as string;
-        
         // Determine user level and set default visible columns
         const userLevel = this.getUserLevel();
-        let finalVisibleColumns = visibleColumnsInput;
+        const visibleColumnsInput = userLevel === 'agent' ? this.agentColumnsFromStorage : userLevel === 'master' ? this.masterColumnsFromStorage : this.superColumnsFromStorage;
         
-        if (!visibleColumnsInput || this.shouldSetDefaultColumns(visibleColumnsInput, userLevel)) {
-            finalVisibleColumns = this.getDefaultVisibleColumns(userLevel);
-        }
+        let finalVisibleColumns = visibleColumnsInput;
         
         this.visibleColumnComponent.render({
             listColumn: columnList,
@@ -44,7 +46,8 @@ class WinLossColumns {
                 this.showHideColumns($('#tbl-report'));
                 // Update hidden input with current visible columns
                 const visibleColumns = this.visibleColumnComponent.getShowColumns().join(',');
-                $('#VisibleColumns').val(visibleColumns);
+                const key = userLevel + 'Columns_' + this.custId + '_' + this.subAccId;
+                localStorage.setItem(key, visibleColumns);
             },
             visibleColumns: finalVisibleColumns
         });
@@ -64,7 +67,7 @@ class WinLossColumns {
         this.showHideColumnsByLevel($tblReport, visibleColumn, userLevel);
     }
     
-    private getUserLevel(): string {
+    public getUserLevel(): string {
         const isAgentLevel = $('#IsAgentLevel').val() === 'True';
         if (isAgentLevel)
         {
@@ -84,36 +87,7 @@ class WinLossColumns {
         }
 
         return 'unknown';
-    }
-    
-    private shouldSetDefaultColumns(visibleColumns: string, userLevel: string): boolean {
-        if (!visibleColumns) return true;
-        
-        switch (userLevel) {
-            case 'agent':
-                // Check if member columns are missing
-                return !visibleColumns.includes('pwinloss') || 
-                       !visibleColumns.includes('pcomm') || 
-                       !visibleColumns.includes('ptotal');
-            case 'master':
-            case 'super':
-                // Check if downlinetotal is missing
-                return !visibleColumns.includes('downlinetotal');
-            default:
-                return false;
-        }
-    }
-    
-    private getDefaultVisibleColumns(userLevel: string): string {
-        switch (userLevel) {
-            case 'agent':
-                return this.agentLevelColumns.join(',');
-            case 'master':
-                return this.masterLevelColumns.join(',');
-            default:
-                return this.superLevelColumns.join(',');
-        }
-    }
+    }    
     
     private showHideColumnsByLevel($tblReport: JQuery, visibleColumn: any, userLevel: string) {
         switch (userLevel) {

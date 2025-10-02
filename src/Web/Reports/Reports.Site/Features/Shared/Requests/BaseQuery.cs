@@ -26,6 +26,9 @@ public class BaseQuery
         CustId = ViewerId;
         CustName = viewer.UserName;
         CustLevelId = ViewerLevelId;
+
+        SubAccId = viewer.SubAccId;
+        UserId = viewer.UserId;
     }
 
     protected IUserSession Viewer { get; }
@@ -59,6 +62,8 @@ public class BaseQuery
     public DateTime MinDate { get; protected set; } = DateTime.MinValue;
 
     public bool IsFilterVisible { get; set; } = true;
+    public int SubAccId { get; }
+    public int UserId { get; }
 
     public virtual bool IsValid()
        => CustId > 0
