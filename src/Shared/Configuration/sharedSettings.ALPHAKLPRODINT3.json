@@ -152,8 +152,8 @@
             "SystemId": 2,
             "IdentityUrl": "http://alphaplus_api_identity_alphaklprod:5000/",
             "AssetAppPath": "/stcdn",
-            "JsVersion": "20250923",
-            "AssetsApp:StaticResourcesVersion": "20250923",
+            "JsVersion": "20251002",
+            "AssetsApp:StaticResourcesVersion": "20251002",
             "LocalTest": false,
             "SettingStatus": 0,
             "ProductOfferProductDetail": [
