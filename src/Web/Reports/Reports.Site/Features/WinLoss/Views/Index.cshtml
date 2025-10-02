@@ -325,6 +325,7 @@
 	}
 	@if (Model.IsHistoricReport)
 	{
+		<visible-column />
 		<month-picker model="Model.MonthPicker" />
 		<div class="form-group form-group-short">
 			<input type="submit" value="@Resources.Submit" class="btn-submit" />
