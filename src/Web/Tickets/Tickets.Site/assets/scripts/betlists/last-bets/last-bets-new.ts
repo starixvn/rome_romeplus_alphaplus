@@ -123,6 +123,12 @@ class LastBetsNewView {
             const url = `${$this.attr('href')}?${$.param(this.getSelectedFilterParams())}`;
             $this.attr('href', url);
         });
+
+        $('#btn-refresh').click(() => {
+            if (this.autoRefreshComponent.isOn()) {
+                this.loadLastBets(true);
+            }
+        });
     }
 
     private registerToggleFilter() {
