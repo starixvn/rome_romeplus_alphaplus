@@ -51,6 +51,7 @@
   "LoginTime": "Login Time",
   "Update": "Update",
   "UpdateGivenCredit": "Update Given Credit",
+  "UpdateRemark": "Update Remark",
   "CurrentGivenCredit": "Current Given Credit",
   "Back": "Back",
   "FirstLoginQRCode": "FIRST LOGIN QR CODE",
@@ -145,5 +146,6 @@
   "EditMultiplePartialSuccessfully": "The selected accounts' protection status has been updated successfully except the following account(s):",
   "Protected": "Protected",
   "ProtectionStatus": "Protection Status",
-  "Unprotected": "Unprotected"
+  "Unprotected": "Unprotected",
+  "Remark": "Remark"
 }

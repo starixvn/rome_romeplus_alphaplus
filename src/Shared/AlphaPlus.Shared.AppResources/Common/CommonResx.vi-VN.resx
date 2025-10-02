@@ -507,4 +507,13 @@
   <data name="DislikeTooltip" xml:space="preserve">
     <value>Cần cải thiện</value>
   </data>
+  <data name="Remark" xml:space="preserve">
+    <value>Ghi chú</value>
+  </data>
+  <data name="EditRemarkInfoViewModelText" xml:space="preserve">
+    <value>Ghi chú</value>
+  </data>
+  <data name="InvalidParameterValue" xml:space="preserve">
+    <value>Giá trị tham số không hợp lệ.</value>
+  </data>
 </root>

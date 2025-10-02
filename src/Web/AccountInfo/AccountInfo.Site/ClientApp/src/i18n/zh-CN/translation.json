@@ -51,6 +51,7 @@
   "LoginTime": "登入时间",
   "Update": "更改",
   "UpdateGivenCredit": "更新信用额度",
+  "UpdateRemark": "更新备注",
   "CurrentGivenCredit": "目前信用额度",
   "Back": "退回",
   "FirstLoginQRCode": "首次登入二维码",
@@ -145,5 +146,6 @@
   "EditMultiplePartialSuccessfully": "除了以下账户外，所选账户的保护状态已成功更新：",
   "Protected": "受保护",
   "ProtectionStatus": "保护状态",
-  "Unprotected": "未受保护"
+  "Unprotected": "未受保护",
+  "Remark": "备注"
 }

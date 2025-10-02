@@ -1,0 +1,37 @@
+@{
+    Layout = "~/Features/Shared/Views/_Layout.cshtml";
+}
+
+@using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.RemarkInfo.Get
+@model RemarkInfoViewModel
+
+@section Styles {
+    <link rel="stylesheet" asp-href-include="/remarkInfo-*.css" asp-append-version="true" />
+}
+
+@Html.AntiForgeryToken()
+
+<div id="root"></div>
+
+@section Scripts {
+    <script type="text/javascript">
+        const remarkParams = @Html.Raw(Json.Serialize(
+            new {
+                searchAccountId = Model.SearchAccountId,
+                searchAccountName = Model.SearchAccountName,
+                currentRemark = Model.CurrentRemark,
+                isShowCancelButton = Model.IsShowCancelButton,
+            }
+        ));
+    </script>
+    <script type="module" asp-src-include="/remarkInfo-*.js"></script>
+    @* <script type="module">
+        import RefreshRuntime from 'http://localhost:5173/@@react-refresh'
+        RefreshRuntime.injectIntoGlobalHook(window)
+        window.$RefreshReg$ = () => { }
+        window.$RefreshSig$ = () => (type) => type
+        window.__vite_plugin_react_preamble_installed__ = true
+    </script>
+    <script type="module" src=@("http://localhost:5173/@vite/client")></script>
+    <script type="module" src="http://localhost:5173/src/remark-info.tsx"></script> *@
+}

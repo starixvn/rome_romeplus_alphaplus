@@ -471,4 +471,7 @@
   <data name="ParlayMaxPayoutMultipleText" xml:space="preserve">
     <value>Edit Multiple Parlay Max Payout</value>
   </data>
+  <data name="EditRemarkInfoViewModelText" xml:space="preserve">
+    <value>Remark</value>
+  </data>
 </root>

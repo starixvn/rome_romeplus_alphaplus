@@ -21,6 +21,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels.Setting
         protected override IEnumerable<ISettingItemViewModel> GetNonProductViewModels(ISearchAccountInfoRequest request)
         {
             yield return new EditInfoViewModel(request);
+            yield return new EditRemarkInfoViewModel(request);
             yield return new TransferViewModel(request);
             yield return new ResetPasswordViewModel(request, displayOrder: LastProductSettingItemIndex + ResetPasswordDisplayAfterLastProduct);
             yield return new ResetSecurityCodeViewModel(request, displayOrder: LastProductSettingItemIndex + ResetSecurityDisplayAfterLastProduct);

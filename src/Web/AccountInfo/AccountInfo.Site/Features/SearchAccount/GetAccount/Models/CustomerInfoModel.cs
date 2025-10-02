@@ -131,6 +131,8 @@ public class CustomerInfoModel
 
     public int ServiceType { get; set; }
 
+    public string Remark { get; set; }
+
     public bool IsDirectMember => IsDirectMemberOfMaster || IsDirectMemberOfSuper;
 
     public bool IsDirectMemberOfMaster => AgentId == DirectMemberAgentIds.Master;

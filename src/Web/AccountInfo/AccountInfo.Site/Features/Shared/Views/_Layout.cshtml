@@ -11,6 +11,7 @@
 
     @StaticResources.AssetStyles.RenderCommonWithDarkMode("/bundles/common/common")
     @StaticResources.AssetStyles.RenderWithDarkMode("/bundles/site-accountinfo/index")
+    <link rel="stylesheet" asp-href-include="/styles-*.css" />
     <link rel="stylesheet" asp-href-include="/react-tippy-*.css" />
     <link rel="stylesheet" asp-href-include="/index-*.css" />
     @RenderSection("Styles", required: false)

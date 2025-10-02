@@ -507,4 +507,7 @@
   <data name="ConfirmAllowAutoTransferViewModelText" xml:space="preserve">
     <value>自動轉賬</value>
   </data>
+  <data name="EditRemarkInfoViewModelText" xml:space="preserve">
+    <value>備註</value>
+  </data>
 </root>

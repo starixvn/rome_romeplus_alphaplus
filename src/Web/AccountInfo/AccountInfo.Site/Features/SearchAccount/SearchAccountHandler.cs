@@ -8,6 +8,8 @@ using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Models;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.OnlineList;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Transfer.Requests;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.ViewModels;
+using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.RemarkInfo.Get;
+using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.RemarkInfo.Update;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Transfer.Requests;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Update.Balance;
 using AlphaPlus.AccountInfo.Site.Features.Shared;
@@ -29,7 +31,9 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
         IRequestHandler<CustomerNonProductStatusCommand, Result>,
         IRequestHandler<MemberBalanceInfoQuery, IBalanceInfoViewModel>,
         IRequestHandler<UpdateAllDayBalanceTransferRequest, Result>,
-        IRequestHandler<TotalDownlineQuery, IEnumerable<TotalDownlinesSummary>>
+        IRequestHandler<TotalDownlineQuery, IEnumerable<TotalDownlinesSummary>>,
+        IRequestHandler<RemarkInfoQuery, RemarkInfoViewModel>,
+        IRequestHandler<UpdateRemarkInfoQuery, Result>
     {
         private readonly ISearchAccountService searchAccountService = searchAccountService;
         private readonly IPService ipService = ipService;
@@ -203,5 +207,30 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
 
             return new DownlineListViewModel(directMembers);
         }
+
+        public async Task<RemarkInfoViewModel> Handle(RemarkInfoQuery request, CancellationToken cancellationToken)
+        {
+            var remarkInfo = await searchAccountService.GetRemarkInfo(request.SearchAccountId, request.ActorId);
+            
+            if (remarkInfo == null)
+            {
+                return new RemarkInfoViewModel(
+                    request.SearchAccountId,
+                    request.SearchAccountName,
+                    string.Empty,
+                    request.IsShowCancelButton
+                );
+            }
+
+            return new RemarkInfoViewModel(
+                request.SearchAccountId,
+                request.SearchAccountName,
+                remarkInfo.Remark,
+                request.IsShowCancelButton
+            );
+        }
+
+        public Task<Result> Handle(UpdateRemarkInfoQuery request, CancellationToken cancellationToken)
+            => searchAccountService.UpdateRemarkInfo(request);
     }
 }

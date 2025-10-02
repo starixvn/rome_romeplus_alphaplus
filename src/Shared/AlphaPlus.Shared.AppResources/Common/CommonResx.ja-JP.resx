@@ -450,4 +450,13 @@
   <data name="DislikeTooltip" xml:space="preserve">
     <value>Need improvement</value>
   </data>
+  <data name="Remark" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="EditRemarkInfoViewModelText" xml:space="preserve">
+    <value>Remark</value>
+  </data>
+  <data name="InvalidParameterValue" xml:space="preserve">
+    <value>Invalid parameter value.</value>
+  </data>
 </root>

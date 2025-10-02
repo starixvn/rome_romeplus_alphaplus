@@ -10,9 +10,13 @@ using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.U
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.LoginInfo;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Models;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.OnlineList;
+using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.RemarkInfo.Get;
+using AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.RemarkInfo.Update;
 using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Update.Balance;
 using AlphaPlus.AccountInfo.Site.Features.Shared;
+using AlphaPlus.AccountInfo.Site.Features.Shared.Helpers;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Shared.AppResources.Common;
 using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using AlphaPlus.Utilities.IP;
 using Fanex.Data.Repository;
@@ -47,6 +51,10 @@ public interface ISearchAccountService
     Task<bool> CheckMultipleCustomersBelonging(int actorId, int subAccountId, string custIds);
 
     Task<Result> UpdateAllDayBalanceTransfer(UpdateAllDayBalanceTransferParam param);
+
+    Task<RemarkInfoModel> GetRemarkInfo(int searchAccountId, int actorId);
+
+    Task<Result> UpdateRemarkInfo(UpdateRemarkInfoQuery param);
 }
 
 
@@ -256,7 +264,7 @@ public class SearchAccountService(
     {
         var getUplineByCustIdCommand = new GetUplineByCustIdCommand(searchAccountId);
         await dynamicRepository.ExecuteAsync(getUplineByCustIdCommand);
-        
+
         return await GetAccumCredit(getUplineByCustIdCommand.UplineId);
     }
 
@@ -264,7 +272,7 @@ public class SearchAccountService(
     {
         var accumCreditCommand = new GetAccumCreditCommand(searchAccountId);
         await dynamicRepository.ExecuteAsync(accumCreditCommand);
-        
+
         return accumCreditCommand.AccumCreditReturn;
     }
 
@@ -478,5 +486,34 @@ public class SearchAccountService(
 
         return s.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)
             .Any(c => string.Equals(currency, c.Trim(), StringComparison.OrdinalIgnoreCase));
+    }
+
+    public async Task<RemarkInfoModel> GetRemarkInfo(int searchAccountId, int actorId)
+    {
+        var remarkInfo = await dynamicRepository.GetAsync<RemarkInfoModel>(new GetRemarkInfoCriteria(searchAccountId, actorId));
+        return remarkInfo ?? new RemarkInfoModel
+        {
+            CustId = searchAccountId,
+            Remark = string.Empty
+        };
+    }
+
+    public async Task<Result> UpdateRemarkInfo(UpdateRemarkInfoQuery param)
+    {
+        if (param.IsInternal)
+        {
+            return Result.CreateErrorResult(CommonResx.NotAuthorized);
+        }
+        
+        if (!param.IsValidRemark())
+        {
+            return Result.CreateErrorResult(CommonResx.InvalidParameterValue);
+        }
+
+        var sanitizedRemark = InputCleaner.CleanRemark(param.Remark);
+
+        var command = new UpdateRemarkInfoCommand(param.SearchAccountId, sanitizedRemark, param.ViewerId, param.SubAccountId);
+        await dynamicRepository.ExecuteAsync(command);
+        return new Result(command.ErrCode, command.ErrMsg);
     }
 }

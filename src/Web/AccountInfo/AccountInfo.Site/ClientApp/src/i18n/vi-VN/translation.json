@@ -51,6 +51,7 @@
   "LoginTime": "Thời gian đăng nhập",
   "Update": "Cập nhật",
   "UpdateGivenCredit": "Cập nhật hạn mức tín dụng",
+  "UpdateRemark": "Cập nhật ghi chú",
   "CurrentGivenCredit": "Hạn mức tín dụng hiện tại",
   "Back": "Trở lại",
   "FirstLoginQRCode": "ĐĂNG NHẬP LẦN ĐẦU BẰNG QR",
@@ -145,5 +146,6 @@
   "EditMultiplePartialSuccessfully": "Trạng thái bảo vệ của các tài khoản được chọn đã được cập nhật thành công trừ (các) tài khoản sau:",
   "Protected": "Được bảo vệ",
   "ProtectionStatus": "Trạng Thái Bảo Vệ",
-  "Unprotected": "Không được bảo vệ"
+  "Unprotected": "Không được bảo vệ",
+  "Remark": "Ghi chú" 
 }

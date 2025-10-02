@@ -67,6 +67,17 @@
                         "Permission": "[B]",
                         "IsCheckBelonging": true
                     },
+                    
+                    {
+                        "Url": "SearchAccount/RemarkInfo",
+                        "Permission": "[H]",
+                        "IsCheckBelonging": true
+                    },  
+                    {
+                        "Url": "SearchAccount/UpdateRemark",
+                        "Permission": "[B]",
+                        "IsCheckBelonging": true
+                    },
                     {
                         "Url": "OpenDownlines/OpenSingle",
                         "Permission": "[B]",

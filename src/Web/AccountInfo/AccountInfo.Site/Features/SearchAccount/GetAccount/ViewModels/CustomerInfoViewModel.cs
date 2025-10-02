@@ -53,6 +53,8 @@ public class CustomerInfoViewModel : AccountInfoViewModelBase
 
     public string Fax => DefaultStringValueIfNull(customerInfo.Fax);
 
+    public string Remark => customerInfo.Remark;
+
     public bool Closed => customerInfo.Closed;
 
     public byte ClosedReason => customerInfo.ClosedReason;
