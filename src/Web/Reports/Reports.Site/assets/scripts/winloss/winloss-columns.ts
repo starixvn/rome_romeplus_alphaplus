@@ -1,8 +1,7 @@
-declare var columnList: any;
-
 class WinLossColumns {
-    private visibleColumnComponent: VisibleColumnComponent;
-    private $visibleColumnContainer: JQuery;
+    private readonly visibleColumnComponent: VisibleColumnComponent;
+    private readonly $visibleColumnContainer: JQuery;
+    private readonly tblReportId: string = '#tbl-report';
     
     private readonly downlineTotalColumn = 'downlinetotal';
 
@@ -38,12 +37,12 @@ class WinLossColumns {
         const userLevel = this.getUserLevel();
         const visibleColumnsInput = userLevel === 'agent' ? this.agentColumnsFromStorage : userLevel === 'master' ? this.masterColumnsFromStorage : this.superColumnsFromStorage;
         
-        let finalVisibleColumns = visibleColumnsInput;
+        const finalVisibleColumns = visibleColumnsInput;
         
         this.visibleColumnComponent.render({
             listColumn: columnList,
             onDropdownHidden: () => {
-                this.showHideColumns($('#tbl-report'));
+                this.showHideColumns($(this.tblReportId));
                 // Update hidden input with current visible columns
                 const visibleColumns = this.visibleColumnComponent.getShowColumns().join(',');
                 const key = userLevel + 'Columns_' + this.custId + '_' + this.subAccId;
@@ -51,7 +50,7 @@ class WinLossColumns {
             },
             visibleColumns: finalVisibleColumns
         });
-        this.showHideColumns($('#tbl-report'));
+        this.showHideColumns($(this.tblReportId));
     }
 
     showHideColumns($tblReport: JQuery) {
@@ -89,7 +88,7 @@ class WinLossColumns {
         return 'unknown';
     }    
     
-    private showHideColumnsByLevel($tblReport: JQuery, visibleColumn: any, userLevel: string) {
+    private showHideColumnsByLevel($tblReport: JQuery, visibleColumn: string[], userLevel: string) {
         switch (userLevel) {
             case 'agent':
                 this.showHideAgentLevelColumns($tblReport, visibleColumn);
@@ -106,7 +105,7 @@ class WinLossColumns {
         }
     }
     
-    private showHideAgentLevelColumns($tblReport: JQuery, visibleColumn: any) {
+    private showHideAgentLevelColumns($tblReport: JQuery, visibleColumn: string[]) {
         // Handle common columns
         this.commonColumns.forEach(columnName => {
             this.showHideSpecificColumn($tblReport, visibleColumn, columnName);
@@ -119,7 +118,7 @@ class WinLossColumns {
         this.showHideGroupColumnsByNames($tblReport, visibleColumn, this.agentColumns, 1);
     }
     
-    private showHideMasterLevelColumns($tblReport: JQuery, visibleColumn: any) {
+    private showHideMasterLevelColumns($tblReport: JQuery, visibleColumn: string[]) {
         // Handle common columns including downlinetotal
         this.commonColumns.forEach(columnName => {
             this.showHideSpecificColumn($tblReport, visibleColumn, columnName);
@@ -132,7 +131,7 @@ class WinLossColumns {
         this.showHideGroupColumnsByNames($tblReport, visibleColumn, this.masterColumns, 0);
     }
 
-    private showHideSuperLevelColumns($tblReport: JQuery, visibleColumn: any) {
+    private showHideSuperLevelColumns($tblReport: JQuery, visibleColumn: string[]) {
         // Handle common columns including downlinetotal
         this.commonColumns.forEach(columnName => {
             this.showHideSpecificColumn($tblReport, visibleColumn, columnName);
@@ -145,7 +144,7 @@ class WinLossColumns {
         this.showHideGroupColumnsByNames($tblReport, visibleColumn, this.superColumns, 0);
     }
     
-    private showHideCommonColumns($tblReport: JQuery, visibleColumn: any) {
+    private showHideCommonColumns($tblReport: JQuery, visibleColumn: string[]) {
         this.commonColumns.forEach(columnName => {
             this.showHideSpecificColumn($tblReport, visibleColumn, columnName);
         });
@@ -154,7 +153,7 @@ class WinLossColumns {
         this.showHideDownlineTotalColumn($tblReport, visibleColumn);
     }
     
-    private showHideDownlineTotalColumn($tblReport: JQuery, visibleColumn: any) {
+    private showHideDownlineTotalColumn($tblReport: JQuery, visibleColumn: string[]) {
         // Check if this is Agent level by looking for member columns
         const isAgentLevel = $tblReport.find('[data-colname="awinloss"]').length > 0;
         
@@ -170,7 +169,7 @@ class WinLossColumns {
     
 
 
-    private showHideGroupColumnsByNames($tblReport: JQuery, visibleColumn: any, columnNames: string[], groupIndex: number) {
+    private showHideGroupColumnsByNames($tblReport: JQuery, visibleColumn: string[], columnNames: string[], groupIndex: number) {
         const groupColumns = $tblReport.find(`th.col-level`);
         const $groupColumn = groupColumns.eq(groupIndex);
         
@@ -197,7 +196,7 @@ class WinLossColumns {
         }
     }
 
-    private showHideSpecificColumn($tblReport: JQuery, visibleColumn, key: string) {
+    private showHideSpecificColumn($tblReport: JQuery, visibleColumn: string[], key: string) {
         const matchedColumns = $tblReport.find(`[data-colname=${key}]`);
         const visible = visibleColumn[key];
         // If visible is undefined, treat as true (show by default)
@@ -223,7 +222,7 @@ class WinLossColumns {
     }
     
     private resetGroupHeadersForNormalMode() {
-        const $tblReport = $('#tbl-report');
+        const $tblReport = $(this.tblReportId);
         
         // Show normal mode group headers and hide stack mode headers
         $tblReport.find('th.col-level').removeClass('hide');
@@ -233,7 +232,7 @@ class WinLossColumns {
         $tblReport.find('th.col-level').removeClass('hidden-stack-mode');
     }
 
-    getShowColumns() {
+    getShowColumns(): string[] {
         return this.visibleColumnComponent.getShowColumns();
     }
 }

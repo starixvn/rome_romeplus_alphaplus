@@ -1,5 +1,5 @@
 ﻿interface VisibleColumnOption {
-    listColumn: any;
+    listColumn: Array<{ value: string; text: string; checked: boolean }>;
     onDropdownHidden?: Function;
     visibleColumns?: string;
     selectorId?: string;
@@ -13,7 +13,7 @@ class VisibleColumnComponent {
         let isCheckAll = false;
         const $dropdown = $('#' + (options.selectorId || 'dropdown-visible-column'));
 
-        const visibleColumnObject = {};
+        const visibleColumnObject: { [key: string]: boolean } = {};
         const visibleColumns = options.visibleColumns || '';
         if (visibleColumns.length) {
             const visibleColumnArray = visibleColumns.split(',');
@@ -52,11 +52,11 @@ class VisibleColumnComponent {
         });
     }
 
-    getColumns() {
+    getColumns(): string[] {
         return this.$visibleColumn.fanexMultiSelect('getAllValues');
     }
 
-    getShowColumns() {
+    getShowColumns(): string[] {
         return this.$visibleColumn.fanexMultiSelect('getCheckedValues');
     }
 }

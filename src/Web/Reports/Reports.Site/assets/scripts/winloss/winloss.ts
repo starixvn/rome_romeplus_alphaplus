@@ -11,6 +11,7 @@
     isFirstSwitchMode = true;
     subAccId = $('#SubAccId').val() || 0;
     custId = $('#UserId').val() || 0;
+    tblReport = '#dropdown-visible-column';
 
     constructor(
         productComponent: ProductMultiSelectionComponent,
@@ -62,7 +63,7 @@
             this.showAllColumnsInStackMode();
         } else {
             // Only apply column visibility if component exists (not in historic mode)
-            if ($('#dropdown-visible-column').length > 0) {
+            if ($(this.tblReport).length > 0) {
                 this.winLossColumns.showHideColumns(this.$tableReport);
                 this.winLossColumns.showInNormalMode();
             }
@@ -94,7 +95,7 @@
         }
 
         // Update VisibleColumns hidden input before submit (only if component exists)
-        if ($('#dropdown-visible-column').length > 0) {
+        if ($(this.tblReport).length > 0) {
             const visibleColumns = this.winLossColumns.getShowColumns().join(',');
             const userLevel = this.winLossColumns.getUserLevel();
             localStorage.setItem(userLevel + 'Columns_' + this.custId + '_' + this.subAccId, visibleColumns);
@@ -112,7 +113,7 @@
         }
         
         // Show/hide visible column component based on mode (only if component exists)
-        if ($('#dropdown-visible-column').length > 0) {
+        if ($(this.tblReport).length > 0) {
             if (isStackMode) {
                 // Switching to normal mode - show column selector and apply column visibility
                 this.winLossColumns.showInNormalMode();

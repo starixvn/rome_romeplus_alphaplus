@@ -267,7 +267,19 @@
 
 	void RenderNetWinLoss(string level, decimal winloss, decimal comm, decimal total, string highlightClass = "")
 	{
-		var prefix = level == "member" ? "p" : level == "agent" ?  "a" : string.Empty;
+		string prefix;
+		if (level == "member")
+		{
+			prefix = "p";
+		}
+		else if (level == "agent")
+		{
+			prefix = "a";
+		}
+		else
+		{
+			prefix = string.Empty;
+		}
 		<td class="hidden-stack-mode col-@level-winloss @highlightClass @(Model.IsNegative(winloss.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="@(prefix)winloss">
 			@winloss.FormatNumber()
 		</td>
