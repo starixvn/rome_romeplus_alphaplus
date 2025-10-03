@@ -1,94 +1,87 @@
 <style>
-
     .content-wrapper .content{
-        top: 130px;
+        top: 140px;
     }
+
     .cash-service-banner {
-        background-color: #f9f1b7;
-        padding: 6px 24px;
-        font-size: 13px;
         display: flex;
         align-items: center;
-        gap: 10px;
-        position: relative;
-        margin-left: 70px;
-        width: 100%;
+        margin: 10px;
+        border: 1px solid #FFCD23;
+        border-radius: 5px;
+        background-color: #F9F1B7;
     }
-    .cash-service-banner .background {
-        display: flex;
-        flex-wrap: wrap;
-        font-weight: 600;
-        position: absolute;
-        top: 0;     
-        left: -55px;
-    }  
-    .cash-service-banner .image {
-        display: block;
-    }
-    .cash-service-banner .image img{
-        height: 50px;
-    }
-    .cash-service-banner .highlight {
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        position: absolute;
-        font-weight: 700;
-        font-size: 13px;
-        padding-left: 78px;
-        padding-top: 11px;
-    }
-    .cash-service-banner .cash-service-banner-content{
+    .cash-service-banner .exclusively{
         display: flex;
         align-items: center;
-        margin-left: 170px;
-    }
-    .cash-service-banner .message {        
-        margin-right: 8px;
+        background-color: #FFCD23;
+        border-radius: 5px;
         font-weight: bold;
+        font-family: 'Roboto Bold';
+        font-size: 14px;
+        line-height: 16px;
+        color: #001621;
+        text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.25);
+        padding: 4px 12px 4px 6px;
+
     }
-    .cash-service-banner .banner-btn {
-        background: #16396b;
+    .cash-service-banner .exclusively img{
+        width: 32px;
+        height: 32px;
+        margin-right: 4px;
+        
+    }
+ 
+    .cash-service-banner-content {
+       font-size: 14px;
+       color: #001621;
+       text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.25);
+       padding: 0 12px;
+       font-weight: bold;
+    }
+    .banner-btn{
         color: #fff;
-        border: none;
-        border-radius: 16px;
-        padding: 4px 15px;        
-        margin-right: 8px;
+        padding-inline: 12px; 
+        background-color: #0b599c;
+        border-radius: 3px;
         cursor: pointer;
-        transition: background 0.2s;
+        appearance: none;
+        border: 1px solid #0b599c;
+        line-height: 26px;
+        font-size: 13px;
+        margin-left: 20px;
+        &.secondary{
+            background-color: transparent;
+            color: #276EAC;
+            margin-left: 8px;
+        }
     }
-    .cash-service-banner .banner-btn.secondary {
-        background: #f5f8fa;
-        color: #16396b;
-        border: 1px solid #16396b;
-        font-weight: bold;
-    }
+ 
     @@media (max-width: 768px) {
-        .content-wrapper .content{
-            top: 112px;
-        }
         .cash-service-banner{
-            margin-left: 0;
-            padding: 5px 10px ;
+            align-items: unset;
         }
-        .cash-service-banner .background{
-            display: none;
-        }
-        .cash-service-banner .banner-btn{
-            white-space: nowrap;
-        }
-        .cash-service-banner .cash-service-banner-content{
-            margin-left: 0;
+        .cash-service-banner-content{
+            display: flex;
+            align-items: center;
+            width: auto;
+            flex-wrap: wrap;
+            padding: 5px 10px;
+            justify-content: center;
+            .message{
+                width: 100%;
+                margin-bottom: 4px;
+            }
+            .banner-btn{
+                margin: 0 4px;
+            }
         }
     }
 </style>
 <div class="cash-service-banner">
-    <span class="background">    
-        <span class="image">
-            <img src="~/assets/images/cash-service-banner.png" alt="Cash Service Banner" />
-        </span>
-        <span class="highlight">EXCLUSIVELY FOR YOU!</span>
+    <span class="exclusively">        
+        <img src="~/assets/images/lightning.png" alt="EXCLUSIVELY FOR YOU!" />
+        <span>EXCLUSIVELY FOR YOU!</span>
     </span>
     <div class="cash-service-banner-content">
         <span class="message">Enjoy Cash Service for free! Until 31st Mar 2025</span>
