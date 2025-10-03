@@ -10,6 +10,8 @@ using GetAccount.DonwlineList;
 using GetAccount.GivenCredit.Get;
 using GetAccount.Models;
 using GetAccount.OnlineList;
+using GetAccount.RemarkInfo.Get;
+using GetAccount.RemarkInfo.Update;
 using GetAccount.ViewModels;
 using MediatR;
 using Shared;
@@ -29,9 +31,9 @@ public class SearchAccountHandler(ISearchAccountService searchAccountService, IP
     IRequestHandler<CustomerNonProductStatusCommand, Result>,
     IRequestHandler<MemberBalanceInfoQuery, IBalanceInfoViewModel>,
     IRequestHandler<UpdateAllDayBalanceTransferRequest, Result>,
-        IRequestHandler<TotalDownlineQuery, IEnumerable<TotalDownlinesSummary>>,
-        IRequestHandler<RemarkInfoQuery, RemarkInfoViewModel>,
-        IRequestHandler<UpdateRemarkInfoQuery, Result>
+    IRequestHandler<TotalDownlineQuery, IEnumerable<TotalDownlinesSummary>>,
+    IRequestHandler<RemarkInfoQuery, RemarkInfoViewModel>,
+    IRequestHandler<UpdateRemarkInfoQuery, Result>
 {
     public Task<IndexViewModel> Handle(IndexQuery request, CancellationToken cancellationToken)
         => Task.FromResult(new IndexViewModel(request));
@@ -205,28 +207,28 @@ public class SearchAccountHandler(ISearchAccountService searchAccountService, IP
         return new DownlineListViewModel(directMembers);
     }
 
-        public async Task<RemarkInfoViewModel> Handle(RemarkInfoQuery request, CancellationToken cancellationToken)
-        {
-            var remarkInfo = await searchAccountService.GetRemarkInfo(request.SearchAccountId, request.ActorId);
-            
-            if (remarkInfo == null)
-            {
-                return new RemarkInfoViewModel(
-                    request.SearchAccountId,
-                    request.SearchAccountName,
-                    string.Empty,
-                    request.IsShowCancelButton
-                );
-            }
+    public async Task<RemarkInfoViewModel> Handle(RemarkInfoQuery request, CancellationToken cancellationToken)
+    {
+        var remarkInfo = await searchAccountService.GetRemarkInfo(request.SearchAccountId, request.ActorId);
 
+        if (remarkInfo == null)
+        {
             return new RemarkInfoViewModel(
                 request.SearchAccountId,
                 request.SearchAccountName,
-                remarkInfo.Remark,
+                string.Empty,
                 request.IsShowCancelButton
             );
         }
 
-        public Task<Result> Handle(UpdateRemarkInfoQuery request, CancellationToken cancellationToken)
-            => searchAccountService.UpdateRemarkInfo(request);
+        return new RemarkInfoViewModel(
+            request.SearchAccountId,
+            request.SearchAccountName,
+            remarkInfo.Remark,
+            request.IsShowCancelButton
+        );
+    }
+
+    public Task<Result> Handle(UpdateRemarkInfoQuery request, CancellationToken cancellationToken)
+        => searchAccountService.UpdateRemarkInfo(request);
 }
