@@ -42,11 +42,11 @@
         <header class="header" id="header">
             @await Html.PartialAsync("HeaderNav", Model.HeaderNavViewModel)
             @await Html.PartialAsync("HeaderMarquee", Model.IsProtectedMode)
-            @* @if (Model.CashServiceInfoViewModel.IsOfferedCashService &&
+            @if (Model.CashServiceInfoViewModel.IsOfferedCashService &&
                         !Model.CashServiceInfoViewModel.IsCashServiceEnabled)
             {
                 @await Html.PartialAsync("CashServiceBanner")
-            } *@
+            }
         </header>
         <main class="content" id="content" data-default-url="@Model.DefaultPath">
         </main>
