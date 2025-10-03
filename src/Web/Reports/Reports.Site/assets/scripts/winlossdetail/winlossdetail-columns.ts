@@ -1,5 +1,3 @@
-declare var columnList: any;
-
 class WinLossDetailColumns {
     private visibleColumnComponent: VisibleColumnComponent;
 
