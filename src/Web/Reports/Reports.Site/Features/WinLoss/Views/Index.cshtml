@@ -203,54 +203,55 @@
 					<td class="text-center">@(data.IsDirectMember ? CommonResx.DirectMember : Model.LevelTypeValue)</td>
 				}
 			}
-			@if (Model.PageHeader.IsStackMode)
-			{
-				<td class="visible-stack-mode combinedcell col-turnover-combined">
-					<ul>
-						<li class="@(Model.IsNegative(data.Turnover.RoundTo2()) ? "format-negative" : string.Empty)">@data.Turnover.FormatNumber()</li>
-						<li class="@(Model.IsNegative(data.GrossComm.RoundTo2()) ? "format-negative" : string.Empty)">@data.GrossComm.FormatNumber()</li>
-						@if (!isAgentLevel)
-						{
-							<li class="@(Model.IsNegative(data.DownlineTotal.RoundTo2()) ? "format-negative" : string.Empty)">@data.DownlineTotal.FormatNumber()</li>
-						}
-					</ul>
-				</td>
-				if (isSuperLevel)
-				{
-					RenderStackNetWinLoss("super", data.WinLoss, data.Comm, data.Total, "altercol");
-				}
-				else if (isMasterLevel)
-				{
-					RenderStackNetWinLoss("master", data.WinLoss, data.Comm, data.Total, "altercol");
-				}
-				else
-				{
-					RenderStackNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
-					RenderStackNetWinLoss("agent", data.WinLoss, data.Comm, data.Total, "altercol");
-				}
-			}
-			else
-			{
-				<td class="hidden-stack-mode col-turnover @(Model.IsNegative(data.Turnover) ? "format-negative" : string.Empty)" data-colname="turnover">@data.Turnover.FormatNumber()</td>
-				<td class="hidden-stack-mode col-gross-com @(Model.IsNegative(data.GrossComm.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="grosscomm">@data.GrossComm.FormatNumber()</td>
-				if (isSuperLevel)
-				{
-					<td class="hidden-stack-mode bold col-cust-total @(Model.IsNegative(data.DownlineTotal.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="downlinetotal">@data.DownlineTotal.FormatNumber()</td>
-					RenderNetWinLoss("super", data.WinLoss, data.Comm, data.Total, "altercol");
-				}
-				else if (isMasterLevel)
-				{
-					<td class="hidden-stack-mode bold col-cust-total @(Model.IsNegative(data.DownlineTotal.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="downlinetotal">@data.DownlineTotal.FormatNumber()</td>
-					RenderNetWinLoss("master", data.WinLoss, data.Comm, data.Total, "altercol");
-				}
-				else
-				{
-					RenderNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
-					RenderNetWinLoss("agent", data.WinLoss, data.Comm, data.Total, "altercol");
-				}
-			}
-			<td class="text-right col-company @(Model.IsNegative(data.Company.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="company">@data.Company.FormatNumber()</td>
-			<td class="text-right col-reward-amount" data-colname="reward">@data.RewardAmount.FormatNumber()</td>
+            <!-- Normal mode cells -->
+            <td class="hidden-stack-mode col-turnover @(Model.IsNegative(data.Turnover) ? "format-negative" : string.Empty)" data-colname="turnover">@data.Turnover.FormatNumber()</td>
+            <td class="hidden-stack-mode col-gross-com @(Model.IsNegative(data.GrossComm.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="grosscomm">@data.GrossComm.FormatNumber()</td>
+            @if (isSuperLevel)
+            {
+                <td class="hidden-stack-mode bold col-cust-total @(Model.IsNegative(data.DownlineTotal.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="downlinetotal">@data.DownlineTotal.FormatNumber()</td>
+                RenderNetWinLoss("super", data.WinLoss, data.Comm, data.Total, "altercol");
+            }
+            else if (isMasterLevel)
+            {
+                <td class="hidden-stack-mode bold col-cust-total @(Model.IsNegative(data.DownlineTotal.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="downlinetotal">@data.DownlineTotal.FormatNumber()</td>
+                RenderNetWinLoss("master", data.WinLoss, data.Comm, data.Total, "altercol");
+            }
+            else
+            {
+                RenderNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
+                RenderNetWinLoss("agent", data.WinLoss, data.Comm, data.Total, "altercol");
+            }
+
+            <!-- Stack mode cells -->
+            <td class="visible-stack-mode combinedcell col-turnover-combined">
+                <ul>
+                    <li class="@(Model.IsNegative(data.Turnover.RoundTo2()) ? "format-negative" : string.Empty)">@data.Turnover.FormatNumber()</li>
+                    <li class="@(Model.IsNegative(data.GrossComm.RoundTo2()) ? "format-negative" : string.Empty)">@data.GrossComm.FormatNumber()</li>
+                    @if (!isAgentLevel)
+                    {
+                        <li class="@(Model.IsNegative(data.DownlineTotal.RoundTo2()) ? "format-negative" : string.Empty)">@data.DownlineTotal.FormatNumber()</li>
+                    }
+                </ul>
+            </td>
+            @if (isSuperLevel)
+            {
+                RenderStackNetWinLoss("super", data.WinLoss, data.Comm, data.Total, "altercol");
+            }
+            else if (isMasterLevel)
+            {
+                RenderStackNetWinLoss("master", data.WinLoss, data.Comm, data.Total, "altercol");
+            }
+            else
+            {
+                RenderStackNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
+                RenderStackNetWinLoss("agent", data.WinLoss, data.Comm, data.Total, "altercol");
+            }
+
+            <!-- Company & Reward duplicated per mode -->
+            <td class="hidden-stack-mode text-right col-company @(Model.IsNegative(data.Company.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="company">@data.Company.FormatNumber()</td>
+            <td class="visible-stack-mode text-right col-company @(Model.IsNegative(data.Company.RoundTo2()) ? "format-negative" : string.Empty)">@data.Company.FormatNumber()</td>
+            <td class="hidden-stack-mode text-right col-reward-amount" data-colname="reward">@data.RewardAmount.FormatNumber()</td>
+            <td class="visible-stack-mode text-right col-reward-amount">@data.RewardAmount.FormatNumber()</td>
 		</tr>
 	}
 
