@@ -8,6 +8,8 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
         private readonly IUserSession userSession = userSession;
         private readonly IConfiguration configuration = configuration;
 
+        private readonly string CASH_SERVICE_BANNERS_SECTION = "Banners:CashService";
+
         public bool IsShow { get; private set; } = AppSettings.DashboardBannerOfferedSites.Contains("*") || AppSettings.DashboardBannerOfferedSites.Contains(userSession.Site);
 
         public IEnumerable<BannerConfiguration> Banners => IsShow ? GetBannerConfiguration() : [];
@@ -15,16 +17,46 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
         private IEnumerable<BannerConfiguration> GetBannerConfiguration()
         {
             var folder = AppSettings.IsSiteLabel789y ? "i7" : "i1";
-            var banners = configuration.GetSection($"Banners:{folder}").GetChildren();
+            var folderPath = $"Banners:{folder}";
+            
+            var bannerConfigurations = GetBannerConfigurationsFromFolder(folderPath);
+            return GetBannerConfigurationWithCashService(bannerConfigurations);
+        }
+
+        private IEnumerable<BannerConfiguration> GetBannerConfigurationWithCashService(IEnumerable<BannerConfiguration> bannerConfigurations)
+        {
+            var isOfferCash = AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(userSession.Site);
+            
+            if (!isOfferCash)
+            {
+                return bannerConfigurations;    
+            }
+
+            var cashServiceBanners = GetBannerConfigurationsFromFolder(CASH_SERVICE_BANNERS_SECTION);
+            return bannerConfigurations.Concat(cashServiceBanners);
+        }
+
+        private IEnumerable<BannerConfiguration> GetBannerConfigurationsFromFolder(string folderPath)
+        {
+            var banners = configuration.GetSection(folderPath).GetChildren();
+            
             return banners.Select(selector => new BannerConfiguration
             {
-                Name = selector.GetValue<string>("Name"),
-                ImageSource = selector["ImageSource_" + userSession.Language] ?? selector["ImageSource_" + Shared.Constants.Language.Default],
-                ImageMobileSource = selector["ImageMobileSource_" + userSession.Language] ?? selector["ImageMobileSource_" + Shared.Constants.Language.Default],
-                Url = selector.GetValue<string>("Url"),
+                Name = selector.GetValue<string>("Name") ?? string.Empty,
+                ImageSource = GetLocalizedValue(selector, "ImageSource"),
+                ImageMobileSource = GetLocalizedValue(selector, "ImageMobileSource"),
+                Url = selector.GetValue<string>("Url") ?? string.Empty,
                 IsVideo = selector.GetValue<bool>("IsVideo"),
                 LogClick = selector.GetValue<bool>("LogClick")
             });
+        }
+
+        private string GetLocalizedValue(IConfigurationSection selector, string key)
+        {
+            var localizedKey = $"{key}_{userSession.Language}";
+            var defaultKey = $"{key}_{Shared.Constants.Language.Default}";
+            
+            return selector[localizedKey] ?? selector[defaultKey] ?? string.Empty;
         }
     }
 }
