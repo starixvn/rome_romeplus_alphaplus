@@ -68,7 +68,14 @@ public class PotentialWinLimitService(IDynamicRepository repository) : IPotentia
                 Message = Shared.AppResources.Common.CommonResx.ResourceManager.GetString("ErrorMessage_" + checkResetCurrentSportsbookWinAmountCriteria.ErrCode, CultureInfo.CurrentCulture)
             };
         }
-        var criteria = new ResetCurrentSportsbookWinAmountCriteria(param);
+        var criteria = new ResetCurrentSportsbookWinAmountCriteria(
+                    param.CustId,
+                    param.SubAccId,
+                    param.SubAccName,
+                    param.UserId,
+                    param.IP,
+                    param.SettingStatus,
+                    param.SiteDB);
 
         await repository.ExecuteAsync(criteria);
 

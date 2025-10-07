@@ -2,44 +2,26 @@ namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit;
 
 using Core.Criteria;
 using Core.Helpers;
-using Domain.Params;
-using Fanex.Data;
 
-public class ResetCurrentSportsbookWinAmountCriteria(int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
+public class ResetCurrentSportsbookWinAmountCriteria(int custId,
+    int subAccId,
+    string subAccName,
+    int userId,
+    string ip,
+    int settingStatus,
+    int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
 {
-    public ResetCurrentSportsbookWinAmountCriteria(ResetCurrentSportsbookWinAmountParam param) : this(param.SiteDB)
-    {
-        CustId = param.CustId;
-        ProductId = param.ProductId;
-        SportType = param.SportType;
-        BetType = param.BetType;
-        SubAccId = param.SubAccId;
-        SubAccName = param.SubAccName;
-        UserId = param.UserId;
-        IP = param.IP;
-        SettingStatus = param.SettingStatus;
-    }
+    public int CustId { get; } = custId;
 
-    public int CustId { get; }
+    public int SubAccId { get; } = subAccId;
 
-    [SpParam(Ignored = true)]
-    public int ProductId { get; }
+    public string SubAccName { get; } = subAccName;
 
-    [SpParam(Ignored = true)]
-    public int SportType { get; }
+    public int UserId { get; } = userId;
 
-    [SpParam(Ignored = true)]
-    public int BetType { get; }
+    public string IP { get; } = ip;
 
-    public int SubAccId { get; }
-
-    public string SubAccName { get; }
-
-    public int UserId { get; }
-
-    public string IP { get; }
-
-    public int SettingStatus { get; }
+    public int SettingStatus { get; } = settingStatus;
 
     public override string GetSettingKey()
         => SpNameHelpers.SiteDbPrefix("Acc_CustWinLimitBetReset_CashMember", SiteDbGroupId);

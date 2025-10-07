@@ -10,7 +10,7 @@ public class GetTotalAmtCriteria(int downlineId, byte downlineRoleId, int siteDb
     public byte RoleId { get; set; } = downlineRoleId;
 
     public override string GetSettingKey()
-        => SpNameHelpers.CustDbPrefix("Age_Customer_TotalAmount_Sel", siteDbGroupId);
+        => SpNameHelpers.SiteDbPrefix("Age_Customer_TotalAmount_Sel", siteDbGroupId);
 
     public override bool IsValid()
         => CustId > 0 && RoleId > 0;
