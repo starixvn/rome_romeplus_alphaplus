@@ -11,8 +11,9 @@
         <Setting Key="Age_BalanceGameReset_CashMember_Check" SpName="Age_BalanceGameReset_CashMember_Check" DbName="DBCUST.CustDB.wsv_alpv" />
         <Setting Key="Acc_CustWinLimitBetReset_CashMember_Check" SpName="Acc_CustWinLimitBetReset_CashMember_Check" DbName="DBCUST.CustDB.wsv_alpv" />
         <Setting Key="Age_BalanceGameReset_CashMember" SpName="Age_BalanceGameReset_CashMember" DbName="DBSIC.bodb02.wsv_alpv" />
-        <Setting Key="SiteDB_0_Acc_CustWinLimitBetReset_CashMember" SpName="Acc_CustWinLimitBetReset_CashMember" DbName="DBSIC.bodb02.wsv_alpv" />
-        <Setting Key="SiteDB_3_Acc_CustWinLimitBetReset_CashMember" SpName="Acc_CustWinLimitBetReset_CashMember" DbName="DBSIC.bodb02.wsv_alpv" />
+        <Setting Key="SiteDb1_Acc_CustWinLimitBetReset_CashMember" SpName="Acc_CustWinLimitBetReset_CashMember" DbName="DBSITE01.bodb02.wsv_alpv" />
+        <Setting Key="SiteDb2_Acc_CustWinLimitBetReset_CashMember" SpName="Acc_CustWinLimitBetReset_CashMember" DbName="DBSITE02.bodb02.wsv_alpv" />
+        <Setting Key="SiteDb3_Acc_CustWinLimitBetReset_CashMember" SpName="Acc_CustWinLimitBetReset_CashMember" DbName="DBSITE03.bodb02.wsv_alpv" />
     </Function>
     <Function Name="Account Info">
         <Setting Key="Acc_OutstandingMemberSel" SpName="Acc_OutstandingMemberSel" DbName="DBBOF.bodb02.wsv_alpv" Plain="0" />
@@ -54,9 +55,15 @@
         <Setting Key="Age_CustomerSelWinLimitProduct" SpName="Age_CustomerSelWinLimitProduct" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
     </Function>
     <Function Name="Credit/Balance">
-        <Setting Key="SiteDB_Age_CustomerSelCreditBalanceList_Ag" SpName="Age_CustomerSelCreditBalanceList_Ag" DbName="DBTXN.bodb02.wsv_alpv" Plain="0" />
-        <Setting Key="SiteDB_Age_CustomerSelCreditBalanceList_Mag" SpName="Age_CustomerSelCreditBalanceList_MAg" DbName="DBTXN.bodb02.wsv_alpv" Plain="0" />
-        <Setting Key="SiteDB_Age_CustomerSelCreditBalanceList_Sag" SpName="Age_CustomerSelCreditBalanceList_SAg" DbName="DBTXN.bodb02.wsv_alpv" Plain="0" />
+        <Setting Key="SiteDb1_Age_CustomerSelCreditBalanceList_Ag" SpName="Age_CustomerSelCreditBalanceList_Ag" DbName="DBSITE01.bodb02.wsv_alpv" Plain="0" />
+        <Setting Key="SiteDb2_Age_CustomerSelCreditBalanceList_Ag" SpName="Age_CustomerSelCreditBalanceList_Ag" DbName="DBSITE02.bodb02.wsv_alpv" Plain="0" />
+        <Setting Key="SiteDb3_Age_CustomerSelCreditBalanceList_Ag" SpName="Age_CustomerSelCreditBalanceList_Ag" DbName="DBSITE03.bodb02.wsv_alpv" Plain="0" />
+        <Setting Key="SiteDb1_Age_CustomerSelCreditBalanceList_Mag" SpName="Age_CustomerSelCreditBalanceList_MAg" DbName="DBSITE01.bodb02.wsv_alpv" Plain="0" />
+        <Setting Key="SiteDb2_Age_CustomerSelCreditBalanceList_Mag" SpName="Age_CustomerSelCreditBalanceList_MAg" DbName="DBSITE02.bodb02.wsv_alpv" Plain="0" />
+        <Setting Key="SiteDb3_Age_CustomerSelCreditBalanceList_Mag" SpName="Age_CustomerSelCreditBalanceList_MAg" DbName="DBSITE03.bodb02.wsv_alpv" Plain="0" />
+        <Setting Key="SiteDb1_Age_CustomerSelCreditBalanceList_Sag" SpName="Age_CustomerSelCreditBalanceList_SAg" DbName="DBSITE01.bodb02.wsv_alpv" Plain="0" />
+        <Setting Key="SiteDb2_Age_CustomerSelCreditBalanceList_Sag" SpName="Age_CustomerSelCreditBalanceList_SAg" DbName="DBSITE02.bodb02.wsv_alpv" Plain="0" />
+        <Setting Key="SiteDb3_Age_CustomerSelCreditBalanceList_Sag" SpName="Age_CustomerSelCreditBalanceList_SAg" DbName="DBSITE03.bodb02.wsv_alpv" Plain="0" />
     </Function>
     <Function Name="Create Member By QR Code">
         <Setting Key="Age_CustomerSelUserSearch" SpName="Age_CustomerSelUserSearch" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
@@ -551,7 +558,9 @@
         <Setting Key="SiteDb1_Age_Transfer_InsClearBalance_DirectMember" SpName="Age_Transfer_InsClearBalance_DirectMember" DbName="DBSITE01.bodb02.wsv_alpv" />
         <Setting Key="SiteDb2_Age_Transfer_InsClearBalance_DirectMember" SpName="Age_Transfer_InsClearBalance_DirectMember" DbName="DBSITE02.bodb02.wsv_alpv" />
         <Setting Key="SiteDb3_Age_Transfer_InsClearBalance_DirectMember" SpName="Age_Transfer_InsClearBalance_DirectMember" DbName="DBSITE03.bodb02.wsv_alpv" />
-        <Setting Key="SiteDB_Age_Transfer_CashBalance_DirectMember_Sel" SpName="Age_Transfer_CashBalance_DirectMember_Sel" DbName="DBTXN.bodb02.wsv_alpv" />
+        <Setting Key="SiteDb1_Age_Transfer_CashBalance_DirectMember_Sel" SpName="Age_Transfer_CashBalance_DirectMember_Sel" DbName="DBSITE01.bodb02.wsv_alpv" />
+        <Setting Key="SiteDb2_Age_Transfer_CashBalance_DirectMember_Sel" SpName="Age_Transfer_CashBalance_DirectMember_Sel" DbName="DBSITE02.bodb02.wsv_alpv" />
+        <Setting Key="SiteD3_Age_Transfer_CashBalance_DirectMember_Sel" SpName="Age_Transfer_CashBalance_DirectMember_Sel" DbName="DBSITE03.bodb02.wsv_alpv" />
         <Setting Key="SiteDb1_Age_Transfer_CashBalance_DirectMember_Ins" SpName="Age_Transfer_CashBalance_DirectMember_Ins" DbName="DBSITE01.bodb02.wsv_alpv" />
         <Setting Key="SiteDb2_Age_Transfer_CashBalance_DirectMember_Ins" SpName="Age_Transfer_CashBalance_DirectMember_Ins" DbName="DBSITE02.bodb02.wsv_alpv" />
         <Setting Key="SiteDb3_Age_Transfer_CashBalance_DirectMember_Ins" SpName="Age_Transfer_CashBalance_DirectMember_Ins" DbName="DBSITE03.bodb02.wsv_alpv" />

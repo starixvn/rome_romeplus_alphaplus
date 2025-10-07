@@ -99,7 +99,8 @@ public class CreditBalanceServiceImpl(IDynamicRepository dynamicRepository, IPSe
             param.Suspended,
             param.LevelType,
             param.PageIndex,
-            param.PageSize);
+            param.PageSize,
+            param.SiteDbGroupId);
 
     private static GetPagedCreditBalanceCriteria GetMasterCreditBalanceCriteria(CreditBalanceParam param)
         => new GetMasterCreditBalanceCriteria(
@@ -110,7 +111,8 @@ public class CreditBalanceServiceImpl(IDynamicRepository dynamicRepository, IPSe
             param.Suspended,
             param.LevelType,
             param.PageIndex,
-            param.PageSize);
+            param.PageSize,
+            param.SiteDbGroupId);
 
     private static GetPagedCreditBalanceCriteria GetAgentCreditBalanceCriteria(CreditBalanceParam param)
         => new GetAgentCreditBalanceCriteria(
@@ -120,7 +122,8 @@ public class CreditBalanceServiceImpl(IDynamicRepository dynamicRepository, IPSe
             param.Closed,
             param.Suspended,
             param.PageIndex,
-            param.PageSize);
+            param.PageSize,
+            param.SiteDbGroupId);
 
     public async Task<IDictionary<int, CustomerClosedReason>> GetClosedReasonsAsync(CreditBalanceParam param)
     {
