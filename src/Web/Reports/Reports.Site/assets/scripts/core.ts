@@ -33,6 +33,7 @@ function IsNegative(value: string | number): boolean {
 
 declare var TipsyHelper;
 declare var store: StoreJSStatic;
+declare const columnList: { value: string; text: string; checked: boolean }[];
 
 class AlphaReports {
     private store: StoreJSStatic;

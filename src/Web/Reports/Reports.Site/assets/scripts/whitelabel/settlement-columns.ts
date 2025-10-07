@@ -1,5 +1,3 @@
-declare var columnList: any;
-
 class SettlementColumns {
     private visibleColumnDropdown: VisibleColumnComponent;
     private localStorageKey = `wlsettlement_${top.$('#userId').val()}`;
