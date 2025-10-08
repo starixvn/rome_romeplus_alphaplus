@@ -1,0 +1,161 @@
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Main.Site.Features.Dashboard.CashService
+@using AlphaPlus.Main.Site
+
+@model CashServiceInfoViewModel
+@{
+    Layout = null;
+    var version = AppSettings.JsVersion;
+}
+
+<!DOCTYPE html>
+<html>
+<style>
+     .content-wrapper .content{
+        top: 140px;
+    }
+</style>
+<head>
+    <title>CashServiceAds Page</title>
+    <environment names="Production">
+        <link rel="stylesheet" href="@(Model.CDNUri)advertisement/index-banner.css?version=@version" />
+        <script type="module" src="@(Model.CDNUri)advertisement/banner.js?version=@version"></script>
+    </environment>
+</head>
+
+<div id="top-banner-root"></div>
+
+<body>
+    <script type="text/javascript">
+        const appConfig = @Html.Raw(Json.Serialize(
+            new {
+                applicationPath = "/",
+                advName = "CashServiceAds",
+                isCanUpdateCashServiceStatus = @Model.IsCanUpdateCashServiceStatus,
+                isCanEditCashService = @Model.IsCanEditCashService,
+                isOfferedCashService = @Model.IsOfferedCashService,
+                isCashServiceEnabled = @Model.IsCashServiceEnabled,
+                nickName = @Model.NickName
+            }
+        ));
+        const cdnUri = "@Html.Raw(Model.CDNUri)";
+        const mainUrl = '@MicroSites.MainUrl()';
+        const homeUrl = '@MicroSites.MainUrl("~/Dashboard/index2")';
+    </script>
+    <environment include="Development">
+        <script type="module">
+            import RefreshRuntime from 'http://localhost:5173/@@react-refresh'
+            RefreshRuntime.injectIntoGlobalHook(window)
+            window.$RefreshReg$ = () => { }
+            window.$RefreshSig$ = () => (type) => type
+            window.__vite_plugin_react_preamble_installed__ = true
+        </script>
+        <script type="module" src=@("http://localhost:5173/@vite/client")></script>
+    </environment>
+    <environment include="Development">
+        @* <script type="module">
+            import RefreshRuntime from 'http://localhost:5173/@@react-refresh'
+            RefreshRuntime.injectIntoGlobalHook(window)
+            window.$RefreshReg$ = () => { }
+            window.$RefreshSig$ = () => (type) => type
+            window.__vite_plugin_react_preamble_installed__ = true
+        </script> *@
+        <script type="module" src=@("http://localhost:5173/@vite/client")></script>
+        <script type="module" src="http://localhost:5173/src/pages/Advertisement/TopBanner.tsx"></script>
+    </environment>
+
+    @Html.AntiForgeryToken()
+</body>
+</html>
+
+@* <style>
+    .content-wrapper .content{
+        top: 140px;
+    }
+
+    .cash-service-banner {
+        display: flex;
+        align-items: center;
+        margin: 10px;
+        border: 1px solid #FFCD23;
+        border-radius: 5px;
+        background-color: #F9F1B7;
+    }
+    .cash-service-banner .exclusively{
+        display: flex;
+        align-items: center;
+        background-color: #FFCD23;
+        border-radius: 5px;
+        font-weight: bold;
+        font-family: 'Roboto Bold';
+        font-size: 14px;
+        line-height: 16px;
+        color: #001621;
+        text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.25);
+        padding: 4px 12px 4px 6px;
+
+    }
+    .cash-service-banner .exclusively img{
+        width: 32px;
+        height: 32px;
+        margin-right: 4px;
+        
+    }
+ 
+    .cash-service-banner-content {
+       font-size: 14px;
+       color: #001621;
+       text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.25);
+       padding: 0 12px;
+       font-weight: bold;
+    }
+    .banner-btn{
+        color: #fff;
+        padding-inline: 12px; 
+        background-color: #0b599c;
+        border-radius: 3px;
+        cursor: pointer;
+        appearance: none;
+        border: 1px solid #0b599c;
+        line-height: 26px;
+        font-size: 13px;
+        margin-left: 20px;
+        &.secondary{
+            background-color: transparent;
+            color: #276EAC;
+            margin-left: 8px;
+        }
+    }
+ 
+    @@media (max-width: 768px) {
+        .cash-service-banner{
+            align-items: unset;
+        }
+        .cash-service-banner-content{
+            display: flex;
+            align-items: center;
+            width: auto;
+            flex-wrap: wrap;
+            padding: 5px 10px;
+            justify-content: center;
+            .message{
+                width: 100%;
+                margin-bottom: 4px;
+            }
+            .banner-btn{
+                margin: 0 4px;
+            }
+        }
+    }
+</style>
+<div class="cash-service-banner">
+    <span class="exclusively">        
+        <img src="~/assets/images/lightning.png" alt="EXCLUSIVELY FOR YOU!" />
+        <span>EXCLUSIVELY FOR YOU!</span>
+    </span>
+    <div class="cash-service-banner-content">
+        <span class="message">Enjoy Cash Service for free! Until 31st Mar 2025</span>
+        <button class="banner-btn">Activate now</button>
+        <button class="banner-btn secondary">Find out more</button>
+    </div>
+</div> *@
