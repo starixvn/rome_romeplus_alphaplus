@@ -41,13 +41,23 @@ class SortComponent {
             const sortedColumnHeader = this.$tableReport.find(
                 `[data-sortedname="${sortedColumnName}"]${
                     isStackMode ? ':not([class*="hidden-stack-mode"])' : ':not([class*="col-combine"])'
-                }`
+                }:visible`
             )[0];
             const descendingSort = this.$tableReport.data('descendingsort');
-            sortList = [[$(sortedColumnHeader).data('colindex'), descendingSort]];
+            if (sortedColumnHeader) {
+                sortList = [[$(sortedColumnHeader).data('colindex'), descendingSort]];
+            }
         }
 
         try {
+            // Destroy existing tablesorter instance to ensure clean re-initialization
+            if (this.$tableReport.hasClass('tablesorter')) {
+                // Use the proper destroy method
+                this.$tableReport.trigger('destroy.tablesorter');
+                // Remove tablesorter classes
+                this.$tableReport.removeClass('tablesorter');
+            }
+            
             this.$tableReport.tablesorter({
                 defaultParser: 1,
                 headers: this.headers,
@@ -73,6 +83,34 @@ class SortComponent {
                 this.onSort($sortedcolumn.attr('data-sortedname'), $sortedcolumn.hasClass('sorting-desc'));
             }
         });
+    };
+
+    // Method to rebind sort events without re-sorting the table
+    rebindSortEvents = () => {
+        if (!this.canSort) {
+            return;
+        }
+
+        try {
+            // Only rebind the sortEnd event handler without re-initializing tablesorter
+            this.$tableReport.off('sortEnd').on('sortEnd', () => {
+                let $sortedcolumn = this.$tableReport.find(
+                    'thead.tableFloatingHeaderOriginal th.sorting.sorting-asc:visible' +
+                        ',thead.tableFloatingHeaderOriginal th.sorting.sorting-desc:visible'
+                );
+
+                const modeFilterClass = this.$tableReport.hasClass('stack-mode')
+                    ? '.hidden-stack-mode'
+                    : '.visible-stack-mode';
+                $sortedcolumn = $sortedcolumn.not(modeFilterClass);
+
+                if ($sortedcolumn.length === 1) {
+                    this.onSort($sortedcolumn.attr('data-sortedname'), $sortedcolumn.hasClass('sorting-desc'));
+                }
+            });
+        } catch (e) {
+            console.log(e);
+        }
     };
 
     private textExtraction = (node: any) => {

@@ -2,6 +2,8 @@ class WinLossColumns {
     private readonly visibleColumnComponent: VisibleColumnComponent;
     private readonly $visibleColumnContainer: JQuery;
     private readonly tblReportId: string = '#tbl-report';
+    private sortComponent: SortComponent;
+    private getSortedColumnNameCallback: () => string;
     
     private readonly downlineTotalColumn = 'downlinetotal';
 
@@ -27,6 +29,11 @@ class WinLossColumns {
         this.$visibleColumnContainer = $('#dropdown-visible-column').closest('.form-group');
     }
 
+    setSortComponent(sortComponent: SortComponent, getSortedColumnNameCallback: () => string) {
+        this.sortComponent = sortComponent;
+        this.getSortedColumnNameCallback = getSortedColumnNameCallback;
+    }
+
     init() {
         // Only initialize if the dropdown exists (not in historic mode)
         if ($('#dropdown-visible-column').length === 0) {
@@ -47,6 +54,11 @@ class WinLossColumns {
                 const visibleColumns = this.visibleColumnComponent.getShowColumns().join(',');
                 const key = userLevel + 'Columns_' + this.custId + '_' + this.subAccId;
                 localStorage.setItem(key, visibleColumns);
+                
+                // Re-bind sort events after showing/hiding columns (without re-sorting)
+                if (this.sortComponent) {
+                    this.sortComponent.rebindSortEvents();
+                }
             },
             visibleColumns: finalVisibleColumns
         });
@@ -64,6 +76,40 @@ class WinLossColumns {
         
         // Handle columns based on user level
         this.showHideColumnsByLevel($tblReport, visibleColumn, userLevel);
+        
+        // Update column indices after showing/hiding columns
+        this.updateColumnIndices($tblReport);
+    }
+    
+    private updateColumnIndices($tblReport: JQuery) {
+        // Update data-colindex based on data-original-colindex for visible columns only
+        // This ensures correct column ordering regardless of which columns are hidden
+        
+        const $thead = $tblReport.find('thead');
+        
+        // Get all sortable columns that have data-original-colindex (excluding stack-mode columns)
+        const allColumns: Array<{$th: JQuery, originalIndex: number}> = [];
+        
+        $thead.find('th.sorting[data-original-colindex]').not('.visible-stack-mode').each(function() {
+            const $th = $(this);
+            const originalIndex = parseInt($th.attr('data-original-colindex') || '0');
+            allColumns.push({ $th: $th, originalIndex: originalIndex });
+        });
+        
+        // Sort by original index to maintain correct order
+        allColumns.sort((a, b) => a.originalIndex - b.originalIndex);
+        
+        // Assign new colindex only to visible columns
+        let newColIndex = 0;
+        allColumns.forEach(col => {
+            if (col.$th.is(':visible')) {
+                col.$th.attr('data-colindex', newColIndex);
+                newColIndex++;
+            } else {
+                // Clear colindex from hidden columns
+                col.$th.removeAttr('data-colindex');
+            }
+        });
     }
     
     public getUserLevel(): string {

@@ -17,12 +17,12 @@
 	void RenderTableHeaderForSuperMaster()
 	{
 		<tr>
-			<th class="sorting" rowspan="2" data-sortedname="CustName" data-colindex="0">@Resources.Username</th>
-			<th class="sorting" rowspan="2" data-sortedname="IsDirectMember" data-colindex="1">@Resources.Level</th>
-			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="Turnover" data-colindex="2" data-colname="turnover">
+			<th class="sorting" rowspan="2" data-sortedname="CustName" data-colindex="0" data-original-colindex="0">@Resources.Username</th>
+			<th class="sorting" rowspan="2" data-sortedname="IsDirectMember" data-colindex="1" data-original-colindex="1">@Resources.Level</th>
+			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="Turnover" data-colindex="2" data-original-colindex="2" data-colname="turnover">
 				@Resources.Turnover
 			</th>
-			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="GrossComm" data-colindex="3" data-colname="grosscomm">
+			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="GrossComm" data-colindex="3" data-original-colindex="3" data-colname="grosscomm">
 				@Resources.GrossComm
 			</th>
 			<th rowspan="2" class="visible-stack-mode col-combine sorting" data-sortedname="Turnover" data-colindex="2">
@@ -30,7 +30,7 @@
 				@(isAgentLevel ? "/ " + Resources.GrossComm :
 						(isSuperLevel ? Resources.GrossComAndMasterTotal : Resources.GrossComAndAgentTotal))
 			</th>
-			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="DownlineTotal" data-colindex="4" data-colname="downlinetotal">
+			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="DownlineTotal" data-colindex="4" data-original-colindex="4" data-colname="downlinetotal">
 				@Resources.DownlineTotal
 			</th>
 			<th colspan="3" class="col-level hidden-stack-mode">@Model.CustLevelName</th>
@@ -40,12 +40,12 @@
 				<br />
 				(<span class="prior-sortedcolumn">@Resources.WinLossAbbr</span>@Resources.CommAndTotal)
 			</th>
-			<th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="8" data-colname="company">
+			<th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="8" data-original-colindex="8" data-colname="company">
 				@Resources.Company
 			</th>
 			<th class="sorting visible-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="4">
 				@Resources.Company
-			<th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="9" data-colname="reward">
+			<th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="9" data-original-colindex="9" data-colname="reward">
 					@Resources.Reward @(Model.ReportData.DataSource.Any() ?
 					$"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
 			</th>
@@ -56,13 +56,13 @@
 		</tr>
 		<tr class="thead-row2">
 			<th class="hidden-stack-mode col-winloss sorting" data-sortedname="@(Model.CustLevel.DisplayName + "WinLoss")"
-				data-colindex="5" data-colname="winloss">
+				data-colindex="5" data-original-colindex="5" data-colname="winloss">
 				@Resources.WinLoss
 			</th>
-			<th class="hidden-stack-mode sorting" data-sortedname="@(Model.CustLevel.DisplayName + "Comm")" data-colindex="6" data-colname="comm">
+			<th class="hidden-stack-mode sorting" data-sortedname="@(Model.CustLevel.DisplayName + "Comm")" data-colindex="6" data-original-colindex="6" data-colname="comm">
 				@Resources.Comm
 			</th>
-			<th class="hidden-stack-mode sorting" data-sortedname="@(Model.CustLevel.DisplayName + "Total")" data-colindex="7" data-colname="total">
+			<th class="hidden-stack-mode sorting" data-sortedname="@(Model.CustLevel.DisplayName + "Total")" data-colindex="7" data-original-colindex="7" data-colname="total">
 				@Resources.Total
 			</th>
 		</tr>
@@ -71,11 +71,11 @@
 	void RenderTableHeaderForAgent()
 	{
 		<tr>
-			<th class="sorting" rowspan="2" data-sortedname="CustName" data-colindex="0">@Resources.Username</th>
-			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="Turnover" data-colindex="1" data-colname="turnover">
+			<th class="sorting" rowspan="2" data-sortedname="CustName" data-colindex="0" data-original-colindex="0">@Resources.Username</th>
+			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="Turnover" data-colindex="1" data-original-colindex="1" data-colname="turnover">
 				@Resources.Turnover
 			</th>
-			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="GrossComm" data-colindex="2" data-colname="grosscomm">
+			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="GrossComm" data-colindex="2" data-original-colindex="2" data-colname="grosscomm">
 				@Resources.GrossComm
 			</th>
 			<th rowspan="2" class="visible-stack-mode col-combine sorting" data-sortedname="Turnover" data-colindex="1">
@@ -94,39 +94,39 @@
 				@Model.CustLevelName<br />(<span
 					class="prior-sortedcolumn">@Resources.WinLossAbbr</span>@Resources.CommAndTotal)
 			</th>
-			<th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="9" data-colname="company">
+			<th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="9" data-original-colindex="9" data-colname="company">
 				@Resources.Company
 			</th>
 			<th class="sorting visible-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="4">
 				@Resources.Company
 			</th>
-			<th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="9" data-colname="reward">
-				@Resources.Reward @(Model.ReportData.DataSource.Any() ?
-				$"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
+			<th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="10" data-original-colindex="10" data-colname="reward">
+					@Resources.Reward @(Model.ReportData.DataSource.Any() ?
+					$"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
 			</th>
 			<th class="sorting visible-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="5">
-				@Resources.Reward @(Model.ReportData.DataSource.Any() ?
-				$"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
+					@Resources.Reward @(Model.ReportData.DataSource.Any() ?
+					$"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
 			</th>
 		</tr>
 		<tr class="thead-row2">
-			<th class="hidden-stack-mode col-winloss sorting" data-sortedname="MemberWinLoss" data-colindex="3" data-colname="pwinloss">
+			<th class="hidden-stack-mode col-winloss sorting" data-sortedname="MemberWinLoss" data-colindex="3" data-original-colindex="3" data-colname="pwinloss">
 				@Resources.WinLoss
 			</th>
-			<th class="hidden-stack-mode sorting" data-sortedname="MemberComm" data-colindex="4" data-colname="pcomm">
+			<th class="hidden-stack-mode sorting" data-sortedname="MemberComm" data-colindex="4" data-original-colindex="4" data-colname="pcomm">
 				@Resources.Comm
 			</th>
-			<th class="hidden-stack-mode sorting" data-sortedname="MemberTotal" data-colindex="5" data-colname="ptotal">
+			<th class="hidden-stack-mode sorting" data-sortedname="MemberTotal" data-colindex="5" data-original-colindex="5" data-colname="ptotal">
 				@Resources.Total
 			</th>
 			<th class="hidden-stack-mode col-winloss sorting" data-sortedname="@(Model.CustLevel.DisplayName + "WinLoss")"
-				data-colindex="6" data-colname="awinloss">
+				data-colindex="6" data-original-colindex="6" data-colname="awinloss">
 				@Resources.WinLoss
 			</th>
-			<th class="hidden-stack-mode sorting" data-sortedname="@(Model.CustLevel.DisplayName + "Comm")" data-colindex="7" data-colname="acomm">
+			<th class="hidden-stack-mode sorting" data-sortedname="@(Model.CustLevel.DisplayName + "Comm")" data-colindex="7" data-original-colindex="7" data-colname="acomm">
 				@Resources.Comm
 			</th>
-			<th class="hidden-stack-mode sorting" data-sortedname="@(Model.CustLevel.DisplayName + "Total")" data-colindex="8" data-colname="atotal">
+			<th class="hidden-stack-mode sorting" data-sortedname="@(Model.CustLevel.DisplayName + "Total")" data-colindex="8" data-original-colindex="8" data-colname="atotal">
 				@Resources.Total
 			</th>
 		</tr>

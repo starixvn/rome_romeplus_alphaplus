@@ -53,6 +53,8 @@
             this.dateRangePickerComponent.render();
         }
 
+        // Set sort component before initializing columns
+        this.winLossColumns.setSortComponent(this.sortComponent, this.getSortedColumnName.bind(this));
         this.winLossColumns.init();
 
         const isServerStackMode = this.isStackMode();
@@ -103,7 +105,9 @@
             localStorage.setItem(userLevel + 'Columns_' + this.custId + '_' + this.subAccId, visibleColumns);
         }
 
-        super.onSubmitReport(event);
+        // Get sort info with correct column name mapping
+        const sortInfo = this.getWinLossSortInfo();
+        super.onSubmitReport(event, sortInfo);
     };
 
     onSwitchMode = () => {
@@ -176,6 +180,22 @@
     afterSortFunction = () => {
         this.sortComponent.handleDormantAccountsAfterSort();
         this.sortComponent.handleCashFeeDataAfterSort();
+    }
+
+    getWinLossSortInfo(): SortInfo {
+        const currentSortedColumn = this.$tableReport.data('sortedcolumn');
+        
+        if (!currentSortedColumn) {
+            return undefined;
+        }
+
+        // Map the sorted column name properly (especially important for stack mode)
+        const mappedColumnName = this.getSortedColumnName();
+        
+        return {
+            sortPropertyName: mappedColumnName,
+            descendingSort: this.$tableReport.data('descendingsort')
+        };
     }
 
     private applyStackMode() {
