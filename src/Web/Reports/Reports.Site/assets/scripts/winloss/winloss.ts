@@ -153,7 +153,6 @@
         if (!this.isStackMode()) {
             return sortedColumn;
         }
-
         if (sortedColumn === 'GrossComm') {
             return 'Turnover';
         }

@@ -4,7 +4,9 @@ class WinLossColumns {
     private readonly tblReportId: string = '#tbl-report';
     private sortComponent: SortComponent;
     private getSortedColumnNameCallback: () => string;
-    
+
+    private readonly dataOriginalColIndex = 'data-original-colindex';
+    private readonly dataColIndex = 'data-colindex';
     private readonly downlineTotalColumn = 'downlinetotal';
 
     private readonly commonColumns = ['turnover', 'grosscomm', 'company', 'reward'];
@@ -54,15 +56,9 @@ class WinLossColumns {
                 const visibleColumns = this.visibleColumnComponent.getShowColumns().join(',');
                 const key = userLevel + 'Columns_' + this.custId + '_' + this.subAccId;
                 localStorage.setItem(key, visibleColumns);
-                
-                // Re-bind sort events after showing/hiding columns (without re-sorting)
-                if (this.sortComponent) {
-                    this.sortComponent.rebindSortEvents();
-                }
             },
             visibleColumns: finalVisibleColumns
         });
-        this.showHideColumns($(this.tblReportId));
     }
 
     showHideColumns($tblReport: JQuery) {
@@ -79,18 +75,24 @@ class WinLossColumns {
         
         // Update column indices after showing/hiding columns
         this.updateColumnIndices($tblReport);
+
+        if (this.sortComponent) {
+            this.sortComponent.bindTableSorter(this.getSortedColumnNameCallback());
+        }
     }
     
     private updateColumnIndices($tblReport: JQuery) {
         // Update data-colindex based on data-original-colindex for visible columns only
         // This ensures correct column ordering regardless of which columns are hidden
         
-        const $thead = $tblReport.find('thead');
+        // Only compute indices from the main thead (exclude floating header clone)
+        const $theadMain = $tblReport.find('thead').not('.tableFloatingHeaderOriginal');
+        const $theadFloating = $tblReport.find('thead.tableFloatingHeaderOriginal');
         
         // Get all sortable columns that have data-original-colindex (excluding stack-mode columns)
         const allColumns: Array<{$th: JQuery, originalIndex: number}> = [];
         
-        $thead.find('th.sorting[data-original-colindex]').not('.visible-stack-mode').each(function() {
+        $theadMain.find('th[' + this.dataOriginalColIndex + ']').not('.visible-stack-mode').each(function() {
             const $th = $(this);
             const originalIndex = parseInt($th.attr('data-original-colindex') || '0');
             allColumns.push({ $th: $th, originalIndex: originalIndex });
@@ -98,16 +100,34 @@ class WinLossColumns {
         
         // Sort by original index to maintain correct order
         allColumns.sort((a, b) => a.originalIndex - b.originalIndex);
-        
+
         // Assign new colindex only to visible columns
         let newColIndex = 0;
         allColumns.forEach(col => {
-            if (col.$th.is(':visible')) {
-                col.$th.attr('data-colindex', newColIndex);
+            if (col.$th.css('display') !== 'none') {
+                col.$th.attr(this.dataColIndex, newColIndex);
+                // Sync corresponding body cells (td) with the new index so tablesorter maps correctly
+                const colName = col.$th.attr('data-colname');
+                if (colName) {
+                    $tblReport.find(`tbody td[data-colname="${colName}"]`).attr(this.dataColIndex, newColIndex);
+                }
+                // Sync floating header th (by original index) if present
+                const originalIndex = col.$th.attr(this.dataOriginalColIndex);
+                if (originalIndex && $theadFloating.length) {
+                    $theadFloating.find(`th[${this.dataOriginalColIndex}="${originalIndex}"]`).attr(this.dataColIndex, newColIndex);
+                }
                 newColIndex++;
             } else {
                 // Clear colindex from hidden columns
-                col.$th.removeAttr('data-colindex');
+                col.$th.removeAttr(this.dataColIndex);
+                const colName = col.$th.attr('data-colname');
+                if (colName) {
+                    $tblReport.find(`tbody td[data-colname="${colName}"]`).removeAttr(this.dataColIndex);
+                }
+                const originalIndex = col.$th.attr(this.dataOriginalColIndex);
+                if (originalIndex && $theadFloating.length) {
+                    $theadFloating.find(`th[${this.dataOriginalColIndex}="${originalIndex}"]`).removeAttr(this.dataColIndex);
+                }
             }
         });
     }
