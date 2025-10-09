@@ -155,7 +155,7 @@
     "JsVersion": "20250903",
     "AssetsApp:StaticResourcesVersion": "20250903",
     "LocalTest": false,
-    "SettingStatus": 0,
+    "SettingStatus": 1,
     "ProductOfferProductDetail": [
         1,
         21,
@@ -171,7 +171,8 @@
         102,
         95,
         107,
-        108
+        108,
+        114
     ],
     "ForcedHideProductIds": "25",
     "SiteLabel": "MBC",

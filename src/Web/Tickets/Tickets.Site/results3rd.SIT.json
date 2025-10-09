@@ -47,6 +47,13 @@
       "VendorId": 109,
       "Url": "http://saba-wallet-group-004.3rd-party.k8s.nebula.sit/api/ClotPlayInternal/GetBetHistoryUrl",
       "Debug": 0
+    },
+    {
+      "Name": "BGaming",
+      "SportTypeId": 118,
+      "VendorId": 114,
+      "Url": "http://saba-wallet-group-004.3rd-party.k8s.nebula.sit/api/BGamingInternal/GetBetHistoryUrl",
+      "Debug": 0
     }
   ]
 }
