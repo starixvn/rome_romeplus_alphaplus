@@ -41,6 +41,7 @@ export default defineConfig({
         pendingPromotion: 'src/pages/Promotion/PendingPromotion/index.tsx',
         promotionReport: 'src/pages/Promotion/PromotionReport/index.tsx',
         topBanner: 'src/pages/Advertisement/TopBanner.tsx',
+        mainBanner: 'src/pages/Advertisement/MainBanner.tsx',
       },
       output: {
         assetFileNames: 'index-[hash][extname]',

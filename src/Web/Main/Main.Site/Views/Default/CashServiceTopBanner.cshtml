@@ -1,11 +1,8 @@
-@using AlphaPlus.Core.Helpers
 @using AlphaPlus.Main.Site.Features.Dashboard.CashService
-@using AlphaPlus.Main.Site
 
 @model CashServiceInfoViewModel
 @{
     Layout = null;
-    var version = AppSettings.JsVersion;
 }
 
 <!DOCTYPE html>
@@ -18,8 +15,8 @@
 <head>
     <title>CashServiceAds Page</title>
     <environment names="Production">
-        <link rel="stylesheet" href="@(Model.CDNUri)advertisement/index-banner.css?version=@version" />
-        <script type="module" src="@(Model.CDNUri)advertisement/banner.js?version=@version"></script>
+        <link rel="stylesheet" asp-href-include="@MicroSites.CashServiceUrl()/index-*.css" asp-append-version="true" />
+        <script type="module" asp-src-include="@MicroSites.CashServiceUrl()/topBanner-*.js" asp-append-version="true"></script>
     </environment>
 </head>
 
