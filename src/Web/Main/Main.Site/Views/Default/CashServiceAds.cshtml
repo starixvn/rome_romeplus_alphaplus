@@ -22,7 +22,7 @@
 
 <body>
     <script type="text/javascript">
-        const appConfig = @Html.Raw(Json.Serialize(
+        const mainBannerConfig = @Html.Raw(Json.Serialize(
             new {
                 applicationPath = "/",
                 advName = "CashServiceAds",
@@ -36,19 +36,21 @@
         const cdnUri = "@Html.Raw(Model.CDNUri)";
         const mainUrl = '@MicroSites.MainUrl()';
         const homeUrl = '@MicroSites.MainUrl("~/Dashboard/index2")';
+        const cashServiceUrl = '@MicroSites.CashServiceUrl()';
     </script>
-
     <environment include="Development">
         <script type="module">
-            import RefreshRuntime from 'http://localhost:4213/@@react-refresh'
+            import RefreshRuntime from 'http://localhost:5173/@@react-refresh'
             RefreshRuntime.injectIntoGlobalHook(window)
             window.$RefreshReg$ = () => { }
             window.$RefreshSig$ = () => (type) => type
             window.__vite_plugin_react_preamble_installed__ = true
         </script>
-        <script type="module" src=@("http://localhost:4213/@vite/client")></script>
-        <script type="module" src="http://localhost:4213/src/main.tsx"></script>
-        <link rel="stylesheet" href="http://localhost:4213/src/styles.scss" />
+        <script type="module" src=@("http://localhost:5173/@vite/client")></script>
+    </environment>
+    <environment include="Development">
+        <script type="module" src=@("http://localhost:5173/@vite/client")></script>
+        <script type="module" src="http://localhost:5173/src/pages/Advertisement/MainBanner.tsx"></script>
     </environment>
 
     @Html.AntiForgeryToken()
