@@ -3,12 +3,12 @@ import '../../styles/global.scss';
 
 import { StrictMode } from 'react';
 import { createRoot } from "react-dom/client";
-import './TopBanner.scss';
+import styleTopBanner from './TopBanner.module.scss';
 import { useCashServiceActions } from './hooks/useCashServiceActions';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import i18n from '../../i18n/i18-advertisement';
-import { useTranslation } from 'react-i18next';
-
+import { Trans, useTranslation } from 'react-i18next';
+import classNames from 'classnames';
 
 function TopBannerComponent() {
     useCookieLanguage(i18n);
@@ -21,17 +21,25 @@ function TopBannerComponent() {
     };
 
     return (
-        <div className="cash-service-banner">
-            <span className="exclusively">
+        <div className={styleTopBanner['cash-service-banner']}>
+            <span className={styleTopBanner['exclusively']}>
                 <img src="assets/images/lightning.png" />
                 <span>{t('ExclusivelyForYou')}</span>
             </span>
-            <div className="cash-service-banner-content">
-                <span className="message">{t('EnjoyCashServiceFreeFor14Days')}</span>
-                <button className="banner-btn" onClick={onConfirmEnableCashService}>
+            <div className={styleTopBanner['cash-service-banner-content']}>
+                <span className={styleTopBanner['message']}>{
+                    <Trans
+                        t={t}
+                        i18nKey="EnjoyCashServiceFreeFor14Days"
+                        components={{
+                            free: <span></span>
+                        }}
+                    />}
+                </span>
+                <button className={styleTopBanner['banner-btn']} onClick={onConfirmEnableCashService}>
                     {t('ActivateNow')}
                 </button>
-                <button className="banner-btn secondary" onClick={handleFindOutMore} >
+                <button className={classNames(styleTopBanner['banner-btn'], styleTopBanner['secondary'])} onClick={handleFindOutMore} >
                     {t('FindOutMore')}
                 </button>
             </div>
