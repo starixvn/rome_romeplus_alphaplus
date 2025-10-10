@@ -1,7 +1,10 @@
 ﻿@using AlphaPlus.Main.Site.Features.Dashboard.CashService
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Main.Site
 @model CashServiceInfoViewModel
 @{
     Layout = null;
+    var version = AppSettings.JsVersion;
 }
 
 <!DOCTYPE html>
@@ -9,9 +12,9 @@
 
 <head>
     <title>CashServiceAds Page</title>
-    <environment names="Production">
-        <link rel="stylesheet" asp-href-include="@MicroSites.CashServiceUrl()/index-*.css" asp-append-version="true" />
-        <script type="module" asp-src-include="@MicroSites.CashServiceUrl()/mainBanner-*.js" asp-append-version="true"></script>
+    <environment include="Production">
+        <link rel="stylesheet" href="@MicroSites.CashServiceUrl()fixed/index.css?version=@version" />
+        <script type="module" src="@MicroSites.CashServiceUrl()fixed/mainBanner.js?version=@version"></script>   
     </environment>
 </head>
 
@@ -20,16 +23,17 @@
 <body>
     <script type="text/javascript">
         const mainBannerConfig = @Html.Raw(Json.Serialize(
-            new {
-                applicationPath = "/",
-                advName = "CashServiceAds",
-                isCanUpdateCashServiceStatus = @Model.IsCanUpdateCashServiceStatus,
-                isCanEditCashService = @Model.IsCanEditCashService,
-                isOfferedCashService = @Model.IsOfferedCashService,
-                isCashServiceEnabled = @Model.IsCashServiceEnabled,
-                nickName = @Model.NickName
+            new
+            {
+                    applicationPath = "/",
+                    advName = "CashServiceAds",
+                    isCanUpdateCashServiceStatus = @Model.IsCanUpdateCashServiceStatus,
+                    isCanEditCashService = @Model.IsCanEditCashService,
+                    isOfferedCashService = @Model.IsOfferedCashService,
+                    isCashServiceEnabled = @Model.IsCashServiceEnabled,
+                    nickName = @Model.NickName
             }
-        ));
+                        ));
         const cdnUri = "@Html.Raw(Model.CDNUri)";
         const mainUrl = '@MicroSites.MainUrl()';
         const homeUrl = '@MicroSites.MainUrl("~/Dashboard/index2")';
@@ -49,7 +53,8 @@
         <script type="module" src=@("http://localhost:5173/@vite/client")></script>
         <script type="module" src="http://localhost:5173/src/pages/Advertisement/MainBanner.tsx"></script>
     </environment>
-
+   
     @Html.AntiForgeryToken()
 </body>
+
 </html>
