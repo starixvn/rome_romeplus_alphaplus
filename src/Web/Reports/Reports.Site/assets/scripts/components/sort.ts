@@ -55,7 +55,7 @@ class SortComponent {
                 textExtraction: this.textExtraction
             });
         } catch (e) {
-            console.log(e);
+            
         }
 
         this.$tableReport.off('sortEnd').on('sortEnd', () => {
