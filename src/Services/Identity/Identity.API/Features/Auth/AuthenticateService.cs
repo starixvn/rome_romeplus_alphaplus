@@ -285,7 +285,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
                 response.IsShowBetChoiceLimit = await IsShowBetChoiceLimit(response.CustId);
                 response.SiteDB = await siteDBService.GetSiteDBConfig(response.CustId) ?? new SiteDBConfig();
                 response.IsAllowTotalBalanceTransfer = await IsAllowTotalBalanceTransfer(response.CustId);
-                response.DateLimit = await GetDateLimit(response.CustId);
+                response.DateLimit = request.System == "NAP" ? await GetDateLimit(response.CustId) : DateTime.MinValue;
 
                 var securityCodeFunction = await GetSecurityCodeOptionalFunction(response.CustId, 0) ?? new SecurityCodeFunction();
                 response.IsEnabledSecurityCodeInBetLists = securityCodeFunction.BetList;
