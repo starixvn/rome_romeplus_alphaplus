@@ -150,7 +150,7 @@
         "SystemId": 6
     },
     "SystemId": 2,
-    "IdentityUrl": "http://alp1-id.nexdev.net/",
+    "IdentityUrl": "http://alphaplus_api_identity_LOCAL_1:5000/",
     "AssetAppPath": "/stcdn",
     "JsVersion": "20250415",
     "AssetsApp:StaticResourcesVersion": "20250415",
