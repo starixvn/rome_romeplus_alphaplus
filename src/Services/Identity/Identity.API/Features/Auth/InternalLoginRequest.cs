@@ -19,4 +19,6 @@ public class InternalLoginRequest
     public string BrowserName { get; set; }
 
     public string Platform { get; set; }
+
+    public string System { get; set; } = "NAP";
 }

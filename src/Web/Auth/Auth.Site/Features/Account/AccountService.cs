@@ -89,7 +89,8 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
             KeyValuePair.Create(nameof(param.RequestInfo.LoginDomain), param.RequestInfo.LoginDomain),
             KeyValuePair.Create(nameof(param.RequestInfo.LoginIp), param.RequestInfo.LoginIp),
             KeyValuePair.Create(nameof(param.LoginTime), param.LoginTime.ToString()),
-            KeyValuePair.Create(nameof(param.RequestInfo.Platform), param.RequestInfo.Platform)
+            KeyValuePair.Create(nameof(param.RequestInfo.Platform), param.RequestInfo.Platform),
+            KeyValuePair.Create(nameof(param.System), param.System)
         ]);
 
         var result = await client.GetAsJsonAsync<SignInResult>($"api/auth/internal-login{query}");
