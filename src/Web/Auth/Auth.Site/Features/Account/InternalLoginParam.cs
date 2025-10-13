@@ -11,4 +11,6 @@ public class InternalLoginParam
     public string Language { get; set; } = "E";
 
     public RequestInfo.Models.RequestInfo RequestInfo { get; set; }
+
+    public string System { get; set; } = "NAP";
 } 

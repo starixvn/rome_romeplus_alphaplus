@@ -28,14 +28,6 @@
     "SiteId": 3100100,
     "Debug": 0
   },
-  "Soccer5ResultConfigs": {
-    "Url": "//plggc.155551.com/LinkedGamesWebPortal/GameResult",
-    "SiteId": 4100200,
-    "VendorId": 63,
-    "Debug": 0,
-    "ProxyIP": "lisasqd.nebula.prod",
-    "ProxyPort": 8801
-  },
   "SabaClubConfigs": {
     "Url": "http://sabagames.gamora.prod/api/SabaClubInternal/GetTicketResult",
     "Login": "Login",

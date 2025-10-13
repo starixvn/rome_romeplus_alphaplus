@@ -14,6 +14,8 @@ class SortComponent {
     headers: any;
     afterSortFunction: Function;
     canSort = false;
+    dataSortedName = 'data-sortedname';
+    stackModeClass = 'stack-mode';
 
     initSort = ($tableReport: JQuery, headers: any, afterSortFunction: Function = undefined) => {
         this.$tableReport = $tableReport;
@@ -23,7 +25,7 @@ class SortComponent {
         const sortColumns = this.$tableReport.find('.sorting');
 
         if (!this.canSort) {
-            sortColumns.removeClass('sorting').removeAttr('data-sortedname');
+            sortColumns.removeClass('sorting').removeAttr(this.dataSortedName);
             return;
         }
 
@@ -37,25 +39,43 @@ class SortComponent {
 
         let sortList = [];
         if (sortedColumnName) {
-            const isStackMode = this.$tableReport.hasClass('stack-mode');
+            const isStackMode = this.$tableReport.hasClass(this.stackModeClass);
+            const headerScope = 'thead';
             const sortedColumnHeader = this.$tableReport.find(
-                `[data-sortedname="${sortedColumnName}"]${
+                `${headerScope} [${this.dataSortedName}="${sortedColumnName}"]${
                     isStackMode ? ':not([class*="hidden-stack-mode"])' : ':not([class*="col-combine"])'
-                }`
+                }:visible`
             )[0];
-            const descendingSort = this.$tableReport.data('descendingsort');
-            sortList = [[$(sortedColumnHeader).data('colindex'), descendingSort]];
+            const descendingSort = Number(this.$tableReport.data('descendingsort') || 0);
+            if (sortedColumnHeader) {
+                const colIndexAttr = $(sortedColumnHeader).attr('data-colindex');
+                if (colIndexAttr) {
+                    sortList = [[ colIndexAttr, descendingSort ]];
+                }
+            }
         }
 
         try {
+            // Destroy existing tablesorter instance to ensure clean re-initialization
+            if (this.$tableReport.hasClass('tablesorter')) {
+                // Use the proper destroy method
+                this.$tableReport.trigger('destroy.tablesorter');
+                // Remove tablesorter classes
+                this.$tableReport.removeClass('tablesorter');
+            }
+            
             this.$tableReport.tablesorter({
                 defaultParser: 1,
                 headers: this.headers,
                 sortList: sortList,
                 textExtraction: this.textExtraction
             });
-        } catch (e) {
-            
+
+            // Ensure the intended sort is applied immediately after re-init
+            if (sortList && sortList.length) {
+                this.$tableReport.trigger('sorton', [sortList]);
+            }
+        } catch {
         }
 
         this.$tableReport.off('sortEnd').on('sortEnd', () => {
@@ -64,13 +84,21 @@ class SortComponent {
                     ',thead.tableFloatingHeaderOriginal th.sorting.sorting-desc:visible'
             );
 
-            const modeFilterClass = this.$tableReport.hasClass('stack-mode')
+            const modeFilterClass = this.$tableReport.hasClass(this.stackModeClass)
                 ? '.hidden-stack-mode'
                 : '.visible-stack-mode';
             $sortedcolumn = $sortedcolumn.not(modeFilterClass);
 
+            if ($sortedcolumn.length !== 1) {
+                // Fallback to main thead if floating header not present or not updated yet
+                $sortedcolumn = this.$tableReport.find(
+                    'thead:not(.tableFloatingHeaderOriginal) th.sorting.sorting-asc:visible' +
+                        ',thead:not(.tableFloatingHeaderOriginal) th.sorting.sorting-desc:visible'
+                ).not(modeFilterClass);
+            }
+
             if ($sortedcolumn.length === 1) {
-                this.onSort($sortedcolumn.attr('data-sortedname'), $sortedcolumn.hasClass('sorting-desc'));
+                this.onSort($sortedcolumn.attr(this.dataSortedName), $sortedcolumn.hasClass('sorting-desc'));
             }
         });
     };

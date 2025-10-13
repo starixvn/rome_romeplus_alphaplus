@@ -60,8 +60,10 @@
       "assets/scripts/components/productmultiselection.js",
       "assets/scripts/components/single-dropdown.js",
       "assets/scripts/components/sort.js",
+      "assets/scripts/components/visible-column.js",
       "assets/scripts/base-report.js",
       "assets/scripts/components/compact-feedback.js",
+      "assets/scripts/winloss/winloss-columns.js",
       "assets/scripts/winloss/winloss.js"
     ]
   },

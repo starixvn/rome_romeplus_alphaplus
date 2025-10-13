@@ -135,7 +135,8 @@ public class AccountController(
             Username = internalLoginParams.ElementAt(0),
             AdminId = int.Parse(internalLoginParams.ElementAt(1)),
             LoginTime = new DateTime(long.Parse(internalLoginParams.ElementAt(2))),
-            RequestInfo = requestInfo
+            RequestInfo = requestInfo,
+            System = internalLoginParams.Length > 3 ? internalLoginParams[3] : "NAP"
         };
 
         var signInResult = await accountService.InternalLogin(param);

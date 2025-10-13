@@ -46,6 +46,9 @@ public abstract class DrillDownableViewModel<T> where T : class
         {
             this.cashFeePath = MicroSites.ReportsUrl(cashFeePath);
         }
+
+        SubAccId = message.SubAccId;
+        UserId = message.UserId;
     }
 
     public int CustId { get; }
@@ -119,4 +122,8 @@ public abstract class DrillDownableViewModel<T> where T : class
     protected virtual IDictionary<string, string> AddMoreBetListParams(IDictionary<string, string> queryParams) => queryParams;
 
     protected virtual IDictionary<string, string> AddMoreCashFeeParams(IDictionary<string, string> cashFeeParams) => cashFeeParams;
+
+    public int SubAccId { get; }
+
+    public int UserId { get; }
 }

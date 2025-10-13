@@ -17,12 +17,12 @@
 	void RenderTableHeaderForSuperMaster()
 	{
 		<tr>
-			<th class="sorting" rowspan="2" data-sortedname="CustName" data-colindex="0">@Resources.Username</th>
-			<th class="sorting" rowspan="2" data-sortedname="IsDirectMember" data-colindex="1">@Resources.Level</th>
-			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="Turnover" data-colindex="2">
+			<th class="sorting" rowspan="2" data-sortedname="CustName" data-colindex="0" data-original-colindex="0">@Resources.Username</th>
+			<th class="sorting" rowspan="2" data-sortedname="IsDirectMember" data-colindex="1" data-original-colindex="1">@Resources.Level</th>
+			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="Turnover" data-colindex="2" data-original-colindex="2" data-colname="turnover">
 				@Resources.Turnover
 			</th>
-			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="GrossComm" data-colindex="3">
+			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="GrossComm" data-colindex="3" data-original-colindex="3" data-colname="grosscomm">
 				@Resources.GrossComm
 			</th>
 			<th rowspan="2" class="visible-stack-mode col-combine sorting" data-sortedname="Turnover" data-colindex="2">
@@ -30,7 +30,7 @@
 				@(isAgentLevel ? "/ " + Resources.GrossComm :
 						(isSuperLevel ? Resources.GrossComAndMasterTotal : Resources.GrossComAndAgentTotal))
 			</th>
-			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="DownlineTotal" data-colindex="4">
+			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="DownlineTotal" data-colindex="4" data-original-colindex="4" data-colname="downlinetotal">
 				@Resources.DownlineTotal
 			</th>
 			<th colspan="3" class="col-level hidden-stack-mode">@Model.CustLevelName</th>
@@ -40,12 +40,12 @@
 				<br />
 				(<span class="prior-sortedcolumn">@Resources.WinLossAbbr</span>@Resources.CommAndTotal)
 			</th>
-			<th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="8">
+			<th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="8" data-original-colindex="8" data-colname="company">
 				@Resources.Company
 			</th>
 			<th class="sorting visible-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="4">
 				@Resources.Company
-			<th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="9">
+			<th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="9" data-original-colindex="9" data-colname="reward">
 					@Resources.Reward @(Model.ReportData.DataSource.Any() ?
 					$"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
 			</th>
@@ -56,13 +56,13 @@
 		</tr>
 		<tr class="thead-row2">
 			<th class="hidden-stack-mode col-winloss sorting" data-sortedname="@(Model.CustLevel.DisplayName + "WinLoss")"
-				data-colindex="5">
+				data-colindex="5" data-original-colindex="5" data-colname="winloss">
 				@Resources.WinLoss
 			</th>
-			<th class="hidden-stack-mode sorting" data-sortedname="@(Model.CustLevel.DisplayName + "Comm")" data-colindex="6">
+			<th class="hidden-stack-mode sorting" data-sortedname="@(Model.CustLevel.DisplayName + "Comm")" data-colindex="6" data-original-colindex="6" data-colname="comm">
 				@Resources.Comm
 			</th>
-			<th class="hidden-stack-mode sorting" data-sortedname="@(Model.CustLevel.DisplayName + "Total")" data-colindex="7">
+			<th class="hidden-stack-mode sorting" data-sortedname="@(Model.CustLevel.DisplayName + "Total")" data-colindex="7" data-original-colindex="7" data-colname="total">
 				@Resources.Total
 			</th>
 		</tr>
@@ -71,11 +71,11 @@
 	void RenderTableHeaderForAgent()
 	{
 		<tr>
-			<th class="sorting" rowspan="2" data-sortedname="CustName" data-colindex="0">@Resources.Username</th>
-			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="Turnover" data-colindex="1">
+			<th class="sorting" rowspan="2" data-sortedname="CustName" data-colindex="0" data-original-colindex="0">@Resources.Username</th>
+			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="Turnover" data-colindex="1" data-original-colindex="1" data-colname="turnover">
 				@Resources.Turnover
 			</th>
-			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="GrossComm" data-colindex="2">
+			<th rowspan="2" class="hidden-stack-mode sorting" data-sortedname="GrossComm" data-colindex="2" data-original-colindex="2" data-colname="grosscomm">
 				@Resources.GrossComm
 			</th>
 			<th rowspan="2" class="visible-stack-mode col-combine sorting" data-sortedname="Turnover" data-colindex="1">
@@ -94,39 +94,39 @@
 				@Model.CustLevelName<br />(<span
 					class="prior-sortedcolumn">@Resources.WinLossAbbr</span>@Resources.CommAndTotal)
 			</th>
-			<th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="9">
+			<th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="9" data-original-colindex="9" data-colname="company">
 				@Resources.Company
 			</th>
 			<th class="sorting visible-stack-mode" rowspan="2" data-sortedname="Company" data-colindex="4">
 				@Resources.Company
 			</th>
-			<th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="9">
-				@Resources.Reward @(Model.ReportData.DataSource.Any() ?
-				$"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
+			<th class="sorting hidden-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="10" data-original-colindex="10" data-colname="reward">
+					@Resources.Reward @(Model.ReportData.DataSource.Any() ?
+					$"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
 			</th>
 			<th class="sorting visible-stack-mode" rowspan="2" data-sortedname="RewardAmount" data-colindex="5">
-				@Resources.Reward @(Model.ReportData.DataSource.Any() ?
-				$"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
+					@Resources.Reward @(Model.ReportData.DataSource.Any() ?
+					$"({Model.ReportData.DataSource.First().RewardCurrency})" : string.Empty)
 			</th>
 		</tr>
 		<tr class="thead-row2">
-			<th class="hidden-stack-mode col-winloss sorting" data-sortedname="MemberWinLoss" data-colindex="3">
+			<th class="hidden-stack-mode col-winloss sorting" data-sortedname="MemberWinLoss" data-colindex="3" data-original-colindex="3" data-colname="pwinloss">
 				@Resources.WinLoss
 			</th>
-			<th class="hidden-stack-mode sorting" data-sortedname="MemberComm" data-colindex="4">
+			<th class="hidden-stack-mode sorting" data-sortedname="MemberComm" data-colindex="4" data-original-colindex="4" data-colname="pcomm">
 				@Resources.Comm
 			</th>
-			<th class="hidden-stack-mode sorting" data-sortedname="MemberTotal" data-colindex="5">
+			<th class="hidden-stack-mode sorting" data-sortedname="MemberTotal" data-colindex="5" data-original-colindex="5" data-colname="ptotal">
 				@Resources.Total
 			</th>
 			<th class="hidden-stack-mode col-winloss sorting" data-sortedname="@(Model.CustLevel.DisplayName + "WinLoss")"
-				data-colindex="6">
+				data-colindex="6" data-original-colindex="6" data-colname="awinloss">
 				@Resources.WinLoss
 			</th>
-			<th class="hidden-stack-mode sorting" data-sortedname="@(Model.CustLevel.DisplayName + "Comm")" data-colindex="7">
+			<th class="hidden-stack-mode sorting" data-sortedname="@(Model.CustLevel.DisplayName + "Comm")" data-colindex="7" data-original-colindex="7" data-colname="acomm">
 				@Resources.Comm
 			</th>
-			<th class="hidden-stack-mode sorting" data-sortedname="@(Model.CustLevel.DisplayName + "Total")" data-colindex="8">
+			<th class="hidden-stack-mode sorting" data-sortedname="@(Model.CustLevel.DisplayName + "Total")" data-colindex="8" data-original-colindex="8" data-colname="atotal">
 				@Resources.Total
 			</th>
 		</tr>
@@ -203,54 +203,55 @@
 					<td class="text-center">@(data.IsDirectMember ? CommonResx.DirectMember : Model.LevelTypeValue)</td>
 				}
 			}
-			@if (Model.PageHeader.IsStackMode)
-			{
-				<td class="visible-stack-mode combinedcell col-turnover-combined">
-					<ul>
-						<li class="@(Model.IsNegative(data.Turnover.RoundTo2()) ? "format-negative" : string.Empty)">@data.Turnover.FormatNumber()</li>
-						<li class="@(Model.IsNegative(data.GrossComm.RoundTo2()) ? "format-negative" : string.Empty)">@data.GrossComm.FormatNumber()</li>
-						@if (!isAgentLevel)
-						{
-							<li class="@(Model.IsNegative(data.DownlineTotal.RoundTo2()) ? "format-negative" : string.Empty)">@data.DownlineTotal.FormatNumber()</li>
-						}
-					</ul>
-				</td>
-				if (isSuperLevel)
-				{
-					RenderStackNetWinLoss("super", data.WinLoss, data.Comm, data.Total, "altercol");
-				}
-				else if (isMasterLevel)
-				{
-					RenderStackNetWinLoss("master", data.WinLoss, data.Comm, data.Total, "altercol");
-				}
-				else
-				{
-					RenderStackNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
-					RenderStackNetWinLoss("agent", data.WinLoss, data.Comm, data.Total, "altercol");
-				}
-			}
-			else
-			{
-				<td class="hidden-stack-mode col-turnover @(Model.IsNegative(data.Turnover) ? "format-negative" : string.Empty)">@data.Turnover.FormatNumber()</td>
-				<td class="hidden-stack-mode col-gross-com @(Model.IsNegative(data.GrossComm.RoundTo2()) ? "format-negative" : string.Empty)">@data.GrossComm.FormatNumber()</td>
-				if (isSuperLevel)
-				{
-					<td class="hidden-stack-mode bold col-cust-total @(Model.IsNegative(data.DownlineTotal.RoundTo2()) ? "format-negative" : string.Empty)">@data.DownlineTotal.FormatNumber()</td>
-					RenderNetWinLoss("super", data.WinLoss, data.Comm, data.Total, "altercol");
-				}
-				else if (isMasterLevel)
-				{
-					<td class="hidden-stack-mode bold col-cust-total @(Model.IsNegative(data.DownlineTotal.RoundTo2()) ? "format-negative" : string.Empty)">@data.DownlineTotal.FormatNumber()</td>
-					RenderNetWinLoss("master", data.WinLoss, data.Comm, data.Total, "altercol");
-				}
-				else
-				{
-					RenderNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
-					RenderNetWinLoss("agent", data.WinLoss, data.Comm, data.Total, "altercol");
-				}
-			}
-			<td class="text-right col-company @(Model.IsNegative(data.Company.RoundTo2()) ? "format-negative" : string.Empty)">@data.Company.FormatNumber()</td>
-			<td class="text-right col-reward-amount">@data.RewardAmount.FormatNumber()</td>
+            <!-- Normal mode cells -->
+            <td class="hidden-stack-mode col-turnover @(Model.IsNegative(data.Turnover) ? "format-negative" : string.Empty)" data-colname="turnover">@data.Turnover.FormatNumber()</td>
+            <td class="hidden-stack-mode col-gross-com @(Model.IsNegative(data.GrossComm.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="grosscomm">@data.GrossComm.FormatNumber()</td>
+            @if (isSuperLevel)
+            {
+                <td class="hidden-stack-mode bold col-cust-total @(Model.IsNegative(data.DownlineTotal.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="downlinetotal">@data.DownlineTotal.FormatNumber()</td>
+                RenderNetWinLoss("super", data.WinLoss, data.Comm, data.Total, "altercol");
+            }
+            else if (isMasterLevel)
+            {
+                <td class="hidden-stack-mode bold col-cust-total @(Model.IsNegative(data.DownlineTotal.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="downlinetotal">@data.DownlineTotal.FormatNumber()</td>
+                RenderNetWinLoss("master", data.WinLoss, data.Comm, data.Total, "altercol");
+            }
+            else
+            {
+                RenderNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
+                RenderNetWinLoss("agent", data.WinLoss, data.Comm, data.Total, "altercol");
+            }
+
+            <!-- Stack mode cells -->
+            <td class="visible-stack-mode combinedcell col-turnover-combined">
+                <ul>
+                    <li class="@(Model.IsNegative(data.Turnover.RoundTo2()) ? "format-negative" : string.Empty)">@data.Turnover.FormatNumber()</li>
+                    <li class="@(Model.IsNegative(data.GrossComm.RoundTo2()) ? "format-negative" : string.Empty)">@data.GrossComm.FormatNumber()</li>
+                    @if (!isAgentLevel)
+                    {
+                        <li class="@(Model.IsNegative(data.DownlineTotal.RoundTo2()) ? "format-negative" : string.Empty)">@data.DownlineTotal.FormatNumber()</li>
+                    }
+                </ul>
+            </td>
+            @if (isSuperLevel)
+            {
+                RenderStackNetWinLoss("super", data.WinLoss, data.Comm, data.Total, "altercol");
+            }
+            else if (isMasterLevel)
+            {
+                RenderStackNetWinLoss("master", data.WinLoss, data.Comm, data.Total, "altercol");
+            }
+            else
+            {
+                RenderStackNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
+                RenderStackNetWinLoss("agent", data.WinLoss, data.Comm, data.Total, "altercol");
+            }
+
+            <!-- Company & Reward duplicated per mode -->
+            <td class="hidden-stack-mode text-right col-company @(Model.IsNegative(data.Company.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="company">@data.Company.FormatNumber()</td>
+            <td class="visible-stack-mode text-right col-company @(Model.IsNegative(data.Company.RoundTo2()) ? "format-negative" : string.Empty)">@data.Company.FormatNumber()</td>
+            <td class="hidden-stack-mode text-right col-reward-amount" data-colname="reward">@data.RewardAmount.FormatNumber()</td>
+            <td class="visible-stack-mode text-right col-reward-amount">@data.RewardAmount.FormatNumber()</td>
 		</tr>
 	}
 
@@ -267,22 +268,63 @@
 
 	void RenderNetWinLoss(string level, decimal winloss, decimal comm, decimal total, string highlightClass = "")
 	{
-		<td class="hidden-stack-mode col-@level-winloss @highlightClass @(Model.IsNegative(winloss.RoundTo2()) ? "format-negative" : string.Empty)">
+		string prefix;
+		if (level == "member")
+		{
+			prefix = "p";
+		}
+		else if (level == "agent")
+		{
+			prefix = "a";
+		}
+		else
+		{
+			prefix = string.Empty;
+		}
+		<td class="hidden-stack-mode col-@level-winloss @highlightClass @(Model.IsNegative(winloss.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="@(prefix)winloss">
 			@winloss.FormatNumber()
 		</td>
-		<td class="hidden-stack-mode @highlightClass @(Model.IsNegative(comm.RoundTo2()) ? "format-negative" : string.Empty)">
+		<td class="hidden-stack-mode @highlightClass @(Model.IsNegative(comm.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="@(prefix)comm">
 			@comm.FormatNumber()
 		</td>
-		<td class="hidden-stack-mode bold @highlightClass col-cust-total @(Model.IsNegative(total.RoundTo2()) ? "format-negative" : string.Empty)">
+		<td class="hidden-stack-mode bold @highlightClass col-cust-total @(Model.IsNegative(total.RoundTo2()) ? "format-negative" : string.Empty)" data-colname="@(prefix)total">
 			@total.FormatNumber()
 		</td>
 	}
 }
 @section Styles {
 	@StaticResources.AssetStyles.Render("/bundles-v2/site-reports/winloss")
-	@StaticResources.RenderStyles("~/bundles-v2/winlossdetailnew")
+	@StaticResources.AssetStyles.Render("/bundles-v2/site-reports/winlossdetailnew")
+    @StaticResources.RenderStyles("~/bundles-v2/winlossdetailnew")
 }
 @section Scripts {
+	<script type="text/javascript">
+		var columnList = [
+			{ value: "turnover", text: '@Resources.Turnover' },
+			{ value: "grosscomm", text: '@Resources.GrossComm' },
+			@if (!isAgentLevel)
+			{
+				@:{ value: "downlinetotal", text: '@Resources.DownlineTotal' },
+			}
+			@if (isAgentLevel)
+			{
+				@:{ value: "pwinloss", text: '@Resources.MemberWinLossNew' },
+				@:{ value: "pcomm", text: '@Resources.MemberCommNew' },
+				@:{ value: "ptotal", text: '@Resources.MemberTotalNew' },
+				@:{ value: "awinloss", text: '@Resources.AgentWinLossNew' },
+				@:{ value: "acomm", text: '@Resources.AgentCommNew' },
+				@:{ value: "atotal", text: '@Resources.AgentTotalNew' },				
+			}
+			@if (isMasterLevel || isSuperLevel)
+			{
+				@:{ value: "winloss", text: '@(isSuperLevel ? Resources.SuperWinLossNew : Resources.MasterWinLossNew)' },
+				@:{ value: "comm", text: '@(isSuperLevel ? Resources.SuperCommNew : Resources.MasterCommNew)' },
+				@:{ value: "total", text: '@(isSuperLevel ? Resources.SuperTotalNew : Resources.MasterTotalNew)' },
+			}
+			{ value: "company", text: '@Resources.Company' },
+			{ value: "reward", text: '@Resources.Reward' }
+		];
+	</script>
 	@StaticResources.RenderScripts("~/bundles/winloss/winloss")
 }
 @model WinLossViewModel
@@ -296,6 +338,7 @@
 	}
 	@if (Model.IsHistoricReport)
 	{
+		<visible-column />
 		<month-picker model="Model.MonthPicker" />
 		<div class="form-group form-group-short">
 			<input type="submit" value="@Resources.Submit" class="btn-submit" />
@@ -303,6 +346,7 @@
 	}
 	else
 	{
+		<visible-column />
 		<daterange-picker model="Model.DateRangePicker" />
 	}
 	<div class="form-group form-group-short hide">
@@ -376,3 +420,7 @@
 <input type="hidden" id="query-resourceids" value="@Model.ProductViewModel.UserSelectedResourceIds" />
 <input type="hidden" id="query-fromdate" value="@Model.FromDate" />
 <input type="hidden" id="query-todate" value="@Model.ToDate" />
+<input type="hidden" id="IsSuperLevel" value="@isSuperLevel.ToString()" />
+<input type="hidden" id="IsMasterLevel" value="@isMasterLevel.ToString()" />
+<input type="hidden" id="SubAccId" value="@Model.SubAccId" />
+<input type="hidden" id="UserId" value="@Model.UserId" />

@@ -5,9 +5,13 @@
     levelTypeComponent: SingleDropdownComponent;
     sortComponent: SortComponent;
     reportTooltip: ReportTooltip;
+    winLossColumns: WinLossColumns;
 
     isAgentLevel: boolean;
     isFirstSwitchMode = true;
+    subAccId = $('#SubAccId').val() || 0;
+    custId = $('#UserId').val() || 0;
+    tblReport = '#dropdown-visible-column';
 
     constructor(
         productComponent: ProductMultiSelectionComponent,
@@ -15,7 +19,8 @@
         monthPickerComponent: MonthPickerComponent,
         levelTypeComponent: SingleDropdownComponent,
         sortComponent: SortComponent,
-        reportTooltip: ReportTooltip
+        reportTooltip: ReportTooltip,
+        winLossColumns: WinLossColumns
     ) {
         super();
 
@@ -25,6 +30,7 @@
         this.levelTypeComponent = levelTypeComponent;
         this.sortComponent = sortComponent;
         this.reportTooltip = reportTooltip;
+        this.winLossColumns = winLossColumns;
     }
 
     init() {
@@ -47,10 +53,24 @@
             this.dateRangePickerComponent.render();
         }
 
-        if ($('#IsSetDefaultStackMode').val().toLowerCase() === 'true' && alphaReports.screenSmallThan768()) {
+        // Set sort component before initializing columns
+        this.winLossColumns.setSortComponent(this.sortComponent, this.getSortedColumnName.bind(this));
+        this.winLossColumns.init();
+
+        const isServerStackMode = this.isStackMode();
+        const isDefaultStackOnMobile = $('#IsSetDefaultStackMode').val().toLowerCase() === 'true' && alphaReports.screenSmallThan768();
+
+        if (isServerStackMode || isDefaultStackOnMobile) {
             this.setStackMode();
-            this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'winloss'));
-            super.hideFilter();
+            if (isDefaultStackOnMobile) {
+                this.reportTooltip.show(new ReportTooltipOption('icon-normal-column', 'winloss'));
+                super.hideFilter();
+            }
+            this.applyStackMode();
+        } else {
+            if ($(this.tblReport).length > 0) {
+                this.applyNormalMode();
+            }
         }
 
         const sortHeaders = this.levelTypeComponent.$dropdown.length
@@ -63,6 +83,7 @@
         // remove style="visibility:hidden"
         // TableSorter cannot run with style="display:none"
         this.$tableReport.removeAttr('style');
+        this.winLossColumns.showHideColumns(this.$tableReport);
     }
 
     registerEvents() {
@@ -77,25 +98,41 @@
             return;
         }
 
-        super.onSubmitReport(event);
+        // Update VisibleColumns hidden input before submit (only if component exists)
+        if ($(this.tblReport).length > 0) {
+            const visibleColumns = this.winLossColumns.getShowColumns().join(',');
+            const userLevel = this.winLossColumns.getUserLevel();
+            localStorage.setItem(userLevel + 'Columns_' + this.custId + '_' + this.subAccId, visibleColumns);
+        }
+
+        // Get sort info with correct column name mapping
+        const sortInfo = this.getWinLossSortInfo();
+        super.onSubmitReport(event, sortInfo);
     };
 
     onSwitchMode = () => {
         const isStackMode = this.isStackMode();
         this.setCssBySwitchMode(isStackMode);
-        if (this.isFirstSwitchMode) {
-            this.renderAtFirstSwitchMode(isStackMode);
-            this.isFirstSwitchMode = false;
+        
+        // Show/hide visible column component based on mode (only if component exists)
+        if ($(this.tblReport).length > 0) {
+            if (isStackMode) {
+                // Now in normal mode
+                this.applyNormalMode();
+            } else {
+                // Now in stack mode
+                this.applyStackMode();
+            }
         }
+        
         this.sortComponent.bindTableSorter(this.getSortedColumnName());
     };
 
-    renderAtFirstSwitchMode = (isSwitchToNormalMode: boolean) =>
-        isSwitchToNormalMode ? this.splitColumns() : this.combineColumns();
+    // Combine/split handled in CSHTML; no-op
+    renderAtFirstSwitchMode = (_: boolean) => {};
 
     setStackMode() {
         this.setCssBySwitchMode(false);
-        this.renderAtFirstSwitchMode(false);
         this.isFirstSwitchMode = false;
     }
 
@@ -109,48 +146,13 @@
         }
     }
 
-    splitColumns() {
-        alphaReports.splitCell('col-turnover');
-        this.levels.forEach(function (level: string, index: number) {
-            if (level === 'master') {
-                alphaReports.splitCell(`col-${level}-winloss`, index % 2 ? '' : ' altercol');
-            } else {
-                alphaReports.splitCell(`col-${level}-winloss`, index % 2 ? ' altercol' : '');
-            }
-        });
-    }
-
-    combineColumns() {
-        this.isAgentLevel ? this.combineToTurnOverColumnAgentLevel() : this.combineToTurnOverColumnSuperMasterLevel();
-        this.levels.forEach((element: string, index: number) => this.combineToWinLossColumn(element, index));
-    }
-
-    combineToTurnOverColumnAgentLevel() {
-        alphaReports.combineConsecutiveCells($('td.col-turnover'), 2, 'text-right col-turnover-combined');
-    }
-
-    combineToTurnOverColumnSuperMasterLevel() {
-        alphaReports.combineConsecutiveCells($('td.col-turnover'), 3, 'text-right col-turnover-combined');
-    }
-
-    combineToWinLossColumn(level: string, index: number) {
-        let cellCss = `text-right col-${level}-winloss-combined`;
-
-        if (level === 'master') {
-            cellCss += index % 2 ? '' : ' altercol';
-        } else {
-            cellCss += index % 2 ? ' altercol' : '';
-        }
-
-        alphaReports.combineConsecutiveCells($(`td.col-${level}-winloss`), 3, cellCss);
-    }
+    // Removed split/combine helpers
 
     getSortedColumnName() {
         const sortedColumn = this.$tableReport.data('sortedcolumn');
         if (!this.isStackMode()) {
             return sortedColumn;
         }
-
         if (sortedColumn === 'GrossComm') {
             return 'Turnover';
         }
@@ -178,6 +180,45 @@
         this.sortComponent.handleDormantAccountsAfterSort();
         this.sortComponent.handleCashFeeDataAfterSort();
     }
+
+    getWinLossSortInfo(): SortInfo {
+        const currentSortedColumn = this.$tableReport.data('sortedcolumn');
+        
+        if (!currentSortedColumn) {
+            return undefined;
+        }
+
+        // Map the sorted column name properly (especially important for stack mode)
+        const mappedColumnName = this.getSortedColumnName();
+        
+        return {
+            sortPropertyName: mappedColumnName,
+            descendingSort: this.$tableReport.data('descendingsort')
+        };
+    }
+
+    private applyStackMode() {
+        // Hide normal body cells and show stack-mode cells
+        this.$tableReport.find('td[data-colname], td.hidden-stack-mode').addClass('hide');
+        this.$tableReport.find('td.visible-stack-mode').removeClass('hide');
+        // Toggle headers: hide normal headers, show stack headers
+        this.$tableReport.find('th.col-level').addClass('hide');
+        this.$tableReport.find('th.visible-stack-mode').removeClass('hide');
+        // Hide visible column selector UI
+        this.winLossColumns.hideInStackMode();
+    }
+
+    private applyNormalMode() {
+        // Hide stack-mode cells and show normal body cells
+        this.$tableReport.find('td.visible-stack-mode').addClass('hide');
+        this.$tableReport.find('td.hidden-stack-mode').removeClass('hide');
+        // Toggle headers: show normal headers, hide stack headers
+        this.$tableReport.find('th.col-level').removeClass('hide');
+        this.$tableReport.find('th.visible-stack-mode').addClass('hide');
+        // Show visible column selector and apply user visibility
+        this.winLossColumns.showInNormalMode();
+        this.winLossColumns.showHideColumns(this.$tableReport);
+    }
 }
 
 $(function () {
@@ -187,6 +228,7 @@ $(function () {
         new MonthPickerComponent(),
         new SingleDropdownComponent(),
         new SortComponent(),
-        new ReportTooltip()
+        new ReportTooltip(),
+        new WinLossColumns(new VisibleColumnComponent())
     ).init();
 });
