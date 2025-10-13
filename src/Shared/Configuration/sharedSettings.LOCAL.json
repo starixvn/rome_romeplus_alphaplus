@@ -150,7 +150,7 @@
         "SystemId": 2
     },
     "SystemId": 2,
-    "IdentityUrl": "http://alphaplus_api_identity_LOCAL_1:5000/",
+    "IdentityUrl": "http://alphaplus-api-identity-local2-service.alphaplus-api.svc.starix.local:5000/",
     "AssetAppPath": "/stcdn",
     "JsVersion": "20250627",
     "AssetsApp:StaticResourcesVersion": "20250627",
