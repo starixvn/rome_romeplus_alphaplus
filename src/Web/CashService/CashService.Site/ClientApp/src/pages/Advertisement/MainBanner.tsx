@@ -176,7 +176,10 @@ const MainBanner = () => {
       isOpen={isOpen}
       onConfirm={onConfirmEnableCashService}
       cashServiceStatus={cashServiceStatus}
-      onDontShowAgain={checkDontShowAgain}
+      onDontShowAgain={()=>{
+        checkDontShowAgain();
+        setIsOpen(false);
+      }}
       nickName={appConfig.nickName}
     />
   );
