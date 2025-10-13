@@ -1,5 +1,18 @@
 {
     "Banners": {
+        "CashService": [
+            {
+                "Name": "CashService",
+                "ImageSource_en-US": "~/assets/images/DashboardBanner/cash_service/desktop/en-US.jpg",
+                "ImageMobileSource_en-US": "~/assets/images/DashboardBanner/cash_service/mobile/en-US.jpg",
+                "ImageSource_zh-CN": "~/assets/images/DashboardBanner/cash_service/desktop/zh-CN.jpg",
+                "ImageMobileSource_zh-CN": "~/assets/images/DashboardBanner/cash_service/mobile/zh-CN.jpg",
+                "ImageSource_zh-TW": "~/assets/images/DashboardBanner/cash_service/desktop/zh-TW.jpg",
+                "ImageMobileSource_zh-TW": "~/assets/images/DashboardBanner/cash_service/mobile/zh-TW.jpg",
+                "ImageSource_th-TH": "~/assets/images/DashboardBanner/cash_service/desktop/th-TH.jpg",
+                "ImageMobileSource_th-TH": "~/assets/images/DashboardBanner/cash_service/mobile/th-TH.jpg"
+            }
+        ],
         "i1": [
             {
                 "Name": "SoccerMarbleSpinner",
@@ -67,19 +80,6 @@
                 "ImageSource_vi-VN": "~/assets/images/DashboardBanner/i7/soccer_marble/desktop/vi-VN.jpg",
                 "ImageMobileSource_vi-VN": "~/assets/images/DashboardBanner/i7/soccer_marble/mobile/vi-VN.jpg"
             }
-        ],
-        "CashService": [
-            {
-                "Name": "CashService",
-                "ImageSource_en-US": "~/assets/images/DashboardBanner/cash_service/desktop/en-US.jpg",
-                "ImageMobileSource_en-US": "~/assets/images/DashboardBanner/cash_service/mobile/en-US.jpg",
-                "ImageSource_zh-CN": "~/assets/images/DashboardBanner/cash_service/desktop/zh-CN.jpg",
-                "ImageMobileSource_zh-CN": "~/assets/images/DashboardBanner/cash_service/mobile/zh-CN.jpg",
-                "ImageSource_zh-TW": "~/assets/images/DashboardBanner/cash_service/desktop/zh-TW.jpg",
-                "ImageMobileSource_zh-TW": "~/assets/images/DashboardBanner/cash_service/mobile/zh-TW.jpg",
-                "ImageSource_th-TH": "~/assets/images/DashboardBanner/cash_service/desktop/th-TH.jpg",
-                "ImageMobileSource_th-TH": "~/assets/images/DashboardBanner/cash_service/mobile/th-TH.jpg"
-            }
-        ]
+        ]        
     }
 }

@@ -33,7 +33,7 @@ namespace AlphaPlus.Main.Site.Features.Dashboard
             }
 
             var cashServiceBanners = GetBannerConfigurationsFromFolder(CASH_SERVICE_BANNERS_SECTION);
-            return bannerConfigurations.Concat(cashServiceBanners);
+            return cashServiceBanners.Concat(bannerConfigurations);
         }
 
         private IEnumerable<BannerConfiguration> GetBannerConfigurationsFromFolder(string folderPath)
