@@ -15,12 +15,16 @@ function TopBannerComponent() {
 
     const handleActivateNow = () => {
         window.postMessage({ type: MESSAGE_TYPES.OPEN_POPUP }, '*');
-        window.postMessage({ type: MESSAGE_TYPES.GO_TO_STEP, step: 4 }, '*');
+        setTimeout(() => {
+            window.postMessage({ type: MESSAGE_TYPES.GO_TO_STEP, step: 4 }, '*');
+        }, 100);
     };
 
     const handleFindOutMore = () => {
         window.postMessage({ type: MESSAGE_TYPES.OPEN_POPUP }, '*');
-        window.postMessage({ type: MESSAGE_TYPES.FIND_OUT_MORE }, '*');
+        setTimeout(() => {
+            window.postMessage({ type: MESSAGE_TYPES.FIND_OUT_MORE }, '*');
+        }, 100);
     };
 
     if (!isOpen) {
