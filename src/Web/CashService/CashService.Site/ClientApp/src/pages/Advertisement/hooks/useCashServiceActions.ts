@@ -17,7 +17,7 @@ export const useCashServiceActions = () => {
     );
 
     if (response.data.isSuccessful) {
-      window.top?.indexManager.showHideCashServiceChecklist(true);
+      window.top?.indexManager?.showHideCashServiceChecklist(true);
       const mainFrame = document.getElementById('main') as HTMLIFrameElement;
       mainFrame.src = homeUrl;
       window.postMessage({ type: MESSAGE_TYPES.CLOSE_ALL_CASH_ADS_POPUP }, '*');
