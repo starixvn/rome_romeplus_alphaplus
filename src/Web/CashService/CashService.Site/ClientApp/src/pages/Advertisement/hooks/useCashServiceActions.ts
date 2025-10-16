@@ -1,9 +1,12 @@
 import { useCallback } from 'react';
 import { axiosInstance, createHeaderXMLHttp } from '../../../services/axios';
+import { MESSAGE_TYPES } from '../constants/advertisement';
 
 declare const appConfig: {
   nickName: string;
 };
+
+declare const homeUrl: string;
 
 export const useCashServiceActions = () => {
   const onConfirmEnableCashService = useCallback(async () => {
@@ -15,7 +18,9 @@ export const useCashServiceActions = () => {
 
     if (response.data.isSuccessful) {
       window.top?.indexManager.showHideCashServiceChecklist(true);
-      window.location.reload();
+      const mainFrame = document.getElementById('main') as HTMLIFrameElement;
+      mainFrame.src = homeUrl;
+      window.postMessage({ type: MESSAGE_TYPES.CLOSE_ALL_CASH_ADS_POPUP }, '*');
     } else {
       alert(response.data.message);
     }

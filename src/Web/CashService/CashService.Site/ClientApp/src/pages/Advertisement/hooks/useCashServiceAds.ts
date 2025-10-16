@@ -9,7 +9,7 @@ export const useCashServiceAds = () => {
 
   const handleMessage = useCallback((event: MessageEvent) => {
     const { type, step } = event.data;
-    
+
     switch (type) {
       case MESSAGE_TYPES.OPEN_POPUP:
         setShouldShowPopup(true);
@@ -27,6 +27,9 @@ export const useCashServiceAds = () => {
       case MESSAGE_TYPES.CLOSE:
         cashServiceAdsRef.current?.close();
         break;
+      case MESSAGE_TYPES.CLOSE_ALL_CASH_ADS_POPUP:
+        setIsOpen(false);
+        break;
     }
   }, []);
 
@@ -35,11 +38,11 @@ export const useCashServiceAds = () => {
     return () => window.removeEventListener('message', handleMessage);
   }, [handleMessage]);
 
-  return { 
-    isOpen, 
-    setIsOpen, 
-    shouldShowPopup, 
-    setShouldShowPopup,
-    cashServiceAdsRef 
+    return {
+      isOpen,
+      setIsOpen,
+      shouldShowPopup,
+      setShouldShowPopup,
+      cashServiceAdsRef
+    };
   };
-};

@@ -53,14 +53,14 @@ interface CashServiceAdsProps {
 export const CashServiceAds = forwardRef<CashServiceAdsRef, CashServiceAdsProps>((props, ref) => {
   const { t } = useTranslation('advertisement');
   const { isOpen, onClose, onConfirm, cashServiceStatus, onDontShowAgain, nickName } = props;
-  
+
   const [contentFrame, setContentFrame] = useState<string>(CONTENT_FRAME.MAIN);
   const [currentStep, setCurrentStep] = useState(0);
-  
+
   const imagePath = `${cashServiceUrl}assets/images/cash-service-ads/`;
   const bannerPath = useMemo(() => `${imagePath}BannerPC.jpg`, [imagePath]);
 
-  const stepConfigs = useMemo(() => 
+  const stepConfigs = useMemo(() =>
     STEP_CONFIGS.map((config: StepConfig) => ({
       ...config,
       className: config.className ? styles[config.className] : undefined,
@@ -68,7 +68,7 @@ export const CashServiceAds = forwardRef<CashServiceAdsRef, CashServiceAdsProps>
     })), [t]
   );
 
-  const steps = useMemo(() => 
+  const steps = useMemo(() =>
     stepConfigs.map((config) => (
       <div key={config.id}>
         <div className={styles['step-title']}>{t(config.title)}</div>
@@ -129,7 +129,7 @@ export const CashServiceAds = forwardRef<CashServiceAdsRef, CashServiceAdsProps>
       <div className={styles.popup}>
         <CloseButton onClose={onClose} nickName={nickName} />
         <BannerImage src={bannerPath} />
-        <ContentRenderer 
+        <ContentRenderer
           contentFrame={contentFrame}
           cashServiceStatus={cashServiceStatus}
           actions={actions}
@@ -176,7 +176,7 @@ const MainBanner = () => {
       isOpen={isOpen}
       onConfirm={onConfirmEnableCashService}
       cashServiceStatus={cashServiceStatus}
-      onDontShowAgain={()=>{
+      onDontShowAgain={() => {
         checkDontShowAgain();
         setIsOpen(false);
       }}

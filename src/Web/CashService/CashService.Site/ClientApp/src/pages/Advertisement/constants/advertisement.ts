@@ -46,7 +46,8 @@ export const MESSAGE_TYPES = {
   FIND_OUT_MORE: 'triggerFindOutMore',
   ACTIVATE_NOW: 'triggerActivateNow',
   GO_TO_STEP: 'triggerGoToStep',
-  CLOSE: 'triggerClose'
+  CLOSE: 'triggerClose',
+  CLOSE_ALL_CASH_ADS_POPUP: 'closeAllCashAdsPopup'
 } as const;
 
 export const CONTENT_FRAME = {
