@@ -28,7 +28,7 @@ function TopBannerComponent() {
     }
 
     return (
-        <div className={styleTopBanner['cash-service-banner']}>
+        <div className={styleTopBanner['cash-service-banner'] + ' has-banner'}>
             <span className={styleTopBanner['exclusively']}>
                 <img src="assets/images/lightning.png" />
                 <span>{t('ExclusivelyForYou')}</span>
