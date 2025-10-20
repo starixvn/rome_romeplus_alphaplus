@@ -20,11 +20,6 @@
             this.ShowDetailsPopup(params);
         };
 
-        public ShowSabaClubDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
-            const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, 'Saba.games');
-            this.ShowDetailsPopup(params);
-        };
-
         public ShowMacauGamesDetails = (refNo: string, winlossDate: Date, custId: string, transType: string) => {
             const params = this.CreatePopupDetailsParam(refNo, winlossDate, custId, transType, 'Macau Games');
             this.ShowDetailsPopup(params);
@@ -1341,7 +1336,6 @@ let showSGJackpotWonDetails: Function;
 let showVideoPokerGameDetails: Function;
 let showSGDetails: Function;
 let showPGSoftDetails: Function;
-let showSabaClubDetails: Function;
 let showVGamingDetails: Function;
 let showBBINBetDetails: Function;
 let showRNGWARBetDetails: Function;
@@ -1394,7 +1388,6 @@ $(function () {
     showSGDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.showSGDetails;
     showPGSoftDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.showPGSoftDetails;
     showSexyGamingBetDetails = BetList.Choice.TicketDetails.SexyGamingTicketDetails.Instance.ShowSexyGamingBetDetails;
-    showSabaClubDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowSabaClubDetails;
     showVGamingDetails = BetList.Choice.TicketDetails.CasinoTicketDetails.Instance.ShowVGamingDetails;
     showSAGamingDetails = BetList.Choice.TicketDetails.SAGamingTicketDetails.Instance.ShowSAGamingBetDetails;
     showGTCasinoBetsDetails = BetList.Choice.TicketDetails.GTCasinoTicketDetails.Instance.ShowGTCasinoBetDetails;

@@ -28,12 +28,6 @@
     "SiteId": 3100100,
     "Debug": 0
   },
-  "SabaClubConfigs": {
-    "Url": "http://10.40.40.248:8103/api/SabaClubInternal/GetTicketResult",
-    "Login": "Login",
-    "Password": "U1YwYm1IbGpSeVdMeWhTaE1Ia1I3QT09",
-    "Debug": 0
-  },
   "MaxGameResultConfigs": {
     "Url": "http://10.40.40.248:7020/api/MaxGameInternal/GetBetHistoryUrl",
     "VendorId": 60,

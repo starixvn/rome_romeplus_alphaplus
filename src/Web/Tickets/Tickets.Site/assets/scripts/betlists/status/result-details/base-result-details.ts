@@ -6,7 +6,6 @@
         private static bbinResult: ResultDetails;
         private static rngCasinoResult: ResultDetails;
         private static fishingWorldResult: ResultDetails;
-        private static macauGamesResult: ResultDetails;
         private static fastMarketsResult: ResultDetails;
         private static ppResult: ResultDetails;
         private static spadegamingResult: ResultDetails;
@@ -14,7 +13,6 @@
         private static virtualGamesResult: ResultDetails;
         private static RNGWarResult: ResultDetails;
         private static IONCasinoResult: ResultDetails;
-        private static SabaClubResult: ResultDetails;
         private static PGSoftCasinoResult: ResultDetails;
         private static JokerResult: ResultDetails;
         private static LeapGamingResult: ResultDetails;
@@ -72,13 +70,6 @@
                     ? new FishingWorldResultDetails()
                     : this.fishingWorldResult;
                 return this.fishingWorldResult;
-            }
-
-            if ((betTypeId >= 1611 && betTypeId <= 1699) || (betTypeId >= 13200 && betTypeId <= 13499)) {
-                this.SabaClubResult = Common.Utils.IsNullOrUndefinedOrEmpty(this.SabaClubResult)
-                    ? new SabaClubResultDetails()
-                    : this.SabaClubResult;
-                return this.SabaClubResult;
             }
 
             if ((betTypeId >= 2101 && betTypeId <= 2399) || (betTypeId >= 2901 && betTypeId <= 2999)) {
