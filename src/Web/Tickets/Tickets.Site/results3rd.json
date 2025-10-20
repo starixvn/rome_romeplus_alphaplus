@@ -3,7 +3,7 @@
     {
       "Name": "Saba.games",
       "SportTypeId": 200,
-      "Url": "http://sabagames.gamora.prod/api/SabaClubInternal/GetBetHistoryUrl",
+      "Url": "http://saba-wallet-group-005.3rd-party.klt2p.gamora.prod:32280/api/SabaClubInternal",
       "Debug": 0
     },
     {
