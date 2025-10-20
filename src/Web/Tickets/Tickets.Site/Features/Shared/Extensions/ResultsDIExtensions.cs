@@ -30,6 +30,6 @@ public static class ResultsDIExtensions
             .AddScoped<ILotteryResult>(_ => new LotteryResult(configuration.GetSection("LotteryResultConfigs").Get<KenoLotteryTGConfigs>()))
             .AddScoped<ITableGamesResult>(_ => new TableGamesResult(configuration.GetSection("TableGameResultConfigs").Get<KenoLotteryTGConfigs>()))
             .AddScoped<ISportsLotteryResult>(_ => new SportsLotteryResult(configuration.GetSection("SportsLotteryResultConfigs").Get<SportsLotteryConfigs>()))
-            .AddScoped<IVirtualGamesResult>(_ => new VirtualGamesResult(configuration.GetSection("VirtualGamesResultConfigs").Get<KenoLotteryTGConfigs>()))
+            .AddScoped<IVirtualGamesResult>(_ => new VirtualGamesResult(configuration.GetSection("VirtualGamesResultConfigs").Get<KenoLotteryTGConfigs>()));
     }
 }
