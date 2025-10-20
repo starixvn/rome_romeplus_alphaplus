@@ -156,7 +156,7 @@
     "AssetsApp:StaticResourcesVersion": "20250415",
     "LocalTest": true,
     "SettingStatus": 0,
-    "ProductOfferProductDetail": [1, 21, 32, 36, 45, 73, 79, 87, 66, 89, 103, 102, 95, 107, 108, 114],
+    "ProductOfferProductDetail": [1, 21, 32, 36, 45, 73, 79, 87, 66, 89, 103, 102, 95, 107, 108],
     "ForcedHideProductIds": "25",
     "SiteLabel": "MBC",
     "SiteLabel789y": "789y",
