@@ -341,47 +341,6 @@
         };
     }
 
-    export class SabaClubResultDetails extends BaseResultDetails implements ResultDetails {
-        public ViewResultDetails = (
-            matchId?: number,
-            race?: number,
-            betTypeId?: number,
-            sportTypeId?: number,
-            refNo?: string,
-            userName?: string,
-            winLostDate?: Date,
-            refNoMixParlay?: number,
-            league?: number,
-            isOutright?: boolean,
-            betId?: number,
-            matchCode?: string,
-            transDesc?: number,
-            betcheck?: string
-        ) => {
-            const params = [
-                '?custId=',
-                transDesc || this.CustId,
-                '&roleId=',
-                this.ViewerLevelId,
-                '&gameRoundId=',
-                betcheck,
-                '&gameId=',
-                betTypeId,
-                '&sportId=',
-                sportTypeId,
-                '&siteId=',
-                matchCode,
-                '&productId=42'
-            ].join('');
-            Common.PopupDetails.Instance(window.top).Show(
-                Common.AppPath.TicketsAppPath + 'Results/SabaClubResult' + params,
-                '',
-                835,
-                675
-            );
-        };
-    }
-
     export class PGSoftCasinoResultDetails extends BaseResultDetails implements ResultDetails {
         public ViewResultDetails = (
             matchId?: number,
