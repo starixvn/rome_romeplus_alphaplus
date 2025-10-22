@@ -32,7 +32,7 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: useHash ? 'dist' : 'dist/fixed',
       assetsDir: '',
-      cssCodeSplit: false,
+      cssCodeSplit: useHash ? false : true,
       rollupOptions: {
         input: {
           memberSites: 'src/pages/MemberSites/index.tsx',
@@ -48,7 +48,7 @@ export default defineConfig(({ mode }) => {
           mainBanner: 'src/pages/Advertisement/MainBanner.tsx',
         },
         output: {
-          assetFileNames: useHash ? 'index-[hash][extname]' : 'index[extname]',
+          assetFileNames: useHash ? 'index-[hash][extname]' : '[name][extname]',
           entryFileNames: useHash ? '[name]-[hash].js' : '[name].js',
           chunkFileNames: useHash ? '[name]-[hash].js' : '[name].js',
         },
