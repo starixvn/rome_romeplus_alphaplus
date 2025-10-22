@@ -14,10 +14,12 @@ namespace Fanex.Alpha.Before.Helpers
     public class FPSHelper : IFPSHelper
     {
         private readonly ILogger logger;
+        private readonly FPS.Client.NetCore.Service fpsClient;
 
         public FPSHelper(ILogger logger)
         {
             this.logger = logger;
+            this.fpsClient = new FPS.Client.NetCore.Service();
         }
 
         public void FPSTracking(HttpRequest request, SignInResult loginResult)
@@ -27,8 +29,7 @@ namespace Fanex.Alpha.Before.Helpers
                 if (!AppSetting.IsEnableFPS)
                 {
                     return;
-                }
-                var fpsClient = new FPS.Client.NetStandard.Service();
+                }                               
 
                 fpsClient
                     .InitialRequest(AppSetting.FpsApi, request)
@@ -54,8 +55,10 @@ namespace Fanex.Alpha.Before.Helpers
                     return "N/A";
                 }
 
-                var fpsClient = new FPS.Client.NetStandard.Service().InitialRequest(AppSetting.FpsApi, request);
-                var deviceId = fpsClient.GetDeviceID();
+                var deviceId = fpsClient
+                    .InitialRequest(AppSetting.FpsApi, request)
+                    .GetDeviceID();
+
                 return deviceId;
 
             }

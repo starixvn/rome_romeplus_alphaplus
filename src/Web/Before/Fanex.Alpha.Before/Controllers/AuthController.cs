@@ -60,7 +60,7 @@ public class AuthController : Controller
         loginResult.ErrCode = !string.IsNullOrWhiteSpace(r) ? SignInErrorContants.ServerError : loginResult.ErrCode;
         loginResult.ErrMsg = !string.IsNullOrWhiteSpace(r) ? WebUtility.UrlDecode(r) : loginResult.ErrMsg;
 
-        ViewBag.FPSToken = FPS.Client.NetStandard.Token.Generate();
+        ViewBag.FPSToken = FPS.Client.NetCore.Token.Generate();
         AssignDarkModeNameViewData();
 
         return View(loginResult);
@@ -76,7 +76,7 @@ public class AuthController : Controller
         string browserSize)
     {
         AssignSettingLanguage(hidLanguage);
-        ViewBag.FPSToken = FPS.Client.NetStandard.Token.Generate();
+        ViewBag.FPSToken = FPS.Client.NetCore.Token.Generate();
         var model = new SignInModel(
             txtUserName,
             txtPassWord,

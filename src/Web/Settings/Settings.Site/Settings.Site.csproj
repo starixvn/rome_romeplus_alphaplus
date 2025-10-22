@@ -20,6 +20,10 @@
     <PackageReference Include="Fanex.Customer.Client" Version="1.0.3.7" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.7" />
     <PackageReference Include="Fanex.Cryptography.Aes" Version="1.0.0.6" />
+    <PackageReference Include="Microsoft.TypeScript.MSBuild" Version="5.9.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="QRCoder" Version="1.4.3" />
     <PackageReference Include="ONEbook.SpreadSheets" Version="2.0.0-netstandard01" />
     <PackageReference Include="ONEbook.SpreadSheets.NPOI" Version="1.0.0.3" />
