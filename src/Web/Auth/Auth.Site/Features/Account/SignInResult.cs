@@ -79,5 +79,7 @@ namespace AlphaPlus.Auth.Site.Features.Account
         public int[] OfferedProductGroupIds { get; set; }
 
         public string DCSStaticAppPath { get; set; }
+
+        public string DeviceId { get; set; }
     }
 }

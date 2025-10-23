@@ -96,7 +96,8 @@ public class AccountController(
             RequestInfo = requestInfo,
             DarkModeName = param.DarkModeName,
             AssetAppPath = param.AssetAppPath,
-            DCSStaticAppPath = param.DCSStaticAppPath
+            DCSStaticAppPath = param.DCSStaticAppPath,
+            DeviceId = param.DeviceId
         });
 
         if (signInResult.IsSuccessful)

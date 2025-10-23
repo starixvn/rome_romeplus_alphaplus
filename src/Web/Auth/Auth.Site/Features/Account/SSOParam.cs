@@ -23,5 +23,7 @@ namespace AlphaPlus.Auth.Site.Features.Account
         public string AssetAppPath { get; set; }
 
         public string DCSStaticAppPath { get; set; }
+
+        public string DeviceId { get; set; }
     }
 } 

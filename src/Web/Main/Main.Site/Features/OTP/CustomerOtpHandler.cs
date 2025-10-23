@@ -1,5 +1,6 @@
 ﻿using AlphaPlus.Core.Helpers;
 using AlphaPlus.Core.Models;
+using AlphaPlus.Main.Site.Features.CustomerProfile;
 using AlphaPlus.Main.Site.Features.TelegramChatBot;
 using AlphaPlus.Main.Site.Shared.Models;
 using AlphaPlus.SecurityCode.Services;
@@ -40,6 +41,7 @@ namespace AlphaPlus.Main.Site.Features.OTP
         private readonly ISecurityCodeChecker securityCodeChecker;
         private readonly IOTPService telegramOTPService;
         private readonly ILogger logger;
+        private readonly IProfilePictureService customerProfileService;
 
         public CustomerOtpHandler(
             ICustomerOtpService customerOtpService,
@@ -50,7 +52,8 @@ namespace AlphaPlus.Main.Site.Features.OTP
             ISettingService telegramSettingService,
             ISecurityCodeChecker securityCodeChecker,
             IOTPService telegramOTPService,
-            ILogger logger)
+            ILogger logger,
+            IProfilePictureService customerProfileService)
         {
             this.customerOtpService = customerOtpService;
             this.userSession = userSession;
@@ -61,6 +64,7 @@ namespace AlphaPlus.Main.Site.Features.OTP
             this.securityCodeChecker = securityCodeChecker;
             this.telegramOTPService = telegramOTPService;
             this.logger = logger;
+            this.customerProfileService = customerProfileService;
         }
 
         public async Task<Result> Handle(ChangeOtpStatusCommand request, CancellationToken cancellationToken)
@@ -155,16 +159,27 @@ namespace AlphaPlus.Main.Site.Features.OTP
             return result;
         }
 
-        public Task<VerifyOtpDifferenceDeviceViewModel> Handle(VerifyOtpDifferentDeviceQuery request, CancellationToken cancellationToken)
+        public async Task<VerifyOtpDifferenceDeviceViewModel> Handle(VerifyOtpDifferentDeviceQuery request, CancellationToken cancellationToken)
         {
+            var profile = await customerProfileService.GetActorProfilePicture(userSession.CustId);
 
-            return Task.FromResult(new VerifyOtpDifferenceDeviceViewModel
+            if (profile == null || string.IsNullOrEmpty(profile.ImageBase64String))
+            {
+                var result = await customerProfileService.UpdateActorProfilePicture(
+                    new UpdateActorProfilePictureParam(userSession.CustId, userSession.UserLoginIp));
+
+                profile = result.IsOk ? await customerProfileService.GetActorProfilePicture(userSession.CustId) : new ActorProfilePictureModel();
+            }
+            return new VerifyOtpDifferenceDeviceViewModel
             {
                 Username = request.UserName,
                 AlternateUsername = BuildAlternateUsername(request.IsSubAcc, request.SubUserName, request.NickName),
                 UsernameShower = BuildUsernameShower(request.IsSubAcc, request.SubUserName, request.NickName, request.UserName),
-                IsShowGenerateOTPButton = user.IsEnabledTelegramOTP
-            });
+                IsShowGenerateOTPButton = user.IsEnabledTelegramOTP,
+                IsDefaultAvatar = string.IsNullOrEmpty(profile.ImageBase64String),
+                EmbedImage = profile.ImageBase64String,
+                ProfileImageId = profile.ImageId
+            };
         }
 
         public async Task<Result> Handle(VerifyOtpCommand request, CancellationToken cancellationToken)

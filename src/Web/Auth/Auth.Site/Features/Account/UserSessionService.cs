@@ -127,6 +127,8 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
 
         userSession.SetProperty("languageusage", !string.IsNullOrWhiteSpace(signInResult.LanguageUsage) ? GetUserLanguage(signInResult.LanguageUsage) : signInResult.LanguageUsage);
         SetCookieLanguage(userSession.Language);
+
+        userSession.SetProperty("ProcessAfterLogin_Handler.DeviceIdSessionKey", signInResult.DeviceId);
     }
 
     private static string GetUserLanguage(string langCodeUsage)
