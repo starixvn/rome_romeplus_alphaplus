@@ -70,8 +70,8 @@
         <Setting Key="Acc_CustomerUpdLocked" SpName="Acc_CustomerUpdLocked" DbName="DBCUST.CustDB.wsv_alpv" Plain="0" />
         <Setting Key="Age_GetIsAllDayBalTransfer" SpName="Age_GetIsAllDayBalTransfer" DbName="DBCUST.CustDB.wsv_alpv" Plain="0" />
         <Setting Key="Age_ClearBalanceCust_SettingUpdate_Downline" SpName="Age_ClearBalanceCust_SettingUpdate_Downline" DbName="DBCUST.CustDB.wsv_alpv" Plain="0" />
-        <Setting Key="Acc_CustomerRemarkSel" SpName="Acc_CustomerRemarkSel_UAT1" DbName="DBCust.CustDB.wsv_alpv" Plain="0" />
-        <Setting Key="Acc_CustomerRemarkUpd" SpName="Acc_CustomerRemarkUpd_UAT1" DbName="DBCust.CustDB.wsv_alpv" Plain="0" />
+        <Setting Key="Acc_CustomerRemarkSel" SpName="Acc_CustomerRemarkSel" DbName="DBCUST.CustDB.wsv_alpv" Plain="0" />
+        <Setting Key="Acc_CustomerRemarkUpd" SpName="Acc_CustomerRemarkUpd" DbName="DBCUST.CustDB.wsv_alpv" Plain="0" />
     </Function>
     <Function Name="Unsuspend Downlines">
         <Setting Key="Acc_Customer_SuspendInfoSel" SpName="Acc_Customer_SuspendInfoSel" DbName="DBCUST.CustDB.wsv_alpv" Plain="0">
@@ -114,7 +114,7 @@
         <Setting Key="Age_CustSubPageAccessSel" SpName="Age_CustSubPageAccessSel" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
     </Function>
     <Function Name="Account Info">
-        <Setting Key="Age_CustomerSelAllInfo" SpName="Age_CustomerSelAllInfo_UAT1" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
+        <Setting Key="Age_CustomerSelAllInfo" SpName="Age_CustomerSelAllInfo" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
         <Setting Key="Age_CustomerSelAllStatus" SpName="Age_CustomerSelAllStatus" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
         <Setting Key="Age_CustomerSelUserSearch" SpName="Age_CustomerSelUserSearch" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
         <Setting Key="Acc_CustomerSelTotalDownline" SpName="Acc_CustomerSelTotalDownline" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
