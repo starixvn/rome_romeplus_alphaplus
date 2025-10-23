@@ -38,7 +38,7 @@ namespace AlphaPlus.Main.Site.Features.Default
                 return RedirectToAction("Index", "Nickname");
             }
 
-            if (await mediator.Send(new CheckDifferenceDeviceCommand(this.userSession)))
+            if (!userSession.IsInternal && !userSession.IsIndirectLoggedIn && await mediator.Send(new CheckDifferenceDeviceCommand(this.userSession)))
             {
                 return Redirect(OtpVerifyDifferenceDevicePath);
             }
