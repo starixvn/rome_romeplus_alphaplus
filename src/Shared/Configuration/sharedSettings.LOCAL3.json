@@ -145,8 +145,8 @@
     "RedisConfiguration": "10.18.200.194:16410,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged,connectTimeout=6300",
     "RemotingRefUrl": "http://remotingref-api-core.nexdev.net/",
     "Fanex.Customer": {
-        "ServiceUri": "https://customer.klc.nexdev.net/main/api/",
-        "CdnUri": "https://cdn-customer.klc.nexdev.net/main/",
+        "ServiceUri": "https://customer.klc.nexdev.net/local3/api/",
+        "CdnUri": "https://cdn-customer.klc.nexdev.net/v3/",
         "SystemId": 2
     },
     "SystemId": 2,
@@ -155,7 +155,7 @@
     "JsVersion": "20250415",
     "AssetsApp:StaticResourcesVersion": "20250415",
     "LocalTest": true,
-    "SettingStatus": 1,
+    "SettingStatus": 3,
     "ProductOfferProductDetail": [
         1,
         21,
