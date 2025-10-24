@@ -46,9 +46,9 @@
         {
             <td class="visible-stack-mode combinedcell col-turnover-combined">
                 <ul>
-                    <li class="@(Model.IsNegative(winLossDetail.Turnover.RoundTo2()) ? "format-negative" : string.Empty)">@winLossDetail.Turnover.FormatNumber()</li>
-                    <li class="@(Model.IsNegative(winLossDetail.NetTurnover.RoundTo2()) ? "format-negative" : string.Empty)">@winLossDetail.NetTurnover.FormatNumber()</li>
-                    <li class="@(Model.IsNegative(winLossDetail.GrossComm.RoundTo2()) ? "format-negative" : string.Empty)">@winLossDetail.GrossComm.FormatNumber()</li>
+                    <li class="@(Model.IsNegative(winLossDetail.Turnover) ? "format-negative" : string.Empty)">@winLossDetail.Turnover</li>
+                    <li class="@(Model.IsNegative(winLossDetail.NetTurnover) ? "format-negative" : string.Empty)">@winLossDetail.NetTurnover</li>
+                    <li class="@(Model.IsNegative(winLossDetail.GrossComm) ? "format-negative" : string.Empty)">@winLossDetail.GrossComm</li>
                 </ul>
             </td>
             RenderStackNetWinLoss("member", winLossDetail.MemberWinLoss, winLossDetail.MemberComm, winLossDetail.MemberTotal);
@@ -58,44 +58,44 @@
         }
         else
         {
-            <td class="hidden-stack-mode col-turnover @(Model.IsNegative(winLossDetail.Turnover.RoundTo2()) ? "format-negative" : string.Empty)">
-                @winLossDetail.Turnover.FormatNumber()
+            <td class="hidden-stack-mode col-turnover @(Model.IsNegative(winLossDetail.Turnover) ? "format-negative" : string.Empty)">
+                @winLossDetail.Turnover
             </td>
-            <td class="hidden-stack-mode col-net-turnover @(Model.IsNegative(winLossDetail.NetTurnover.RoundTo2()) ? "format-negative" : string.Empty)">
-                @winLossDetail.NetTurnover.FormatNumber()
+            <td class="hidden-stack-mode col-net-turnover @(Model.IsNegative(winLossDetail.NetTurnover) ? "format-negative" : string.Empty)">
+                @winLossDetail.NetTurnover
             </td>
-            <td class="hidden-stack-mode col-gross-com @(Model.IsNegative(winLossDetail.GrossComm.RoundTo2()) ? "format-negative" : string.Empty)">
-                @winLossDetail.GrossComm.FormatNumber()
+            <td class="hidden-stack-mode col-gross-com @(Model.IsNegative(winLossDetail.GrossComm) ? "format-negative" : string.Empty)">
+                @winLossDetail.GrossComm
             </td>
             RenderNetWinLoss("member", winLossDetail.MemberWinLoss, winLossDetail.MemberComm, winLossDetail.MemberTotal);
             RenderNetWinLoss("agent", winLossDetail.AgWinLoss, winLossDetail.AgComm, winLossDetail.AgTotal);
             RenderNetWinLoss("master", winLossDetail.MAgWinLoss, winLossDetail.MAgComm, winLossDetail.MAgTotal);
             RenderNetWinLoss("super", winLossDetail.SAgWinLoss, winLossDetail.SAgComm, winLossDetail.SAgTotal);
         }
-        <td class="text-right col-company @(Model.IsNegative(winLossDetail.Company.RoundTo2()) ? "format-negative" : string.Empty)">@winLossDetail.Company.FormatNumber()</td>
+        <td class="text-right col-company @(Model.IsNegative(winLossDetail.Company) ? "format-negative" : string.Empty)">@winLossDetail.Company</td>
     }
 
     void RenderStackNetWinLoss(string levelName, decimal winLoss, decimal comm, decimal total)
     {
         <td class="visible-stack-mode combinedcell col-@levelName-winloss-combined">
             <ul>
-                <li class="@(Model.IsNegative(winLoss.RoundTo2()) ? "format-negative" : string.Empty)">@winLoss.FormatNumber()</li>
-                <li class="@(Model.IsNegative(comm.RoundTo2()) ? "format-negative" : string.Empty)">@comm.FormatNumber()</li>
-                <li class="@(Model.IsNegative(total.RoundTo2()) ? "format-negative" : string.Empty)">@total.FormatNumber()</li>
+                <li class="@(Model.IsNegative(winLoss) ? "format-negative" : string.Empty)">@winLoss</li>
+                <li class="@(Model.IsNegative(comm) ? "format-negative" : string.Empty)">@comm</li>
+                <li class="@(Model.IsNegative(total) ? "format-negative" : string.Empty)">@total</li>
             </ul>
         </td>
     }
 
     void RenderNetWinLoss(string levelName, decimal winLoss, decimal comm, decimal total)
     {
-        <td class="hidden-stack-mode col-@levelName-winloss @(Model.IsNegative(winLoss.RoundTo2()) ? "format-negative" : string.Empty)">
-            @winLoss.FormatNumber()
+        <td class="hidden-stack-mode col-@levelName-winloss @(Model.IsNegative(winLoss) ? "format-negative" : string.Empty)">
+            @winLoss
         </td>
-        <td class="hidden-stack-mode @(Model.IsNegative(comm.RoundTo2()) ? "format-negative" : string.Empty)">
-            @comm.FormatNumber()
+        <td class="hidden-stack-mode @(Model.IsNegative(comm) ? "format-negative" : string.Empty)">
+            @comm
         </td>
-        <td class="hidden-stack-mode bold col-cust-total @(Model.IsNegative(total.RoundTo2()) ? "format-negative" : string.Empty)">
-            @total.FormatNumber()
+        <td class="hidden-stack-mode bold col-cust-total @(Model.IsNegative(total) ? "format-negative" : string.Empty)">
+            @total
         </td>
     }
 }

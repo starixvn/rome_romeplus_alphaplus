@@ -12,10 +12,10 @@
     ViewData["Title"] = "Commission By Bet Type";
     void RenderCellValue(CommissionByBetTypeModel commission)
     {
-        <td class="@(Model.IsNegative(commission.Comm1.RoundTo2()) ? "format-negative" : string.Empty)">@commission.Comm1.FormatNumber()</td>
-        <td class="@(Model.IsNegative(commission.Comm2.RoundTo2()) ? "format-negative" : string.Empty)">@commission.Comm2.FormatNumber()</td>
-        <td class="@(Model.IsNegative(commission.Comm3.RoundTo2()) ? "format-negative" : string.Empty)">@commission.Comm3.FormatNumber()</td>
-        <td class="@(Model.IsNegative(commission.CasinoComm.RoundTo2()) ? "format-negative" : string.Empty)">@commission.CasinoComm.FormatNumber()</td>
+        <td class="@(Model.IsNegative(commission.Comm1) ? "format-negative" : string.Empty)">@commission.Comm1.FormatNumber()</td>
+        <td class="@(Model.IsNegative(commission.Comm2) ? "format-negative" : string.Empty)">@commission.Comm2.FormatNumber()</td>
+        <td class="@(Model.IsNegative(commission.Comm3) ? "format-negative" : string.Empty)">@commission.Comm3.FormatNumber()</td>
+        <td class="@(Model.IsNegative(commission.CasinoComm) ? "format-negative" : string.Empty)">@commission.CasinoComm.FormatNumber()</td>
     }
 
     var colindex = 0;

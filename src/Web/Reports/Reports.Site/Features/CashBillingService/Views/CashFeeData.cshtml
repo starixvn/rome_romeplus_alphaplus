@@ -21,8 +21,8 @@
 			<td class="text-left">@item.DisplayType</td>
 			<td></td>
 			<td class="@(Model.IsNegative(item.Count) ? "format-negative" : string.Empty)">@item.Count.FormatNumber()</td>
-			<td class="@(Model.IsNegative(item.Agent.RoundTo2()) ? "format-negative" : string.Empty)">@item.Agent.FormatNumber()</td>
-			<td class="@(Model.IsNegative(item.Company.RoundTo2()) ? "format-negative" : string.Empty)">@item.Company.FormatNumber()</td>
+			<td class="@(Model.IsNegative(item.Agent) ? "format-negative" : string.Empty)">@item.Agent.FormatNumber()</td>
+			<td class="@(Model.IsNegative(item.Company) ? "format-negative" : string.Empty)">@item.Company.FormatNumber()</td>
 		</tr>
 	}
 
@@ -30,10 +30,10 @@
 	{
 		<tr>
 			<td class="text-left feeitem">@item.DisplayType</td>
-			<td class="@(Model.IsNegative(item.Fee.RoundTo2()) ? "format-negative" : string.Empty)">@item.Fee.FormatNumber() </td>
+			<td class="@(Model.IsNegative(item.Fee) ? "format-negative" : string.Empty)">@item.Fee.FormatNumber() </td>
 			<td class="@(Model.IsNegative(item.Count) ? "format-negative" : string.Empty)">@item.Count.FormatNumber() </td>
-			<td class="@(Model.IsNegative(item.Agent.RoundTo2()) ? "format-negative" : string.Empty)">@item.Agent.FormatNumber()</td>
-			<td class="@(Model.IsNegative(item.Company.RoundTo2()) ? "format-negative" : string.Empty)">@item.Company.FormatNumber()</td>
+			<td class="@(Model.IsNegative(item.Agent) ? "format-negative" : string.Empty)">@item.Agent.FormatNumber()</td>
+			<td class="@(Model.IsNegative(item.Company) ? "format-negative" : string.Empty)">@item.Company.FormatNumber()</td>
 		</tr>
 	}
 }

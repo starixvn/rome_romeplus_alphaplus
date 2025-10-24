@@ -19,7 +19,7 @@
                 @(isTotalRow ? Resources.Total : data.RollupKey)
             </td>
             <td>@data.BetCount.FormatNumber()</td>
-            <td class="@(Model.IsNegative(data.Turnover.RoundTo2()) ? "format-negative" : string.Empty)">@data.Turnover.FormatNumber()</td>
+            <td class="@(Model.IsNegative(data.Turnover) ? "format-negative" : string.Empty)">@data.Turnover.FormatNumber()</td>
             @if (Model.PageHeader.IsStackMode)
             {
                 RenderStackNetWinLoss("member", data.MemberWinLoss, data.MemberComm, data.MemberTotal);
@@ -54,22 +54,22 @@
     {
         <td class="visible-stack-mode combinedcell col-@level-winloss-combined @className">
             <ul>
-                <li class="@(Model.IsNegative(winloss.RoundTo2()) ? "format-negative" : string.Empty)">@winloss.FormatNumber()</li>
-                <li class="@(Model.IsNegative(comm.RoundTo2()) ? "format-negative" : string.Empty)">@comm.FormatNumber()</li>
-                <li class="@(Model.IsNegative(total.RoundTo2()) ? "format-negative" : string.Empty)">@total.FormatNumber()</li>
+                <li class="@(Model.IsNegative(winloss) ? "format-negative" : string.Empty)">@winloss.FormatNumber()</li>
+                <li class="@(Model.IsNegative(comm) ? "format-negative" : string.Empty)">@comm.FormatNumber()</li>
+                <li class="@(Model.IsNegative(total) ? "format-negative" : string.Empty)">@total.FormatNumber()</li>
             </ul>
         </td>
     }
 
     void RenderNetWinLoss(string level, decimal winloss, decimal comm, decimal total, string className = "")
     {
-        <td class="hidden-stack-mode col-@level-winloss @className @(Model.IsNegative(winloss.RoundTo2()) ? "format-negative" : string.Empty)">
+        <td class="hidden-stack-mode col-@level-winloss @className @(Model.IsNegative(winloss) ? "format-negative" : string.Empty)">
             @winloss.FormatNumber()
         </td>
-        <td class="hidden-stack-mode @className @(Model.IsNegative(comm.RoundTo2()) ? "format-negative" : string.Empty)">
+        <td class="hidden-stack-mode @className @(Model.IsNegative(comm) ? "format-negative" : string.Empty)">
             @comm.FormatNumber()
         </td>
-        <td class="hidden-stack-mode bold @className @(Model.IsNegative(total.RoundTo2()) ? "format-negative" : string.Empty)">
+        <td class="hidden-stack-mode bold @className @(Model.IsNegative(total) ? "format-negative" : string.Empty)">
             @total.FormatNumber()
         </td>
     }

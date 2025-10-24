@@ -66,5 +66,13 @@ public class OutstandingViewModel(
         return queryParams;
     }
 
-    public bool IsNegative(decimal? cellValue) => cellValue.HasValue && cellValue.Value < 0;
+    public bool IsNegative(decimal? cellValue) 
+    {
+        if (!cellValue.HasValue) 
+        {
+            return false;
+        }
+        var rounded = Math.Round(cellValue.Value, 2, MidpointRounding.AwayFromZero);
+        return rounded < 0;
+    }
 }
