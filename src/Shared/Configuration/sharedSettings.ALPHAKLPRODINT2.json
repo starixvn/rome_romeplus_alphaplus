@@ -89,17 +89,17 @@
         },
         {
             "Name": "DBSITE01.bodb02.wsv_alpv",
-            "ConnectionString": "packet size=4096;Initial Catalog=bodb02;integrated security=false; user id=wsv_alpv; password=PXf2SBfRUQy8FX4nLKHkrJ9Y9GtDtpJCaj335Qs3Yws==; TrustServerCertificate=True;",
+            "ConnectionString": "packet size=4096; Data Source=10.146.11.160;Initial Catalog=bodb02;integrated security=false; user id=wsv_alpv; password=PXf2SBfRUQy8FX4nLKHkrJ9Y9GtDtpJCaj335Qs3Yws==; TrustServerCertificate=True;",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBSITE02.bodb02.wsv_alpv",
-            "ConnectionString": "packet size=4096;Initial Catalog=bodb02;integrated security=false; user id=wsv_alpv; password=PXf2SBfRUQy8FX4nLKHkrJ9Y9GtDtpJCaj335Qs3Yws==; TrustServerCertificate=True;",
+            "ConnectionString": "packet size=4096; Data Source=10.146.11.161;Initial Catalog=bodb02;integrated security=false; user id=wsv_alpv; password=PXf2SBfRUQy8FX4nLKHkrJ9Y9GtDtpJCaj335Qs3Yws==; TrustServerCertificate=True;",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBSITE03.bodb02.wsv_alpv",
-            "ConnectionString": "packet size=4096;Initial Catalog=bodb02;integrated security=false; user id=wsv_alpv; password=PXf2SBfRUQy8FX4nLKHkrJ9Y9GtDtpJCaj335Qs3Yws==; TrustServerCertificate=True;",
+            "ConnectionString": "packet size=4096; Data Source=10.146.11.162;Initial Catalog=bodb02;integrated security=false; user id=wsv_alpv; password=PXf2SBfRUQy8FX4nLKHkrJ9Y9GtDtpJCaj335Qs3Yws==; TrustServerCertificate=True;",
             "ProviderName": "System.Data.SqlClient"
         },
         {
