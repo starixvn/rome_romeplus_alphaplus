@@ -31,6 +31,7 @@ using Fanex.RemotingRef;
 using AlphaPlus.BetLists.RunningBetList;
 using AlphaPlus.BetLists.MemberBetList;
 using System.Diagnostics.CodeAnalysis;
+using AlphaPlus.BetLists.BetBuilderPlus;
 
 namespace AlphaPlus.BetLists.Shared.Extensions;
 
@@ -71,7 +72,8 @@ public static class DependencyInjection
             .AddSingleton<ICashOutHistoryService, CashOutHistoryService>()
             .AddSingleton<ICasinoDetailsService, CasinoDetailsService>()
             .AddSingleton<IRunningBetListService, RunningBetListService>()
-            .AddSingleton<IMemberBetListService, MemberBetListService>();
+            .AddSingleton<IMemberBetListService, MemberBetListService>()
+            .AddSingleton<IBetBuilderPlusService, BetBuilderPlusService>();
 
         var serviceProvider = services.BuildServiceProvider();
         ReportDateService.Instance = serviceProvider.GetRequiredService<IReportDateService>();
