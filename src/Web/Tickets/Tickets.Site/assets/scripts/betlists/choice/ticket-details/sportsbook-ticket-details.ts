@@ -53,10 +53,10 @@
             return this.instance;
         }
 
-        public ShowComboParlayDetails = (refNo: string, winlostDate: Date, custId: string, betTeam: string) => {
+        public ShowComboParlayDetails = (refNo: string, winlostDate: Date, custId: string, betTeam: string, bettypeName: string) => {
             const url = `${Common.AppPath.TicketsAppPath}Parlay/ComboParlayDetail`;
-            const params = `?refno=${refNo}&winlostdate=${winlostDate}&custid=${custId}&betteam=${betTeam}`;
-            Common.PopupDetails.Instance(window.top).Show(url + params, '', 800, 438);
+            const params = `?refno=${refNo}&winlostdate=${winlostDate}&custid=${custId}&betteam=${betTeam}&bettypename=${bettypeName}`;
+            Common.PopupDetails.Instance(window.top).Show(url + params, bettypeName, 800, 438);
         };
 
         public ShowMixParlayTickets = (transId: string, refNo: string, custId: number) => {
