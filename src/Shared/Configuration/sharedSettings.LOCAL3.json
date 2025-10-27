@@ -150,7 +150,7 @@
         "SystemId": 2
     },
     "SystemId": 2,
-    "IdentityUrl": "http://alphaplus-api-identity-local2-service.alphaplus-api.svc.starix.local:5000/",
+    "IdentityUrl": "http://alphaplus-api-identity-local2-service.alphaplus-api:5000/",
     "AssetAppPath": "/stcdn",
     "JsVersion": "20250415",
     "AssetsApp:StaticResourcesVersion": "20250415",
@@ -289,6 +289,6 @@
     "OfferProfilePictureTour": true,
     "CashService": {
         "OfferedSites": "222227",
-        "APIUrl": "http://alphaplus-api-cashservice-local21-service.alphaplus-api.svc.starix.local:5000/api"
+        "APIUrl": "http://alphaplus-api-cashservice-local21-service.alphaplus-api:5000/api"
     }
 }
