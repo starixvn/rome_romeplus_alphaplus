@@ -140,6 +140,25 @@
                 }
             }
         };
+
+        public ShowBetBuilderPlus = (
+            transId: string,
+            transIndex: string,
+            refNo: string,
+            custId: string,
+            transDesc: string
+        ) => {
+            const params = [
+                'transid=',
+                transId,
+                '&transdesc=',
+                transDesc,
+                '&custId=',
+                custId
+            ];
+            const url = `${Common.AppPath.TicketsAppPath}BetBuilderPlus/BetBuilderPlus?${params.join('')}`;
+            this.showComboMixParlayTickets(transId, transIndex, url);
+        };
     }
 
     export class CashOutHistoryDetails extends BaseTicketDetails {
@@ -165,6 +184,7 @@ let showCombMPDetail: Function;
 let showCombMP: Function;
 let showNewCombMP: Function;
 let showSingleMatchParlayDetail: Function;
+let showBetBuilderPlus: Function;
 let ViewNewCashOutHistory: Function;
 $(function () {
     showMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowMixParlayTickets;
@@ -173,5 +193,6 @@ $(function () {
     showNewCombMP = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowComboParlayNewTickets;
     showSingleMatchParlayDetail =
         BetList.Choice.TicketDetails.SportsbookTicketDetails.Instance.ShowSingleMatchParlayDetail;
+    showBetBuilderPlus = BetList.Choice.TicketDetails.ParlayTicketDetails.Instance.ShowBetBuilderPlus;
     ViewNewCashOutHistory = BetList.Choice.TicketDetails.CashOutHistoryDetails.Instance.ViewNewCashOutHistory;
 });
