@@ -4,7 +4,7 @@ import styles from '../cash-service-ads.module.scss';
 
 const IconCheck = () => <span className={styles['icon-check']} />;
 
-const SpecialStepContent: React.FC = () => {
+export const SpecialStepContent: React.FC = () => {
   const { t } = useTranslation('advertisement');
   
   return (
@@ -39,5 +39,3 @@ const SpecialStepContent: React.FC = () => {
     </>
   );
 };
-
-export default SpecialStepContent;

@@ -11,7 +11,7 @@ interface StepSliderProps {
   onFinish?: () => void;
 }
 
-const StepSlider: React.FC<StepSliderProps> = ({ 
+export const StepSlider: React.FC<StepSliderProps> = ({ 
   steps, 
   currentStep, 
   onStepChange, 
@@ -69,5 +69,3 @@ const StepSlider: React.FC<StepSliderProps> = ({
     </div>
   );
 };
-
-export default StepSlider;

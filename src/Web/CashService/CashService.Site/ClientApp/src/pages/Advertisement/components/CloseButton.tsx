@@ -7,7 +7,7 @@ interface CloseButtonProps {
   nickName: string;
 }
 
-const CloseButton: React.FC<CloseButtonProps> = ({ onClose, nickName }) => {
+export const CloseButton: React.FC<CloseButtonProps> = ({ onClose, nickName }) => {
   const handleClose = () => {
     AnalyzeCashServiceAds({
       name: nickName || '',
@@ -27,5 +27,3 @@ const CloseButton: React.FC<CloseButtonProps> = ({ onClose, nickName }) => {
     </button>
   );
 };
-
-export default CloseButton;

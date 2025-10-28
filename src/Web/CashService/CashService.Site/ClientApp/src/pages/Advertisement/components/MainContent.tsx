@@ -8,7 +8,7 @@ interface MainContentProps {
   readonly onDontShowAgain?: () => void;
 }
 
-const MainContent: React.FC<MainContentProps> = ({ 
+export const MainContent: React.FC<MainContentProps> = ({ 
   onClickActivateNow, 
   findOutMore, 
   onDontShowAgain 
@@ -53,5 +53,3 @@ const MainContent: React.FC<MainContentProps> = ({
     </div>
   );
 };
-
-export default MainContent;

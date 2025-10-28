@@ -6,10 +6,10 @@ import { createRoot } from 'react-dom/client';
 import { useCookieLanguage } from '../../hooks/useCookieLanguage';
 import i18n from '../../i18n/i18-advertisement';
 
-import CloseButton from './components/CloseButton';
-import BannerImage from './components/BannerImage';
-import ContentRenderer from './components/ContentRenderer';
-import SpecialStepContent from './components/SpecialStepContent';
+import { CloseButton } from './components/CloseButton';
+import { BannerImage } from './components/BannerImage';
+import { ContentRenderer } from './components/ContentRenderer';
+import { SpecialStepContent }  from './components/SpecialStepContent';
 
 import { useCashServiceAds } from './hooks/useCashServiceAds';
 import { useCashServiceActions } from './hooks/useCashServiceActions';

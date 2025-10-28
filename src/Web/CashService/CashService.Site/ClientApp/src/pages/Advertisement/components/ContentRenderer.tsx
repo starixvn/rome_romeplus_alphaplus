@@ -1,8 +1,8 @@
 import React from 'react';
 import { CONTENT_FRAME } from '../constants/advertisement';
 import { CashServiceStatus } from '../MainBanner';
-import MainContent from './MainContent';
-import StepSlider from './StepSlider';
+import { MainContent } from './MainContent';
+import { StepSlider } from './StepSlider';
 import { AnalyzeCashServiceAds } from '../AnalzeCash';
 
 interface ContentRendererProps {
@@ -22,7 +22,7 @@ interface ContentRendererProps {
   nickName: string;
 }
 
-const ContentRenderer: React.FC<ContentRendererProps> = ({
+export const ContentRenderer: React.FC<ContentRendererProps> = ({
   contentFrame,
   cashServiceStatus,
   actions,
@@ -66,5 +66,3 @@ const ContentRenderer: React.FC<ContentRendererProps> = ({
 
   return null;
 };
-
-export default ContentRenderer;

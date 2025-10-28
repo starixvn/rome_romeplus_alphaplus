@@ -5,7 +5,7 @@ interface BannerImageProps {
   src: string;
 }
 
-const BannerImage: React.FC<BannerImageProps> = ({ src }) => {
+export const BannerImage: React.FC<BannerImageProps> = ({ src }) => {
   return (
     <img
       src={src}
@@ -14,5 +14,3 @@ const BannerImage: React.FC<BannerImageProps> = ({ src }) => {
     />
   );
 };
-
-export default BannerImage;
