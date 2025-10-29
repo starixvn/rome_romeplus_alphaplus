@@ -78,6 +78,12 @@
 
     --bl-icon-max-payout: url(../images/icon-info-circle.png);
 
+    --bl-betbuilder-bg: #edfcff;
+    --bl-betbuilder-border: #666666;
+    --bl-status-color: #000;
+    --bl-status-border: #000;
+    --bl-status-bg: #fff;
+
 }
 :root [data-theme='dark'] {
 
@@ -150,6 +156,12 @@
     --bl-max-payout-color: #E54748;
 
     --bl-icon-max-payout: url(../images/icon-info-circle-dark.png);
+
+    --bl-betbuilder-bg: #303030;
+    --bl-betbuilder-border: #fff;
+    --bl-status-color: #fff;
+    --bl-status-border: #fff;
+    --bl-status-bg: #000;
 
     //custom for dark mode
     .pt-winloss font {
