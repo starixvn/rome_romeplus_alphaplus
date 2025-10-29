@@ -54,6 +54,7 @@ export interface GroupItem {
   subGroupId: number;
   subGroupName: string;
   isLive: boolean;
+  tooltipMessage?: string;
 }
 
 export interface CommissionItem extends GroupItem {
@@ -100,6 +101,7 @@ export interface ParlayMaxPayoutItem extends GroupItem {
 export interface SubGroup {
   subGroupId: number;
   subGroupName: string;
+  tooltipMessage?: string;
 }
 
 export interface SuperPTConfigItem extends GroupItem {

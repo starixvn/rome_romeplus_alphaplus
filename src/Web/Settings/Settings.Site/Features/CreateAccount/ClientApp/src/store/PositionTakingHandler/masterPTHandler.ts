@@ -16,7 +16,7 @@ export default class MasterPTHandler extends BasePTHandler implements IPTHandler
       const minM3 = Math.min(...groupItemsBySubGroupId.map((item) => item.m3));
       const maxN3 = Math.max(...groupItemsBySubGroupId.map((item) => item.n3));
       const maxN3SubtractA4 = maxN3 - minA4;
-      const { subGroupName } = groupItemsBySubGroupId[0];
+      const { subGroupName, tooltipMessage } = groupItemsBySubGroupId[0];
 
       if (maxN3 > minM3) {
         const minPTItem = groupItemsBySubGroupId.find((item) => item.n3 === maxN3);
@@ -33,6 +33,7 @@ export default class MasterPTHandler extends BasePTHandler implements IPTHandler
         maxN3SubtractA4,
         subGroupId: Number(subGroupId),
         subGroupName,
+        tooltipMessage,
         m2: minM3,
         uM2: minUM2(maxN3SubtractA4),
         iM2: false,

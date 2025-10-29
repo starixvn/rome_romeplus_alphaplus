@@ -30,7 +30,21 @@ function AgentPTRow({ is3DecimalSite, productGroupId, subGroupId }: PTRowProps) 
 
   return (
     <div className={cn({ [styles['is-selecting-template']]: isSelectingTemplate })}>
-      <BlockRow label={value.subGroupName}>
+      <BlockRow 
+        label={
+          <>
+            {value.subGroupName}
+            {value.tooltipMessage && value.tooltipMessage.trim() && (
+              <span 
+                className="icon-information-outline" 
+                data-tooltip-id="global-tooltip" 
+                data-tooltip-content={value.tooltipMessage}
+                style={{ marginLeft: '8px', cursor: 'pointer' }}
+              />
+            )}
+          </>
+        }
+      >
         <BlockColumn>
           <PTSelect
             min={value.maxN2}

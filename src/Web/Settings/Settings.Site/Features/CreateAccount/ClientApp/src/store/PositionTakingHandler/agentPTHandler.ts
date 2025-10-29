@@ -13,7 +13,7 @@ export default class AgentPTHandler extends BasePTHandler implements IPTHandler<
       const groupItemsBySubGroupId = ptGroupItemBySubGroupId[`+${Number(subGroupId)}`] as AgentPTConfigItem[];
       const minA2 = Math.min(...groupItemsBySubGroupId.map((item) => item.a2));
       const maxN2 = Math.max(...groupItemsBySubGroupId.map((item) => item.n2));
-      const { subGroupName } = groupItemsBySubGroupId[0];
+      const { subGroupName, tooltipMessage } = groupItemsBySubGroupId[0];
 
       if (maxN2 > minA2) {
         const minPTItem = groupItemsBySubGroupId.find((item) => item.n2 === maxN2);
@@ -28,6 +28,7 @@ export default class AgentPTHandler extends BasePTHandler implements IPTHandler<
         maxN2,
         subGroupId: Number(subGroupId),
         subGroupName,
+        tooltipMessage,
         a1: minA2,
       };
     });

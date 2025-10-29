@@ -16,7 +16,7 @@ export default class SuperPTHandler extends BasePTHandler implements IPTHandler<
       const minM4 = Math.min(...groupItemsBySubGroupId.map((item) => item.m4));
       const maxN4 = Math.max(...groupItemsBySubGroupId.map((item) => item.n4));
       const maxN4SubtractM4 = maxN4 - minM4;
-      const { subGroupName } = groupItemsBySubGroupId[0];
+      const { subGroupName, tooltipMessage } = groupItemsBySubGroupId[0];
 
       if (maxN4 > minS4) {
         const minPTItem = groupItemsBySubGroupId.find((item) => item.n4 === maxN4);
@@ -33,6 +33,7 @@ export default class SuperPTHandler extends BasePTHandler implements IPTHandler<
         maxN4SubtractM4,
         subGroupId: Number(subGroupId),
         subGroupName,
+        tooltipMessage,
         s3: minS4,
         uS3: minUS3(maxN4SubtractM4),
         iS3: false,
