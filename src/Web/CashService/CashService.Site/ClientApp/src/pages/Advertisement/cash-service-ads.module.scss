@@ -1,0 +1,624 @@
+// ===================
+// ANIMATIONS
+// ===================
+@keyframes fadeInBg {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInPopup {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(0.95);
+  }
+}
+
+// ===================
+// LAYOUT - OVERLAY & POPUP
+// ===================
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeInBg 0.3s;
+}
+
+.popup {
+  position: absolute;
+  max-width: 630px;
+  height: auto;
+  margin: 10px;
+  border-radius: 16px;
+  overflow: visible;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  animation: fadeInPopup 0.35s;
+  background: #b4d2e8;
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.banner-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.close-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.411);
+  border: none;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #000000;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+// ===================
+// CONTENT SECTIONS
+// ===================
+.ads-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.72) 40%, rgba(255, 255, 255, 0.36) 75%, rgba(255, 255, 255, 0) 100%);
+  box-sizing: border-box;
+  padding: 15px;
+  border-radius: 20px;
+}
+
+.active-cash-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.72) 40%, rgba(255, 255, 255, 0.36) 75%, rgba(255, 255, 255, 0) 100%);
+  box-sizing: border-box;
+}
+
+.content-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #0a2c4d;
+  padding: 10px 12px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin: 0 auto;
+}
+
+// ===================
+// STEP SLIDER
+// ===================
+.step-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  box-sizing: border-box;
+  padding: 15px 0;
+  border-radius: 20px;
+  gap: 10px;
+}
+
+.step-content {
+  height: 280px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-navigation {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+}
+.step-media{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 250px;
+}
+.step-counter {
+  color: #9a9a9a;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.step-image {
+  display: block;
+  max-width: 500px;   
+  max-height: 250px;
+}
+
+.support-scale {
+  transition: transform 0.6s ease-in-out;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #9ea6ae;
+  border-radius: 8px;
+  &:hover {
+    transform: scale(2);
+    width: auto;
+    border: 1px solid #9ea6ae;
+  }
+}
+
+.step-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #0a508c;
+  padding: 10px 0 8px 0;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.step-description {
+  font-size: 13px;
+  color: #222;
+  padding: 8px 0;
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.step-highlight-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.step-benefits {
+  text-align: left;
+  margin: 0 auto 12px auto;
+  max-width: 95%;
+  padding-left: 0;
+  list-style: none;
+
+  li {
+    margin-bottom: 6px;
+    font-size: 13px;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+    line-height: 1.4;
+  }
+}
+
+.step-note {
+  background: #e3f2fd;
+  color: #03548d;
+  padding: 6px 12px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  margin-top: 8px;
+  line-height: 1.3;
+  max-width: 95%;
+
+  .icon-info {
+    margin-right: 4px;
+    font-size: 14px;
+  }
+}
+
+// ===================
+// BUTTONS
+// ===================
+.button-container {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  width: 100%;
+  margin-top: 15px;
+
+  button {
+    border-radius: 16px;
+    padding: 0 14px;
+    font-size: 13px;
+    cursor: pointer;
+    font-weight: 500;
+    min-width: 80px;
+    height: 30px;
+  }
+}
+
+.primary-button {
+  background: #0b599c;
+  color: #fff;
+  border: none;
+  transition: background 0.2s;
+  letter-spacing: 0.1px;
+
+  &:hover {
+    background: #0a508c;
+  }
+}
+
+.secondary-button {
+  color: #0b599c;
+  background: #fff;
+  border: 1px solid #0b599c;
+  transition: background 0.2s;
+  letter-spacing: 0.1px;
+
+  &:hover {
+    background: #0a508c;
+    color: #fff;
+  }
+}
+
+.step-button {
+  height: 32px;
+  width: 110px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 13px;
+
+  &[disabled] {
+    opacity: 0.5;
+  }
+}
+
+.back-button {
+  background: #fff;
+  cursor: pointer;
+  color: #0a508c;
+  border: 1px solid #0a508c;
+
+  &:not([disabled]):hover {
+    background: #0a508c;
+    color: #fff;
+  }
+}
+
+.next-button {
+  background: #0b599c;
+  color: #fff;
+
+  &:not([disabled]):hover {
+    background: #0a508c;
+  }
+}
+
+.dont-show-again {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  color: #666;
+  font-size: 14px;
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+
+  input {
+    margin: 0;
+    width: 13px;
+    height: 13px;
+    top: 0;
+    cursor: pointer;
+  }
+
+  label {
+    font-size: 13px;
+    cursor: pointer;
+    color: #000;
+    margin-bottom: 0;
+  }
+}
+
+// ===================
+// TYPOGRAPHY & TEXT STYLES
+// ===================
+.main-title {
+  font-weight: 800;
+  font-size: 24px;
+  color: #03548d;
+  line-height: 1.2;
+  text-align: center;
+  max-width: 280px;
+  letter-spacing: 0.1px;
+  text-transform: uppercase;
+}
+
+.sub-title {
+  font-weight: 600;
+  padding: 0 20px;
+  font-size: 16px;
+  color: #03548d;
+  line-height: 1.3;
+  text-align: center;
+  margin: 8px;
+  max-width: 220px;
+  letter-spacing: 0.05px;
+  border-radius: 8px;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 16px;
+  color: #0a2c4d;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 13px;
+  color: #222;
+  text-align: center;
+  margin-bottom: 4px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.feature-list {
+  text-align: left;
+  margin: 0;
+  color: #222;
+  font-size: 13px;
+  max-width: 95%;
+}
+
+// ===================
+// UTILITY CLASSES & HIGHLIGHTS
+// ===================
+.pulse-animate {
+  animation: pulse 1.2s infinite;
+  display: inline-block;
+}
+
+.divider {
+  width: 50px;
+  height: 2px;
+  background: #0a2c4d;
+  margin: 0 auto 15px auto;
+  border-radius: 2px;
+}
+
+.highlight {
+  font-weight: 600;
+  color: #03548d;
+}
+
+.free-highlight {
+  color: #ff9800;
+  font-weight: 900;
+}
+
+.free-badge {
+  background: #ffcd00;
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  animation: pulse 1.2s infinite;
+  font-size: 14px;
+}
+
+.save-amount {
+  color: #03548d;
+  font-size: 15px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.benefit-note {
+  color: #888;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.icon-info {
+  margin-right: 4px;
+  font-size: 16px;
+  display: inline-block;
+}
+
+// ===================
+// MEDIA QUERIES
+// ===================
+/* Tablet and up */
+@media (min-width: 768px) {
+  .popup {
+    margin: 20px;
+    border-radius: 20px;
+  }
+
+  .close-button {
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+  }
+
+  .ads-content {
+    padding: 20px;
+  }
+
+  .main-title {
+    font-size: 32px;
+    max-width: 320px;
+  }
+
+  .sub-title {
+    font-size: 18px;
+    max-width: 240px;
+    padding: 0 25px;
+  }
+
+  .step-title {
+    font-size: 17px;
+  }
+
+  .step-description {
+    font-size: 14px;
+  }
+
+  .step-content {
+    height: 320px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main-title {
+    font-size: 38px;
+    max-width: 350px;
+    letter-spacing: 0.2px;
+  }
+
+  .sub-title {
+    font-size: 20px;
+    max-width: 250px;
+    padding: 0 30px;
+    letter-spacing: 0.1px;
+  }
+
+  .step-title {
+    font-size: 18px;
+    padding: 15px 0 10px 0;
+  }
+
+  .step-description {
+    font-size: 14px;
+    padding: 10px 0;
+  }
+
+  .step-content {
+    height: 350px;
+  }
+
+  .popup {
+    top: 90px;
+  }
+
+  .step-benefits li {
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  .step-note {
+    font-size: 14px;
+    padding: 8px 16px;
+    margin-top: 12px;
+
+    .icon-info {
+      margin-right: 6px;
+      font-size: 18px;
+    }
+  }
+
+  .button-container button {
+    font-size: 14px;
+    padding: 0 18px;
+    height: 32px;
+    min-width: 90px;
+  }
+
+  .step-button {
+    height: 30px;
+    font-size: 14px;
+  }
+
+  .save-amount {
+    font-size: 18px;
+  }
+
+  .free-badge {
+    font-size: 16px;
+    padding: 4px 12px;
+  }
+}
+@media (max-width: 768px) {
+  .step-media{
+    height: 190px;
+    .step-image{
+      max-height: 170px;
+    }
+  }
+  .step-content {
+    height: auto;
+    > *{
+      width: 85%;
+      .support-scale{
+        height: 250px;
+        max-height: 250px;
+        &:hover{
+          transform: scale(1);
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,66 @@
+@using AlphaPlus.Main.Site.Features.Dashboard.CashService
+@using AlphaPlus.Core.Helpers
+@using AlphaPlus.Main.Site
+@model CashServiceInfoViewModel
+@{
+    Layout = null;
+    var version = AppSettings.JsVersion;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>CashServiceAds Page</title>
+    <environment include="Production">      
+        <link rel="stylesheet" href="@MicroSites.CashServiceUrl("/fixed/topBanner.css")?version=@version" />
+        <script type="module" src="@MicroSites.CashServiceUrl("/fixed/topBanner.js")?version=@version"></script>
+    </environment>
+    <style>
+     
+    .header:has(.has-banner) + .content {
+        top: 140px;
+    }
+    </style>
+</head>
+
+<div id="top-banner-root"></div>
+
+<body>
+    <script type="text/javascript">
+        const appConfig = @Html.Raw(Json.Serialize(
+            new
+            {
+                    applicationPath = "/",
+                    advName = "CashServiceAds",
+                    isCanUpdateCashServiceStatus = @Model.IsCanUpdateCashServiceStatus,
+                    isCanEditCashService = @Model.IsCanEditCashService,
+                    isOfferedCashService = @Model.IsOfferedCashService,
+                    isCashServiceEnabled = @Model.IsCashServiceEnabled,
+                    nickName = @Model.NickName
+            }
+                        ));
+        const cdnUri = "@Html.Raw(Model.CDNUri)";
+        const mainUrl = '@MicroSites.MainUrl()';
+        const homeUrl = '@MicroSites.MainUrl("~/Dashboard/index2")';
+        const cashServiceUrl = '@MicroSites.CashServiceUrl()';
+    </script>
+    <environment include="Development">
+        <script type="module">
+            import RefreshRuntime from 'http://localhost:5173/@@react-refresh'
+            RefreshRuntime.injectIntoGlobalHook(window)
+            window.$RefreshReg$ = () => { }
+            window.$RefreshSig$ = () => (type) => type
+            window.__vite_plugin_react_preamble_installed__ = true
+        </script>
+        <script type="module" src=@("http://localhost:5173/@vite/client")></script>
+    </environment>
+    <environment include="Development">
+        <script type="module" src=@("http://localhost:5173/@vite/client")></script>
+        <script type="module" src="http://localhost:5173/src/pages/Advertisement/TopBanner.tsx"></script>
+    </environment>
+
+    @Html.AntiForgeryToken()
+</body>
+
+</html>
