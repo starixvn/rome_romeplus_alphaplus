@@ -765,15 +765,14 @@ span.icon-boost {
 		padding: 5px 10px 5px 5px;
 		margin: 0;
 		border-radius: 3px;
-		background-color: #edfcff;
+		background-color: var(--bl-betbuilder-bg);
 		margin-bottom: 3px;
 		li {
 			position: relative;
 			padding-right: 20px;
 			padding: 3px 10px 3px 0;
-			border-right: 2px solid #000;
+			border-right: 2px solid var(--bl-betbuilder-border);
 			font-weight: bold;
-			color: #003399;
 			&:after {
 				position: absolute;
 				top: 50%;
@@ -781,8 +780,8 @@ span.icon-boost {
 				right: -6px;
 				width: 10px;
 				height: 10px;
-				border: 1px solid #000;
-				background-color: #fff;
+				border: 1px solid var(--bl-betbuilder-border);
+				background-color: var(--bl-betbuilder-bg);
 				border-radius: 50%;
 				content: '';
 			}
@@ -792,7 +791,7 @@ span.icon-boost {
 					content: '';
 					top: 0;
 					right: -2px;
-					background-color: #e7fbff;
+					background-color: var(--bl-betbuilder-bg);
 					width: 3px;
 					height: 50%;
 				}
@@ -803,14 +802,11 @@ span.icon-boost {
 					content: '';
 					bottom: 0;
 					right: -2px;
-					background-color: #e7fbff;
+					background-color: var(--bl-betbuilder-bg);
 					width: 3px;
 					height: 50%;
 				}
-			}
-			.underdog {
-				color: #01122B;
-			}
+			}			 
 		}
 		&.single {
 			padding: 0;
@@ -823,17 +819,17 @@ span.icon-boost {
 	}
 	.status {
 		border-radius: 23px;
-		border: 1px solid #000;
-		padding: 0 5px 1px 5px;
+		border: 1px solid var(--bl-status-border);
+		padding: 0 5px;
 		font-size: 11px;
 		font-weight: bold;
-		color: #000;
-		background-color: #fff;
+		color: var(--bl-status-color);
+		background-color: var(--bl-betbuilder-bg);
 		margin: 2px 0 2px 5px;
 		display: inline-block;
 		text-transform: capitalize;
 	}
-	.info {
+	.hybrid-parlay-match {
 		.league {
 			margin-bottom: 3px;
 		}		
@@ -849,22 +845,10 @@ span.icon-boost {
 				font-weight: bold;
 			}
 		}
+        .live {
+            color: var(--bl-tb-favorite);
+            font-weight: bold;
+            margin-left: 5px;
+        }
 	}
-}
-
-.hybrid-parlay-match {
-	.odds {
-		color: #003399;
-		font-weight: bold;
-		.old-odds {
-			color: #787878;
-			font-weight: normal;
-			text-decoration: line-through;
-		}
-	}
-    .live {
-        color: var(--bl-tb-favorite);
-        font-weight: bold;
-        margin-left: 5px;
-    }
 }
