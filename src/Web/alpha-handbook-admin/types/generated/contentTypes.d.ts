@@ -514,68 +514,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     };
 }
 
-export interface PluginRatingsReview extends Schema.CollectionType {
-    collectionName: 'reviews';
-    info: {
-        singularName: 'review';
-        pluralName: 'reviews';
-        displayName: 'Review';
-        description: '';
-    };
-    options: {
-        draftAndPublish: false;
-        comment: '';
-    };
-    pluginOptions: {
-        'content-manager': {
-            visible: false;
-        };
-        'content-type-builder': {
-            visible: false;
-        };
-    };
-    attributes: {
-        score: Attribute.Integer;
-        author: Attribute.Relation<'plugin::ratings.review', 'oneToOne', 'plugin::users-permissions.user'>;
-        comment: Attribute.Text;
-        related_to: Attribute.Relation<'plugin::ratings.review', 'manyToOne', 'plugin::ratings.r-content-id'>;
-        createdAt: Attribute.DateTime;
-        updatedAt: Attribute.DateTime;
-        createdBy: Attribute.Relation<'plugin::ratings.review', 'oneToOne', 'admin::user'> & Attribute.Private;
-        updatedBy: Attribute.Relation<'plugin::ratings.review', 'oneToOne', 'admin::user'> & Attribute.Private;
-    };
-}
-
-export interface PluginRatingsRContentId extends Schema.CollectionType {
-    collectionName: 'r_content_ids';
-    info: {
-        singularName: 'r-content-id';
-        pluralName: 'r-content-ids';
-        displayName: 'RContentID';
-    };
-    options: {
-        draftAndPublish: false;
-        comment: '';
-    };
-    pluginOptions: {
-        'content-manager': {
-            visible: false;
-        };
-        'content-type-builder': {
-            visible: false;
-        };
-    };
-    attributes: {
-        reviews: Attribute.Relation<'plugin::ratings.r-content-id', 'oneToMany', 'plugin::ratings.review'>;
-        average: Attribute.Decimal;
-        slug: Attribute.String;
-        createdAt: Attribute.DateTime;
-        updatedAt: Attribute.DateTime;
-        createdBy: Attribute.Relation<'plugin::ratings.r-content-id', 'oneToOne', 'admin::user'> & Attribute.Private;
-        updatedBy: Attribute.Relation<'plugin::ratings.r-content-id', 'oneToOne', 'admin::user'> & Attribute.Private;
-    };
-}
-
 export interface ApiAdminActionAdminAction extends Schema.CollectionType {
     collectionName: 'admin_actions';
     info: {
@@ -1120,8 +1058,6 @@ declare module '@strapi/types' {
             'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
             'plugin::users-permissions.role': PluginUsersPermissionsRole;
             'plugin::users-permissions.user': PluginUsersPermissionsUser;
-            'plugin::ratings.review': PluginRatingsReview;
-            'plugin::ratings.r-content-id': PluginRatingsRContentId;
             'api::admin-action.admin-action': ApiAdminActionAdminAction;
             'api::article.article': ApiArticleArticle;
             'api::article-component.article-component': ApiArticleComponentArticleComponent;

@@ -1,0 +1,13 @@
+{
+  "notification.generate.success": "Entities successfully created",
+  "notification.generate.error": "Something went wrong",
+  "notification.generate.modifieddata": "First, save your data!",
+
+  "modal.title": "Create localizations",
+  "modal.body": "Select the locales you want to create/override",
+  "modal.placeholder": "Select locales...",
+  "modal.button.cancel": "Cancel",
+  "modal.button.confirm": "Confirm",
+
+  "sidepanel.button.text": "Copy to other locales"
+}

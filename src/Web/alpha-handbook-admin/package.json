@@ -11,20 +11,20 @@
   },
   "devDependencies": {},
   "dependencies": {
-    "@_sh/strapi-plugin-ckeditor": "2.0.4",
+    "@_sh/strapi-plugin-ckeditor": "2.1.0",
     "@ckeditor/ckeditor5-find-and-replace": "40.0.0",
     "@ckeditor/ckeditor5-markdown-gfm": "40.0.0",
     "@ckeditor/ckeditor5-upload": "40.0.0",
     "@notum-cz/strapi-plugin-content-versioning": "1.1.6",
-    "@sklinet/strapi-plugin-tinymce": "1.0.6",
+    "@sklinet/strapi-plugin-tinymce": "1.0.7",
     "@strapi/plugin-i18n": "4.14.3",
     "@strapi/plugin-users-permissions": "4.14.3",
-    "@strapi/strapi": "4.14.3",
+    "@strapi/strapi": "4.14.3", 
+    "@types/minimatch": "5.1.2",
     "crypto-js": "4.2.0",
     "mysql": "2.18.1",
-    "strapi-plugin-copy-locales": "^1.0.1",
-    "strapi-plugin-duplicate-button": "1.1.13",
-    "strapi-plugin-ratings": "1.1.9"
+    "strapi-plugin-copy-locales": "./src/plugins/strapi-plugin-copy-locales",
+    "strapi-plugin-duplicate-button": "1.1.14"
   },
   "author": {
     "name": "A Strapi developer"
@@ -39,7 +39,8 @@
   "resolutions": {
     "sharp": "0.33.5",
     "@babel/traverse": "7.23.2",
-    "esbuild": "0.25.0"
+    "esbuild": "0.25.0",
+    "koa": "2.15.4"
   },
   "license": "MIT"
 }

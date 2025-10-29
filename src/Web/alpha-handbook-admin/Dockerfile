@@ -1,11 +1,13 @@
 # Creating multi-stage build for production
-FROM hub.nexdev.net/base/node:18-alpine-25h1 AS builder
+FROM hub.nexdev.net/base/node:20.18-alpine-25h1 AS builder
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git > /dev/null 2>&1
 ENV NODE_ENV=production
 
 WORKDIR /opt/
 COPY src/Web/alpha-handbook-admin/package.json ./
 COPY src/Web/alpha-handbook-admin/yarn.lock ./
+COPY src/Web/alpha-handbook-admin/src/plugins/strapi-plugin-copy-locales ./src/plugins/strapi-plugin-copy-locales
+
 RUN yarn global add node-gyp
 RUN --mount=type=cache,target=/opt/app/node_modules \
     yarn config set network-timeout 600000 -g && yarn install --production
@@ -21,7 +23,7 @@ COPY "src/Web/alpha-handbook-admin/.env.$TRANSFORM_CONFIG" .env
 RUN  yarn build
 
 # Creating final production image
-FROM hub.nexdev.net/base/node:18-alpine-25h1
+FROM hub.nexdev.net/base/node:20.18-alpine-25h1 AS runner
 
 RUN apk add --no-cache vips-dev
 ENV NODE_ENV=production
