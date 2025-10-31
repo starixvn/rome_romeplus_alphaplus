@@ -7,19 +7,28 @@ namespace AlphaPlus.BetLists.BetBuilderPlus;
 
 public interface IBetBuilderPlusService
 {
-    Task<string> GetBetBuilderPlusTicketsDetailsHtml(ITicketHelper ticketHelper, long transId, int custId, string transDesc);
+    Task<string> GetBetBuilderPlusTicketsDetailsHtml(ITicketHelper ticketHelper, BetBuilderPlusParam betBuilderPlusParam);
 }
 
 public class BetBuilderPlusService(IDynamicRepository repository) : IBetBuilderPlusService
 {
     private readonly IDynamicRepository repository = repository;
 
-    public async Task<string> GetBetBuilderPlusTicketsDetailsHtml(ITicketHelper ticketHelper, long transId, int custId, string transDesc)
+    public async Task<string> GetBetBuilderPlusTicketsDetailsHtml(ITicketHelper ticketHelper, BetBuilderPlusParam betBuilderPlusParam)
     {
-        var tickets = await repository.FetchAsync<Ticket>(new GetParlayBetListCriteria(transId, custId));
+        var tickets = await repository.FetchAsync<Ticket>(new GetParlayBetListCriteria(betBuilderPlusParam.TransId, betBuilderPlusParam.CustId));
         
         var betBuilderPlusBuilder = new HyBridParlayBuilder();
 
-        return betBuilderPlusBuilder.Build(ticketHelper, [.. tickets], transDesc, false);
+        return betBuilderPlusBuilder.Build(
+            ticketHelper, [.. tickets],
+            betBuilderPlusParam.TransDesc,
+            (int)betBuilderPlusParam.Hdp1,
+            (int)betBuilderPlusParam.Hdp2,
+            betBuilderPlusParam.BetCheck,
+            betBuilderPlusParam.BetTeam,
+            betBuilderPlusParam.Currency,
+            betBuilderPlusParam.Stake,
+            false);
     }
 }
