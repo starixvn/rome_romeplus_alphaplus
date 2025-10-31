@@ -11,7 +11,7 @@ using Fanex.Alpha.Before.Services;
 using Fanex.Alpha.Before.Services.SignIn;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using ONEbook.UM.AspNetCore.Filters;
+using ONEbook.UM.Filters;
 
 namespace Fanex.Alpha.Before.Controllers;
 

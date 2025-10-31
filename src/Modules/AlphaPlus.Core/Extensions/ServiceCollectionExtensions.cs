@@ -13,12 +13,8 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using ONEbook.UM.AspNetCore;
-using ONEbook.UM.AspNetCore.Filters;
-using ONEbook.UM.Configurations;
-using ONEbook.UM.Helpers;
-using ONEbook.UM.Services;
-using ONEbook.UM.Transport;
+using ONEbook.UM.DependencyInjection;
+using ONEbook.UM.Filters;
 using StackExchange.Redis;
 
 namespace AlphaPlus.Core.Extensions;
@@ -91,13 +87,8 @@ public static class ServiceCollectionExtensions
 
     private static IServiceCollection AddONEbookUM(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSingleton(new UMClientConfiguration().Initialize(configuration));
-        services.AddSingleton<CheckUMFilterAttribute>();
-        services.AddSingleton<IUMCacheService, MemoryUMCacheService>();
-        services.AddSingleton<IUMRestClient, UMRestClient>();
+        services.AddOneBookUmForWeb(configuration);
         services.AddHttpContextAccessor();
-        services.AddSingleton<IHttpContextHelper, HttpContextHelper>();
-        services.AddSingleton<IMaintenanceService, MaintenanceService>();
 
         return services;
     }

@@ -3,11 +3,7 @@ using System.Text.Json;
 using System.Threading.RateLimiting;
 using AgencyCash.APIGateway.Shared;
 using Microsoft.AspNetCore.RateLimiting;
-using ONEbook.UM.AspNetCore;
-using ONEbook.UM.Configurations;
-using ONEbook.UM.Helpers;
-using ONEbook.UM.Services;
-using ONEbook.UM.Transport;
+using ONEbook.UM.DependencyInjection;
 
 const string ApiKeySchemeName = "ApiKey";
 
@@ -15,10 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 builder.Services
     .AddFanexLogging(configuration)
-    .AddSingleton(new UMClientConfiguration().Initialize(configuration))
-    .AddSingleton<IUMCacheService, UMCacheService>()
-    .AddSingleton<IUMRestClient, UMRestClient>()
-    .AddSingleton<IMaintenanceService, MaintenanceService>()
+    .AddOneBookUmForService(configuration)
     .AddExceptionHandler<GlobalExceptionHandler>()
     .AddProblemDetails()
     .AddHealthChecks();

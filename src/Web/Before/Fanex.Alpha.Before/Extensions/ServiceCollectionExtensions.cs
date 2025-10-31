@@ -1,18 +1,12 @@
 using Fanex.Alpha.Before.Configurations;
 using Fanex.Alpha.Before.NetThrottling;
-using Fanex.Alpha.Before.Services;
 using Fanex.Logging;
 using Fanex.Logging.Extensions;
 using Fanex.Logging.Extensions.AspNetCore;
 using Fanex.Logging.RabbitMQ;
 using Fanex.Logging.Sentry;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using ONEbook.UM.AspNetCore;
-using ONEbook.UM.AspNetCore.Filters;
-using ONEbook.UM.Configurations;
-using ONEbook.UM.Helpers;
-using ONEbook.UM.Services;
-using ONEbook.UM.Transport;
+using ONEbook.UM.DependencyInjection;
 
 namespace Fanex.Alpha.Before.Extensions;
 
@@ -20,13 +14,8 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddONEbookUM(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSingleton(new UMClientConfiguration().Initialize(configuration));
-        services.AddSingleton<CheckUMFilterAttribute>();
-        services.AddSingleton<IUMCacheService, MemoryUMCacheService>();
-        services.AddSingleton<IUMRestClient, UMRestClient>();
-        services.AddHttpContextAccessor(); // For WEB
-        services.AddSingleton<IHttpContextHelper, HttpContextHelper>(); // For WEB
-        services.AddSingleton<IMaintenanceService, MaintenanceService>();
+        services.AddOneBookUmForWeb(configuration);
+        services.AddHttpContextAccessor();
 
         return services;
     }
