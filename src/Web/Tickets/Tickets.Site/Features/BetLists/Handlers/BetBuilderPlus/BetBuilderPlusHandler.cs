@@ -22,6 +22,8 @@ public class BetBuilderPlusHandler(
 
     public async Task<string> Handle(BetBuilderPlusQuery message, CancellationToken cancellationToken)
     {
-        return await betBuilderPlusService.GetBetBuilderPlusTicketsDetailsHtml(ticketHelper, message.TransId, message.CustId, message.TransDesc);
+        var param = new BetBuilderPlusParam(message.TransId, message.CustId, message.TransDesc, message.Hdp1, message.Hdp2, message.BetCheck, message.BetTeam, message.Currency, message.Stake);
+        
+        return await betBuilderPlusService.GetBetBuilderPlusTicketsDetailsHtml(ticketHelper, param);
     }
 }

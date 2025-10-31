@@ -146,15 +146,33 @@
             transIndex: string,
             refNo: string,
             custId: string,
-            transDesc: string
+            transDesc: string,
+            hdp1: string,
+            hdp2: string,
+            betCheck: string,
+            betTeam: string,
+            currency: string,
+            stake: string
         ) => {
             const params = [
                 'transid=',
                 transId,
                 '&transdesc=',
-                transDesc,
+                JSON.stringify(transDesc),
                 '&custId=',
-                custId
+                custId,
+                '&hdp1=',
+                hdp1,
+                '&hdp2=',
+                hdp2,
+                '&betcheck=',
+                betCheck,
+                '&betteam=',
+                betTeam,
+                '&currency=',
+                currency,
+                '&stake=',
+                stake
             ];
             const url = `${Common.AppPath.TicketsAppPath}BetBuilderPlus/BetBuilderPlus?${params.join('')}`;
             this.showComboMixParlayTickets(transId, transIndex, url);
