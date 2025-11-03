@@ -21,7 +21,7 @@ public class TransferListHandler(
 
         var prevADBT = message.ADBT ?? false;
         var isPostBack = message.IsPostBack ?? false;
-        message.AllYesterdayBalance = !isPostBack && currentADBT || message.AllYesterdayBalance;
+        message.AllYesterdayBalance = (!isPostBack && currentADBT) || message.AllYesterdayBalance;
 
         var param = new TransferListParam(
             message.ViewerId,
