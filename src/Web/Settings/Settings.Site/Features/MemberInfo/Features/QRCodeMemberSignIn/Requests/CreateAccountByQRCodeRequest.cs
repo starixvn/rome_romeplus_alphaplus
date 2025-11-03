@@ -6,17 +6,11 @@ using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.Requests
 {
-    public class CreateAccountByQRCodeRequest :
-        QRCodeBaseQuery,
+    public class CreateAccountByQRCodeRequest(IUser viewer) : QRCodeBaseQuery(viewer ?? new User(UserSession.Current)),
         IRequest<ResultCreateMemberQRCode>
     {
         public CreateAccountByQRCodeRequest() : this(null)
         {
-        }
-
-        public CreateAccountByQRCodeRequest(IUser viewer) : base(viewer)
-        {
-            viewer ??= new User(UserSession.Current);
         }
 
         public string UsernameCopyFrom { get; set; }

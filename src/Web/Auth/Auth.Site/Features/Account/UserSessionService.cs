@@ -16,9 +16,6 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
     private const string IsAdminCanUpdateSubAccountSessionKey = "IsAdminCanUpdateSubAccount";
     private const string MainDomainSessionKey = "MainDomain";
     private const string EnableJackpotSessionKey = "GameEnable_Jackpot";
-    private readonly IConfiguration configuration = configuration;
-    private readonly IHttpContextAccessor httpContextAccessor = httpContextAccessor;
-    private readonly IUserSession userSession = userSession;
 
     public void SetUserSessionValues(SignInResult signInResult)
     {
@@ -85,10 +82,9 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         var siteDB = signInResult.SiteDB ?? new SiteDB();
         userSession.SiteDBGroupId = siteDB.SiteDBGroupId;
         userSession.CustDBGroupId = siteDB.CustDBGroupId;
-
         var subAccountPermission_LockAdminAccounts = configuration.GetValue<string>("SubAccountPermission_LockAdminAccounts");
         if ((!string.IsNullOrWhiteSpace(subAccountPermission_LockAdminAccounts)
-            && Regex.IsMatch($",{subAccountPermission_LockAdminAccounts},", $",{userSession.AdminId},", RegexOptions.IgnoreCase)
+            && Regex.IsMatch($",{subAccountPermission_LockAdminAccounts},", $",{userSession.AdminId},", RegexOptions.IgnoreCase, TimeSpan.FromSeconds(5))
             && userSession.IsInternal)
             || (!signInResult.IsAdminCanUpdateSubAccount && userSession.IsInternal))
         {
