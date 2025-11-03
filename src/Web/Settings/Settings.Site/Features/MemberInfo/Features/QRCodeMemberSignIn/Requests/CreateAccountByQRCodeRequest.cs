@@ -10,12 +10,13 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
         QRCodeBaseQuery,
         IRequest<ResultCreateMemberQRCode>
     {
-        public CreateAccountByQRCodeRequest() : this(null) { }
+        public CreateAccountByQRCodeRequest() : this(null)
+        {
+        }
 
         public CreateAccountByQRCodeRequest(IUser viewer) : base(viewer)
         {
             viewer ??= new User(UserSession.Current);
-            SiteDBGroupIp = viewer.SiteDBGroupIp;
         }
 
         public string UsernameCopyFrom { get; set; }
@@ -38,7 +39,6 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
 
         public bool ShowPageTitle { get; set; }
 
-        public string SiteDBGroupIp { get; }
         public override bool IsValid() =>
             base.IsValid() &&
             !IsInternal &&

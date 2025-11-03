@@ -28,7 +28,6 @@ public class UserTests
         _mockUserSession.SetupGet(x => x.IsOfferProtectedMode).Returns(false);
         _mockUserSession.SetupGet(x => x.DarkModeName).Returns("light");
         _mockUserSession.SetupGet(x => x.AssetAppPath).Returns("/assets");
-        _mockUserSession.SetupGet(x => x.AGIP).Returns("10.0.0.1");
         _mockUserSession.SetupGet(x => x.Currency).Returns("USD");
         _mockUserSession.SetupGet(x => x.IsSubAcc).Returns(false);
         _mockUserSession.SetupGet(x => x.CurrencyId).Returns(1);
@@ -78,7 +77,6 @@ public class UserTests
         Assert.Equal("192.168.1.1", user.IP);
         Assert.Equal("USD", user.Currency);
         Assert.Equal(1, user.CurrencyId);
-        Assert.Equal("10.0.0.1", user.AGIP);
         Assert.Equal(1, user.SiteDBGroupId);
         Assert.Equal(1, user.CustDBGroupId);
     }

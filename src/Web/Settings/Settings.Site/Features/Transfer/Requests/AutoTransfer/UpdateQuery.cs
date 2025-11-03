@@ -21,7 +21,6 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
             IP = user.IP;
             Language = user.LanguageKey;
             UplineRoleId = user.LevelId;
-            AGIP = user.AGIP;
             SiteDbGroupId = user.SiteDbGroupId;
         }
 
@@ -45,7 +44,6 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
 
         public string Language { get; }
 
-        public string AGIP { get; }
         public int SiteDbGroupId { get; set; }
 
         public string[] DateSchedule => (Schedule ?? string.Empty).Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);

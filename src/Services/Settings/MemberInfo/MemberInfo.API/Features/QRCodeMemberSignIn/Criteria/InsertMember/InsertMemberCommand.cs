@@ -36,7 +36,6 @@
             SubAccId = subAccId;
             IsSearchAndCopy = true;
             SystemId = alphaSystemId;
-            SiteDBGroupIp = siteDBGroupIp;
             ActorUsername = actorUsername;
         }
     }

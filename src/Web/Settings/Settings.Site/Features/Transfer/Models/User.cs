@@ -36,7 +36,6 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Models
         public bool IsSubAcc => userSession.IsSubAcc;
         public PageAccess SubPageAccess => userSession.SubPageAccess;
 
-        public string AGIP => userSession.AGIP;
         public int SiteDbGroupId => userSession.SiteDBGroupId;
     }
 }

@@ -14,12 +14,11 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
 
         public PostUpdateMultipleAutoTransferQuery(IUser user)
         {
-            user = user ?? new User(UserSession.Current);
+            user ??= new User(UserSession.Current);
             UplineId = user.Id;
             SubAccId = user.SubAccId;
             IP = user.IP;
             Language = user.LanguageKey;
-            AGIP = user.AGIP;
             SiteDbGroupId = user.SiteDbGroupId;
         }
 
@@ -27,9 +26,7 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
         public int SubAccId { get; }
         public string IP { get; }
         public string Language { get; }
-        public string AGIP { get; }
         public int SiteDbGroupId { get; }
-
         public string OnIds { get; set; }
         public string OffIds { get; set; }
         public string OnStatus { get; set; }

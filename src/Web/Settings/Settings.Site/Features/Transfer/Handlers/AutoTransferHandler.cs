@@ -183,7 +183,6 @@ public class AutoTransferHandler(
             Old_TransferOption = message.Old_TransferOption,
             OnNames = message.OnNames,
             OffNames = message.OffNames,
-            AGIP = message.AGIP,
             SiteDbGroupId = message.SiteDbGroupId
         };
 

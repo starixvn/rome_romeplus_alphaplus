@@ -12,7 +12,9 @@ namespace AlphaPlus.Settings.Site.Features.Shared.Models
 
         private readonly IUserSession userSession;
 
-        public User() : this(null) { }
+        public User() : this(null)
+        {
+        }
 
         internal User(IUserSession userSession)
         {
@@ -82,8 +84,6 @@ namespace AlphaPlus.Settings.Site.Features.Shared.Models
 
         public string AssetAppPath => userSession.AssetAppPath;
 
-        public string SiteDBGroupIp => userSession.AGIP;
-
         public string Currency => userSession.Currency;
 
         public bool IsSubAcc => userSession.IsSubAcc;
@@ -91,8 +91,6 @@ namespace AlphaPlus.Settings.Site.Features.Shared.Models
         public int CurrencyId => userSession.CurrencyId;
 
         public PageAccess SubPageAccess => userSession.SubPageAccess;
-
-        public string AGIP => userSession.AGIP;
 
         public string LangKey => userSession.LangKey;
 

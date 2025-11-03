@@ -8,8 +8,6 @@ namespace AlphaPlus.Identity.API.Features.Auth.SiteDb
 
         public string ClientAccessName { get; init; }
 
-        public string AGIP { get; init; }
-
         public int CustDBGroupId { get; init; }
     }
 }

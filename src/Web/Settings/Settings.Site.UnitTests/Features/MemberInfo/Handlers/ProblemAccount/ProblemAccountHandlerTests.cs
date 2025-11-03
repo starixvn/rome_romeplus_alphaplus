@@ -1,13 +1,12 @@
+using AlphaPlus.Core.Helpers;
+using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts;
+using AlphaPlus.Settings.MemberInfo.API.Services;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Models.ProblemAccount;
+using AlphaPlus.Settings.MemberInfo.Domain.Params.ProblemAccount;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Handlers.ProblemAccount;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.ProblemAccount;
 using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.ProblemAccount;
-using AlphaPlus.Settings.MemberInfo.API.Features.MyWatchlist.MyWatchlistAccounts;
-using AlphaPlus.Settings.MemberInfo.API.Services;
-using AlphaPlus.Settings.MemberInfo.Domain.Models.ProblemAccount;
-using AlphaPlus.Settings.MemberInfo.Domain.Params.ProblemAccount;
-using AlphaPlus.Settings.MemberInfo.Domain.Models;
-using AlphaPlus.Core.Helpers;
-using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.UnitTests.Features.MemberInfo.Handlers.ProblemAccount;
 
@@ -37,22 +36,22 @@ public class ProblemAccountHandlerTests : IClassFixture<TestFixture>
     {
         // Use reflection to create instance without calling constructor that accesses UserSession.Current
         var request = (IndexRequest)System.Runtime.Serialization.FormatterServices.GetUninitializedObject(typeof(IndexRequest));
-        
+
         // Manually set the viewer field to avoid null reference
         var mockUser = CreateMockUser();
         SetViewerField(request, mockUser);
-        
+
         return request;
     }
 
     private UpdateProblemAccountRequest CreateUpdateProblemAccountRequest()
     {
         var request = (UpdateProblemAccountRequest)System.Runtime.Serialization.FormatterServices.GetUninitializedObject(typeof(UpdateProblemAccountRequest));
-        
+
         // Manually set the viewer field and properties
         var mockUser = CreateMockUser();
         SetViewerField(request, mockUser);
-        
+
         request.UserNames = "testuser";
         request.Ids = "123";
         request.RoleId = 2;
@@ -62,11 +61,11 @@ public class ProblemAccountHandlerTests : IClassFixture<TestFixture>
     private UpdateProblemAccountCommand CreateUpdateProblemAccountCommand()
     {
         var command = (UpdateProblemAccountCommand)System.Runtime.Serialization.FormatterServices.GetUninitializedObject(typeof(UpdateProblemAccountCommand));
-        
+
         // Manually set the viewer field and properties
         var mockUser = CreateMockUser();
         SetViewerField(command, mockUser);
-        
+
         command.IsAffectedAllDownlines = false;
         command.Ids = "123";
         command.RoleId = 2;
@@ -76,11 +75,11 @@ public class ProblemAccountHandlerTests : IClassFixture<TestFixture>
     private GetProblemAccountRequest CreateGetProblemAccountRequest()
     {
         var request = (GetProblemAccountRequest)System.Runtime.Serialization.FormatterServices.GetUninitializedObject(typeof(GetProblemAccountRequest));
-        
+
         // Manually set the viewer field
         var mockUser = CreateMockUser();
         SetViewerField(request, mockUser);
-        
+
         return request;
     }
 
@@ -102,7 +101,6 @@ public class ProblemAccountHandlerTests : IClassFixture<TestFixture>
         mockUser.SetupGet(u => u.IsAllowedIndirectLogin).Returns(true);
         mockUser.SetupGet(u => u.IsAdminCanViewVNIP).Returns(false);
         mockUser.SetupGet(u => u.DarkModeName).Returns("");
-        mockUser.SetupGet(u => u.AGIP).Returns("127.0.0.1");
         mockUser.SetupGet(u => u.CustDBGroupId).Returns(1);
         mockUser.SetupGet(u => u.CanUpdateAccount).Returns(true);
         return mockUser.Object;
@@ -150,7 +148,7 @@ public class ProblemAccountHandlerTests : IClassFixture<TestFixture>
         // Arrange
         var command = CreateUpdateProblemAccountCommand();
         var expectedResult = _fixture.Create<Result>();
-        
+
         _mockProblemAccountService
             .Setup(x => x.UpdateReviewStatus(It.IsAny<UpdateProblemAccountParam>()))
             .ReturnsAsync(expectedResult);
@@ -161,7 +159,7 @@ public class ProblemAccountHandlerTests : IClassFixture<TestFixture>
         // Assert
         result.Should().Be(expectedResult);
         _mockProblemAccountService.Verify(
-            x => x.UpdateReviewStatus(It.Is<UpdateProblemAccountParam>(p => 
+            x => x.UpdateReviewStatus(It.Is<UpdateProblemAccountParam>(p =>
                 p.CustId == command.CustId &&
                 p.CustomerList == command.Ids &&
                 p.IsAffectedAllDownlines == command.IsAffectedAllDownlines &&
@@ -178,7 +176,7 @@ public class ProblemAccountHandlerTests : IClassFixture<TestFixture>
         // Arrange
         var request = CreateGetProblemAccountRequest();
         var expectedModels = _fixture.CreateMany<ProblemAccountModel>(3).ToList();
-        
+
         _mockProblemAccountService
             .Setup(x => x.Get(It.IsAny<GetProblemAccountParam>()))
             .ReturnsAsync(expectedModels);
@@ -190,7 +188,7 @@ public class ProblemAccountHandlerTests : IClassFixture<TestFixture>
         result.Should().NotBeNull();
         result.Should().BeEquivalentTo(expectedModels);
         _mockProblemAccountService.Verify(
-            x => x.Get(It.IsAny<GetProblemAccountParam>()), 
+            x => x.Get(It.IsAny<GetProblemAccountParam>()),
             Times.Once);
     }
 
@@ -209,7 +207,7 @@ public class ProblemAccountHandlerTests : IClassFixture<TestFixture>
         // Arrange
         var request = CreateGetProblemAccountRequest();
         var emptyModels = new List<ProblemAccountModel>();
-        
+
         _mockProblemAccountService
             .Setup(x => x.Get(It.IsAny<GetProblemAccountParam>()))
             .ReturnsAsync(emptyModels);
@@ -221,7 +219,7 @@ public class ProblemAccountHandlerTests : IClassFixture<TestFixture>
         result.Should().NotBeNull();
         result.Should().BeEmpty();
         _mockProblemAccountService.Verify(
-            x => x.Get(It.IsAny<GetProblemAccountParam>()), 
+            x => x.Get(It.IsAny<GetProblemAccountParam>()),
             Times.Once);
     }
 
@@ -230,17 +228,17 @@ public class ProblemAccountHandlerTests : IClassFixture<TestFixture>
     {
         // Arrange
         var command = CreateUpdateProblemAccountCommand();
-        
+
         _mockProblemAccountService
             .Setup(x => x.UpdateReviewStatus(It.IsAny<UpdateProblemAccountParam>()))
             .ThrowsAsync(new InvalidOperationException("Service error"));
 
         // Act & Assert
-        await Assert.ThrowsAsync<InvalidOperationException>(() => 
+        await Assert.ThrowsAsync<InvalidOperationException>(() =>
             _handler.Handle(command, CancellationToken.None));
-        
+
         _mockProblemAccountService.Verify(
-            x => x.UpdateReviewStatus(It.IsAny<UpdateProblemAccountParam>()), 
+            x => x.UpdateReviewStatus(It.IsAny<UpdateProblemAccountParam>()),
             Times.Once);
     }
 
@@ -292,7 +290,7 @@ public class ProblemAccountHandlerTests : IClassFixture<TestFixture>
         var request = CreateGetProblemAccountRequest();
         var expectedModels = _fixture.CreateMany<ProblemAccountModel>(2).ToList();
         var cancellationToken = new CancellationToken();
-        
+
         _mockProblemAccountService
             .Setup(x => x.Get(It.IsAny<GetProblemAccountParam>()))
             .ReturnsAsync(expectedModels);

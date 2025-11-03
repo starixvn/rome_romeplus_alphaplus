@@ -21,6 +21,5 @@ public class UpdateAllDayBalanceTransferParam(
 
     public string Currency { get; } = currency;
 
-    public string AGIP { get; }
     public int SiteDbGroupId { get; } = siteDbGroupId;
 }
