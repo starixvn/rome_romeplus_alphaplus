@@ -753,6 +753,27 @@ span.icon-boost {
 }
 
 .hybrid-parlay-match-ticket-list {
+    .league {
+        margin-bottom: 3px;
+    }		
+    .odds {
+        font-weight: bold;
+        color: var(--bl-tb-handicap);
+        .old-odds {
+            color: #9b9b9b;
+            font-weight: normal;
+            text-decoration: line-through;
+            margin-right: 4px;
+        }
+        .cur-odds {
+            font-weight: bold;
+        }
+    }
+    .live {
+        color: var(--bl-tb-favorite);
+        font-weight: bold;
+        margin-left: 5px;
+    }
 	.list-builder {
         &.single{
             li{
@@ -828,26 +849,5 @@ span.icon-boost {
 		display: inline-block;
 		text-transform: capitalize;
 	}
-	.hybrid-parlay-match {
-		.league {
-			margin-bottom: 3px;
-		}		
-		.odds {
-			font-weight: bold;
-			color: var(--bl-tb-handicap);
-			.old-odds {
-				color: #9b9b9b;
-				font-weight: normal;
-				text-decoration: line-through;
-			}
-			.new-odds {
-				font-weight: bold;
-			}
-		}
-        .live {
-            color: var(--bl-tb-favorite);
-            font-weight: bold;
-            margin-left: 5px;
-        }
-	}
+	 
 }
