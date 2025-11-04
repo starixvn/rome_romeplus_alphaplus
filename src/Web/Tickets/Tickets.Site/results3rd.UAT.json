@@ -60,6 +60,20 @@
       "VendorId": 114,
       "Url": "http://saba-wallet-group-preprod.3rd-party.klt2p.gamora.prod:32280/api/BGamingInternal/GetBetHistoryUrl",
       "Debug": 0
+    },
+    {
+      "Name": "GEMINI",
+      "SportTypeId": 117,
+      "VendorId": 115,
+      "Url": "http://saba-wallet-group-preprod.3rd-party.klt2p.gamora.prod:32280/api/GeminiInternal/GetBetHistoryUrl",
+      "Debug": 0
+    },
+    {
+      "Name": "VertexPlay",
+      "SportTypeId": 115,
+      "VendorId": 116,
+      "Url": "http://saba-wallet-group-preprod.3rd-party.klt2p.gamora.prod:32280/api/VertexPlayInternal/GetBetHistoryUrl",
+      "Debug": 0
     }
   ]
 }

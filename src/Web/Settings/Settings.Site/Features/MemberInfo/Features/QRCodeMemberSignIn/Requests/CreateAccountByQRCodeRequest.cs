@@ -14,7 +14,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
 
         public CreateAccountByQRCodeRequest(IUser viewer) : base(viewer)
         {
-            viewer = viewer ?? new User(UserSession.Current);
+            viewer ??= new User(UserSession.Current);
             SiteDBGroupIp = viewer.SiteDBGroupIp;
         }
 
