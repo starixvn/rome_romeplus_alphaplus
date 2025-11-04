@@ -73,9 +73,9 @@
         <Setting Key="Age_CustomerSelAllStatus" SpName="Age_CustomerSelAllStatus" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
     </Function>
     <Function Name="My Monitor Accounts">
-        <Setting Key="Acc_WLMonitored_Player_ReachDetail_Sel" SpName="Acc_WLMonitored_Player_ReachDetail_Sel" DbName="DB052.bodb02.wsv_alpv" Plain="0" />
-        <Setting Key="Acc_WLMonitored_Player_ReachList_ByAg" SpName="Acc_WLMonitored_Player_ReachList_ByAg" DbName="DB052.bodb02.wsv_alpv" Plain="0" />
-        <Setting Key="Acc_WLMonitored_SMA_ReachDetail_Sel" SpName="Acc_WLMonitored_SMA_ReachDetail_Sel" DbName="DB052.bodb02.wsv_alpv" Plain="0" />
+        <Setting Key="Acc_WLMonitored_Player_ReachDetail_Sel" SpName="Acc_WLMonitored_Player_ReachDetail_Sel" DbName="DB053.bodb02.wsv_alpv" Plain="0" />
+        <Setting Key="Acc_WLMonitored_Player_ReachList_ByAg" SpName="Acc_WLMonitored_Player_ReachList_ByAg" DbName="DB053.bodb02.wsv_alpv" Plain="0" />
+        <Setting Key="Acc_WLMonitored_SMA_ReachDetail_Sel" SpName="Acc_WLMonitored_SMA_ReachDetail_Sel" DbName="DB053.bodb02.wsv_alpv" Plain="0" />
         <Setting Key="Acc_CustWLMonitored_Setting_Adjust_DB052" SpName="Acc_CustWLMonitored_Setting_Adjust" DbName="DB052.bodb02.wsv_alpv" Plain="0" />
         <Setting Key="Acc_CustWLMonitored_Setting_Adjust_DB053" SpName="Acc_CustWLMonitored_Setting_Adjust" DbName="DB053.bodb02.wsv_alpv" Plain="0" />
         <Setting Key="Acc_WLMonitored_Player_ReachedMembersCount_ByAg" SpName="Acc_WLMonitored_Player_ReachedMembersCount_ByAg" DbName="DBAGE.bodb02.wsv_alpv" Plain="0" />
