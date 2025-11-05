@@ -1,16 +1,16 @@
 {
     "DomainMappings": [
         {
-            "Before": "alp16.nexdev.net",
-            "After": "https://mbp16.nexdev.net/auth"
+            "Before": "alp16.klc.nexdev.net",
+            "After": "https://mbp16.klc.nexdev.net/auth"
         },
         {
-            "Before": "alp17.nexdev.net",
-            "After": "https://mbp17.nexdev.net/auth"
+            "Before": "alp17.klc.nexdev.net",
+            "After": "https://mbp17.klc.nexdev.net/auth"
         },
         {
-            "Before": "alp18.nexdev.net",
-            "After": "https://mbp18.nexdev.net/auth"
+            "Before": "alp18.klc.nexdev.net",
+            "After": "https://mbp18.klc.nexdev.net/auth"
         }
     ]
 }
