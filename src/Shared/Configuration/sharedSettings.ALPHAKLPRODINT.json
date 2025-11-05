@@ -129,17 +129,17 @@
         },
         {
             "Name": "DBSITE01.CustDB.wsv_alpv",
-            "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alpv; password=PXf2SBfRUQy8FX4nLKHkrJ9Y9GtDtpJCaj335Qs3Yws==",
+            "ConnectionString": "packet size=4096; Data Source=10.146.11.160;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alpv; password=PXf2SBfRUQy8FX4nLKHkrJ9Y9GtDtpJCaj335Qs3Yws==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBSITE02.CustDB.wsv_alpv",
-            "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alpv; password=PXf2SBfRUQy8FX4nLKHkrJ9Y9GtDtpJCaj335Qs3Yws==",
+            "ConnectionString": "packet size=4096; Data Source=10.146.11.161;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alpv; password=PXf2SBfRUQy8FX4nLKHkrJ9Y9GtDtpJCaj335Qs3Yws==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
             "Name": "DBSITE03.CustDB.wsv_alpv",
-            "ConnectionString": "packet size=4096; Data Source=dbcust.gamora.prod;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alpv; password=PXf2SBfRUQy8FX4nLKHkrJ9Y9GtDtpJCaj335Qs3Yws==",
+            "ConnectionString": "packet size=4096; Data Source=10.146.11.162;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alpv; password=PXf2SBfRUQy8FX4nLKHkrJ9Y9GtDtpJCaj335Qs3Yws==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
