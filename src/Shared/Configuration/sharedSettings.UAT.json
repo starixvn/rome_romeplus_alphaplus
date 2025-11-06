@@ -190,7 +190,7 @@
     "SiteLabel789y": "789y",
     "AllowedSitesToViewBonusDetail": ["IBCINDO"],
     "AllowedSitesToShareLoad": {
-        "10.40.40.94": "y889,y789,yut,yOther"
+        "db052": "y889,y789,yut,yOther"
     },
     "AlphaPlus.NetThrottling": {
         "Resolver": "HttpError",

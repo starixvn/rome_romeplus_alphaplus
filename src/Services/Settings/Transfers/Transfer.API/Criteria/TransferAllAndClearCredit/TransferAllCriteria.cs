@@ -13,7 +13,7 @@ public class TransferAllCriteria(
     string language,
     bool isAllDayBalanceTransfer,
     int siteDbGroupId)
-    : SiteDbBaseCriteria(siteDbGroupId)
+    : SiteDbBaseCommand(siteDbGroupId)
 {
     public int CustId { get; set; } = custId;
 

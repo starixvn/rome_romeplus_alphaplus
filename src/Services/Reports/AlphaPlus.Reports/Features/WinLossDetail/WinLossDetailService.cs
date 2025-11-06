@@ -18,11 +18,6 @@ public class WinLossDetailService(
     IPartialUMService partialUMService,
     AllowedSitesToShareLoad allowedSitesToShareLoad) : IWinLossDetailService
 {
-    private readonly IDynamicRepository repository = repository;
-    private readonly IReportDateService reportDateService = reportDateService;
-    private readonly IPartialUMService partialUMService = partialUMService;
-    private readonly AllowedSitesToShareLoad allowedSitesToShareLoad = allowedSitesToShareLoad;
-
     public async Task<IEnumerable<WinLossDetailWeekModel>> GetWeekData(WinLossDetailWeekParam param)
     {
         var reportDate = await reportDateService.GetBalanceUpDayAndMoveBetsDay();
@@ -38,7 +33,7 @@ public class WinLossDetailService(
             param.IsReward,
             param.LevelType);
 
-        var ip = allowedSitesToShareLoad.GetIP(param.SiteName);
+        var ip = allowedSitesToShareLoad.GetSuffixBySiteName(param.SiteName);
 
         return await repository.FetchAsync<WinLossDetailWeekModel>(criteria, ip);
     }
@@ -48,7 +43,7 @@ public class WinLossDetailService(
         var criteria = await GetWinLossDetailCriteria(param);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
-        var ip = allowedSitesToShareLoad.GetIP(param.SiteName);
+        var ip = allowedSitesToShareLoad.GetSuffixBySiteName(param.SiteName);
         var (rawData, totals) = await repository.FetchMultipleAsync<WinLossDetailModel, WinLossDetailModel>(criteria, ip);
 
         return new ReportData<WinLossDetailModel>(rawData, totals.FirstOrDefault(), criteria.TotalRecords);

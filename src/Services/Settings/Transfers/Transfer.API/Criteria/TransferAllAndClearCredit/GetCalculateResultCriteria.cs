@@ -12,7 +12,7 @@ public class GetCalculateResultCriteria(
     string downlineNetPosition,
     int downlineCustId,
     int siteDbGroupId)
-    : SiteDbBaseCriteria(siteDbGroupId)
+    : SiteDbBaseCommand(siteDbGroupId)
 {
     public string DownlineNetPosition { get; set; } = downlineNetPosition;
 

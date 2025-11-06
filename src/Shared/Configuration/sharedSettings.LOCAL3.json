@@ -190,7 +190,7 @@
     "SiteLabel789y": "789y",
     "AllowedSitesToViewBonusDetail": ["IBCINDO"],
     "AllowedSitesToShareLoad": {
-        "10.18.200.58": "BEST-ODDS,789y"
+        "db052": "BEST-ODDS,789y"
     },
     "AlphaPlus.NetThrottling": {
         "Resolver": "HttpError",

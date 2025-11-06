@@ -10,7 +10,7 @@ public abstract class GetCreditBalanceCriteriaBase(
     bool? suspended,
     int pageIndex,
     int pageSize,
-    int siteDbGroupId) : SiteDbBaseCriteria(siteDbGroupId)
+    int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
 {
     public int CustId { get; } = custId;
 

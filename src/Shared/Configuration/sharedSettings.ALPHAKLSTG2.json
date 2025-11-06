@@ -190,7 +190,7 @@
     "SiteLabel789y": "789y",
     "AllowedSitesToViewBonusDetail": ["IBCINDO"],
     "AllowedSitesToShareLoad": {
-        "db052.gamora.prod": "y889,y789,yut,yOther"
+        "db052": "y889,y789,yut,yOther"
     },
     "AlphaPlus.NetThrottling": {
         "Resolver": "HttpError",
