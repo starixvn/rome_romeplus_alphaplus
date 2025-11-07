@@ -1,9 +1,8 @@
-using AlphaPlus.Reports.Features.Shared.Criteria;
-
 namespace AlphaPlus.Reports.Features.Consolidation;
 
 using Core.Helpers;
 using Fanex.Data;
+using Shared.Criteria;
 
 internal class GetConsolidationCriteria(
     int custId,
@@ -26,5 +25,5 @@ internal class GetConsolidationCriteria(
     [SpParam(Ignored = true)]
     public string Suffix { get; } = suffix;
 
-    public override string GetSettingKey() => SpNameHelpers.AppendSuffix("Age_Rpt_ConsolidatedGroup", suffix);
+    public override string GetSettingKey() => SpNameHelpers.AppendSuffix("Age_Rpt_ConsolidatedGroup", Suffix);
 }

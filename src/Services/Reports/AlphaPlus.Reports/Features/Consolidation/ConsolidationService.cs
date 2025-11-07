@@ -52,8 +52,7 @@ public class ConsolidationService(
                     });
 
                 var productExtras = (await repository.FetchAsync<ConsolidationProduct>(
-                new GetConsolidationExtraProductsCriteria(custId, settingStatus, cashServiceSites),
-                spSuffix))
+                        new GetConsolidationExtraProductsCriteria(custId, settingStatus, cashServiceSites, spSuffix)))
                 .Where(product => IsRemainSupportProduct(product, minDate))
                 .Select(product => new Product
                 {

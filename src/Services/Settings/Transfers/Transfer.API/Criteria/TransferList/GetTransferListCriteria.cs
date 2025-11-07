@@ -11,7 +11,7 @@ public abstract class GetTransferListCriteria(
     byte autoTransfer,
     int pageIndex,
     int pageSize,
-    int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
+    int siteDbGroupId) : SiteDbBaseCriteria(siteDbGroupId)
 {
     public string Username { get; } = downlineName;
 

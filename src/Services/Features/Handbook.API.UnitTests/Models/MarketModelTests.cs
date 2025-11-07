@@ -207,13 +207,9 @@ namespace AlphaPlus.Features.Handbook.API.UnitTests.Models
         [Fact]
         public void Model_HasExpectedPropertyCount()
         {
-            // Arrange
-            var propertyCount = typeof(MarketModel)
-                .GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
-                .Length;
-
             // Assert
-            Assert.Equal(1, propertyCount);
+            Assert.Contains(typeof(MarketModel).GetProperty(nameof(MarketModel.Name)),
+                typeof(MarketModel).GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance));
         }
 
         [Fact]

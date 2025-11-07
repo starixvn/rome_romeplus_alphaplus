@@ -3,7 +3,7 @@
 using Core.Criteria;
 using Core.Helpers;
 
-public class GetTotalAmtCriteria(int downlineId, byte downlineRoleId, int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
+public class GetTotalAmtCriteria(int downlineId, byte downlineRoleId, int siteDbGroupId) : SiteDbBaseCriteria(siteDbGroupId)
 {
     public int CustId { get; set; } = downlineId;
 

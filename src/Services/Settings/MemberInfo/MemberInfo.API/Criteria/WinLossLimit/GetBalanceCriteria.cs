@@ -17,7 +17,7 @@ public class GetBalanceCriteria(
     bool isDirectMember,
     int accountType,
     int siteDbGroupId)
-    : SiteDbBaseCommand(siteDbGroupId)
+    : SiteDbBaseCriteria(siteDbGroupId)
 {
     public int CustId { get; set; } = custId;
 

@@ -3,7 +3,7 @@
 using Core.Criteria;
 using Core.Helpers;
 
-public class GetNetPositionCriteria(int custId, byte roleId, int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
+public class GetNetPositionCriteria(int custId, byte roleId, int siteDbGroupId) : SiteDbBaseCriteria(siteDbGroupId)
 {
     public int CustId { get; set; } = custId;
 

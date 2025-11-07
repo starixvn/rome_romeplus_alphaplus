@@ -46,8 +46,7 @@ public class WinLossDetailService(
         var criteria = await GetWinLossDetailCriteria(param);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
-        var ip = allowedSitesToShareLoad.GetSuffixBySiteName(param.SiteName);
-        var (rawData, totals) = await repository.FetchMultipleAsync<WinLossDetailModel, WinLossDetailModel>(criteria, ip);
+        var (rawData, totals) = await repository.FetchMultipleAsync<WinLossDetailModel, WinLossDetailModel>(criteria);
 
         return new ReportData<WinLossDetailModel>(rawData, totals.FirstOrDefault(), criteria.TotalRecords);
     }

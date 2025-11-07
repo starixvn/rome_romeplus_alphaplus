@@ -3,7 +3,7 @@
 using Core.Criteria;
 using Core.Helpers;
 
-public class GetCashBalanceTransferCriteria(int custId, bool isDirectMember, int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
+public class GetCashBalanceTransferCriteria(int custId, bool isDirectMember, int siteDbGroupId) : SiteDbBaseCriteria(siteDbGroupId)
 {
     public int CustId { get; } = custId;
 
