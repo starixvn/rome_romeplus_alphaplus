@@ -8,6 +8,6 @@ public static class SpNameHelpers
     public static string CustDbPrefix(string spName, int? custDbGroupId)
         => custDbGroupId.HasValue ? $"CustDb{custDbGroupId.Value}_{spName}" : spName;
 
-    public static string Suffix(string spName, string suffix)
+    public static string AppendSuffix(string spName, string suffix)
         => !string.IsNullOrWhiteSpace(suffix) ? $"{spName}_{suffix.ToUpperInvariant()}" : spName;
 }

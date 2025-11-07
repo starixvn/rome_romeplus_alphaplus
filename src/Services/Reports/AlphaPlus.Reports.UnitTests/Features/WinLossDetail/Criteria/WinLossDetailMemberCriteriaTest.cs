@@ -22,7 +22,8 @@ public class WinLossDetailMemberCriteriaTest
             productIds: "1,2,3",
             productDetails: "Product1,Product2",
             username: "testuser",
-            isReward: false);
+            isReward: false,
+            "db052");
     }
 
     [Fact]
@@ -47,10 +48,10 @@ public class WinLossDetailMemberCriteriaTest
     public void GetSettingKey_Should_Return_Correct_Key()
     {
         // Act
-        string key = criteria.GetSettingKey();
+        var key = criteria.GetSettingKey();
 
         // Assert
-        Assert.Equal("Age_Rpt_WinLossDetail_Member", key);
+        Assert.Equal("Age_Rpt_WinLossDetail_Member_DB052", key);
     }
 
     [Fact]

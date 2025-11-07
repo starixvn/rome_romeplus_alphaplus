@@ -1,11 +1,11 @@
-using AlphaPlus.Shared.AppResources.Betlist.Services;
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.BetLists.Shared.Services;
 using AlphaPlus.IPInfo.Services;
 using AlphaPlus.PartialUM.Services;
+using AlphaPlus.Shared.AppResources.Betlist.Services;
 using AlphaPlus.Utilities.IP;
-using Fanex.Data.Repository;
 using Fanex.BetList.Core.Entities;
+using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.WinLoss;
 

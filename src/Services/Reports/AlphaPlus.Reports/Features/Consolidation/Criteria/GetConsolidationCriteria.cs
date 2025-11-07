@@ -26,5 +26,5 @@ internal class GetConsolidationCriteria(
     [SpParam(Ignored = true)]
     public string Suffix { get; } = suffix;
 
-    public override string GetSettingKey() => SpNameHelpers.Suffix("Age_Rpt_ConsolidatedGroup", suffix);
+    public override string GetSettingKey() => SpNameHelpers.AppendSuffix("Age_Rpt_ConsolidatedGroup", suffix);
 }
