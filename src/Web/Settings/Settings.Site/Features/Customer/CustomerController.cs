@@ -409,7 +409,7 @@ namespace AlphaPlus.Settings.Site.Features.Customer
             => Content(await customerService.GetProductCategories(request.CustId, request.Site, AppSettings.SiteLabel, request.CurrencyId, request.Language));
 
         public async Task<ActionResult> GetCommissionHint(SportBookInformationQuery request)
-            => Content(await customerService.GetCommissionHint(request.CustId, request.Site, request.Language));
+            => Content(await customerService.GetCommissionHint(request.CustId, request.Site, AppSettings.SiteLabel, request.Language));
 
         public async Task<ActionResult> CheckExistedCustomer(string username)
            => Json(await customerService.CheckExistedCustomer(username));
