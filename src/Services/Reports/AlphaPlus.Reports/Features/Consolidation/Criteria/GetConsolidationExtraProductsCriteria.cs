@@ -3,7 +3,7 @@ namespace AlphaPlus.Reports.Features.Consolidation;
 using Core.Criteria;
 using Core.Helpers;
 
-internal class GetConsolidationExtraProductsCriteria(int custId, byte settingStatus, string cashServiceSites, string spSuffix) : SpSuffixBaseCriteria(spSuffix)
+public class GetConsolidationExtraProductsCriteria(int custId, byte settingStatus, string cashServiceSites, string spSuffix) : SpSuffixBaseCriteria(spSuffix)
 {
     public int CustId { get; } = custId;
 
