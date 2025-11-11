@@ -23,9 +23,6 @@ public class WinLossService(
     IIPInfoService ipInfoService,
     IPService ipService) : BetListServiceBase(repository, ipInfoService, ipService), IWinLossService
 {
-    private readonly IReportDateService reportDateService = reportDateService;
-    private readonly IPartialUMService partialUMService = partialUMService;
-
     public async Task<BetListData> GetBetList(WinLossParam param)
     {
         var balanceUpDate = await reportDateService.GetBalanceUpDay();
@@ -101,10 +98,11 @@ public class WinLossService(
             param.ToDate,
             await reportDateService.GetMoveBetsDay(),
             maxTotalRow: param.MaxTotalRow,
-            isExportExcel: param.IsExcel);
+            isExportExcel: param.IsExcel,
+            suffix: param.SpSuffix);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
-        var (tickets, ticketData) = await repository.FetchMultipleAsync<TicketDto, TicketData>(criteria, param.IP);
+        var (tickets, ticketData) = await repository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
         await AssignCountry(tickets, param.DisplayVNIP);
 
         var errFormat = param.IsExcel
@@ -147,8 +145,9 @@ public class WinLossService(
             reportDate.MoveBetsDay,
             param.ProductIds,
             param.ProductDetailsXML,
-            param.Username);
+            param.Username,
+            param.SpSuffix);
 
-        return await repository.FetchAsync<WinLossWeekModel>(criteria, param.IP);
+        return await repository.FetchAsync<WinLossWeekModel>(criteria);
     }
 }

@@ -1,9 +1,9 @@
 using System.Text;
-using AlphaPlus.Shared.AppResources.Betlist.Site;
 using AlphaPlus.BetLists.Shared.Models;
 using AlphaPlus.BetLists.Shared.Services;
 using AlphaPlus.BetLists.WinLoss;
 using AlphaPlus.Core.Extensions;
+using AlphaPlus.Shared.AppResources.Betlist.Site;
 using AlphaPlus.SmartPunter.Services;
 using AlphaPlus.Tickets.Site.Features.BetLists.Requests.WinLoss;
 using AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Components;
@@ -33,9 +33,6 @@ public class WinLossNewHandler(
         IRequestHandler<WinLossBetListQuery, WinLossBetListViewModel>
 {
     private readonly AppSettings appSettings = options.Value;
-    private readonly AllowedSitesToShareLoad allowedSitesToShareLoad = allowedSitesToShareLoad;
-    private readonly IProductService productService = productService;
-    private readonly IWinLossService winlossService = winlossService;
 
     public async Task<WinLossNewViewModel> Handle(WinLossNewQuery message, CancellationToken cancellationToken)
     {
@@ -48,7 +45,7 @@ public class WinLossNewHandler(
             productViewModel.UserSelectedProductIds,
             productDetailsXml,
             message.CustName,
-            allowedSitesToShareLoad.GetIP(message.Site));
+            allowedSitesToShareLoad.GetSuffixBySiteName(message.Site));
         var weekData = await winlossService.GetWeekData(weekDataParam);
         var betlistData = new BetListData([], []);
 
@@ -64,7 +61,7 @@ public class WinLossNewHandler(
                 message.Site,
                 maxTotalRow: appSettings.BetListMaxTotalRowView,
                 maxTotalRowConfig: appSettings.BetListMaxTotalRowView,
-                ip: allowedSitesToShareLoad.GetIP(message.Site));
+                spSuffix: allowedSitesToShareLoad.GetSuffixBySiteName(message.Site));
             betlistData = await winlossService.GetBetList(param);
             WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
         }
@@ -238,7 +235,7 @@ public class WinLossNewHandler(
             message.Site,
             maxTotalRow: appSettings.BetListMaxTotalRowView,
             maxTotalRowConfig: appSettings.BetListMaxTotalRowView,
-            ip: allowedSitesToShareLoad.GetIP(message.Site));
+            spSuffix: allowedSitesToShareLoad.GetSuffixBySiteName(message.Site));
         var betlistData = await winlossService.GetBetList(param);
         WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
@@ -270,7 +267,7 @@ public class WinLossNewHandler(
             productViewModel.UserSelectedProductIds,
             productDetailsXml,
             message.CustName,
-            allowedSitesToShareLoad.GetIP(message.Site));
+            allowedSitesToShareLoad.GetSuffixBySiteName(message.Site));
         var weekData = await winlossService.GetWeekData(param);
 
         return BuildWeekViewModels(weekData, param.FromDate, param.ToDate, message.WeekFromDate, message.WeekToDate);
@@ -347,13 +344,13 @@ public class WinLossNewHandler(
             message.Site,
             maxTotalRow: appSettings.BetListMaxTotalRowView,
             maxTotalRowConfig: appSettings.BetListMaxTotalRowView,
-            ip: allowedSitesToShareLoad.GetIP(message.Site));
-        var betlistData = await winlossService.GetBetList(param);
-        WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
+            spSuffix: allowedSitesToShareLoad.GetSuffixBySiteName(message.Site));
+        var betListData = await winlossService.GetBetList(param);
+        WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betListData.Tickets);
 
         return new WinLossBetListViewModel(
             message,
-            betlistData,
+            betListData,
             Builder,
             TicketHelper,
             showContributionAmountRoundNote);
