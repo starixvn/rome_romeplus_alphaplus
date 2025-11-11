@@ -74,7 +74,8 @@
             refNoMixParlay?: number,
             league?: number,
             isOutright?: boolean,
-            betId?: number
+            betId?: number,
+            displayBetTypeId?: string
         ) => {
             const params = [
                 '?refnum=',
@@ -83,7 +84,8 @@
                 winLostDate,
                 '&bettypeid=',
                 betTypeId,
-                '&matchid=1&isViewResultFromBetList=true'
+                '&matchid=1&isViewResultFromBetList=true&displayBetTypeId=',
+                displayBetTypeId
             ].join('');
 
             Common.PopupDetails.Instance(window.top).Show(this.ResultDetailsPath + params, '', 800, 500);

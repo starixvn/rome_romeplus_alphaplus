@@ -19,6 +19,8 @@ public interface ICacheRefService
     string GetLeague3rdName(int league3rdId);
 
     string GetProductName(int productId);
+
+    string GetResourceDataByRefIdAndResourceId(string refId, string resourceId);
 }
 
 public class CacheRefService(
@@ -56,7 +58,7 @@ public class CacheRefService(
             : productName;
     }
 
-    private string GetResourceDataByRefIdAndResourceId(string refId, string resourceId)
+    public string GetResourceDataByRefIdAndResourceId(string refId, string resourceId)
         => remotingRefService.GetResourceDataByRefIdAndResourceId(refId, resourceId, LanguageCode, string.Empty);
 
     private static string LanguageCode => Thread.CurrentThread.CurrentCulture.Name;

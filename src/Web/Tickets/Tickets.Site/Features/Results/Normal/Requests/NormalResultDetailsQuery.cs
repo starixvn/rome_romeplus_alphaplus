@@ -15,4 +15,6 @@ public class NormalResultDetailsQuery : NormalResultQuery, IRequest<NormalDetail
     public bool IsViewResultFromBetList { get; set; }
 
     public int Hdp2 { get; set; }
+
+    public string DisplayBetTypeId { get; set; }
 }
