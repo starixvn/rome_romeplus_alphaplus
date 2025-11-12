@@ -24,7 +24,11 @@
                 </td>
                 <td class="text-right bl_underdog">
                     <div class="divWidth80">
-                        @if (Model.IsParlayBoost)
+                        @if (Model.IsHaveExtraInfo && @item.Odds != @item.MasterOdds)
+                        {
+                            <bet-builder-plus-odds original-odds="@item.Odds" odds="@item.MasterOdds" />
+                        }
+                        else if (Model.IsParlayBoost)
                         {
                             <parlay-boost-odds original-odds="@item.Odds" boost-odds="@item.MasterOdds" boost-rate="@item.BoostRate" />
                         }

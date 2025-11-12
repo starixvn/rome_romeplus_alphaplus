@@ -4,6 +4,7 @@ using AlphaPlus.BetLists.Parlay;
 using Fanex.BetList.Core.App_GlobalResources;
 using Fanex.BetList.Core.Entities;
 using Fanex.BetList.Core.Utils;
+using Fanex.BetList.Core.Utils.StringExt;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.ViewModels.Parlay;
 
@@ -21,6 +22,15 @@ public class ComboParlayDetailWrapper
         [BetStatus.Refund] = Resources.refund,
         [BetStatus.Pending] = CoreBetList.pending
     };
+
+    private readonly IEnumerable<string> SettleStatus =
+    [
+        BetStatus.Won, 
+        BetStatus.Lose,
+        BetStatus.Draw,
+    ];
+    private const string SportsbookTag = "p1";
+    private const string OddsBetBuilderPlusAttribute = "o";
 
     public ComboParlayDetailWrapper(
         ComboParlayDetail comboParlayDetail,
@@ -78,5 +88,15 @@ public class ComboParlayDetailWrapper
         return events;
     }
 
-    private string GetOdds() => ConvertByBetType.CommValue(ComboParlayDetail.Odds);
+    private string GetOdds()
+    {
+        if (!string.IsNullOrEmpty(ComboParlayDetail.ExtraInfo) && ComboParlayDetail.ExtraInfo.HasAttributeInXmlTag(SportsbookTag, OddsBetBuilderPlusAttribute))
+        {
+            var odds = ComboParlayDetail.ExtraInfo.GetXmlTagAttributeValue(SportsbookTag, OddsBetBuilderPlusAttribute);
+            
+            return ConvertByBetType.CommValue(SettleStatus.Contains(ComboParlayDetail.Status) ? ComboParlayDetail.Odds : odds);
+        }
+
+        return ConvertByBetType.CommValue(ComboParlayDetail.Odds);
+    }
 }

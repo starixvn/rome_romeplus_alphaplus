@@ -17,6 +17,7 @@ public class BetBuilderPlusService(IDynamicRepository repository) : IBetBuilderP
     public async Task<string> GetBetBuilderPlusTicketsDetailsHtml(ITicketHelper ticketHelper, BetBuilderPlusParam betBuilderPlusParam)
     {
         var tickets = await repository.FetchAsync<Ticket>(new GetParlayBetListCriteria(betBuilderPlusParam.TransId, betBuilderPlusParam.CustId));
+        var stakeTicket = tickets.FirstOrDefault(x => x.Stake > 0);
         
         var betBuilderPlusBuilder = new HyBridParlayBuilder();
 
@@ -27,8 +28,8 @@ public class BetBuilderPlusService(IDynamicRepository repository) : IBetBuilderP
             (int)betBuilderPlusParam.Hdp2,
             betBuilderPlusParam.BetCheck,
             betBuilderPlusParam.BetTeam,
-            betBuilderPlusParam.Currency,
-            betBuilderPlusParam.Stake,
+            stakeTicket != null ? stakeTicket.Currency : betBuilderPlusParam.Currency,
+            stakeTicket != null ? stakeTicket.Stake : betBuilderPlusParam.Stake,
             false);
     }
 }
