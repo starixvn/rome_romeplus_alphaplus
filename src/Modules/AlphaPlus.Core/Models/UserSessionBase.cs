@@ -1,6 +1,5 @@
 using System.Globalization;
 using System.Reflection;
-using AlphaPlus.Core.Configurations;
 using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
 
@@ -71,7 +70,6 @@ public class UserSessionBase : IUserSession, IDisposable
     private const string ISPROTECTEDMODESESSIONKEY = "ISPROTECTEDMODE";
     private const string AUTOFOLLOWBETISDUMMYAGENTSESSIONKEY = "AUTOFOLLOWBETISDUMMYAGENT";
     private const string ISINTERNALWEBVPN = "ISINTERNALWEBVPN";
-    private const string AGIPSESSIONKEY = "AGIP";
     private const string SITEDBGROUPIDSESSIONKEY = "SITEDBGROUPID";
     private const string CUSTDBGROUPIDSESSIONKEY = "CUSTDBGROUPID";
     private const string OFFEREDPRODUCTGROUPIDS = "OFFEREDPRODUCTGROUPIDS";
@@ -417,12 +415,6 @@ public class UserSessionBase : IUserSession, IDisposable
     {
         get => GetProperty<bool>(AUTOFOLLOWBETISDUMMYAGENTSESSIONKEY);
         set => SetProperty(AUTOFOLLOWBETISDUMMYAGENTSESSIONKEY, value);
-    }
-
-    public string AGIP
-    {
-        get => GetProperty<string>(AGIPSESSIONKEY) ?? AppSettings.DBTXN_IP;
-        set => SetProperty(AGIPSESSIONKEY, value);
     }
 
     public int SiteDBGroupId

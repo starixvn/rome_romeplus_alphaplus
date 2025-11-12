@@ -1,5 +1,7 @@
 namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferYesterdayBalance;
 
+using Core.Helpers;
+
 public class DirectMemberTransferMultipleYesterdayBalanceCriteria(
     int superOrMasterId,
     string toCustIds,
@@ -8,7 +10,8 @@ public class DirectMemberTransferMultipleYesterdayBalanceCriteria(
     byte autoTransfer,
     string language,
     string ip,
-    int subAccId) : TransferYesterdayBalanceCriteria(language, ip, superOrMasterId, subAccId)
+    int subAccId,
+    int siteDbGroupId) : TransferYesterdayBalanceCriteria(language, ip, superOrMasterId, subAccId, siteDbGroupId)
 {
     public int FromCustId { get; } = superOrMasterId;
 
@@ -20,7 +23,7 @@ public class DirectMemberTransferMultipleYesterdayBalanceCriteria(
 
     public byte AutoTransfer { get; } = autoTransfer;
 
-    public override string GetSettingKey() => "SiteDB_Age_Transfer_InsClearBalance_DirectMember";
+    public override string GetSettingKey() => SpNameHelpers.SiteDbPrefix("Age_Transfer_InsClearBalance_DirectMember", SiteDbGroupId);
 
     public override bool IsValid() => FromCustId > 0 && !string.IsNullOrWhiteSpace(ToCustIds);
 }

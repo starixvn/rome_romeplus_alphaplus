@@ -6,16 +6,11 @@ using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignIn.Requests
 {
-    public class CreateAccountByQRCodeRequest :
-        QRCodeBaseQuery,
+    public class CreateAccountByQRCodeRequest(IUser viewer) : QRCodeBaseQuery(viewer ?? new User(UserSession.Current)),
         IRequest<ResultCreateMemberQRCode>
     {
-        public CreateAccountByQRCodeRequest() : this(null) { }
-
-        public CreateAccountByQRCodeRequest(IUser viewer) : base(viewer)
+        public CreateAccountByQRCodeRequest() : this(null)
         {
-            viewer ??= new User(UserSession.Current);
-            SiteDBGroupIp = viewer.SiteDBGroupIp;
         }
 
         public string UsernameCopyFrom { get; set; }
@@ -38,7 +33,6 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Features.QRCodeMemberSignI
 
         public bool ShowPageTitle { get; set; }
 
-        public string SiteDBGroupIp { get; }
         public override bool IsValid() =>
             base.IsValid() &&
             !IsInternal &&

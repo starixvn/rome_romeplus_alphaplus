@@ -1,5 +1,7 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.API.Criteria.CreditBalance;
 
+using Core.Helpers;
+
 public class GetMasterCreditBalanceCriteria(
     int custId,
     string userName,
@@ -8,10 +10,10 @@ public class GetMasterCreditBalanceCriteria(
     bool? suspended,
     byte levelType,
     int pageIndex,
-    int pageSize) : GetPagedCreditBalanceCriteria(custId, userName, enabled, closed, suspended, pageIndex, pageSize)
+    int pageSize,
+    int siteDbGroupId) : GetPagedCreditBalanceCriteria(custId, userName, enabled, closed, suspended, pageIndex, pageSize, siteDbGroupId)
 {
-
     public byte LevelType { get; } = levelType;
 
-    public override string GetSettingKey() => "SiteDB_Age_CustomerSelCreditBalanceList_Mag";
+    public override string GetSettingKey() => SpNameHelpers.SiteDbPrefix("Age_CustomerSelCreditBalanceList_Mag", SiteDbGroupId);
 }

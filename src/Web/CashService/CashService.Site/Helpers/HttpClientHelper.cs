@@ -25,7 +25,7 @@ public class HttpClientHelper
     public async Task<T> GetAsync<T>(string path, Dictionary<string, string> queryParams = null)
     {
         var url = BuildUrlWithQueryParams(path, queryParams);
-        var response = await httpClient.GetAsync(url);
+        using var response = await httpClient.GetAsync(url);
         if (response.IsSuccessStatusCode)
         {
             var contentString = await response.Content.ReadAsStringAsync();
@@ -48,7 +48,7 @@ public class HttpClientHelper
 
     public async Task<TResponse> PostAsync<TRequest, TResponse>(string path, TRequest data)
     {
-        var response = await httpClient.PostAsJsonAsync(path, data, jsonOptions);
+        using var response = await httpClient.PostAsJsonAsync(path, data, jsonOptions);
         if (response.IsSuccessStatusCode)
         {
             return await response.Content.ReadFromJsonAsync<TResponse>(jsonOptions);
@@ -64,7 +64,7 @@ public class HttpClientHelper
 
     public async Task<TResponse> PutAsync<TRequest, TResponse>(string path, TRequest data)
     {
-        var response = await httpClient.PutAsJsonAsync(path, data, jsonOptions);
+        using var response = await httpClient.PutAsJsonAsync(path, data, jsonOptions);
         if (response.IsSuccessStatusCode)
         {
             return await response.Content.ReadFromJsonAsync<TResponse>(jsonOptions);
@@ -81,7 +81,7 @@ public class HttpClientHelper
     public async Task DeleteAsync(string path, Dictionary<string, string> queryParams = null)
     {
         var url = BuildUrlWithQueryParams(path, queryParams);
-        var response = await httpClient.DeleteAsync(url);
+        using var response = await httpClient.DeleteAsync(url);
         if (!response.IsSuccessStatusCode)
         {
             throw new CustomHttpClientException(

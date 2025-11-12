@@ -1,15 +1,22 @@
-﻿using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
+﻿using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.MemberInfo.Domain.Constants;
+using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
 using AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit;
 using AlphaPlus.Settings.MemberInfo.Domain.Params;
-using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.WinLossLimit;
-using AlphaPlus.Settings.MemberInfo.Domain.Features.Shared.Models;
-using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components;
+using AlphaPlus.Shared.AppResources.Settings.MemberInfo;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit;
 
-public class WinLossLimitViewModel
+public class WinLossLimitViewModel(
+    bool isOfferedCashService,
+    WinLossLimitQuery message,
+    IEnumerable<WinLossLimitGroupProductModel> groupProducts,
+    IEnumerable<CustInfo> masterList,
+    IEnumerable<CustInfo> agentList,
+    WinLossLimitPage winLossLimitPage,
+    WinLossLimitParam param)
 {
     private const int MaxItemToShowPager = 100;
     private const decimal MaxWinLimitToShowNotAvailable = -3.00m;
@@ -22,72 +29,41 @@ public class WinLossLimitViewModel
         [SportTypeConstants.BBin] = 14
     };
 
-    public WinLossLimitViewModel(
-        bool isOfferedCashService,
-        WinLossLimitQuery message,
-        IEnumerable<WinLossLimitGroupProductModel> groupProducts,
-        IEnumerable<CustInfo> masterList,
-        IEnumerable<CustInfo> agentList,
-        WinLossLimitPage winLossLimitPage,
-        WinLossLimitParam param)
-    {
-        IsOfferedCashService = isOfferedCashService;
+    public UserLevel ViewerLevel { get; } = message.ActorLevel;
 
-        ViewerLevel = message.ActorLevel;
-        UserSelectedId = $"{param.ProductId}-{param.SportType}";
-        Username = message.Username ?? string.Empty;
-        PlayerId = message.PlayerId ?? string.Empty;
-        MasterId = param.MasterId;
-        RecommendId = param.AgentId;
+    public string UserSelectedId { get; } = $"{param.ProductId}-{param.SportType}";
 
-        GroupProducts = groupProducts;
-        MasterList = masterList;
-        AgentList = agentList;
+    public IEnumerable<WinLossLimitGroupProductModel> GroupProducts { get; } = groupProducts;
 
-        PageSize = message.PageSize;
-        PageIndex = message.PageIndex;
-        WinLossLimitPage = winLossLimitPage;
+    public int MasterId { get; } = param.MasterId;
 
-        SportType = param.SportType;
-        BetType = param.BetType;
-        AccountType = param.AccountType;
-    }
+    public int RecommendId { get; } = param.AgentId;
 
-    public UserLevel ViewerLevel { get; }
+    public string Username { get; } = message.Username ?? string.Empty;
 
-    public string UserSelectedId { get; }
+    public string PlayerId { get; } = message.PlayerId ?? string.Empty;
 
-    public IEnumerable<WinLossLimitGroupProductModel> GroupProducts { get; }
+    public int PageSize { get; set; } = message.PageSize;
 
-    public int MasterId { get; }
+    public int PageIndex { get; set; } = message.PageIndex;
 
-    public int RecommendId { get; }
+    public int SportType { get; } = param.SportType;
 
-    public string Username { get; }
-
-    public string PlayerId { get; }
-
-    public int PageSize { get; set; }
-
-    public int PageIndex { get; set; }
-
-    public int SportType { get; }
-
-    public bool IsSabaclub => SportType == SportTypeConstants.Sabaclub || SportType == SportTypeConstants.VGaming;
+    public bool IsSabaclub => SportType is SportTypeConstants.Sabaclub or SportTypeConstants.VGaming;
 
     public bool IsBBin => SportType == SportTypeConstants.BBin;
 
-    public int BetType { get; }
+    public int BetType { get; } = param.BetType;
 
-    public int AccountType { get; }
+    public int AccountType { get; } = param.AccountType;
 
-    public IEnumerable<CustInfo> MasterList { get; }
+    public IEnumerable<CustInfo> MasterList { get; } = masterList;
 
-    public IEnumerable<CustInfo> AgentList { get; }
+    public IEnumerable<CustInfo> AgentList { get; } = agentList;
 
-    public WinLossLimitPage WinLossLimitPage { get; }
+    public WinLossLimitPage WinLossLimitPage { get; } = winLossLimitPage;
 
-    public bool IsOfferedCashService { get; }
+    public bool IsOfferedCashService { get; } = isOfferedCashService;
 
     public PagerViewModel PagerViewModel => new(PageIndex, PageSize, WinLossLimitPage.NumberOfRows);
 
@@ -95,7 +71,7 @@ public class WinLossLimitViewModel
 
     public bool ShowPager => WinLossLimitPage.NumberOfRows >= MaxItemToShowPager;
 
-    public int NumberOfColumns => 
+    public int NumberOfColumns =>
         (NumberOfColumnBySportType.ContainsKey(SportType) ? NumberOfColumnBySportType[SportType] : DefaultNumberOfColumns);
 
     public static string GetPlayerIdText(string playerId)
@@ -103,8 +79,8 @@ public class WinLossLimitViewModel
 
     public static string GetStatusText(string statusKey) => Resources.ResourceManager.GetString(statusKey);
 
-    public static string GetCurrentWinAnmout(decimal? currentWinAnmout)
-        => currentWinAnmout.HasValue ? currentWinAnmout.Value.ToString("#,##0.00") : Lang.Unlimited;
+    public static string GetCurrentWinAmount(decimal? currentWinAmount)
+        => currentWinAmount.HasValue ? currentWinAmount.Value.ToString("#,##0.00") : Lang.Unlimited;
 
     public string GetMaxWinLimit(decimal maxWinLimit)
         => FormatMaxWinLimit(maxWinLimit);
@@ -122,7 +98,7 @@ public class WinLossLimitViewModel
     public string GetWinPercent(decimal? winPercent, decimal? currentWinLimit, decimal credit, decimal maxWinLimit)
         => FormatWinPercent(credit, currentWinLimit, winPercent, maxWinLimit);
 
-    public string GetWinPercentCashMember(decimal? winPercent, decimal maxWinLimit) 
+    public string GetWinPercentCashMember(decimal? winPercent, decimal maxWinLimit)
     {
         if (maxWinLimit == MaxWinLimitToShowNotAvailable)
         {
@@ -150,16 +126,6 @@ public class WinLossLimitViewModel
         => FormatRemainingTransferInAmmount(maxLossLimit, remainingTransferInAmount);
 
     private static string FormatMaxWinLimit(decimal maxWinLimit)
-    {
-        if (maxWinLimit == MaxWinLimitToShowNotAvailable)
-        {
-            return "N/A";
-        }
-
-        return maxWinLimit == 0 ? Lang.Unlimited : $"{maxWinLimit.ToString("#,##0")}X";
-    }
-
-    private static string FormatMaxWinLimit(decimal maxWinLimit, bool isCashMember)
     {
         if (maxWinLimit == MaxWinLimitToShowNotAvailable)
         {

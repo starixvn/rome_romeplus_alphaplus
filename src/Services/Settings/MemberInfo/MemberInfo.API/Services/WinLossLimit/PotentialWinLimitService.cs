@@ -1,23 +1,21 @@
+namespace AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit;
+
 using System.Globalization;
-using AlphaPlus.Core.Extensions;
-using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit;
 using AlphaPlus.Settings.MemberInfo.Domain.Models.WinLossLimit;
-using AlphaPlus.Settings.MemberInfo.Domain.Params;
+using Core.Models;
+using Domain.Params;
 using Fanex.Data.Repository;
-
-namespace AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit;
 
 public interface IPotentialWinLimitService
 {
     Task<PotentialWinLimitPage> GetPotentialWinLimitPage(PotentialWinLimitParam param, bool isGetAll = false);
+
     Task<Result> ResetCurrentSportsbookWinAmount(ResetCurrentSportsbookWinAmountParam param);
 }
 
 public class PotentialWinLimitService(IDynamicRepository repository) : IPotentialWinLimitService
 {
-    private readonly IDynamicRepository repository = repository;
-
     public async Task<PotentialWinLimitPage> GetPotentialWinLimitPage(PotentialWinLimitParam param, bool isGetAll = false)
     {
         var criteria = new GetPotentialWinLimitCriteria
@@ -35,11 +33,8 @@ public class PotentialWinLimitService(IDynamicRepository repository) : IPotentia
         var potentialLimitDetail = await repository.FetchAsync<PotentialWinLimitDetail>(criteria);
         var custIds = string.Join(",", potentialLimitDetail.Select(x => x.CustId.ToString()));
 
-        var potentialWinLimitAmountCriteria = new GetPotentialWinLimitAmountCriteria
-        {
-            CustIds = custIds,
-        };
-        var potentialWinLimitAmount = await repository.FetchAsync<PotentialWinLimitDetail>(potentialWinLimitAmountCriteria, param.AGIP);
+        var potentialWinLimitAmountCriteria = new GetPotentialWinLimitAmountCriteria(custIds, param.SiteDbGroupId);
+        var potentialWinLimitAmount = await repository.FetchAsync<PotentialWinLimitDetail>(potentialWinLimitAmountCriteria);
 
         var potentialWinLimitDetail = (from x in potentialLimitDetail
                                        join y in potentialWinLimitAmount on x.CustId equals y.CustId into joined
@@ -67,12 +62,20 @@ public class PotentialWinLimitService(IDynamicRepository repository) : IPotentia
         await repository.ExecuteAsync(checkResetCurrentSportsbookWinAmountCriteria);
         if (checkResetCurrentSportsbookWinAmountCriteria.ErrCode != 0)
         {
-            return new Result { 
-                Code = checkResetCurrentSportsbookWinAmountCriteria.ErrCode, 
-                Message = AlphaPlus.Shared.AppResources.Common.CommonResx.ResourceManager.GetString("ErrorMessage_" + checkResetCurrentSportsbookWinAmountCriteria.ErrCode, CultureInfo.CurrentCulture)
+            return new Result
+            {
+                Code = checkResetCurrentSportsbookWinAmountCriteria.ErrCode,
+                Message = Shared.AppResources.Common.CommonResx.ResourceManager.GetString("ErrorMessage_" + checkResetCurrentSportsbookWinAmountCriteria.ErrCode, CultureInfo.CurrentCulture)
             };
         }
-        var criteria = new ResetCurrentSportsbookWinAmountCriteria(param);
+        var criteria = new ResetCurrentSportsbookWinAmountCriteria(
+                    param.CustId,
+                    param.SubAccId,
+                    param.SubAccName,
+                    param.UserId,
+                    param.IP,
+                    param.SettingStatus,
+                    param.SiteDB);
 
         await repository.ExecuteAsync(criteria);
 

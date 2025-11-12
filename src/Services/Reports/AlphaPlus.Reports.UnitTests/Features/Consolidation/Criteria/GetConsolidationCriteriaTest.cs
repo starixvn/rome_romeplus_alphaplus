@@ -29,7 +29,8 @@ public class GetConsolidationCriteriaTest
             balanceUpDay,
             moveBetsDay,
             productIds,
-            productDetails);
+            productDetails,
+            string.Empty);
 
         // Assert
         Assert.Equal(custId, criteria.CustId);
@@ -41,6 +42,7 @@ public class GetConsolidationCriteriaTest
         Assert.Equal(moveBetsDay, criteria.MoveBetsDay);
         Assert.Equal(productIds, criteria.ProductIds);
         Assert.Equal(productDetails, criteria.ProductDetails);
+        Assert.Empty(criteria.Suffix);
     }
 
     [Fact]
@@ -56,7 +58,8 @@ public class GetConsolidationCriteriaTest
             balanceUpDay,
             moveBetsDay,
             productIds,
-            productDetails);
+            productDetails,
+            string.Empty);
 
         // Act
         var settingKey = criteria.GetSettingKey();
@@ -78,7 +81,8 @@ public class GetConsolidationCriteriaTest
             balanceUpDay,
             moveBetsDay,
             productIds,
-            productDetails);
+            productDetails,
+            string.Empty);
 
         // Assert
         Assert.IsAssignableFrom<ReportProductCriteria>(criteria);

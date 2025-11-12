@@ -1,15 +1,17 @@
-﻿using AlphaPlus.Settings.Transfer.API.Helpers;
-using MediatR;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.Transfer.Models;
+using AlphaPlus.Settings.Transfer.API.Helpers;
 using AlphaPlus.Settings.Transfer.API.Models;
 using AlphaPlus.Shared.AppResources.Settings.Transfer;
-using AlphaPlus.Settings.Site.Features.Transfer.Models;
-using AlphaPlus.Core.Models;
+using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
 {
     public class UpdateQuery : IRequest<Result>
     {
-        public UpdateQuery() : this(null) { }
+        public UpdateQuery() : this(null)
+        {
+        }
 
         public UpdateQuery(IUser user)
         {
@@ -19,7 +21,7 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
             IP = user.IP;
             Language = user.LanguageKey;
             UplineRoleId = user.LevelId;
-            AGIP = user.AGIP;
+            SiteDbGroupId = user.SiteDbGroupId;
         }
 
         public int CustId { get; set; }
@@ -42,7 +44,7 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
 
         public string Language { get; }
 
-        public string AGIP { get; }
+        public int SiteDbGroupId { get; set; }
 
         public string[] DateSchedule => (Schedule ?? string.Empty).Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 

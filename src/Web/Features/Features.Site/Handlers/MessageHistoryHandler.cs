@@ -23,11 +23,11 @@ namespace AlphaPlus.Features.Site.Messages.Handlers
             this.announcementService = announcementService;
         }
 
-        public async Task<MessagesHistoryViewModel> Handle(MessageHistoryQuery message, CancellationToken cancellation)
+        public async Task<MessagesHistoryViewModel> Handle(MessageHistoryQuery message, CancellationToken cancellationToken)
         {
             var lastSeenDate = GetLastSeenDate(message.CustId, message.SubAccId, message.MessageType);
             var messageParams = (MessageHistoryParams)message.ConvertToParameters();
-            var messages = messageService.GetMessagesHistory(messageParams);
+            var messages = await messageService.GetMessagesHistory(messageParams);
 
             var numberOfUnreadMessage = await newMessageService.GetNumberOfUnreadMessage(messageParams);
             UpdateUnreadMessageOnSession(message, numberOfUnreadMessage);

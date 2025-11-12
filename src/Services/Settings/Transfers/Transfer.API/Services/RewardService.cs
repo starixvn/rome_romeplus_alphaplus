@@ -1,11 +1,11 @@
 using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Transfer.API.Criteria.Reward;
+using AlphaPlus.Settings.Transfer.API.Helpers;
 using AlphaPlus.Settings.Transfer.API.Models.Reward;
 using AlphaPlus.Settings.Transfer.API.Params.Reward;
+using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using Fanex.Data.Repository;
 using Newtonsoft.Json;
-using AlphaPlus.Shared.AppResources.Settings.Transfer;
-using AlphaPlus.Settings.Transfer.API.Helpers;
 
 namespace AlphaPlus.Settings.Transfer.API.Services;
 
@@ -123,8 +123,9 @@ public class RewardService(IDynamicRepository repository) : IRewardService
             param.SubAccId,
             param.SubAccName,
             param.IP,
-            param.Language);
-        await repository.ExecuteAsync(criteria, param.AGIP);
+            param.Language,
+            param.SiteDbGroupId);
+        await repository.ExecuteAsync(criteria);
         var result = new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };
 
         if (result.IsSuccessful)

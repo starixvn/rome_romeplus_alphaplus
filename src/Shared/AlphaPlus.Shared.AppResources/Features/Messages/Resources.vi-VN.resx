@@ -358,13 +358,4 @@ Thông Báo Chung và Tin Nhắn Cá Nhân sẽ được lưu đến 3 tháng.</
   <data name="FeedbackSurveyTitle" xml:space="preserve">
     <value>Hãy giúp chúng tôi &lt;span&gt;cải thiện!&lt;/span&gt;</value>
   </data>
-  <data name="Loading_Duplicate[1]" xml:space="preserve">
-    <value>Đang tải </value>
-  </data>
-  <data name="No_Duplicate[1]" xml:space="preserve">
-    <value>Số</value>
-  </data>
-  <data name="No_Duplicate[1]_Duplicate[1]" xml:space="preserve">
-    <value>Số</value>
-  </data>
 </root>

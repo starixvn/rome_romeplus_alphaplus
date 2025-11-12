@@ -21,10 +21,8 @@ public class SiteDBServiceTests
             SiteDBGroupId = 1,
             LinkedServerName = "TestServer",
             ClientAccessName = "TestClient",
-            AGIP = "TestAGIP",
             CustDBGroupId = 2
         };
-
 
         _mockDynamicRepository
             .Setup(x => x.GetAsync<SiteDBConfig>(It.IsAny<GetSiteDBConfigCriteria>(), "", default))
@@ -98,7 +96,6 @@ public class SiteDBServiceTests
             SiteDBGroupId = custId * 2,
             LinkedServerName = $"Server{custId}",
             ClientAccessName = $"Client{custId}",
-            AGIP = $"AGIP{custId}",
             CustDBGroupId = custId * 3
         };
 

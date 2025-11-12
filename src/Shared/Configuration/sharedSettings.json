@@ -38,12 +38,12 @@
             "ProviderName": "System.Data.SqlClient"
         },
         {
-            "Name": "DBCust.CustDB.wsv_alp",
+            "Name": "DBCUST.CustDB.wsv_alp",
             "ConnectionString": "packet size=4096; Data Source=10.18.200.54;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
         {
-            "Name": "DBCust.IPDB.wsv_alp",
+            "Name": "DBCUST.IPDB.wsv_alp",
             "ConnectionString": "packet size=4096; Data Source=10.18.200.54;Initial Catalog=IPDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
@@ -88,7 +88,17 @@
             "ProviderName": "System.Data.SqlClient"
         },
         {
-            "Name": "SiteDB.bodb02.wsv_alp",
+            "Name": "DBSITE01.bodb02.wsv_alp",
+            "ConnectionString": "packet size=4096;Initial Catalog=bodb02;integrated security=false; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==; TrustServerCertificate=True;",
+            "ProviderName": "System.Data.SqlClient"
+        },
+        {
+            "Name": "DBSITE02.bodb02.wsv_alp",
+            "ConnectionString": "packet size=4096;Initial Catalog=bodb02;integrated security=false; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==; TrustServerCertificate=True;",
+            "ProviderName": "System.Data.SqlClient"
+        },
+        {
+            "Name": "DBSITE03.bodb02.wsv_alp",
             "ConnectionString": "packet size=4096;Initial Catalog=bodb02;integrated security=false; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==; TrustServerCertificate=True;",
             "ProviderName": "System.Data.SqlClient"
         },
@@ -103,7 +113,7 @@
             "ProviderName": "System.Data.SqlClient"
         },
         {
-            "Name": "DBCust.bodb_Credit.wsv_alp",
+            "Name": "DBCUST.bodb_Credit.wsv_alp",
             "ConnectionString": "packet size=4096; Data Source=10.18.200.54;Initial Catalog=bodb_Credit;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
@@ -118,7 +128,17 @@
             "ProviderName": "System.Data.SqlClient"
         },
         {
-            "Name": "SiteDB.CustDB.wsv_alp",
+            "Name": "DBSITE01.CustDB.wsv_alp",
+            "ConnectionString": "packet size=4096; Data Source=10.18.200.57;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ProviderName": "System.Data.SqlClient"
+        },
+        {
+            "Name": "DBSITE02.CustDB.wsv_alp",
+            "ConnectionString": "packet size=4096; Data Source=10.18.200.57;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
+            "ProviderName": "System.Data.SqlClient"
+        },
+        {
+            "Name": "DBSITE03.CustDB.wsv_alp",
             "ConnectionString": "packet size=4096; Data Source=10.18.200.57;Initial Catalog=CustDB;integrated security=false; trustservercertificate=true; user id=wsv_alp; password=tMTqX4Jh8mPg0pKcjbLJHwfrTY60ti4j3+7jLOmC0KM==",
             "ProviderName": "System.Data.SqlClient"
         },
@@ -135,6 +155,14 @@
     ],
     "StoredProcedurePath": "~/App_Data/SPNames.MAIN.xml",
     "FanexDataServiceApi": "http://fanexdataservices.nexdev.net",
+    "VaultOptions": {
+        "Address": "https://vault.nexdev.net",
+        "Role": "e2926953-8bdd-797b-e3bb-01c2aff820ff",
+        "SecretId": "f7abe82b-763a-84e0-57d0-810b8d282f18",
+        "MountPath": "pontus",
+        "Enable": true,
+        "MinutesPolling": 1
+    },
     "LogLibs": "Rabbit",
     "Fanex.Logging": {
         "DefaultCategory": "Alpha-MBC-AF-Local",
@@ -162,7 +190,7 @@
     "SiteLabel789y": "789y",
     "AllowedSitesToViewBonusDetail": ["IBCINDO"],
     "AllowedSitesToShareLoad": {
-        "10.18.200.58": "BEST-ODDS,789y"
+        "db052": "BEST-ODDS,789y"
     },
     "AlphaPlus.NetThrottling": {
         "Resolver": "HttpError",

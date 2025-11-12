@@ -433,12 +433,6 @@
   <data name="Balance" xml:space="preserve">
     <value>残高</value>
   </data>
-  <data name="PendingTransfer3rd_Duplicate[1]" xml:space="preserve">
-    <value>第三者の保留中の振込</value>
-  </data>
-  <data name="AutoTransferMonitoring_Duplicate[1]" xml:space="preserve">
-    <value>自動振込モニタ</value>
-  </data>
   <data name="NoChangeToUpdate" xml:space="preserve">
     <value>更新する変更はありません。</value>
   </data>

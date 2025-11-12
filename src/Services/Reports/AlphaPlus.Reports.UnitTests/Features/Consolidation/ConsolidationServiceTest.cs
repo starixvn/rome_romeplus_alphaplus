@@ -74,7 +74,7 @@ public class ConsolidationServiceTest : IDisposable
             })
             .Build();
 
-        AlphaPlus.Core.Configurations.ConfigurationManager.Init(configuration);
+        Core.Configurations.ConfigurationManager.Init(configuration);
 
         service = new ConsolidationService(
             repositoryMock.Object,

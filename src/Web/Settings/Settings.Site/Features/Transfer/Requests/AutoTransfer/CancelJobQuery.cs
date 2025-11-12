@@ -1,13 +1,15 @@
 ﻿using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Site.Features.Transfer.Models;
-using MediatR;
 using AlphaPlus.Settings.Transfer.API.Models;
+using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
 {
     public class CancelJobQuery : IRequest<Result>
     {
-        public CancelJobQuery() : this(null) { }
+        public CancelJobQuery() : this(null)
+        {
+        }
 
         public CancelJobQuery(IUser user)
         {
@@ -17,7 +19,7 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
             SubAccId = user.SubAccId;
             IP = user.IP;
             LanguageKey = user.LanguageKey;
-            AGIP = user.AGIP;
+            SiteDbGroupId = user.SiteDbGroupId;
         }
 
         public int CustId { get; set; }
@@ -32,7 +34,7 @@ namespace AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer
 
         public string LanguageKey { get; }
 
-        public string AGIP { get; }
+        public int SiteDbGroupId { get; }
 
         public bool IsValid() => CustId > 0 && UplineId > 0;
     }

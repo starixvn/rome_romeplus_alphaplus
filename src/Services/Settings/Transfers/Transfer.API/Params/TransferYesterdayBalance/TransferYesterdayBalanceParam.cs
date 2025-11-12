@@ -11,4 +11,4 @@ public record TransferYesterdayBalanceParam(
     string Language,
     string IP,
     int SubAccId,
-    string AGIP);
+    int SiteDbGroupId);

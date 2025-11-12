@@ -355,7 +355,4 @@
   <data name="FeedbackSurveyTitle" xml:space="preserve">
     <value>协助我们&lt;span&gt;改进！&lt;/span&gt;</value>
   </data>
-  <data name="Loading_Duplicate[1]" xml:space="preserve">
-    <value>载入中</value>
-  </data>
 </root>

@@ -1,16 +1,15 @@
-using Fanex.Data.Repository;
+namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit;
 
-namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit
+using AlphaPlus.Core.Criteria;
+using Core.Helpers;
+
+public class GetPotentialWinLimitAmountCriteria(string custIds, int siteDbGroupId) : SiteDbBaseCriteria(siteDbGroupId)
 {
-    public class GetPotentialWinLimitAmountCriteria : CriteriaBase
-    {
-        public string CustIds { get; set; }
+    public string CustIds { get; set; } = custIds;
 
-        public override string GetSettingKey()
-            => "SiteDB_Age_CustomerSelPotentialWinlimitAmount";
+    public override string GetSettingKey()
+        => SpNameHelpers.SiteDbPrefix("Age_CustomerSelPotentialWinlimitAmount", SiteDbGroupId);
 
-        public override bool IsValid()
-            => true;
-    }
+    public override bool IsValid()
+        => true;
 }
-

@@ -151,7 +151,7 @@ public class MemberSiteManagementServiceTest
 
     [Theory]
     [InlineData(true, false, MemberSiteDataObject.GeneralSettingType.AllowRegister)]
-    [InlineData(false, true, MemberSiteDataObject.GeneralSettingType.AllowLogin)]
+    [InlineData(false, true, MemberSiteDataObject.GeneralSettingType.AllowDeposit)]
     [InlineData(true, true, MemberSiteDataObject.GeneralSettingType.AllowAll)]
     [InlineData(false, false, MemberSiteDataObject.GeneralSettingType.None)]
     public async Task UpdateAsync_WithDifferentPermissionCombinations_ShouldSetCorrectSettingInfo(

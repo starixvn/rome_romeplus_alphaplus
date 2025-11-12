@@ -1,8 +1,9 @@
-using Fanex.Data.Repository;
-
 namespace AlphaPlus.Reports.Features.Consolidation;
 
-internal class GetConsolidationExtraProductsCriteria(int custId, byte settingStatus, string cashServiceSites) : CriteriaBase
+using Core.Criteria;
+using Core.Helpers;
+
+public class GetConsolidationExtraProductsCriteria(int custId, byte settingStatus, string cashServiceSites, string spSuffix) : SpSuffixBaseCriteria(spSuffix)
 {
     public int CustId { get; } = custId;
 
@@ -10,7 +11,7 @@ internal class GetConsolidationExtraProductsCriteria(int custId, byte settingSta
 
     public string CashServiceSites { get; } = cashServiceSites;
 
-    public override string GetSettingKey() => "Age_Rpt_ConsolidatedGroupProductSel_Extra";
+    public override string GetSettingKey() => SpNameHelpers.AppendSuffix("Age_Rpt_ConsolidatedGroupProductSel_Extra", Suffix);
 
     public override bool IsValid() => CustId > 0;
 }

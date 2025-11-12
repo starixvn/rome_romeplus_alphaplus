@@ -1,56 +1,30 @@
-using AlphaPlus.Settings.MemberInfo.Domain.Params;
-using Fanex.Data;
-using Fanex.Data.Repository;
+namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit;
 
-namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit
+using Core.Criteria;
+using Core.Helpers;
+
+public class ResetCurrentSportsbookWinAmountCriteria(int custId,
+    int subAccId,
+    string subAccName,
+    int userId,
+    string ip,
+    int settingStatus,
+    int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
 {
-    public class ResetCurrentSportsbookWinAmountCriteria : NonQueryCommand
-    {
-        public ResetCurrentSportsbookWinAmountCriteria()
-        {
-        }
+    public int CustId { get; } = custId;
 
-        public ResetCurrentSportsbookWinAmountCriteria(ResetCurrentSportsbookWinAmountParam param)
-        {
-            CustId = param.CustId;
-            ProductId = param.ProductId;
-            SportType = param.SportType;
-            BetType = param.BetType;
-            SubAccId = param.SubAccId;
-            SubAccName = param.SubAccName;
-            UserId = param.UserId;
-            IP = param.IP;
-            SettingStatus = param.SettingStatus;
-            SiteDB = param.SiteDB;
-        }
+    public int SubAccId { get; } = subAccId;
 
-        public int CustId { get; }
+    public string SubAccName { get; } = subAccName;
 
-        [SpParam(Ignored= true)]
-        public int ProductId { get; }
+    public int UserId { get; } = userId;
 
-        [SpParam(Ignored= true)]
-        public int SportType { get; }
-        
-        [SpParam(Ignored= true)]
-        public int BetType { get; }
+    public string IP { get; } = ip;
 
-        public int SubAccId { get; }
+    public int SettingStatus { get; } = settingStatus;
 
-        public string SubAccName { get; }
+    public override string GetSettingKey()
+        => SpNameHelpers.SiteDbPrefix("Acc_CustWinLimitBetReset_CashMember", SiteDbGroupId);
 
-        public int UserId { get; }
-
-        public string IP { get; }
-
-        public int SettingStatus { get; }
-
-        [SpParam(Ignored= true)]
-        public short SiteDB {get;}
-
-        public override string GetSettingKey()
-            => $"SiteDB_{SiteDB}_Acc_CustWinLimitBetReset_CashMember";
-
-        public override bool IsValid() => CustId > 0;
-    }
-} 
+    public override bool IsValid() => CustId > 0;
+}

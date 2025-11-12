@@ -1,15 +1,11 @@
-using Fanex.Data.Repository;
-
 namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferYesterdayBalance;
 
-public class ResetPotentialWinLimit : NonQueryCommand
-{
-    public ResetPotentialWinLimit(IEnumerable<int> custIds)
-    {
-        ListCustId = custIds != null ? string.Join(",", custIds) : string.Empty;
-    }
+using Core.Criteria;
+using Core.Helpers;
 
-    public string ListCustId { get; }
+public class ResetPotentialWinLimit(IEnumerable<int> custIds, int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
+{
+    public string ListCustId { get; } = custIds != null ? string.Join(",", custIds) : string.Empty;
 
     public int ErrCode { get; set; }
 
@@ -17,5 +13,5 @@ public class ResetPotentialWinLimit : NonQueryCommand
 
     public override bool IsValid() => !string.IsNullOrEmpty(ListCustId);
 
-    public override string GetSettingKey() => "SiteDB_CustWinLimitBet_Reset";
+    public override string GetSettingKey() => SpNameHelpers.SiteDbPrefix("Acc_CustWinLimitBet_Reset", SiteDbGroupId);
 }

@@ -14,7 +14,7 @@ public class MemberSiteDataObjectTest
         // Assert
         Assert.Equal(0, dataObject.SettingInfo);
         Assert.False(dataObject.IsAllowRegister);
-        Assert.False(dataObject.IsAllowLogin);
+        Assert.False(dataObject.IsAllowDeposit);
         Assert.Null(dataObject.Mobile);
         Assert.Null(dataObject.Contacts);
         Assert.Null(dataObject.Announcement);
@@ -23,12 +23,12 @@ public class MemberSiteDataObjectTest
     [Theory]
     [InlineData(MemberSiteDataObject.GeneralSettingType.None, false, false)]
     [InlineData(MemberSiteDataObject.GeneralSettingType.AllowRegister, true, false)]
-    [InlineData(MemberSiteDataObject.GeneralSettingType.AllowLogin, false, true)]
+    [InlineData(MemberSiteDataObject.GeneralSettingType.AllowDeposit, false, true)]
     [InlineData(MemberSiteDataObject.GeneralSettingType.AllowAll, true, true)]
     public void IsAllowRegisterAndLogin_ShouldReturnCorrectValues(
         MemberSiteDataObject.GeneralSettingType settingType,
         bool expectedAllowRegister,
-        bool expectedAllowLogin)
+        bool expectedAllowDeposit)
     {
         // Arrange
         var dataObject = new MemberSiteDataObject
@@ -38,7 +38,7 @@ public class MemberSiteDataObjectTest
 
         // Act & Assert
         Assert.Equal(expectedAllowRegister, dataObject.IsAllowRegister);
-        Assert.Equal(expectedAllowLogin, dataObject.IsAllowLogin);
+        Assert.Equal(expectedAllowDeposit, dataObject.IsAllowDeposit);
     }
 
     [Fact]
