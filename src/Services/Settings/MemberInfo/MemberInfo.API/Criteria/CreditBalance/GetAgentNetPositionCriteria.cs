@@ -1,17 +1,18 @@
 ﻿namespace AlphaPlus.Settings.MemberInfo.API.Criteria.CreditBalance;
 
-using Core.Helpers;
-
-public class GetAgentNetPositionCriteria(
-    int custId,
-    string userName,
-    bool? enabled,
-    bool? closed,
-    bool? suspended,
-    int pageIndex,
-    int pageSize,
-    int siteDbGroupId)
-    : GetCreditBalanceCriteriaBase(custId, userName, enabled, closed, suspended, pageIndex, pageSize, siteDbGroupId)
+public class GetAgentNetPositionCriteria : GetCreditBalanceCriteriaBase
 {
-    public override string GetSettingKey() => SpNameHelpers.SiteDbPrefix("Age_CustomerSelCreditBalNetPosition_Ag", SiteDbGroupId);
+    public GetAgentNetPositionCriteria(
+        int custId,
+        string userName,
+        bool? enabled,
+        bool? closed,
+        bool? suspended,
+        int pageIndex,
+        int pageSize)
+        : base(custId, userName, enabled, closed, suspended, pageIndex, pageSize)
+    {
+    }
+
+    public override string GetSettingKey() => "SiteDB_Age_CustomerSelCreditBalNetPosition_Ag";
 }

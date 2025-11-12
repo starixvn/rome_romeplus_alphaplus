@@ -23,6 +23,11 @@ public class AgentTransferMultipleYesterdayBalanceService(
     private const string ConcurrentTransferResultMessage = "<span style=\"color: red\">Transfer(s) has been proceeding by {0}:</span> {1}";
     private const string CacheErrorMessage = "Agent Transfer Process Error Log.\r\nThere is some error with Cache: {0}\r\nInner Message: {1}.";
 
+    private readonly AgentTransferMultipleYesterdayBalanceParam request = request;
+    private readonly ITransferService transferService = transferService;
+    private readonly ITransferCacheService transferCacheService = transferCacheService;
+    private readonly ITransferListService transferListService = transferListService;
+    private readonly IYesterdayBalanceTransferService yesterdayBalanceTransferService = yesterdayBalanceTransferService;
     private readonly string cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, request.ActorId);
     private readonly IDictionary<int, string> custIdsAndNames = new Dictionary<int, string>();
     private readonly List<int> listCustIdsTransferSuccess = new List<int>();
@@ -64,7 +69,7 @@ public class AgentTransferMultipleYesterdayBalanceService(
             request.AllowTotalBalanceTransfer,
             1,
             int.MaxValue - 1,
-            request.SiteDbGroupId);
+            request.AGIP);
         var transferReport = await transferListService.GetTransferList(param);
 
         foreach (var item in transferReport.Customers)
@@ -100,9 +105,8 @@ public class AgentTransferMultipleYesterdayBalanceService(
                         isAllDayBalanceTransfer,
                         request.Language,
                         request.IP,
-                        request.SubAccId,
-                        request.SiteDbGroupId);
-                    result = await yesterdayBalanceTransferService.MultipleMemberTransfer(criteria);
+                        request.SubAccId);
+                    result = await yesterdayBalanceTransferService.MultipleMemberTransfer(criteria, request.AGIP);
                 }
                 else
                 {
@@ -114,9 +118,8 @@ public class AgentTransferMultipleYesterdayBalanceService(
                         request.AutoTransfer,
                         request.Language,
                         request.IP,
-                        request.SubAccId,
-                        request.SiteDbGroupId);
-                    result = await yesterdayBalanceTransferService.MultipleDirectMemberTransfer(criteria);
+                        request.SubAccId);
+                    result = await yesterdayBalanceTransferService.MultipleDirectMemberTransfer(criteria, request.AGIP);
                 }
 
                 if (result.IsSuccessful)

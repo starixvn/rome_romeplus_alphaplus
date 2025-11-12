@@ -1,15 +1,13 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Criteria.CashBalanceTransfer;
+﻿using Fanex.Data.Repository;
 
-using Core.Criteria;
-using Core.Helpers;
+namespace AlphaPlus.Settings.Transfer.API.Criteria.CashBalanceTransfer;
 
-public class GetCashBalanceTransferCriteria(int custId, bool isDirectMember, int siteDbGroupId) : SiteDbBaseCriteria(siteDbGroupId)
+public class GetCashBalanceTransferCriteria(int custId, bool isDirectMember) : CriteriaBase
 {
     public int CustId { get; } = custId;
 
     public override string GetSettingKey()
-        => isDirectMember ? SpNameHelpers.SiteDbPrefix("Age_Transfer_CashBalance_DirectMember_Sel", SiteDbGroupId) :
-            SpNameHelpers.SiteDbPrefix("Age_Transfer_CashBalance_Sel", SiteDbGroupId);
+        => isDirectMember ? "SiteDB_Age_Transfer_CashBalance_DirectMember_Sel" : "SiteDB_Age_Transfer_CashBalance_Sel";
 
     public override bool IsValid() => CustId > 0;
 }

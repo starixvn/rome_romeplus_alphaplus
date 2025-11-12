@@ -1,13 +1,9 @@
 using System.Data.SqlTypes;
+using Fanex.Data.Repository;
 
 namespace AlphaPlus.BetLists.WinLoss;
 
-using Core.Criteria;
-using Core.Helpers;
-
-#pragma warning disable S107 // Methods should not have too many parameters
-
-public class GetWinLossWeekDataCriteria(
+internal class GetWinLossWeekDataCriteria(
     int custId,
     DateTime fromDate,
     DateTime toDate,
@@ -15,10 +11,7 @@ public class GetWinLossWeekDataCriteria(
     DateTime moveBetsDay,
     string productIds,
     string productDetails,
-    string username,
-    string suffix
-#pragma warning restore S107 // Methods should not have too many parameters
-    ) : SpSuffixBaseCriteria(suffix)
+    string username) : CriteriaBase
 {
     public int CustId { get; } = custId;
 
@@ -38,7 +31,7 @@ public class GetWinLossWeekDataCriteria(
 
     public bool IsReward { get; } = false;
 
-    public override string GetSettingKey() => SpNameHelpers.AppendSuffix("Age_Rpt_WinlossDetail_WeekDataSel", Suffix);
+    public override string GetSettingKey() => "Age_Rpt_WinlossDetail_WeekDataSel";
 
     public override bool IsValid()
         => CustId > 0 && FromDate <= ToDate && FromDate > SqlDateTime.MinValue.Value && !string.IsNullOrWhiteSpace(Username);

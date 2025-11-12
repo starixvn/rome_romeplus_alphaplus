@@ -1,23 +1,32 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Criteria.AutoTransfer;
+﻿using Fanex.Data.Repository;
 
-using Core.Criteria;
-using Core.Helpers;
-
-public class GetJobStatusCriteria(int? fromCustId, int? toCustId, bool isAllowAutoTransfer, int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
+namespace AlphaPlus.Settings.Transfer.API.Criteria.AutoTransfer
 {
-    public int? FromCustId { get; } = fromCustId;
+    public class GetJobStatusCriteria : NonQueryCommand
+    {
+        public GetJobStatusCriteria(int? fromCustId, int? toCustId, bool isAllowAutoTransfer)
+        {
+            FromCustId = fromCustId;
+            ToCustId = toCustId;
+            IsAllowAutoTransfer = isAllowAutoTransfer;
+            ErrCode = 0;
+            ErrMsg = string.Empty;
+        }
 
-    public int? ToCustId { get; } = toCustId;
+        public int? FromCustId { get; }
 
-    public bool IsAllowAutoTransfer { get; } = isAllowAutoTransfer;
+        public int? ToCustId { get; }
 
-    public bool IsAutoJobRunning { get; set; }
+        public bool IsAllowAutoTransfer { get; }
 
-    public int ErrCode { get; set; }
+        public bool IsAutoJobRunning { get; set; }
 
-    public string ErrMsg { get; set; } = string.Empty;
+        public int ErrCode { get; set; }
 
-    public override string GetSettingKey() => SpNameHelpers.SiteDbPrefix("Age_ClearBalanceCust_Job_StatusCheck", SiteDbGroupId);
+        public string ErrMsg { get; set; }
 
-    public override bool IsValid() => true;
+        public override string GetSettingKey() => "SiteDB_Age_ClearBalanceCust_Job_StatusCheck";
+
+        public override bool IsValid() => true;
+    }
 }

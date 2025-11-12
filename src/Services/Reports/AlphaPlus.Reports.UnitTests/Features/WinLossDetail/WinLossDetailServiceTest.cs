@@ -6,8 +6,6 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.UnitTests.Features.WinLossDetail;
 
-using Reports.Features.WinLossDetail.Criteria;
-
 [Trait("Category", "WinLossDetail")]
 public class WinLossDetailServiceTest
 {

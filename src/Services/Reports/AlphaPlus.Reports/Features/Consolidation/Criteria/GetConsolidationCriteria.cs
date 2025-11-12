@@ -1,8 +1,6 @@
-namespace AlphaPlus.Reports.Features.Consolidation;
+using AlphaPlus.Reports.Features.Shared.Criteria;
 
-using Core.Helpers;
-using Fanex.Data;
-using Shared.Criteria;
+namespace AlphaPlus.Reports.Features.Consolidation;
 
 internal class GetConsolidationCriteria(
     int custId,
@@ -13,8 +11,7 @@ internal class GetConsolidationCriteria(
     DateTime balanceUpDay,
     DateTime moveBetsDay,
     string productIds,
-    string productDetails,
-    string suffix) : ReportProductCriteria(custId, fromDate, toDate, balanceUpDay, moveBetsDay, productIds)
+    string productDetails) : ReportProductCriteria(custId, fromDate, toDate, balanceUpDay, moveBetsDay, productIds)
 {
     public byte ReportType { get; } = reportType;
 
@@ -22,8 +19,5 @@ internal class GetConsolidationCriteria(
 
     public string ProductDetails { get; } = productDetails;
 
-    [SpParam(Ignored = true)]
-    public string Suffix { get; } = suffix;
-
-    public override string GetSettingKey() => SpNameHelpers.AppendSuffix("Age_Rpt_ConsolidatedGroup", Suffix);
+    public override string GetSettingKey() => "Age_Rpt_ConsolidatedGroup";
 }

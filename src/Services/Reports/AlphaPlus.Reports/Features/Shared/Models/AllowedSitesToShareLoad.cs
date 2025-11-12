@@ -1,7 +1,9 @@
 namespace AlphaPlus.Reports.Features.Shared.Models;
 
-public class AllowedSitesToShareLoad(IDictionary<string, string> siteNameToSuffix)
+public class AllowedSitesToShareLoad(IDictionary<string, string> siteNameToIP)
 {
-    public string GetSuffixBySiteName(string siteName)
-        => siteNameToSuffix.TryGetValue(siteName, out var ip) ? ip : string.Empty;
+    private readonly IDictionary<string, string> siteNameToIP = siteNameToIP;
+
+    public string GetIP(string siteName)
+        => siteNameToIP.TryGetValue(siteName, out var ip) ? ip : string.Empty;
 }

@@ -1,34 +1,45 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Criteria.AutoTransfer;
+﻿using Fanex.Data.Repository;
 
-using Core.Criteria;
-using Core.Helpers;
-
-public class CancelJobCriteria(
-    int fromCustId,
-    int toCustId,
-    string viewStatus,
-    string language,
-    string ip,
-    int siteDbGroupId)
-    : SiteDbBaseCommand(siteDbGroupId)
+namespace AlphaPlus.Settings.Transfer.API.Criteria.AutoTransfer
 {
-    public int FromCustId { get; } = fromCustId;
+    public class CancelJobCriteria : NonQueryCommand
+    {
+        public CancelJobCriteria(
+            int fromCustId,
+            int toCustId,
+            string viewStatus,
+            string language,
+            string ip)
+        {
+            FromCustId = fromCustId;
+            ToCustId = toCustId;
+            ViewStatus = viewStatus;
 
-    public int ToCustId { get; } = toCustId;
+            Language = language;
+            IP = ip;
 
-    public string ViewStatus { get; } = viewStatus;
+            ErrCode = 0;
+            ErrMsg = string.Empty;
+        }
 
-    public int Creator => FromCustId;
+        public int FromCustId { get; }
 
-    public string Language { get; set; } = language;
+        public int ToCustId { get; }
 
-    public string IP { get; set; } = ip;
+        public string ViewStatus { get; }
 
-    public int ErrCode { get; set; }
+        public int Creator => FromCustId;
 
-    public string ErrMsg { get; set; } = string.Empty;
+        public string Language { get; set; }
 
-    public override string GetSettingKey() => SpNameHelpers.SiteDbPrefix("Age_ClearBalanceCust_ProcessCancel", SiteDbGroupId);
+        public string IP { get; set; }
 
-    public override bool IsValid() => FromCustId > 0 && ToCustId > 0;
+        public int ErrCode { get; set; }
+
+        public string ErrMsg { get; set; }
+
+        public override string GetSettingKey() => "SiteDB_Age_ClearBalanceCust_ProcessCancel";
+
+        public override bool IsValid() => FromCustId > 0 && ToCustId > 0;
+    }
 }

@@ -1,23 +1,31 @@
-namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance.Criteria;
+using Fanex.Data.Repository;
 
-using Core.Criteria;
-using Core.Helpers;
+namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Criteria;
 
-public class GetAutoTransferJobStatusCriteria(int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
+public class GetAutoTransferJobStatusCriteria : NonQueryCommand
 {
+    public GetAutoTransferJobStatusCriteria()
+    {
+        FromCustId = 0;
+        ToCustId = 0;
+        IsAllowAutoTransfer = true;
+        ErrCode = 0;
+        ErrMsg = string.Empty;
+    }
+
     public int FromCustId { get; }
 
     public int ToCustId { get; }
 
-    public bool IsAllowAutoTransfer => true;
+    public bool IsAllowAutoTransfer { get; }
 
     public bool IsAutoJobRunning { get; set; }
 
     public int ErrCode { get; set; }
 
-    public string ErrMsg { get; set; } = string.Empty;
+    public string ErrMsg { get; set; }
 
-    public override string GetSettingKey() => SpNameHelpers.SiteDbPrefix("Age_ClearBalanceCust_Job_StatusCheck", SiteDbGroupId);
+    public override string GetSettingKey() => "SiteDB_Age_ClearBalanceCust_Job_StatusCheck";
 
     public override bool IsValid() => true;
 }

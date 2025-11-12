@@ -30,7 +30,7 @@ public interface ISearchAccountService
 
     Task<CreditInfo> GetCreditInfo(int custId);
 
-    Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId, int siteDbGroupId);
+    Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId, string agIP);
 
     Task<bool> IsAllDayBalanceTransfer(int custId);
 
@@ -57,6 +57,7 @@ public interface ISearchAccountService
     Task<Result> UpdateRemarkInfo(UpdateRemarkInfoQuery param);
 }
 
+
 public class SearchAccountService(
     IDynamicRepository dynamicRepository,
     IPService ipService,
@@ -65,10 +66,8 @@ public class SearchAccountService(
     private readonly IDynamicRepository dynamicRepository = dynamicRepository;
     private readonly IPService ipService = ipService;
     private readonly HttpClient httpClient = httpClient;
-
     //private readonly IIdentityClient identityClient = identityClient;
     private const string English = "en-US";
-
     private const string ChineseTraditional = "zh-TW";
     private const string ChineseSimplified = "zh-CN";
     private const string Thai = "th-TH";
@@ -97,7 +96,7 @@ public class SearchAccountService(
     public Task<CreditInfo> GetCreditInfo(int custId)
         => dynamicRepository.GetAsync<CreditInfo>(new SelectCreditInfoCriteria(custId));
 
-    public Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId, int siteDbGroupId)
+    public Task<IBalanceInfoModel> GetBalanceInfo(int custId, byte roleId, string agIP)
     {
         var userLevel = Enumeration.FromValue<UserLevel>(roleId);
         var criteria = new SelectBalanceInfoCriteria(custId, roleId);
@@ -114,7 +113,7 @@ public class SearchAccountService(
 
         if (userLevel.IsMemberLevel())
         {
-            return GetMemberBalanceInfoModel(criteria, siteDbGroupId);
+            return GetMemberBalanceInfoModel(criteria, agIP);
         }
 
         return Task.FromResult<IBalanceInfoModel>(null);
@@ -126,16 +125,16 @@ public class SearchAccountService(
     internal async Task<IBalanceInfoModel> GetAgentBalanceInfoModel(SelectBalanceInfoCriteria criteria)
       => await dynamicRepository.GetAsync<AgentBalanceInfoModel>(criteria);
 
-    internal async Task<IBalanceInfoModel> GetMemberBalanceInfoModel(SelectBalanceInfoCriteria criteria, int siteDbGroupId)
+    internal async Task<IBalanceInfoModel> GetMemberBalanceInfoModel(SelectBalanceInfoCriteria criteria, string agIP)
     {
         var tasks = new List<Task>();
 
         var memberOutstandingCriteria = new SelectMemberOutstandingCriteria(criteria.CustId);
-        var memberBalanceCriteria = new SelectMemberBalanceCriteria(criteria.CustId, siteDbGroupId);
+        var memberBalanceCriteria = new SelectMemberBalanceCriteria(criteria.CustId);
         var memberBalanceInfoDTOTask = dynamicRepository.GetAsync<MemberBalanceInfoDTO>(criteria);
 
         tasks.Add(dynamicRepository.ExecuteAsync(memberOutstandingCriteria));
-        tasks.Add(dynamicRepository.ExecuteAsync(memberBalanceCriteria));
+        tasks.Add(dynamicRepository.ExecuteAsync(memberBalanceCriteria, agIP));
         tasks.Add(memberBalanceInfoDTOTask);
 
         await Task.WhenAll(tasks);
@@ -196,13 +195,13 @@ public class SearchAccountService(
 
     public async Task<Result> UpdateGivenCredit(GivenCreditCommand param)
     {
-        var accumCreditAllCashMember = await GetAccumCreditAllCashMember(param.SearchAccountRoleId, param.SearchAccountId);
+        decimal accumCreditAllCashMember = await GetAccumCreditAllCashMember(param.SearchAccountRoleId, param.SearchAccountId);
 
         UpdateMasterGivenCreditCommand command;
         if (param.SearchAccountRoleId == UserLevel.Member.Value)
         {
-            var totalAmtCommand = new GetTotalAmtCommand(param.SearchAccountId, param.SiteDbGroupId);
-            await dynamicRepository.ExecuteAsync(totalAmtCommand);
+            var totalAmtCommand = new GetTotalAmtCommand(param.SearchAccountId);
+            await dynamicRepository.ExecuteAsync(totalAmtCommand, param.AGIP);
             command = new UpdateMemberGivenCreditCommand(
                 param.SearchAccountId,
                 param.CreditAmount,
@@ -243,10 +242,12 @@ public class SearchAccountService(
         {
             return Result.CreateErrorResult(command.ErrMsg, failErrorCode);
         }
-
-        var replicateServerCommand = new UpdateGivenCreditReplicateServerCommand(param.SearchAccountId, param.CreditAmount);
-        await dynamicRepository.ExecuteAsync(replicateServerCommand);
-        return Result.CreateSuccessfulResult();
+        else
+        {
+            var replicateServerCommand = new UpdateGivenCreditReplicateServerCommand(param.SearchAccountId, param.CreditAmount);
+            await dynamicRepository.ExecuteAsync(replicateServerCommand);
+            return Result.CreateSuccessfulResult();
+        }
     }
 
     private async Task<decimal> GetAccumCreditAllCashMember(byte searchAccountRoleId, int searchAccountId)
@@ -361,7 +362,7 @@ public class SearchAccountService(
 
         if (IsAutoTransferAffect(param.Currency))
         {
-            var autoTransferStatus = await GetAutoTransferJobStatus(param.SiteDbGroupId);
+            var autoTransferStatus = await GetAutoTransferJobStatus(param.AGIP);
             if (autoTransferStatus)
             {
                 return Result.CreateErrorResult(AlphaPlus.Shared.AppResources.Settings.Resources.ADBTChangeFailed_AutoJobRunning, 1);
@@ -453,19 +454,19 @@ public class SearchAccountService(
         return JsonConvert.SerializeObject(content, Formatting.None);
     }
 
-    private static string GetPersonalMessage(ResourceManager rm, string language, string downLines)
+    private static string GetPersonalMessage(ResourceManager rm, string languae, string downlines)
     {
-        var culture = CultureInfo.GetCultureInfo(language);
+        var culture = CultureInfo.GetCultureInfo(languae);
 
         return string.Format(
             rm.GetString("ADBTConditionChange_PersonalMessage", culture),
-            downLines);
+            downlines);
     }
 
-    private async Task<bool> GetAutoTransferJobStatus(int siteDbGroupId)
+    private async Task<bool> GetAutoTransferJobStatus(string agIP)
     {
-        var criteria = new GetAutoTransferJobStatusCriteria(siteDbGroupId);
-        await dynamicRepository.ExecuteAsync(criteria);
+        var criteria = new GetAutoTransferJobStatusCriteria();
+        await dynamicRepository.ExecuteAsync(criteria, agIP);
 
         return criteria.IsAutoJobRunning;
     }
@@ -483,7 +484,7 @@ public class SearchAccountService(
             return true;
         }
 
-        return s.Split([',', ';'], StringSplitOptions.RemoveEmptyEntries)
+        return s.Split(new[] { ',', ';' }, StringSplitOptions.RemoveEmptyEntries)
             .Any(c => string.Equals(currency, c.Trim(), StringComparison.OrdinalIgnoreCase));
     }
 

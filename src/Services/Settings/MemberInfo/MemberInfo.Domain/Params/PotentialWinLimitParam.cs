@@ -1,43 +1,57 @@
-namespace AlphaPlus.Settings.MemberInfo.Domain.Params;
-
-using System.Diagnostics.CodeAnalysis;
-
-[SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "Constructor by design, no refactor planned")]
-public class PotentialWinLimitParam(
-    int custId,
-    byte roleId,
-    string username,
-    string status,
-    byte problemAccount,
-    int pageSize,
-    int pageIndex,
-    int siteDbGroupId,
-    int betType = 0,
-    int sportType = 0,
-    int accountType = 0,
-    int settingStatus = 0)
+namespace AlphaPlus.Settings.MemberInfo.Domain.Params
 {
-    public int CustId { get; set; } = custId;
+    public class PotentialWinLimitParam
+    {
+        public PotentialWinLimitParam(
+            int custId,
+            byte roleId,
+            string username,
+            string status,
+            byte problemAccount,
+            int pageSize,
+            int pageIndex,
+            string agIP,
+            int betType = 0,
+            int sportType = 0,
+            int accountType = 0,
+            int settingStatus = 0)
+        {
+            CustId = custId;
+            RoleId = roleId;
+            BetType = betType;
+            SportType = sportType;
+            Username = username;
+            Status = string.IsNullOrEmpty(status) ? "All" : status;
+            ProblemAccount = problemAccount;
+            PageSize = pageSize;
+            PageIndex = pageIndex;
+            AGIP = agIP;
+            AccountType = accountType;
+            SettingStatus = settingStatus;
+        }
 
-    public byte RoleId { get; set; } = roleId;
+        public int CustId { get; set; }
 
-    public int BetType { get; set; } = betType;
+        public byte RoleId { get; set; }
 
-    public int SportType { get; set; } = sportType;
+        public int BetType { get; set; }
 
-    public string Username { get; set; } = username;
+        public int SportType { get; set; }
 
-    public string Status { get; set; } = string.IsNullOrEmpty(status) ? "All" : status;
+        public string Username { get; set; }
 
-    public byte ProblemAccount { get; set; } = problemAccount;
+        public string Status { get; set; }
 
-    public int PageSize { get; set; } = pageSize;
+        public byte ProblemAccount { get; set; }
 
-    public int PageIndex { get; set; } = pageIndex;
+        public int PageSize { get; set; }
 
-    public int SiteDbGroupId { get; } = siteDbGroupId;
+        public int PageIndex { get; set; }
 
-    public int AccountType { get; set; } = accountType;
+        public string AGIP { get; } 
 
-    public int SettingStatus { get; set; } = settingStatus;
+        public int AccountType { get; set; }
+
+        public int SettingStatus { get; set; }
+    }
 }

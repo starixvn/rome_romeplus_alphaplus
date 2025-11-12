@@ -114,7 +114,7 @@ export default function GivenCredit() {
     );
 
     const renderTooltip = () => {
-        if (searchAccountRoleId === UserLevel.Member && memberMaxCredit > 0) {
+        if (searchAccountRoleId == UserLevel.Member && memberMaxCredit > 0) {
             const value = `${t('CreditHint').replace('{0}', formatNumber(availableCredit))}<br>${t(
                 'MemberMaxCreditHint'
             ).replace('{0}', formatNumber(memberMaxCredit))}`;

@@ -6,12 +6,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
   </PropertyGroup>
-  
-  <ItemGroup>
-    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
-      <_Parameter1>AlphaPlus.Settings.Transfer.API.UnitTests</_Parameter1>
-    </AssemblyAttribute>
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.Caching.Redis" Version="2.2.8" />
     <PackageReference Include="Fanex.RemotingRef" Version="1.5.5.1" />

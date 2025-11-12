@@ -1,6 +1,7 @@
 ﻿using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.Transfer.API.Configurations;
 using AlphaPlus.Settings.Transfer.API.Criteria.CashBalanceTransfer;
+using AlphaPlus.Settings.Transfer.API.Models;
 using AlphaPlus.Settings.Transfer.API.Models.CashBalanceTransfer;
 using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using Fanex.Data.Repository;
@@ -9,7 +10,7 @@ namespace AlphaPlus.Settings.Transfer.API.Services;
 
 public interface ICashBalanceTransferService
 {
-    Task<CashBalanceTransfer> GetCashBalanceTransfer(int custId, bool isDirectMember, int siteDbGroupId);
+    Task<CashBalanceTransfer> GetCashBalanceTransfer(int custId, bool isDirectMember, string agIP);
 
     Task<Result> AddCashBalanceTransfer(
         int fromCustId,
@@ -20,8 +21,8 @@ public interface ICashBalanceTransferService
         int subAccId,
         string ip,
         string languageKey,
-        bool isDirectMember,
-        int siteDbGroupId);
+        string agIP,
+        bool isDirectMember);
 }
 
 public class CashBalanceTransferService(IDynamicRepository repository, ITransferCacheService transferCacheService) : ICashBalanceTransferService
@@ -29,11 +30,14 @@ public class CashBalanceTransferService(IDynamicRepository repository, ITransfer
     private const string AgentTransferMemberListCache = "AgentMultipleTransfer.{0}.{1}";
     private const string ConcurrentSingleTransferResultMessage = "<span style=\"color: red\">The transfer has been proceeding by {0}<br/>";
 
-    public Task<CashBalanceTransfer> GetCashBalanceTransfer(int custId, bool isDirectMember, int siteDbGroupId)
-    {
-        var criteria = new GetCashBalanceTransferCriteria(custId, isDirectMember, siteDbGroupId);
+    private readonly IDynamicRepository repository = repository;
+    private readonly ITransferCacheService transferCacheService = transferCacheService;
 
-        return repository.GetAsync<CashBalanceTransfer>(criteria);
+    public Task<CashBalanceTransfer> GetCashBalanceTransfer(int custId, bool isDirectMember, string agIP)
+    {
+        var criteria = new GetCashBalanceTransferCriteria(custId, isDirectMember);
+
+        return repository.GetAsync<CashBalanceTransfer>(criteria, agIP);
     }
 
     public async Task<Result> AddCashBalanceTransfer(
@@ -45,19 +49,19 @@ public class CashBalanceTransferService(IDynamicRepository repository, ITransfer
         int subAccId,
         string ip,
         string languageKey,
-        bool isDirectMember,
-        int siteDbGroupId)
+        string agIP,
+        bool isDirectMember)
     {
-        var cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, creator);
-        var custIdCache = transferCacheService.Get(cacheKey) ?? [];
-        var concurrentTransfer = transferCacheService.CacheContains(custIdCache, toCustId);
+        string cacheKey = string.Format(AgentTransferMemberListCache, AppSettings.SiteLabel, creator);
+        var custIdCache = transferCacheService.Get(cacheKey) ?? new List<TransferCacheModel>();
+        var concurrentTrasfer = transferCacheService.CacheContains(custIdCache, toCustId);
 
-        if (concurrentTransfer != null)
+        if (concurrentTrasfer != null)
         {
             return new Result
             {
                 Code = 105,
-                Message = string.Format(ConcurrentSingleTransferResultMessage, concurrentTransfer.AdminName)
+                Message = string.Format(ConcurrentSingleTransferResultMessage, concurrentTrasfer.AdminName)
             };
         }
 
@@ -72,15 +76,14 @@ public class CashBalanceTransferService(IDynamicRepository repository, ITransfer
             subAccId,
             ip,
             languageKey,
-            isDirectMember,
-            siteDbGroupId);
+            isDirectMember);
         try
         {
-            await repository.ExecuteAsync(criteria);
+            await repository.ExecuteAsync(criteria, agIP);
         }
         finally
         {
-            transferCacheService.CacheRemoveSuccessTransferCustIds(cacheKey, [toCustId], creator, creatorName);
+            transferCacheService.CacheRemoveSuccessTransferCustIds(cacheKey, new List<int> { toCustId }, creator, creatorName);
         }
 
         return new Result

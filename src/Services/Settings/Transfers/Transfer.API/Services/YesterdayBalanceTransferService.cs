@@ -8,13 +8,13 @@ namespace AlphaPlus.Settings.Transfer.API.Services;
 
 public interface IYesterdayBalanceTransferService
 {
-    Task<Result> ResetPotentialWinLimit(int custIds, int siteDbGroupId);
+    Task<Result> ResetPotentialWinLimit(int custIds, string agIP);
 
-    Task<Result> ResetPotentialWinLimit(IEnumerable<int> custIds, int siteDbGroupId);
+    Task<Result> ResetPotentialWinLimit(IEnumerable<int> custIds, string agIP);
 
-    Task<Result> ResetPotentialWinLimit(string custIds, int siteDbGroupId);
+    Task<Result> ResetPotentialWinLimit(string custIds, string agIP);
 
-    Task<MemberTransfer> GetMemberTransfer(int custId, bool allowTotalBalanceTransfer, int siteDbGroupId);
+    Task<MemberTransfer> GetMemberTransfer(int custId, bool allowTotalBalanceTransfer, string agIP);
 
     Task<Result> Transfer(TransferYesterdayBalanceParam param);
 
@@ -22,14 +22,16 @@ public interface IYesterdayBalanceTransferService
 
     Task<Result> DirectMemberTransfer(AgentTransferYesterdayBalanceParam param);
 
-    Task<Result> MultipleMemberTransfer(AgentTransferMultipleYesterdayBalanceCriteria criteria);
+    Task<Result> MultipleMemberTransfer(AgentTransferMultipleYesterdayBalanceCriteria criteria, string agIP);
 
-    Task<Result> MultipleDirectMemberTransfer(DirectMemberTransferMultipleYesterdayBalanceCriteria criteria);
+    Task<Result> MultipleDirectMemberTransfer(DirectMemberTransferMultipleYesterdayBalanceCriteria criteria, string agIP);
 }
 
 public class YesterdayBalanceTransferService(IDynamicRepository repository) : IYesterdayBalanceTransferService
 {
-    public async Task<Result> ResetPotentialWinLimit(string custIds, int siteDbGroupId)
+    private readonly IDynamicRepository repository = repository;
+
+    public async Task<Result> ResetPotentialWinLimit(string custIds, string agIP)
     {
         var criteria = new SelectMemberWinLimitCriteria(custIds);
         var membersNeedReset = await repository.FetchAsync<PotentialWinLimitModel>(criteria);
@@ -37,24 +39,24 @@ public class YesterdayBalanceTransferService(IDynamicRepository repository) : IY
         if (membersNeedReset.Any())
         {
             var ids = membersNeedReset.Select(i => i.CustId).ToList();
-            var resetCriteria = new ResetPotentialWinLimit(ids, siteDbGroupId);
-            await repository.ExecuteAsync(resetCriteria);
+            var resetCriteria = new ResetPotentialWinLimit(ids);
+            await repository.ExecuteAsync(resetCriteria, agIP);
             return new Result { Code = resetCriteria.ErrCode, Message = resetCriteria.ErrMsg };
         }
 
         return new Result { Code = 0, Message = "Success" };
     }
 
-    public async Task<Result> ResetPotentialWinLimit(IEnumerable<int> custIds, int siteDbGroupId)
-    => await ResetPotentialWinLimit(string.Join(",", custIds), siteDbGroupId);
+    public async Task<Result> ResetPotentialWinLimit(IEnumerable<int> custIds, string agIP)
+    => await ResetPotentialWinLimit(string.Join(",", custIds), agIP);
 
-    public async Task<Result> ResetPotentialWinLimit(int custIds, int siteDbGroupId)
-    => await ResetPotentialWinLimit(custIds.ToString(), siteDbGroupId);
+    public async Task<Result> ResetPotentialWinLimit(int custIds, string agIP)
+    => await ResetPotentialWinLimit(custIds.ToString(), agIP);
 
-    public async Task<MemberTransfer> GetMemberTransfer(int custId, bool allowTotalBalanceTransfer, int siteDbGroupId)
+    public async Task<MemberTransfer> GetMemberTransfer(int custId, bool allowTotalBalanceTransfer, string agIP)
     {
-        var criteria = new GetMemberTransferInfoCriteria(custId, allowTotalBalanceTransfer, siteDbGroupId);
-        await repository.ExecuteAsync(criteria);
+        var criteria = new GetMemberTransferInfoCriteria(custId, allowTotalBalanceTransfer);
+        await repository.ExecuteAsync(criteria, agIP);
 
         return new MemberTransfer
         {
@@ -75,7 +77,7 @@ public class YesterdayBalanceTransferService(IDynamicRepository repository) : IY
     public async Task<Result> Transfer(TransferYesterdayBalanceParam param)
     {
         var criteria = BuildTransferYesterdayBalanceCriteria(param);
-        await repository.ExecuteAsync(criteria);
+        await repository.ExecuteAsync(criteria, param.AGIP);
 
         return new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };
     }
@@ -94,8 +96,7 @@ public class YesterdayBalanceTransferService(IDynamicRepository repository) : IY
                 param.AutoTransfer,
                 param.Language,
                 param.IP,
-                param.SubAccId,
-                param.SiteDbGroupId)
+                param.SubAccId)
             : new SuperTransferYesterdayBalanceCriteria(
                 param.CustId,
                 param.ToCustIds,
@@ -105,8 +106,7 @@ public class YesterdayBalanceTransferService(IDynamicRepository repository) : IY
                 param.AutoTransfer,
                 param.Language,
                 param.IP,
-                param.SubAccId,
-                param.SiteDbGroupId);
+                param.SubAccId);
     }
 
     public async Task<Result> MemberTransfer(AgentTransferYesterdayBalanceParam param)
@@ -119,23 +119,22 @@ public class YesterdayBalanceTransferService(IDynamicRepository repository) : IY
             param.Language,
             param.IP,
             param.AgentId,
-            param.SubAccId,
-            param.SiteDbGroupId);
-        await repository.ExecuteAsync(criteria);
+            param.SubAccId);
+        await repository.ExecuteAsync(criteria, param.AGIP);
 
         return new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };
     }
 
-    public async Task<Result> MultipleMemberTransfer(AgentTransferMultipleYesterdayBalanceCriteria criteria)
+    public async Task<Result> MultipleMemberTransfer(AgentTransferMultipleYesterdayBalanceCriteria criteria, string agIP)
     {
-        await repository.ExecuteAsync(criteria);
+        await repository.ExecuteAsync(criteria, agIP);
 
         return new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };
     }
 
-    public async Task<Result> MultipleDirectMemberTransfer(DirectMemberTransferMultipleYesterdayBalanceCriteria criteria)
+    public async Task<Result> MultipleDirectMemberTransfer(DirectMemberTransferMultipleYesterdayBalanceCriteria criteria, string agIP)
     {
-        await repository.ExecuteAsync(criteria);
+        await repository.ExecuteAsync(criteria, agIP);
 
         return new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };
     }
@@ -149,9 +148,8 @@ public class YesterdayBalanceTransferService(IDynamicRepository repository) : IY
             param.Language,
             param.IP,
             param.AgentId,
-            param.SubAccId,
-            param.SiteDbGroupId);
-        await repository.ExecuteAsync(criteria);
+            param.SubAccId);
+        await repository.ExecuteAsync(criteria, param.AGIP);
 
         return new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };
     }

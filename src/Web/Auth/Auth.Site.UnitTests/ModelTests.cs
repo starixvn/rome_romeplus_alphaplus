@@ -1,3 +1,8 @@
+using AlphaPlus.Auth.Site.Features.Account;
+using AlphaPlus.Core.Models;
+using AlphaPlus.RequestInfo.Models;
+using FluentAssertions;
+
 namespace AlphaPlus.Auth.Site.UnitTests;
 
 public class ModelTests
@@ -9,11 +14,13 @@ public class ModelTests
         var siteDB = new SiteDB
         {
             SiteDBGroupId = 1,
+            AGIP = "test-agip",
             CustDBGroupId = 2
         };
 
         // Assert
         siteDB.SiteDBGroupId.Should().Be(1);
+        siteDB.AGIP.Should().Be("test-agip");
         siteDB.CustDBGroupId.Should().Be(2);
     }
 
@@ -21,7 +28,7 @@ public class ModelTests
     public void SignInParam_Properties_ShouldBeSetCorrectly()
     {
         // Arrange
-        var requestInfo = new RequestInfo.Models.RequestInfo
+        var requestInfo = new AlphaPlus.RequestInfo.Models.RequestInfo
         {
             LoginIp = "192.168.1.1",
             BrowserName = "Test Browser"
@@ -211,4 +218,4 @@ public class ModelTests
         // Assert
         reCheckInResult.IsKickedOut.Should().BeFalse();
     }
-}
+} 

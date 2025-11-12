@@ -32,6 +32,8 @@
         public int CustId { get; set; }
         public string CopyFromUsername { get; internal set; }
         public string SubUsername { get; internal set; }
+
+        public string SiteDBGroupIp { get; set; }
         public string ActorUsername { get; }
     }
 }

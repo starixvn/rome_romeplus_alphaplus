@@ -1,7 +1,7 @@
-﻿using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
+﻿using MediatR;
+using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
 using AlphaPlus.Settings.Site.Features.Shared;
 using Fanex.Customer.Client.Models;
-using MediatR;
 
 namespace AlphaPlus.Settings.Site.Features.CopyAccount.Request
 {
@@ -28,6 +28,8 @@ namespace AlphaPlus.Settings.Site.Features.CopyAccount.Request
         public decimal MemberMaxCredit { get; set; }
 
         public string Password { get; set; }
+
+        public string SiteDBGroupIp => viewer.SiteDBGroupIp;
 
         public override bool IsValid() =>
             base.IsValid() &&

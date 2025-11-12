@@ -27,6 +27,9 @@ public class WinLossBaseHandler(
         : BetListExcelBaseHandler(builder, excelBuilder, ticketHelper, monitorService, ipService, options, webHostEnvironment)
 {
     protected readonly AppSettings appSettings = options.Value;
+    private readonly AllowedSitesToShareLoad allowedSitesToShareLoad = allowedSitesToShareLoad;
+    private readonly IProductService productService = productService;
+    private readonly IWinLossService winLossService = winLossService;
 
     protected async Task<WinLossViewModel> GetBetList(WinLossQuery message, int maxTotalRow)
     {
@@ -62,12 +65,12 @@ public class WinLossBaseHandler(
             message.IsExcel,
             maxTotalRow,
             maxTotalRow,
-            allowedSitesToShareLoad.GetSuffixBySiteName(message.Site));
-        var betListData = await winLossService.GetBetList(param);
+            allowedSitesToShareLoad.GetIP(message.Site));
+        var betlistData = await winLossService.GetBetList(param);
 
-        WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betListData.Tickets);
+        WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betlistData.Tickets);
 
-        return new WinLossViewModel(message, betListData, Builder, TicketHelper, showContributionAmountRoundNote, message.IsGroupHeadline, showFooter: true);
+        return new WinLossViewModel(message, betlistData, Builder, TicketHelper, showContributionAmountRoundNote, message.IsGroupHeadline, showFooter: true);
     }
 
     private async Task<IEnumerable<Product>> GetProducts(WinLossQuery message)

@@ -16,8 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Fanex.Data.Repository" Version="4.3.4.5" />
-    <PackageReference Include="Fanex.Data.SqlServer" Version="4.3.4.5" />
+    <PackageReference Include="Fanex.Data.Repository" Version="4.3.3" />
+    <PackageReference Include="Fanex.Data.SqlServer" Version="4.3.3" />
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
     <PackageReference Include="Fanex.Logging.Sentry" Version="5.0.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.15" />

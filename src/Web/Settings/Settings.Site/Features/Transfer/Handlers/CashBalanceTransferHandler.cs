@@ -1,10 +1,10 @@
-﻿using AlphaPlus.Core.Models;
-using AlphaPlus.Settings.Site.Features.Transfer.Requests.CashBalanceTransfer;
-using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.CashBalanceTransfer;
+﻿using AlphaPlus.Shared.AppResources.Settings.Transfer;
+using MediatR;
 using AlphaPlus.Settings.Transfer.API.Configurations;
 using AlphaPlus.Settings.Transfer.API.Services;
-using AlphaPlus.Shared.AppResources.Settings.Transfer;
-using MediatR;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Site.Features.Transfer.Requests.CashBalanceTransfer;
+using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.CashBalanceTransfer;
 
 namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers;
 
@@ -16,9 +16,13 @@ public class CashBalanceTransferHandler(
         IRequestHandler<CashBalanceTransferCommand, Result>,
         IRequestHandler<HintTransferQuery, HintTransferViewModel>
 {
+    private readonly IYesterdayBalanceTransferService yesterdayBalanceTransferService = yesterdayBalanceTransferService;
+    private readonly ICashBalanceTransferService cashBalanceTransferService = cashBalanceTransferService;
+    private readonly ITransferService transferService = transferService;
+
     public async Task<CashBalanceTransferViewModel> Handle(CashBalanceTransferQuery message, CancellationToken cancellation)
     {
-        var model = await cashBalanceTransferService.GetCashBalanceTransfer(message.CustId, message.IsDirectMember, message.SiteDbGroupId);
+        var model = await cashBalanceTransferService.GetCashBalanceTransfer(message.CustId, message.IsDirectMember, message.AGIP);
 
         return new CashBalanceTransferViewModel(message.ActorLevel, message.IsDirectMember, model);
     }
@@ -40,12 +44,11 @@ public class CashBalanceTransferHandler(
             message.SubAccId,
             message.IP,
             message.LanguageKey,
-            message.IsDirectMember,
-            message.SiteDbGroupId);
-
+            message.AGIP,
+            message.IsDirectMember);
         if (result.IsSuccessful)
         {
-            var resultReset = await yesterdayBalanceTransferService.ResetPotentialWinLimit(message.CustId, message.SiteDbGroupId);
+            var resultReset = await yesterdayBalanceTransferService.ResetPotentialWinLimit(message.CustId, message.AGIP);
             if (!resultReset.IsSuccessful)
             {
                 return Result.CreateErrorResult(resultReset.Message, resultReset.Code);

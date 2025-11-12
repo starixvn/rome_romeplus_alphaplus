@@ -136,6 +136,8 @@ public interface IUserSession
 
     bool AutoFollowBetIsDummyAgent { get; set; }
 
+    string AGIP { get; set; }
+
     int SiteDBGroupId { get; set; }
 
     int CustDBGroupId { get; set; }

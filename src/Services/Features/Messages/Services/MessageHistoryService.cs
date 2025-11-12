@@ -9,7 +9,7 @@ namespace AlphaPlus.Features.Messages.API.Services
 {
     public interface MessageHistoryService
     {
-        Task<PagedReportData<MessageHistory>> GetMessagesHistory(MessageHistoryParams messageParams);
+        PagedReportData<MessageHistory> GetMessagesHistory(MessageHistoryParams messageParams);
     }
 
     public class MessageHistoryServiceImpl : MessageHistoryService
@@ -24,7 +24,7 @@ namespace AlphaPlus.Features.Messages.API.Services
             this.dynamicRepository = dynamicRepository;
         }
 
-        public async Task<PagedReportData<MessageHistory>> GetMessagesHistory(MessageHistoryParams messageParams)
+        public PagedReportData<MessageHistory> GetMessagesHistory(MessageHistoryParams messageParams)
         {
             messageParams.StartDate = GetAvailableLastSeenDate(messageParams.StartDate, messageParams.MessageType, messageParams.CustId, messageParams.SubAccId);
             var fromDate = GetLimitedDate(messageParams.StartDate, messageParams.LimitedDate, messageParams.MessageType);
@@ -43,7 +43,7 @@ namespace AlphaPlus.Features.Messages.API.Services
                 );
 
             announcementService.UpdateLastSeenAnnouncement(messageParams.CustId, messageParams.MessageType, messageParams.IsAdminUser, messageParams.SubAccId);
-            var messsages = await dynamicRepository.FetchAsync<MessageHistory>(criteria);
+            var messsages = dynamicRepository.FetchAsync<MessageHistory>(criteria).Result;
 
             return new PagedReportData<MessageHistory>(
                 messsages,

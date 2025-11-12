@@ -175,10 +175,6 @@ class AlphaReports {
                     responseObject
                 )}`;
             }
-            else
-            {
-                alert(responseObject.Message || 'An error occurred.');
-            }
         }
     }
 }

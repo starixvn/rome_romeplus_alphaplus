@@ -36,6 +36,6 @@ namespace AlphaPlus.Settings.Transfer.API.Models
 
         PageAccess SubPageAccess { get; }
 
-        int SiteDbGroupId { get; }
+        string AGIP { get; }
     }
 }

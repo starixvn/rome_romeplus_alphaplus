@@ -11,4 +11,4 @@ public record UpdateRewardPaymentStatusParam(
     string SubAccName,
     string IP,
     string Language,
-    int SiteDbGroupId);
+    string AGIP);

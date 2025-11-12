@@ -1,13 +1,12 @@
+using Fanex.Data.Repository;
+
 namespace AlphaPlus.Reports.Features.Consolidation;
 
-using Core.Criteria;
-using Core.Helpers;
-
-public class GetConsolidationCurrencyCriteria(int custId, string suffix) : SpSuffixBaseCriteria(suffix)
+internal class GetConsolidationCurrencyCriteria(int custId) : CriteriaBase
 {
     public int CustId { get; } = custId;
 
-    public override string GetSettingKey() => SpNameHelpers.AppendSuffix("Age_Rpt_ConsolidatedGroupSelCurrency", Suffix);
+    public override string GetSettingKey() => "Age_Rpt_ConsolidatedGroupSelCurrency";
 
     public override bool IsValid() => CustId > 0;
 }

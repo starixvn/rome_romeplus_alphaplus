@@ -1,6 +1,6 @@
+using AlphaPlus.Core.Models;
 using System.Text.RegularExpressions;
 using AlphaPlus.Core.Helpers;
-using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Auth.Site.Features.Account;
 
@@ -16,6 +16,9 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
     private const string IsAdminCanUpdateSubAccountSessionKey = "IsAdminCanUpdateSubAccount";
     private const string MainDomainSessionKey = "MainDomain";
     private const string EnableJackpotSessionKey = "GameEnable_Jackpot";
+    private readonly IConfiguration configuration = configuration;
+    private readonly IHttpContextAccessor httpContextAccessor = httpContextAccessor;
+    private readonly IUserSession userSession = userSession;
 
     public void SetUserSessionValues(SignInResult signInResult)
     {
@@ -80,11 +83,13 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         userSession.IsShowBetChoiceLimit = signInResult.IsShowBetChoiceLimit;
 
         var siteDB = signInResult.SiteDB ?? new SiteDB();
+        userSession.AGIP = siteDB.AGIP;
         userSession.SiteDBGroupId = siteDB.SiteDBGroupId;
         userSession.CustDBGroupId = siteDB.CustDBGroupId;
+
         var subAccountPermission_LockAdminAccounts = configuration.GetValue<string>("SubAccountPermission_LockAdminAccounts");
         if ((!string.IsNullOrWhiteSpace(subAccountPermission_LockAdminAccounts)
-            && Regex.IsMatch($",{subAccountPermission_LockAdminAccounts},", $",{userSession.AdminId},", RegexOptions.IgnoreCase, TimeSpan.FromSeconds(5))
+            && Regex.IsMatch(string.Format(",{0},", subAccountPermission_LockAdminAccounts), string.Format(",{0},", userSession.AdminId), RegexOptions.IgnoreCase)
             && userSession.IsInternal)
             || (!signInResult.IsAdminCanUpdateSubAccount && userSession.IsInternal))
         {
@@ -210,6 +215,7 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         {
             userSession.OnUserId = int.Parse(onUserId);
         }
+
 
         userSession.IsDisabledAutoMPT = Convert.ToBoolean(status["disableautompt"]);
         userSession.SRecommendId = Convert.ToInt32(status["srecommend"]);

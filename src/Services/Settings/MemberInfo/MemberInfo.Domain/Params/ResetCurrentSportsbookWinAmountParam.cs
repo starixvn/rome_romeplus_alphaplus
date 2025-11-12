@@ -52,6 +52,6 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Params
 
         public string Language { get; set; }
 
-        public int SiteDB { get; set; }
+        public short SiteDB { get; set; }
     }
-}
+} 

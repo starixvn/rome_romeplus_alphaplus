@@ -346,6 +346,12 @@ public class UserSessionExt : IUserSession
         set => UserSession.Current.AutoFollowBetIsDummyAgent = value;
     }
 
+    public string AGIP
+    {
+        get => UserSession.Current.AGIP;
+        set => UserSession.Current.AGIP = value;
+    }
+
     public int SiteDBGroupId
     {
         get => UserSession.Current.SiteDBGroupId;

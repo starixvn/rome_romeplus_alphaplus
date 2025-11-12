@@ -12,7 +12,7 @@ public class GetConsolidationCurrencyCriteriaTest
         var custId = 123;
 
         // Act
-        var criteria = new GetConsolidationCurrencyCriteria(custId, string.Empty);
+        var criteria = new GetConsolidationCurrencyCriteria(custId);
 
         // Assert
         Assert.Equal(custId, criteria.CustId);
@@ -22,7 +22,7 @@ public class GetConsolidationCurrencyCriteriaTest
     public void GetSettingKey_Should_Return_CorrectKey()
     {
         // Arrange
-        var criteria = new GetConsolidationCurrencyCriteria(123, string.Empty);
+        var criteria = new GetConsolidationCurrencyCriteria(123);
         var expectedKey = "Age_Rpt_ConsolidatedGroupSelCurrency";
 
         // Act
@@ -40,7 +40,7 @@ public class GetConsolidationCurrencyCriteriaTest
     public void IsValid_Should_Return_Expected_Result(int custId, bool expected)
     {
         // Arrange
-        var criteria = new GetConsolidationCurrencyCriteria(custId, string.Empty);
+        var criteria = new GetConsolidationCurrencyCriteria(custId);
 
         // Act
         var result = criteria.IsValid();
@@ -54,7 +54,7 @@ public class GetConsolidationCurrencyCriteriaTest
     {
         // Arrange
         var initialCustId = 123;
-        var criteria = new GetConsolidationCurrencyCriteria(initialCustId, string.Empty);
+        var criteria = new GetConsolidationCurrencyCriteria(initialCustId);
 
         // Assert
         Assert.Equal(initialCustId, criteria.CustId);

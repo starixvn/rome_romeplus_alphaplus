@@ -1,17 +1,23 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferAllAndClearCredit;
+﻿using Fanex.Data.Repository;
 
-using Core.Criteria;
-using Core.Helpers;
-
-public class GetTotalAmtCriteria(int downlineId, byte downlineRoleId, int siteDbGroupId) : SiteDbBaseCriteria(siteDbGroupId)
+namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferAllAndClearCredit
 {
-    public int CustId { get; set; } = downlineId;
+    public class GetTotalAmtCriteria : CriteriaBase
+    {
+        public GetTotalAmtCriteria(int downlineId, byte downlineRoleId)
+        {
+            CustId = downlineId;
+            RoleId = downlineRoleId;
+        }
 
-    public byte RoleId { get; set; } = downlineRoleId;
+        public int CustId { get; set; }
 
-    public override string GetSettingKey()
-        => SpNameHelpers.SiteDbPrefix("Age_Customer_TotalAmount_Sel", siteDbGroupId);
+        public byte RoleId { get; set; }
 
-    public override bool IsValid()
-        => CustId > 0 && RoleId > 0;
+        public override string GetSettingKey()
+            => "SiteDB_Age_Customer_TotalAmount_Sel";
+
+        public override bool IsValid()
+            => CustId > 0 && RoleId > 0;
+    }
 }

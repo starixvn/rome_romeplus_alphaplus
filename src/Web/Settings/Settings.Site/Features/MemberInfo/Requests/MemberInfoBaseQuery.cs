@@ -77,7 +77,7 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Requests
 
         public bool IsDarkMode => !string.IsNullOrWhiteSpace(viewer.DarkModeName);
 
-        public int SiteDbGroupId => viewer.SiteDBGroupId;
+        public string AGIP => viewer.AGIP;
 
         public int CustDBGroupId => viewer.CustDBGroupId;
 

@@ -1,16 +1,16 @@
-namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.Update;
+using Fanex.Data.Repository;
 
-using AlphaPlus.Core.Criteria;
-using Core.Helpers;
-
-public class GetTotalAmtCommand(int downlineId, int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
+namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCredit.Update
 {
-    public int CustId { get; } = downlineId;
+    public class GetTotalAmtCommand(int downlineId) : NonQueryCommand
+    {
+        public int CustId { get; } = downlineId;
 
-    public decimal TotalAmt { get; set; }
+        public decimal TotalAmt { get; set; }
 
-    public override string GetSettingKey()
-        => SpNameHelpers.SiteDbPrefix("Acc_CustomerTotalAmountSel", SiteDbGroupId);
+        public override string GetSettingKey()
+            => "SiteDB_Acc_CustomerTotalAmountSel";
 
-    public override bool IsValid() => CustId > 0;
+        public override bool IsValid() => CustId > 0;
+    }
 }

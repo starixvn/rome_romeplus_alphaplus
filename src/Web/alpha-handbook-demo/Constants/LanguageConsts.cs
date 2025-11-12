@@ -6,7 +6,7 @@
         public const string VietnameseKey = "vi";
         public const string Default = EnglishKey;
 
-        public static readonly Dictionary<string, string> LanguageNames = new Dictionary<string, string>
+        public static Dictionary<string, string> LanguageNames = new Dictionary<string, string>
         {
             ["e"] = "English",
             ["ct"] = "繁體中文",
@@ -17,7 +17,7 @@
             ["vi"] = "Tiếng Việt"
         };
 
-        public static readonly Dictionary<string, string> Codes = new Dictionary<string, string>
+        public static Dictionary<string, string> Codes = new Dictionary<string, string>
         {
             ["e"] = "en-US",
             ["ct"] = "zh-TW",
@@ -28,7 +28,7 @@
             ["vi"] = "vi-VN"
         };
 
-        public static readonly Dictionary<string, string> Locales = new Dictionary<string, string>
+        public static Dictionary<string, string> Locales = new Dictionary<string, string>
         {
             ["e"] = "en",
             ["ct"] = "zh-Hant",

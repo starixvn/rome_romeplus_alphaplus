@@ -15,6 +15,9 @@ public class WinLossLimitHandler(IAccountService accountService, WinLossLimitSer
     : IRequestHandler<WinLossLimitQuery, WinLossLimitViewModel>,
       IRequestHandler<ResetCurrentWinAmountCommand, Result>
 {
+    private readonly IAccountService accountService = accountService;
+    private readonly WinLossLimitService winLossLimitService = winLossLimitService;
+
     public async Task<WinLossLimitViewModel> Handle(WinLossLimitQuery message, CancellationToken cancellation)
     {
         var products = await winLossLimitService.GetWinLossLimitProducts(message.CustId);
@@ -48,8 +51,8 @@ public class WinLossLimitHandler(IAccountService accountService, WinLossLimitSer
             message.PageSize,
             message.PageIndex,
             GetIsDirectMemberParam(actorLevel, masterId, agentId),
-            message.AccountType,
-            message.SiteDbGroupId);
+            message.AGIP,
+            message.AccountType);
 
         var noNeedGetData = !param.IsDirectMember && actorLevel.IsMasterOrSuperLevel() && !agentList.Any();
         var winLossLimitPage = noNeedGetData ? new WinLossLimitPage() : await winLossLimitService.GetWinLossLimitPage(param);
@@ -72,7 +75,7 @@ public class WinLossLimitHandler(IAccountService accountService, WinLossLimitSer
             request.Username,
             request.Language);
 
-        var result = await winLossLimitService.ResetCurrentWinAmount(param);
+        var result = await winLossLimitService.ResetCurrentWinAmount(param); 
 
         if (result.IsSuccessful)
         {

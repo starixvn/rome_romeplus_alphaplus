@@ -557,6 +557,9 @@ Vui lòng chọn tiêu chí cho bộ lọc dựa trên nhu cầu theo dõi
   <data name="RefNo" xml:space="preserve">
     <value>Số tham chiếu</value>
   </data>
+  <data name="RefNo_Duplicate[1]" xml:space="preserve">
+    <value>Số Tham Chiếu</value>
+  </data>
   <data name="RemoveAllFilters" xml:space="preserve">
     <value>Xóa Tất Cả Bộ Lọc</value>
   </data>

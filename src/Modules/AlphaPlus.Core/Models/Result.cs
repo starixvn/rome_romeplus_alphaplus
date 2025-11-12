@@ -23,17 +23,46 @@ namespace AlphaPlus.Core.Models
 
         public string Message { get; set; }
 
-        public virtual bool IsSuccessful => Code == 0;
+        public virtual bool IsSuccessful
+        {
+            get
+            {
+                return Code == 0;
+            }
+        }
 
-        public virtual bool IsFailed => !IsSuccessful;
+        public virtual bool IsFailed
+        {
+            get
+            {
+                return !IsSuccessful;
+            }
+        }
 
-        public virtual bool IsOk => Code == 0;
+        public virtual bool IsOk
+        {
+            get
+            {
+                return Code == 0;
+            }
+        }
 
-        public virtual bool IsNotOk => !IsOk;
+        public virtual bool IsNotOk
+        {
+            get
+            {
+                return !IsOk;
+            }
+        }
 
         public static Result CreateErrorResult(string message, int? code = null)
-            => new() { Code = code ?? ErrorCode, Message = message };
+        {
+            return new Result { Code = code ?? ErrorCode, Message = message };
+        }
 
-        public static Result CreateSuccessfulResult(string message = "") => new() { Code = 0, Message = message };
+        public static Result CreateSuccessfulResult(string message = "")
+        {
+            return new Result { Code = 0, Message = message };
+        }
     }
 }

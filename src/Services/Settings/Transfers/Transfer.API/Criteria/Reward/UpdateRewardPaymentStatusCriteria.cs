@@ -1,7 +1,6 @@
-namespace AlphaPlus.Settings.Transfer.API.Criteria.Reward;
+using Fanex.Data.Repository;
 
-using Core.Criteria;
-using Core.Helpers;
+namespace AlphaPlus.Settings.Transfer.API.Criteria.Reward;
 
 internal class UpdateRewardPaymentStatusCriteria(
     string data,
@@ -9,8 +8,7 @@ internal class UpdateRewardPaymentStatusCriteria(
     int subAccId,
     string subAccName,
     string ip,
-    string language,
-    int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
+    string language) : NonQueryCommand
 {
     public string Data { get; } = data;
 
@@ -30,7 +28,7 @@ internal class UpdateRewardPaymentStatusCriteria(
 
     public string PaymentLog { get; set; }
 
-    public override string GetSettingKey() => SpNameHelpers.SiteDbPrefix("Acc_RewardPayment_Confirm", SiteDbGroupId);
+    public override string GetSettingKey() => "SiteDB_Acc_RewardPayment_Confirm";
 
     public override bool IsValid() => !string.IsNullOrWhiteSpace(Data) && Creator > 0;
 }

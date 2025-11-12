@@ -13,8 +13,8 @@ interface Props extends ContentItem {
 }
 
 export default class ContentMobile extends React.Component<Props> {
-    private readonly featureListPath = '/featureList';
-    private readonly balanceInfoPath = '/balanceInfo';
+    private featureListPath = '/featureList';
+    private balanceInfoPath = '/balanceInfo';
 
     constructor(props: Props) {
         super(props);

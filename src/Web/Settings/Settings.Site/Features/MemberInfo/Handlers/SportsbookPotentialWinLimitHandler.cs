@@ -1,16 +1,18 @@
-using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.MemberInfo.API.Services.WinLossLimit;
 using AlphaPlus.Settings.MemberInfo.Domain.Params;
 using AlphaPlus.Settings.Site.Features.MemberInfo.Requests.WinLossLimit;
 using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit;
 using MediatR;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers;
 
-public class SportsbookPotentialWinLimitHandler(IPotentialWinLimitService potentialWinLimitService) :
+public class SportsbookPotentialWinLimitHandler(IPotentialWinLimitService potentialWinLimitService) : 
     IRequestHandler<SportsbookPotentialWinLimitQuery, SportsbookPotentialWinLimitViewModel>,
     IRequestHandler<ResetCurrentSportsbookWinAmountCommand, Result>
 {
+    private readonly IPotentialWinLimitService potentialWinLimitService = potentialWinLimitService;
+
     public async Task<SportsbookPotentialWinLimitViewModel> Handle(SportsbookPotentialWinLimitQuery message, CancellationToken cancellation)
     {
         var param = new PotentialWinLimitParam(
@@ -21,14 +23,14 @@ public class SportsbookPotentialWinLimitHandler(IPotentialWinLimitService potent
             message.ProblemAccount,
             message.PageSize,
             message.PageIndex,
-            message.SiteDbGroupId,
+            message.AGIP,
             message.BetType,
-            message.SportType,
+            message.SportType,  
             message.AccountType);
 
         var potentialWinLimitPage = await potentialWinLimitService.GetPotentialWinLimitPage(param);
 
-        var isOfferedCashService = Core.Configurations.AppSettings.IsOfferedCashService(message.Site);
+        var isOfferedCashService = AlphaPlus.Core.Configurations.AppSettings.IsOfferedCashService(message.Site);
         return new SportsbookPotentialWinLimitViewModel(isOfferedCashService, message, potentialWinLimitPage, param);
     }
 
@@ -49,13 +51,13 @@ public class SportsbookPotentialWinLimitHandler(IPotentialWinLimitService potent
                 request.Language,
                 request.SiteDB
             )
-        );
+        ); 
 
-        if (result.IsSuccessful)
+         if (result.IsSuccessful)
         {
             return Result.CreateSuccessfulResult(AlphaPlus.Shared.AppResources.Settings.MemberInfo.Resources.ResetCurrentWinAmountSuccess);
         }
 
         return result;
     }
-}
+} 

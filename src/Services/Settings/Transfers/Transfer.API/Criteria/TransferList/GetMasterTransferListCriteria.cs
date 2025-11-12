@@ -1,7 +1,5 @@
 namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferList;
 
-using Core.Helpers;
-
 public class GetMasterTransferListCriteria(
     int custId,
     string downlineName,
@@ -11,16 +9,14 @@ public class GetMasterTransferListCriteria(
     byte autoTransfer,
     byte levelType,
     int pageIndex,
-    int pageSize,
-    int siteDbGroupId) : GetTransferListCriteria(
+    int pageSize) : GetTransferListCriteria(
         downlineName,
         status,
         allYesterdayBalance,
         allowTotalBalanceTransfer,
         autoTransfer,
         pageIndex,
-        pageSize,
-        siteDbGroupId)
+        pageSize)
 {
     public int MasterId { get; } = custId;
 
@@ -42,7 +38,7 @@ public class GetMasterTransferListCriteria(
 
     public decimal? TotalPendingTransfer3rd { get; set; }
 
-    public override string GetSettingKey() => SpNameHelpers.SiteDbPrefix("Age_Transfer_SelList_MAg", SiteDbGroupId);
+    public override string GetSettingKey() => "SiteDB_Age_Transfer_SelList_MAg";
 
     public override bool IsValid() => MasterId > 0;
 }

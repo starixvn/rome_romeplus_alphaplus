@@ -7,4 +7,4 @@ public record WinLossWeekParam(
     string ProductIds,
     string ProductDetailsXML,
     string Username,
-    string SpSuffix);
+    string IP);

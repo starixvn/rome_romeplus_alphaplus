@@ -9,4 +9,4 @@ public record TransferConditionParam(
     int SubAccId,
     string IP,
     string Language,
-    int SiteDbGroupId);
+    string AGIP);

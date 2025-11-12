@@ -1,25 +1,36 @@
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.Update.Balance;
 
-public class UpdateAllDayBalanceTransferParam(
-    int searchAccountId,
-    int actorId,
-    string language,
-    string ip,
-    bool statusValue,
-    string currency,
-    int siteDbGroupId)
+public class UpdateAllDayBalanceTransferParam
 {
-    public int SearchAccountId { get; } = searchAccountId;
+    public UpdateAllDayBalanceTransferParam(
+        int searchAccountId,
+        int actorId,
+        string language,
+        string ip,
+        bool statusValue,
+        string currency,
+        string agIP)
+    {
+        SearchAccountId = searchAccountId;
+        ActorId = actorId;
+        Language = language;
+        IP = ip;
+        StatusValue = statusValue;
+        Currency = currency;
+        AGIP = agIP;
+    }
 
-    public int ActorId { get; } = actorId;
+    public int SearchAccountId { get; }
 
-    public string Language { get; } = language;
+    public int ActorId { get; }
 
-    public string IP { get; } = ip;
+    public string Language { get; }
 
-    public bool StatusValue { get; } = statusValue;
+    public string IP { get; }
 
-    public string Currency { get; } = currency;
+    public bool StatusValue { get; }
 
-    public int SiteDbGroupId { get; } = siteDbGroupId;
+    public string Currency { get; }
+
+    public string AGIP { get; }
 }

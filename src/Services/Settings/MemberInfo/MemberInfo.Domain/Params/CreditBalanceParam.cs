@@ -1,7 +1,7 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Params;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.MemberInfo.Domain.Constants;
 
-using AlphaPlus.Core.Models;
-using Constants;
+namespace AlphaPlus.Settings.MemberInfo.Domain.Params;
 
 public class CreditBalanceParam
 {
@@ -14,7 +14,7 @@ public class CreditBalanceParam
         int pageIndex,
         int pageSize,
         bool isAdminCanViewVNIP,
-        int siteDbGroupId)
+        string agIP)
     {
         CustId = custId;
         CustLevel = custLevel;
@@ -24,7 +24,7 @@ public class CreditBalanceParam
         PageIndex = pageIndex;
         PageSize = pageSize;
         IsAdminCanViewVNIP = isAdminCanViewVNIP;
-        SiteDbGroupId = siteDbGroupId;
+        AGIP = agIP;
     }
 
     public int CustId { get; }
@@ -47,7 +47,7 @@ public class CreditBalanceParam
 
     public bool IsAdminCanViewVNIP { get; }
 
-    public int SiteDbGroupId { get; }
+    public string AGIP { get; }
 
     private void MapStatusIdToParam(byte statusId)
     {

@@ -1,13 +1,13 @@
-﻿namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers;
-
-using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using AlphaPlus.Settings.Transfer.API.Models.AutoTransfer;
 using AlphaPlus.Settings.Transfer.API.Params.AutoTransfer;
 using AlphaPlus.Settings.Transfer.API.Services;
-using AlphaPlus.Shared.AppResources.Settings.Transfer;
+using AlphaPlus.Settings.Site.Features.Transfer.Requests.AutoTransfer;
+using AlphaPlus.Settings.Site.Features.Transfer.ViewModels.AutoTransfer;
 using MediatR;
-using Requests.AutoTransfer;
-using ViewModels.AutoTransfer;
+using AlphaPlus.Core.Models;
+
+namespace AlphaPlus.Settings.Site.Features.Transfer.Handlers;
 
 public class AutoTransferHandler(
     AutoTransferService service,
@@ -21,6 +21,9 @@ public class AutoTransferHandler(
         IRequestHandler<PostUpdateScheduleQuery, Result>,
         IRequestHandler<PostUpdateMultipleAutoTransferQuery, UpdateMultipleAutoTransferResultModel>
 {
+    private readonly AutoTransferService service = service;
+    private readonly ITransferService transferService = transferService;
+
     public async Task<GetTransferConditionViewModel> Handle(GetTransferConditionQuery message, CancellationToken cancellation)
     {
         var tuple = await transferService.GetTransferCondition(message.UplineId);
@@ -47,13 +50,13 @@ public class AutoTransferHandler(
             Schedule = message.DateSchedule,
             SubAccId = message.SubAccId,
             Old_TransferOption = message.Old_TransferOption,
-            SiteDbGroupId = message.SiteDbGroupId
+            AGIP = message.AGIP
         };
 
         var result = await service.UpdateAsync(param);
 
         var successMessage =
-            string.Equals("on", message.State, StringComparison.OrdinalIgnoreCase)
+            string.Equals("on", message.State, System.StringComparison.OrdinalIgnoreCase)
             ? Resources.AutoTransfer_UpdateSuccessOn
             : Resources.AutoTransfer_UpdateSuccessOff;
 
@@ -78,8 +81,8 @@ public class AutoTransferHandler(
             PageIndex = message.PageIndex,
             SortedBy = message.SortedBy,
             Direction = message.Direction,
-            LevelType = message.LevelType,
-            SiteDbGroupId = message.SiteDbGroupId
+            AGIP = message.AGIP,
+            LevelType = message.LevelType
         };
 
         return await service.GetTodayTransfersAsync(param);
@@ -115,7 +118,7 @@ public class AutoTransferHandler(
             ViewStatus = message.ViewStatus,
             Language = message.LanguageKey,
             IP = message.IP,
-            SiteDbGroupId = message.SiteDbGroupId
+            AGIP = message.AGIP
         };
 
         return await service.CancelJobAsync(param);
@@ -128,7 +131,7 @@ public class AutoTransferHandler(
             FromCustId = message.UplineId,
             Language = message.LanguageKey,
             IP = message.IP,
-            SiteDbGroupId = message.SiteDbGroupId
+            AGIP = message.AGIP
         };
 
         var result = await service.CancelAllJobAsync(param);
@@ -153,7 +156,7 @@ public class AutoTransferHandler(
             IP = message.IP,
             Language = message.Language,
             Old_TransferOption = message.Old_TransferOption,
-            SiteDbGroupId = message.SiteDbGroupId
+            AGIP = message.AGIP
         };
 
         var result = await service.UpdateScheduleAsync(param);
@@ -183,7 +186,7 @@ public class AutoTransferHandler(
             Old_TransferOption = message.Old_TransferOption,
             OnNames = message.OnNames,
             OffNames = message.OffNames,
-            SiteDbGroupId = message.SiteDbGroupId
+            AGIP = message.AGIP
         };
 
         return await service.UpdateMultipleAutoTransferAsync(param);

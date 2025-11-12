@@ -8,8 +8,8 @@
     <Compile Include="..\..\Shared\Extensions\FanexLoggingExtensions.cs" Link="Shared\FanexLoggingExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Fanex.Data.Repository" Version="4.3.4.5" />
-    <PackageReference Include="Fanex.Data.SqlServer" Version="4.3.4.5" />
+    <PackageReference Include="Fanex.Data.Repository" Version="4.3.3" />
+    <PackageReference Include="Fanex.Data.SqlServer" Version="4.3.3" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
     <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />

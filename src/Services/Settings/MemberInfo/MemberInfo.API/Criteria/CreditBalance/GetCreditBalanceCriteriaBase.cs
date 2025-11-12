@@ -1,6 +1,6 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.API.Criteria.CreditBalance;
+﻿using Fanex.Data.Repository;
 
-using Core.Criteria;
+namespace AlphaPlus.Settings.MemberInfo.API.Criteria.CreditBalance;
 
 public abstract class GetCreditBalanceCriteriaBase(
     int custId,
@@ -9,8 +9,7 @@ public abstract class GetCreditBalanceCriteriaBase(
     bool? closed,
     bool? suspended,
     int pageIndex,
-    int pageSize,
-    int siteDbGroupId) : SiteDbBaseCriteria(siteDbGroupId)
+    int pageSize) : CriteriaBase
 {
     public int CustId { get; } = custId;
 

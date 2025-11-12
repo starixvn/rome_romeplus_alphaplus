@@ -1,7 +1,5 @@
 namespace AlphaPlus.Reports.Features.WinLossDetail;
 
-using Core.Helpers;
-
 internal class WinLossDetailMemberCriteria(
     int custId,
     DateTime fromDate,
@@ -11,14 +9,13 @@ internal class WinLossDetailMemberCriteria(
     string productIds,
     string productDetails,
     string username,
-    bool isReward,
-    string suffix) : WinLossDetailBaseCriteria(custId, fromDate, toDate, balanceUpDay, moveBetsDay, productIds, productDetails, username, isReward, suffix)
+    bool isReward) : WinLossDetailBaseCriteria(custId, fromDate, toDate, balanceUpDay, moveBetsDay, productIds, productDetails, username, isReward)
 {
-    public int PageIndex => 1;
+    public int PageIndex { get; } = 1;
 
-    public int PageSize => 10000;
+    public int PageSize { get; } = 10000;
 
     public int TotalRecords { get; set; }
 
-    public override string GetSettingKey() => SpNameHelpers.AppendSuffix("Age_Rpt_WinLossDetail_Member", Suffix);
+    public override string GetSettingKey() => "Age_Rpt_WinLossDetail_Member";
 }

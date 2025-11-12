@@ -29,8 +29,15 @@ public class ConsolidationService(
 {
     private const int ProductsCacheTimeInMinutes = 2;
 
+    private readonly IDynamicRepository repository = repository;
+    private readonly IReportDateService reportDateService = reportDateService;
+    private readonly IMemoryCache cacheService = cacheService;
+    private readonly ICacheRefService cacheRefService = cacheRefService;
+    private readonly IPartialUMService partialUMService = partialUMService;
+    private readonly AllowedSitesToShareLoad allowedSitesToShareLoad = allowedSitesToShareLoad;
+
     public Task<IEnumerable<ConsolidationCurrency>> GetCurrencies(int custId, string siteName)
-        => repository.FetchAsync<ConsolidationCurrency>(new GetConsolidationCurrencyCriteria(custId, allowedSitesToShareLoad.GetSuffixBySiteName(siteName)));
+        => repository.FetchAsync<ConsolidationCurrency>(new GetConsolidationCurrencyCriteria(custId), allowedSitesToShareLoad.GetIP(siteName));
 
     public Task<IEnumerable<Product>> GetProducts(int custId, DateTime minDate, byte settingStatus, string siteName)
         => cacheService
@@ -39,9 +46,9 @@ public class ConsolidationService(
             async cacheEntry =>
             {
                 cacheEntry.SetAbsoluteExpiration(TimeSpan.FromMinutes(ProductsCacheTimeInMinutes));
-                var spSuffix = allowedSitesToShareLoad.GetSuffixBySiteName(siteName);
+                var ip = allowedSitesToShareLoad.GetIP(siteName);
                 var cashServiceSites = Core.Configurations.AppSettings.CashServiceOfferedSites.JoinWithComma();
-                var products = (await repository.FetchAsync<ConsolidationProduct>(new GetConsolidationProductsCriteria(custId, settingStatus, spSuffix)))
+                var products = (await repository.FetchAsync<ConsolidationProduct>(new GetConsolidationProductsCriteria(custId, settingStatus), ip))
                     .Where(product => product.ProductId != ProductIdConstants.Cashout && IsRemainSupportProduct(product, minDate))
                     .Select(product => new Product
                     {
@@ -50,19 +57,21 @@ public class ConsolidationService(
                         Type = product.Type,
                         TypeName = product.Type == 0 ? string.Empty : cacheRefService.GetProductName(product.Type)
                     });
+                
+              
+                    var productExtras = (await repository.FetchAsync<ConsolidationProduct>(
+                    new GetConsolidationExtraProductsCriteria(custId, settingStatus, cashServiceSites),
+                    ip))
+                    .Where(product => IsRemainSupportProduct(product, minDate))
+                    .Select(product => new Product
+                    {
+                        Id = product.ProductId,
+                        Name = cacheRefService.GetProductName(product.ProductId),
+                        Type = product.Type,
+                        TypeName = product.Type == 0 ? string.Empty : cacheRefService.GetProductName(product.Type)
+                    });
 
-                var productExtras = (await repository.FetchAsync<ConsolidationProduct>(
-                        new GetConsolidationExtraProductsCriteria(custId, settingStatus, cashServiceSites, spSuffix)))
-                .Where(product => IsRemainSupportProduct(product, minDate))
-                .Select(product => new Product
-                {
-                    Id = product.ProductId,
-                    Name = cacheRefService.GetProductName(product.ProductId),
-                    Type = product.Type,
-                    TypeName = product.Type == 0 ? string.Empty : cacheRefService.GetProductName(product.Type)
-                });
-
-                return products.Concat(productExtras);
+                    return products.Concat(productExtras);
             });
 
     private static bool IsRemainSupportProduct(ConsolidationProduct product, DateTime minReportDate)
@@ -199,8 +208,6 @@ public class ConsolidationService(
     private async Task<IEnumerable<ConsolidationEntity>> GetConsolidation(ConsolidationParam param)
     {
         var reportDate = await reportDateService.GetBalanceUpDayAndMoveBetsDay();
-        var spSuffix = allowedSitesToShareLoad.GetSuffixBySiteName(param.SiteName);
-
         var criteria = new GetConsolidationCriteria(
             param.CustId,
             param.Currency,
@@ -210,11 +217,11 @@ public class ConsolidationService(
             reportDate.BalanceUpDay,
             reportDate.MoveBetsDay,
             param.ProductIds,
-            param.ProductDetailsXml,
-            spSuffix);
+            param.ProductDetailsXml);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
-        return await repository.FetchAsync<ConsolidationEntity>(criteria);
+        var ip = allowedSitesToShareLoad.GetIP(param.SiteName);
+        return await repository.FetchAsync<ConsolidationEntity>(criteria, ip);
     }
 
     private static IEnumerable<ConsolidationEntity> SetCurrencies(

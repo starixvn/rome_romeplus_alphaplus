@@ -9,7 +9,7 @@ public class GetConsolidationProductsCriteriaTest
     public void GetSettingKey_Should_Return_Correct_Key()
     {
         // Arrange
-        var criteria = new GetConsolidationProductsCriteria(1, 1, string.Empty);
+        var criteria = new GetConsolidationProductsCriteria(1, 1);
 
         // Act
         var result = criteria.GetSettingKey();
@@ -26,7 +26,7 @@ public class GetConsolidationProductsCriteriaTest
     public void IsValid_Should_Return_Expected_Result(int custId, bool expected)
     {
         // Arrange
-        var criteria = new GetConsolidationProductsCriteria(custId, 1, string.Empty);
+        var criteria = new GetConsolidationProductsCriteria(custId, 1);
 
         // Act
         var result = criteria.IsValid();
@@ -42,7 +42,7 @@ public class GetConsolidationProductsCriteriaTest
         int expectedCustId = 123;
         byte expectedSettingStatus = 2;
         // Act
-        var criteria = new GetConsolidationProductsCriteria(expectedCustId, expectedSettingStatus, string.Empty);
+        var criteria = new GetConsolidationProductsCriteria(expectedCustId, expectedSettingStatus);
 
         // Assert
         Assert.Equal(expectedCustId, criteria.CustId);

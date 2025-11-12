@@ -85,7 +85,7 @@ public static class DependencyInjection
 
     private static IServiceCollection AddAllowedSitesToShareLoadConfig(this IServiceCollection services, IConfiguration configuration)
     {
-        IDictionary<string, string> siteNameToSuffix = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+        IDictionary<string, string> siteNameToIP = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         var allowedSitesToShareLoadConfig = configuration.GetSection("AllowedSitesToShareLoad");
 
         foreach (var item in allowedSitesToShareLoadConfig.GetChildren())
@@ -94,11 +94,11 @@ public static class DependencyInjection
 
             foreach (var site in siteNames)
             {
-                siteNameToSuffix[site.Trim()] = item.Key;
+                siteNameToIP[site.Trim()] = item.Key;
             }
         }
 
-        var allowedSitesToShareLoad = new AllowedSitesToShareLoad(siteNameToSuffix);
+        var allowedSitesToShareLoad = new AllowedSitesToShareLoad(siteNameToIP);
 
         return services.AddSingleton(allowedSitesToShareLoad);
     }

@@ -1,14 +1,20 @@
-namespace AlphaPlus.Auth.Site.UnitTests;
-
-using System.Reflection;
+using AlphaPlus.Core.Models;
+using FluentAssertions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
+using Moq;
 using AlphaPlus.Core.Helpers;
+using Microsoft.Extensions.Primitives;
+using System.Reflection;
+
+namespace AlphaPlus.Auth.Site.UnitTests;
 
 public class UserSessionServiceTests
 {
     private readonly IConfiguration _configuration;
     private readonly Mock<IHttpContextAccessor> _mockHttpContextAccessor;
     private readonly Mock<IUserSession> _mockUserSession;
-    private readonly UserSessionService _userSessionService;
+    private readonly AlphaPlus.Auth.Site.Features.Account.UserSessionService _userSessionService;
     private readonly DefaultHttpContext _httpContext;
 
     public UserSessionServiceTests()
@@ -26,7 +32,7 @@ public class UserSessionServiceTests
 
         _mockHttpContextAccessor = new Mock<IHttpContextAccessor>();
         _mockUserSession = new Mock<IUserSession>();
-
+        
         _httpContext = new DefaultHttpContext();
         _httpContext.Request.Scheme = "https";
         _httpContext.Request.Host = new HostString("test.com");
@@ -46,7 +52,7 @@ public class UserSessionServiceTests
         _mockHttpContextAccessor.SetupGet(x => x.HttpContext).Returns(mockContext.Object);
 
         AlphaContext.Configure(_mockHttpContextAccessor.Object);
-        _userSessionService = new UserSessionService(
+        _userSessionService = new AlphaPlus.Auth.Site.Features.Account.UserSessionService(
             _configuration,
             _mockHttpContextAccessor.Object,
             _mockUserSession.Object);
@@ -56,14 +62,14 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WhenUserSessionIsNull_ShouldReturnEarly()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "TestUser",
             RoleId = 1 // Valid UserLevel value
         };
 
-        var userSessionService = new UserSessionService(
+        var userSessionService = new AlphaPlus.Auth.Site.Features.Account.UserSessionService(
             _configuration,
             _mockHttpContextAccessor.Object,
             null!);
@@ -80,7 +86,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WhenSignInResultIsValid_ShouldSetAllUserSessionValues()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "TestUser",
@@ -104,8 +110,9 @@ public class UserSessionServiceTests
             IsShowConsolidatedReport = true,
             IsShowBetChoiceLimit = true,
             IsAdminCanUpdateSubAccount = true,
-            SiteDB = new SiteDB
+            SiteDB = new AlphaPlus.Auth.Site.Features.Account.SiteDB
             {
+                AGIP = "agip-value",
                 SiteDBGroupId = 1,
                 CustDBGroupId = 2
             }
@@ -136,6 +143,7 @@ public class UserSessionServiceTests
         _mockUserSession.VerifySet(x => x.IsAllowedTotalBalanceTransfer = signInResult.IsAllowTotalBalanceTransfer, Times.Once);
         _mockUserSession.VerifySet(x => x.IsShowConsolidatedReport = signInResult.IsShowConsolidatedReport, Times.Once);
         _mockUserSession.VerifySet(x => x.IsShowBetChoiceLimit = signInResult.IsShowBetChoiceLimit, Times.Once);
+        _mockUserSession.VerifySet(x => x.AGIP = signInResult.SiteDB!.AGIP, Times.Once);
         _mockUserSession.VerifySet(x => x.SiteDBGroupId = signInResult.SiteDB!.SiteDBGroupId, Times.Once);
         _mockUserSession.VerifySet(x => x.CustDBGroupId = signInResult.SiteDB!.CustDBGroupId, Times.Once);
         // Không verify DisplayNickName vì có thể là null hoặc giá trị khác
@@ -145,7 +153,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WhenUserIsSubAccount_ShouldSetSubPageAccess()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "TestUser",
@@ -168,8 +176,9 @@ public class UserSessionServiceTests
             IsShowConsolidatedReport = true,
             IsShowBetChoiceLimit = true,
             IsAdminCanUpdateSubAccount = true,
-            SiteDB = new SiteDB
+            SiteDB = new AlphaPlus.Auth.Site.Features.Account.SiteDB
             {
+                AGIP = "agip-value",
                 SiteDBGroupId = 1,
                 CustDBGroupId = 2
             }
@@ -186,7 +195,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WhenUserIsNotSubAccount_ShouldSetFullPermission_BasicBranch()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "TestUser",
@@ -205,7 +214,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WhenPasswordExpiryIsMinValue_ShouldSetPasswordExpiredToFalse()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "TestUser",
@@ -224,7 +233,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WhenPasswordExpiryIsInFuture_ShouldSetPasswordExpiredToFalse()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "TestUser",
@@ -243,7 +252,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WhenPasswordExpiryIsInPast_ShouldSetPasswordExpiredToTrue()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "TestUser",
@@ -262,7 +271,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WhenAdminIsInLockedList_ShouldSetLimitedPermission()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "TestUser",
@@ -283,8 +292,9 @@ public class UserSessionServiceTests
             IsShowConsolidatedReport = true,
             IsShowBetChoiceLimit = true,
             IsAdminCanUpdateSubAccount = false,
-            SiteDB = new SiteDB
+            SiteDB = new AlphaPlus.Auth.Site.Features.Account.SiteDB
             {
+                AGIP = "agip-value",
                 SiteDBGroupId = 1,
                 CustDBGroupId = 2
             }
@@ -304,7 +314,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WhenAdminCannotUpdateSubAccount_ShouldSetLimitedPermission()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "TestUser",
@@ -325,8 +335,9 @@ public class UserSessionServiceTests
             IsShowConsolidatedReport = true,
             IsShowBetChoiceLimit = true,
             IsAdminCanUpdateSubAccount = false,
-            SiteDB = new SiteDB
+            SiteDB = new AlphaPlus.Auth.Site.Features.Account.SiteDB
             {
+                AGIP = "agip-value",
                 SiteDBGroupId = 1,
                 CustDBGroupId = 2
             }
@@ -343,7 +354,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WhenAdminCanUpdateSubAccount_ShouldSetFullPermission()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "TestUser",
@@ -364,8 +375,9 @@ public class UserSessionServiceTests
             IsShowConsolidatedReport = true,
             IsShowBetChoiceLimit = true,
             IsAdminCanUpdateSubAccount = true,
-            SiteDB = new SiteDB
+            SiteDB = new AlphaPlus.Auth.Site.Features.Account.SiteDB
             {
+                AGIP = "agip-value",
                 SiteDBGroupId = 1,
                 CustDBGroupId = 2
             }
@@ -382,7 +394,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WhenDisplayNickNameIsNickname_ShouldUseNickname()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "TestUser",
@@ -403,8 +415,9 @@ public class UserSessionServiceTests
             IsShowConsolidatedReport = true,
             IsShowBetChoiceLimit = true,
             IsAdminCanUpdateSubAccount = true,
-            SiteDB = new SiteDB
+            SiteDB = new AlphaPlus.Auth.Site.Features.Account.SiteDB
             {
+                AGIP = "agip-value",
                 SiteDBGroupId = 1,
                 CustDBGroupId = 2
             }
@@ -421,7 +434,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WhenDisplayNickNameIsNotNickname_ShouldUseUserName()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "TestUser",
@@ -442,8 +455,9 @@ public class UserSessionServiceTests
             IsShowConsolidatedReport = true,
             IsShowBetChoiceLimit = true,
             IsAdminCanUpdateSubAccount = true,
-            SiteDB = new SiteDB
+            SiteDB = new AlphaPlus.Auth.Site.Features.Account.SiteDB
             {
+                AGIP = "agip-value",
                 SiteDBGroupId = 1,
                 CustDBGroupId = 2
             }
@@ -460,7 +474,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithSubAccount_ShouldSetSubPageAccess()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -479,7 +493,7 @@ public class UserSessionServiceTests
             Currency = "USD",
             CurrencyId = 1,
             SubUsername = "subuser",
-            SubPageAccess = new PageAccess()
+            SubPageAccess = new AlphaPlus.Core.Models.PageAccess()
         };
 
         _mockUserSession.Setup(x => x.IsSubAcc).Returns(true);
@@ -488,14 +502,14 @@ public class UserSessionServiceTests
         _userSessionService.SetUserSessionValues(signInResult);
 
         // Assert
-        _mockUserSession.VerifySet(x => x.SubPageAccess = It.IsAny<PageAccess>(), Times.Once);
+        _mockUserSession.VerifySet(x => x.SubPageAccess = It.IsAny<AlphaPlus.Core.Models.PageAccess>(), Times.Once);
     }
 
     [Fact]
     public void SetUserSessionValues_WithNullUserName_ShouldHandleNull()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = null,
@@ -514,7 +528,7 @@ public class UserSessionServiceTests
             Currency = "USD",
             CurrencyId = 1,
             SubUsername = "subuser",
-            SubPageAccess = new PageAccess()
+            SubPageAccess = new AlphaPlus.Core.Models.PageAccess()
         };
 
         // Act
@@ -529,7 +543,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithNullNickname_ShouldHandleNull()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -548,7 +562,7 @@ public class UserSessionServiceTests
             Currency = "USD",
             CurrencyId = 1,
             SubUsername = "subuser",
-            SubPageAccess = new PageAccess()
+            SubPageAccess = new AlphaPlus.Core.Models.PageAccess()
         };
 
         // Act
@@ -562,7 +576,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithInternalUser_ShouldSetIsLoggedToTrue()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -581,7 +595,7 @@ public class UserSessionServiceTests
             Currency = "USD",
             CurrencyId = 1,
             SubUsername = "subuser",
-            SubPageAccess = new PageAccess()
+            SubPageAccess = new AlphaPlus.Core.Models.PageAccess()
         };
 
         _mockUserSession.Setup(x => x.IsInternal).Returns(true);
@@ -597,7 +611,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithFirstLogin_ShouldSetIsLoggedToFalse()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -616,7 +630,7 @@ public class UserSessionServiceTests
             Currency = "USD",
             CurrencyId = 1,
             SubUsername = "subuser",
-            SubPageAccess = new PageAccess()
+            SubPageAccess = new AlphaPlus.Core.Models.PageAccess()
         };
 
         _mockUserSession.Setup(x => x.IsInternal).Returns(false);
@@ -632,7 +646,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithNicknameUser_ShouldSetDisplayNickNameToNickName()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -651,7 +665,7 @@ public class UserSessionServiceTests
             Currency = "USD",
             CurrencyId = 1,
             SubUsername = "subuser",
-            SubPageAccess = new PageAccess()
+            SubPageAccess = new AlphaPlus.Core.Models.PageAccess()
         };
 
         _mockUserSession.Setup(x => x.IsNickname).Returns(true);
@@ -668,7 +682,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithNonNicknameUser_ShouldSetDisplayNickNameToUserName()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -687,7 +701,7 @@ public class UserSessionServiceTests
             Currency = "USD",
             CurrencyId = 1,
             SubUsername = "subuser",
-            SubPageAccess = new PageAccess()
+            SubPageAccess = new AlphaPlus.Core.Models.PageAccess()
         };
 
         _mockUserSession.Setup(x => x.IsNickname).Returns(false);
@@ -704,7 +718,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithMinValuePwdExpiry_ShouldSetToMaxValue()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -723,7 +737,7 @@ public class UserSessionServiceTests
             Currency = "USD",
             CurrencyId = 1,
             SubUsername = "subuser",
-            SubPageAccess = new PageAccess()
+            SubPageAccess = new AlphaPlus.Core.Models.PageAccess()
         };
 
         // Act
@@ -737,7 +751,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithExpiredPassword_ShouldSetIsPasswordExpiredToTrue()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -756,7 +770,7 @@ public class UserSessionServiceTests
             Currency = "USD",
             CurrencyId = 1,
             SubUsername = "subuser",
-            SubPageAccess = new PageAccess()
+            SubPageAccess = new AlphaPlus.Core.Models.PageAccess()
         };
 
         // Act
@@ -770,7 +784,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithValidPassword_ShouldSetIsPasswordExpiredToFalse()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -789,7 +803,7 @@ public class UserSessionServiceTests
             Currency = "USD",
             CurrencyId = 1,
             SubUsername = "subuser",
-            SubPageAccess = new PageAccess()
+            SubPageAccess = new AlphaPlus.Core.Models.PageAccess()
         };
 
         // Act
@@ -803,7 +817,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithLoggedUserAndValidPwdExpiry_ShouldSetIsShowSkipForceChangePasswordToTrue()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -822,7 +836,7 @@ public class UserSessionServiceTests
             Currency = "USD",
             CurrencyId = 1,
             SubUsername = "subuser",
-            SubPageAccess = new PageAccess()
+            SubPageAccess = new AlphaPlus.Core.Models.PageAccess()
         };
 
         _mockUserSession.Setup(x => x.IsLogged).Returns(true);
@@ -838,7 +852,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithLoggedUserAndDefaultPwdExpiry_ShouldSetIsShowSkipForceChangePasswordToFalse()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -857,7 +871,7 @@ public class UserSessionServiceTests
             Currency = "USD",
             CurrencyId = 1,
             SubUsername = "subuser",
-            SubPageAccess = new PageAccess()
+            SubPageAccess = new AlphaPlus.Core.Models.PageAccess()
         };
 
         _mockUserSession.Setup(x => x.IsLogged).Returns(true);
@@ -873,7 +887,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithNonLoggedUser_ShouldSetIsShowSkipForceChangePasswordToFalse()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -892,7 +906,7 @@ public class UserSessionServiceTests
             Currency = "USD",
             CurrencyId = 1,
             SubUsername = "subuser",
-            SubPageAccess = new PageAccess()
+            SubPageAccess = new AlphaPlus.Core.Models.PageAccess()
         };
 
         _mockUserSession.Setup(x => x.IsLogged).Returns(false);
@@ -908,7 +922,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithNullUserSession_ShouldReturnEarly()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -927,11 +941,11 @@ public class UserSessionServiceTests
             Currency = "USD",
             CurrencyId = 1,
             SubUsername = "subuser",
-            SubPageAccess = new PageAccess()
+            SubPageAccess = new AlphaPlus.Core.Models.PageAccess()
         };
 
         // Create service with null userSession
-        var nullUserSessionService = new UserSessionService(
+        var nullUserSessionService = new AlphaPlus.Auth.Site.Features.Account.UserSessionService(
             _configuration,
             _mockHttpContextAccessor.Object,
             null);
@@ -1011,59 +1025,59 @@ public class UserSessionServiceTests
     // Helper methods to access private methods for testing
     private string GetUserLanguage(string langCodeUsage)
     {
-        var method = typeof(UserSessionService)
-            .GetMethod("GetUserLanguage", BindingFlags.NonPublic | BindingFlags.Static);
+        var method = typeof(AlphaPlus.Auth.Site.Features.Account.UserSessionService)
+            .GetMethod("GetUserLanguage", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
         return (string)method!.Invoke(null, new object[] { langCodeUsage })!;
     }
 
     private string GetUserLangKey(string langCodeUsage)
     {
-        var method = typeof(UserSessionService)
-            .GetMethod("GetUserLangKey", BindingFlags.NonPublic | BindingFlags.Static);
+        var method = typeof(AlphaPlus.Auth.Site.Features.Account.UserSessionService)
+            .GetMethod("GetUserLangKey", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
         return (string)method!.Invoke(null, new object[] { langCodeUsage })!;
     }
 
     private string GetSiteName(int roleId)
     {
-        var method = typeof(UserSessionService)
-            .GetMethod("GetSiteName", BindingFlags.NonPublic | BindingFlags.Static);
+        var method = typeof(AlphaPlus.Auth.Site.Features.Account.UserSessionService)
+            .GetMethod("GetSiteName", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
         return (string)method!.Invoke(null, new object[] { roleId })!;
     }
 
     private void AddIsProtectedModeToSession(IDictionary<string, string> userData)
     {
-        var method = typeof(UserSessionService)
-            .GetMethod("AddIsProtectedModeToSession", BindingFlags.NonPublic | BindingFlags.Instance);
+        var method = typeof(AlphaPlus.Auth.Site.Features.Account.UserSessionService)
+            .GetMethod("AddIsProtectedModeToSession", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
         method!.Invoke(_userSessionService, new object[] { userData });
     }
 
-    private bool IsProtectedModeOfferBySite(string customerSite, UserSessionService service = null)
+    private bool IsProtectedModeOfferBySite(string customerSite, AlphaPlus.Auth.Site.Features.Account.UserSessionService service = null)
     {
         var targetService = service ?? _userSessionService;
-        var method = typeof(UserSessionService)
-            .GetMethod("IsProtectedModeOfferBySite", BindingFlags.NonPublic | BindingFlags.Instance);
+        var method = typeof(AlphaPlus.Auth.Site.Features.Account.UserSessionService)
+            .GetMethod("IsProtectedModeOfferBySite", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
         return (bool)method!.Invoke(targetService, new object[] { customerSite })!;
     }
 
-    private Dictionary<string, bool> GetProtectedModeOfferSites(UserSessionService service = null)
+    private Dictionary<string, bool> GetProtectedModeOfferSites(AlphaPlus.Auth.Site.Features.Account.UserSessionService service = null)
     {
         var targetService = service ?? _userSessionService;
-        var method = typeof(UserSessionService)
-            .GetMethod("GetProtectedModeOfferSites", BindingFlags.NonPublic | BindingFlags.Instance);
-        return (Dictionary<string, bool>)method!.Invoke(targetService, new object[] { })!;
+        var method = typeof(AlphaPlus.Auth.Site.Features.Account.UserSessionService)
+            .GetMethod("GetProtectedModeOfferSites", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        return (Dictionary<string, bool>)method!.Invoke(targetService, new object[] {})!;
     }
 
     private void AddMainDomainToSession()
     {
-        var method = typeof(UserSessionService)
-            .GetMethod("AddMainDomainToSession", BindingFlags.NonPublic | BindingFlags.Instance);
-        method!.Invoke(_userSessionService, new object[] { });
+        var method = typeof(AlphaPlus.Auth.Site.Features.Account.UserSessionService)
+            .GetMethod("AddMainDomainToSession", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+        method!.Invoke(_userSessionService, new object[] {});
     }
 
     private void SetCookieLanguage(string language)
     {
-        var method = typeof(UserSessionService)
-            .GetMethod("SetCookieLanguage", BindingFlags.NonPublic | BindingFlags.Instance);
+        var method = typeof(AlphaPlus.Auth.Site.Features.Account.UserSessionService)
+            .GetMethod("SetCookieLanguage", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
         method!.Invoke(_userSessionService, new object[] { language });
     }
 
@@ -1071,7 +1085,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WhenUserIsSubAccount_ShouldSetSubPageAccessFromSignInResult()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "TestUser",
@@ -1095,7 +1109,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithExceptionInPasswordExpiry_ShouldHandleException()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -1115,7 +1129,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithProtectedModeEnabled_ShouldSkipPasswordAndSecurityCodeChecks()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -1132,7 +1146,7 @@ public class UserSessionServiceTests
         });
         var protectedModeConfig = configurationBuilder.Build();
 
-        var protectedModeService = new UserSessionService(
+        var protectedModeService = new AlphaPlus.Auth.Site.Features.Account.UserSessionService(
             protectedModeConfig,
             _mockHttpContextAccessor.Object,
             _mockUserSession.Object);
@@ -1201,7 +1215,7 @@ public class UserSessionServiceTests
         });
         var config = configurationBuilder.Build();
 
-        var service = new UserSessionService(
+        var service = new AlphaPlus.Auth.Site.Features.Account.UserSessionService(
             config,
             _mockHttpContextAccessor.Object,
             _mockUserSession.Object);
@@ -1226,7 +1240,7 @@ public class UserSessionServiceTests
         });
         var config = configurationBuilder.Build();
 
-        var service = new UserSessionService(
+        var service = new AlphaPlus.Auth.Site.Features.Account.UserSessionService(
             config,
             _mockHttpContextAccessor.Object,
             _mockUserSession.Object);
@@ -1245,7 +1259,7 @@ public class UserSessionServiceTests
         var configurationBuilder = new ConfigurationBuilder();
         var config = configurationBuilder.Build();
 
-        var service = new UserSessionService(
+        var service = new AlphaPlus.Auth.Site.Features.Account.UserSessionService(
             config,
             _mockHttpContextAccessor.Object,
             _mockUserSession.Object);
@@ -1268,7 +1282,7 @@ public class UserSessionServiceTests
         });
         var config = configurationBuilder.Build();
 
-        var service = new UserSessionService(
+        var service = new AlphaPlus.Auth.Site.Features.Account.UserSessionService(
             config,
             _mockHttpContextAccessor.Object,
             _mockUserSession.Object);
@@ -1291,7 +1305,7 @@ public class UserSessionServiceTests
         });
         var config = configurationBuilder.Build();
 
-        var service = new UserSessionService(
+        var service = new AlphaPlus.Auth.Site.Features.Account.UserSessionService(
             config,
             _mockHttpContextAccessor.Object,
             _mockUserSession.Object);
@@ -1314,7 +1328,7 @@ public class UserSessionServiceTests
         });
         var config = configurationBuilder.Build();
 
-        var service = new UserSessionService(
+        var service = new AlphaPlus.Auth.Site.Features.Account.UserSessionService(
             config,
             _mockHttpContextAccessor.Object,
             _mockUserSession.Object);
@@ -1330,7 +1344,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithLanguageUsage_ShouldSetLanguageAndLangKey()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -1350,7 +1364,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithNullLanguageUsage_ShouldUseDefaultLanguage()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -1374,7 +1388,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithoutVpnQueryParameter_ShouldSetInternalWebVPNToFalse()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -1393,7 +1407,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithNullSubPageAccess_ShouldCreateNewPageAccess()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -1414,7 +1428,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithNullSiteDB_ShouldCreateNewSiteDB()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -1426,6 +1440,7 @@ public class UserSessionServiceTests
         _userSessionService.SetUserSessionValues(signInResult);
 
         // Assert
+        _mockUserSession.VerifySet(x => x.AGIP = It.IsAny<string>(), Times.Once);
         _mockUserSession.VerifySet(x => x.SiteDBGroupId = It.IsAny<int>(), Times.Once);
         _mockUserSession.VerifySet(x => x.CustDBGroupId = It.IsAny<int>(), Times.Once);
     }
@@ -1434,7 +1449,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithEmptyLanguageUsage_ShouldUseDefaultLanguage()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "testuser",
@@ -1456,7 +1471,7 @@ public class UserSessionServiceTests
     public void SetUserSessionValues_WithWhitespaceLanguageUsage_ShouldUseDefaultLanguage()
     {
         // Arrange
-        var signInResult = new SignInResult
+        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
         {
             CustId = 123,
             UserName = "TestUser",
@@ -1577,4 +1592,4 @@ public class UserSessionServiceTests
         // Assert
         result.Should().Be(expectedLangKey);
     }
-}
+} 

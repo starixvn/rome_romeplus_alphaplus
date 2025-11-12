@@ -1,7 +1,7 @@
-namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferList;
-
-using Core.Criteria;
 using Fanex.Data;
+using Fanex.Data.Repository;
+
+namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferList;
 
 public abstract class GetTransferListCriteria(
     string downlineName,
@@ -10,8 +10,7 @@ public abstract class GetTransferListCriteria(
     bool allowTotalBalanceTransfer,
     byte autoTransfer,
     int pageIndex,
-    int pageSize,
-    int siteDbGroupId) : SiteDbBaseCriteria(siteDbGroupId)
+    int pageSize) : CriteriaBase
 {
     public string Username { get; } = downlineName;
 

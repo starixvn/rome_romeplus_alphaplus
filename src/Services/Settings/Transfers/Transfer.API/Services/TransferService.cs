@@ -1,14 +1,14 @@
-﻿using System.Globalization;
-using System.Resources;
-using AlphaPlus.Core.Models;
+﻿using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using AlphaPlus.Settings.Transfer.API.Criteria;
-using AlphaPlus.Settings.Transfer.API.Criteria.AutoTransfer;
-using AlphaPlus.Settings.Transfer.API.Criteria.TransferCondition;
 using AlphaPlus.Settings.Transfer.API.Models;
-using AlphaPlus.Settings.Transfer.API.Models.TransferCondition;
-using AlphaPlus.Settings.Transfer.API.Params.TransferCondition;
-using AlphaPlus.Shared.AppResources.Settings.Transfer;
 using Fanex.Data.Repository;
+using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.Transfer.API.Criteria.TransferCondition;
+using AlphaPlus.Settings.Transfer.API.Params.TransferCondition;
+using AlphaPlus.Settings.Transfer.API.Criteria.AutoTransfer;
+using AlphaPlus.Settings.Transfer.API.Models.TransferCondition;
+using System.Globalization;
+using System.Resources;
 using Newtonsoft.Json;
 
 namespace AlphaPlus.Settings.Transfer.API.Services;
@@ -33,7 +33,6 @@ public interface ITransferService
 public class TransferService(IDynamicRepository repository) : ITransferService
 {
     private const int NumberDaysInWeek = 7;
-
     private static readonly string[] DaysInWeek =
     [
         Resources.Sunday,
@@ -44,7 +43,6 @@ public class TransferService(IDynamicRepository repository) : ITransferService
         Resources.Friday,
         Resources.Saturday
     ];
-
     private readonly IDynamicRepository repository = repository;
 
     public async Task<bool> IsAllDayBalanceTransfer(int custId)
@@ -117,8 +115,8 @@ public class TransferService(IDynamicRepository repository) : ITransferService
                 : Resources.TransferConditionByUpline);
         }
 
-        var autoTransferJobStatusCriteria = new GetJobStatusCriteria(null, null, true, param.SiteDbGroupId);
-        await repository.ExecuteAsync(autoTransferJobStatusCriteria);
+        var autoTransferJobStatusCriteria = new GetJobStatusCriteria(null, null, true);
+        await repository.ExecuteAsync(autoTransferJobStatusCriteria, param.AGIP);
 
         if (autoTransferJobStatusCriteria.IsAutoJobRunning)
         {
