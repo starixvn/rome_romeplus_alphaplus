@@ -3,7 +3,7 @@ namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit;
 using AlphaPlus.Core.Criteria;
 using Core.Helpers;
 
-public class GetPotentialWinLimitAmountCriteria(string custIds, int siteDbGroupId) : SiteDbBaseCriteria(siteDbGroupId)
+public class GetPotentialWinLimitAmountCriteria(string custIds) : SiteDbBaseCriteria()
 {
     public string CustIds { get; set; } = custIds;
 

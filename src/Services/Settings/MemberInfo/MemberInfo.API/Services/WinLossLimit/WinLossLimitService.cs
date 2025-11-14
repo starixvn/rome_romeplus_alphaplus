@@ -98,8 +98,10 @@ public class WinLossLimitServiceImpl(IDynamicRepository repository, CacheRefServ
             param.PageIndex,
             param.PageSize,
             param.IsDirectMember,
-            param.AccountType,
-            param.SiteDbGroupId));
+            param.AccountType)
+        {
+            SiteDbGroupId = param.SiteDbGroupId
+        });
         var outStandings = Enumerable.Empty<WinLossLimitDetail>();
 
         foreach (var custWinLossLimit in result.WinLossLimitDetail)

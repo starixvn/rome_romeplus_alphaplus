@@ -10,9 +10,8 @@ public class GetCalculateResultCriteria(
     string language,
     bool isAllDayBalanceTransfer,
     string downlineNetPosition,
-    int downlineCustId,
-    int siteDbGroupId)
-    : SiteDbBaseCriteria(siteDbGroupId)
+    int downlineCustId)
+    : SiteDbBaseCriteria
 {
     public string DownlineNetPosition { get; set; } = downlineNetPosition;
 

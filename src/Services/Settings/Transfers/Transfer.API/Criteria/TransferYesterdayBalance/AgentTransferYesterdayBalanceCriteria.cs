@@ -10,8 +10,7 @@ public class AgentTransferYesterdayBalanceCriteria(
     string language,
     string ip,
     int creator,
-    int subAccId,
-    int siteDbGroupId) : TransferYesterdayBalanceCriteria(language, ip, creator, subAccId, siteDbGroupId)
+    int subAccId) : TransferYesterdayBalanceCriteria(language, ip, creator, subAccId)
 {
     public string ToUsername { get; } = agentName;
 

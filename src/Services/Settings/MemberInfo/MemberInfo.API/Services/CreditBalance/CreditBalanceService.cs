@@ -99,8 +99,10 @@ public class CreditBalanceServiceImpl(IDynamicRepository dynamicRepository, IPSe
             param.Suspended,
             param.LevelType,
             param.PageIndex,
-            param.PageSize,
-            param.SiteDbGroupId);
+            param.PageSize)
+        {
+            SiteDbGroupId = param.SiteDbGroupId
+        };
 
     private static GetPagedCreditBalanceCriteria GetMasterCreditBalanceCriteria(CreditBalanceParam param)
         => new GetMasterCreditBalanceCriteria(
@@ -111,8 +113,10 @@ public class CreditBalanceServiceImpl(IDynamicRepository dynamicRepository, IPSe
             param.Suspended,
             param.LevelType,
             param.PageIndex,
-            param.PageSize,
-            param.SiteDbGroupId);
+            param.PageSize)
+        {
+            SiteDbGroupId = param.SiteDbGroupId
+        };
 
     private static GetPagedCreditBalanceCriteria GetAgentCreditBalanceCriteria(CreditBalanceParam param)
         => new GetAgentCreditBalanceCriteria(
@@ -122,8 +126,10 @@ public class CreditBalanceServiceImpl(IDynamicRepository dynamicRepository, IPSe
             param.Closed,
             param.Suspended,
             param.PageIndex,
-            param.PageSize,
-            param.SiteDbGroupId);
+            param.PageSize)
+        {
+            SiteDbGroupId = param.SiteDbGroupId
+        };
 
     public async Task<IDictionary<int, CustomerClosedReason>> GetClosedReasonsAsync(CreditBalanceParam param)
     {
@@ -197,13 +203,18 @@ public class CreditBalanceServiceImpl(IDynamicRepository dynamicRepository, IPSe
     }
 
     private static ICriteria GetAgentNetPositionCriteria(CreditBalanceParam param)
-        => new GetAgentNetPositionCriteria(
+    {
+        var criteria = new GetAgentNetPositionCriteria(
             param.CustId,
             param.UserName,
             param.Enabled,
             param.Closed,
             param.Suspended,
             param.PageIndex,
-            param.PageSize,
-            param.SiteDbGroupId);
+            param.PageSize)
+        {
+            SiteDbGroupId = param.SiteDbGroupId
+        };
+        return criteria;
+    }
 }

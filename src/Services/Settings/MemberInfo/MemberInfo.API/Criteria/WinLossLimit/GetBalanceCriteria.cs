@@ -15,9 +15,8 @@ public class GetBalanceCriteria(
     int pageIndex,
     int pageSize,
     bool isDirectMember,
-    int accountType,
-    int siteDbGroupId)
-    : SiteDbBaseCriteria(siteDbGroupId)
+    int accountType)
+    : SiteDbBaseCriteria()
 {
     public int CustId { get; set; } = custId;
 
@@ -40,7 +39,7 @@ public class GetBalanceCriteria(
     public int AccountType { get; set; } = accountType;
 
     public override string GetSettingKey()
-        => SpNameHelpers.SiteDbPrefix("Age_CustomerSelWinlimitInfo", siteDbGroupId);
+        => SpNameHelpers.SiteDbPrefix("Age_CustomerSelWinlimitInfo", SiteDbGroupId);
 
     public override bool IsValid()
         => CustId > 0;

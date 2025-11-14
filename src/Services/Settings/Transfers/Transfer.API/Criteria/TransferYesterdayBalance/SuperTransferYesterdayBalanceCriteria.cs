@@ -11,8 +11,7 @@ public class SuperTransferYesterdayBalanceCriteria(
     byte autoTransfer,
     string language,
     string ip,
-    int subAccId,
-    int siteDbGroupId) : TransferYesterdayBalanceCriteria(language, ip, custId, subAccId, siteDbGroupId)
+    int subAccId) : TransferYesterdayBalanceCriteria(language, ip, custId, subAccId)
 {
     public int SAgId { get; } = custId;
 

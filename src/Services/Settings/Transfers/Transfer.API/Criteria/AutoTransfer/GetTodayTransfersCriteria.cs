@@ -3,7 +3,7 @@
 using Core.Criteria;
 using Core.Helpers;
 
-public class GetTodayTransfersCriteria(int siteDbGroupId) : SiteDbBaseCriteria(siteDbGroupId)
+public class GetTodayTransfersCriteria : SiteDbBaseCriteria
 {
     public int FromCustId { get; set; }
 

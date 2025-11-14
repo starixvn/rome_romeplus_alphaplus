@@ -8,8 +8,7 @@ public class ResetCurrentSportsbookWinAmountCriteria(int custId,
     string subAccName,
     int userId,
     string ip,
-    int settingStatus,
-    int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
+    int settingStatus) : SiteDbBaseCommand
 {
     public int CustId { get; } = custId;
 

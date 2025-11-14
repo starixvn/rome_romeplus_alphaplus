@@ -7,8 +7,7 @@ public abstract class GetPagedCreditBalanceCriteria(
     bool? closed,
     bool? suspended,
     int pageIndex,
-    int pageSize,
-    int siteDbGroupId) : GetCreditBalanceCriteriaBase(custId, userName, enabled, closed, suspended, pageIndex, pageSize, siteDbGroupId)
+    int pageSize) : GetCreditBalanceCriteriaBase(custId, userName, enabled, closed, suspended, pageIndex, pageSize)
 {
     public int TotalItems { get; set; }
 }

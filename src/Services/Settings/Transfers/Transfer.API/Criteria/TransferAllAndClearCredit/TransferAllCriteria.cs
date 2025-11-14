@@ -11,9 +11,8 @@ public class TransferAllCriteria(
     string username,
     string ip,
     string language,
-    bool isAllDayBalanceTransfer,
-    int siteDbGroupId)
-    : SiteDbBaseCriteria(siteDbGroupId)
+    bool isAllDayBalanceTransfer)
+    : SiteDbBaseCriteria
 {
     public int CustId { get; set; } = custId;
 

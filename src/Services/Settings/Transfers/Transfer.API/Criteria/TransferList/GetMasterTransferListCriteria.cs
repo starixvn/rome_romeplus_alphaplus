@@ -11,16 +11,14 @@ public class GetMasterTransferListCriteria(
     byte autoTransfer,
     byte levelType,
     int pageIndex,
-    int pageSize,
-    int siteDbGroupId) : GetTransferListCriteria(
+    int pageSize) : GetTransferListCriteria(
         downlineName,
         status,
         allYesterdayBalance,
         allowTotalBalanceTransfer,
         autoTransfer,
         pageIndex,
-        pageSize,
-        siteDbGroupId)
+        pageSize)
 {
     public int MasterId { get; } = custId;
 

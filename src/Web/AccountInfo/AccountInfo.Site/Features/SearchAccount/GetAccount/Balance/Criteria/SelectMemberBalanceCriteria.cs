@@ -3,7 +3,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.Balance.C
 using Core.Criteria;
 using Core.Helpers;
 
-public class SelectMemberBalanceCriteria(int custId, int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
+public class SelectMemberBalanceCriteria(int custId) : SiteDbBaseCommand
 {
     public int CustId { get; } = custId;
 
