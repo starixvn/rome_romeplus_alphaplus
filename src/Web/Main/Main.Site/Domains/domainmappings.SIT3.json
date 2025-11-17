@@ -1,8 +1,8 @@
 {
     "DomainMappings": [
         {
-            "Before": "alp5.playonesit.com",
-            "After": "https://mbp5.playonesit.com/auth"
+            "Before": "alp5.nx-st.playonesit.com",
+            "After": "https://mbp5.nx-st.playonesit.com/auth"
         }
     ]
 }

@@ -134,7 +134,7 @@
         }
     ],
     "StoredProcedurePath": "~/App_Data/SPNames.MAIN.xml",
-    "FanexDataServiceApi": "http://vn-fanexdataservice.playonesit.com",
+    "FanexDataServiceApi": "http://fanexdataservice.st-sit.nebula.sit",
     "LogLibs": "Rabbit",
     "Fanex.Logging": {
         "DefaultCategory": "Alpha-MBC-AF-SIT",
@@ -145,12 +145,12 @@
     "RedisConfiguration": "172.16.4.76:16379,Password=foo1@bared,Name=AlphaPlus,abortConnect=false,configChannel=__Booksleeve_MasterChanged,connectTimeout=6300",
     "RemotingRefUrl": "http://vn-remotingref-sit.playonesit.com/",
     "Fanex.Customer": {
-        "ServiceUri": "http://fanex_customer_api_SIT:5000/api/",
-        "CdnUri": "//cdn-customer.playonesit.com/main/",
+        "ServiceUri": "http://vn-customer.st-sit.nebula.sit/main/api/",
+        "CdnUri": "//cdn-customer.nx-st.playonesit.com/main/",
         "SystemId": 2
     },
     "SystemId": 2,
-    "IdentityUrl": "http://alphaplus_api_identity_SIT:5000/",
+    "IdentityUrl": "http://alp-identity-api.st-sit.nebula.sit/main/",
     "AssetAppPath": "/stcdn",
     "JsVersion": "20250415",
     "AssetsApp:StaticResourcesVersion": "20250415",
@@ -262,7 +262,7 @@
     "OfferClearGivenCredit:Sites": "*",
     "IndirectLogin": {
         "AllowSuperIds": "*",
-        "URL": "https://idp1.playonesit.com/auth/Account/IndirectLogin"
+        "URL": "https://idp1.nx-st.playonesit.com/auth/Account/IndirectLogin"
     },
     "Authorization": {
         "cachedExpireTime": 30,
@@ -289,6 +289,6 @@
     "OfferProfilePictureTour": true,
     "CashService": {
         "OfferedSites": "222227,733333,BEST-ODDS",
-        "APIUrl": "http://alphaplus_api_cashservice_sit:5000/api"
+        "APIUrl": "http://cash-service-api.st-sit.nebula.sit/main/api"
     }
 }
