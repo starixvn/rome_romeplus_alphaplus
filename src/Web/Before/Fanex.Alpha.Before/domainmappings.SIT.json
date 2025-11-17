@@ -7,6 +7,34 @@
         {
             "Before": "alp2.playonesit.com",
             "After": "https://mbp2.playonesit.com/auth"
+        },
+        {
+            "Before": "alp6.vn-st.playonesit.com",
+            "After": "http://mbp6.vn-st.playonesit.com/auth"
+        },
+        {
+            "Before": "alp7.vn-st.playonesit.com",
+            "After": "http://mbp7.vn-st.playonesit.com/auth"
+        },
+        {
+            "Before": "alp8.vn-st.playonesit.com",
+            "After": "http://mbp8.vn-st.playonesit.com/auth"
+        },
+        {
+            "Before": "alp9.vn-st.playonesit.com",
+            "After": "http://mbp9.vn-st.playonesit.com/auth"
+        },
+        {
+            "Before": "alp10.vn-st.playonesit.com",
+            "After": "http://mbp10.vn-st.playonesit.com/auth"
+        },
+        {
+            "Before": "alp11.vn-st.playonesit.com",
+            "After": "http://mbp11.vn-st.playonesit.com/auth"
+        },
+        {
+            "Before": "alp12.vn-st.playonesit.com",
+            "After": "http://mbp12.vn-st.playonesit.com/auth"
         }
     ]
 }

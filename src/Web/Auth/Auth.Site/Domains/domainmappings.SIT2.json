@@ -7,6 +7,18 @@
         {
             "Before": "alp4.playonesit.com",
             "After": "https://mbp4.playonesit.com/auth"
+        },
+        {
+            "Before": "alp13.vn-st.playonesit.com",
+            "After": "http://mbp13.vn-st.playonesit.com/auth"
+        },
+        {
+            "Before": "alp14.vn-st.playonesit.com",
+            "After": "http://mbp14.vn-st.playonesit.com/auth"
+        },
+        {
+            "Before": "alp15.vn-st.playonesit.com",
+            "After": "http://mbp15.vn-st.playonesit.com/auth"
         }
     ]
 }
