@@ -9,7 +9,8 @@ public class BetBuilderDetailViewModel(IEnumerable<BetBuilderDetailModel> detail
     [
         BetStatus.Won,
         BetStatus.Lose,
-        BetStatus.Refund
+        BetStatus.Refund,
+        BetStatus.Draw
     ];
 
     public IEnumerable<BetBuilderDetailModel> Details { get; } = details;

@@ -401,6 +401,9 @@ div.league,
 
 .offer-name-list {
     font-weight: bold;
+    &.void {
+        text-decoration: line-through;
+    }
 }
 
 .float_l,
@@ -837,6 +840,9 @@ span.icon-boost {
 				padding: 0;
 			}
 		}
+        .void {
+            text-decoration: line-through;
+        }
 	}
 	.status {
 		border-radius: 23px;
@@ -849,5 +855,7 @@ span.icon-boost {
 		display: inline-block;
 		text-transform: capitalize;
 	}
-	 
+	&.void {
+		text-decoration: line-through;
+	}
 }
