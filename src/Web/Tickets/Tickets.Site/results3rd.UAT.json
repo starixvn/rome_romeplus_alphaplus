@@ -74,6 +74,13 @@
       "VendorId": 116,
       "Url": "http://saba-wallet-group-preprod.3rd-party.klt2p.gamora.prod:32280/api/VertexPlayInternal/GetBetHistoryUrl",
       "Debug": 0
+    },
+    {
+      "Name": "WowGaming",
+      "SportTypeId": 113,
+      "VendorId": 117,
+      "Url": "http://saba-wallet-group-preprod.3rd-party.klt2p.gamora.prod:32280/api/WowGamingInternal/GetBetHistoryUrl",
+      "Debug": 0
     }
   ]
 }
