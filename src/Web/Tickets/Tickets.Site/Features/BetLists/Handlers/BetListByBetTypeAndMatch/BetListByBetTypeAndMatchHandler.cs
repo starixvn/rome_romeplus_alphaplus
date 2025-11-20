@@ -55,5 +55,6 @@ public class BetListByBetTypeAndMatchHandler(
             message.BetTeam,
             message.ViewerLevelId,
             message.DisplayVNIP,
-            message.SuperId);
+            message.SuperId,
+            message.System);
 }

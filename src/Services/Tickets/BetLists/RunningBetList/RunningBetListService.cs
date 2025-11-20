@@ -31,7 +31,7 @@ public class RunningBetListService(
             param.UserName);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
-        var betListData = await GetBetList(criteria, param.DisplayVNIP, param.SuperId);
+        var betListData = await GetBetList(criteria, param.DisplayVNIP, param.SuperId, param.System);
         await UpdateOddsMixParlay(betListData.Tickets);
 
         return betListData;

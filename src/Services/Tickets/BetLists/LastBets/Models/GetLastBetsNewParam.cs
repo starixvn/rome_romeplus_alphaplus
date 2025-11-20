@@ -13,5 +13,6 @@ public record GetLastBetsNewParam(
     int RunningMatchCacheTime,
     bool DisplayVNIP,
     int SuperId,
+    string System,
     string SiteName,
     byte UserLevel);

@@ -37,7 +37,7 @@ public class CancelledBetService(
             param.PageSize);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
-        var betlistData = await GetBetList(criteria, param.DisplayVNIP, param.SuperId);
+        var betlistData = await GetBetList(criteria, param.DisplayVNIP, param.SuperId, param.System);
 
         return new PagedReportData<BetListData>([betlistData], param.PageIndex, param.PageSize, criteria.TotalRows);
     }

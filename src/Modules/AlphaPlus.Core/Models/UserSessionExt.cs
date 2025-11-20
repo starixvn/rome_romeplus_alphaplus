@@ -240,6 +240,12 @@ public class UserSessionExt : IUserSession
         set => UserSession.Current.SRecommendId = value;
     }
 
+    public string System
+    {
+        get => UserSession.Current.System;
+        set => UserSession.Current.System = value;
+    }
+
     public int SubAccId
     {
         get => UserSession.Current.SubAccId;

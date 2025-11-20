@@ -46,6 +46,8 @@ public interface IUserSession
 
     string Site { get; set; }
 
+    string System { get; set; }
+
     PageAccess SubPageAccess { get; set; }
 
     string SubUserName { get; set; }

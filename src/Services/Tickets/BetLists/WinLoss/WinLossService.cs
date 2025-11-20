@@ -106,7 +106,7 @@ public class WinLossService(
 
         var (tickets, ticketData) = await repository.FetchMultipleAsync<TicketDto, TicketData>(criteria, param.IP);
         await AssignCountry(tickets, param.DisplayVNIP);
-        await HideIP(tickets, param.SuperId);
+        await HideIP(tickets, param.SuperId, param.System);
 
         var errFormat = param.IsExcel
             ? string.Format(Resources.ExceededMaxTotalRowExportExcelFunc, param.MaxTotalRowConfig)
@@ -128,7 +128,7 @@ public class WinLossService(
             isExportExcel: param.IsExcel);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
-        var betListData = await GetBetList(criteria, param.DisplayVNIP, param.SuperId);
+        var betListData = await GetBetList(criteria, param.DisplayVNIP, param.SuperId, param.System);
         var errFormat = param.IsExcel
             ? string.Format(Resources.ExceededMaxTotalRowExportExcelFunc, param.MaxTotalRowConfig)
             : string.Format(Resources.ExceededMaxTotalRowWithExcelFunc, criteria.MaxTotalRow, param.MaxTotalRowConfig);

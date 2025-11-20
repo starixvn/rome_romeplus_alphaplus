@@ -32,5 +32,5 @@ public class RiskAnalysisIPMatchingHandler(
     }
 
     protected internal static RiskAnalysisIPMatchingParam CreateIPMatchingParamParam(RiskAnalysisIPMatchingQuery message)
-        => new RiskAnalysisIPMatchingParam(message.CustId, message.IP, message.Date, message.DisplayVNIP, message.SuperId, message.Site);
+        => new RiskAnalysisIPMatchingParam(message.CustId, message.IP, message.Date, message.DisplayVNIP, message.SuperId, message.System, message.Site);
 }

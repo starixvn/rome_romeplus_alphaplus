@@ -52,6 +52,7 @@ public class RunningBetListHandler(
             message.CustName,
             message.DisplayVNIP,
             message.SuperId,
+            message.System,
             message.Site);
         var betlistData = await runningBetListService.GetBetList(param);
         var supportScoreMapBetTypeIds = betlistData.Tickets.Any()

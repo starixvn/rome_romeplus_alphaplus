@@ -18,13 +18,14 @@ namespace AlphaPlus.Utilities.IP
 
         Task<string> GetCountryCode(string ip);
 
-        Task<bool> CheckHideIP(int superId);
+        Task<bool> CheckHideIP(int superId, string system);
     }
 
     public class IPServiceImpl : IPService
     {
         private const string IPValidateRegex = @"(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?)";
         private const string VNIPListCacheKey = "Alpha.BetLists.Service.IPService.VNIPList";
+        private const string ExtNAP = "ExtNAP";
         private readonly IDynamicRepository dynamicRepository;
         private readonly IPHelper ipHelper;
         private readonly IMemoryCache memoryCache;
@@ -111,8 +112,13 @@ namespace AlphaPlus.Utilities.IP
             return countryCode;
         }
 
-        public async Task<bool> CheckHideIP(int superId)
+        public async Task<bool> CheckHideIP(int superId, string system)
         {
+            if (IsInternalByExtAdmin(system))
+            {
+                return false;
+            }
+
             var cacheKey = $"CheckHideIP_{superId}";
             
             var isHideIP = await memoryCache.GetOrCreateAsync(
@@ -127,5 +133,8 @@ namespace AlphaPlus.Utilities.IP
 
             return isHideIP;
         }
+
+        internal static bool IsInternalByExtAdmin(string system)
+            => system == ExtNAP;
     }
 }

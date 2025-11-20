@@ -59,6 +59,7 @@ public class LastBetsHandler(
             appSettings.RunningMatchCacheTime,
             message.DisplayVNIP,
             message.SuperId,
+            message.System,
             message.Site);
         var tickets = await lastBetsService.GetBetList(param);
         var betListData = new BetListData(tickets, null);
@@ -118,6 +119,7 @@ public class LastBetsHandler(
                     appSettings.RunningMatchCacheTime,
                     message.DisplayVNIP,
                     message.SuperId,
+                    message.System,
                     message.Site,
                     message.ViewerLevelId);
 
@@ -154,6 +156,7 @@ public class LastBetsHandler(
             appSettings.RunningMatchCacheTime,
             message.DisplayVNIP,
             message.SuperId,
+            message.System,
             message.Site,
             message.ViewerLevelId);
         var (betListData, latestTransId) = await GetBetData(param, memberInWatchlistIds, message.LatestTransId);

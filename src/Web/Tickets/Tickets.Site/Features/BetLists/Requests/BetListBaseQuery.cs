@@ -28,6 +28,7 @@ public class BetListBaseQuery
         SubAccId = Viewer.SubAccId;
         DisplayVNIP = Viewer.IsAdminCanViewVNIP;
         SuperId = Viewer.SRecommendId;
+        System = Viewer.System;
         Language = Viewer.Language;
         IsEnabledJackpot = Viewer.IsEnabledJackpot;
     }
@@ -59,6 +60,8 @@ public class BetListBaseQuery
     public bool DisplayVNIP { get; }
 
     public int SuperId { get; }
+
+    public string System { get; }
 
     public string Language { get; }
 

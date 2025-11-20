@@ -40,5 +40,5 @@ public class DailyStatementHandler(
     }
 
     protected internal static DailyStatementParam CreateDailyStatementParam(DailyStatementQuery message)
-        => new DailyStatementParam(message.CustId, message.WinLossDate, message.TransType, message.DisplayVNIP, message.SuperId, message.Site);
+        => new DailyStatementParam(message.CustId, message.WinLossDate, message.TransType, message.DisplayVNIP, message.SuperId, message.System, message.Site);
 }

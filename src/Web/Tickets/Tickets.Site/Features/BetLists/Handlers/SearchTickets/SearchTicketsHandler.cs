@@ -25,7 +25,7 @@ public class SearchTicketsHandler(
 
     public async Task<SearchTicketsViewModel> Handle(SearchTicketsQuery message, CancellationToken cancellationToken)
     {
-        var param = new SearchTicketsParam(message.RefNo, message.ViewerId, message.ViewerLevelId, message.DisplayVNIP, message.SuperId, message.Site);
+        var param = new SearchTicketsParam(message.RefNo, message.ViewerId, message.ViewerLevelId, message.DisplayVNIP, message.SuperId, message.System, message.Site);
         var betListData = await searchTicketsService.GetBetList(param);
         WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, betListData.Tickets);
 

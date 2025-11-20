@@ -6,4 +6,5 @@ public record DailyStatementParam(
     int TransType,
     bool DisplayVNIP,
     int SuperId,
+    string System,
     string SiteName);

@@ -99,6 +99,7 @@ public class AccountService(HttpClient client, IUserSession session, IUserSessio
         if (result.IsSuccessful)
         {
             userSessionService.SetUserSessionValues(result);
+            session.System = param.System;
         }
 
         return result;

@@ -6,4 +6,5 @@ public record RiskAnalysisIPMatchingParam(
     DateTime Date,
     bool DisplayVNIP,
     int SuperId,
+    string System,
     string SiteName);

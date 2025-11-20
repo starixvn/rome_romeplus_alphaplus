@@ -27,7 +27,7 @@ public class RunningBetListByBetTypeService(
 
         var tickets = await repository.FetchAsync<TicketDto>(criteria);
         await AssignCountry(tickets, param.DisplayVNIP);
-        await HideIP(tickets, param.SuperId);
+        await HideIP(tickets, param.SuperId, param.System);
         await UpdateOddsMixParlay(tickets);
 
         return tickets;

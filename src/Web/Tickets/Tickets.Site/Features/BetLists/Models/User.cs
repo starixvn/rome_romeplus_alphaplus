@@ -27,6 +27,8 @@ public interface IUser
 
     int SRecommendId { get; }
 
+    string System { get; }
+
     string LangKey { get; }
 
     bool IsEnabledJackpot { get; }
@@ -73,6 +75,8 @@ public class User(IUserSession userSession) : IUser
     public bool IsAdminCanViewVNIP => userSession.IsAdminCanViewVNIP;
 
     public int SRecommendId => userSession.SRecommendId;
+
+    public string System => userSession.System;
 
     public string LangKey => userSession.LangKey;
 

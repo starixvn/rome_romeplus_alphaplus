@@ -34,7 +34,7 @@ public class LastBetsService(
     {
         var criteria = new GetLastBetsCriteria(param.BetType, param.CustId, param.TransId, param.PageSize);
 
-        return GetBetList(criteria, param.DisplayVNIP, param.SuperId, param.SiteName, param.RunningMatchCacheTime);
+        return GetBetList(criteria, param.DisplayVNIP, param.SuperId, param.System, param.SiteName, param.RunningMatchCacheTime);
     }
 
     public Task<IEnumerable<TicketDto>> GetBetListNew(GetLastBetsNewParam param)
@@ -53,13 +53,14 @@ public class LastBetsService(
             userLevel.IsSuperLevel(),
             userLevel.IsMasterLevel());
 
-        return GetBetList(criteria, param.DisplayVNIP, param.SuperId, param.SiteName, param.RunningMatchCacheTime);
+        return GetBetList(criteria, param.DisplayVNIP, param.SuperId, param.System, param.SiteName, param.RunningMatchCacheTime);
     }
 
     private async Task<IEnumerable<TicketDto>> GetBetList(
         ICriteria criteria,
         bool displayVNIP,
         int superId,
+        string system,
         string siteName,
         int cacheTimeInMinutes)
     {
@@ -87,7 +88,7 @@ public class LastBetsService(
             }
 
             await AssignCountry(tickets, displayVNIP);
-            await HideIP(tickets, superId);
+            await HideIP(tickets, superId, system);
             await UpdateOddsMixParlay(tickets);
         }
 

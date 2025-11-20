@@ -8,4 +8,5 @@ public record MemberBetListParam(
     string UserName,
     bool DisplayVNIP,
     int SuperId,
+    string System,
     string SiteName);

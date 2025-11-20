@@ -16,18 +16,18 @@ public class BetListServiceBase(
     protected readonly IIPInfoService ipInfoService = ipInfoService;
     protected readonly IPService ipService = ipService;
 
-    protected async Task<BetListData> GetBetList(ICriteria criteria, bool displayVNIP, int superId)
+    protected async Task<BetListData> GetBetList(ICriteria criteria, bool displayVNIP, int superId, string system)
     {
         var (tickets, ticketData) = await repository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
-        await HideIP(tickets, superId);
+        await HideIP(tickets, superId, system);
         await AssignCountry(tickets, displayVNIP);
 
         return new BetListData(tickets, ticketData);
     }
 
-    protected async Task HideIP(IEnumerable<TicketDto> tickets, int superId)
+    protected async Task HideIP(IEnumerable<TicketDto> tickets, int superId, string system)
     {
-        var shouldHideIP = await ipService.CheckHideIP(superId);
+        var shouldHideIP = await ipService.CheckHideIP(superId, system);
 
         if (shouldHideIP)
         {

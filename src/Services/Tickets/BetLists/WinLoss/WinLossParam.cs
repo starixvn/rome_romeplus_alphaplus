@@ -8,6 +8,7 @@ public class WinLossParam(
     string productDetailsXML,
     bool displayVNIP,
     int superId,
+    string system,
     string siteName,
     bool isExcel = false,
     int maxTotalRow = 10000,
@@ -31,6 +32,8 @@ public class WinLossParam(
     public bool DisplayVNIP { get; } = displayVNIP;
 
     public int SuperId { get; } = superId;
+
+    public string System { get; } = system;
 
     public string SiteName { get; } = siteName;
 

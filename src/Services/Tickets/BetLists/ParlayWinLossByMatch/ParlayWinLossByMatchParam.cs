@@ -9,4 +9,5 @@ public record ParlayWinLossByMatchParam(
     byte CustLevelId,
     bool DisplayVNIP,
     int SuperId,
+    string System,
     string SiteName);

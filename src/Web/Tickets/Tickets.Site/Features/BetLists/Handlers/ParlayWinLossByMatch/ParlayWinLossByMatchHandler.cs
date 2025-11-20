@@ -45,5 +45,6 @@ public class ParlayWinLossByMatchHandler(
             message.CustLevelId,
             message.DisplayVNIP,
             message.SuperId,
+            message.System,
             message.Site);
 }

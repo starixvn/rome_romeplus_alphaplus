@@ -15,4 +15,5 @@ public record WinLossByMatchParam(
     byte CustLevelId,
     bool DisplayVNIP,
     int SuperId,
+    string System,
     string SiteName);

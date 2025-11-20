@@ -42,5 +42,5 @@ public class CorrectScoreHandler(
     }
 
     protected internal static CorrectScoreParam CreateCorrectScoreParam(CorrectScoreQuery message)
-        => new CorrectScoreParam(message.ViewerId, message.ViewerLevelId, message.DisplayVNIP, message.SuperId, message.Site);
+        => new CorrectScoreParam(message.ViewerId, message.ViewerLevelId, message.DisplayVNIP, message.SuperId, message.System, message.Site);
 }

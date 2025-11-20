@@ -49,5 +49,6 @@ public class WinLossByMatchHandler(
             message.CustLevelId,
             message.DisplayVNIP,
             message.SuperId,
+            message.System,
             message.Site);
 }

@@ -31,6 +31,7 @@ public class UserSessionBase : IUserSession, IDisposable
     private const string SUBPAGEACCESS = "SUBPAGEACCESS";
     private const string SUBUSERNAME = "SUBUSERNAME";
     private const string SITE = "SITE";
+    private const string SYSTEM = "SYSTEM";
     private const string SITENAME = "SITENAME";
     private const string CURRENCY = "CURRENCY";
     private const string CURRENCYID = "CURRENCYID";
@@ -191,6 +192,12 @@ public class UserSessionBase : IUserSession, IDisposable
     {
         get => GetProperty<string>(SITE);
         set => SetProperty(SITE, value);
+    }
+
+    public string System
+    {
+        get => GetProperty<string>(SYSTEM);
+        set => SetProperty(SYSTEM, value);
     }
 
     public PageAccess SubPageAccess

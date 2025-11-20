@@ -8,4 +8,5 @@ public record GetLastBetsParam(
     int RunningMatchCacheTime,
     bool DisplayVNIP,
     int SuperId,
+    string System,
     string SiteName);

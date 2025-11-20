@@ -9,4 +9,5 @@ public record RunningBetListByBetTypeAndMatchParam(
     string BetTeam,
     byte CustLevelId,
     bool DisplayVNIP,
-    int SuperId);
+    int SuperId,
+    string System);
