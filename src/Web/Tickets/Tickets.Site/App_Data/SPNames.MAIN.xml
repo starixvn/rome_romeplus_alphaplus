@@ -1133,6 +1133,7 @@
         <Setting Key="Age_IPRangesByCountrySel" SpName="Age_IPRangesByCountrySel" DbName="DBCust.IPDB.wsv_alp" />
         <Setting Key="Age_IPRangesByCountrySelByIPList" SpName="Age_IPRangesByCountrySelByIPList" DbName="DBCust.IPDB.wsv_alp" />
         <Setting Key="Age_IPRangesByCountrySelByIPV6List" SpName="Age_IPRangesByCountrySelByIPV6List" DbName="DBCust.IPDB.wsv_alp" />
+        <Setting Key="Age_CustomerCheckHideIP" SpName="Age_CustomerCheckHideIP" DbName="DBAGE.bodb02.wsv_alp" />
     </Function>
     <Function Name="Write/View Logs">
         <Setting Key="IS_UpdFunctionUsage" SpName="IS_UpdFunctionUsage" DbName="DBLOG.bodb_CustomerLog.wsv_alp" />
