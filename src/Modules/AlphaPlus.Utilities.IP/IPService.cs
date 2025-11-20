@@ -17,6 +17,8 @@ namespace AlphaPlus.Utilities.IP
         Task<IPInformationModel> GetIPInformation(string ip);
 
         Task<string> GetCountryCode(string ip);
+
+        Task<bool> CheckHideIP(int superId);
     }
 
     public class IPServiceImpl : IPService
@@ -107,6 +109,23 @@ namespace AlphaPlus.Utilities.IP
             }
 
             return countryCode;
+        }
+
+        public async Task<bool> CheckHideIP(int superId)
+        {
+            var cacheKey = $"CheckHideIP_{superId}";
+            
+            var isHideIP = await memoryCache.GetOrCreateAsync(
+                cacheKey,
+                async cacheEntry =>
+                {
+                    cacheEntry.SlidingExpiration = TimeSpan.FromMinutes(1);
+                    var criteria = new CheckHideIPCriteria(superId);
+                    await dynamicRepository.ExecuteAsync(criteria);
+                    return criteria.IsHideIP;
+                });
+
+            return isHideIP;
         }
     }
 }

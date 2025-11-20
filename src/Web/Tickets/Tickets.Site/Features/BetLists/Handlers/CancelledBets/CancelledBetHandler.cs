@@ -58,6 +58,7 @@ public class CancelledBetHandler(
             message.PageIndex,
             message.PageSize,
             message.DisplayVNIP,
+            message.SuperId,
             message.Site);
         var betListData = await cancelledBetService.GetBetList(param);
 

@@ -1,6 +1,7 @@
 using AlphaPlus.Core.Models;
 using AlphaPlus.Tickets.Site.Features.BetLists.Models;
 using _Enumeration = AlphaPlus.Core.Models.Enumeration;
+using IUser = AlphaPlus.Tickets.Site.Features.BetLists.Models.IUser;
 
 namespace AlphaPlus.Tickets.Site.Features.BetLists.Requests;
 
@@ -26,6 +27,7 @@ public class BetListBaseQuery
         AdminId = Viewer.AdminId;
         SubAccId = Viewer.SubAccId;
         DisplayVNIP = Viewer.IsAdminCanViewVNIP;
+        SuperId = Viewer.SRecommendId;
         Language = Viewer.Language;
         IsEnabledJackpot = Viewer.IsEnabledJackpot;
     }
@@ -55,6 +57,8 @@ public class BetListBaseQuery
     public int SubAccId { get; }
 
     public bool DisplayVNIP { get; }
+
+    public int SuperId { get; }
 
     public string Language { get; }
 

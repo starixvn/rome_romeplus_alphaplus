@@ -81,7 +81,8 @@ public class CasinoDetailsHandler(
             message.ProductId,
             message.PageIndex,
             message.PageSize,
-            message.DisplayVNIP);
+            message.DisplayVNIP,
+            message.SuperId);
 
     protected internal string GetPopupDetailTitle(int sportType, string titleFormat)
         => string.Format(titleFormat, cacheRefService.GetSportName(sportType));

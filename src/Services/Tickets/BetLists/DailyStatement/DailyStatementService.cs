@@ -29,6 +29,6 @@ public class DailyStatementService(
             : new GetAllBetListByDayCriteria(param.CustId, param.WinLossDate, reportDate.MoveBetsDay, param.TransType);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
-        return await GetBetList(criteria, param.DisplayVNIP);
+        return await GetBetList(criteria, param.DisplayVNIP, param.SuperId);
     }
 }

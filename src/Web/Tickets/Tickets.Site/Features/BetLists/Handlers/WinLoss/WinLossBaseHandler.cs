@@ -61,6 +61,7 @@ public class WinLossBaseHandler(
             message.ToDate,
             productDetailsXml,
             message.DisplayVNIP,
+            message.SuperId,
             message.Site,
             message.IsExcel,
             maxTotalRow,

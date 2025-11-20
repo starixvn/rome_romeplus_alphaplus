@@ -7,4 +7,5 @@ public record CasinoDetailsParam(
     int ProductId,
     int PageIndex,
     int PageSize,
-    bool DisplayVNIP);
+    bool DisplayVNIP,
+    int SuperId);

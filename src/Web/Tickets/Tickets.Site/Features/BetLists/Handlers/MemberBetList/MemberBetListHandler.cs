@@ -42,6 +42,7 @@ public class MemberBetListHandler(
             message.ToDate.ToEndOfDay(),
             message.CustName,
             message.DisplayVNIP,
+            message.SuperId,
             message.Site);
         var betlistData = await memberBetListService.GetBetList(param);
         var supportScoreMapBetTypeIds = betlistData.Tickets.Any()

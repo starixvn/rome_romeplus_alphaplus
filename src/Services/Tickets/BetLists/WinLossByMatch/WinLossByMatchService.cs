@@ -47,7 +47,7 @@ public class WinLossByMatchService(
 
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
-        return await GetBetList(criteria, param.DisplayVNIP);
+        return await GetBetList(criteria, param.DisplayVNIP, param.SuperId);
     }
 
     private async Task<ICriteria> GetWinLossOutrightCriteria(WinLossByMatchParam param)

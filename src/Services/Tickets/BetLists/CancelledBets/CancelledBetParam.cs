@@ -10,4 +10,5 @@ public record CancelledBetParam(
     int PageIndex,
     int PageSize,
     bool DisplayVNIP,
+    int SuperId,
     string SiteName);

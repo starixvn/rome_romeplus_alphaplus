@@ -50,5 +50,6 @@ public class BetListByBetTypeHandler(
             message.ViewerLevelId,
             message.BetType,
             message.DisplayVNIP,
+            message.SuperId,
             message.Site);
 }

@@ -8,4 +8,5 @@ public record RunningBetListParam(
     bool GetAll,
     string UserName,
     bool DisplayVNIP,
+    int SuperId,
     string SiteName);

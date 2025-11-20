@@ -27,6 +27,7 @@ public class MoveStatementHistoryService(
 
         var tickets = await repository.FetchAsync<TicketDto>(criteria);
         await AssignCountry(tickets, param.DisplayVNIP);
+        await HideIP(tickets, param.SuperId);
 
         return tickets;
     }

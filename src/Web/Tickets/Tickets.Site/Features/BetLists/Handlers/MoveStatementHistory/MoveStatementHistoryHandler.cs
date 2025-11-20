@@ -26,7 +26,7 @@ public class MoveStatementHistoryHandler(
 
     public async Task<MoveStatementHistoryViewModel> Handle(MoveStatementHistoryQuery message, CancellationToken cancellationToken)
     {
-        var param = new MoveStatementHistoryParam(message.CustId, message.TransId, message.DisplayVNIP, message.Site);
+        var param = new MoveStatementHistoryParam(message.CustId, message.TransId, message.DisplayVNIP, message.SuperId, message.Site);
         var tickets = await moveStatementHistoryService.GetBetList(param);
 
         WriteLog(message.CustId == 0 ? message.ViewerId : message.CustId, tickets);

@@ -28,6 +28,6 @@ public class SearchTicketsService(
         var criteria = new SearchTicketsCriteria(param.RefNo, param.UplineId, param.UplineLevelId, reportDate.MoveBetsDay, reportDate.BalanceUpDay);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
-        return await GetBetList(criteria, param.DisplayVNIP);
+        return await GetBetList(criteria, param.DisplayVNIP, param.SuperId);
     }
 }

@@ -54,5 +54,6 @@ public class BetListByBetTypeAndMatchHandler(
             message.IsLive,
             message.BetTeam,
             message.ViewerLevelId,
-            message.DisplayVNIP);
+            message.DisplayVNIP,
+            message.SuperId);
 }

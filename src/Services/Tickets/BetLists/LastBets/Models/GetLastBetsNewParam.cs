@@ -12,5 +12,6 @@ public record GetLastBetsNewParam(
     int LimitRowCount,
     int RunningMatchCacheTime,
     bool DisplayVNIP,
+    int SuperId,
     string SiteName,
     byte UserLevel);

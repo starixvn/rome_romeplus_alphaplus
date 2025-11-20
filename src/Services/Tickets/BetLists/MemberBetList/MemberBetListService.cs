@@ -28,6 +28,6 @@ public class MemberBetListService(
             param.UserName);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
-        return await GetBetList(criteria, param.DisplayVNIP);
+        return await GetBetList(criteria, param.DisplayVNIP, param.SuperId);
     }
 }

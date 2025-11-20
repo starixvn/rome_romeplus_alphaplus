@@ -5,4 +5,5 @@ public record DailyStatementParam(
     DateTime WinLossDate,
     int TransType,
     bool DisplayVNIP,
+    int SuperId,
     string SiteName);

@@ -5,4 +5,5 @@ public record RunningBetListByBetTypeParam(
     byte CustLevelId,
     int BetType,
     bool DisplayVNIP,
+    int SuperId,
     string SiteName);

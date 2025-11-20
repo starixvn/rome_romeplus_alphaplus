@@ -7,4 +7,5 @@ public record MemberBetListParam(
     DateTime ToDate,
     string UserName,
     bool DisplayVNIP,
+    int SuperId,
     string SiteName);

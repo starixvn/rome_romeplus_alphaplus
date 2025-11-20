@@ -5,4 +5,5 @@ public record SearchTicketsParam(
     int UplineId,
     byte UplineLevelId,
     bool DisplayVNIP,
+    int SuperId,
     string SiteName);
