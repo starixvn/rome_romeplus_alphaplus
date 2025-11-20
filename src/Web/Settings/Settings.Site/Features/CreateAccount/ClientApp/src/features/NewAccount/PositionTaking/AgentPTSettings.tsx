@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { shallow } from 'zustand/shallow';
 
 import { Block, BlockColumn, BlockRow } from '@/features/Shared/Block';
+import { LabelWithTooltip } from '@/features/Shared/LabelWithToolTip';
 import useNewAccountStore from '@/store/newAccountStore';
 import { AgentPTSetting, AgentPTSubGroupConfigAndPTSetting, SubGroup } from '@/types/new-account';
 
@@ -31,19 +32,7 @@ function AgentPTRow({ is3DecimalSite, productGroupId, subGroupId }: PTRowProps) 
   return (
     <div className={cn({ [styles['is-selecting-template']]: isSelectingTemplate })}>
       <BlockRow 
-        label={
-          <>
-            {value.subGroupName}
-            {value.tooltipMessage && value.tooltipMessage.trim() && (
-              <span 
-                className="icon-information-outline" 
-                data-tooltip-id="global-tooltip" 
-                data-tooltip-content={value.tooltipMessage}
-                style={{ marginLeft: '8px', cursor: 'pointer' }}
-              />
-            )}
-          </>
-        }
+        label={<LabelWithTooltip label={value.subGroupName} tooltipMessage={value.tooltipMessage} />}
       >
         <BlockColumn>
           <PTSelect

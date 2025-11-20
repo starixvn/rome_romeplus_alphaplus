@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 
 import { Block, BlockColumn, BlockRow } from '@/features/Shared/Block';
+import { LabelWithTooltip } from '@/features/Shared/LabelWithToolTip';
 import useNewAccountStore from '@/store/newAccountStore';
 import { CommissionItem } from '@/types/new-account';
 
@@ -30,19 +31,7 @@ export default function Commission({ productGroupId, groupItems }: Props) {
         {subGroups.map(({ id, name, value, max, tooltipMessage }) => (
           <BlockRow 
             key={id} 
-            label={
-              <>
-                {name}
-                {tooltipMessage && tooltipMessage.trim() && (
-                  <span 
-                    className="icon-information-outline" 
-                    data-tooltip-id="global-tooltip" 
-                    data-tooltip-content={tooltipMessage}
-                    style={{ marginLeft: '8px', cursor: 'pointer' }}
-                  />
-                )}
-              </>
-            }
+            label={<LabelWithTooltip label={name} tooltipMessage={tooltipMessage} />}
           >
             <BlockColumn>
               <CommissionSelect
