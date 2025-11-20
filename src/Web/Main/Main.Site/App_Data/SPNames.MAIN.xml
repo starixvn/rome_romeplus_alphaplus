@@ -96,6 +96,7 @@
             <Mapping DataField="ipto" ObjectProperty="To" />
         </Setting>
         <Setting Key="Acc_GetIPInfo_Full" SpName="Acc_GetIPInfo_Full" DbName="DBCust.IPDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_CustomerCheckHideIP" SpName="Age_CustomerCheckHideIP_UAT2" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
     </Function>
     <Function Name="Statistics">
         <Setting Key="Age_CustomerSelNewMembers" SpName="Age_CustomerSelNewMembers" DbName="DBCust.CustDB.wsv_alp" Plain="0" TimeOut="600">

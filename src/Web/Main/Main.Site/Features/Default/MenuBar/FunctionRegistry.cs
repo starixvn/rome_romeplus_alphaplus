@@ -3,6 +3,9 @@ using AlphaPlus.Core.Models;
 using AlphaPlus.Main.Site.Shared.Constants;
 using AlphaPlus.Main.Site.Shared.Models;
 using Fanex.Data.Repository;
+using Microsoft.Extensions.Caching.Memory;
+using Microsoft.Extensions.Options;
+using AlphaPlus.Utilities.IP;
 using static AlphaPlus.Core.Models.UserPermission;
 using static AlphaPlus.Core.Models.UserSession;
 
@@ -11,6 +14,8 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
     public static class FunctionRegistry
     {
         private static readonly ITransferService transferService = new TransferService(new DynamicRepository());
+        private static readonly IPService ipService = new IPServiceImpl(new DynamicRepository(), new IPHelperImpl(null), new MemoryCache(Options.Create(new MemoryCacheOptions())));
+        
         private static readonly Dictionary<string, Func<MenuStatus>> _menuItemTypeStatusRules = new()
         {
             [string.Empty] = null,
@@ -58,6 +63,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
                      && !Current.IsIndirectLoggedIn;
                 }),
             ["ViewLogCashServiceMenuItem"] = () => new MenuStatus(HasViewLogCashServicePermission()),
+            ["IPMatchingMenuItem"] = () => new MenuStatus(() => IPMatchingMenuItemVisible),
         };
 
         public static readonly Dictionary<string, Func<MenuStatus>> MenuItemTypeStatusRules = _menuItemTypeStatusRules;
@@ -159,6 +165,18 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
             return Current.IsAgent 
                 && Core.Configurations.AppSettings.IsOfferedCashService(Current.Site) 
                 && (!Current.IsSubAcc || Current.SubPageAccess.GetPermission(PageAccessType.ViewLog));
+        }
+
+        private static bool IPMatchingMenuItemVisible
+        {
+            get
+            {
+                var shouldHide = ipService.CheckHideIP(Current.SRecommendId, Current.System)
+                    .GetAwaiter()
+                    .GetResult();
+
+                return !shouldHide;
+            }
         }
     }
 }

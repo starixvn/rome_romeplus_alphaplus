@@ -100,7 +100,7 @@
     </siteMapNode>
 
     <siteMapNode resourceKey="BetStatistics" menuItemType="BetStatisticsMenuItem" functionType="[E]" roles="Super">
-        <siteMapNode resourceKey="IPMatching" url="/reports/IPMatching/Index" roles="Super"></siteMapNode>
+        <siteMapNode resourceKey="IPMatching" url="/reports/IPMatching/Index" roles="Super" menuItemType="IPMatchingMenuItem"></siteMapNode>
         <siteMapNode resourceKey="BetChoiceMatching" url="/reports/BetChoiceMatching/Index" roles="Super"></siteMapNode>
     </siteMapNode>
 
