@@ -26,6 +26,7 @@ namespace AlphaPlus.Utilities.IP
     {
         private const string IPValidateRegex = @"(?:(?:25[0-5]|2[0-4]\d|[01]?\d\d?)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d\d?)";
         private const string VNIPListCacheKey = "Alpha.BetLists.Service.IPService.VNIPList";
+        private const string CheckHideIPCacheKeyPrefix = "CheckHideIP_";
         private const string ExtNAP = "ExtNAP";
         private readonly IDynamicRepository dynamicRepository;
         private readonly IPHelper ipHelper;
@@ -122,7 +123,7 @@ namespace AlphaPlus.Utilities.IP
                     return false;
                 }
 
-                var cacheKey = $"CheckHideIP_{superId}";
+                var cacheKey = $"{CheckHideIPCacheKeyPrefix}{superId}";
                 
                 var isHideIP = await memoryCache.GetOrCreateAsync(
                     cacheKey,
