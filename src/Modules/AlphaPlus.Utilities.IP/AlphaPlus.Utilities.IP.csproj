@@ -8,5 +8,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Fanex.Data.ProxyClient" Version="1.0.5.5" />
+    <PackageReference Include="Fanex.Logging.RabbitMQ" Version="1.0.1" />
   </ItemGroup>
 </Project>

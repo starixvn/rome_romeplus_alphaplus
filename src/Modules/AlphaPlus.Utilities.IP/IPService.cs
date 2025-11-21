@@ -4,6 +4,7 @@ using AlphaPlus.Utilities.IP.Criteria;
 using AlphaPlus.Utilities.IP.Model;
 using AlphaPlus.Utilities.IP.Models;
 using Fanex.Data.Repository;
+using Fanex.Logging;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace AlphaPlus.Utilities.IP
@@ -114,24 +115,32 @@ namespace AlphaPlus.Utilities.IP
 
         public async Task<bool> CheckHideIP(int superId, string system)
         {
-            if (IsInternalByExtAdmin(system))
+            try
             {
+                if (IsInternalByExtAdmin(system))
+                {
+                    return false;
+                }
+
+                var cacheKey = $"CheckHideIP_{superId}";
+                
+                var isHideIP = await memoryCache.GetOrCreateAsync(
+                    cacheKey,
+                    async cacheEntry =>
+                    {
+                        cacheEntry.SlidingExpiration = TimeSpan.FromMinutes(1);
+                        var criteria = new CheckHideIPCriteria(superId);
+                        await dynamicRepository.ExecuteAsync(criteria);
+                        return criteria.IsHideIP;
+                    });
+
+                return isHideIP;
+            }
+            catch (Exception ex)
+            {
+                await Logger.Log.ErrorAsync($"CheckHideIP error for superId: {superId}, system: {system}, Message: {ex.Message}", ex);
                 return false;
             }
-
-            var cacheKey = $"CheckHideIP_{superId}";
-            
-            var isHideIP = await memoryCache.GetOrCreateAsync(
-                cacheKey,
-                async cacheEntry =>
-                {
-                    cacheEntry.SlidingExpiration = TimeSpan.FromMinutes(1);
-                    var criteria = new CheckHideIPCriteria(superId);
-                    await dynamicRepository.ExecuteAsync(criteria);
-                    return criteria.IsHideIP;
-                });
-
-            return isHideIP;
         }
 
         internal static bool IsInternalByExtAdmin(string system)
