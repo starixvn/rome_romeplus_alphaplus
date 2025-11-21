@@ -123,8 +123,10 @@ public class RewardService(IDynamicRepository repository) : IRewardService
             param.SubAccId,
             param.SubAccName,
             param.IP,
-            param.Language,
-            param.SiteDbGroupId);
+            param.Language)
+        {
+            SiteDbGroupId = param.SiteDbGroupId
+        };
         await repository.ExecuteAsync(criteria);
         var result = new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };
 

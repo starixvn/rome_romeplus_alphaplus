@@ -6,8 +6,7 @@ public abstract class TransferYesterdayBalanceCriteria(
     string language,
     string ip,
     int creator,
-    int subAccId,
-    int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
+    int subAccId) : SiteDbBaseCommand
 {
     public string Language { get; } = language;
 

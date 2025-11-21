@@ -3,7 +3,7 @@
 using Core.Criteria;
 using Core.Helpers;
 
-public class GetJobStatusCriteria(int? fromCustId, int? toCustId, bool isAllowAutoTransfer, int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
+public class GetJobStatusCriteria(int? fromCustId, int? toCustId, bool isAllowAutoTransfer) : SiteDbBaseCommand
 {
     public int? FromCustId { get; } = fromCustId;
 

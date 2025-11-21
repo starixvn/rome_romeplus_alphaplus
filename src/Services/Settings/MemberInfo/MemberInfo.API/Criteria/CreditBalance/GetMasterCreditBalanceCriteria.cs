@@ -10,8 +10,7 @@ public class GetMasterCreditBalanceCriteria(
     bool? suspended,
     byte levelType,
     int pageIndex,
-    int pageSize,
-    int siteDbGroupId) : GetPagedCreditBalanceCriteria(custId, userName, enabled, closed, suspended, pageIndex, pageSize, siteDbGroupId)
+    int pageSize) : GetPagedCreditBalanceCriteria(custId, userName, enabled, closed, suspended, pageIndex, pageSize)
 {
     public byte LevelType { get; } = levelType;
 

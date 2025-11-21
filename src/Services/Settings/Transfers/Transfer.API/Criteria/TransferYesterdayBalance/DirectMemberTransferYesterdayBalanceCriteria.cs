@@ -9,8 +9,7 @@ public class DirectMemberTransferYesterdayBalanceCriteria(
     string language,
     string ip,
     int creator,
-    int subAccId,
-    int siteDbGroupId) : TransferYesterdayBalanceCriteria(language, ip, creator, subAccId, siteDbGroupId)
+    int subAccId) : TransferYesterdayBalanceCriteria(language, ip, creator, subAccId)
 {
     public int FromCustId { get; } = memberId;
 

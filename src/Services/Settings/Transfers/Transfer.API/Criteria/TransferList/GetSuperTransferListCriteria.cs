@@ -1,8 +1,7 @@
-using Fanex.Data;
-
 namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferList;
 
 using Core.Helpers;
+using Fanex.Data;
 
 public class GetSuperTransferListCriteria(
     int custId,
@@ -13,16 +12,14 @@ public class GetSuperTransferListCriteria(
     byte autoTransfer,
     byte levelType,
     int pageIndex,
-    int pageSize,
-    int siteDbGroupId) : GetTransferListCriteria(
+    int pageSize) : GetTransferListCriteria(
         downlineName,
         status,
         allYesterdayBalance,
         allowTotalBalanceTransfer,
         autoTransfer,
         pageIndex,
-        pageSize,
-        siteDbGroupId)
+        pageSize)
 {
     [SpParam(SqlParamName = "sagid")]
     public int SuperId { get; } = custId;

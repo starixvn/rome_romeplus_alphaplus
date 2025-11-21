@@ -8,9 +8,8 @@ public class CancelJobCriteria(
     int toCustId,
     string viewStatus,
     string language,
-    string ip,
-    int siteDbGroupId)
-    : SiteDbBaseCommand(siteDbGroupId)
+    string ip)
+    : SiteDbBaseCommand
 {
     public int FromCustId { get; } = fromCustId;
 

@@ -53,7 +53,7 @@ public class AutoTransferServiceImpl(IDynamicRepository repository) : AutoTransf
 
     public async Task<AutoTransferMonitoringPageModel> GetTodayTransfersAsync(GetTodayTransfersParam param)
     {
-        var criteria = new GetTodayTransfersCriteria(param.SiteDbGroupId)
+        var criteria = new GetTodayTransfersCriteria
         {
             FromCustId = param.CustId,
             Language = param.Language,
@@ -63,7 +63,8 @@ public class AutoTransferServiceImpl(IDynamicRepository repository) : AutoTransf
             SortType = param.Direction,
             PageSize = param.PageSize,
             PageIndex = param.PageIndex,
-            LevelType = param.LevelType
+            LevelType = param.LevelType,
+            SiteDbGroupId = param.SiteDbGroupId
         };
 
         var transfers = await repository.FetchAsync<AutoTransferMonitoringModel>(criteria);
@@ -116,8 +117,14 @@ public class AutoTransferServiceImpl(IDynamicRepository repository) : AutoTransf
 
     public async Task<Result> CancelJobAsync(CancelJobParam param)
     {
-        var criteria = new CancelJobCriteria(
-            param.FromCustId, param.ToCustId, param.ViewStatus ?? string.Empty, param.Language ?? string.Empty, param.IP ?? string.Empty, param.SiteDbGroupId);
+        var criteria = new CancelJobCriteria(param.FromCustId,
+                param.ToCustId,
+                param.ViewStatus ?? string.Empty,
+                param.Language ?? string.Empty,
+                param.IP ?? string.Empty)
+        {
+            SiteDbGroupId = param.SiteDbGroupId
+        };
         await repository.ExecuteAsync(criteria);
 
         return new Result
@@ -129,7 +136,7 @@ public class AutoTransferServiceImpl(IDynamicRepository repository) : AutoTransf
 
     public async Task<Result> CancelAllJobAsync(CancelAllJobParam param)
     {
-        var criteria = new CancelAllJobCriteria(param.FromCustId, param.Language, param.IP, param.SiteDbGroupId);
+        var criteria = new CancelAllJobCriteria(param.FromCustId, param.Language, param.IP) { SiteDbGroupId = param.SiteDbGroupId };
         await repository.ExecuteAsync(criteria);
 
         return new Result
@@ -144,8 +151,10 @@ public class AutoTransferServiceImpl(IDynamicRepository repository) : AutoTransf
         var criteria = new GetJobStatusCriteria(
             creator,
             custId,
-            string.Equals(AutoTransferConstant.On, state, StringComparison.InvariantCultureIgnoreCase),
-            siteDbGroupId);
+            string.Equals(AutoTransferConstant.On, state, StringComparison.InvariantCultureIgnoreCase))
+        {
+            SiteDbGroupId = siteDbGroupId
+        };
         await repository.ExecuteAsync(criteria);
 
         return criteria.IsAutoJobRunning;

@@ -3,7 +3,7 @@
 using Core.Criteria;
 using Core.Helpers;
 
-public class CancelAllJobCriteria(int fromCustId, string language, string ip, int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
+public class CancelAllJobCriteria(int fromCustId, string language, string ip) : SiteDbBaseCommand
 {
     public int FromCustId { get; } = fromCustId;
 

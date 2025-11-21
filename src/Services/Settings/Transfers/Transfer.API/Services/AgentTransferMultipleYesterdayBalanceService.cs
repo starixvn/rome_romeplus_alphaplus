@@ -100,8 +100,10 @@ public class AgentTransferMultipleYesterdayBalanceService(
                         isAllDayBalanceTransfer,
                         request.Language,
                         request.IP,
-                        request.SubAccId,
-                        request.SiteDbGroupId);
+                        request.SubAccId)
+                    {
+                        SiteDbGroupId = request.SiteDbGroupId
+                    };
                     result = await yesterdayBalanceTransferService.MultipleMemberTransfer(criteria);
                 }
                 else
@@ -114,8 +116,10 @@ public class AgentTransferMultipleYesterdayBalanceService(
                         request.AutoTransfer,
                         request.Language,
                         request.IP,
-                        request.SubAccId,
-                        request.SiteDbGroupId);
+                        request.SubAccId)
+                    {
+                        SiteDbGroupId = request.SiteDbGroupId
+                    };
                     result = await yesterdayBalanceTransferService.MultipleDirectMemberTransfer(criteria);
                 }
 

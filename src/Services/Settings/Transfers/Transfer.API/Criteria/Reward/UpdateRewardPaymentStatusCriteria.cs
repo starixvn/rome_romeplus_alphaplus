@@ -9,8 +9,7 @@ internal class UpdateRewardPaymentStatusCriteria(
     int subAccId,
     string subAccName,
     string ip,
-    string language,
-    int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
+    string language) : SiteDbBaseCommand
 {
     public string Data { get; } = data;
 

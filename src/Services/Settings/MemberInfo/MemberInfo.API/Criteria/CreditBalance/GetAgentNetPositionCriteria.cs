@@ -9,9 +9,8 @@ public class GetAgentNetPositionCriteria(
     bool? closed,
     bool? suspended,
     int pageIndex,
-    int pageSize,
-    int siteDbGroupId)
-    : GetCreditBalanceCriteriaBase(custId, userName, enabled, closed, suspended, pageIndex, pageSize, siteDbGroupId)
+    int pageSize)
+    : GetCreditBalanceCriteriaBase(custId, userName, enabled, closed, suspended, pageIndex, pageSize)
 {
     public override string GetSettingKey() => SpNameHelpers.SiteDbPrefix("Age_CustomerSelCreditBalNetPosition_Ag", SiteDbGroupId);
 }

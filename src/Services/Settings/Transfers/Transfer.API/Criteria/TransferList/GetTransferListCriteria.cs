@@ -10,8 +10,7 @@ public abstract class GetTransferListCriteria(
     bool allowTotalBalanceTransfer,
     byte autoTransfer,
     int pageIndex,
-    int pageSize,
-    int siteDbGroupId) : SiteDbBaseCriteria(siteDbGroupId)
+    int pageSize) : SiteDbBaseCriteria
 {
     public string Username { get; } = downlineName;
 

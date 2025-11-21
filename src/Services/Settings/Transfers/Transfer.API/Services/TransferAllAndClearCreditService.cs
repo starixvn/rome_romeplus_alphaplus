@@ -21,7 +21,10 @@ public class TransferAllAndClearCreditServiceImpl(IDynamicRepository dynamicRepo
         var getDownlineCriteria = new GetDownlineTransferCriteria(param.CustId, param.Username);
         dynamicRepository.Execute(getDownlineCriteria);
 
-        var getNetPositionCriteria = new GetNetPositionCriteria(getDownlineCriteria.DownlineCustId, getDownlineCriteria.DownlineRoleId, param.SiteDbGroupId);
+        var getNetPositionCriteria = new GetNetPositionCriteria(getDownlineCriteria.DownlineCustId, getDownlineCriteria.DownlineRoleId)
+        {
+            SiteDbGroupId = param.SiteDbGroupId
+        };
         var netPositionModels = dynamicRepository.Fetch<NetPositionModel>(getNetPositionCriteria);
 
         var criteria = new GetCalculateResultCriteria(
@@ -30,8 +33,10 @@ public class TransferAllAndClearCreditServiceImpl(IDynamicRepository dynamicRepo
             param.Language,
             param.IsAllDayBalanceTransfer,
             BuildDownlineNetPositionXml(netPositionModels),
-            getDownlineCriteria.DownlineCustId,
-            param.SiteDbGroupId);
+            getDownlineCriteria.DownlineCustId)
+        {
+            SiteDbGroupId = param.SiteDbGroupId
+        };
         var (conditionSteps, transferSteps, clearCreditSteps)
             = dynamicRepository.FetchMultiple<ConditionStep, TransferStep, ClearCreditStep>(criteria);
 
@@ -68,8 +73,10 @@ public class TransferAllAndClearCreditServiceImpl(IDynamicRepository dynamicRepo
                 param.Username,
                 param.IP,
                 param.Language,
-                param.IsAllDayBalanceTransfer,
-                param.SiteDbGroupId);
+                param.IsAllDayBalanceTransfer)
+            {
+                SiteDbGroupId = param.SiteDbGroupId
+            };
             var (conditionSteps, transferSteps) = dynamicRepository.FetchMultiple<ConditionStep, TransferStep>(criteria);
 
             transferResult = new TransferAllResult(transferSteps, criteria.ErrCode, criteria.ErrMsg ?? string.Empty, conditionSteps.Select(c => c.Content));
@@ -87,7 +94,11 @@ public class TransferAllAndClearCreditServiceImpl(IDynamicRepository dynamicRepo
         var command = new GetCustomerInfoCriteria(param.Username);
         dynamicRepository.Execute(command);
 
-        var totalAmts = dynamicRepository.Fetch<TotalAmtModel>(new GetTotalAmtCriteria(command.CustId, command.RoleId, param.SiteDbGroupId));
+        var totalAmts = dynamicRepository.Fetch<TotalAmtModel>(
+            new GetTotalAmtCriteria(command.CustId, command.RoleId)
+            {
+                SiteDbGroupId = param.SiteDbGroupId
+            });
         var criteria = new ClearCreditCriteria(
             param.CustId,
             param.UserId,

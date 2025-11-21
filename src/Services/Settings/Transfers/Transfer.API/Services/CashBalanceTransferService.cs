@@ -31,7 +31,7 @@ public class CashBalanceTransferService(IDynamicRepository repository, ITransfer
 
     public Task<CashBalanceTransfer> GetCashBalanceTransfer(int custId, bool isDirectMember, int siteDbGroupId)
     {
-        var criteria = new GetCashBalanceTransferCriteria(custId, isDirectMember, siteDbGroupId);
+        var criteria = new GetCashBalanceTransferCriteria(custId, isDirectMember) { SiteDbGroupId = siteDbGroupId };
 
         return repository.GetAsync<CashBalanceTransfer>(criteria);
     }
@@ -72,8 +72,10 @@ public class CashBalanceTransferService(IDynamicRepository repository, ITransfer
             subAccId,
             ip,
             languageKey,
-            isDirectMember,
-            siteDbGroupId);
+            isDirectMember)
+        {
+            SiteDbGroupId = siteDbGroupId
+        };
         try
         {
             await repository.ExecuteAsync(criteria);

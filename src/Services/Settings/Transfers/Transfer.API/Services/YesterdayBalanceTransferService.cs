@@ -37,7 +37,7 @@ public class YesterdayBalanceTransferService(IDynamicRepository repository) : IY
         if (membersNeedReset.Any())
         {
             var ids = membersNeedReset.Select(i => i.CustId).ToList();
-            var resetCriteria = new ResetPotentialWinLimit(ids, siteDbGroupId);
+            var resetCriteria = new ResetPotentialWinLimit(ids) { SiteDbGroupId = siteDbGroupId };
             await repository.ExecuteAsync(resetCriteria);
             return new Result { Code = resetCriteria.ErrCode, Message = resetCriteria.ErrMsg };
         }
@@ -53,7 +53,7 @@ public class YesterdayBalanceTransferService(IDynamicRepository repository) : IY
 
     public async Task<MemberTransfer> GetMemberTransfer(int custId, bool allowTotalBalanceTransfer, int siteDbGroupId)
     {
-        var criteria = new GetMemberTransferInfoCriteria(custId, allowTotalBalanceTransfer, siteDbGroupId);
+        var criteria = new GetMemberTransferInfoCriteria(custId, allowTotalBalanceTransfer) { SiteDbGroupId = siteDbGroupId };
         await repository.ExecuteAsync(criteria);
 
         return new MemberTransfer
@@ -94,8 +94,8 @@ public class YesterdayBalanceTransferService(IDynamicRepository repository) : IY
                 param.AutoTransfer,
                 param.Language,
                 param.IP,
-                param.SubAccId,
-                param.SiteDbGroupId)
+                param.SubAccId)
+            { SiteDbGroupId = param.SiteDbGroupId }
             : new SuperTransferYesterdayBalanceCriteria(
                 param.CustId,
                 param.ToCustIds,
@@ -105,8 +105,10 @@ public class YesterdayBalanceTransferService(IDynamicRepository repository) : IY
                 param.AutoTransfer,
                 param.Language,
                 param.IP,
-                param.SubAccId,
-                param.SiteDbGroupId);
+                param.SubAccId)
+            {
+                SiteDbGroupId = param.SiteDbGroupId
+            };
     }
 
     public async Task<Result> MemberTransfer(AgentTransferYesterdayBalanceParam param)
@@ -119,8 +121,10 @@ public class YesterdayBalanceTransferService(IDynamicRepository repository) : IY
             param.Language,
             param.IP,
             param.AgentId,
-            param.SubAccId,
-            param.SiteDbGroupId);
+            param.SubAccId)
+        {
+            SiteDbGroupId = param.SiteDbGroupId
+        };
         await repository.ExecuteAsync(criteria);
 
         return new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };
@@ -149,8 +153,10 @@ public class YesterdayBalanceTransferService(IDynamicRepository repository) : IY
             param.Language,
             param.IP,
             param.AgentId,
-            param.SubAccId,
-            param.SiteDbGroupId);
+            param.SubAccId)
+        {
+            SiteDbGroupId = param.SiteDbGroupId
+        };
         await repository.ExecuteAsync(criteria);
 
         return new Result { Code = criteria.ErrCode, Message = criteria.ErrMsg };

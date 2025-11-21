@@ -10,16 +10,14 @@ public class GetAgentTransferListCriteria(
     bool allowTotalBalanceTransfer,
     byte autoTransfer,
     int pageIndex,
-    int pageSize,
-    int siteDbGroupId) : GetTransferListCriteria(
+    int pageSize) : GetTransferListCriteria(
         downlineName,
         status,
         allYesterdayBalance,
         allowTotalBalanceTransfer,
         autoTransfer,
         pageIndex,
-        pageSize,
-        siteDbGroupId)
+        pageSize)
 {
     public int CustId { get; } = custId;
 

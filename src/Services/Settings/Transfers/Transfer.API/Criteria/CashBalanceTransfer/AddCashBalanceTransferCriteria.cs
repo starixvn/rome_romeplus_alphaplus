@@ -11,8 +11,7 @@ public class AddCashBalanceTransferCriteria(
     int subAccId,
     string ip,
     string languageKey,
-    bool isDirectMember,
-    int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
+    bool isDirectMember) : SiteDbBaseCommand
 {
     public int FromCustId { get; } = fromCustId;
 

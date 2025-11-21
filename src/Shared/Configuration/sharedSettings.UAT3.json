@@ -156,7 +156,7 @@
     "StoredProcedurePath": "~/App_Data/SPNames.MAIN.xml",
     "FanexDataServiceApi": "http://alpha_data_service_UAT:5000",
     "VaultOptions": {
-        "Address": "http://vn-nex-vault-uat.nebula.prod",
+        "Address": "http://vault-stx.ops-kluat.gamora.prod",
         "Role": "81fd2b50-2136-45d1-4b6b-1d620f38af3f",
         "SecretId": "93711120-3a5b-ce8d-f8e5-fb10b54797db",
         "MountPath": "pontus",

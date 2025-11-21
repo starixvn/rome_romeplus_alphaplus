@@ -3,14 +3,14 @@
 using Fanex.Data;
 using Fanex.Data.Repository;
 
-public abstract class SiteDbBaseCommand(int siteDbGroupId) : NonQueryCommand
+public abstract class SiteDbBaseCommand : NonQueryCommand
 {
     [SpParam(Ignored = true)]
-    public int SiteDbGroupId { get; } = siteDbGroupId;
+    public int SiteDbGroupId { get; set; }
 }
 
-public abstract class SiteDbBaseCriteria(int siteDbGroupId) : CriteriaBase
+public abstract class SiteDbBaseCriteria : CriteriaBase
 {
     [SpParam(Ignored = true)]
-    public int SiteDbGroupId { get; } = siteDbGroupId;
+    public int SiteDbGroupId { get; set; }
 }

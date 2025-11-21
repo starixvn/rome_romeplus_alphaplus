@@ -3,7 +3,7 @@ namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferYesterdayBalance;
 using Core.Criteria;
 using Core.Helpers;
 
-public class GetMemberTransferInfoCriteria(int custId, bool allowedTotalBalanceTransfer, int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
+public class GetMemberTransferInfoCriteria(int custId, bool allowedTotalBalanceTransfer) : SiteDbBaseCommand
 {
     public int CustId { get; } = custId;
 

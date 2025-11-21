@@ -33,7 +33,7 @@ public class PotentialWinLimitService(IDynamicRepository repository) : IPotentia
         var potentialLimitDetail = await repository.FetchAsync<PotentialWinLimitDetail>(criteria);
         var custIds = string.Join(",", potentialLimitDetail.Select(x => x.CustId.ToString()));
 
-        var potentialWinLimitAmountCriteria = new GetPotentialWinLimitAmountCriteria(custIds, param.SiteDbGroupId);
+        var potentialWinLimitAmountCriteria = new GetPotentialWinLimitAmountCriteria(custIds) { SiteDbGroupId = param.SiteDbGroupId };
         var potentialWinLimitAmount = await repository.FetchAsync<PotentialWinLimitDetail>(potentialWinLimitAmountCriteria);
 
         var potentialWinLimitDetail = (from x in potentialLimitDetail
@@ -74,8 +74,10 @@ public class PotentialWinLimitService(IDynamicRepository repository) : IPotentia
                     param.SubAccName,
                     param.UserId,
                     param.IP,
-                    param.SettingStatus,
-                    param.SiteDB);
+                    param.SettingStatus)
+        {
+            SiteDbGroupId = param.SiteDB
+        };
 
         await repository.ExecuteAsync(criteria);
 

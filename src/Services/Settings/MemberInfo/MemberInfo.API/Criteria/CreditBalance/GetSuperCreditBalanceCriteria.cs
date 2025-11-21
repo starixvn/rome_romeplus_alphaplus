@@ -10,8 +10,7 @@ public class GetSuperCreditBalanceCriteria(
     bool? suspended,
     byte levelType,
     int pageIndex,
-    int pageSize,
-    int siteDbGroupId) : GetMasterCreditBalanceCriteria(custId, userName, enabled, closed, suspended, levelType, pageIndex, pageSize, siteDbGroupId)
+    int pageSize) : GetMasterCreditBalanceCriteria(custId, userName, enabled, closed, suspended, levelType, pageIndex, pageSize)
 {
     public override string GetSettingKey() => SpNameHelpers.SiteDbPrefix("Age_CustomerSelCreditBalanceList_Sag", SiteDbGroupId);
 }

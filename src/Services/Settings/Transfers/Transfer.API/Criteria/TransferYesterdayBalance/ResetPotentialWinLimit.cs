@@ -3,7 +3,7 @@ namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferYesterdayBalance;
 using Core.Criteria;
 using Core.Helpers;
 
-public class ResetPotentialWinLimit(IEnumerable<int> custIds, int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
+public class ResetPotentialWinLimit(IEnumerable<int> custIds) : SiteDbBaseCommand
 {
     public string ListCustId { get; } = custIds != null ? string.Join(",", custIds) : string.Empty;
 

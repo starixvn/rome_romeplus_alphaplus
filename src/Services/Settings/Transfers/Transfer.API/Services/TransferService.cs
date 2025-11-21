@@ -117,7 +117,7 @@ public class TransferService(IDynamicRepository repository) : ITransferService
                 : Resources.TransferConditionByUpline);
         }
 
-        var autoTransferJobStatusCriteria = new GetJobStatusCriteria(null, null, true, param.SiteDbGroupId);
+        var autoTransferJobStatusCriteria = new GetJobStatusCriteria(null, null, true) { SiteDbGroupId = param.SiteDbGroupId };
         await repository.ExecuteAsync(autoTransferJobStatusCriteria);
 
         if (autoTransferJobStatusCriteria.IsAutoJobRunning)

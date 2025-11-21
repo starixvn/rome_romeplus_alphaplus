@@ -10,8 +10,7 @@ public class AgentTransferMultipleYesterdayBalanceCriteria(
     bool isAllDayBalTransfer,
     string language,
     string ip,
-    int subAccId,
-    int siteDbGroupId) : TransferYesterdayBalanceCriteria(language, ip, agentId, subAccId, siteDbGroupId)
+    int subAccId) : TransferYesterdayBalanceCriteria(language, ip, agentId, subAccId)
 {
     public int FromCustId { get; } = agentId;
 

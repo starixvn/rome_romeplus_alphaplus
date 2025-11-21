@@ -10,8 +10,7 @@ public class DirectMemberTransferMultipleYesterdayBalanceCriteria(
     byte autoTransfer,
     string language,
     string ip,
-    int subAccId,
-    int siteDbGroupId) : TransferYesterdayBalanceCriteria(language, ip, superOrMasterId, subAccId, siteDbGroupId)
+    int subAccId) : TransferYesterdayBalanceCriteria(language, ip, superOrMasterId, subAccId)
 {
     public int FromCustId { get; } = superOrMasterId;
 

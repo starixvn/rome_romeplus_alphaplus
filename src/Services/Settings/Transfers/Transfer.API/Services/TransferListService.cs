@@ -50,8 +50,10 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
                 param.AllowTotalBalanceTransfer,
                 param.AutoTransfer,
                 param.PageIndex,
-                param.PageSize,
-                param.SiteDbGroupId);
+                param.PageSize)
+            {
+                SiteDbGroupId = param.SiteDbGroupId
+            };
         }
 
         if (custLevel.IsMasterLevel())
@@ -65,8 +67,10 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
                 param.AutoTransfer,
                 param.LevelType,
                 param.PageIndex,
-                param.PageSize,
-                param.SiteDbGroupId);
+                param.PageSize)
+            {
+                SiteDbGroupId = param.SiteDbGroupId
+            };
         }
 
         return new GetSuperTransferListCriteria(
@@ -78,8 +82,10 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
             param.AutoTransfer,
             param.LevelType,
             param.PageIndex,
-            param.PageSize,
-            param.SiteDbGroupId);
+            param.PageSize)
+        {
+            SiteDbGroupId = param.SiteDbGroupId
+        };
     }
 
     private static CustomerTransfer BuildTotal(GetTransferListCriteria criteria)

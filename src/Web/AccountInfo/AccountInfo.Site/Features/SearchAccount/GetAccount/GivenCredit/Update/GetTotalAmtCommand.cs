@@ -3,7 +3,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount.GetAccount.GivenCred
 using AlphaPlus.Core.Criteria;
 using Core.Helpers;
 
-public class GetTotalAmtCommand(int downlineId, int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
+public class GetTotalAmtCommand(int downlineId) : SiteDbBaseCommand
 {
     public int CustId { get; } = downlineId;
 
