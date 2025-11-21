@@ -7,4 +7,6 @@ public record BetChoiceMatchingParam(
     int BetCount,
     bool IsAdminCanViewVNIP,
     string SiteName,
+    int SuperId,
+    string System,
     bool IsExportExcel = false);

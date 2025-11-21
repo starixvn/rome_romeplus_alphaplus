@@ -22,6 +22,8 @@ public class BetChoiceMatchingServiceTest
         BetCount: 10,
         IsAdminCanViewVNIP: false,
         SiteName: "TestSite",
+        SuperId: 456,
+        System: "TestSystem",
         IsExportExcel: false);
 
     public BetChoiceMatchingServiceTest()
@@ -212,6 +214,8 @@ public class BetChoiceMatchingServiceTest
             BetCount: 10,
             IsAdminCanViewVNIP: false,
             SiteName: "TestSite",
+            SuperId: 456,
+            System: "TestSystem",
             Username: "user1,user3",
             Stake: null,
             MemberWinLossOperator: MemberWinLossOperators.LessOrEqual,
@@ -245,6 +249,8 @@ public class BetChoiceMatchingServiceTest
             BetCount: 10,
             IsAdminCanViewVNIP: false,
             SiteName: "TestSite",
+            SuperId: 456,
+            System: "TestSystem",
             Username: "user2,user3",
             Stake: 200,
             MemberWinLossOperator: MemberWinLossOperators.LessOrEqual,
@@ -280,6 +286,8 @@ public class BetChoiceMatchingServiceTest
             BetCount: 10,
             IsAdminCanViewVNIP: false,
             SiteName: "TestSite",
+            SuperId: 456,
+            System: "TestSystem",
             Username: string.Empty,
             Stake: null,
             MemberWinLossOperator: MemberWinLossOperators.GreatorOrEqual,

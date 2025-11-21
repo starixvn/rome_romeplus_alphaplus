@@ -6,8 +6,10 @@ public record BetChoiceMatchingExcelParam(
     int BetCount,
     bool IsAdminCanViewVNIP,
     string SiteName,
+    int SuperId,
+    string System,
     string Username,
     decimal? Stake,
     MemberWinLossOperators MemberWinLossOperator,
     decimal? MemberWinLossValue
-) : BetChoiceMatchingParam(CustId, WinLossDate, BetCount, IsAdminCanViewVNIP, SiteName, true);
+) : BetChoiceMatchingParam(CustId, WinLossDate, BetCount, IsAdminCanViewVNIP, SiteName, SuperId, System, true);

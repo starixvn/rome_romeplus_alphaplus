@@ -51,13 +51,15 @@ public class BetChoiceMatchingService(
 
         var (tickets, ips) = await repository.FetchMultipleAsync<BetChoiceMatchingTicketModel, BetChoiceMatchingSharedIPModel>(criteria);
 
-        return BuildBetChoiceMatching(param.IsAdminCanViewVNIP, tickets, ips);
+        return await BuildBetChoiceMatching(param.IsAdminCanViewVNIP, tickets, ips, param.SuperId, param.System);
     }
 
-    private (IEnumerable<BetChoiceMatchingEventModel>, IEnumerable<BetChoiceMatchingSharedIPModel>) BuildBetChoiceMatching(
+    private async Task<(IEnumerable<BetChoiceMatchingEventModel>, IEnumerable<BetChoiceMatchingSharedIPModel>)> BuildBetChoiceMatching(
         bool isAdminCanViewVNIP,
         IEnumerable<BetChoiceMatchingTicketModel> tickets,
-        IEnumerable<BetChoiceMatchingSharedIPModel> ips)
+        IEnumerable<BetChoiceMatchingSharedIPModel> ips,
+        int superId,
+        string system)
     {
         var vnIPs = new HashSet<string>();
         foreach (var ticket in tickets)
@@ -74,6 +76,11 @@ public class BetChoiceMatchingService(
                     ticket.IP = "--";
                     vnIPs.Add(ticket.IP);
                 }
+            }
+
+            if(await ipService.CheckHideIP(superId, system))
+            {
+                ticket.IP = "--";
             }
         }
 

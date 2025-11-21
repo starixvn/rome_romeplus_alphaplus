@@ -33,7 +33,9 @@ public class BetChoiceMatchingHandler(
             message.EventDate,
             message.BetCount,
             message.IsAdminCanViewVNIP,
-            message.Site);
+            message.Site,
+            message.SRecommendId,
+            message.System);
         var (events, ips) = await betChoiceMatchingService.GetBetChoiceMatching(param);
 
         return BuildBetChoiceMatchingJsonModel(events, ips);
@@ -92,6 +94,8 @@ public class BetChoiceMatchingHandler(
             message.BetCount,
             message.IsAdminCanViewVNIP,
             message.Site,
+            message.SRecommendId,
+            message.System,
             message.Username,
             message.Stake,
             message.MemberWinLossOperator,

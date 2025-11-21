@@ -8,10 +8,14 @@ public class BetChoiceMatchingJsonQuery : BetChoiceMatchingQuery, IRequest<BetCh
     public BetChoiceMatchingJsonQuery()
     {
         IsAdminCanViewVNIP = Viewer.IsAdminCanViewVNIP;
+        SRecommendId = Viewer.SRecommendId;
+        System = Viewer.System;
         MinDate = ReportDateService.Instance.GetBalanceUpDay().GetAwaiter().GetResult();
     }
 
     public bool IsAdminCanViewVNIP { get; }
+    public int SRecommendId { get; }
+    public string System { get; }
 
     public override bool IsValid() => MinDate <= EventDate && base.IsValid();
 }
