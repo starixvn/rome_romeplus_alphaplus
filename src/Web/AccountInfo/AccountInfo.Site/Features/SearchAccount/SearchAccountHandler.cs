@@ -15,6 +15,7 @@ using AlphaPlus.AccountInfo.Site.Features.SearchAccount.Update.Balance;
 using AlphaPlus.AccountInfo.Site.Features.Shared;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Utilities.IP;
+using AlphaPlus.Utilities.IP.Model;
 using MediatR;
 
 namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
@@ -52,7 +53,13 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
                                     await searchAccountService.IsAllDayBalanceTransfer(request.ViewerId));
 
                 var formatedIP = ipService.FormatIP(account.LastLoginIP, request.IsAdminCanViewVNIP);
-
+                
+                if (account.RoleId == UserLevel.Member.Value 
+                    && await ipService.CheckHideIP(request.SRecommendId, request.System))
+                {
+                    formatedIP = new FormatedIP(string.Empty, false);
+                }
+                
                 account.LastLoginIP = formatedIP.IP;
                 account.AllowOpenInfoPopup = formatedIP.AllowOpenInfoPopup;
 
@@ -103,7 +110,7 @@ namespace AlphaPlus.AccountInfo.Site.Features.SearchAccount
         }
 
         public Task<IEnumerable<OnlineUser>> Handle(OnlineListQuery request, CancellationToken cancellationToken)
-            => searchAccountService.GetOnlineList(request.SearchAccountId, request.IsAdminCanViewVNIP);
+            => searchAccountService.GetOnlineList(request.SearchAccountId, request.IsAdminCanViewVNIP, request.SearchAccountRoleId, request.SRecommendId, request.System);
 
         public async Task<GivenCreditViewModel> Handle(GivenCreditQuery request, CancellationToken cancellationToken)
         {

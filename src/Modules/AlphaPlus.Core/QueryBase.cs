@@ -57,6 +57,10 @@ namespace AlphaPlus.Core
 
         public string Site => userSession.Site;
 
+        public int SRecommendId => userSession.SRecommendId;
+
+        public string System => userSession.System;
+
         public virtual bool IsValid() => ViewerId > 0;
     }
 }

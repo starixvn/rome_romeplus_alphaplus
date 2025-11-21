@@ -42,7 +42,7 @@ public interface ISearchAccountService
 
     Task<DateTime> GetLastTxn(string username, int uplineId, bool isInternal);
 
-    Task<IEnumerable<OnlineUser>> GetOnlineList(int custid, bool adminCanViewVNIP);
+    Task<IEnumerable<OnlineUser>> GetOnlineList(int custid, bool adminCanViewVNIP, byte roleId, int sRecommendId, string system);
 
     Task<Result> UpdateGivenCredit(GivenCreditCommand param);
 
@@ -177,7 +177,7 @@ public class SearchAccountService(
         return lastTxn ?? DateTime.MinValue;
     }
 
-    public async Task<IEnumerable<OnlineUser>> GetOnlineList(int custid, bool adminCanViewVNIP)
+    public async Task<IEnumerable<OnlineUser>> GetOnlineList(int custid, bool adminCanViewVNIP, byte roleId, int sRecommendId, string system)
     {
         var onlineUsers = await dynamicRepository.FetchAsync<OnlineUser>(
             new SelectOnlineListCriteria(custid));
@@ -187,6 +187,15 @@ public class SearchAccountService(
             foreach (var item in onlineUsers)
             {
                 item.IP = ipService.IsVNIP(item.IP) ? string.Empty : item.IP;
+            }
+        }
+
+        if ((roleId == UserLevel.Member.Value)
+            && await ipService.CheckHideIP(sRecommendId, system))
+        {
+            foreach (var item in onlineUsers)
+            {
+                item.IP = string.Empty;
             }
         }
 
@@ -504,7 +513,7 @@ public class SearchAccountService(
         {
             return Result.CreateErrorResult(CommonResx.NotAuthorized);
         }
-        
+
         if (!param.IsValidRemark())
         {
             return Result.CreateErrorResult(CommonResx.InvalidParameterValue);

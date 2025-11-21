@@ -75,10 +75,10 @@ const SettingsService = {
             })
             .then((response) => response.data);
     },
-    GetOnlineList: async (custId: number) => {
+    GetOnlineList: async (custId: number, roleId: number) => {
         return axiosInstance
             .get<OnlineUser[]>('SearchAccount/GetOnlineList', {
-                params: { SearchAccountId: custId }
+                params: { SearchAccountId: custId, SearchAccountRoleId: roleId }
             })
             .then((response) => response.data);
     },

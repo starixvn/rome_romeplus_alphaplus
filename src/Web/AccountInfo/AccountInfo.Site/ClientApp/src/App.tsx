@@ -189,7 +189,7 @@ function App() {
 
     const fetchOnlineListFromServer = () => {
         if (customer?.CustId && onlineUsers === undefined) {
-            SettingsService.GetOnlineList(customer.CustId).then((data) => {
+            SettingsService.GetOnlineList(customer.CustId, customer.RoleId).then((data) => {
                 setOnlineUsers(data);
                 setRedirectToBalanceInfoPage(false);
             });
