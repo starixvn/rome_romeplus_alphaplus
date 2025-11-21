@@ -11,6 +11,8 @@ public class IPMatchingQuery : BaseQuery, IRequest<IPMatchingViewModel>
     {
         MinDate = ReportDateService.Instance.GetBalanceUpDay().GetAwaiter().GetResult();
         IsAdminCanViewVNIP = Viewer.IsAdminCanViewVNIP;
+        SRecommendId = Viewer.SRecommendId;
+        System = Viewer.System;
     }
 
     public DateTime Date { get; set; } = SystemTime.Today;
@@ -20,4 +22,7 @@ public class IPMatchingQuery : BaseQuery, IRequest<IPMatchingViewModel>
     public bool IsAdminCanViewVNIP { get; }
 
     public override bool IsValid() => MinDate <= Date && base.IsValid();
+
+    public int SRecommendId { get; }
+    public string System { get; }
 }

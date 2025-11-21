@@ -63,7 +63,7 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
                      && !Current.IsIndirectLoggedIn;
                 }),
             ["ViewLogCashServiceMenuItem"] = () => new MenuStatus(HasViewLogCashServicePermission()),
-            ["IPMatchingMenuItem"] = () => new MenuStatus(() => IPMatchingMenuItemVisible),
+            ["IPMatchingMenuItem"] = () => new MenuStatus(() => Task.Run(() => GetIPMatchingMenuItemVisibleAsync()).GetAwaiter().GetResult()),
         };
 
         public static readonly Dictionary<string, Func<MenuStatus>> MenuItemTypeStatusRules = _menuItemTypeStatusRules;
@@ -167,16 +167,10 @@ namespace AlphaPlus.Main.Site.Features.Default.MenuBar
                 && (!Current.IsSubAcc || Current.SubPageAccess.GetPermission(PageAccessType.ViewLog));
         }
 
-        private static bool IPMatchingMenuItemVisible
+        private static async Task<bool> GetIPMatchingMenuItemVisibleAsync()
         {
-            get
-            {
-                var shouldHide = ipService.CheckHideIP(Current.SRecommendId, Current.System)
-                    .GetAwaiter()
-                    .GetResult();
-
-                return !shouldHide;
-            }
+            var shouldHide = await ipService.CheckHideIP(Current.SRecommendId, Current.System);
+            return !shouldHide;
         }
     }
 }

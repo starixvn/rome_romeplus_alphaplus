@@ -19,9 +19,19 @@ public abstract class ReportBaseController(IMediator mediator) : BaseController
     {
         var baseQuery = message as BaseQuery;
 
-        return baseQuery != null && baseQuery.IsValid()
-            ? View(viewName, await mediator.Send(message))
-            : View(InvalidViewName);
+        if (baseQuery == null || !baseQuery.IsValid())
+        {
+            return View(InvalidViewName);
+        }
+
+        try
+        {
+            return View(viewName, await mediator.Send(message));
+        }
+        catch (UnauthorizedAccessException)
+        {
+            return View(InvalidViewName);
+        }
     }
 
     protected async Task<IActionResult> Json<TResponse>(
@@ -29,7 +39,12 @@ public abstract class ReportBaseController(IMediator mediator) : BaseController
         JsonIgnoreCondition jsonIgnoreCondition = JsonIgnoreCondition.WhenWritingNull)
     {
         var baseQuery = message as BaseQuery;
-        if (baseQuery != null && baseQuery.IsValid())
+        if (baseQuery == null || !baseQuery.IsValid())
+        {
+            return Json(new Reports.Features.Shared.Models.Result((int)HttpStatusCode.Forbidden, Resources.NotAuthorized));
+        }
+
+        try
         {
             return Json(await mediator.Send(message), new JsonSerializerOptions
             {
@@ -37,17 +52,29 @@ public abstract class ReportBaseController(IMediator mediator) : BaseController
                 DefaultIgnoreCondition = jsonIgnoreCondition
             });
         }
-
-        return Json(new Reports.Features.Shared.Models.Result((int)HttpStatusCode.Forbidden, Resources.NotAuthorized));
+        catch (UnauthorizedAccessException)
+        {
+            return Json(new Reports.Features.Shared.Models.Result((int)HttpStatusCode.Forbidden, Resources.NotAuthorized));
+        }
     }
 
     protected async Task<IActionResult> ExcelView(IRequest<ExcelFileViewModel> message)
     {
         var baseQuery = message as BaseQuery;
 
-        return baseQuery != null && baseQuery.IsValid()
-            ? GetExcelContent(await mediator.Send(message))
-            : GetExcelContent(new ExcelFileViewModel(InvalidViewName, []));
+        if (baseQuery == null || !baseQuery.IsValid())
+        {
+            return GetExcelContent(new ExcelFileViewModel(InvalidViewName, []));
+        }
+
+        try
+        {
+            return GetExcelContent(await mediator.Send(message));
+        }
+        catch (UnauthorizedAccessException)
+        {
+            return GetExcelContent(new ExcelFileViewModel(InvalidViewName, []));
+        }
     }
 
     private FileContentResult GetExcelContent(ExcelFileViewModel viewModel)
