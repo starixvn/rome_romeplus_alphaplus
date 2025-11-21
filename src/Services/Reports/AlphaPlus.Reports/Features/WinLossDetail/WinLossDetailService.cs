@@ -5,6 +5,8 @@ using Fanex.Data.Repository;
 
 namespace AlphaPlus.Reports.Features.WinLossDetail;
 
+using Criteria;
+
 public interface IWinLossDetailService
 {
     Task<IEnumerable<WinLossDetailWeekModel>> GetWeekData(WinLossDetailWeekParam param);
@@ -18,14 +20,11 @@ public class WinLossDetailService(
     IPartialUMService partialUMService,
     AllowedSitesToShareLoad allowedSitesToShareLoad) : IWinLossDetailService
 {
-    private readonly IDynamicRepository repository = repository;
-    private readonly IReportDateService reportDateService = reportDateService;
-    private readonly IPartialUMService partialUMService = partialUMService;
-    private readonly AllowedSitesToShareLoad allowedSitesToShareLoad = allowedSitesToShareLoad;
-
     public async Task<IEnumerable<WinLossDetailWeekModel>> GetWeekData(WinLossDetailWeekParam param)
     {
         var reportDate = await reportDateService.GetBalanceUpDayAndMoveBetsDay();
+        var suffix = allowedSitesToShareLoad.GetSuffixBySiteName(param.SiteName);
+
         var criteria = new WinLossDetailWeekDataCriteria(
             param.ViewerId,
             param.FromDate,
@@ -36,11 +35,10 @@ public class WinLossDetailService(
             param.ProductDetailsXml,
             param.Username,
             param.IsReward,
-            param.LevelType);
+            param.LevelType,
+            suffix);
 
-        var ip = allowedSitesToShareLoad.GetIP(param.SiteName);
-
-        return await repository.FetchAsync<WinLossDetailWeekModel>(criteria, ip);
+        return await repository.FetchAsync<WinLossDetailWeekModel>(criteria);
     }
 
     public async Task<ReportData<WinLossDetailModel>> GetWinLossDetail(WinLossDetailParam param)
@@ -48,8 +46,7 @@ public class WinLossDetailService(
         var criteria = await GetWinLossDetailCriteria(param);
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
-        var ip = allowedSitesToShareLoad.GetIP(param.SiteName);
-        var (rawData, totals) = await repository.FetchMultipleAsync<WinLossDetailModel, WinLossDetailModel>(criteria, ip);
+        var (rawData, totals) = await repository.FetchMultipleAsync<WinLossDetailModel, WinLossDetailModel>(criteria);
 
         return new ReportData<WinLossDetailModel>(rawData, totals.FirstOrDefault(), criteria.TotalRecords);
     }
@@ -57,7 +54,7 @@ public class WinLossDetailService(
     private async Task<WinLossDetailMemberCriteria> GetWinLossDetailCriteria(WinLossDetailParam param)
     {
         var reportDate = await reportDateService.GetBalanceUpDayAndMoveBetsDay();
-
+        var spSuffix = allowedSitesToShareLoad.GetSuffixBySiteName(param.SiteName);
         if (RoleIdConstants.IsAgentLevel(param.CustLevelId))
         {
             return new WinLossDetailMemberCriteria(
@@ -69,7 +66,8 @@ public class WinLossDetailService(
                 param.ProductIds,
                 param.ProductDetailsXml,
                 param.Username,
-                param.IsReward);
+                param.IsReward,
+                spSuffix);
         }
 
         if (RoleIdConstants.IsMasterLevel(param.CustLevelId))
@@ -84,7 +82,8 @@ public class WinLossDetailService(
                 param.ProductDetailsXml,
                 param.Username,
                 param.IsReward,
-                param.LevelType);
+                param.LevelType,
+                spSuffix);
         }
 
         return new WinLossDetailMasterCriteria(
@@ -97,6 +96,7 @@ public class WinLossDetailService(
             param.ProductDetailsXml,
             param.Username,
             param.IsReward,
-            param.LevelType);
+            param.LevelType,
+            spSuffix);
     }
 }

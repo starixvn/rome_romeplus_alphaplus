@@ -27,8 +27,8 @@
             <Mapping ObjectProperty="SCROfMatch" DataField="SCR" />
             <Mapping ObjectProperty="TFOfMatch" DataField="TF" />
         </Setting>
-      <Setting Key="Age_Result_RaceSelByLeague" SpName="Age_Result_RaceSelByLeague" DbName="DBAGE.bodb02.wsv_alp" />
-      <Setting Key="Age_BetList_SelRaceResult" SpName="Age_BetList_SelRaceResult" DbName="DBAGE.bodb02.wsv_alp" />
+        <Setting Key="Age_Result_RaceSelByLeague" SpName="Age_Result_RaceSelByLeague" DbName="DBAGE.bodb02.wsv_alp" />
+        <Setting Key="Age_BetList_SelRaceResult" SpName="Age_BetList_SelRaceResult" DbName="DBAGE.bodb02.wsv_alp" />
         <Setting Key="Age_SelBalanceUpDay" SpName="Age_SelBalanceUpDay" DbName="DBAGE.bodb02.wsv_alp" />
         <Setting Key="Age_BetList_SelMatchResult" SpName="Age_BetList_SelMatchResult" DbName="DBAGE.bodb02.wsv_alp">
             <Mapping ObjectProperty="BettypeId" DataField="BetType" Class="GameDetail" />
@@ -325,11 +325,76 @@
             <Mapping DataField="ProductName" ObjectProperty="Name" />
             <Mapping DataField="ProductId" ObjectProperty="Id" />
         </Setting>
+        <Setting Key="Age_Rpt_ConsolidatedGroupProductSel_DB052" SpName="Age_Rpt_ConsolidatedGroupProductSel" DbName="DB052.bodb02.wsv_alp">
+            <Mapping DataField="IsShow" ObjectProperty="IsEnable" />
+            <Mapping DataField="ProductName" ObjectProperty="Name" />
+            <Mapping DataField="ProductId" ObjectProperty="Id" />
+        </Setting>
+        <Setting Key="Age_Rpt_ConsolidatedGroupProductSel_DB053" SpName="Age_Rpt_ConsolidatedGroupProductSel" DbName="DB053.bodb02.wsv_alp">
+            <Mapping DataField="IsShow" ObjectProperty="IsEnable" />
+            <Mapping DataField="ProductName" ObjectProperty="Name" />
+            <Mapping DataField="ProductId" ObjectProperty="Id" />
+        </Setting>
+
         <Setting Key="Age_Rpt_GetProductDetail" SpName="Age_Rpt_GetProductDetail" DbName="DBAGE.bodb02.wsv_alp" />
     </Function>
     <Function Name="Win Loss">
         <Setting Key="Age_Rpt_WinlossDetail_WeekDataSel" SpName="Age_Rpt_WinlossDetail_WeekDataSel" DbName="DBAGE.bodb02.wsv_alp" />
+        <Setting Key="Age_Rpt_WinlossDetail_WeekDataSel_DB052" SpName="Age_Rpt_WinlossDetail_WeekDataSel" DbName="DB052.bodb02.wsv_alp" />
+        <Setting Key="Age_Rpt_WinlossDetail_WeekDataSel_DB053" SpName="Age_Rpt_WinlossDetail_WeekDataSel" DbName="DB053.bodb02.wsv_alp" />
         <Setting Key="Age_BetList_SelWinLossByDate_Mem" SpName="Age_BetList_SelWinLossByDate_Mem" DbName="DBAGE.bodb02.wsv_alp">
+            <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto" />
+            <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto" />
+            <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto" />
+            <Mapping DataField="hdp2" ObjectProperty="Handicap2" Class="TicketDto" />
+            <Mapping DataField="actual_stake" ObjectProperty="ActualStake" Class="TicketDto" />
+            <Mapping DataField="awinlost" ObjectProperty="AgentWinlost" Class="TicketDto" />
+            <Mapping DataField="mwinlost" ObjectProperty="MasterWinlost" Class="TicketDto" />
+            <Mapping DataField="swinlost" ObjectProperty="SuperWinlost" Class="TicketDto" />
+            <Mapping DataField="acomm" ObjectProperty="AgentComm" Class="TicketDto" />
+            <Mapping DataField="scomm" ObjectProperty="SuperComm" Class="TicketDto" />
+            <Mapping DataField="apositiontaking" ObjectProperty="AgentPositionTaking" Class="TicketDto" />
+            <Mapping DataField="mpositiontaking" ObjectProperty="MasterPositionTaking" Class="TicketDto" />
+            <Mapping DataField="spositiontaking" ObjectProperty="SuperPositionTaking" Class="TicketDto" />
+            <Mapping DataField="adiscount" ObjectProperty="AgentDiscount" Class="TicketDto" />
+            <Mapping DataField="mdiscount" ObjectProperty="MasterDiscount" Class="TicketDto" />
+            <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="TicketDto" />
+            <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="TicketDto" />
+            <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="TicketDto" />
+            <Mapping DataField="comstatus" ObjectProperty="CommStatus" Class="TicketDto" />
+            <Mapping DataField="modds" ObjectProperty="MasterOdds" Class="TicketDto" />
+            <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData" />
+            <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData" />
+            <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData" />
+            <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData" />
+        </Setting>
+        <Setting Key="Age_BetList_SelWinLossByDate_Mem_DB052" SpName="Age_BetList_SelWinLossByDate_Mem" DbName="DB052.bodb02.wsv_alp">
+            <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto" />
+            <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto" />
+            <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto" />
+            <Mapping DataField="hdp2" ObjectProperty="Handicap2" Class="TicketDto" />
+            <Mapping DataField="actual_stake" ObjectProperty="ActualStake" Class="TicketDto" />
+            <Mapping DataField="awinlost" ObjectProperty="AgentWinlost" Class="TicketDto" />
+            <Mapping DataField="mwinlost" ObjectProperty="MasterWinlost" Class="TicketDto" />
+            <Mapping DataField="swinlost" ObjectProperty="SuperWinlost" Class="TicketDto" />
+            <Mapping DataField="acomm" ObjectProperty="AgentComm" Class="TicketDto" />
+            <Mapping DataField="scomm" ObjectProperty="SuperComm" Class="TicketDto" />
+            <Mapping DataField="apositiontaking" ObjectProperty="AgentPositionTaking" Class="TicketDto" />
+            <Mapping DataField="mpositiontaking" ObjectProperty="MasterPositionTaking" Class="TicketDto" />
+            <Mapping DataField="spositiontaking" ObjectProperty="SuperPositionTaking" Class="TicketDto" />
+            <Mapping DataField="adiscount" ObjectProperty="AgentDiscount" Class="TicketDto" />
+            <Mapping DataField="mdiscount" ObjectProperty="MasterDiscount" Class="TicketDto" />
+            <Mapping DataField="sdiscount" ObjectProperty="SuperDiscount" Class="TicketDto" />
+            <Mapping DataField="liveindicator" ObjectProperty="IsLive" Class="TicketDto" />
+            <Mapping DataField="betstatus" ObjectProperty="EventStatus" Class="TicketDto" />
+            <Mapping DataField="comstatus" ObjectProperty="CommStatus" Class="TicketDto" />
+            <Mapping DataField="modds" ObjectProperty="MasterOdds" Class="TicketDto" />
+            <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketData" />
+            <Mapping DataField="apositiontaking" ObjectProperty="AgentPT" Class="TicketData" />
+            <Mapping DataField="mpositiontaking" ObjectProperty="MasterPT" Class="TicketData" />
+            <Mapping DataField="spositiontaking" ObjectProperty="SuperPT" Class="TicketData" />
+        </Setting>
+        <Setting Key="Age_BetList_SelWinLossByDate_Mem_DB053" SpName="Age_BetList_SelWinLossByDate_Mem" DbName="DB053.bodb02.wsv_alp">
             <Mapping DataField="Bettype" ObjectProperty="BetTypeId" Class="TicketDto" />
             <Mapping DataField="Sporttype" ObjectProperty="SportTypeId" Class="TicketDto" />
             <Mapping DataField="hdp1" ObjectProperty="Handicap1" Class="TicketDto" />
@@ -1101,35 +1166,35 @@
         <Setting Key="Age_Chatbot_StatusCheck" SpName="Age_Chatbot_StatusCheck" DbName="DBBOT.bodb_Chatbot.wsv_alp" />
     </Function>
     <Function Name="Smart Punter">
-        <Setting Key="Age_CustomerSelCheckSmartPunterSMA" SpName="Age_CustomerSelCheckSmartPunterSMA" DbName="DBCust.CustDB.wsv_alp" />
-        <Setting Key="Age_CustomerSelCheckListSmartPunter" SpName="Age_CustomerSelCheckListSmartPunter" DbName="DBCust.CustDB.wsv_alp" />
+        <Setting Key="Age_CustomerSelCheckSmartPunterSMA" SpName="Age_CustomerSelCheckSmartPunterSMA" DbName="DBCUST.CustDB.wsv_alp" />
+        <Setting Key="Age_CustomerSelCheckListSmartPunter" SpName="Age_CustomerSelCheckListSmartPunter" DbName="DBCUST.CustDB.wsv_alp" />
     </Function>
     <Function Name="Progressive Jackpot">
         <Setting Key="Acc_GameLaunchSel" SpName="Acc_GameLaunchSel" DbName="DBGLOB.GlobCustDB.wsv_alp" />
     </Function>
     <Function Name="Partial UM">
-        <Setting Key="Acc_CheckUM_ByReport" SpName="Acc_CheckUM_ByReport" DbName="DBCust.CustDB.wsv_alp" />
+        <Setting Key="Acc_CheckUM_ByReport" SpName="Acc_CheckUM_ByReport" DbName="DBCUST.CustDB.wsv_alp" />
     </Function>
     <Function Name="Auto Follow Bet">
-        <Setting Key="Age_Customer_FollowBetAccountListSelByAgent" SpName="Age_Customer_FollowBetAccountListSelByAgent" DbName="DBCust.CustDB.wsv_alp" />
+        <Setting Key="Age_Customer_FollowBetAccountListSelByAgent" SpName="Age_Customer_FollowBetAccountListSelByAgent" DbName="DBCUST.CustDB.wsv_alp" />
     </Function>
     <Function Name="Last Bets Monitoring">
-        <Setting Key="Age_CustLastBetFilter_Sel" SpName="Age_CustLastBetFilter_Sel" DbName="DBCust.CustDB.wsv_alp" />
-        <Setting Key="Age_CustLastBetFilter_Ins" SpName="Age_CustLastBetFilter_Ins" DbName="DBCust.CustDB.wsv_alp" />
-        <Setting Key="Age_CustLastBetFilter_Upd" SpName="Age_CustLastBetFilter_Upd" DbName="DBCust.CustDB.wsv_alp" />
-        <Setting Key="Age_CustLastBetFilter_Del" SpName="Age_CustLastBetFilter_Del" DbName="DBCust.CustDB.wsv_alp" />
-        <Setting Key="Acc_WLMonitored_Player_WatchList_Sel" SpName="Acc_WLMonitored_Player_WatchList_Sel" DbName="DBCust.CustDB.wsv_alp" />
-        <Setting Key="Age_CustLastBetFilter_Check" SpName="Age_CustLastBetFilter_Check" DbName="DBCust.CustDB.wsv_alp" />
-        <Setting Key="Acc_CustomerUpdUserSearch" SpName="Acc_CustomerUpdUserSearch" DbName="DBCust.CustDB.wsv_alp" />
+        <Setting Key="Age_CustLastBetFilter_Sel" SpName="Age_CustLastBetFilter_Sel" DbName="DBCUST.CustDB.wsv_alp" />
+        <Setting Key="Age_CustLastBetFilter_Ins" SpName="Age_CustLastBetFilter_Ins" DbName="DBCUST.CustDB.wsv_alp" />
+        <Setting Key="Age_CustLastBetFilter_Upd" SpName="Age_CustLastBetFilter_Upd" DbName="DBCUST.CustDB.wsv_alp" />
+        <Setting Key="Age_CustLastBetFilter_Del" SpName="Age_CustLastBetFilter_Del" DbName="DBCUST.CustDB.wsv_alp" />
+        <Setting Key="Acc_WLMonitored_Player_WatchList_Sel" SpName="Acc_WLMonitored_Player_WatchList_Sel" DbName="DBCUST.CustDB.wsv_alp" />
+        <Setting Key="Age_CustLastBetFilter_Check" SpName="Age_CustLastBetFilter_Check" DbName="DBCUST.CustDB.wsv_alp" />
+        <Setting Key="Acc_CustomerUpdUserSearch" SpName="Acc_CustomerUpdUserSearch" DbName="DBCUST.CustDB.wsv_alp" />
     </Function>
     <Function Name="IP">
-        <Setting Key="GetIPVN" SpName="GetIPVN" DbName="DBCust.IPDB.wsv_alp">
+        <Setting Key="GetIPVN" SpName="GetIPVN" DbName="DBCUST.IPDB.wsv_alp">
             <Mapping DataField="ipfrom" ObjectProperty="From" />
             <Mapping DataField="ipto" ObjectProperty="To" />
         </Setting>
-        <Setting Key="Age_IPRangesByCountrySel" SpName="Age_IPRangesByCountrySel" DbName="DBCust.IPDB.wsv_alp" />
-        <Setting Key="Age_IPRangesByCountrySelByIPList" SpName="Age_IPRangesByCountrySelByIPList" DbName="DBCust.IPDB.wsv_alp" />
-        <Setting Key="Age_IPRangesByCountrySelByIPV6List" SpName="Age_IPRangesByCountrySelByIPV6List" DbName="DBCust.IPDB.wsv_alp" />
+        <Setting Key="Age_IPRangesByCountrySel" SpName="Age_IPRangesByCountrySel" DbName="DBCUST.IPDB.wsv_alp" />
+        <Setting Key="Age_IPRangesByCountrySelByIPList" SpName="Age_IPRangesByCountrySelByIPList" DbName="DBCUST.IPDB.wsv_alp" />
+        <Setting Key="Age_IPRangesByCountrySelByIPV6List" SpName="Age_IPRangesByCountrySelByIPV6List" DbName="DBCUST.IPDB.wsv_alp" />
     </Function>
     <Function Name="Write/View Logs">
         <Setting Key="IS_UpdFunctionUsage" SpName="IS_UpdFunctionUsage" DbName="DBLOG.bodb_CustomerLog.wsv_alp" />
@@ -1142,7 +1207,7 @@
         <Setting Key="Acc_Con_FileNameSelByCustID" SpName="Acc_Con_FileNameSelByCustID" DbName="DBPOL.NAP_UserControl.wsv_alp">
             <Mapping DataField="actual_policy" ObjectProperty="ActualPolicy" />
         </Setting>
-        <Setting Key="Acc_CustomerIsInternalAdmin" SpName="Acc_CustomerIsInternalAdmin" DbName="DBCust.CustDB.wsv_alp" />
+        <Setting Key="Acc_CustomerIsInternalAdmin" SpName="Acc_CustomerIsInternalAdmin" DbName="DBCUST.CustDB.wsv_alp" />
     </Function>
     <Function Name="Check Belonging">
         <Setting Key="Age_ReCheckin" SpName="Age_ReCheckin" DbName="DBONUSER.ON_USER.wsv_alp" Plain="0" />

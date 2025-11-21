@@ -1,65 +1,50 @@
-﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Params
+﻿namespace AlphaPlus.Settings.MemberInfo.Domain.Params;
+
+using System.Diagnostics.CodeAnalysis;
+
+[SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "Constructor by design, no refactor planned")]
+public class WinLossLimitParam(
+    int productId,
+    int custId,
+    int betType,
+    int sportType,
+    string username,
+    string playerId,
+    int masterId,
+    int agentId,
+    int pageSize,
+    int pageIndex,
+    bool isDirectMember,
+    int accountType,
+    int siteDbGroupId)
 {
-    public class WinLossLimitParam
-    {
-        private const int SabaclubProductId = 42;
+    private const int SabaclubProductId = 42;
 
-        public WinLossLimitParam(
-            int productId,
-            int custId,
-            int betType,
-            int sportType,
-            string username,
-            string playerId,
-            int masterId,
-            int agentId,
-            int pageSize,
-            int pageIndex,
-            bool isDirectMember,
-            string agIP,
-            int accountType)
-        {
-            ProductId = productId;
-            CustId = custId;
-            BetType = betType;
-            SportType = sportType;
-            Username = username;
-            PlayerId = playerId;
-            MasterId = masterId;
-            AgentId = agentId;
-            PageSize = pageSize;
-            PageIndex = pageIndex;
-            IsDirectMember = isDirectMember;
-            AGIP = agIP;
-            AccountType = accountType;
-        }
+    public int ProductId { get; set; } = productId;
 
-        public int ProductId { get; set; }
+    public bool IsSabaclub => ProductId == SabaclubProductId;
 
-        public bool IsSabaclub => ProductId == SabaclubProductId;
+    public int CustId { get; set; } = custId;
 
-        public int CustId { get; set; }
+    public int BetType { get; set; } = betType;
 
-        public int BetType { get; set; }
+    public int SportType { get; set; } = sportType;
 
-        public int SportType { get; set; }
+    public int AccountType { get; set; } = accountType;
 
-        public int AccountType { get; set; }
+    public string Username { get; set; } = username;
 
-        public string Username { get; set; }
+    public string PlayerId { get; set; } = playerId;
 
-        public string PlayerId { get; set; }
+    public int MasterId { get; set; } = masterId;
 
-        public int MasterId { get; set; }
+    public int AgentId { get; set; } = agentId;
 
-        public int AgentId { get; set; }
+    public int PageSize { get; set; } = pageSize;
 
-        public int PageSize { get; set; }
+    public int PageIndex { get; set; } = pageIndex;
 
-        public int PageIndex { get; set; }
+    public bool IsDirectMember { get; } = isDirectMember;
 
-        public bool IsDirectMember { get; }
-
-        public string AGIP { get; }
-    }
+    public int SiteDbGroupId { get; set; } = siteDbGroupId;
 }

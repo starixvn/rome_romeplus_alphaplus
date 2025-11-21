@@ -1,17 +1,16 @@
-﻿namespace AlphaPlus.Settings.Transfer.API.Params.AutoTransfer
+﻿namespace AlphaPlus.Settings.Transfer.API.Params.AutoTransfer;
+
+public class CancelJobParam
 {
-    public class CancelJobParam
-    {
-        public int FromCustId { get; set; }
+    public int FromCustId { get; set; }
 
-        public int ToCustId { get; set; }
+    public int ToCustId { get; set; }
 
-        public string ViewStatus { get; set; }
+    public string ViewStatus { get; set; }
 
-        public string Language { get; set; }
+    public string Language { get; set; }
 
-        public string IP { get; set; }
+    public string IP { get; set; }
 
-        public string AGIP { get; set; }
-    }
+    public int SiteDbGroupId { get; set; }
 }

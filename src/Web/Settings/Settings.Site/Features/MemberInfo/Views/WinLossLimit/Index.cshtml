@@ -1,14 +1,9 @@
 ﻿@using AlphaPlus.Shared.AppResources.Common
 @using AlphaPlus.Shared.AppResources.Settings.MemberInfo
 @using AlphaPlus.Core.Helpers
-@using AlphaPlus.Core.Extensions
 @using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.WinLossLimit
 @using AlphaPlus.Settings.Site.Features.MemberInfo.Helpers
 @using AlphaPlus.Settings.Site.Features.Shared.Helpers
-@using AlphaPlus.Settings.Site.Features.MemberInfo.ViewModels.Components
-@using AlphaPlus.Settings.MemberInfo.Domain.Models
-@using AlphaPlus.Settings.MemberInfo.Domain.Extensions
-@using AlphaPlus.Core.Configurations
 @using AlphaPlus.Settings.MemberInfo.Domain.Constants
 @addTagHelper *, AlphaPlus.Settings.Site
 @inject AlphaPlus.Core.Models.IUserSession userSession
@@ -213,7 +208,7 @@
                         <td class="text-center">@(winLossLimitDetail.IsAutoReset ? Resources.Yes : Resources.No2)</td>
                         <td class="text-center">
                             <div class="col-reset">
-                                @WinLossLimitViewModel.GetCurrentWinAnmout(winLossLimitDetail.CurrentWinAnmout)
+                                @WinLossLimitViewModel.GetCurrentWinAmount(winLossLimitDetail.CurrentWinAnmout)
                                 @if (winLossLimitDetail.IsCashMember
                                     && Model.ViewerLevel.IsAgentLevel()
                                     && !winLossLimitDetail.IsAutoReset

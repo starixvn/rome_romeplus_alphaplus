@@ -555,9 +555,6 @@
   <data name="RefNo" xml:space="preserve">
     <value>参照号码</value>
   </data>
-  <data name="RefNo_Duplicate[1]" xml:space="preserve">
-    <value>参照号码</value>
-  </data>
   <data name="RemoveAllFilters" xml:space="preserve">
     <value>拆除全部筛选</value>
   </data>

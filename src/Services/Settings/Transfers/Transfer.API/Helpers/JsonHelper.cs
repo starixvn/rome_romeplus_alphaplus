@@ -20,6 +20,6 @@ namespace AlphaPlus.Settings.Transfer.API.Helpers
             }
         }
 
-        internal static string ToJson(object data) => JsonConvert.SerializeObject(data);
+        public static string ToJson(object data) => JsonConvert.SerializeObject(data);
     }
 }

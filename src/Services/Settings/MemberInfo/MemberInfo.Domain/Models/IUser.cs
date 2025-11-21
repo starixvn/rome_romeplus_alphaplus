@@ -54,7 +54,6 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Models
 
         bool GetDisabledProduct(int productId);
 
-
         bool AllowedTotalBalanceTransfer { get; }
 
         bool IsDoubleCommLosing { get; }
@@ -67,7 +66,6 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Models
 
         string AssetAppPath { get; }
 
-        string SiteDBGroupIp { get; }
         string Currency { get; }
 
         int CurrencyId { get; }
@@ -75,8 +73,6 @@ namespace AlphaPlus.Settings.MemberInfo.Domain.Models
         bool IsSubAcc { get; }
 
         PageAccess SubPageAccess { get; }
-
-        string AGIP { get; }
 
         int SiteDBGroupId { get; }
 

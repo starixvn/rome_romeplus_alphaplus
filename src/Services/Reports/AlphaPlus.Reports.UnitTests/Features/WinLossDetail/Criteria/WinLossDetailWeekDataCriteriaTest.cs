@@ -1,6 +1,6 @@
-using AlphaPlus.Reports.Features.WinLossDetail;
+namespace AlphaPlus.Reports.UnitTests.Features.WinLossDetail.Criteria;
 
-namespace AlphaPlus.Reports.UnitTests.Features.WinLossDetail;
+using AlphaPlus.Reports.Features.WinLossDetail;
 
 public class WinLossDetailWeekDataCriteriaTest
 {
@@ -8,15 +8,15 @@ public class WinLossDetailWeekDataCriteriaTest
     public void Constructor_Should_Initialize_Properties_Correctly()
     {
         // Arrange
-        int custId = 123;
-        DateTime fromDate = new DateTime(2023, 1, 1);
-        DateTime toDate = new DateTime(2023, 1, 31);
-        DateTime balanceUpDay = new DateTime(2023, 1, 31);
-        DateTime moveBetsDay = new DateTime(2023, 1, 31);
-        string productIds = "1,2,3";
-        string productDetails = "Product Details";
-        string username = "TestUser";
-        bool isReward = true;
+        var custId = 123;
+        var fromDate = new DateTime(2023, 1, 1);
+        var toDate = new DateTime(2023, 1, 31);
+        var balanceUpDay = new DateTime(2023, 1, 31);
+        var moveBetsDay = new DateTime(2023, 1, 31);
+        var productIds = "1,2,3";
+        var productDetails = "Product Details";
+        var username = "TestUser";
+        var isReward = true;
         byte levelType = 3;
 
         // Act
@@ -30,7 +30,8 @@ public class WinLossDetailWeekDataCriteriaTest
             productDetails,
             username,
             isReward,
-            levelType);
+            levelType,
+            string.Empty);
 
         // Assert
         Assert.Equal(custId, criteria.CustId);
@@ -59,10 +60,11 @@ public class WinLossDetailWeekDataCriteriaTest
             productDetails: string.Empty,
             username: string.Empty,
             isReward: false,
-            levelType: 1);
+            levelType: 1,
+            string.Empty);
 
         // Act
-        string settingKey = criteria.GetSettingKey();
+        var settingKey = criteria.GetSettingKey();
 
         // Assert
         Assert.Equal("Age_Rpt_WinlossDetail_WeekDataSel", settingKey);
@@ -82,7 +84,8 @@ public class WinLossDetailWeekDataCriteriaTest
             productDetails: string.Empty,
             username: string.Empty,
             isReward: false,
-            levelType: 1);
+            levelType: 1,
+            string.Empty);
 
         // Assert
         Assert.IsAssignableFrom<WinLossDetailBaseCriteria>(criteria);

@@ -9,4 +9,4 @@ public record AgentTransferYesterdayBalanceParam(
     string Language,
     string IP,
     int SubAccId,
-    string AGIP);
+    int SiteDbGroupId);

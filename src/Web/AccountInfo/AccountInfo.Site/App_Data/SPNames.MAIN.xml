@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Functions>
     <Function Name="Account Info">
-        <Setting Key="SiteDB_Acc_CustomerTotalAmountSel" SpName="Acc_CustomerTotalAmountSel" DbName="SiteDB.bodb02.wsv_alp" Plain="0" />
-        <Setting Key="SiteDB_Acc_BalanceMemberSel" SpName="Acc_BalanceMemberSel" DbName="SiteDB.bodb02.wsv_alp" Plain="0" />
+        <Setting Key="SiteDb1_Acc_CustomerTotalAmountSel" SpName="Acc_CustomerTotalAmountSel" DbName="DBSITE01.bodb02.wsv_alp" Plain="0" />
+        <Setting Key="SiteDb2_Acc_CustomerTotalAmountSel" SpName="Acc_CustomerTotalAmountSel" DbName="DBSITE02.bodb02.wsv_alp" Plain="0" />
+        <Setting Key="SiteDb3_Acc_CustomerTotalAmountSel" SpName="Acc_CustomerTotalAmountSel" DbName="DBSITE03.bodb02.wsv_alp" Plain="0" />
+        <Setting Key="SiteDb1_Acc_BalanceMemberSel" SpName="Acc_BalanceMemberSel" DbName="DBSITE01.bodb02.wsv_alp" Plain="0" />
+        <Setting Key="SiteDb2_Acc_BalanceMemberSel" SpName="Acc_BalanceMemberSel" DbName="DBSITE02.bodb02.wsv_alp" Plain="0" />
+        <Setting Key="SiteDb3_Acc_BalanceMemberSel" SpName="Acc_BalanceMemberSel" DbName="DBSITE03.bodb02.wsv_alp" Plain="0" />
     </Function>
     <Function Name="Auto Transfer">
-        <Setting Key="SiteDB_Age_ClearBalanceCust_Job_StatusCheck" SpName="Age_ClearBalanceCust_Job_StatusCheck" DbName="SiteDB.bodb02.wsv_alp" Plain="0" />
-    </Function>
-    <Function Name="Account Info">
-        <Setting Key="Acc_OutstandingMemberSel" SpName="Acc_OutstandingMemberSel" DbName="DBBOF.bodb02.wsv_alp" Plain="0" />
+        <Setting Key="SiteDb1_Age_ClearBalanceCust_Job_StatusCheck" SpName="Age_ClearBalanceCust_Job_StatusCheck" DbName="DBSITE01.bodb02.wsv_alp" Plain="0" />
+        <Setting Key="SiteDb2_Age_ClearBalanceCust_Job_StatusCheck" SpName="Age_ClearBalanceCust_Job_StatusCheck" DbName="DBSITE02.bodb02.wsv_alp" Plain="0" />
+        <Setting Key="SiteDb3_Age_ClearBalanceCust_Job_StatusCheck" SpName="Age_ClearBalanceCust_Job_StatusCheck" DbName="DBSITE03.bodb02.wsv_alp" Plain="0" />
     </Function>
     <Function Name="Online List">
         <Setting Key="Acc_CustomerSelOnline" SpName="Acc_CustomerSelOnline" DbName="DBONUSER.ON_USER.wsv_alp" Plain="0">
@@ -22,39 +25,39 @@
         <Setting Key="Age_Msg_SetUsrMessage" SpName="Age_Msg_SetUsrMessage" DbName="DBMSG.bodb_Message.wsv_alp" Plain="0" />
     </Function>
     <Function Name="IP">
-        <Setting Key="GetIPVN" SpName="GetIPVN" DbName="DBCust.IPDB.wsv_alp" Plain="0">
+        <Setting Key="GetIPVN" SpName="GetIPVN" DbName="DBCUST.IPDB.wsv_alp" Plain="0">
             <Mapping DataField="ipFROM" ObjectProperty="From" />
             <Mapping DataField="ipTO" ObjectProperty="To" />
         </Setting>
     </Function>
     <Function Name="Customer Information">
-        <Setting Key="Age_CustomerSelUserInfo" SpName="Age_CustomerSelUserInfo" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_CustomerSelUserInfo" SpName="Age_CustomerSelUserInfo" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
     </Function>
     <Function Name="Product Status">
-        <Setting Key="Acc_AdminSelStatusByProductId" SpName="Acc_AdminSelStatusByProductId" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Acc_CustSetting_StatusSettingSelect" SpName="Acc_CustSetting_StatusSettingSelect" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Acc_CustSetting_DisableProductStatusSelect" SpName="Acc_CustSetting_DisableProductStatusSelect" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Acc_CustSetting_DisableGameStatusSelect" SpName="Acc_CustSetting_DisableGameStatusSelect" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Acc_UpdCSStatus_Cust" SpName="Acc_UpdCSStatus_Cust" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Acc_CustomerUpdDisableKeno" SpName="Acc_CustomerUpdDisableKeno" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Acc_CustSetting_DisableGameStatusUpd" SpName="Acc_CustSetting_DisableGameStatusUpd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Acc_CustSetting_DisableNewProductStatusUpd" SpName="Acc_CustSetting_DisableNewProductStatusUpd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Acc_CustSetting_DisableProductStatus_160_Upd" SpName="Acc_CustSetting_DisableProductStatus_160_Upd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Acc_CustSetting_DisableProductStatusUpd" SpName="Acc_CustSetting_DisableProductStatusUpd" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Acc_CustSetting_ProductProfileSelect" SpName="Acc_CustSetting_ProductProfileSelect" DbName="DBCust.CustDB.wsv_alp" />
+        <Setting Key="Acc_AdminSelStatusByProductId" SpName="Acc_AdminSelStatusByProductId" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_CustSetting_StatusSettingSelect" SpName="Acc_CustSetting_StatusSettingSelect" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_CustSetting_DisableProductStatusSelect" SpName="Acc_CustSetting_DisableProductStatusSelect" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_CustSetting_DisableGameStatusSelect" SpName="Acc_CustSetting_DisableGameStatusSelect" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_UpdCSStatus_Cust" SpName="Acc_UpdCSStatus_Cust" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_CustomerUpdDisableKeno" SpName="Acc_CustomerUpdDisableKeno" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_CustSetting_DisableGameStatusUpd" SpName="Acc_CustSetting_DisableGameStatusUpd" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_CustSetting_DisableNewProductStatusUpd" SpName="Acc_CustSetting_DisableNewProductStatusUpd" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_CustSetting_DisableProductStatus_160_Upd" SpName="Acc_CustSetting_DisableProductStatus_160_Upd" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_CustSetting_DisableProductStatusUpd" SpName="Acc_CustSetting_DisableProductStatusUpd" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_CustSetting_ProductProfileSelect" SpName="Acc_CustSetting_ProductProfileSelect" DbName="DBCUST.CustDB.wsv_alp" />
     </Function>
     <Function Name="Account Info">
-        <Setting Key="Age_CustSetting_GetUplineByCustID" SpName="Age_CustSetting_GetUplineByCustID" DbName="DBCust.CustDB.wsv_alp" />
-        <Setting Key="Age_CustomerUpdCredit_Ag" SpName="Age_CustomerUpdCredit_Ag" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_CustomerUpdCredit_MAg" SpName="Age_CustomerUpdCredit_MAg" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_CustomerUpdCredit_SAg" SpName="Age_CustomerUpdCredit_SAg" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_CustSetting_GetUplineByCustID" SpName="Age_CustSetting_GetUplineByCustID" DbName="DBCUST.CustDB.wsv_alp" />
+        <Setting Key="Age_CustomerUpdCredit_Ag" SpName="Age_CustomerUpdCredit_Ag" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_CustomerUpdCredit_MAg" SpName="Age_CustomerUpdCredit_MAg" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_CustomerUpdCredit_SAg" SpName="Age_CustomerUpdCredit_SAg" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
         <Setting Key="Age_CashAccumCredit_AgSel" SpName="Age_CashAccumCredit_AgSel" DbName="DBSIC.bodb02.wsv_alp" Plain="0" />
-        <Setting Key="Acc_CustomerUpdClosed" SpName="Acc_CustomerUpdClosed" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Acc_CustomerUpdSuspended" SpName="Acc_CustomerUpdSuspended" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Acc_CustomerUpdMaster_DisableAutoMPT" SpName="Acc_CustomerUpdMaster_DisableAutoMPT" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Acc_CustomerUpdDisableOutright" SpName="Acc_CustomerUpdDisableOutright" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Acc_CustomerUpdDoubleCommLosing" SpName="Acc_CustomerUpdDoubleCommLosing" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_Customer_CreditInfo_Sel" SpName="Age_Customer_CreditInfo_Sel" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+        <Setting Key="Acc_CustomerUpdClosed" SpName="Acc_CustomerUpdClosed" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_CustomerUpdSuspended" SpName="Acc_CustomerUpdSuspended" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_CustomerUpdMaster_DisableAutoMPT" SpName="Acc_CustomerUpdMaster_DisableAutoMPT" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_CustomerUpdDisableOutright" SpName="Acc_CustomerUpdDisableOutright" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_CustomerUpdDoubleCommLosing" SpName="Acc_CustomerUpdDoubleCommLosing" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_Customer_CreditInfo_Sel" SpName="Age_Customer_CreditInfo_Sel" DbName="DBCUST.CustDB.wsv_alp" Plain="0">
             <Mapping ObjectProperty="MasterCreditMin" DataField="masterCredit_Min" />
             <Mapping ObjectProperty="MasterCreditMax" DataField="masterCredit_Max" />
             <Mapping ObjectProperty="AgentCreditMin" DataField="agentCredit_Min" />
@@ -63,20 +66,20 @@
             <Mapping ObjectProperty="MemMaxCreditMax" DataField="MaxCredit_Mem" />
             <Mapping ObjectProperty="AvailableCredit" DataField="Credit_Ag_Bal" />
         </Setting>
-        <Setting Key="Acc_CustomerUpdAllDayBalTransfer" SpName="Acc_CustomerUpdAllDayBalTransfer" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Acc_CustomerUpdLocked" SpName="Acc_CustomerUpdLocked" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_GetIsAllDayBalTransfer" SpName="Age_GetIsAllDayBalTransfer" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_ClearBalanceCust_SettingUpdate_Downline" SpName="Age_ClearBalanceCust_SettingUpdate_Downline" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Acc_CustomerRemarkSel" SpName="Acc_CustomerRemarkSel_UAT1" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Acc_CustomerRemarkUpd" SpName="Acc_CustomerRemarkUpd_UAT1" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_CustomerUpdAllDayBalTransfer" SpName="Acc_CustomerUpdAllDayBalTransfer" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_CustomerUpdLocked" SpName="Acc_CustomerUpdLocked" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_GetIsAllDayBalTransfer" SpName="Age_GetIsAllDayBalTransfer" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_ClearBalanceCust_SettingUpdate_Downline" SpName="Age_ClearBalanceCust_SettingUpdate_Downline" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_CustomerRemarkSel" SpName="Acc_CustomerRemarkSel" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_CustomerRemarkUpd" SpName="Acc_CustomerRemarkUpd" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
     </Function>
     <Function Name="Unsuspend Downlines">
-        <Setting Key="Acc_Customer_SuspendInfoSel" SpName="Acc_Customer_SuspendInfoSel" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+        <Setting Key="Acc_Customer_SuspendInfoSel" SpName="Acc_Customer_SuspendInfoSel" DbName="DBCUST.CustDB.wsv_alp" Plain="0">
             <Mapping ObjectProperty="AffectedDownlines" DataField="cntAffected" />
             <Mapping ObjectProperty="UnchangedDownlines" DataField="cntUnchanged" />
         </Setting>
-        <Setting Key="Acc_Customer_SuspendInfoDetailSel" SpName="Acc_Customer_SuspendInfoDetailSel" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Acc_CustomerList_SuspendInfoSel" SpName="Acc_CustomerList_SuspendInfoSel" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+        <Setting Key="Acc_Customer_SuspendInfoDetailSel" SpName="Acc_Customer_SuspendInfoDetailSel" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_CustomerList_SuspendInfoSel" SpName="Acc_CustomerList_SuspendInfoSel" DbName="DBCUST.CustDB.wsv_alp" Plain="0">
             <Mapping ObjectProperty="AffectedDownlines" DataField="cntAffected" />
             <Mapping ObjectProperty="UnchangedDownlines" DataField="cntUnchanged" />
             <Mapping ObjectProperty="DownlineRoleId" DataField="roleid" />
@@ -84,12 +87,12 @@
         </Setting>
     </Function>
     <Function Name="Open Downlines">
-        <Setting Key="Acc_Customer_CloseInfoSel" SpName="Acc_Customer_CloseInfoSel" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+        <Setting Key="Acc_Customer_CloseInfoSel" SpName="Acc_Customer_CloseInfoSel" DbName="DBCUST.CustDB.wsv_alp" Plain="0">
             <Mapping ObjectProperty="AffectedDownlines" DataField="cntAffected" />
             <Mapping ObjectProperty="UnchangedDownlines" DataField="cntUnchanged" />
         </Setting>
-        <Setting Key="Acc_Customer_CloseInfoDetailSel" SpName="Acc_Customer_CloseInfoDetailSel" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Acc_CustomerList_CloseInfoSel" SpName="Acc_CustomerList_CloseInfoSel" DbName="DBCust.CustDB.wsv_alp" Plain="0">
+        <Setting Key="Acc_Customer_CloseInfoDetailSel" SpName="Acc_Customer_CloseInfoDetailSel" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_CustomerList_CloseInfoSel" SpName="Acc_CustomerList_CloseInfoSel" DbName="DBCUST.CustDB.wsv_alp" Plain="0">
             <Mapping ObjectProperty="IsClosed" DataField="closed" />
             <Mapping ObjectProperty="AffectedDownlines" DataField="cntAffected" />
             <Mapping ObjectProperty="UnchangedDownlines" DataField="cntUnchanged" />
@@ -98,20 +101,20 @@
         </Setting>
     </Function>
     <Function Name="QR Code">
-        <Setting Key="Age_CheckQRFirstLogin" SpName="Age_CheckQRFirstLogin" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_CheckQRFirstLogin" SpName="Age_CheckQRFirstLogin" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
     </Function>
     <Function Name="UM Message">
-        <Setting Key="Acc_CheckUM_MultipleCustProductStatus" SpName="Acc_CheckUM_MultipleCustProductStatus" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Acc_CheckUM_MultipleCustProductStatus" SpName="Acc_CheckUM_MultipleCustProductStatus" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
     </Function>
     <Function Name="Protected Mode">
-        <Setting Key="Age_CustomerUpdProtectedMode" SpName="Age_CustomerUpdProtectedMode" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
-        <Setting Key="Age_CustomerSelProtectionModeList" SpName="Age_CustomerSelProtectionModeList" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_CustomerUpdProtectedMode" SpName="Age_CustomerUpdProtectedMode" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_CustomerSelProtectionModeList" SpName="Age_CustomerSelProtectionModeList" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
     </Function>
     <Function Name="Check Belonging">
         <Setting Key="Age_CustSubPageAccessSel" SpName="Age_CustSubPageAccessSel" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
     </Function>
     <Function Name="Account Info">
-        <Setting Key="Age_CustomerSelAllInfo" SpName="Age_CustomerSelAllInfo_UAT1" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
+        <Setting Key="Age_CustomerSelAllInfo" SpName="Age_CustomerSelAllInfo" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
         <Setting Key="Age_CustomerSelAllStatus" SpName="Age_CustomerSelAllStatus" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
         <Setting Key="Age_CustomerSelUserSearch" SpName="Age_CustomerSelUserSearch" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
         <Setting Key="Acc_CustomerSelTotalDownline" SpName="Acc_CustomerSelTotalDownline" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
@@ -135,14 +138,17 @@
         <Setting Key="Acc_CustomerUpdCreditOnReplicateServer" SpName="Acc_CustomerUpdCreditOnReplicateServer" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
     </Function>
     <Function Name="Profile Picture">
-        <Setting Key="DBA_InsertProfilePictureLibrary" SpName="DBA_InsertProfilePictureLibrary" DbName="DBCust.bodb_Credit.wsv_alp" Plain="0" />
+        <Setting Key="DBA_InsertProfilePictureLibrary" SpName="DBA_InsertProfilePictureLibrary" DbName="DBCUST.bodb_Credit.wsv_alp" Plain="0" />
         <Setting Key="Age_CustomerSelProfilePicture" SpName="Age_CustomerSelProfilePicture" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
         <Setting Key="Age_CustomerProfilePictureLibrarySel" SpName="Age_CustomerProfilePictureLibrarySel" DbName="DBAGE.bodb02.wsv_alp" Plain="0" />
-        <Setting Key="Age_CustomerUpdProfilePicture" SpName="Age_CustomerUpdProfilePicture" DbName="DBCust.CustDB.wsv_alp" Plain="0" />
+        <Setting Key="Age_CustomerUpdProfilePicture" SpName="Age_CustomerUpdProfilePicture" DbName="DBCUST.CustDB.wsv_alp" Plain="0" />
     </Function>
     <Function Name="Account Info">
         <Setting Key="Age_CustomerSelListByStatus" SpName="Age_CustomerSelListByStatus" DbName="DBACC.bodb02.wsv_alp" Plain="0" />
         <Setting Key="Age_ClosedReasonSelByCust" SpName="Age_ClosedReasonSelByCust" DbName="DBACC.bodb02.wsv_alp" Plain="0" />
+    </Function>
+    <Function Name="Account Info">
+        <Setting Key="Acc_OutstandingMemberSel" SpName="Acc_OutstandingMemberSel" DbName="DBBOF.bodb02.wsv_alp" Plain="0" />
     </Function>
     <Function Name="Check Belonging">
         <Setting Key="Age_ReCheckin" SpName="Age_ReCheckin" DbName="DBONUSER.ON_USER.wsv_alp" Plain="0" />

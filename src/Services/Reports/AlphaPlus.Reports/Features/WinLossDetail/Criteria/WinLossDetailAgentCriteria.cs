@@ -1,4 +1,6 @@
-namespace AlphaPlus.Reports.Features.WinLossDetail;
+namespace AlphaPlus.Reports.Features.WinLossDetail.Criteria;
+
+using AlphaPlus.Core.Helpers;
 
 internal class WinLossDetailAgentCriteria(
     int custId,
@@ -10,9 +12,10 @@ internal class WinLossDetailAgentCriteria(
     string productDetails,
     string username,
     bool isReward,
-    byte levelType) : WinLossDetailMemberCriteria(custId, fromDate, toDate, balanceUpDay, moveBetsDay, productIds, productDetails, username, isReward)
+    byte levelType,
+    string suffix) : WinLossDetailMemberCriteria(custId, fromDate, toDate, balanceUpDay, moveBetsDay, productIds, productDetails, username, isReward, suffix)
 {
     public byte LevelType { get; } = levelType;
 
-    public override string GetSettingKey() => "Age_Rpt_WinLossDetail_Agent";
+    public override string GetSettingKey() => SpNameHelpers.AppendSuffix("Age_Rpt_WinLossDetail_Agent", Suffix);
 }

@@ -576,9 +576,6 @@
   <data name="RefNo" xml:space="preserve">
     <value>Ref No</value>
   </data>
-  <data name="RefNo_Duplicate[1]" xml:space="preserve">
-    <value>Ref No</value>
-  </data>
   <data name="RemoveAllFilters" xml:space="preserve">
     <value>Remove All Filters</value>
   </data>

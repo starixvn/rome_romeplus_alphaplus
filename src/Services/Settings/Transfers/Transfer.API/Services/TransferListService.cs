@@ -15,13 +15,11 @@ public interface ITransferListService
 
 public class TransferListService(IDynamicRepository repository) : ITransferListService
 {
-    private readonly IDynamicRepository repository = repository;
-
     public async Task<CustomerTransferReport> GetTransferList(TransferListParam param)
     {
         var custLevel = Enumeration.FromValue<UserLevel>(param.CustLevelId);
         var criteria = BuildTransferListCriteria(param, custLevel);
-        var customers = await repository.FetchAsync<CustomerTransfer>(criteria, param.AGIP);
+        var customers = await repository.FetchAsync<CustomerTransfer>(criteria);
 
         if (!customers.Any())
         {
@@ -35,14 +33,13 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
     {
         var custLevel = Enumeration.FromValue<UserLevel>(param.CustLevelId);
         var criteria = BuildTransferListCriteria(param, custLevel);
-        var customers = await repository.FetchAsync<CustomerTransfer>(criteria, param.AGIP);
+        var customers = await repository.FetchAsync<CustomerTransfer>(criteria);
 
         return customers.FirstOrDefault();
     }
 
     private static GetTransferListCriteria BuildTransferListCriteria(TransferListParam param, UserLevel custLevel)
     {
-        //var custLevel = Enumeration.FromValue<UserLevel>(param.CustLevelId);
         if (custLevel.IsAgentLevel())
         {
             return new GetAgentTransferListCriteria(
@@ -53,7 +50,8 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
                 param.AllowTotalBalanceTransfer,
                 param.AutoTransfer,
                 param.PageIndex,
-                param.PageSize);
+                param.PageSize,
+                param.SiteDbGroupId);
         }
 
         if (custLevel.IsMasterLevel())
@@ -67,7 +65,8 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
                 param.AutoTransfer,
                 param.LevelType,
                 param.PageIndex,
-                param.PageSize);
+                param.PageSize,
+                param.SiteDbGroupId);
         }
 
         return new GetSuperTransferListCriteria(
@@ -79,7 +78,8 @@ public class TransferListService(IDynamicRepository repository) : ITransferListS
             param.AutoTransfer,
             param.LevelType,
             param.PageIndex,
-            param.PageSize);
+            param.PageSize,
+            param.SiteDbGroupId);
     }
 
     private static CustomerTransfer BuildTotal(GetTransferListCriteria criteria)

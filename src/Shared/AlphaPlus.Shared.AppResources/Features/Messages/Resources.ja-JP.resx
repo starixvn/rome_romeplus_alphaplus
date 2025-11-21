@@ -222,7 +222,4 @@
   <data name="FeedbackOnFunctionTitle" xml:space="preserve">
     <value>{0} の改善にご協力ください。</value>
   </data>
-  <data name="Feedback_Duplicate[1]" xml:space="preserve">
-    <value>フィードバック</value>
-  </data>
 </root>

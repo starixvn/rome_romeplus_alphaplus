@@ -1,4 +1,3 @@
-
 using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.Shared.Models
@@ -67,7 +66,6 @@ namespace AlphaPlus.Settings.Site.Features.Shared.Models
 
         string AssetAppPath { get; }
 
-        string SiteDBGroupIp { get; }
         string Currency { get; }
 
         int CurrencyId { get; }
@@ -75,8 +73,6 @@ namespace AlphaPlus.Settings.Site.Features.Shared.Models
         bool IsSubAcc { get; }
 
         PageAccess SubPageAccess { get; }
-
-        string AGIP { get; }
 
         bool IsEnabledCustomerDateLimit { get; }
 

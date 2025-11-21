@@ -1,56 +1,47 @@
-﻿using Fanex.Data;
-using Fanex.Data.Repository;
+﻿namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit;
 
-namespace AlphaPlus.Settings.MemberInfo.API.Criteria.WinLossLimit
+using System.Diagnostics.CodeAnalysis;
+using Core.Criteria;
+using Core.Helpers;
+using Fanex.Data;
+
+[SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "Constructor by design, no refactor planned")]
+public class GetBalanceCriteria(
+    int custId,
+    int betType,
+    string username,
+    int masterId,
+    int agentId,
+    int pageIndex,
+    int pageSize,
+    bool isDirectMember,
+    int accountType,
+    int siteDbGroupId)
+    : SiteDbBaseCriteria(siteDbGroupId)
 {
-    public class GetBalanceCriteria : CriteriaBase
-    {
-        public GetBalanceCriteria(
-            int custId,
-            int betType,
-            string username,
-            int masterId,
-            int agentId,
-            int pageIndex,
-            int pageSize,
-            bool isDirectMember,
-            int accountType)
-        {
-            CustId = custId;
-            BetType = betType;
-            Username = username;
-            MasterId = masterId;
-            AgentId = agentId;
-            PageIndex = pageIndex;
-            PageSize = pageSize;
-            IsDirectDownline = isDirectMember;
-            AccountType = accountType;
-        }
+    public int CustId { get; set; } = custId;
 
-        public int CustId { get; set; }
+    public int BetType { get; set; } = betType;
 
-        public int BetType { get; set; }
+    public string Username { get; set; } = username;
 
-        public string Username { get; set; }
+    [SpParam(SqlParamName = "Mrecommend")]
+    public int MasterId { get; set; } = masterId;
 
-        [SpParam(SqlParamName = "Mrecommend")]
-        public int MasterId { get; set; }
+    [SpParam(SqlParamName = "Recommend")]
+    public int AgentId { get; set; } = agentId;
 
-        [SpParam(SqlParamName = "Recommend")]
-        public int AgentId { get; set; }
+    public int PageSize { get; set; } = pageSize;
 
-        public int PageSize { get; set; }
+    public int PageIndex { get; set; } = pageIndex;
 
-        public int PageIndex { get; set; }
+    public bool IsDirectDownline { get; set; } = isDirectMember;
 
-        public bool IsDirectDownline { get; set; }
+    public int AccountType { get; set; } = accountType;
 
-        public int AccountType { get; set; }
+    public override string GetSettingKey()
+        => SpNameHelpers.SiteDbPrefix("Age_CustomerSelWinlimitInfo", siteDbGroupId);
 
-        public override string GetSettingKey()
-            => "SiteDB_Age_CustomerSelWinlimitInfo";
-
-        public override bool IsValid()
-            => CustId > 0;
-    }
+    public override bool IsValid()
+        => CustId > 0;
 }

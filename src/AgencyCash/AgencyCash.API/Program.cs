@@ -6,8 +6,7 @@ using AgencyCash.API.Shared.Middlewares;
 using Fanex.Data.Repository;
 using Fanex.Data.SqlServer;
 
-const string ApiKeySchemeName = "ApiKey";
-
+const string apiKeySchemeName = "ApiKey";
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 builder.Services
@@ -24,22 +23,22 @@ builder.Services
     .AddSwaggerGen(c =>
     {
         c.SwaggerDoc("v1", new() { Title = "Agency Cash API V1", Version = "v1" });
-        c.AddSecurityDefinition(ApiKeySchemeName, new Microsoft.OpenApi.Models.OpenApiSecurityScheme
+        c.AddSecurityDefinition(apiKeySchemeName, new Microsoft.OpenApi.Models.OpenApiSecurityScheme
         {
             Description = "API Key needed to access the endpoints. ApiKey: X-API-KEY: {key}",
             In = Microsoft.OpenApi.Models.ParameterLocation.Header,
             Name = "X-API-KEY",
             Type = Microsoft.OpenApi.Models.SecuritySchemeType.ApiKey,
-            Scheme = ApiKeySchemeName
+            Scheme = apiKeySchemeName
         });
         c.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement {
             {
                 new Microsoft.OpenApi.Models.OpenApiSecurityScheme {
                     Reference = new Microsoft.OpenApi.Models.OpenApiReference {
                         Type = Microsoft.OpenApi.Models.ReferenceType.SecurityScheme,
-                        Id = ApiKeySchemeName
+                        Id = apiKeySchemeName
                     },
-                    Scheme = ApiKeySchemeName,
+                    Scheme = apiKeySchemeName,
                     Name = "X-API-KEY",
                     In = Microsoft.OpenApi.Models.ParameterLocation.Header,
                 },

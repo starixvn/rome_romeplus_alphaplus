@@ -1,9 +1,3 @@
-using Xunit;
-using FluentAssertions;
-using Moq;
-using AlphaPlus.Core.Models;
-using AlphaPlus.RequestInfo.Models;
-
 namespace AlphaPlus.Auth.Site.UnitTests;
 
 public class AuthSiteTests
@@ -12,7 +6,7 @@ public class AuthSiteTests
     public void SignInResult_ShouldHaveCorrectProperties()
     {
         // Arrange
-        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
+        var signInResult = new SignInResult
         {
             CustId = 123,
             UserName = "TestUser",
@@ -37,7 +31,7 @@ public class AuthSiteTests
     public void ReCheckInResult_ShouldHaveCorrectProperties()
     {
         // Arrange
-        var reCheckInResult = new AlphaPlus.Auth.Site.Features.Account.ReCheckInResult
+        var reCheckInResult = new ReCheckInResult
         {
             IsKickedOut = false,
             KickOutReason = 0
@@ -52,7 +46,7 @@ public class AuthSiteTests
     public void SSOParam_ShouldHaveCorrectProperties()
     {
         // Arrange
-        var ssoParam = new AlphaPlus.Auth.Site.Features.Account.SSOParam
+        var ssoParam = new SSOParam
         {
             CustId = 123,
             EncryptPassword = "encrypted-password",
@@ -76,7 +70,7 @@ public class AuthSiteTests
     public void InternalLoginParam_ShouldHaveCorrectProperties()
     {
         // Arrange
-        var internalLoginParam = new AlphaPlus.Auth.Site.Features.Account.InternalLoginParam
+        var internalLoginParam = new InternalLoginParam
         {
             AdminId = 1,
             Language = "en-US",
@@ -94,7 +88,7 @@ public class AuthSiteTests
     public void IndirectLoginParam_ShouldHaveCorrectProperties()
     {
         // Arrange
-        var indirectLoginParam = new AlphaPlus.Auth.Site.Features.Account.IndirectLoginParam
+        var indirectLoginParam = new IndirectLoginParam
         {
             CustId = 123,
             SubAccId = 1,
@@ -139,7 +133,7 @@ public class AuthSiteTests
     public void RoleId_ShouldHaveDifferentValues(int roleId, string expectedRole)
     {
         // Arrange
-        var signInResult = new AlphaPlus.Auth.Site.Features.Account.SignInResult
+        var signInResult = new SignInResult
         {
             RoleId = (byte)roleId,
             UserName = expectedRole
@@ -154,7 +148,7 @@ public class AuthSiteTests
     public void SignInParam_ShouldHaveCorrectProperties()
     {
         // Arrange
-        var signInParam = new AlphaPlus.Auth.Site.Features.Account.SignInParam
+        var signInParam = new SignInParam
         {
             CustId = 123,
             Password = "password123",
@@ -178,16 +172,14 @@ public class AuthSiteTests
     public void SiteDB_ShouldHaveCorrectProperties()
     {
         // Arrange
-        var siteDB = new AlphaPlus.Auth.Site.Features.Account.SiteDB
+        var siteDB = new SiteDB
         {
-            AGIP = "agip-value",
             SiteDBGroupId = 1,
             CustDBGroupId = 2
         };
 
         // Act & Assert
-        siteDB.AGIP.Should().Be("agip-value");
         siteDB.SiteDBGroupId.Should().Be(1);
         siteDB.CustDBGroupId.Should().Be(2);
     }
-} 
+}

@@ -1,7 +1,8 @@
-
 using AlphaPlus.Reports.Features.WinLossDetail;
 
 namespace AlphaPlus.Reports.UnitTests.Features.WinLossDetail;
+
+using Reports.Features.WinLossDetail.Criteria;
 
 [Trait("Category", "WinLossDetail")]
 public class WinLossDetailMasterCriteriaTest
@@ -25,7 +26,8 @@ public class WinLossDetailMasterCriteriaTest
             productDetails: "Product1,Product2",
             username: "TestUser",
             isReward: true,
-            levelType: 2);
+            levelType: 2,
+            string.Empty);
 
         // Assert
         Assert.Equal(123, criteria.CustId);
@@ -54,7 +56,8 @@ public class WinLossDetailMasterCriteriaTest
             productDetails: "Product1,Product2",
             username: "TestUser",
             isReward: false,
-            levelType: 1);
+            levelType: 1,
+            string.Empty);
 
         // Act
         var result = criteria.GetSettingKey();
@@ -77,7 +80,7 @@ public class WinLossDetailMasterCriteriaTest
             productDetails: "Product1,Product2",
             username: "TestUser",
             isReward: false,
-            levelType: 1);
+            levelType: 1, string.Empty);
 
         // Assert
         Assert.IsAssignableFrom<WinLossDetailAgentCriteria>(criteria);

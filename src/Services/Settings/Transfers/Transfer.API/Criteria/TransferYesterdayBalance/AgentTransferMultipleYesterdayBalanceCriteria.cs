@@ -1,5 +1,7 @@
 namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferYesterdayBalance;
 
+using Core.Helpers;
+
 public class AgentTransferMultipleYesterdayBalanceCriteria(
     int agentId,
     string toCustIds,
@@ -8,7 +10,8 @@ public class AgentTransferMultipleYesterdayBalanceCriteria(
     bool isAllDayBalTransfer,
     string language,
     string ip,
-    int subAccId) : TransferYesterdayBalanceCriteria(language, ip, agentId, subAccId)
+    int subAccId,
+    int siteDbGroupId) : TransferYesterdayBalanceCriteria(language, ip, agentId, subAccId, siteDbGroupId)
 {
     public int FromCustId { get; } = agentId;
 
@@ -20,7 +23,7 @@ public class AgentTransferMultipleYesterdayBalanceCriteria(
 
     public bool IsAllDayBalTransfer { get; } = isAllDayBalTransfer;
 
-    public override string GetSettingKey() => "SiteDB_Age_Transfer_InsClearBalance_Ag";
+    public override string GetSettingKey() => SpNameHelpers.SiteDbPrefix("Age_Transfer_InsClearBalance_Ag", SiteDbGroupId);
 
     public override bool IsValid() => FromCustId > 0 && !string.IsNullOrWhiteSpace(ToCustIds);
 }

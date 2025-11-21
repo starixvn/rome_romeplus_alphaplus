@@ -1,8 +1,8 @@
 ﻿using AlphaPlus.Core.Extensions;
 using AlphaPlus.Core.Helpers;
-using AlphaPlus.Settings.MemberInfo.Domain.Models;
 using AlphaPlus.Core.Models;
 using AlphaPlus.Settings.MemberInfo.Domain.Configurations;
+using AlphaPlus.Settings.MemberInfo.Domain.Models;
 
 namespace AlphaPlus.Settings.Site.Features.MemberInfo.Models
 {
@@ -14,7 +14,10 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Models
 
         private readonly IUserSession userSession;
 
-        public User() : this(null) { }
+        public User() : this(null)
+        {
+        }
+
         public User(IUserSession userSession)
         {
             this.userSession = userSession ?? UserSession.Current;
@@ -85,15 +88,11 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Models
 
         public string AssetAppPath => userSession.AssetAppPath;
 
-        public string SiteDBGroupIp => userSession.AGIP;
         public string Currency => userSession.Currency;
 
         public bool IsSubAcc => userSession.IsSubAcc;
         public int CurrencyId => userSession.CurrencyId;
         public PageAccess SubPageAccess => userSession.SubPageAccess;
-
-        public string AGIP => userSession.AGIP;
-
         public int SiteDBGroupId => userSession.SiteDBGroupId;
         public int CustDBGroupId => userSession.CustDBGroupId;
     }

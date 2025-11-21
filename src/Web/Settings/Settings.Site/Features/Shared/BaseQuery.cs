@@ -7,7 +7,9 @@ namespace AlphaPlus.Settings.Site.Features.Shared
     {
         protected readonly IUser viewer;
 
-        public BaseQuery() : this(null) { }
+        public BaseQuery() : this(null)
+        {
+        }
 
         internal BaseQuery(IUser viewer)
         {
@@ -38,8 +40,6 @@ namespace AlphaPlus.Settings.Site.Features.Shared
         public byte ViewerLevelId => viewer.LevelId;
 
         public UserLevel ViewerLevel => Enumeration.FromValue<UserLevel>(ViewerLevelId);
-
-        public string AGIP => viewer.AGIP;
 
         public bool CanViewReports => viewer.CanViewReports;
 

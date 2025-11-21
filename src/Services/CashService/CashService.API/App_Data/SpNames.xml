@@ -2,8 +2,8 @@
 <Functions>
     <Function Name="Shared Functions">
         <Setting Key="WriteLog_CashService_UserLog_RunSP" SpName="WriteLog_CashService_UserLog_RunSP" DbName="DBLOG.bodb_CustomerLog.wsv_CashService" Plain="0" />
-        <Setting Key="CustDb_0_WriteLog_CashService_UserLog_RunSP" SpName="WriteLog_CashService_UserLog_RunSP" DbName="DBCust.bodb_CustomerLog.wsv_CashService" Plain="0" />
-        <Setting Key="Age_CashService_ConfigureSignUpChecklist" SpName="Age_CashService_ConfigureSignUpChecklist" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
+        <Setting Key="CustDb_0_WriteLog_CashService_UserLog_RunSP" SpName="WriteLog_CashService_UserLog_RunSP" DbName="DBCUST.bodb_CustomerLog.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_ConfigureSignUpChecklist" SpName="Age_CashService_ConfigureSignUpChecklist" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="HasDeposit" ObjectProperty="HasDepositMethods"></Mapping>
             <Mapping DataField="HasWithdrawal" ObjectProperty="HasWithdrawalMethods"></Mapping>
             <Mapping DataField="HasValidLineContact" ObjectProperty="HasLineID"></Mapping>
@@ -12,60 +12,60 @@
         <Setting Key="CustDb_0_WriteLog_CashService_UserLog_API" SpName="WriteLog_CashService_UserLog_API" DbName="DBCUST.bodb_CustomerLog.wsv_CashService" />
     </Function>
     <Function Name="Management Payments">
-        <Setting Key="Age_CashService_PaymentProvider_Sel" SpName="Age_CashService_PaymentProvider_Sel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
+        <Setting Key="Age_CashService_PaymentProvider_Sel" SpName="Age_CashService_PaymentProvider_Sel" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="ProviderID" ObjectProperty="Id"></Mapping>
             <Mapping DataField="ProviderName" ObjectProperty="Name"></Mapping>
             <Mapping DataField="ProviderStatus" ObjectProperty="Status"></Mapping>
         </Setting>
-        <Setting Key="Age_CashService_AgentBankAccountLimit_Sel" SpName="Age_CashService_AgentBankAccountLimit_Sel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
+        <Setting Key="Age_CashService_AgentBankAccountLimit_Sel" SpName="Age_CashService_AgentBankAccountLimit_Sel" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="MinPer" ObjectProperty="MinPer"></Mapping>
             <Mapping DataField="MaxPer" ObjectProperty="MaxPer"></Mapping>
             <Mapping DataField="Deposit" ObjectProperty="IsDeposit"></Mapping>
             <Mapping DataField="WDLimit" ObjectProperty="DailyWithdrawalCount"></Mapping>
         </Setting>
-        <Setting Key="Age_CashService_AgentBankAccountLimit_Upd" SpName="Age_CashService_AgentBankAccountLimit_Upd" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
-        <Setting Key="Age_CashService_PaymentProviderFee_Sel" SpName="Age_CashService_PaymentProviderFee_Sel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
+        <Setting Key="Age_CashService_AgentBankAccountLimit_Upd" SpName="Age_CashService_AgentBankAccountLimit_Upd" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_PaymentProviderFee_Sel" SpName="Age_CashService_PaymentProviderFee_Sel" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="MethodName" ObjectProperty="Method"></Mapping>
             <Mapping DataField="FeeRate" ObjectProperty="Rate"></Mapping>
         </Setting>
-        <Setting Key="Age_CashService_PaymentProviderDetail_Sel" SpName="Age_CashService_PaymentProviderDetail_Sel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
+        <Setting Key="Age_CashService_PaymentProviderDetail_Sel" SpName="Age_CashService_PaymentProviderDetail_Sel" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="PaymentMethodID" ObjectProperty="Method"></Mapping>
             <Mapping DataField="PaymentMethodStatus" ObjectProperty="Status"></Mapping>
             <Mapping DataField="PaymentMethodEnable" ObjectProperty="IsEnabled"></Mapping>
             <Mapping DataField="RequiresBank" ObjectProperty="BankRequired"></Mapping>
         </Setting>
-        <Setting Key="Age_CashService_PaymentProvider_Ins" SpName="Age_CashService_PaymentProvider_Ins" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
-        <Setting Key="Age_CashService_PaymentMethod_Config" SpName="Age_CashService_PaymentMethod_Config" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
-        <Setting Key="Age_CashService_BankList" SpName="Age_CashService_BankList" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
+        <Setting Key="Age_CashService_PaymentProvider_Ins" SpName="Age_CashService_PaymentProvider_Ins" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_PaymentMethod_Config" SpName="Age_CashService_PaymentMethod_Config" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_BankList" SpName="Age_CashService_BankList" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="BankID" ObjectProperty="Id"></Mapping>
             <Mapping DataField="Bankcode" ObjectProperty="Code"></Mapping>
         </Setting>
-        <Setting Key="Age_CashService_ProviderBankList" SpName="Age_CashService_ProviderBankList" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
+        <Setting Key="Age_CashService_ProviderBankList" SpName="Age_CashService_ProviderBankList" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="BankID" ObjectProperty="Id"></Mapping>
             <Mapping DataField="Bankcode" ObjectProperty="Code"></Mapping>
         </Setting>
-        <Setting Key="Age_CashService_PaymentProviderStatus_Upd" SpName="Age_CashService_PaymentProviderStatus_Upd" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
-        <Setting Key="Age_CashService_PaymentMethod_Upd" SpName="Age_CashService_PaymentMethod_Upd" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_PaymentProviderStatus_Upd" SpName="Age_CashService_PaymentProviderStatus_Upd" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_PaymentMethod_Upd" SpName="Age_CashService_PaymentMethod_Upd" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0" />
 
-        <Setting Key="Age_ManagementPayments_SelProvidersFees" SpName="Age_ManagementPayments_SelProvidersFees" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
-        <Setting Key="Age_ManagementPayments_SelProviderSettings" SpName="Age_ManagementPayments_SelProviderSettings" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
-        <Setting Key="Age_ManagementPayments_UpdProviderSettings" SpName="Age_ManagementPayments_UpdProviderSettings" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
-        <Setting Key="Age_CashService_PaymentMethods" SpName="Age_CashService_PaymentMethods" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
+        <Setting Key="Age_ManagementPayments_SelProvidersFees" SpName="Age_ManagementPayments_SelProvidersFees" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_ManagementPayments_SelProviderSettings" SpName="Age_ManagementPayments_SelProviderSettings" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_ManagementPayments_UpdProviderSettings" SpName="Age_ManagementPayments_UpdProviderSettings" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_PaymentMethods" SpName="Age_CashService_PaymentMethods" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="PaymentMethodID" ObjectProperty="Id"></Mapping>
             <Mapping DataField="MethodName" ObjectProperty="Name"></Mapping>
             <Mapping DataField="PaymentMethodStatus" ObjectProperty="Status"></Mapping>
         </Setting>
-        <Setting Key="Age_CashService_UserBankAccount" SpName="Age_CashService_UserBankAccount" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
+        <Setting Key="Age_CashService_UserBankAccount" SpName="Age_CashService_UserBankAccount" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="BankID" ObjectProperty="Id"></Mapping>
             <Mapping DataField="BankName" ObjectProperty="Bank"></Mapping>
             <Mapping DataField="BankCode" ObjectProperty="Code"></Mapping>
         </Setting>
-        <Setting Key="Age_CashService_TransTypeControl" SpName="Age_CashService_TransTypeControl" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
+        <Setting Key="Age_CashService_TransTypeControl" SpName="Age_CashService_TransTypeControl" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="TransactionTypeID" ObjectProperty="Id"></Mapping>
             <Mapping DataField="TransTypeDesc" ObjectProperty="Name"></Mapping>
         </Setting>
 
-        <Setting Key="Age_CashService_BankAccountAgent_List" SpName="Age_CashService_BankAccountAgent_List" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
+        <Setting Key="Age_CashService_BankAccountAgent_List" SpName="Age_CashService_BankAccountAgent_List" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="AgentBankAccountID" ObjectProperty="Id"></Mapping>
             <Mapping DataField="BankAccountNumber" ObjectProperty="AccountNumber"></Mapping>
             <Mapping DataField="BankCode" ObjectProperty="Code"></Mapping>
@@ -73,8 +73,8 @@
             <Mapping DataField="BankAccountStatus" ObjectProperty="Status"></Mapping>
         </Setting>
 
-        <Setting Key="Age_CashService_BankAccountAgent_Ins" SpName="Age_CashService_BankAccountAgent_Ins" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
-        <Setting Key="Age_CashService_BankAccountAgent_Sel" SpName="Age_CashService_BankAccountAgent_Sel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
+        <Setting Key="Age_CashService_BankAccountAgent_Ins" SpName="Age_CashService_BankAccountAgent_Ins" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_BankAccountAgent_Sel" SpName="Age_CashService_BankAccountAgent_Sel" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="PromptPayEnabled" ObjectProperty="PromptPay"></Mapping>
             <Mapping DataField="CreatedBy" ObjectProperty="Creator"></Mapping>
             <Mapping DataField="LastUpdated" ObjectProperty="LastUpdated"></Mapping>
@@ -82,70 +82,70 @@
             <Mapping DataField="PromptPayMobile" ObjectProperty="Mobile"></Mapping>
             <Mapping DataField="MappingType" ObjectProperty="MappingTypes"></Mapping>
         </Setting>
-        <Setting Key="Age_CashService_BankAccountAgent_Upd" SpName="Age_CashService_BankAccountAgent_Upd" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
-        <Setting Key="Age_CashService_BankAccountAgent_Del" SpName="Age_CashService_BankAccountAgent_Del" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
-        <Setting Key="Age_CashService_CountryCodeSel" SpName="Age_CashService_CountryCodeSel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_BankAccountAgent_Upd" SpName="Age_CashService_BankAccountAgent_Upd" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_BankAccountAgent_Del" SpName="Age_CashService_BankAccountAgent_Del" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_CountryCodeSel" SpName="Age_CashService_CountryCodeSel" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0" />
     </Function>
 
     <Function Name="Cash Service Transaction">
         <Setting Key="SiteDb_3_Age_CashTransaction_Sel" SpName="Age_CashTransaction_Sel" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
         <Setting Key="SiteDb_3_Age_CashTransactionDetail_Sel" SpName="Age_CashTransactionDetail_Sel" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
-        <Setting Key="SiteDb_3_Age_CashDeposit_UpdateTransStatus" SpName="Age_CashDeposit_UpdateTransStatus_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
-        <Setting Key="SiteDb_3_Age_CashWithdrawal_UpdateTransStatus" SpName="Age_CashWithdrawal_UpdateTransStatus_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
-        <Setting Key="SiteDb_3_Age_CashTransaction_RevertDeposit_Upd" SpName="Age_CashTransaction_RevertDeposit_Upd_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
-        <Setting Key="SiteDb_3_Age_CashTransaction_RevertWithdrawal_Upd" SpName="Age_CashTransaction_RevertWithdrawal_Upd_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
-        <Setting Key="GetCashMemberBankInfoCriteria" SpName="GetCashMemberBankInfoCriteria" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0"></Setting>
-        <Setting Key="CustDb_0_Age_CashService_MemberListSel" SpName="Age_CashService_MemberListSel" DbName="DBCust.CustDB.wsv_CashService" Plain="0"></Setting>
-        <Setting Key="CustDb_0_Age_CashAgentBankInfoSel" SpName="Age_CashAgentBankInfoSel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0"></Setting>
-        <Setting Key="CustDb_0_Age_CashMemberBankInfoSel" SpName="Age_CashMemberBankInfoSel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0"></Setting>
-        <Setting Key="CustDb_0_Age_CashAgentProviderSel" SpName="Age_CashAgentProviderSel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="SiteDb_3_Age_CashDeposit_UpdateTransStatus" SpName="Age_CashDeposit_UpdateTransStatus" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="SiteDb_3_Age_CashWithdrawal_UpdateTransStatus" SpName="Age_CashWithdrawal_UpdateTransStatus" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="SiteDb_3_Age_CashTransaction_RevertDeposit_Upd" SpName="Age_CashTransaction_RevertDeposit_Upd" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="SiteDb_3_Age_CashTransaction_RevertWithdrawal_Upd" SpName="Age_CashTransaction_RevertWithdrawal_Upd" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="GetCashMemberBankInfoCriteria" SpName="GetCashMemberBankInfoCriteria" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="CustDb_0_Age_CashService_MemberListSel" SpName="Age_CashService_MemberListSel" DbName="DBCUST.CustDB.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="CustDb_0_Age_CashAgentBankInfoSel" SpName="Age_CashAgentBankInfoSel" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="CustDb_0_Age_CashMemberBankInfoSel" SpName="Age_CashMemberBankInfoSel" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="CustDb_0_Age_CashAgentProviderSel" SpName="Age_CashAgentProviderSel" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0"></Setting>
         <Setting Key="Age_CashAccumCredit_AgSel" SpName="Age_CashAccumCredit_AgSel" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
-        <Setting Key="CustDb_0_Age_CashDeposit_LimitAmtSel" SpName="Age_CashDeposit_LimitAmtSel" DbName="DBCust.CustDB.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="CustDb_0_Age_CashDeposit_LimitAmtSel" SpName="Age_CashDeposit_LimitAmtSel" DbName="DBCUST.CustDB.wsv_CashService" Plain="0"></Setting>
         <Setting Key="WriteLog_CashService_UserLog_Transfer" SpName="WriteLog_CashService_UserLog_Transfer" DbName="DBLOG.bodb_CustomerLog.wsv_CashService" Plain="0"></Setting>
         <Setting Key="SiteDb_3_WriteLog_CashService_UserLog_Transfer" SpName="WriteLog_CashService_UserLog_Transfer" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
     </Function>
 
     <Function Name="Deposit">
-        <Setting Key="SiteDb_3_Age_CashDeposit_ManualAdd" SpName="Age_CashDeposit_ManualAdd_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
-        <Setting Key="CustDb_0_Age_CashDeposit_MemberSettingSel" SpName="Age_CashDeposit_MemberSettingSel" DbName="DBCust.CustDB.wsv_CashService" Plain="0"></Setting>
-        <Setting Key="CustDb_0_Age_CashAccumCredit_SyncData" SpName="Age_CashAccumCredit_SyncData" DbName="DBCust.CustDB.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="SiteDb_3_Age_CashDeposit_ManualAdd" SpName="Age_CashDeposit_ManualAdd" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="CustDb_0_Age_CashDeposit_MemberSettingSel" SpName="Age_CashDeposit_MemberSettingSel" DbName="DBCUST.CustDB.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="CustDb_0_Age_CashAccumCredit_SyncData" SpName="Age_CashAccumCredit_SyncData" DbName="DBCUST.CustDB.wsv_CashService" Plain="0"></Setting>
     </Function>
 
     <Function Name="Withdrawal">
-        <Setting Key="SiteDb_3_Age_CashWithdrawal_ManualAdd" SpName="Age_CashWithdrawal_ManualAdd_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="SiteDb_3_Age_CashWithdrawal_ManualAdd" SpName="Age_CashWithdrawal_ManualAdd" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
         <Setting Key="SiteDb_3_Age_CashService_CashBalance_Sel" SpName="Age_CashService_CashBalance_Sel" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
-        <Setting Key="CustDb_0_Age_CashWithdrawal_LimitAmtSel" SpName="Age_CashWithdrawal_LimitAmtSel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0"></Setting>
+        <Setting Key="CustDb_0_Age_CashWithdrawal_LimitAmtSel" SpName="Age_CashWithdrawal_LimitAmtSel" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0"></Setting>
         <Setting Key="SiteDb_3_API_CashWithdrawal_UpdateTransStatus" SpName="API_CashWithdrawal_UpdateTransStatus" DbName="DBSIC.bodb02.wsv_CashService" Plain="0"></Setting>
     </Function>
 
     <Function Name="Member Site Info">
-        <Setting Key="Age_CashService_GeneralSetting" SpName="Age_CashService_GeneralSetting" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
+        <Setting Key="Age_CashService_GeneralSetting" SpName="Age_CashService_GeneralSetting" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="Domain" ObjectProperty="Url" />
             <Mapping DataField="Contact" ObjectProperty="Contacts" />
         </Setting>
-        <Setting Key="Age_CashService_GeneralSetting_Upd" SpName="Age_CashService_GeneralSetting_Upd" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_GeneralSetting_Upd" SpName="Age_CashService_GeneralSetting_Upd" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0" />
     </Function>
 
     <Function Name="Promotion">
-        <Setting Key="Age_CashService_CashPromotionSel" SpName="Age_CashService_CashPromotionSel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
+        <Setting Key="Age_CashService_CashPromotionSel" SpName="Age_CashService_CashPromotionSel" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="Title" ObjectProperty="PromotionTitle"></Mapping>
             <Mapping DataField="Type" ObjectProperty="PromotionTypeId"></Mapping>
         </Setting>
-        <Setting Key="Age_CashService_CashPromotionIns" SpName="Age_CashService_CashPromotionIns" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
-        <Setting Key="CustDb_0_Age_CashService_CashPromotionDel" SpName="Age_CashService_CashPromotionDel" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
-        <Setting Key="Age_CashService_CashPromotionUpd" SpName="Age_CashService_CashPromotionUpd" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
-        <Setting Key="Age_CashService_CashPromotionStatusUpd" SpName="Age_CashService_CashPromotionStatusUpd" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_CashPromotionIns" SpName="Age_CashService_CashPromotionIns" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="CustDb_0_Age_CashService_CashPromotionDel" SpName="Age_CashService_CashPromotionDel" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_CashPromotionUpd" SpName="Age_CashService_CashPromotionUpd" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0" />
+        <Setting Key="Age_CashService_CashPromotionStatusUpd" SpName="Age_CashService_CashPromotionStatusUpd" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0" />
         <Setting Key="Age_CashService_PromotionProductList" SpName="Age_CashService_PromotionProductList" DbName="DBAGE.bodb02.wsv_CashService" Plain="0" />
         <Setting Key="SiteDb_3_Age_CashPromotion_Transaction_Sel" SpName="Age_CashPromotion_Transaction_Sel" DbName="DBSIC.bodb02.wsv_CashService" Plain="0" />
         <Setting Key="Age_CashPromotion_PromotionReport" SpName="Age_CashPromotion_PromotionReport" DbName="DBAGE.bodb02.wsv_CashService" />
         <Setting Key="Age_CashPromotion_PromotionDetailsReport" SpName="Age_CashPromotion_PromotionDetailsReport" DbName="DBAGE.bodb02.wsv_CashService" />
         <Setting Key="Age_CashPromotion_ManualBonus_Sel" SpName="Age_CashPromotion_ManualBonus_Sel" DbName="DBAGE.bodb02.wsv_CashService" />
-        <Setting Key="Age_CashService_CashPromotionSelByID" SpName="Age_CashService_CashPromotionSelByID" DbName="DBCust.AgencyCashService.wsv_CashService" Plain="0">
+        <Setting Key="Age_CashService_CashPromotionSelByID" SpName="Age_CashService_CashPromotionSelByID" DbName="DBCUST.AgencyCashService.wsv_CashService" Plain="0">
             <Mapping DataField="MinTO" ObjectProperty="MinTurnover"></Mapping>
             <Mapping DataField="banner" ObjectProperty="BannerName"></Mapping>
         </Setting>
-        <Setting Key="SiteDb_3_Age_CashPromotion_ManualAddBonus" SpName="Age_CashPromotion_ManualAddBonus_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0" />
-        <Setting Key="SiteDb_3_Age_CashPromotion_UpdateTransStatus" SpName="Age_CashPromotion_UpdateTransStatus_UAT2" DbName="DBSIC.bodb02.wsv_CashService" Plain="0" />
+        <Setting Key="SiteDb_3_Age_CashPromotion_ManualAddBonus" SpName="Age_CashPromotion_ManualAddBonus" DbName="DBSIC.bodb02.wsv_CashService" Plain="0" />
+        <Setting Key="SiteDb_3_Age_CashPromotion_UpdateTransStatus" SpName="Age_CashPromotion_UpdateTransStatus" DbName="DBSIC.bodb02.wsv_CashService" Plain="0" />
         <Setting Key="SiteDb_3_Age_CashPromotion_RejectAll_ByPromotionID" SpName="Age_CashPromotion_RejectAll_ByPromotionID" DbName="DBSIC.bodb02.wsv_CashService" Plain="0" />
     </Function>
 

@@ -1,8 +1,9 @@
-using Fanex.Data.Repository;
-
 namespace AlphaPlus.Settings.Transfer.API.Criteria.TransferYesterdayBalance;
 
-public class GetMemberTransferInfoCriteria(int custId, bool allowedTotalBalanceTransfer) : NonQueryCommand
+using Core.Criteria;
+using Core.Helpers;
+
+public class GetMemberTransferInfoCriteria(int custId, bool allowedTotalBalanceTransfer, int siteDbGroupId) : SiteDbBaseCommand(siteDbGroupId)
 {
     public int CustId { get; } = custId;
 
@@ -30,7 +31,7 @@ public class GetMemberTransferInfoCriteria(int custId, bool allowedTotalBalanceT
 
     public decimal PendingTransfer3rd { get; set; }
 
-    public override string GetSettingKey() => "SiteDB_Age_Transfer_SelMemberInfo_Yesterday";
+    public override string GetSettingKey() => SpNameHelpers.SiteDbPrefix("Age_Transfer_SelMemberInfo_Yesterday_ForDBTrans", SiteDbGroupId);
 
     public override bool IsValid() => CustId > 0;
 }
