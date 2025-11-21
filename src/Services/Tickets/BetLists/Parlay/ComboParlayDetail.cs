@@ -23,6 +23,4 @@ public class ComboParlayDetail
     public decimal PlayerComm { get; init; }
 
     public decimal ExtraValue { get; init; }
-
-    public string ExtraInfo { get; init; }
 }

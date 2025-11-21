@@ -146,7 +146,7 @@
             transIndex: string,
             refNo: string,
             custId: string,
-            transDesc: string,
+            transDesc: object,
             hdp1: string,
             hdp2: string,
             betCheck: string,

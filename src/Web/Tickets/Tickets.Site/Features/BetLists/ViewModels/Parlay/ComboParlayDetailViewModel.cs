@@ -36,16 +36,15 @@ public class ComboParlayDetailViewModel
 
         if (allowInitializingData)
         {
-            ComboParlayDetailWrappers = [.. comboParlayDetailData.ComboParlayDetails
+            ComboParlayDetailWrappers = new List<ComboParlayDetailWrapper>(comboParlayDetailData.ComboParlayDetails
                 .OrderBy(i => statusOrder[i.Status?.ToLowerInvariant() ?? string.Empty])
-                .Select(d => new ComboParlayDetailWrapper(d, comboParlayDetailData.MatchDetails, ticketHelper))];
+                .Select(d => new ComboParlayDetailWrapper(d, comboParlayDetailData.MatchDetails, ticketHelper)));
             ComboParlayDetailWrapperGroups = ComboParlayDetailWrappers.GroupBy(w => w.WinLostDate).OrderBy(i => i.Key);
 
             OutStanding = ConvertByBetType.Stake(comboParlayDetailData.Outstanding);
             IsParlayBoost = comboParlayDetailData.IsParlayBoost;
             TotalWinLost = ConvertByBetType.Winloss(comboParlayDetailData.ComboParlayDetails.Sum(d => d.WinLost + d.PlayerComm));
             IsRunningTicket = !comboParlayDetailData.ComboParlayDetails.Any();
-            IsHaveExtraInfo = comboParlayDetailData.ComboParlayDetails.Any(d => !string.IsNullOrEmpty(d.ExtraInfo));
         }
 
         IsMobile = isMobile;
@@ -64,8 +63,6 @@ public class ComboParlayDetailViewModel
     public string OutStanding { get; }
 
     public bool IsParlayBoost { get; }
-
-    public bool IsHaveExtraInfo { get; }
 
     public string Title { get; }
 

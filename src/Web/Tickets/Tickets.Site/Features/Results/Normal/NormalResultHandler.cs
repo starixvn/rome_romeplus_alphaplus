@@ -122,10 +122,9 @@ public class NormalResultHandler(
 
         if(displayBetTypeId == "9-3")
         {
-            const string betBuilderRefId = "BetBuilder";
+            const string betBuilderPlusRefId = "BetBuilderPlus";
             const string oddsSpread = "3";
-            const string bettypeSubFix = "<sup>+</sup>";
-            return cacheRefService.GetResourceDataByRefIdAndResourceId(betBuilderRefId, oddsSpread) + bettypeSubFix;
+            return cacheRefService.GetResourceDataByRefIdAndResourceId(betBuilderPlusRefId, oddsSpread);
         }
 
         return cacheRefService.GetBetTypeName(betTypeId);
