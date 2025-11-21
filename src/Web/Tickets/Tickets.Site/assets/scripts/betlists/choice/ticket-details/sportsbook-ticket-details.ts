@@ -158,7 +158,7 @@
                 'transid=',
                 transId,
                 '&transdesc=',
-                JSON.stringify(transDesc),
+                encodeURIComponent(JSON.stringify(transDesc)),
                 '&custId=',
                 custId,
                 '&hdp1=',

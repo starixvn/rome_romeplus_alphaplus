@@ -23,7 +23,7 @@ public class ComboParlayDetailWrapper
         [BetStatus.Pending] = CoreBetList.pending
     };
 
-    private readonly IEnumerable<string> SettleStatus =
+    private readonly HashSet<string> _settleStatuses =
     [
         BetStatus.Won, 
         BetStatus.Lose,
@@ -93,8 +93,8 @@ public class ComboParlayDetailWrapper
         if (!string.IsNullOrEmpty(ComboParlayDetail.ExtraInfo) && ComboParlayDetail.ExtraInfo.HasAttributeInXmlTag(SportsbookTag, OddsBetBuilderPlusAttribute))
         {
             var odds = ComboParlayDetail.ExtraInfo.GetXmlTagAttributeValue(SportsbookTag, OddsBetBuilderPlusAttribute);
-            
-            return ConvertByBetType.CommValue(SettleStatus.Contains(ComboParlayDetail.Status) ? ComboParlayDetail.Odds : odds);
+            var isSettled = _settleStatuses.Contains(ComboParlayDetail.Status?.ToLowerInvariant() ?? string.Empty);
+            return ConvertByBetType.CommValue(isSettled ? ComboParlayDetail.Odds : odds);
         }
 
         return ConvertByBetType.CommValue(ComboParlayDetail.Odds);

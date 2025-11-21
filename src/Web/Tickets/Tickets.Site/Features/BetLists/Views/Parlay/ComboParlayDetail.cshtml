@@ -24,7 +24,7 @@
                 </td>
                 <td class="text-right bl_underdog">
                     <div class="divWidth80">
-                        @if (Model.IsHaveExtraInfo && @item.Odds != @item.MasterOdds)
+                        @if (Model.IsHaveExtraInfo && item.Odds != item.MasterOdds)
                         {
                             <bet-builder-plus-odds original-odds="@item.Odds" odds="@item.MasterOdds" />
                         }
