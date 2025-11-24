@@ -28,6 +28,7 @@ namespace AlphaPlus.Utilities.IP
         private const string VNIPListCacheKey = "Alpha.BetLists.Service.IPService.VNIPList";
         private const string CheckHideIPCacheKeyPrefix = "CheckHideIP_";
         private const string ExtNAP = "ExtNAP";
+        private const int CheckHideIPCacheExpirationMinutes = 1;
         private readonly IDynamicRepository dynamicRepository;
         private readonly IPHelper ipHelper;
         private readonly IMemoryCache memoryCache;
@@ -129,7 +130,7 @@ namespace AlphaPlus.Utilities.IP
                     cacheKey,
                     async cacheEntry =>
                     {
-                        cacheEntry.SlidingExpiration = TimeSpan.FromMinutes(1);
+                        cacheEntry.AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(CheckHideIPCacheExpirationMinutes);
                         var criteria = new CheckHideIPCriteria(superId);
                         await dynamicRepository.ExecuteAsync(criteria);
                         return criteria.IsHideIP;
