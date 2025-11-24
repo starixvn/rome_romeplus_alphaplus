@@ -87,8 +87,9 @@ public class LastBetsService(
                 AssignMatchInfoToTicket(ticket, matchInfo);
             }
 
-            await AssignCountry(tickets, displayVNIP);
-            await HideIP(tickets, superId, system);
+            var shouldHideIP = await ipService.CheckHideIP(superId, system);
+            AssignIP(tickets, shouldHideIP);
+            await AssignCountry(tickets, displayVNIP, shouldHideIP);
             await UpdateOddsMixParlay(tickets);
         }
 

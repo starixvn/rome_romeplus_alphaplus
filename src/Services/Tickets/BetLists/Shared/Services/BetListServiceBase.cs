@@ -19,16 +19,16 @@ public class BetListServiceBase(
     protected async Task<BetListData> GetBetList(ICriteria criteria, bool displayVNIP, int superId, string system)
     {
         var (tickets, ticketData) = await repository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
-        await HideIP(tickets, superId, system);
-        await AssignCountry(tickets, displayVNIP);
+        var shouldHideIP = await ipService.CheckHideIP(superId, system);
+        
+        AssignIP(tickets, shouldHideIP);
+        await AssignCountry(tickets, displayVNIP, shouldHideIP);
 
         return new BetListData(tickets, ticketData);
     }
 
-    protected async Task HideIP(IEnumerable<TicketDto> tickets, int superId, string system)
+    protected void AssignIP(IEnumerable<TicketDto> tickets, bool shouldHideIP)
     {
-        var shouldHideIP = await ipService.CheckHideIP(superId, system);
-
         if (shouldHideIP)
         {
             foreach (var ticket in tickets)
@@ -41,24 +41,35 @@ public class BetListServiceBase(
         }
     }
 
-    protected async Task AssignCountry(IEnumerable<TicketDto> tickets, bool displayVNIP)
+    protected async Task AssignCountry(IEnumerable<TicketDto> tickets, bool displayVNIP, bool shouldHideIP)
     {
-        if (tickets.Any())
+        if (!tickets.Any())
         {
-            var ipList = tickets
-                .Where(t => !string.IsNullOrWhiteSpace(t.IP) && (displayVNIP || !ipService.IsVNIP(t.IP.Trim())))
-                .Select(t => t.IP.Trim())
-                .Distinct();
-            var countryDictionary = await GetCountries(ipList);
+            return;
+        }
 
-            string country;
-            foreach (var item in tickets)
+        if (shouldHideIP)
+        {
+            foreach (var ticket in tickets)
             {
-                if (!string.IsNullOrWhiteSpace(item.IP)
-                    && countryDictionary.TryGetValue(item.IP.Trim(), out country))
-                {
-                    item.Country = country;
-                }
+                ticket.Country = "-";
+            }
+            return;
+        }
+
+        var ipList = tickets
+            .Where(t => !string.IsNullOrWhiteSpace(t.IP) && (displayVNIP || !ipService.IsVNIP(t.IP.Trim())))
+            .Select(t => t.IP.Trim())
+            .Distinct();
+        var countryDictionary = await GetCountries(ipList);
+
+        string country;
+        foreach (var item in tickets)
+        {
+            if (!string.IsNullOrWhiteSpace(item.IP)
+                && countryDictionary.TryGetValue(item.IP.Trim(), out country))
+            {
+                item.Country = country;
             }
         }
     }

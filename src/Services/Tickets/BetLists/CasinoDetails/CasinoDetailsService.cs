@@ -34,8 +34,9 @@ public class CasinoDetailsService(
             reportDate.MoveBetsDay,
             reportDate.BalanceUpDay);
         var tickets = await repository.FetchAsync<TicketDto>(criteria);
-        await AssignCountry(tickets, param.DisplayVNIP);
-        await HideIP(tickets, param.SuperId, param.System);
+        var shouldHideIP = await ipService.CheckHideIP(param.SuperId, param.System);
+        AssignIP(tickets, shouldHideIP);
+        await AssignCountry(tickets, param.DisplayVNIP, shouldHideIP);
 
         return new PagedReportData<TicketDto>(tickets, criteria.PageIndex, criteria.PageSize, criteria.TotalRows);
     }
@@ -52,8 +53,9 @@ public class CasinoDetailsService(
             reportDate.MoveBetsDay,
             reportDate.BalanceUpDay);
         var tickets = await repository.FetchAsync<TicketDto>(criteria);
-        await AssignCountry(tickets, param.DisplayVNIP);
-        await HideIP(tickets, param.SuperId, param.System);
+        var shouldHideIP = await ipService.CheckHideIP(param.SuperId, param.System);
+        AssignIP(tickets, shouldHideIP);
+        await AssignCountry(tickets, param.DisplayVNIP, shouldHideIP);
 
         return new PagedReportData<TicketDto>(tickets, criteria.PageIndex, criteria.PageSize, criteria.TotalRows);
     }

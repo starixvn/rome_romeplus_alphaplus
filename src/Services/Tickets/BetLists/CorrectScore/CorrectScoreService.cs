@@ -26,8 +26,9 @@ public class CorrectScoreService(
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
         var tickets = await repository.FetchAsync<TicketDto>(criteria);
-        await AssignCountry(tickets, param.DisplayVNIP);
-        await HideIP(tickets, param.SuperId, param.System);
+        var shouldHideIP = await ipService.CheckHideIP(param.SuperId, param.System);
+        AssignIP(tickets, shouldHideIP);
+        await AssignCountry(tickets, param.DisplayVNIP, shouldHideIP);
 
         return tickets;
     }

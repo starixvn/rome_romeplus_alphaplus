@@ -105,8 +105,9 @@ public class WinLossService(
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
         var (tickets, ticketData) = await repository.FetchMultipleAsync<TicketDto, TicketData>(criteria, param.IP);
-        await AssignCountry(tickets, param.DisplayVNIP);
-        await HideIP(tickets, param.SuperId, param.System);
+        var shouldHideIP = await ipService.CheckHideIP(param.SuperId, param.System);
+        AssignIP(tickets, shouldHideIP);
+        await AssignCountry(tickets, param.DisplayVNIP, shouldHideIP);
 
         var errFormat = param.IsExcel
             ? string.Format(Resources.ExceededMaxTotalRowExportExcelFunc, param.MaxTotalRowConfig)

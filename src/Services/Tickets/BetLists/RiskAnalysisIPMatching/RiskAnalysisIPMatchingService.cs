@@ -36,7 +36,9 @@ public class RiskAnalysisIPMatchingService(
         await partialUMService.ThrowIfUM(criteria.GetSettingKey(), param.SiteName);
 
         var (tickets, ticketData) = await repository.FetchMultipleAsync<TicketDto, TicketData>(criteria);
-        await AssignCountry(tickets, param.DisplayVNIP);
+        var shouldHideIP = await ipService.CheckHideIP(param.SuperId, param.System);
+        AssignIP(tickets, shouldHideIP);
+        await AssignCountry(tickets, param.DisplayVNIP, shouldHideIP);
 
         return new BetListData(tickets.OrderByDescending(ticket => ticket.TransDate).ToList(), ticketData);
     }
