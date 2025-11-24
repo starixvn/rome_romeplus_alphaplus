@@ -39,6 +39,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
         private readonly IPService ipService;
         private readonly TransferService transferService;
         private readonly ICacheRefService cacheRefService;
+        private readonly IUserSession userSession;
 
         private readonly string CurrenciesOfferAutoTransfer = AppSettings.GetConfigValue("OfferAutoTransfer.Currencies");
 
@@ -51,7 +52,8 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
             ISecurityCodeChecker securityCodeChecker,
             IBrowserHelper browserHelper,
             TransferService transferService,
-            ICacheRefService cacheRefService)
+            ICacheRefService cacheRefService,
+            IUserSession userSession)
         {
             this.customerListService = customerListService;
             this.settingMultipleViewModelFactory = settingMultipleViewModelFactory;
@@ -63,6 +65,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
             this.browserHelper = browserHelper;
             this.transferService = transferService;
             this.cacheRefService = cacheRefService;
+            this.userSession = userSession;
         }
 
         public async Task<CustomerListViewModel> Handle(CustomerListRequest message, CancellationToken cancellation)
@@ -138,7 +141,9 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList
                     message.ServiceType,
                     message.LevelType == 2);
 
-            return new CustomerListPagingViewModel(await customerListService.GetCustomerList(param), message, ipService);
+            var shouldHideIP = await ipService.CheckHideIP(userSession.SRecommendId, userSession.System);
+
+            return new CustomerListPagingViewModel(await customerListService.GetCustomerList(param), message, ipService, shouldHideIP);
         }
 
         public Task<CustomerStatusViewModel> Handle(CustomerStatusQuery message, CancellationToken cancellation)

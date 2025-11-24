@@ -1,12 +1,14 @@
 ﻿using AlphaPlus.Settings.Site.Features.CustomerList.Models;
 using AlphaPlus.Settings.Site.Features.CustomerList.Requests;
 using AlphaPlus.Utilities.IP;
+using AlphaPlus.Utilities.IP.Model;
+using AlphaPlus.Core.Models;
 
 namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
 {
     public class CustomerListPagingViewModel
     {
-        public CustomerListPagingViewModel(CustomerListDTO customerListDTO, FetchDownlinesListRequest message, IPService ipService)
+        public CustomerListPagingViewModel(CustomerListDTO customerListDTO, FetchDownlinesListRequest message, IPService ipService, bool shouldHideIP)
         {
             DownlinesList = customerListDTO.DownlinesList.Select(
                  downline =>
@@ -19,6 +21,11 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
                      }
 
                      var formatedIP = ipService.FormatIP(downline.LastLoginIP, message.IsAdminCanViewVNIP);
+
+                     if (downline.RoleId == UserLevel.Member.Value && shouldHideIP)
+                     {
+                         formatedIP = new FormatedIP("-", false);
+                     }
 
                      downline.LastLoginIP = formatedIP.IP;
                      downline.AllowOpenInfoPopup = formatedIP.AllowOpenInfoPopup;

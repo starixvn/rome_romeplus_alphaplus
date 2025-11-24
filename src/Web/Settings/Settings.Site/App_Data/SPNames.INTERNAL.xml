@@ -342,6 +342,7 @@
             <Mapping DataField="ipto" ObjectProperty="To" />
         </Setting>
         <Setting Key="Acc_GetIPInfo_Full" SpName="Acc_GetIPInfo_Full" DbName="DBCust.IPDB.wsv_alp" Plain="0"/>
+        <Setting Key="Age_CustomerCheckHideIP" SpName="Age_CustomerCheckHideIP_UAT2" DbName="DBAGE.bodb02.wsv_alpv" />
     </Function>
     <Function Name="View Logs">
         <Setting Key="Acc_UserLog_RunSPSel" SpName="Acc_UserLog_RunSPSel" DbName="DBLOG.bodb_CustomerLog.wsv_alpv">
