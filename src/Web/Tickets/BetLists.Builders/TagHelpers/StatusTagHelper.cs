@@ -38,7 +38,7 @@ public class StatusTagHelper : TagHelper
             status.Replace("class=\"ip\"", "class=\"ip hide\"");
         }
 
-        if (!string.IsNullOrWhiteSpace(Country))
+        if (!string.IsNullOrWhiteSpace(Ticket.IP) && !string.IsNullOrWhiteSpace(Country))
         {
             status.Append($"<div class=\"country\">{Country}</div>");
         }
