@@ -24,7 +24,7 @@ namespace AlphaPlus.Settings.Site.Features.CustomerList.ViewModels
 
                      if (downline.RoleId == UserLevel.Member.Value && shouldHideIP)
                      {
-                         formatedIP = new FormatedIP("-", false);
+                         formatedIP = new FormatedIP(string.Empty, false);
                      }
 
                      downline.LastLoginIP = formatedIP.IP;
