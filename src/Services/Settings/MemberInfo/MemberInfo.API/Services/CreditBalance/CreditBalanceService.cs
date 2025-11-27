@@ -21,7 +21,6 @@ public class CreditBalanceServiceImpl(IDynamicRepository dynamicRepository, IPSe
 {
     private readonly IDynamicRepository repository = dynamicRepository;
     private readonly IPService ipService = ipService;
-
     public async Task<PagedCreditBalance> GetPagedCreditBalancesAsync(CreditBalanceParam param)
     {
         var closedReasonsTask = GetClosedReasonsAsync(param);
@@ -32,12 +31,19 @@ public class CreditBalanceServiceImpl(IDynamicRepository dynamicRepository, IPSe
         var closedReasons = await closedReasonsTask;
         var agentNetPositions = await agentNetPositionsTask;
         var pagedCreditBalance = await pagedCreditBalanceTask;
+        
+        var isHideIp = await ipService.CheckHideIP(param.SRecommendId, param.System);
 
         foreach (var item in pagedCreditBalance.CreditBalances)
         {
             if (!param.IsAdminCanViewVNIP)
             {
                 item.IPLogin = FormatIP(item.IPLogin ?? string.Empty);
+            }
+
+            if (isHideIp && (item.IsDirectMember || param.CustLevel.IsAgentLevel()))
+            {
+                item.IPLogin = string.Empty;
             }
 
             if (closedReasons.TryGetValue(item.CustId, out var customerClosed))

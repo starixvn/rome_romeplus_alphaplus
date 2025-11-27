@@ -14,7 +14,9 @@ public class CreditBalanceParam
         int pageIndex,
         int pageSize,
         bool isAdminCanViewVNIP,
-        string agIP)
+        string agIP,
+        int sRecommendId,
+        string system)
     {
         CustId = custId;
         CustLevel = custLevel;
@@ -25,6 +27,8 @@ public class CreditBalanceParam
         PageSize = pageSize;
         IsAdminCanViewVNIP = isAdminCanViewVNIP;
         AGIP = agIP;
+        SRecommendId = sRecommendId;
+        System = system;
     }
 
     public int CustId { get; }
@@ -48,6 +52,10 @@ public class CreditBalanceParam
     public bool IsAdminCanViewVNIP { get; }
 
     public string AGIP { get; }
+
+    public int SRecommendId { get; }
+
+    public string System { get; }
 
     private void MapStatusIdToParam(byte statusId)
     {

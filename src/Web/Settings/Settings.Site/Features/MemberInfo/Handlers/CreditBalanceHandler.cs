@@ -1,4 +1,5 @@
-﻿using AlphaPlus.Settings.MemberInfo.API.Services;
+﻿using AlphaPlus.Core.Models;
+using AlphaPlus.Settings.MemberInfo.API.Services;
 using AlphaPlus.Settings.MemberInfo.API.Services.CreditBalance;
 using AlphaPlus.Settings.MemberInfo.API.Services.Transfer;
 using AlphaPlus.Settings.MemberInfo.Domain.Params;
@@ -11,11 +12,13 @@ namespace AlphaPlus.Settings.Site.Features.MemberInfo.Handlers;
 public class CreditBalanceHandler(
     CreditBalanceService creditBalanceService,
     TransferService transferService,
-    IWinlossService winlossService) : IRequestHandler<CreditBalanceQuery, CreditBalanceViewModel>
+    IWinlossService winlossService,
+    IUserSession userSession) : IRequestHandler<CreditBalanceQuery, CreditBalanceViewModel>
 {
     private readonly CreditBalanceService creditBalanceService = creditBalanceService;
     private readonly TransferService transferService = transferService;
     private readonly IWinlossService winlossService = winlossService;
+    private readonly IUserSession userSession = userSession;
 
     public async Task<CreditBalanceViewModel> Handle(CreditBalanceQuery message, CancellationToken cancellation)
     {
@@ -28,7 +31,9 @@ public class CreditBalanceHandler(
             message.PageIndex,
             message.PageSize,
             message.IsAdminCanViewVNIP,
-            message.AGIP);
+            message.AGIP,
+            userSession.SRecommendId,
+            userSession.System);
 
         var pagedCreditBalancesTask = creditBalanceService.GetPagedCreditBalancesAsync(param);
         var transferConditionTask = message.ActorLevel.IsAgentLevel()
