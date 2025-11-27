@@ -30,8 +30,8 @@ public class BetBuilderHandler(
             item.Result = string.IsNullOrWhiteSpace(item.Result)
                 ? item.Result
                 : Resources.ResourceManager.GetString(item.Result.ToLowerInvariant());
-
-            yield return item;
         }
+
+        return details;
     }
 }
