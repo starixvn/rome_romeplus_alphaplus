@@ -120,7 +120,8 @@ public class NormalResultHandler(
             return cacheRefService.GetBetTypeName(BetTypeConstants.MixParlay);
         }
 
-        if(displayBetTypeId == "9-3")
+        const string BetBuilderPlusDisplayBetTypeId = "9-3";
+        if(displayBetTypeId == BetBuilderPlusDisplayBetTypeId)
         {
             const string betBuilderPlusRefId = "BetBuilderPlus";
             const string oddsSpread = "3";
