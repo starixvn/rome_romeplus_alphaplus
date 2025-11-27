@@ -35,7 +35,7 @@ public class BetListServiceBase(
             {
                 if (!string.IsNullOrWhiteSpace(ticket.IP))
                 {
-                    ticket.IP = "-";
+                    ticket.IP = string.Empty;
                 }
             }
         }
@@ -52,7 +52,7 @@ public class BetListServiceBase(
         {
             foreach (var ticket in tickets)
             {
-                ticket.Country = "-";
+                ticket.Country = string.Empty;
             }
             return;
         }

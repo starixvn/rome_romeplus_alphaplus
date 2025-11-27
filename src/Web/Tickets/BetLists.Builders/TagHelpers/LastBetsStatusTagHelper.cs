@@ -26,11 +26,7 @@ public class LastBetsStatusTagHelper : TagHelper
         output.Attributes.Add("class", $"status-block text-center sport-{Ticket.SportTypeId}");
 
         var status = new StringBuilder();
-        if (!IsShowVNIP && TicketHelper.IsVnIp(Ticket.IP))
-        {
-            status.Append("<div class=\"ip\"><div class=\"iplink\">--</div></div>");
-        }
-        else
+        if (IsShowVNIP || !TicketHelper.IsVnIp(Ticket.IP))
         {
             status.Append($"<div class=\"ip\"><div class=\"iplink\" onclick=\"OpenIPInfo('{Ticket.IP}');\">{Ticket.IP}</div></div>");
             if (!string.IsNullOrWhiteSpace(Country))

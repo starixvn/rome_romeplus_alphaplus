@@ -33,6 +33,10 @@ public class StatusTagHelper : TagHelper
 
         var status = new StringBuilder();
         status.Append(Builder.BuildStatus(Ticket, TicketHelper, TicketData, IsShowVNIP));
+        if (string.IsNullOrWhiteSpace(Ticket.IP))
+        {
+            status.Replace("class=\"ip\"", "class=\"ip hide\"");
+        }
 
         if (!string.IsNullOrWhiteSpace(Country))
         {
