@@ -80,7 +80,7 @@ public class NormalResultHandler(
         var sportName = cacheRefService.GetSportName(message.SportId);
         var leagueName = leagueId > 0
             ? GetLeagueName(leagueId, message.SportId, leagueGroupId)
-            : cacheRefService.GetBetTypeName(message.BetTypeId);
+            : GetBetTypeName(message.BetTypeId, message.DisplayBetTypeId);
         var title = !string.IsNullOrWhiteSpace(sportName) && !string.IsNullOrWhiteSpace(leagueName)
             ? $"{sportName} - {leagueName}"
             : $"{sportName} {leagueName}";
@@ -111,6 +111,24 @@ public class NormalResultHandler(
         return options.Value.IsSiteLabel777 ?
                             cacheRefService.GetLeagueName(leagueId, leagueGroupId) :
                             cacheRefService.GetLeagueName(leagueId);
+    }
+
+    private string GetBetTypeName(int betTypeId, string displayBetTypeId)
+    {
+        if(displayBetTypeId == BetTypeConstants.MixParlay.ToString())
+        {
+            return cacheRefService.GetBetTypeName(BetTypeConstants.MixParlay);
+        }
+
+        const string BetBuilderPlusDisplayBetTypeId = "9-3";
+        if(displayBetTypeId == BetBuilderPlusDisplayBetTypeId)
+        {
+            const string betBuilderPlusRefId = "BetBuilderPlus";
+            const string oddsSpread = "3";
+            return cacheRefService.GetResourceDataByRefIdAndResourceId(betBuilderPlusRefId, oddsSpread);
+        }
+
+        return cacheRefService.GetBetTypeName(betTypeId);
     }
 
     private async Task<IEnumerable<SelectListItem>> BuildSports(SportParam param)

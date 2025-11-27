@@ -81,7 +81,7 @@ public class BetListServiceBase(
 
     private static string GetMixParlayMissingOddsTransIds(IEnumerable<TicketDto> tickets)
     {
-        var ticketsMissingOdds = tickets.Where(i => i.BetTypeId == BetTypeConstants.CombineMixParlay && i.BetTeam == "1" && i.Odds == 0);
+        var ticketsMissingOdds = tickets.Where(i => i.BetTypeId == BetTypeConstants.CombineMixParlay && i.BetTeam == "1" && i.OddsSpread != 3 && i.Odds == 0);
 
         return string.Join(',', ticketsMissingOdds.Select(i => i.TransId));
     }

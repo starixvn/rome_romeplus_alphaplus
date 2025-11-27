@@ -16,7 +16,8 @@
             custId?: number,
             transId3rd?: string,
             siteId?: string,
-            transdesc?: string
+            transdesc?: string,
+            displayBetTypeId?: string
         ): void;
     }
 
@@ -74,7 +75,8 @@
             refNoMixParlay?: number,
             league?: number,
             isOutright?: boolean,
-            betId?: number
+            betId?: number,
+            displayBetTypeId?: string
         ) => {
             const params = [
                 '?refnum=',
@@ -83,7 +85,8 @@
                 winLostDate,
                 '&bettypeid=',
                 betTypeId,
-                '&matchid=1&isViewResultFromBetList=true'
+                '&matchid=1&isViewResultFromBetList=true&displayBetTypeId=',
+                encodeURIComponent(displayBetTypeId)
             ].join('');
 
             Common.PopupDetails.Instance(window.top).Show(this.ResultDetailsPath + params, '', 800, 500);

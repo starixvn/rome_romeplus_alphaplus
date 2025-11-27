@@ -401,6 +401,9 @@ div.league,
 
 .offer-name-list {
     font-weight: bold;
+    &.void {
+        text-decoration: line-through;
+    }
 }
 
 .float_l,
@@ -750,4 +753,109 @@ span.icon-boost {
     background-color: #f27c06;
     color: white;
     border-radius: 2px;
+}
+
+.hybrid-parlay-match-ticket-list {
+    .league {
+        margin-bottom: 3px;
+    }		
+    .odds {
+        font-weight: bold;
+        color: var(--bl-tb-handicap);
+        .old-odds {
+            color: #9b9b9b;
+            font-weight: normal;
+            text-decoration: line-through;
+            margin-right: 4px;
+        }
+        .cur-odds {
+            font-weight: bold;
+        }
+    }
+    .live {
+        color: var(--bl-tb-favorite);
+        font-weight: bold;
+        margin-left: 5px;
+    }
+	.list-builder {
+        &.single{
+            li{
+                &:after,&:before{
+                    display: none;
+                }
+            }            
+        }
+		list-style: none;
+		padding: 5px 10px 5px 5px;
+		margin: 0;
+		border-radius: 3px;
+		background-color: var(--bl-betbuilder-bg);
+		margin-bottom: 3px;
+		li {
+			position: relative;
+			padding-right: 20px;
+			padding: 3px 10px 3px 0;
+			border-right: 2px solid var(--bl-betbuilder-border);
+			font-weight: bold;
+			&:after {
+				position: absolute;
+				top: 50%;
+				transform: translateY(-50%);
+				right: -5px;
+				width: 8px;
+				height: 8px;
+				border: 1px solid var(--bl-betbuilder-border);
+				background-color: var(--bl-betbuilder-bg);
+				border-radius: 50%;
+				content: '';
+			}
+			&:first-child {
+				&:before {
+					position: absolute;
+					content: '';
+					top: 0;
+					right: -3px;
+					background-color: var(--bl-betbuilder-bg);
+					width: 4px;
+					height: 50%;
+				}
+			}
+			&:last-child {
+				&:before {
+					position: absolute;
+					content: '';
+					bottom: 0;
+					right: -3px;
+					background-color: var(--bl-betbuilder-bg);
+					width: 4px;
+					height: 50%;
+				}
+			}			 
+		}
+		&.single {
+			padding: 0;
+			background: none;
+			li {
+				border: 0;
+				padding: 0;
+			}
+		}
+        .void {
+            text-decoration: line-through;
+        }
+	}
+	.status {
+		border-radius: 23px;
+		border: 1px solid var(--bl-status-border);
+		padding: 0 5px;
+		font-size: 11px;
+		font-weight: bold;
+		color: var(--bl-status-color);		 
+		margin: 2px 0 2px 5px;
+		display: inline-block;
+		text-transform: capitalize;
+	}
+	&.void {
+		text-decoration: line-through;
+	}
 }

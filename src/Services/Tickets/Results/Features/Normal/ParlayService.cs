@@ -18,7 +18,9 @@ public class ParlayService(IDynamicRepository repository) : IParlayService
             new GetParlayResultCriteria(refNo)
         );
 
-        var results = GetParlays(sportsbooks);
+        var sportbooksDistinct = sportsbooks.DistinctBy(i => i.MatchId);
+
+        var results = GetParlays(sportbooksDistinct);
         AddGameDetailsToResults(gameDetails, results);
 
         return results;
