@@ -46,6 +46,8 @@ public class InternalLoginResponse
 
     public bool IsAdminCanUpdateSubAccount { get; set; }
 
+    public bool IsAdminCanViewIPVN { get; set; }
+
     public bool IsEnabledSecurityCodeInBetLists { get; set; }
 
     public bool IsEnabledSecurityCodeInStatement { get; set; }

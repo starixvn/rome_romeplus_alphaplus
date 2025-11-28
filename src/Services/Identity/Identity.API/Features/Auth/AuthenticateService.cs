@@ -300,6 +300,7 @@ namespace AlphaPlus.Identity.API.Features.Auth
                     && (await IsAutoFollowBetDummyAgent(response.CustId));
 
                 response.IsAdminCanUpdateSubAccount = await adminPermissionService.HasUpdateSubAccountPermission(response.AdminId);
+                response.IsAdminCanViewIPVN = await adminPermissionService.HasViewIPVNPermission(response.AdminId);
                 response.OfferedProductGroupIds = await GetOfferedProductGroupIds(response.CustId, response.RoleId);
             }
             

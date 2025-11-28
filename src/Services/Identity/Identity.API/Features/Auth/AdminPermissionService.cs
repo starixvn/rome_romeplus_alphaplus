@@ -6,6 +6,8 @@ public interface IAdminPermissionService
 {
     Task<bool> HasUpdateSubAccountPermission(int adminId);
 
+    Task<bool> HasViewIPVNPermission(int adminId);
+
     Task<bool> HasHostPermission(int adminId, int? functionId = null, string functionName = null);
 }
 
@@ -16,6 +18,9 @@ public class AdminPermissionService(IDynamicRepository dynamicRepository) : IAdm
 
     public async Task<bool> HasUpdateSubAccountPermission(int adminId)
         => await HasHostPermission(adminId, functionName: "[UpdateSubAccount]");
+        
+    public async Task<bool> HasViewIPVNPermission(int adminId)
+        => await HasHostPermission(adminId, functionName: "[ViewIPVN]");
 
     public async Task<bool> HasHostPermission(int adminId, int? functionId = null, string functionName = null)
     {

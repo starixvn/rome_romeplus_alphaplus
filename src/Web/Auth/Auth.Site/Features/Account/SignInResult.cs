@@ -54,6 +54,8 @@ namespace AlphaPlus.Auth.Site.Features.Account
 
         public bool IsAdminCanUpdateSubAccount { get; init; }
 
+        public bool IsAdminCanViewIPVN { get; init; }
+
         public bool IsEnabledSecurityCodeInBetLists { get; init; }
 
         public bool IsEnabledSecurityCodeInStatement { get; init; }

@@ -129,6 +129,7 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         SetCookieLanguage(userSession.Language);
 
         userSession.SetProperty("ProcessAfterLogin_Handler.DeviceIdSessionKey", signInResult.DeviceId);
+        userSession.IsAdminCanViewVNIP = signInResult.IsAdminCanViewIPVN;
     }
 
     private static string GetUserLanguage(string langCodeUsage)
@@ -221,7 +222,6 @@ public class UserSessionService(IConfiguration configuration, IHttpContextAccess
         userSession.SRecommendId = Convert.ToInt32(status["srecommend"]);
         userSession.MRecommendId = Convert.ToInt32(status["mrecommend"]);
         userSession.ARecommendId = Convert.ToInt32(status["arecommend"]);
-        userSession.IsAdminCanViewVNIP = Convert.ToBoolean(status["isadmincanviewvnip"]);
 
         AddIsProtectedModeToSession(status);
         AddMainDomainToSession();
